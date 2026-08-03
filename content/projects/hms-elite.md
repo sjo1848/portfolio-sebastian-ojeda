@@ -24,8 +24,6 @@ evidenceNeeded:
   - Video breve del recorrido principal
 ---
 
-# HMS Elite
-
 ## Una plataforma multi-hotel para coordinar operaciones, seguridad y control
 
 HMS Elite es una implementación full stack de referencia para operaciones hoteleras. El proyecto conecta habitaciones, huéspedes, reservas, housekeeping, usuarios, facturación, reportes y auditoría dentro de una arquitectura SaaS multi-tenant.
