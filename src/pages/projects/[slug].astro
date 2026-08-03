@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <article class="case-study">
+    <header class="case-hero section section-surface">
+      <div class="container case-hero-grid">
+        <div>
+          <p class="eyebrow">{data.category}</p>
+          <h1>{data.title}</h1>
+          <p class="hero-copy">{data.summary}</p>
+          <dl class="project-meta">
+            <div><dt>Estado</dt><dd>{data.statusLabel}</dd></div>
+            <div><dt>Rol</dt><dd>{data.role}</dd></div>
+            <div><dt>Año</dt><dd>{data.year}</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <a class="button button-primary" href={data.repository} target="_blank" rel="noreferrer">Ver código</a>
+            <a class="button button-secondary" href="/#projects">Volver a proyectos</a>
+          </div>
+        </div>
+        <aside class="case-evidence">
+          <p class="eyebrow">Stack principal</p>
+          <ul class="stack-list stack-list-large">
+            {data.stack.map((technology) => <li>{technology}</li>)}
+          </ul>
+          <p class="evidence-note">Las capturas verificadas se incorporarán cuando correspondan a una versión reproducible.</p>
+        </aside>
+      </div>
+    </header>
+    <div class="container content-layout">
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+</BaseLayout>
