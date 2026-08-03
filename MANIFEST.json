@@ -1,0 +1,30 @@
+{
+  "project": "portfolio-sebastian-ojeda",
+  "stage": "product-foundation",
+  "recommended_branch": "docs/product-foundation",
+  "generated_files": [
+    ".editorconfig",
+    ".github/ISSUE_TEMPLATE/task.md",
+    ".github/pull_request_template.md",
+    ".gitignore",
+    "README.md",
+    "content/profile/about.md",
+    "content/profile/capabilities.md",
+    "content/profile/experience.md",
+    "content/projects/amr-refrigeracion.md",
+    "content/projects/gasflow.md",
+    "content/projects/hms-elite.md",
+    "docs/00-product-brief.md",
+    "docs/01-professional-positioning.md",
+    "docs/02-information-architecture.md",
+    "docs/03-content-inventory.md",
+    "docs/04-visual-direction.md",
+    "docs/05-technical-architecture.md",
+    "docs/06-qa-strategy.md",
+    "docs/07-release-plan.md",
+    "docs/BACKLOG.md",
+    "docs/adr/0001-use-astro.md",
+    "public/.gitkeep",
+    "src/.gitkeep"
+  ]
+}
