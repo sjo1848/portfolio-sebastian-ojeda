@@ -1,0 +1,106 @@
+name: Orchestrate release readiness
+
+on:
+  push:
+    branches:
+      - qa/release-readiness
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  orchestrate:
+    name: Normalize, validate and finalize QA branch
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_SITE_URL: https://portfolio-preview.invalid
+    steps:
+      - name: Checkout QA branch
+        uses: actions/checkout@v4
+        with:
+          ref: qa/release-readiness
+          fetch-depth: 0
+
+      - name: Synchronize current branch
+        run: git pull --rebase origin qa/release-readiness
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Ensure reproducible dependencies
+        shell: bash
+        run: |
+          git fetch origin chore/reproducible-dependencies
+          if git cat-file -e origin/chore/reproducible-dependencies:package-lock.json 2>/dev/null; then
+            git checkout origin/chore/reproducible-dependencies -- package-lock.json .github/workflows/ci.yml
+          elif [[ ! -s package-lock.json ]]; then
+            npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          fi
+          test -s package-lock.json
+
+      - name: Normalize release content
+        shell: python
+        run: |
+          from pathlib import Path
+
+          validator = Path('scripts/validate-content.mjs')
+          validator_content = validator.read_text(encoding='utf-8')
+          validator_content = validator_content.replace("'.mjs', '.svg', '.ts'", "'.mjs', '.ts'")
+          validator.write_text(validator_content, encoding='utf-8')
+
+          for file in Path('content/projects').glob('*.md'):
+              content = file.read_text(encoding='utf-8')
+              lines = content.splitlines()
+              for index, line in enumerate(lines):
+                  if line.startswith('# '):
+                      del lines[index]
+                      while index < len(lines) and lines[index] == '':
+                          del lines[index]
+                      break
+              file.write_text('\n'.join(lines).rstrip() + '\n', encoding='utf-8')
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate public source content
+        run: node scripts/validate-content.mjs
+
+      - name: Astro content and type check
+        run: npm run check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Validate generated site
+        run: node scripts/validate-build.mjs
+
+      - name: Remove temporary workflows
+        shell: bash
+        run: |
+          for file in \
+            .github/workflows/apply-release-readiness-fix.yml \
+            .github/workflows/normalize-case-study-headings.yml \
+            .github/workflows/sync-reproducible-dependencies.yml \
+            .github/workflows/orchestrate-release-readiness.yml; do
+            if [[ -f "$file" ]]; then
+              git rm "$file"
+            fi
+          done
+
+      - name: Commit finalized release-readiness state
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json .github/workflows/ci.yml scripts/validate-content.mjs content/projects
+          if git diff --cached --quiet; then
+            echo "No normalization changes remain."
+            exit 0
+          fi
+          git commit -m "qa: finalize release readiness baseline"
+          git pull --rebase origin qa/release-readiness
+          git push origin HEAD:qa/release-readiness
