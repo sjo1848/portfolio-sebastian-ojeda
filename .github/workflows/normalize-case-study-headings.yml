@@ -1,0 +1,48 @@
+name: Normalize case study headings
+
+on:
+  push:
+    branches:
+      - qa/release-readiness
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    name: Keep one page-level h1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: qa/release-readiness
+
+      - name: Remove Markdown page titles
+        shell: python
+        run: |
+          from pathlib import Path
+
+          for file in Path('content/projects').glob('*.md'):
+              content = file.read_text(encoding='utf-8')
+              lines = content.splitlines()
+              for index, line in enumerate(lines):
+                  if line.startswith('# '):
+                      del lines[index]
+                      while index < len(lines) and lines[index] == '':
+                          del lines[index]
+                      break
+              file.write_text('\n'.join(lines).rstrip() + '\n', encoding='utf-8')
+
+      - name: Remove temporary workflow
+        run: git rm .github/workflows/normalize-case-study-headings.yml
+
+      - name: Commit normalization
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/projects
+          git commit -m "fix: keep one h1 per project case study"
+          git push origin HEAD:qa/release-readiness
