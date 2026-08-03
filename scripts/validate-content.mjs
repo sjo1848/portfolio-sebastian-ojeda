@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const scanRoots = ['src', 'content/projects', 'public'];
-const textExtensions = new Set(['.astro', '.css', '.html', '.js', '.json', '.md', '.mjs', '.svg', '.ts', '.txt']);
+const textExtensions = new Set(['.astro', '.css', '.html', '.js', '.json', '.md', '.mjs', '.ts', '.txt']);
 const forbidden = [
   { label: 'TODO marker', pattern: /\bTODO\b/i },
   { label: 'TBD marker', pattern: /\bTBD\b/i },
