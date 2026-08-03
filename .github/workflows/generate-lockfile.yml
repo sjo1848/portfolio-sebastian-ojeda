@@ -1,0 +1,40 @@
+name: Generate npm lockfile
+
+on:
+  push:
+    branches:
+      - chore/reproducible-dependencies
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    name: Generate lockfile artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Generate package-lock.json
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Verify lockfile
+        run: |
+          test -s package-lock.json
+          node -e "const lock=require('./package-lock.json'); if(lock.lockfileVersion !== 3) process.exit(1)"
+
+      - name: Upload lockfile
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-lockfile
+          path: package-lock.json
+          if-no-files-found: error
+          retention-days: 1
