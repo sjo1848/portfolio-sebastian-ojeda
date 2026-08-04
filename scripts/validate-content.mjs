@@ -70,7 +70,7 @@ async function validateProjectInventory() {
     .map((entry) => entry.replace(/\.md$/, ''))
     .sort();
 
-  const expected = ['amr-refrigeracion', 'gasflow', 'hms-elite'];
+  const expected = ['gasflow', 'hms-elite', 'jm-soluciones'];
   if (JSON.stringify(slugs) !== JSON.stringify(expected)) {
     failures.push(`Featured project inventory mismatch. Expected ${expected.join(', ')}; found ${slugs.join(', ')}`);
   }
