@@ -10,8 +10,10 @@ permissions:
 
 jobs:
   validate:
-    name: Typecheck, build and Lighthouse
+    name: Release QA and Lighthouse
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SITE_URL: https://portfolio-sebastian-ojeda.pages.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,13 +27,8 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Astro check
-        run: npm run check
-
-      - name: Production build
-        env:
-          PUBLIC_SITE_URL: https://portfolio-sebastian-ojeda.pages.dev
-        run: npm run build
+      - name: Run release QA contract
+        run: npm run qa:release
 
       - name: Lighthouse budgets
         run: npx --yes @lhci/cli@0.15.1 autorun
