@@ -1,0 +1,76 @@
+name: Visual review
+
+on:
+  push:
+    branches:
+      - portfolio-next-batch
+    paths:
+      - '.github/workflows/visual-review.yml'
+      - 'astro.config.*'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'public/**'
+      - 'scripts/**'
+      - 'src/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: visual-review-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PUBLIC_SITE_URL: https://portfolio-preview.invalid
+
+jobs:
+  capture:
+    name: Capture responsive evidence
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate and build
+        run: npm run validate
+
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --directory dist > /tmp/portfolio-server.log 2>&1 &
+          echo $! > /tmp/portfolio-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/portfolio-server.log
+          exit 1
+
+      - name: Confirm browser
+        run: google-chrome --version
+
+      - name: Capture viewport matrix
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+          VISUAL_REVIEW_BASE_URL: http://127.0.0.1:4173
+        run: node scripts/capture-visual-review.mjs
+
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-review-${{ github.sha }}
+          path: artifacts/visual/
+          if-no-files-found: error
+          retention-days: 7
