@@ -33,6 +33,10 @@ function extractTags(content, tagName) {
   return [...content.matchAll(new RegExp(`<${tagName}\\b[^>]*>`, 'gi'))].map((match) => match[0]);
 }
 
+function hasClass(tag, className) {
+  return (extractAttribute(tag, 'class') ?? '').split(/\s+/).includes(className);
+}
+
 function textContent(content) {
   return content
     .replace(/<script[\s\S]*?<\/script>/gi, '')
@@ -46,6 +50,15 @@ function textContent(content) {
 
 function requireSingle(content, route, tagName, description) {
   const tags = extractTags(content, tagName);
+  if (tags.length !== 1) {
+    failures.push(`${route}: expected exactly one ${description}`);
+    return null;
+  }
+  return tags[0];
+}
+
+function requireSingleClass(content, route, tagName, className, description) {
+  const tags = extractTags(content, tagName).filter((tag) => hasClass(tag, className));
   if (tags.length !== 1) {
     failures.push(`${route}: expected exactly one ${description}`);
     return null;
@@ -143,7 +156,7 @@ function validatePage(content, route) {
     if (nav && !(extractAttribute(nav, 'aria-label') ?? '').trim()) {
       failures.push(`${route}: primary navigation must have an aria-label`);
     }
-    requireSingle(content, route, 'header', 'site header');
+    requireSingleClass(content, route, 'header', 'site-header', 'site header');
     requireSingle(content, route, 'footer', 'site footer');
   }
 }
