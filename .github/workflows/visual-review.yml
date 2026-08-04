@@ -1,9 +1,9 @@
 name: Visual review
 
 on:
-  push:
+  pull_request:
     branches:
-      - portfolio-next-batch
+      - main
     paths:
       - '.github/workflows/visual-review.yml'
       - 'astro.config.*'
@@ -18,7 +18,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: visual-review-${{ github.ref }}
+  group: visual-review-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -42,7 +42,7 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Validate and build
-        run: npm run validate
+        run: npm run qa:release
 
       - name: Start static server
         run: |
