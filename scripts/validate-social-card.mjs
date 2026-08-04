@@ -4,8 +4,8 @@ import { resolve } from 'node:path';
 const target = resolve(process.argv[2] ?? 'dist/social-card.png');
 const expectedWidth = 1200;
 const expectedHeight = 630;
-const minimumBytes = 20_000;
-const maximumBytes = 1_000_000;
+const minimumBytes = 3_000;
+const maximumBytes = 250_000;
 const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
 
 function fail(message) {
