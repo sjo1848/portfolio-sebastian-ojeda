@@ -26,8 +26,8 @@ const generatedAssets = [
     name: 'social card PNG',
     relativePath: 'social-card.png',
     signature: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
-    minimumBytes: 20_000,
-    maximumBytes: 1_000_000,
+    minimumBytes: 3_000,
+    maximumBytes: 250_000,
   },
 ];
 
