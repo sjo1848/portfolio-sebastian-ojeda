@@ -1,0 +1,52 @@
+name: Release readiness
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-readiness-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PUBLIC_SITE_URL: https://portfolio-preview.invalid
+
+jobs:
+  validate-release:
+    name: Validate release contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate public source content
+        run: node scripts/validate-content.mjs
+
+      - name: Astro content and type check
+        run: npm run check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Validate generated site
+        run: node scripts/validate-build.mjs
+
+      - name: Upload validated static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7

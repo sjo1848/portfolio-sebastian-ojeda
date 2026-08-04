@@ -23,8 +23,6 @@ evidenceNeeded:
   - URL de producción verificada
 ---
 
-# A-M-R Refrigeración
-
 ## Un sitio comercial simple, rápido y orientado al contacto
 
 A-M-R Refrigeración es un sitio para una empresa local de servicios de refrigeración. El objetivo no fue construir una aplicación compleja, sino ayudar a una persona a entender qué servicios se ofrecen, evaluar confianza y realizar una consulta por WhatsApp con la menor fricción posible.

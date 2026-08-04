@@ -24,8 +24,6 @@ evidenceNeeded:
   - Video del ciclo pedido a conciliación
 ---
 
-# GasFlow
-
 ## Operación móvil para pedidos, entregas y stock
 
 GasFlow es un MVP de logística para una distribuidora local de garrafas. Conecta una aplicación React Native con un backend Rust/Axum y PostgreSQL para coordinar pedidos programados, asignaciones, entregas, fallos, reprogramaciones y movimientos de envases llenos y vacíos.
