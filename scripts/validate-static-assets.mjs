@@ -10,7 +10,7 @@ const requiredPages = [
   '404.html',
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
-  'projects/amr-refrigeracion/index.html',
+  'projects/jm-soluciones/index.html',
   'robots.txt',
 ];
 
