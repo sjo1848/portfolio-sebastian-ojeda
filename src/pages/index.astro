@@ -103,9 +103,13 @@ const projects = (await getCollection('projects'))
       <div>
         <p class="eyebrow">Contacto</p>
         <h2 id="contact-title">Busco oportunidades en backend, full stack y software operativo</h2>
-        <p>{site.location}. Los enlaces de email, LinkedIn y CV se activarán cuando los datos públicos sean confirmados.</p>
+        <p>{site.location}. {site.workMode}</p>
+        <p>Inglés intermedio en desarrollo y práctica profesional.</p>
       </div>
-      <a class="button button-primary" href={site.github} target="_blank" rel="noreferrer">Ver GitHub</a>
+      <div class="hero-actions">
+        <a class="button button-primary" href={`mailto:${site.email}`}>Enviar email</a>
+        <a class="button button-secondary" href={site.github} target="_blank" rel="noreferrer">Ver GitHub</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
