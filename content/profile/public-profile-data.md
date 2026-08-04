@@ -2,7 +2,7 @@
 
 ## Estado
 
-Datos públicos principales confirmados. LinkedIn y CV descargable continúan pendientes antes del lanzamiento.
+Datos públicos principales confirmados. El CV descargable está preparado. LinkedIn continúa pendiente antes del lanzamiento.
 
 ## Identidad
 
@@ -49,11 +49,15 @@ Los roles se presentan bajo una misma dirección profesional. SAP, integraciones
 
 ## CV
 
-Existen CV anteriores orientados a telecomunicaciones, mantenimiento, inventarios y operaciones. Se usarán únicamente como fuentes de experiencia y formación.
+- **Posicionamiento:** backend y full stack con foco backend.
+- **Formato público:** PDF ATS-friendly de una página.
+- **Ruta pública:** `/cv-sebastian-ojeda.pdf`.
+- **Fuente editable del repositorio:** `docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md`.
+- **Generación:** determinista mediante `npm run generate:cv` antes de cada build.
+- **Retrato:** no.
+- **Datos sensibles:** excluidos.
 
-No deben publicarse directamente porque incluyen datos sensibles o desactualizados, como domicilio exacto, DNI, teléfono, correo anterior y objetivos profesionales que no coinciden con este portafolio.
-
-Debe prepararse un CV nuevo orientado a backend y full stack, coherente con el contenido del sitio y con los tres proyectos destacados.
+Los CV anteriores orientados a telecomunicaciones, mantenimiento, inventarios y operaciones se conservan únicamente como fuentes de experiencia y formación. No deben publicarse directamente porque incluyen datos sensibles o desactualizados.
 
 ## Evidencia visual
 
