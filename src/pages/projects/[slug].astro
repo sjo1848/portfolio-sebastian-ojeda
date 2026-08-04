@@ -18,9 +18,25 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
+const projectUrl = new URL(`/projects/${data.slug}/`, Astro.site ?? Astro.url);
+const projectSchema = {
+  '@type': 'SoftwareSourceCode',
+  '@id': `${projectUrl.toString()}#software`,
+  name: data.title,
+  description: data.summary,
+  url: projectUrl.toString(),
+  codeRepository: data.repository,
+  programmingLanguage: data.stack,
+  author: { '@id': new URL('/#person', projectUrl).toString() },
+};
 ---
 
-<BaseLayout title={data.title} description={data.summary}>
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  ogType="article"
+  structuredData={projectSchema}
+>
   <article class="case-study">
     <header class="case-hero section section-surface">
       <div class="container case-hero-grid">

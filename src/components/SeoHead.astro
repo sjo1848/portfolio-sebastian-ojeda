@@ -1,0 +1,76 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: URL;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  type = 'website',
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const personId = new URL('/#person', canonical).toString();
+const websiteId = new URL('/#website', canonical).toString();
+const additionalGraph = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
+  : [];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.name,
+      url: new URL('/', canonical).toString(),
+      jobTitle: site.title,
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: 'Mendoza',
+        addressCountry: 'AR',
+      },
+      sameAs: site.sameAs,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: new URL('/', canonical).toString(),
+      name: `${site.name} — Portfolio profesional`,
+      description: site.description,
+      inLanguage: site.languageTag,
+      about: { '@id': personId },
+      publisher: { '@id': personId },
+    },
+    ...additionalGraph,
+  ],
+};
+---
+
+<meta name="generator" content={Astro.generator} />
+<meta name="description" content={description} />
+<meta name="theme-color" content={site.themeColor} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonical} />
+
+<meta property="og:locale" content={site.locale} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={`${site.name} — Portfolio profesional`} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
