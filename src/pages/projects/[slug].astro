@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjectMedia } from '../../data/projectMedia';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -18,6 +19,7 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
+const media = getProjectMedia(data.slug);
 const projectUrl = new URL(`/projects/${data.slug}/`, Astro.site ?? Astro.url);
 const projectSchema = {
   '@type': 'SoftwareSourceCode',
@@ -27,6 +29,7 @@ const projectSchema = {
   url: projectUrl.toString(),
   codeRepository: data.repository,
   programmingLanguage: data.stack,
+  image: media?.src,
   author: { '@id': new URL('/#person', projectUrl).toString() },
 };
 ---
@@ -54,12 +57,32 @@ const projectSchema = {
             <a class="button button-secondary" href="/#projects">Volver a proyectos</a>
           </div>
         </div>
-        <aside class="case-evidence">
+        <aside class:list={['case-evidence', { 'case-evidence-with-media': media }]}>
+          {
+            media && (
+              <figure class="case-media">
+                <img
+                  src={media.src}
+                  alt={media.alt}
+                  width={media.width}
+                  height={media.height}
+                  decoding="async"
+                />
+                <figcaption>{media.caption}</figcaption>
+              </figure>
+            )
+          }
           <p class="eyebrow">Stack principal</p>
           <ul class="stack-list stack-list-large">
             {data.stack.map((technology) => <li>{technology}</li>)}
           </ul>
-          <p class="evidence-note">Las capturas verificadas se incorporarán cuando correspondan a una versión reproducible.</p>
+          {
+            !media && (
+              <p class="evidence-note">
+                Las capturas verificadas se incorporarán cuando correspondan a una versión reproducible.
+              </p>
+            )
+          }
         </aside>
       </div>
     </header>
