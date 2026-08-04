@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getProjectMedia } from '../data/projectMedia';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -7,13 +8,33 @@ interface Props {
 
 const { project } = Astro.props;
 const { data } = project;
+const media = getProjectMedia(data.slug);
 ---
 
 <article class="project-card">
-  <div class="project-evidence" aria-hidden="true">
-    <span>{String(data.order).padStart(2, '0')}</span>
-    <strong>{data.category}</strong>
-  </div>
+  {
+    media ? (
+      <figure class="project-evidence project-evidence-image">
+        <img
+          src={media.src}
+          alt={media.alt}
+          width={media.width}
+          height={media.height}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          <span>{String(data.order).padStart(2, '0')}</span>
+          <strong>{data.category}</strong>
+        </figcaption>
+      </figure>
+    ) : (
+      <div class="project-evidence" aria-hidden="true">
+        <span>{String(data.order).padStart(2, '0')}</span>
+        <strong>{data.category}</strong>
+      </div>
+    )
+  }
   <div class="project-body">
     <p class="eyebrow">{data.statusLabel}</p>
     <h3>{data.title}</h3>
