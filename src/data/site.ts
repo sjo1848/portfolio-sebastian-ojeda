@@ -12,7 +12,8 @@ export const site = {
   sameAs: ['https://github.com/sjo1848'],
   linkedin: null as string | null,
   email: 'sebastian.ojeda.dev@gmail.com',
-  cv: null as string | null,
+  cv: '/CV_Sebastian_Ojeda_Backend_FullStack.pdf',
+  cvEditable: '/CV_Sebastian_Ojeda_Backend_FullStack.docx',
   portrait: false,
   workMode:
     'Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.',
