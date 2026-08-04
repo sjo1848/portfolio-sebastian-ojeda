@@ -23,7 +23,7 @@ const projects = (await getCollection('projects'))
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">Ver proyectos</a>
           <a class="button button-secondary" href={site.cv} download>Descargar CV</a>
-          <a class="button button-secondary" href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
       <aside class="hero-proof" aria-label="Enfoque de trabajo">
@@ -110,7 +110,7 @@ const projects = (await getCollection('projects'))
       <div class="hero-actions">
         <a class="button button-primary" href={`mailto:${site.email}`}>Enviar email</a>
         <a class="button button-secondary" href={site.cv} download>Descargar CV</a>
-        <a class="button button-secondary" href={site.github} target="_blank" rel="noreferrer">Ver GitHub</a>
+        <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">Ver GitHub</a>
       </div>
     </div>
   </section>

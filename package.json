@@ -5,12 +5,24 @@
   "type": "module",
   "scripts": {
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
-    "dev": "npm run generate:cv && astro dev",
-    "dev:host": "npm run generate:cv && astro dev --host 0.0.0.0 --port 4321",
-    "build": "npm run generate:cv && astro build",
+    "generate:social-card": "node scripts/generate-social-card.mjs",
+    "generate:assets": "npm run generate:cv && npm run generate:social-card",
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:social-card": "node scripts/validate-social-card.mjs",
+    "validate:static-assets": "node scripts/validate-static-assets.mjs",
+    "validate:social-metadata": "node scripts/validate-social-metadata.mjs",
+    "validate:seo": "node scripts/validate-seo-structured-data.mjs",
+    "validate:ux": "node scripts/validate-ux-accessibility.mjs",
+    "validate:build": "node scripts/validate-build.mjs",
+    "dev": "npm run generate:assets && astro dev",
+    "dev:host": "npm run generate:assets && astro dev --host 0.0.0.0 --port 4321",
+    "build:pipeline": "npm run generate:assets && astro build && npm run validate:social-card && npm run validate:static-assets && npm run validate:social-metadata && npm run validate:seo && npm run validate:ux",
+    "build": "node scripts/run-with-site-url.mjs npm run build:pipeline",
+    "qa:release:pipeline": "npm run validate:content && npm run check && npm run build:pipeline && npm run validate:build",
+    "qa:release": "node scripts/run-with-site-url.mjs npm run qa:release:pipeline",
     "preview": "astro preview",
     "check": "astro check",
-    "validate": "npm run check && npm run build"
+    "validate": "npm run qa:release"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

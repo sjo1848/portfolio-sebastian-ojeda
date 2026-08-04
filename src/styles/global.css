@@ -20,7 +20,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 body {
   margin: 0;
   background: var(--canvas);
@@ -29,8 +29,10 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
+img { max-width: 100%; }
 a { color: inherit; text-underline-offset: 0.2em; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+main:focus { outline: none; }
 h1, h2, h3 { margin: 0; line-height: 1.08; letter-spacing: -0.03em; }
 h1 { font-size: clamp(2.75rem, 8vw, 4.5rem); }
 h2 { font-size: clamp(2rem, 5vw, 3rem); }
@@ -103,7 +105,7 @@ ul, ol { padding: 0; }
 .project-meta dd { margin: 0; font-weight: 700; }
 .evidence-note { margin-top: 1.5rem; }
 .content-layout { padding-block: clamp(4rem, 9vw, 7rem); }
-.prose { max-width: var(--reading); margin-inline: auto; }
+.prose { max-width: var(--reading); margin-inline: auto; overflow-wrap: anywhere; }
 .prose h2 { margin-top: 4rem; }
 .prose h3 { margin-top: 2.5rem; }
 .prose p, .prose ul, .prose ol, .prose table, .prose pre { margin-top: 1.2rem; }
@@ -124,6 +126,7 @@ ul, ol { padding: 0; }
   .process-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 @media (max-width: 43.75rem) {
+  html { scroll-padding-top: 11rem; }
   .header-inner { align-items: flex-start; flex-direction: column; gap: 0.25rem; padding-block: 0.9rem; }
   .nav-list { width: 100%; gap: 0.1rem 0.25rem; }
   .hero-actions .button, .card-actions .button { width: 100%; }
