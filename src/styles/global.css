@@ -69,8 +69,12 @@ ul, ol { padding: 0; }
 .section-heading > p:last-child { margin-top: 1rem; color: var(--muted); font-size: 1.1rem; }
 .project-grid, .process-grid, .capability-grid { display: grid; gap: 1.25rem; }
 .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--canvas); }
-.project-evidence { display: flex; min-height: 10rem; flex-direction: column; justify-content: space-between; padding: 1.5rem; background: var(--night); color: var(--night-text); }
+.project-evidence { display: flex; min-height: 10rem; flex-direction: column; justify-content: space-between; margin: 0; padding: 1.5rem; background: var(--night); color: var(--night-text); }
 .project-evidence span { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #f2a36f; }
+.project-evidence-image { position: relative; display: block; min-height: 0; aspect-ratio: 16 / 10; overflow: hidden; padding: 0; }
+.project-evidence-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.project-evidence-image figcaption { position: absolute; inset: auto 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: 2.5rem 1.25rem 1rem; background: linear-gradient(transparent, rgb(17 24 32 / 92%)); color: var(--night-text); }
+.project-evidence-image figcaption strong { max-width: 75%; text-align: right; }
 .project-body { padding: 1.5rem; }
 .project-body h3 + p { margin-top: 1rem; color: var(--muted); }
 .stack-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; list-style: none; }
@@ -89,6 +93,10 @@ ul, ol { padding: 0; }
 .site-footer { border-top: 1px solid var(--line); }
 .site-footer a { display: inline-flex; min-height: 2.75rem; align-items: center; font-weight: 700; }
 .case-hero { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.case-evidence-with-media { padding: 1rem; }
+.case-media { margin: 0 0 1.5rem; }
+.case-media img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--canvas); }
+.case-media figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 .project-meta { display: grid; gap: 0.8rem; margin: 2rem 0 0; }
 .project-meta div { display: grid; grid-template-columns: 5rem 1fr; gap: 1rem; }
 .project-meta dt, .evidence-note { color: var(--muted); }
