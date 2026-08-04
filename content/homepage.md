@@ -69,23 +69,23 @@ Aplicación móvil para digitalizar una operación local de distribución de gas
 
 ---
 
-## A-M-R Refrigeración
+## JM Soluciones Eléctricas
 
-### Sitio comercial orientado a conversión y SEO local
+### Sitio comercial para obras y servicios eléctricos
 
-Sitio web para una empresa de refrigeración, diseñado para comunicar servicios con claridad, generar confianza y reducir la fricción hasta el contacto por WhatsApp. La solución usa una arquitectura estática proporcional al problema y un proceso de entrega verificable.
+Landing orientada a obras, ampliaciones, refacciones e instalaciones eléctricas en Gran Mendoza. Organiza servicios y evidencia de trabajo, explica el proceso de relevamiento y conduce a una consulta por WhatsApp con contexto suficiente para coordinar una visita y presupuesto.
 
 **Qué demuestra**
 
-- Desarrollo frontend con Astro y TypeScript.
-- UX mobile-first y llamadas a la acción claras.
-- SEO técnico, contenido estructurado y rutas de servicios.
-- Docker, staging y validaciones automáticas de release.
-- Capacidad para evitar complejidad innecesaria.
+- Desarrollo frontend con Astro, TypeScript y Tailwind CSS.
+- Arquitectura de contenido tipado y UX mobile-first.
+- SEO local con páginas de servicios y cobertura.
+- Galería real con validación automática de activos.
+- Tests con Vitest, Docker, staging Nginx y preflight de release.
 
-**Estado:** sitio funcional en refinamiento. La URL de producción, las métricas reales y la auditoría final de accesibilidad siguen pendientes.
+**Estado:** producto técnicamente preparado para validación final. El dominio, la referencia comercial definitiva y la auditoría final de accesibilidad siguen pendientes antes del despliegue productivo.
 
-**Tecnologías:** Astro · TypeScript · Tailwind CSS · Docker
+**Tecnologías:** Astro · TypeScript · Tailwind CSS · Vitest · Docker
 
 **Acciones:** Ver caso de estudio · Ver código
 
