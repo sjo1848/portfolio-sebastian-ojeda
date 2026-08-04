@@ -21,7 +21,7 @@ const {
 
 const personId = new URL('/#person', canonical).toString();
 const websiteId = new URL('/#website', canonical).toString();
-const socialImage = new URL('/social-card.svg', canonical).toString();
+const socialImage = new URL('/social-card.png', canonical).toString();
 const socialImageAlt = 'Portfolio profesional de Sebastián Ojeda, desarrollador backend y full stack.';
 const additionalGraph = structuredData
   ? (Array.isArray(structuredData) ? structuredData : [structuredData])
@@ -73,7 +73,7 @@ const jsonLd = {
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={socialImage} />
-<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={socialImageAlt} />
