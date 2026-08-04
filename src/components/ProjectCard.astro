@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+---
+
+<article class="project-card">
+  <div class="project-evidence" aria-hidden="true">
+    <span>{String(data.order).padStart(2, '0')}</span>
+    <strong>{data.category}</strong>
+  </div>
+  <div class="project-body">
+    <p class="eyebrow">{data.statusLabel}</p>
+    <h3>{data.title}</h3>
+    <p>{data.summary}</p>
+    <ul class="stack-list" aria-label={`Tecnologías de ${data.title}`}>
+      {data.stack.slice(0, 5).map((technology) => <li>{technology}</li>)}
+    </ul>
+    <div class="card-actions">
+      <a class="button button-primary" href={`/projects/${data.slug}/`}>Ver caso de estudio</a>
+      <a class="text-link" href={data.repository} target="_blank" rel="noreferrer">Ver código</a>
+    </div>
+  </div>
+</article>
