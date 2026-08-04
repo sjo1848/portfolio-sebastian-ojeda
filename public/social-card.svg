@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Portfolio profesional de Sebastián Ojeda</title>
+  <desc id="desc">Tarjeta social con el nombre Sebastián Ojeda, su perfil de desarrollador backend y full stack y tecnologías principales.</desc>
+  <rect width="1200" height="630" fill="#f4f1ea"/>
+  <rect x="54" y="54" width="1092" height="522" rx="36" fill="#111820"/>
+  <rect x="84" y="84" width="28" height="462" rx="14" fill="#a94f1c"/>
+  <text x="150" y="132" fill="#f2a36f" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="24" font-weight="700" letter-spacing="2">PORTFOLIO PROFESIONAL</text>
+  <text x="150" y="224" fill="#f7f4ed" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="750">Sebastián Ojeda</text>
+  <text x="150" y="294" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="700">Desarrollador backend y full stack</text>
+  <text x="150" y="352" fill="#cbd3d9" font-family="Inter, Arial, sans-serif" font-size="26">Soluciones para operaciones con Rust, NestJS, React,</text>
+  <text x="150" y="390" fill="#cbd3d9" font-family="Inter, Arial, sans-serif" font-size="26">datos, QA y diseño UX.</text>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="20" fill="#f7f4ed">
+    <rect x="150" y="440" width="92" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="169" y="468">Rust</text>
+    <rect x="254" y="440" width="112" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="273" y="468">NestJS</text>
+    <rect x="378" y="440" width="104" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="397" y="468">React</text>
+    <rect x="494" y="440" width="154" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="513" y="468">PostgreSQL</text>
+    <rect x="660" y="440" width="76" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="679" y="468">QA</text>
+    <rect x="748" y="440" width="76" height="42" rx="21" fill="#18222b" stroke="#66727d" stroke-width="2"/><text x="767" y="468">UX</text>
+  </g>
+  <text x="150" y="536" fill="#f2a36f" font-family="Inter, Arial, sans-serif" font-size="26">Mendoza, Argentina</text>
+</svg>
