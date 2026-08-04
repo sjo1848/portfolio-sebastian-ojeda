@@ -4,7 +4,12 @@ export const site = {
   description:
     'Desarrollo sistemas de gestión y aplicaciones operativas con Rust, TypeScript, React, React Native y PostgreSQL.',
   location: 'Mendoza, Argentina',
+  languageTag: 'es-AR',
+  locale: 'es_AR',
+  themeColor: '#111820',
+  backgroundColor: '#f7f4ed',
   github: 'https://github.com/sjo1848',
+  sameAs: ['https://github.com/sjo1848'],
   linkedin: null as string | null,
   email: null as string | null,
   cv: null as string | null,
