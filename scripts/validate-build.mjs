@@ -52,11 +52,39 @@ function extractAttribute(content, tagPattern, attribute) {
   return tag.match(new RegExp(`${attribute}=["']([^"']+)["']`, 'i'))?.[1] ?? null;
 }
 
+function extractMeta(content, keyAttribute, keyValue) {
+  const escaped = keyValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return extractAttribute(
+    content,
+    new RegExp(`<meta[^>]+${keyAttribute}=["']${escaped}["'][^>]*>`, 'i'),
+    'content',
+  );
+}
+
 function routeToFile(pathname) {
   const decoded = decodeURIComponent(pathname);
   if (decoded === '/') return path.join(dist, 'index.html');
   if (path.extname(decoded)) return path.join(dist, decoded.replace(/^\//, ''));
   return path.join(dist, decoded.replace(/^\//, ''), 'index.html');
+}
+
+function validateStructuredData(content, route) {
+  const scripts = [...content.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  if (scripts.length === 0) {
+    failures.push(`${route}: missing JSON-LD structured data`);
+    return;
+  }
+
+  for (const [, payload] of scripts) {
+    try {
+      const parsed = JSON.parse(payload.trim());
+      if (parsed['@context'] !== 'https://schema.org') {
+        failures.push(`${route}: JSON-LD must use the Schema.org context`);
+      }
+    } catch {
+      failures.push(`${route}: JSON-LD is not valid JSON`);
+    }
+  }
 }
 
 async function validatePage(file) {
@@ -100,10 +128,33 @@ async function validatePage(file) {
         if (canonicalUrl.origin !== site.origin) {
           failures.push(`${route}: canonical origin ${canonicalUrl.origin} does not match ${site.origin}`);
         }
+
+        const ogUrl = extractMeta(content, 'property', 'og:url');
+        if (ogUrl !== canonicalUrl.toString()) {
+          failures.push(`${route}: og:url must match canonical URL`);
+        }
       } catch {
         failures.push(`${route}: canonical is not absolute: ${canonical}`);
       }
     }
+
+    const requiredOpenGraph = ['og:locale', 'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url'];
+    for (const property of requiredOpenGraph) {
+      if (!extractMeta(content, 'property', property)) failures.push(`${route}: missing ${property}`);
+    }
+
+    const requiredTwitter = ['twitter:card', 'twitter:title', 'twitter:description'];
+    for (const name of requiredTwitter) {
+      if (!extractMeta(content, 'name', name)) failures.push(`${route}: missing ${name}`);
+    }
+
+    if (!/<link[^>]+rel=["']manifest["'][^>]+href=["']\/site\.webmanifest["']/i.test(content)
+        && !/<link[^>]+href=["']\/site\.webmanifest["'][^>]+rel=["']manifest["']/i.test(content)) {
+      failures.push(`${route}: missing site manifest link`);
+    }
+
+    if (!extractMeta(content, 'name', 'theme-color')) failures.push(`${route}: missing theme-color`);
+    validateStructuredData(content, route);
   }
 
   const currentUrl = new URL(route, site);
@@ -146,6 +197,7 @@ const requiredFiles = [
   'index.html',
   '404.html',
   'favicon.svg',
+  'site.webmanifest',
   'robots.txt',
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
@@ -158,6 +210,21 @@ for (const relative of requiredFiles) {
 
 const htmlFiles = await collectHtml(dist);
 for (const file of htmlFiles) await validatePage(file);
+
+const manifestPath = path.join(dist, 'site.webmanifest');
+if (await exists(manifestPath)) {
+  try {
+    const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+    if (!manifest.name || !manifest.short_name || manifest.start_url !== '/') {
+      failures.push('site.webmanifest is missing required identity or start URL fields.');
+    }
+    if (!Array.isArray(manifest.icons) || manifest.icons.length === 0) {
+      failures.push('site.webmanifest must declare at least one icon.');
+    }
+  } catch {
+    failures.push('site.webmanifest is not valid JSON.');
+  }
+}
 
 const sitemapFiles = (await readdir(dist)).filter((file) => /^sitemap(?:-index|-\d+)?\.xml$/.test(file));
 if (sitemapFiles.length === 0) failures.push('No generated sitemap was found.');
