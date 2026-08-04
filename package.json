@@ -7,9 +7,10 @@
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
     "generate:social-card": "node scripts/generate-social-card.mjs",
     "generate:assets": "npm run generate:cv && npm run generate:social-card",
+    "validate:social-card": "node scripts/validate-social-card.mjs",
     "dev": "npm run generate:assets && astro dev",
     "dev:host": "npm run generate:assets && astro dev --host 0.0.0.0 --port 4321",
-    "build": "npm run generate:assets && astro build",
+    "build": "npm run generate:assets && astro build && npm run validate:social-card",
     "preview": "astro preview",
     "check": "astro check",
     "validate": "npm run check && npm run build"
