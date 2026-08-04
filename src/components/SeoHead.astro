@@ -34,11 +34,13 @@ const jsonLd = {
       name: site.name,
       url: new URL('/', canonical).toString(),
       jobTitle: site.title,
+      email: site.email,
       address: {
         '@type': 'PostalAddress',
         addressRegion: 'Mendoza',
         addressCountry: 'AR',
       },
+      knowsLanguage: site.languages.map((language) => language.name),
       sameAs: site.sameAs,
     },
     {
