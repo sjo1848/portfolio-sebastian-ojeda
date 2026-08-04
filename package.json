@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare:cv": "node scripts/materialize-cv.mjs",
+    "predev": "npm run prepare:cv",
+    "predev:host": "npm run prepare:cv",
+    "prebuild": "npm run prepare:cv",
     "dev": "astro dev",
     "dev:host": "astro dev --host 0.0.0.0 --port 4321",
     "build": "astro build",

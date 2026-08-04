@@ -2,7 +2,7 @@
 
 ## Estado
 
-Datos públicos principales confirmados. LinkedIn y CV descargable continúan pendientes antes del lanzamiento.
+Datos públicos principales y CV tecnológico confirmados. LinkedIn continúa pendiente antes del lanzamiento.
 
 ## Identidad
 
@@ -32,28 +32,27 @@ Datos públicos principales confirmados. LinkedIn y CV descargable continúan pe
 3. Rust Developer junior/intermediate.
 4. Software Developer para sistemas de gestión, operaciones, logística o procesos empresariales.
 
-Los roles se presentan bajo una misma dirección profesional. SAP, integraciones, logística y operaciones funcionan como contexto de dominio, no como búsquedas laborales separadas dentro de este portafolio.
+SAP, integraciones, logística y operaciones funcionan como contexto de dominio, no como búsquedas laborales separadas dentro de este portafolio.
 
 ## Idiomas
 
 - **Español:** nativo.
 - **Inglés:** intermedio, actualmente en desarrollo y práctica profesional.
-- Otros idiomas no deben mostrarse como competencia profesional sin un nivel verificable.
 
 ## Identidad visual
 
 - **Retrato en el MVP:** no.
 - Identidad basada en tipografía, proyectos, diagramas y capturas reales.
-- La incorporación futura de una fotografía profesional no debe requerir una reestructuración del sitio.
 - No usar avatares generados como sustituto de una fotografía profesional.
 
 ## CV
 
-Existen CV anteriores orientados a telecomunicaciones, mantenimiento, inventarios y operaciones. Se usarán únicamente como fuentes de experiencia y formación.
+- **Versión pública:** `CV_Sebastian_Ojeda_Backend_FullStack.pdf`.
+- **Fuente editable versionada:** `docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md`.
+- **Formato:** una página, legible por ATS, sin fotografía ni datos sensibles.
+- **Orientación:** backend, full stack con foco backend, Rust junior/intermediate y software operativo.
 
-No deben publicarse directamente porque incluyen datos sensibles o desactualizados, como domicilio exacto, DNI, teléfono, correo anterior y objetivos profesionales que no coinciden con este portafolio.
-
-Debe prepararse un CV nuevo orientado a backend y full stack, coherente con el contenido del sitio y con los tres proyectos destacados.
+El PDF se materializa durante el build desde partes Base64 verificadas por SHA-256. Esto permite conservar un artefacto binario reproducible aunque el canal de integración de GitHub solo admita escritura de texto.
 
 ## Evidencia visual
 
@@ -61,12 +60,4 @@ Las capturas verificadas de HMS Elite, GasFlow y A-M-R Refrigeración se incorpo
 
 ## Privacidad
 
-No publicar:
-
-- Domicilio exacto.
-- DNI o CUIL.
-- Credenciales.
-- Datos contractuales privados.
-- Información de terceros.
-- Teléfono sin aprobación explícita.
-- Métricas o afirmaciones no verificadas.
+No publicar domicilio exacto, DNI/CUIL, fecha de nacimiento, credenciales, datos contractuales privados, información de terceros, teléfono sin aprobación o métricas no verificadas.
