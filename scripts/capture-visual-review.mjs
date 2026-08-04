@@ -18,7 +18,7 @@ const routes = [
   { name: 'home', pathname: '/' },
   { name: 'hms-elite', pathname: '/projects/hms-elite/' },
   { name: 'gasflow', pathname: '/projects/gasflow/' },
-  { name: 'amr-refrigeracion', pathname: '/projects/amr-refrigeracion/' },
+  { name: 'jm-soluciones', pathname: '/projects/jm-soluciones/' },
   { name: 'not-found', pathname: '/404.html' },
 ];
 
