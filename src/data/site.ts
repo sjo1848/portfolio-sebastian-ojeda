@@ -11,8 +11,21 @@ export const site = {
   github: 'https://github.com/sjo1848',
   sameAs: ['https://github.com/sjo1848'],
   linkedin: null as string | null,
-  email: null as string | null,
+  email: 'sebastian.ojeda.dev@gmail.com',
   cv: null as string | null,
+  portrait: false,
+  workMode:
+    'Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.',
+  roles: [
+    'Backend Developer',
+    'Full-Stack Developer con foco en backend',
+    'Rust Developer junior/intermediate',
+    'Software Developer para sistemas de gestión y operaciones',
+  ],
+  languages: [
+    { name: 'Español', level: 'Nativo' },
+    { name: 'Inglés', level: 'Intermedio, en desarrollo' },
+  ],
 } as const;
 
 export const processSteps = [
