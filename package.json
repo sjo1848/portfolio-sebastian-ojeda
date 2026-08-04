@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
-    "dev": "npm run generate:cv && astro dev",
-    "dev:host": "npm run generate:cv && astro dev --host 0.0.0.0 --port 4321",
-    "build": "npm run generate:cv && astro build",
+    "generate:social-card": "node scripts/generate-social-card.mjs",
+    "generate:assets": "npm run generate:cv && npm run generate:social-card",
+    "dev": "npm run generate:assets && astro dev",
+    "dev:host": "npm run generate:assets && astro dev --host 0.0.0.0 --port 4321",
+    "build": "npm run generate:assets && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "validate": "npm run check && npm run build"
