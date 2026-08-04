@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   validate:
-    name: Typecheck and build
+    name: Typecheck, build and Lighthouse
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,8 +30,20 @@ jobs:
 
       - name: Production build
         env:
-          PUBLIC_SITE_URL: https://portfolio.example.com
+          PUBLIC_SITE_URL: https://portfolio-sebastian-ojeda.pages.dev
         run: npm run build
+
+      - name: Lighthouse budgets
+        run: npx --yes @lhci/cli@0.15.1 autorun
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: artifacts/lighthouse
+          if-no-files-found: ignore
+          retention-days: 7
 
   secret-scan:
     name: Secret scanning
