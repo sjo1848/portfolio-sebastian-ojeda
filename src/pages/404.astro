@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="La página solicitada no existe o fue trasladada dentro del portafolio profesional de Sebastián Ojeda."
+    />
+    <title>Página no encontrada | Sebastián Ojeda</title>
+  </head>
+  <body>
+    <main class="container error-page">
+      <p class="eyebrow">Error 404</p>
+      <h1>Esta página no está disponible.</h1>
+      <p>
+        El enlace puede estar desactualizado o la dirección puede contener un error.
+      </p>
+      <a class="button button-primary" href="/">Volver al inicio</a>
+    </main>
+  </body>
+</html>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 48rem;
+  }
+
+  .error-page p:not(.eyebrow) {
+    max-width: 42rem;
+  }
+</style>
