@@ -11,7 +11,7 @@ export const projectMedia = {
     src: '/media/jm-guide-desktop.webp',
     alt: 'Resultado del orientador interactivo de JM Soluciones con una recomendación de servicio, zona seleccionada y estado del trabajo.',
     caption:
-      'Flujo del orientador verificado por GitHub Actions sobre el commit 0a00f7f4473582f72d5d3b51142fb18b7e2585d4, sin datos personales ni identificadores de clientes.',
+      'Flujo del orientador verificado por GitHub Actions en el commit 0a00f7f44735, sin datos personales ni identificadores de clientes.',
     width: 480,
     height: 221,
   },
