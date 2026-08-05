@@ -15,16 +15,16 @@ const viewports = [
 ];
 
 const routes = [
-  { name: 'home-es', pathname: '/' },
-  { name: 'hms-elite-es', pathname: '/projects/hms-elite/' },
-  { name: 'gasflow-es', pathname: '/projects/gasflow/' },
-  { name: 'jm-soluciones-es', pathname: '/projects/jm-soluciones/' },
-  { name: 'home-en', pathname: '/en/' },
-  { name: 'hms-elite-en', pathname: '/en/projects/hms-elite/' },
-  { name: 'gasflow-en', pathname: '/en/projects/gasflow/' },
-  { name: 'jm-soluciones-en', pathname: '/en/projects/jm-soluciones/' },
-  { name: 'not-found-es', pathname: '/404.html' },
-  { name: 'not-found-en', pathname: '/en/404/' },
+  { name: 'home-en', pathname: '/' },
+  { name: 'hms-elite-en', pathname: '/projects/hms-elite/' },
+  { name: 'gasflow-en', pathname: '/projects/gasflow/' },
+  { name: 'jm-soluciones-en', pathname: '/projects/jm-soluciones/' },
+  { name: 'home-es', pathname: '/es/' },
+  { name: 'hms-elite-es', pathname: '/es/projects/hms-elite/' },
+  { name: 'gasflow-es', pathname: '/es/projects/gasflow/' },
+  { name: 'jm-soluciones-es', pathname: '/es/projects/jm-soluciones/' },
+  { name: 'not-found-en', pathname: '/404.html' },
+  { name: 'not-found-es', pathname: '/es/404/' },
 ];
 
 async function findChrome() {
@@ -71,7 +71,7 @@ async function validateScreenshot(file, expectedWidth, expectedHeight) {
 
   if (width !== expectedWidth || height !== expectedHeight) {
     throw new Error(
-      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${height}.`,
+      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${expectedHeight}.`,
     );
   }
 
