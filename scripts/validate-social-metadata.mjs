@@ -75,7 +75,7 @@ function validateAbsoluteImage(route, value) {
 }
 
 const htmlFiles = await collectHtml(dist);
-const publicPages = htmlFiles.filter((file) => routeForFile(file) !== '/404.html');
+const publicPages = htmlFiles.filter((file) => !routeForFile(file).endsWith('/404.html'));
 
 if (publicPages.length === 0) failures.push('No public HTML pages were found in dist/.');
 
