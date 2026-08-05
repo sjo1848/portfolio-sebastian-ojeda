@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PUBLIC_SITE_URL: https://portfolio-preview.invalid
+  PUBLIC_SITE_URL: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'https://portfolio-sebastian-ojeda.pages.dev' || 'https://portfolio-preview.invalid' }}
 
 jobs:
   validate-release:
