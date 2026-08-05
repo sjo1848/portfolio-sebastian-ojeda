@@ -1,8 +1,7 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getProjectMedia } from '../../data/projectMedia';
+import ProjectPage from '../../components/ProjectPage.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -17,77 +16,6 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { Content } = await render(project);
-const { data } = project;
-const media = getProjectMedia(data.slug);
-const projectUrl = new URL(`/projects/${data.slug}/`, Astro.site ?? Astro.url);
-const projectSchema = {
-  '@type': 'SoftwareSourceCode',
-  '@id': `${projectUrl.toString()}#software`,
-  name: data.title,
-  description: data.summary,
-  url: projectUrl.toString(),
-  codeRepository: data.repository,
-  programmingLanguage: data.stack,
-  image: media ? new URL(media.src, projectUrl).toString() : undefined,
-  author: { '@id': new URL('/#person', projectUrl).toString() },
-};
 ---
 
-<BaseLayout
-  title={data.title}
-  description={data.summary}
-  ogType="article"
-  structuredData={projectSchema}
->
-  <article class="case-study">
-    <header class="case-hero section section-surface">
-      <div class="container case-hero-grid">
-        <div>
-          <p class="eyebrow">{data.category}</p>
-          <h1>{data.title}</h1>
-          <p class="hero-copy">{data.summary}</p>
-          <dl class="project-meta">
-            <div><dt>Estado</dt><dd>{data.statusLabel}</dd></div>
-            <div><dt>Rol</dt><dd>{data.role}</dd></div>
-            <div><dt>Año</dt><dd>{data.year}</dd></div>
-          </dl>
-          <div class="hero-actions">
-            <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">Ver código</a>
-            <a class="button button-secondary" href="/#projects">Volver a proyectos</a>
-          </div>
-        </div>
-        <aside class:list={['case-evidence', { 'case-evidence-with-media': media }]}>
-          {
-            media && (
-              <figure class="case-media">
-                <img
-                  src={media.src}
-                  alt={media.alt}
-                  width={media.width}
-                  height={media.height}
-                  decoding="async"
-                />
-                <figcaption>{media.caption}</figcaption>
-              </figure>
-            )
-          }
-          <p class="eyebrow">Stack principal</p>
-          <ul class="stack-list stack-list-large">
-            {data.stack.map((technology) => <li>{technology}</li>)}
-          </ul>
-          {
-            !media && (
-              <p class="evidence-note">
-                Las capturas verificadas se incorporarán cuando correspondan a una versión reproducible.
-              </p>
-            )
-          }
-        </aside>
-      </div>
-    </header>
-    <div class="container content-layout">
-      <div class="prose"><Content /></div>
-    </div>
-  </article>
-</BaseLayout>
+<ProjectPage project={project} lang="es" />
