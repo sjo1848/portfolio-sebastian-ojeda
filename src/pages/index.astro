@@ -2,9 +2,9 @@
 import { getCollection } from 'astro:content';
 import HomePage from '../components/HomePage.astro';
 
-const projects = (await getCollection('projects'))
+const projects = (await getCollection('projectsEn'))
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<HomePage lang="es" projects={projects} />
+<HomePage lang="en" projects={projects} />
