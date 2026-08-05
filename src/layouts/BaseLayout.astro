@@ -4,10 +4,13 @@ import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 import {
   copyByLanguage,
-  getAlternatePath,
   siteByLanguage,
   type Language,
 } from '../data/site';
+import {
+  defaultLanguage,
+  getAlternatePath,
+} from '../data/routing';
 
 interface Props {
   lang?: Language;
@@ -19,7 +22,7 @@ interface Props {
 }
 
 const {
-  lang = 'es',
+  lang = defaultLanguage,
   title,
   description,
   ogType = 'website',
