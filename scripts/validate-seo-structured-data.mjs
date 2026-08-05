@@ -51,6 +51,10 @@ function languageContract(route) {
   };
 }
 
+function isNotFoundRoute(route) {
+  return route === '/404.html' || route === '/en/404/';
+}
+
 function extractAttribute(tag, attribute) {
   return tag.match(new RegExp(`${attribute}=["']([^"']+)["']`, 'i'))?.[1] ?? null;
 }
@@ -184,7 +188,7 @@ for (const file of htmlFiles) {
   const content = await readFile(file, 'utf8');
   const route = routeForFile(file);
   const contract = languageContract(route);
-  const is404 = route.endsWith('/404.html') || route === '/404.html';
+  const is404 = isNotFoundRoute(route);
   const htmlLang = content.match(/<html[^>]+lang=["']([^"']+)["']/i)?.[1] ?? null;
   const titles = extractTitle(content);
   const descriptions = extractMeta(content, 'name', 'description');
