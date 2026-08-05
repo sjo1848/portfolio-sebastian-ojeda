@@ -24,7 +24,7 @@ const routes = [
   { name: 'gasflow-en', pathname: '/en/projects/gasflow/' },
   { name: 'jm-soluciones-en', pathname: '/en/projects/jm-soluciones/' },
   { name: 'not-found-es', pathname: '/404.html' },
-  { name: 'not-found-en', pathname: '/en/404.html' },
+  { name: 'not-found-en', pathname: '/en/404/' },
 ];
 
 async function findChrome() {
