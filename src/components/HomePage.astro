@@ -40,10 +40,10 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
       </div>
       <aside class="hero-proof" aria-label={copy.workflowAria}>
         {copy.workflow.map((step, index) => (
-          <>
+          <Fragment>
             <p>{step}</p>
             {index < copy.workflow.length - 1 && <span aria-hidden="true">→</span>}
-          </>
+          </Fragment>
         ))}
       </aside>
     </div>
