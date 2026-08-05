@@ -11,13 +11,25 @@ const requiredPages = [
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
+  'en/index.html',
+  'en/404.html',
+  'en/projects/hms-elite/index.html',
+  'en/projects/gasflow/index.html',
+  'en/projects/jm-soluciones/index.html',
   'robots.txt',
 ];
 
 const generatedAssets = [
   {
-    name: 'CV PDF',
+    name: 'Spanish resume PDF',
     relativePath: 'cv-sebastian-ojeda.pdf',
+    signature: Buffer.from('%PDF-', 'ascii'),
+    minimumBytes: 5_000,
+    maximumBytes: 1_000_000,
+  },
+  {
+    name: 'English resume PDF',
+    relativePath: 'cv-sebastian-ojeda-en.pdf',
     signature: Buffer.from('%PDF-', 'ascii'),
     minimumBytes: 5_000,
     maximumBytes: 1_000_000,
@@ -102,4 +114,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('Static asset validation passed.');
+console.log('Bilingual static asset validation passed.');
