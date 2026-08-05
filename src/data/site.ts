@@ -286,10 +286,12 @@ export function getProjectPath(language: Language, slug: string) {
 
 export function getAlternatePath(pathname: string, language: Language) {
   if (language === 'es') {
+    if (pathname === '/404.html') return '/en/404/';
     return pathname === '/' ? '/en/' : `/en${pathname}`;
   }
 
   if (pathname === '/en' || pathname === '/en/') return '/';
+  if (pathname === '/en/404' || pathname === '/en/404/') return '/404.html';
   return pathname.startsWith('/en/') ? pathname.slice(3) : pathname;
 }
 
