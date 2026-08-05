@@ -163,9 +163,10 @@ addBullet('Flujos de administrador y repartidor, entregas programadas, asignacio
 addBullet('JWT, trazabilidad, eventos de auditoría, métricas y pruebas de backend y aplicación móvil.');
 addParagraph('github.com/sjo1848/gasflow', { size: 7.7, fill: ACCENT, gapAfter: 1.5, lineHeight: 9.0 });
 
-addItemTitle('A-M-R Refrigeración - Sitio comercial | Astro, TypeScript, Docker');
-addBullet('Arquitectura estática, UX responsive, SEO técnico, contacto por WhatsApp y controles automáticos de release.');
-addParagraph('github.com/sjo1848/A-M-R-Refrigeracion', { size: 7.7, fill: ACCENT, gapAfter: 1.0, lineHeight: 9.0 });
+addItemTitle('JM Soluciones Eléctricas - Sitio comercial | Astro, TypeScript, Tailwind CSS');
+addBullet('Landing mobile-first para servicios eléctricos, con UX orientada a conversión, SEO local y consulta guiada por WhatsApp.');
+addBullet('Contenido tipado, Vitest, preflight reproducible, contenedor Nginx y controles automáticos de release.');
+addParagraph('github.com/sjo1848/jm-soluciones', { size: 7.7, fill: ACCENT, gapAfter: 1.0, lineHeight: 9.0 });
 
 addSection('Experiencia relevante');
 addItemTitle('Gotechy - Consultor SAP Basis / Integrador de sistemas / Administrador de bases de datos');
