@@ -34,7 +34,7 @@ function routeForFile(file) {
 }
 
 function isNotFoundRoute(route) {
-  return route === '/404.html' || route === '/en/404/';
+  return route === '/404.html' || route === '/es/404/';
 }
 
 function extractAttribute(tag, attribute) {
