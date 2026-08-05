@@ -1,0 +1,124 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from './ProjectCard.astro';
+import {
+  capabilityGroupsByLanguage,
+  copyByLanguage,
+  processStepsByLanguage,
+  siteByLanguage,
+  type Language,
+} from '../data/site';
+
+type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
+
+interface Props {
+  lang: Language;
+  projects: ProjectEntry[];
+}
+
+const { lang, projects } = Astro.props;
+const site = siteByLanguage[lang];
+const copy = copyByLanguage[lang].home;
+const processSteps = processStepsByLanguage[lang];
+const capabilityGroups = capabilityGroupsByLanguage[lang];
+---
+
+<BaseLayout lang={lang}>
+  <section class="hero section">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1>{site.title}</h1>
+        <p class="hero-copy">{site.description}</p>
+        <p class="hero-context">{copy.context}</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
+          <a class="button button-secondary" href={site.cv} download>{copy.downloadCv}</a>
+          <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <aside class="hero-proof" aria-label={copy.workflowAria}>
+        {copy.workflow.map((step, index) => (
+          <>
+            <p>{step}</p>
+            {index < copy.workflow.length - 1 && <span aria-hidden="true">→</span>}
+          </>
+        ))}
+      </aside>
+    </div>
+  </section>
+
+  <section id="projects" class="section section-surface" aria-labelledby="projects-title">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.evidenceEyebrow}</p>
+        <h2 id="projects-title">{copy.projectsTitle}</h2>
+        <p>{copy.projectsIntro}</p>
+      </div>
+      <div class="project-grid">
+        {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.processEyebrow}</p>
+        <h2 id="process-title">{copy.processTitle}</h2>
+      </div>
+      <ol class="process-grid">
+        {processSteps.map((step, index) => (
+          <li>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-night" aria-labelledby="capabilities-title">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">{copy.capabilitiesEyebrow}</p>
+        <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
+      </div>
+      <div class="capability-grid">
+        {capabilityGroups.map((group) => (
+          <article><h3>{group.title}</h3><p>{group.description}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section" aria-labelledby="experience-title">
+    <div class="container split-grid">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.experienceEyebrow}</p>
+        <h2 id="experience-title">{copy.experienceTitle}</h2>
+      </div>
+      <div class="reading-column">
+        {copy.experienceParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-surface" aria-labelledby="contact-title">
+    <div class="container contact-panel">
+      <div>
+        <p class="eyebrow">{copy.contactEyebrow}</p>
+        <h2 id="contact-title">{copy.contactTitle}</h2>
+        <p>{site.location}. {site.workMode}</p>
+        <p>{copy.englishLevel}</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button button-primary" href={`mailto:${site.email}`}>{copy.sendEmail}</a>
+        <a class="button button-secondary" href={site.cv} download>{copy.downloadCv}</a>
+        <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">{copy.viewGithub}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
