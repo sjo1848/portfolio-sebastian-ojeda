@@ -18,17 +18,50 @@ if (sitemapFiles.length === 0) {
   failures.push('No generated sitemap was found in dist/.');
 }
 
-const forbiddenUrls = ['/404.html', '/en/404/']
-  .map((route) => new URL(route, site).toString());
+const pageSitemapFiles = sitemapFiles.filter((file) => /^sitemap-\d+\.xml$/.test(file));
+const pageLocations = new Set();
 
-for (const sitemapFile of sitemapFiles) {
+for (const sitemapFile of pageSitemapFiles) {
   const content = await readFile(path.join(dist, sitemapFile), 'utf8');
-
-  for (const forbiddenUrl of forbiddenUrls) {
-    if (content.includes(`<loc>${forbiddenUrl}</loc>`)) {
-      failures.push(`${sitemapFile} includes noindex not-found URL ${forbiddenUrl}`);
-    }
+  for (const match of content.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    pageLocations.add(match[1]);
   }
+}
+
+const expectedRoutes = [
+  '/',
+  '/projects/hms-elite/',
+  '/projects/gasflow/',
+  '/projects/jm-soluciones/',
+  '/es/',
+  '/es/projects/hms-elite/',
+  '/es/projects/gasflow/',
+  '/es/projects/jm-soluciones/',
+];
+const expectedLocations = new Set(expectedRoutes.map((route) => new URL(route, site).toString()));
+
+for (const expectedLocation of expectedLocations) {
+  if (!pageLocations.has(expectedLocation)) {
+    failures.push(`Sitemap is missing canonical URL ${expectedLocation}`);
+  }
+}
+
+for (const location of pageLocations) {
+  const url = new URL(location);
+  if (url.origin !== site.origin) {
+    failures.push(`Sitemap contains an unexpected origin: ${location}`);
+    continue;
+  }
+  if (!expectedLocations.has(location)) {
+    failures.push(`Sitemap contains an unexpected or non-indexable URL: ${location}`);
+  }
+  if (url.pathname === '/en' || url.pathname.startsWith('/en/')) {
+    failures.push(`Sitemap contains a legacy English-prefixed URL: ${location}`);
+  }
+}
+
+if (pageLocations.size !== expectedLocations.size) {
+  failures.push(`Sitemap must contain exactly ${expectedLocations.size} indexable URLs; found ${pageLocations.size}`);
 }
 
 if (failures.length > 0) {
@@ -37,4 +70,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`Sitemap validation passed across ${sitemapFiles.length} file(s).`);
+console.log(`English-first sitemap validation passed with ${pageLocations.size} canonical URLs.`);
