@@ -33,6 +33,10 @@ function routeForFile(file) {
   return `/${relative}`;
 }
 
+function isNotFoundRoute(route) {
+  return route === '/404.html' || route === '/en/404/';
+}
+
 function extractAttribute(tag, attribute) {
   return tag.match(new RegExp(`${attribute}=["']([^"']+)["']`, 'i'))?.[1] ?? null;
 }
@@ -75,7 +79,7 @@ function validateAbsoluteImage(route, value) {
 }
 
 const htmlFiles = await collectHtml(dist);
-const publicPages = htmlFiles.filter((file) => !routeForFile(file).endsWith('/404.html'));
+const publicPages = htmlFiles.filter((file) => !isNotFoundRoute(routeForFile(file)));
 
 if (publicPages.length === 0) failures.push('No public HTML pages were found in dist/.');
 
