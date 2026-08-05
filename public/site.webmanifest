@@ -1,8 +1,8 @@
 {
-  "name": "Sebastián Ojeda — Portfolio profesional",
+  "name": "Sebastián Ojeda — Professional Portfolio",
   "short_name": "Sebastián Ojeda",
-  "description": "Portfolio de desarrollo full stack con foco en backend, sistemas de gestión y aplicaciones operativas.",
-  "lang": "es-AR",
+  "description": "Backend-focused full-stack development portfolio covering management systems and operational applications.",
+  "lang": "en-US",
   "start_url": "/",
   "scope": "/",
   "display": "minimal-ui",
