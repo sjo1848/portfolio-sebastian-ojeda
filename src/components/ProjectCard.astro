@@ -3,9 +3,12 @@ import type { CollectionEntry } from 'astro:content';
 import { getProjectMedia } from '../data/projectMedia';
 import {
   copyByLanguage,
-  getProjectPath,
   type Language,
 } from '../data/site';
+import {
+  defaultLanguage,
+  getProjectPath,
+} from '../data/routing';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -14,7 +17,7 @@ interface Props {
   lang?: Language;
 }
 
-const { project, lang = 'es' } = Astro.props;
+const { project, lang = defaultLanguage } = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
 const copy = copyByLanguage[lang].project;
