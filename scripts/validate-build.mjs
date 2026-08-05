@@ -1,4 +1,4 @@
-import { access, readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -17,6 +17,14 @@ async function exists(file) {
   try {
     await access(file);
     return true;
+  } catch {
+    return false;
+  }
+}
+
+async function isFile(file) {
+  try {
+    return (await stat(file)).isFile();
   } catch {
     return false;
   }
@@ -46,7 +54,13 @@ function languageForRoute(route) {
   return route.startsWith('/en/') || route === '/en' ? 'en' : 'es';
 }
 
+function isNotFoundRoute(route) {
+  return route === '/404.html' || route === '/en/404/';
+}
+
 function alternateRoute(route) {
+  if (route === '/404.html') return '/en/404/';
+  if (route === '/en/404/') return '/404.html';
   if (languageForRoute(route) === 'en') {
     if (route === '/en' || route === '/en/') return '/';
     return route.slice(3) || '/';
@@ -129,7 +143,7 @@ function validateHreflang(content, route, canonicalUrl) {
 async function validatePage(file) {
   const content = await readFile(file, 'utf8');
   const route = publicPathForFile(file);
-  const is404 = route.endsWith('/404.html') || route === '/404.html';
+  const is404 = isNotFoundRoute(route);
   const language = languageForRoute(route);
   const expectedLang = language === 'en' ? 'en-US' : 'es-AR';
 
@@ -158,10 +172,10 @@ async function validatePage(file) {
   if (is404) {
     if (!/<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(content)
         && !/<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]+name=["']robots["']/i.test(content)) {
-      failures.push(`${route}: 404 page must be noindex`);
+      failures.push(`${route}: not-found page must be noindex`);
     }
-    if (canonical) failures.push(`${route}: noindex 404 page must not declare canonical`);
-    if (extractAlternateLinks(content).length !== 0) failures.push(`${route}: noindex 404 page must not declare hreflang`);
+    if (canonical) failures.push(`${route}: noindex not-found page must not declare canonical`);
+    if (extractAlternateLinks(content).length !== 0) failures.push(`${route}: noindex not-found page must not declare hreflang`);
   } else {
     if (!canonical) {
       failures.push(`${route}: missing canonical link`);
@@ -235,8 +249,8 @@ async function validatePage(file) {
     }
 
     const targetFile = routeToFile(target.pathname);
-    if (!await exists(targetFile)) {
-      failures.push(`${route}: internal href ${href} resolves to missing ${path.relative(dist, targetFile)}`);
+    if (!await isFile(targetFile)) {
+      failures.push(`${route}: internal href ${href} resolves to missing file ${path.relative(dist, targetFile)}`);
       continue;
     }
 
@@ -260,7 +274,7 @@ const requiredFiles = [
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
   'en/index.html',
-  'en/404.html',
+  'en/404/index.html',
   'en/projects/hms-elite/index.html',
   'en/projects/gasflow/index.html',
   'en/projects/jm-soluciones/index.html',
@@ -269,7 +283,7 @@ const requiredFiles = [
 ];
 
 for (const relative of requiredFiles) {
-  if (!await exists(path.join(dist, relative))) failures.push(`Missing build artifact: ${relative}`);
+  if (!await isFile(path.join(dist, relative))) failures.push(`Missing build artifact file: ${relative}`);
 }
 
 const htmlFiles = await collectHtml(dist);
