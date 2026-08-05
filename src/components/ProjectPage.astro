@@ -1,0 +1,93 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getProjectMedia } from '../data/projectMedia';
+import {
+  copyByLanguage,
+  getLanguageRoot,
+  getProjectPath,
+  siteByLanguage,
+  type Language,
+} from '../data/site';
+
+type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
+
+interface Props {
+  project: ProjectEntry;
+  lang: Language;
+}
+
+const { project, lang } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+const media = getProjectMedia(data.slug);
+const copy = copyByLanguage[lang].project;
+const site = siteByLanguage[lang];
+const projectUrl = new URL(getProjectPath(lang, data.slug), Astro.site ?? Astro.url);
+const projectSchema = {
+  '@type': 'SoftwareSourceCode',
+  '@id': `${projectUrl.toString()}#software`,
+  name: data.title,
+  description: data.summary,
+  url: projectUrl.toString(),
+  codeRepository: data.repository,
+  programmingLanguage: data.stack,
+  inLanguage: site.languageTag,
+  image: media ? new URL(media.src, projectUrl).toString() : undefined,
+  author: { '@id': new URL('/#person', projectUrl).toString() },
+};
+---
+
+<BaseLayout
+  lang={lang}
+  title={data.title}
+  description={data.summary}
+  ogType="article"
+  structuredData={projectSchema}
+>
+  <article class="case-study">
+    <header class="case-hero section section-surface">
+      <div class="container case-hero-grid">
+        <div>
+          <p class="eyebrow">{data.category}</p>
+          <h1>{data.title}</h1>
+          <p class="hero-copy">{data.summary}</p>
+          <dl class="project-meta">
+            <div><dt>{copy.state}</dt><dd>{data.statusLabel}</dd></div>
+            <div><dt>{copy.role}</dt><dd>{data.role}</dd></div>
+            <div><dt>{copy.year}</dt><dd>{data.year}</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+            <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>
+          </div>
+        </div>
+        <aside class:list={['case-evidence', { 'case-evidence-with-media': media }]}>
+          {
+            media && (
+              <figure class="case-media">
+                <img
+                  src={media.src}
+                  alt={media.alt[lang]}
+                  width={media.width}
+                  height={media.height}
+                  decoding="async"
+                />
+                <figcaption>{media.caption[lang]}</figcaption>
+              </figure>
+            )
+          }
+          <p class="eyebrow">{copy.mainStack}</p>
+          <ul class="stack-list stack-list-large">
+            {data.stack.map((technology) => <li>{technology}</li>)}
+          </ul>
+          {!media && <p class="evidence-note">{copy.pendingEvidence}</p>}
+        </aside>
+      </div>
+    </header>
+    <div class="container content-layout">
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+</BaseLayout>

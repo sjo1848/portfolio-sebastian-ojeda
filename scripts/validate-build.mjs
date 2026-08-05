@@ -1,4 +1,4 @@
-import { access, readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -17,6 +17,14 @@ async function exists(file) {
   try {
     await access(file);
     return true;
+  } catch {
+    return false;
+  }
+}
+
+async function isFile(file) {
+  try {
+    return (await stat(file)).isFile();
   } catch {
     return false;
   }
@@ -42,6 +50,24 @@ function publicPathForFile(file) {
   return `/${relative}`;
 }
 
+function languageForRoute(route) {
+  return route.startsWith('/en/') || route === '/en' ? 'en' : 'es';
+}
+
+function isNotFoundRoute(route) {
+  return route === '/404.html' || route === '/en/404/';
+}
+
+function alternateRoute(route) {
+  if (route === '/404.html') return '/en/404/';
+  if (route === '/en/404/') return '/404.html';
+  if (languageForRoute(route) === 'en') {
+    if (route === '/en' || route === '/en/') return '/';
+    return route.slice(3) || '/';
+  }
+  return route === '/' ? '/en/' : `/en${route}`;
+}
+
 function countMatches(content, pattern) {
   return [...content.matchAll(pattern)].length;
 }
@@ -59,6 +85,13 @@ function extractMeta(content, keyAttribute, keyValue) {
     new RegExp(`<meta[^>]+${keyAttribute}=["']${escaped}["'][^>]*>`, 'i'),
     'content',
   );
+}
+
+function extractAlternateLinks(content) {
+  return [...content.matchAll(/<link\b[^>]*rel=["']alternate["'][^>]*>/gi)].map((match) => ({
+    hreflang: match[0].match(/hreflang=["']([^"']+)["']/i)?.[1] ?? null,
+    href: match[0].match(/href=["']([^"']+)["']/i)?.[1] ?? null,
+  }));
 }
 
 function routeToFile(pathname) {
@@ -87,14 +120,35 @@ function validateStructuredData(content, route) {
   }
 }
 
+function validateHreflang(content, route, canonicalUrl) {
+  const language = languageForRoute(route);
+  const currentTag = language === 'en' ? 'en-US' : 'es-AR';
+  const alternateTag = language === 'en' ? 'es-AR' : 'en-US';
+  const expectedAlternate = new URL(alternateRoute(route), site).toString();
+  const expectedDefault = language === 'es' ? canonicalUrl : expectedAlternate;
+  const links = extractAlternateLinks(content);
+
+  for (const expected of [
+    [currentTag, canonicalUrl],
+    [alternateTag, expectedAlternate],
+    ['x-default', expectedDefault],
+  ]) {
+    const matches = links.filter((link) => link.hreflang === expected[0] && link.href === expected[1]);
+    if (matches.length !== 1) {
+      failures.push(`${route}: expected one hreflang ${expected[0]} link to ${expected[1]}`);
+    }
+  }
+}
+
 async function validatePage(file) {
   const content = await readFile(file, 'utf8');
   const route = publicPathForFile(file);
-  const is404 = route === '/404.html';
+  const is404 = isNotFoundRoute(route);
+  const language = languageForRoute(route);
+  const expectedLang = language === 'en' ? 'en-US' : 'es-AR';
 
-  if (!/<html[^>]+lang=["']es(?:-[A-Z]{2})?["']/i.test(content)) {
-    failures.push(`${route}: missing Spanish html lang attribute`);
-  }
+  const htmlLang = content.match(/<html[^>]+lang=["']([^"']+)["']/i)?.[1] ?? null;
+  if (htmlLang !== expectedLang) failures.push(`${route}: html lang must be ${expectedLang}`);
 
   if (countMatches(content, /<title>[^<]+<\/title>/gi) !== 1) {
     failures.push(`${route}: expected exactly one non-empty title`);
@@ -113,18 +167,25 @@ async function validatePage(file) {
     failures.push(`${route}: unresolved public placeholder detected`);
   }
 
+  const canonical = extractAttribute(content, /<link[^>]+rel=["']canonical["'][^>]*>/i, 'href');
+
   if (is404) {
     if (!/<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(content)
         && !/<meta[^>]+content=["'][^"']*noindex[^"']*["'][^>]+name=["']robots["']/i.test(content)) {
-      failures.push(`${route}: 404 page must be noindex`);
+      failures.push(`${route}: not-found page must be noindex`);
     }
+    if (canonical) failures.push(`${route}: noindex not-found page must not declare canonical`);
+    if (extractAlternateLinks(content).length !== 0) failures.push(`${route}: noindex not-found page must not declare hreflang`);
   } else {
-    const canonical = extractAttribute(content, /<link[^>]+rel=["']canonical["'][^>]*>/i, 'href');
     if (!canonical) {
       failures.push(`${route}: missing canonical link`);
     } else {
       try {
         const canonicalUrl = new URL(canonical);
+        const expectedCanonical = new URL(route, site).toString();
+        if (canonicalUrl.toString() !== expectedCanonical) {
+          failures.push(`${route}: canonical must be exactly ${expectedCanonical}`);
+        }
         if (canonicalUrl.origin !== site.origin) {
           failures.push(`${route}: canonical origin ${canonicalUrl.origin} does not match ${site.origin}`);
         }
@@ -133,14 +194,24 @@ async function validatePage(file) {
         if (ogUrl !== canonicalUrl.toString()) {
           failures.push(`${route}: og:url must match canonical URL`);
         }
+        validateHreflang(content, route, canonicalUrl.toString());
       } catch {
         failures.push(`${route}: canonical is not absolute: ${canonical}`);
       }
     }
 
-    const requiredOpenGraph = ['og:locale', 'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url'];
+    const requiredOpenGraph = ['og:locale', 'og:locale:alternate', 'og:type', 'og:site_name', 'og:title', 'og:description', 'og:url'];
     for (const property of requiredOpenGraph) {
       if (!extractMeta(content, 'property', property)) failures.push(`${route}: missing ${property}`);
+    }
+
+    const expectedLocale = language === 'en' ? 'en_US' : 'es_AR';
+    const expectedAlternateLocale = language === 'en' ? 'es_AR' : 'en_US';
+    if (extractMeta(content, 'property', 'og:locale') !== expectedLocale) {
+      failures.push(`${route}: og:locale must be ${expectedLocale}`);
+    }
+    if (extractMeta(content, 'property', 'og:locale:alternate') !== expectedAlternateLocale) {
+      failures.push(`${route}: og:locale:alternate must be ${expectedAlternateLocale}`);
     }
 
     const requiredTwitter = ['twitter:card', 'twitter:title', 'twitter:description'];
@@ -178,8 +249,8 @@ async function validatePage(file) {
     }
 
     const targetFile = routeToFile(target.pathname);
-    if (!await exists(targetFile)) {
-      failures.push(`${route}: internal href ${href} resolves to missing ${path.relative(dist, targetFile)}`);
+    if (!await isFile(targetFile)) {
+      failures.push(`${route}: internal href ${href} resolves to missing file ${path.relative(dist, targetFile)}`);
       continue;
     }
 
@@ -202,10 +273,17 @@ const requiredFiles = [
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
+  'en/index.html',
+  'en/404/index.html',
+  'en/projects/hms-elite/index.html',
+  'en/projects/gasflow/index.html',
+  'en/projects/jm-soluciones/index.html',
+  'cv-sebastian-ojeda.pdf',
+  'cv-sebastian-ojeda-en.pdf',
 ];
 
 for (const relative of requiredFiles) {
-  if (!await exists(path.join(dist, relative))) failures.push(`Missing build artifact: ${relative}`);
+  if (!await isFile(path.join(dist, relative))) failures.push(`Missing build artifact file: ${relative}`);
 }
 
 const htmlFiles = await collectHtml(dist);
@@ -238,9 +316,9 @@ if (await exists(path.join(dist, 'robots.txt'))) {
 }
 
 if (failures.length > 0) {
-  console.error('Build validation failed:');
+  console.error('Bilingual build validation failed:');
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Build validation passed for ${htmlFiles.length} HTML pages.`);
+console.log(`Bilingual build validation passed for ${htmlFiles.length} HTML pages.`);

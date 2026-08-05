@@ -1,28 +1,42 @@
 ---
-import { site } from '../data/site';
+import {
+  copyByLanguage,
+  getLanguageRoot,
+  siteByLanguage,
+  type Language,
+} from '../data/site';
 
 interface Props {
+  lang?: Language;
   title: string;
   description: string;
   canonical: URL;
+  alternate: URL;
   type?: 'website' | 'article';
   noindex?: boolean;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
+  lang = 'es',
   title,
   description,
   canonical,
+  alternate,
   type = 'website',
   noindex = false,
   structuredData,
 } = Astro.props;
 
+const site = siteByLanguage[lang];
+const copy = copyByLanguage[lang];
+const alternateLanguage: Language = lang === 'es' ? 'en' : 'es';
+const alternateSite = siteByLanguage[alternateLanguage];
 const personId = new URL('/#person', canonical).toString();
-const websiteId = new URL('/#website', canonical).toString();
+const languageRoot = new URL(getLanguageRoot(lang), canonical);
+const websiteId = new URL('#website', languageRoot).toString();
 const socialImage = new URL('/social-card.png', canonical).toString();
-const socialImageAlt = 'Portfolio profesional de Sebastián Ojeda, desarrollador backend y full stack.';
+const defaultUrl = lang === 'es' ? canonical : alternate;
 const additionalGraph = structuredData
   ? (Array.isArray(structuredData) ? structuredData : [structuredData])
   : [];
@@ -48,8 +62,8 @@ const jsonLd = {
     {
       '@type': 'WebSite',
       '@id': websiteId,
-      url: new URL('/', canonical).toString(),
-      name: `${site.name} — Portfolio profesional`,
+      url: languageRoot.toString(),
+      name: `${site.name} — ${copy.portfolioLabel}`,
       description: site.description,
       inLanguage: site.languageTag,
       about: { '@id': personId },
@@ -64,11 +78,21 @@ const jsonLd = {
 <meta name="description" content={description} />
 <meta name="theme-color" content={site.themeColor} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
-<link rel="canonical" href={canonical} />
+{
+  !noindex && (
+    <>
+      <link rel="canonical" href={canonical} />
+      <link rel="alternate" hreflang={site.languageTag} href={canonical} />
+      <link rel="alternate" hreflang={alternateSite.languageTag} href={alternate} />
+      <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+    </>
+  )
+}
 
 <meta property="og:locale" content={site.locale} />
+<meta property="og:locale:alternate" content={site.alternateLocale} />
 <meta property="og:type" content={type} />
-<meta property="og:site_name" content={`${site.name} — Portfolio profesional`} />
+<meta property="og:site_name" content={`${site.name} — ${copy.portfolioLabel}`} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
@@ -76,12 +100,12 @@ const jsonLd = {
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={socialImageAlt} />
+<meta property="og:image:alt" content={copy.socialImageAlt} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
-<meta name="twitter:image:alt" content={socialImageAlt} />
+<meta name="twitter:image:alt" content={copy.socialImageAlt} />
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

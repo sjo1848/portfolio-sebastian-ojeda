@@ -1,17 +1,45 @@
 ---
-import { site } from '../data/site';
+import {
+  copyByLanguage,
+  getAlternatePath,
+  getLanguageRoot,
+  siteByLanguage,
+  type Language,
+} from '../data/site';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'es' } = Astro.props;
+const site = siteByLanguage[lang];
+const copy = copyByLanguage[lang];
+const root = getLanguageRoot(lang);
+const alternateLanguage = lang === 'es' ? 'en' : 'es';
+const alternatePath = getAlternatePath(Astro.url.pathname, lang);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/">{site.name}</a>
-    <nav aria-label="Navegación principal">
+    <a class="brand" href={root}>{site.name}</a>
+    <nav aria-label={copy.navigationLabel}>
       <ul class="nav-list">
-        <li><a href="/#projects">Proyectos</a></li>
-        <li><a href="/#process">Proceso</a></li>
-        <li><a href="/#experience">Experiencia</a></li>
-        <li><a href="/#contact">Contacto</a></li>
-        <li><a href={site.cv} download>CV</a></li>
+        <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
+        <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
+        <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
+        <li><a href={`${root}#contact`}>{copy.nav.contact}</a></li>
+        <li><a href={site.cv} download>{copy.nav.cv}</a></li>
+        <li>
+          <a
+            class="language-link"
+            href={alternatePath}
+            hreflang={alternateLanguage}
+            lang={alternateLanguage}
+            aria-label={copy.languageSwitchAria}
+          >
+            {copy.languageSwitch}
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

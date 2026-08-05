@@ -1,14 +1,23 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getProjectMedia } from '../data/projectMedia';
+import {
+  copyByLanguage,
+  getProjectPath,
+  type Language,
+} from '../data/site';
+
+type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
 interface Props {
-  project: CollectionEntry<'projects'>;
+  project: ProjectEntry;
+  lang?: Language;
 }
 
-const { project } = Astro.props;
+const { project, lang = 'es' } = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
+const copy = copyByLanguage[lang].project;
 ---
 
 <article class="project-card">
@@ -17,7 +26,7 @@ const media = getProjectMedia(data.slug);
       <figure class="project-evidence project-evidence-image">
         <img
           src={media.src}
-          alt={media.alt}
+          alt={media.alt[lang]}
           width={media.width}
           height={media.height}
           loading="lazy"
@@ -39,12 +48,12 @@ const media = getProjectMedia(data.slug);
     <p class="eyebrow">{data.statusLabel}</p>
     <h3>{data.title}</h3>
     <p>{data.summary}</p>
-    <ul class="stack-list" aria-label={`Tecnologías de ${data.title}`}>
+    <ul class="stack-list" aria-label={`${copy.technologiesAria} ${data.title}`}>
       {data.stack.slice(0, 5).map((technology) => <li>{technology}</li>)}
     </ul>
     <div class="card-actions">
-      <a class="button button-primary" href={`/projects/${data.slug}/`}>Ver caso de estudio</a>
-      <a class="text-link" href={data.repository} target="_blank" rel="noopener noreferrer">Ver código</a>
+      <a class="button button-primary" href={getProjectPath(lang, data.slug)}>{copy.viewCaseStudy}</a>
+      <a class="text-link" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
     </div>
   </div>
 </article>
