@@ -7,6 +7,14 @@ export const projectMedia = {
     width: 1440,
     height: 900,
   },
+  'jm-soluciones': {
+    src: '/media/jm-guide-desktop.webp',
+    alt: 'Resultado del orientador interactivo de JM Soluciones con una recomendación de servicio, zona seleccionada y estado del trabajo.',
+    caption:
+      'Flujo del orientador verificado por GitHub Actions sobre el commit 0a00f7f4473582f72d5d3b51142fb18b7e2585d4, sin datos personales ni identificadores de clientes.',
+    width: 480,
+    height: 221,
+  },
 } as const;
 
 export type ProjectMediaSlug = keyof typeof projectMedia;
