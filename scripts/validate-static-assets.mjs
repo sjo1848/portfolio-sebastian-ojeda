@@ -11,25 +11,26 @@ const requiredPages = [
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
-  'en/index.html',
-  'en/404/index.html',
-  'en/projects/hms-elite/index.html',
-  'en/projects/gasflow/index.html',
-  'en/projects/jm-soluciones/index.html',
+  'es/index.html',
+  'es/404/index.html',
+  'es/projects/hms-elite/index.html',
+  'es/projects/gasflow/index.html',
+  'es/projects/jm-soluciones/index.html',
+  '_redirects',
   'robots.txt',
 ];
 
 const generatedAssets = [
   {
-    name: 'Spanish resume PDF',
-    relativePath: 'cv-sebastian-ojeda.pdf',
+    name: 'English resume PDF',
+    relativePath: 'cv-sebastian-ojeda-en.pdf',
     signature: Buffer.from('%PDF-', 'ascii'),
     minimumBytes: 5_000,
     maximumBytes: 1_000_000,
   },
   {
-    name: 'English resume PDF',
-    relativePath: 'cv-sebastian-ojeda-en.pdf',
+    name: 'Spanish resume PDF',
+    relativePath: 'cv-sebastian-ojeda.pdf',
     signature: Buffer.from('%PDF-', 'ascii'),
     minimumBytes: 5_000,
     maximumBytes: 1_000_000,
@@ -105,6 +106,10 @@ for (const relativePath of requiredPages) {
 
 for (const asset of generatedAssets) await validateGeneratedAsset(asset);
 
+if (await exists(resolve(distDir, 'en'))) {
+  failures.push('Legacy /en directory must not be emitted as static content.');
+}
+
 for (const directory of [publicDir, distDir]) {
   if (await exists(resolve(directory, 'social-card.svg'))) {
     failures.push(`Obsolete social-card.svg must not exist in ${directory}`);
@@ -122,4 +127,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('Bilingual static asset validation passed.');
+console.log('English-first bilingual static asset validation passed.');
