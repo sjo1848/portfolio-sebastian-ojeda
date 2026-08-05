@@ -12,7 +12,7 @@ const requiredPages = [
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
   'en/index.html',
-  'en/404.html',
+  'en/404/index.html',
   'en/projects/hms-elite/index.html',
   'en/projects/gasflow/index.html',
   'en/projects/jm-soluciones/index.html',
@@ -52,17 +52,25 @@ async function exists(file) {
   }
 }
 
+async function isFile(file) {
+  try {
+    return (await stat(file)).isFile();
+  } catch {
+    return false;
+  }
+}
+
 async function validateGeneratedAsset(asset) {
   const source = resolve(publicDir, asset.relativePath);
   const output = resolve(distDir, asset.relativePath);
 
-  if (!await exists(source)) {
-    failures.push(`${asset.name}: missing generated source public/${asset.relativePath}`);
+  if (!await isFile(source)) {
+    failures.push(`${asset.name}: missing generated source file public/${asset.relativePath}`);
     return;
   }
 
-  if (!await exists(output)) {
-    failures.push(`${asset.name}: missing build artifact dist/${asset.relativePath}`);
+  if (!await isFile(output)) {
+    failures.push(`${asset.name}: missing build artifact file dist/${asset.relativePath}`);
     return;
   }
 
@@ -90,8 +98,8 @@ async function validateGeneratedAsset(asset) {
 }
 
 for (const relativePath of requiredPages) {
-  if (!await exists(resolve(distDir, relativePath))) {
-    failures.push(`Missing required build artifact: dist/${relativePath}`);
+  if (!await isFile(resolve(distDir, relativePath))) {
+    failures.push(`Missing required build artifact file: dist/${relativePath}`);
   }
 }
 
