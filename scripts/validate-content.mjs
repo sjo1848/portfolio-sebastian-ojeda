@@ -2,7 +2,7 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
-const scanRoots = ['src', 'content/projects', 'public'];
+const scanRoots = ['src', 'content/projects', 'content/projects-en', 'public'];
 const textExtensions = new Set(['.astro', '.css', '.html', '.js', '.json', '.md', '.mjs', '.ts', '.txt']);
 const forbidden = [
   { label: 'TODO marker', pattern: /\bTODO\b/i },
@@ -13,6 +13,7 @@ const forbidden = [
   { label: 'Replacement marker', pattern: /\b(?:REPLACE_ME|YOUR_EMAIL|YOUR_LINKEDIN)\b/i },
 ];
 
+const expectedProjects = ['gasflow', 'hms-elite', 'jm-soluciones'];
 const failures = [];
 
 async function collectFiles(relativePath) {
@@ -56,53 +57,72 @@ function validateExternalUrls(file, content) {
 function validateForbiddenMarkers(file, content) {
   for (const rule of forbidden) {
     const match = rule.pattern.exec(content);
-    if (match) {
-      failures.push(`${file}:${lineNumber(content, match.index)} contains ${rule.label}`);
-    }
+    if (match) failures.push(`${file}:${lineNumber(content, match.index)} contains ${rule.label}`);
   }
 }
 
-async function validateProjectInventory() {
-  const directory = path.join(root, 'content/projects');
-  const entries = await readdir(directory);
-  const slugs = entries
+function extractFrontMatterValue(content, key) {
+  return content.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'))?.[1]?.trim() ?? null;
+}
+
+async function projectFiles(directory) {
+  return (await readdir(path.join(root, directory)))
     .filter((entry) => entry.endsWith('.md'))
     .map((entry) => entry.replace(/\.md$/, ''))
     .sort();
+}
 
-  const expected = ['gasflow', 'hms-elite', 'jm-soluciones'];
-  if (JSON.stringify(slugs) !== JSON.stringify(expected)) {
-    failures.push(`Featured project inventory mismatch. Expected ${expected.join(', ')}; found ${slugs.join(', ')}`);
+async function validateProjectInventory() {
+  const directories = ['content/projects', 'content/projects-en'];
+  const inventories = [];
+
+  for (const directory of directories) {
+    const slugs = await projectFiles(directory);
+    inventories.push(slugs);
+
+    if (JSON.stringify(slugs) !== JSON.stringify(expectedProjects)) {
+      failures.push(`${directory} inventory mismatch. Expected ${expectedProjects.join(', ')}; found ${slugs.join(', ')}`);
+    }
+
+    for (const slug of expectedProjects) {
+      const file = path.join(root, directory, `${slug}.md`);
+      const info = await stat(file);
+      if (info.size < 1_500) {
+        failures.push(`${directory}/${slug}.md is unexpectedly small (${info.size} bytes)`);
+      }
+    }
   }
 
-  for (const slug of expected) {
-    const file = path.join(directory, `${slug}.md`);
-    const info = await stat(file);
-    if (info.size < 500) {
-      failures.push(`content/projects/${slug}.md is unexpectedly small (${info.size} bytes)`);
+  if (JSON.stringify(inventories[0]) !== JSON.stringify(inventories[1])) {
+    failures.push('Spanish and English project inventories must contain identical slugs.');
+  }
+
+  for (const slug of expectedProjects) {
+    const spanish = await readFile(path.join(root, 'content/projects', `${slug}.md`), 'utf8');
+    const english = await readFile(path.join(root, 'content/projects-en', `${slug}.md`), 'utf8');
+
+    for (const key of ['title', 'slug', 'order', 'featured', 'status', 'year', 'repository']) {
+      const spanishValue = extractFrontMatterValue(spanish, key);
+      const englishValue = extractFrontMatterValue(english, key);
+      if (spanishValue !== englishValue) {
+        failures.push(`${slug}: bilingual front matter mismatch for ${key}: ${spanishValue} != ${englishValue}`);
+      }
     }
   }
 }
 
 async function validateCvProjectConsistency() {
-  const projectDirectory = path.join(root, 'content/projects');
-  const projectFiles = (await readdir(projectDirectory))
-    .filter((entry) => entry.endsWith('.md'))
-    .sort();
-
   const projectTitles = [];
-  for (const projectFile of projectFiles) {
-    const content = await readFile(path.join(projectDirectory, projectFile), 'utf8');
-    const titleMatch = content.match(/^title:\s*(.+)$/m);
-    if (!titleMatch) {
-      failures.push(`content/projects/${projectFile} does not define a title.`);
-      continue;
-    }
-    projectTitles.push(titleMatch[1].trim());
+  for (const slug of expectedProjects) {
+    const content = await readFile(path.join(root, 'content/projects', `${slug}.md`), 'utf8');
+    const title = extractFrontMatterValue(content, 'title');
+    if (!title) failures.push(`content/projects/${slug}.md does not define a title.`);
+    else projectTitles.push(title);
   }
 
   const cvFiles = [
     'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md',
+    'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack_EN.md',
     'scripts/generate-cv-pdf.mjs',
   ];
 
@@ -118,6 +138,11 @@ async function validateCvProjectConsistency() {
     if (/A-M-R(?: Refrigeraci[oó]n|-Refrigeracion)/i.test(content)) {
       failures.push(`${cvFile} still references the retired A-M-R project.`);
     }
+  }
+
+  const generator = await readFile(path.join(root, 'scripts/generate-cv-pdf.mjs'), 'utf8');
+  for (const output of ['cv-sebastian-ojeda.pdf', 'cv-sebastian-ojeda-en.pdf']) {
+    if (!generator.includes(output)) failures.push(`Resume generator is missing output ${output}.`);
   }
 }
 
@@ -139,4 +164,4 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log('Content validation passed.');
+console.log('Bilingual content validation passed.');
