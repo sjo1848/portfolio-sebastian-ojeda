@@ -29,7 +29,7 @@ const projectSchema = {
   url: projectUrl.toString(),
   codeRepository: data.repository,
   programmingLanguage: data.stack,
-  image: media?.src,
+  image: media ? new URL(media.src, projectUrl).toString() : undefined,
   author: { '@id': new URL('/#person', projectUrl).toString() },
 };
 ---
