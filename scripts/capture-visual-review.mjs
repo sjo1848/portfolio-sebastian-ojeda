@@ -15,11 +15,16 @@ const viewports = [
 ];
 
 const routes = [
-  { name: 'home', pathname: '/' },
-  { name: 'hms-elite', pathname: '/projects/hms-elite/' },
-  { name: 'gasflow', pathname: '/projects/gasflow/' },
-  { name: 'jm-soluciones', pathname: '/projects/jm-soluciones/' },
-  { name: 'not-found', pathname: '/404.html' },
+  { name: 'home-es', pathname: '/' },
+  { name: 'hms-elite-es', pathname: '/projects/hms-elite/' },
+  { name: 'gasflow-es', pathname: '/projects/gasflow/' },
+  { name: 'jm-soluciones-es', pathname: '/projects/jm-soluciones/' },
+  { name: 'home-en', pathname: '/en/' },
+  { name: 'hms-elite-en', pathname: '/en/projects/hms-elite/' },
+  { name: 'gasflow-en', pathname: '/en/projects/gasflow/' },
+  { name: 'jm-soluciones-en', pathname: '/en/projects/jm-soluciones/' },
+  { name: 'not-found-es', pathname: '/404.html' },
+  { name: 'not-found-en', pathname: '/en/404.html' },
 ];
 
 async function findChrome() {
