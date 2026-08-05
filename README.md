@@ -1,71 +1,74 @@
 # Portfolio — Sebastián Ojeda
 
-Portafolio profesional orientado a oportunidades de backend, full stack con foco en backend y sistemas operativos/de gestión.
+Professional portfolio focused on backend, backend-oriented full-stack development, and operational or management software.
 
-## Estado
+## Status
 
-**Etapa actual:** candidato de lanzamiento desplegado y en validación final.
+**Current stage:** deployed release candidate under final production validation.
 
-El sitio ya cuenta con implementación visual, contenido profesional, casos de estudio, CV descargable, SEO, accesibilidad, controles automatizados y despliegue en Cloudflare Pages.
+The site includes the visual implementation, professional content, case studies, downloadable resumes, bilingual SEO, accessibility controls, automated QA, and Cloudflare Pages deployment.
 
-- Producción: `https://portfolio-sebastian-ojeda.pages.dev`
-- Rama de producción: `main`
+- Production: `https://portfolio-sebastian-ojeda.pages.dev`
+- Production branch: `main`
 - Hosting: Cloudflare Pages
-- Idioma inicial: español
-- Identidad visual del MVP: sin retrato
+- Primary language: English at `/`
+- Spanish version: `/es/`
+- Legacy `/en/*` routes: permanent redirects to the equivalent canonical English routes
+- MVP visual identity: no portrait
 
-## Posicionamiento
+## Positioning
 
 **Backend-Focused Full-Stack Developer**
 
-Desarrollo sistemas de gestión y aplicaciones operativas con Rust, TypeScript, React, React Native y PostgreSQL. Mi enfoque combina modelado de dominio, arquitectura, UX, QA, seguridad y despliegue.
+I build management systems and operational applications with Rust, TypeScript, React, React Native, and PostgreSQL. My approach combines domain modeling, architecture, UX, QA, security, and deployment.
 
-## Proyectos destacados
+## Featured projects
 
-1. **HMS Elite** — plataforma SaaS multi-hotel con Rust, Axum, React y PostgreSQL.
-2. **GasFlow** — sistema móvil para pedidos, entregas y stock con React Native y backend Rust.
-3. **JM Soluciones Eléctricas** — sitio comercial mobile-first con Astro, TypeScript, SEO local y un proceso de entrega reproducible.
+1. **HMS Elite** — multi-hotel SaaS platform built with Rust, Axum, React, and PostgreSQL.
+2. **GasFlow** — mobile system for orders, deliveries, and stock using React Native and a Rust backend.
+3. **JM Soluciones Eléctricas** — mobile-first commercial site built with Astro, TypeScript, local SEO, and a reproducible delivery process.
 
-## Stack del portafolio
+## Portfolio stack
 
 - Astro 5.
 - TypeScript.
 - Tailwind CSS 4.
-- Generación estática sin JavaScript obligatorio en el cliente.
+- Static generation without mandatory client-side JavaScript.
 - Cloudflare Pages.
 - GitHub Actions.
 
-## Calidad y publicación
+## Quality and publishing
 
-El repositorio incluye controles reproducibles para:
+The repository includes reproducible controls for:
 
-- validación de contenido y rutas;
-- generación del CV PDF y la tarjeta social;
-- metadatos SEO, Open Graph, X y JSON-LD;
-- sitemap, robots y canonical;
-- accesibilidad y comportamiento responsive;
+- bilingual content and route validation;
+- deterministic PDF resume and social-card generation;
+- SEO, Open Graph, X, JSON-LD, canonical, and `hreflang` metadata;
+- sitemap and robots validation;
+- Cloudflare Pages redirect contracts;
+- accessibility and responsive behavior;
 - Lighthouse CI;
-- escaneo de secretos con Gitleaks;
-- validación integral mediante `npm run qa:release`.
+- Gitleaks secret scanning;
+- full release validation through `npm run qa:release`.
 
-## Flujo de trabajo
+## Workflow
 
 ```text
-Rama de trabajo
+Work branch
 → GitHub Actions
-→ revisión y QA
-→ merge intencional a main
-→ despliegue de producción en Cloudflare Pages
+→ review and QA
+→ intentional merge to main
+→ Cloudflare Pages production deployment
 ```
 
-- `main` contiene únicamente etapas aprobadas.
-- Cada cambio se trabaja en una rama independiente.
-- Todo cambio entra mediante pull request.
-- Los previews de ramas están desactivados para preservar la cuota gratuita de compilaciones.
-- QA, UX y pensamiento sistémico se consideran desde el inicio.
-- No se publican afirmaciones sin evidencia verificable.
+- `main` contains approved stages only.
+- Every change is developed on an independent branch.
+- Every change enters through a pull request.
+- Branch previews remain disabled to preserve the free build quota.
+- QA, UX, and systems thinking are included from the beginning.
+- Public claims require verifiable evidence.
 
-## Comandos principales
+## Main commands
 
 ```bash
 npm ci
@@ -75,22 +78,22 @@ npm run build
 npm run qa:release
 ```
 
-## Documentación
+## Documentation
 
 - [Product brief](docs/00-product-brief.md)
-- [Posicionamiento profesional](docs/01-professional-positioning.md)
-- [Arquitectura de información](docs/02-information-architecture.md)
-- [Inventario de contenido](docs/03-content-inventory.md)
-- [Dirección visual](docs/04-visual-direction.md)
-- [Arquitectura técnica](docs/05-technical-architecture.md)
-- [Estrategia de QA](docs/06-qa-strategy.md)
-- [Plan de lanzamiento](docs/07-release-plan.md)
+- [Professional positioning](docs/01-professional-positioning.md)
+- [Information architecture](docs/02-information-architecture.md)
+- [Content inventory](docs/03-content-inventory.md)
+- [Visual direction](docs/04-visual-direction.md)
+- [Technical architecture](docs/05-technical-architecture.md)
+- [QA strategy](docs/06-qa-strategy.md)
+- [Release plan](docs/07-release-plan.md)
 - [Backlog](docs/BACKLOG.md)
 
-## Pendientes de lanzamiento profesional
+## Remaining professional-release work
 
-- Verificar la última versión desplegada en producción.
-- Completar pruebas básicas de teclado y lector de pantalla sobre producción.
-- Incorporar capturas verificadas de GasFlow y JM Soluciones.
-- Revisar y publicar el perfil de LinkedIn.
-- Definir un dominio personalizado únicamente cuando aporte valor profesional.
+- Verify the latest Cloudflare Pages deployment over public HTTP.
+- Complete keyboard and screen-reader smoke tests against production.
+- Add reproducible GasFlow visual evidence.
+- Review and publish the LinkedIn profile.
+- Introduce a custom domain only when it provides clear professional value.

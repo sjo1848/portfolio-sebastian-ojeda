@@ -51,21 +51,21 @@ function publicPathForFile(file) {
 }
 
 function languageForRoute(route) {
-  return route.startsWith('/en/') || route === '/en' ? 'en' : 'es';
+  return route.startsWith('/es/') || route === '/es' ? 'es' : 'en';
 }
 
 function isNotFoundRoute(route) {
-  return route === '/404.html' || route === '/en/404/';
+  return route === '/404.html' || route === '/es/404/';
 }
 
 function alternateRoute(route) {
-  if (route === '/404.html') return '/en/404/';
-  if (route === '/en/404/') return '/404.html';
-  if (languageForRoute(route) === 'en') {
-    if (route === '/en' || route === '/en/') return '/';
+  if (route === '/404.html') return '/es/404/';
+  if (route === '/es/404/') return '/404.html';
+  if (languageForRoute(route) === 'es') {
+    if (route === '/es' || route === '/es/') return '/';
     return route.slice(3) || '/';
   }
-  return route === '/' ? '/en/' : `/en${route}`;
+  return route === '/' ? '/es/' : `/es${route}`;
 }
 
 function countMatches(content, pattern) {
@@ -125,7 +125,7 @@ function validateHreflang(content, route, canonicalUrl) {
   const currentTag = language === 'en' ? 'en-US' : 'es-AR';
   const alternateTag = language === 'en' ? 'es-AR' : 'en-US';
   const expectedAlternate = new URL(alternateRoute(route), site).toString();
-  const expectedDefault = language === 'es' ? canonicalUrl : expectedAlternate;
+  const expectedDefault = language === 'en' ? canonicalUrl : expectedAlternate;
   const links = extractAlternateLinks(content);
 
   for (const expected of [
@@ -146,6 +146,10 @@ async function validatePage(file) {
   const is404 = isNotFoundRoute(route);
   const language = languageForRoute(route);
   const expectedLang = language === 'en' ? 'en-US' : 'es-AR';
+
+  if (route === '/en' || route.startsWith('/en/')) {
+    failures.push(`${route}: legacy English-prefixed HTML must not be generated`);
+  }
 
   const htmlLang = content.match(/<html[^>]+lang=["']([^"']+)["']/i)?.[1] ?? null;
   if (htmlLang !== expectedLang) failures.push(`${route}: html lang must be ${expectedLang}`);
@@ -269,21 +273,41 @@ const requiredFiles = [
   '404.html',
   'favicon.svg',
   'site.webmanifest',
+  '_redirects',
   'robots.txt',
   'projects/hms-elite/index.html',
   'projects/gasflow/index.html',
   'projects/jm-soluciones/index.html',
-  'en/index.html',
-  'en/404/index.html',
-  'en/projects/hms-elite/index.html',
-  'en/projects/gasflow/index.html',
-  'en/projects/jm-soluciones/index.html',
+  'es/index.html',
+  'es/404/index.html',
+  'es/projects/hms-elite/index.html',
+  'es/projects/gasflow/index.html',
+  'es/projects/jm-soluciones/index.html',
   'cv-sebastian-ojeda.pdf',
   'cv-sebastian-ojeda-en.pdf',
 ];
 
 for (const relative of requiredFiles) {
   if (!await isFile(path.join(dist, relative))) failures.push(`Missing build artifact file: ${relative}`);
+}
+
+if (await exists(path.join(dist, 'en'))) {
+  failures.push('Legacy /en directory must not be emitted in the static build.');
+}
+
+const redirectsPath = path.join(dist, '_redirects');
+if (await isFile(redirectsPath)) {
+  const redirects = await readFile(redirectsPath, 'utf8');
+  const requiredRules = [
+    '/en / 301',
+    '/en/ / 301',
+    '/en/404 /404.html 301',
+    '/en/404/ /404.html 301',
+    '/en/* /:splat 301',
+  ];
+  for (const rule of requiredRules) {
+    if (!redirects.split(/\r?\n/).includes(rule)) failures.push(`Missing Cloudflare redirect rule: ${rule}`);
+  }
 }
 
 const htmlFiles = await collectHtml(dist);
@@ -296,6 +320,7 @@ if (await exists(manifestPath)) {
     if (!manifest.name || !manifest.short_name || manifest.start_url !== '/') {
       failures.push('site.webmanifest is missing required identity or start URL fields.');
     }
+    if (manifest.lang !== 'en-US') failures.push('site.webmanifest lang must be en-US.');
     if (!Array.isArray(manifest.icons) || manifest.icons.length === 0) {
       failures.push('site.webmanifest must declare at least one icon.');
     }
@@ -316,9 +341,9 @@ if (await exists(path.join(dist, 'robots.txt'))) {
 }
 
 if (failures.length > 0) {
-  console.error('Bilingual build validation failed:');
+  console.error('English-first bilingual build validation failed:');
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Bilingual build validation passed for ${htmlFiles.length} HTML pages.`);
+console.log(`English-first bilingual build validation passed for ${htmlFiles.length} HTML pages.`);

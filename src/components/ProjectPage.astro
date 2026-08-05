@@ -5,11 +5,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getProjectMedia } from '../data/projectMedia';
 import {
   copyByLanguage,
-  getLanguageRoot,
-  getProjectPath,
   siteByLanguage,
   type Language,
 } from '../data/site';
+import {
+  getLanguageRoot,
+  getProjectPath,
+} from '../data/routing';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 

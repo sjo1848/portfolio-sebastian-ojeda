@@ -5,7 +5,7 @@
       "numberOfRuns": 3,
       "url": [
         "http://localhost/",
-        "http://localhost/en/",
+        "http://localhost/es/",
         "http://localhost/projects/hms-elite/"
       ],
       "settings": {

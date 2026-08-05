@@ -1,0 +1,6 @@
+# English is canonical at the site root.
+/en / 301
+/en/ / 301
+/en/404 /404.html 301
+/en/404/ /404.html 301
+/en/* /:splat 301

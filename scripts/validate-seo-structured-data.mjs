@@ -36,23 +36,23 @@ function routeForFile(file) {
 }
 
 function languageForRoute(route) {
-  return route.startsWith('/en/') || route === '/en' ? 'en' : 'es';
+  return route.startsWith('/es/') || route === '/es' ? 'es' : 'en';
 }
 
 function languageContract(route) {
   const language = languageForRoute(route);
-  const root = new URL(language === 'en' ? '/en/' : '/', site).toString();
+  const root = new URL(language === 'es' ? '/es/' : '/', site).toString();
   return {
     language,
-    htmlLang: language === 'en' ? 'en-US' : 'es-AR',
-    locale: language === 'en' ? 'en_US' : 'es_AR',
+    htmlLang: language === 'es' ? 'es-AR' : 'en-US',
+    locale: language === 'es' ? 'es_AR' : 'en_US',
     websiteRoot: root,
     websiteId: `${root}#website`,
   };
 }
 
 function isNotFoundRoute(route) {
-  return route === '/404.html' || route === '/en/404/';
+  return route === '/404.html' || route === '/es/404/';
 }
 
 function extractAttribute(tag, attribute) {
@@ -262,7 +262,7 @@ for (const file of htmlFiles) {
   validateWebsite(website, route, contract);
 
   const softwareNodes = graph.filter((node) => node?.['@type'] === 'SoftwareSourceCode');
-  const isProject = route.startsWith('/projects/') || route.startsWith('/en/projects/');
+  const isProject = route.startsWith('/projects/') || route.startsWith('/es/projects/');
 
   if (isProject) {
     if (softwareNodes.length !== 1) {
@@ -296,9 +296,9 @@ for (const page of pageIdentities) {
 }
 
 if (failures.length > 0) {
-  console.error('Bilingual SEO and structured data validation failed:');
+  console.error('English-first bilingual SEO and structured data validation failed:');
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Bilingual SEO and structured data validation passed for ${htmlFiles.length} HTML pages.`);
+console.log(`English-first bilingual SEO and structured data validation passed for ${htmlFiles.length} HTML pages.`);

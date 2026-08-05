@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import ProjectPage from '../../../components/ProjectPage.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projectsEn');
+  const projects = await getCollection('projects');
   return projects.map((project) => ({
     params: { slug: project.data.slug },
     props: { project },
@@ -12,10 +12,10 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  project: CollectionEntry<'projectsEn'>;
+  project: CollectionEntry<'projects'>;
 }
 
 const { project } = Astro.props;
 ---
 
-<ProjectPage project={project} lang="en" />
+<ProjectPage project={project} lang="es" />
