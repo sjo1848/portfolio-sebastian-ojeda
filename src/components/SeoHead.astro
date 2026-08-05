@@ -78,10 +78,16 @@ const jsonLd = {
 <meta name="description" content={description} />
 <meta name="theme-color" content={site.themeColor} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
-<link rel="canonical" href={canonical} />
-<link rel="alternate" hreflang={site.languageTag} href={canonical} />
-<link rel="alternate" hreflang={alternateSite.languageTag} href={alternate} />
-<link rel="alternate" hreflang="x-default" href={defaultUrl} />
+{
+  !noindex && (
+    <>
+      <link rel="canonical" href={canonical} />
+      <link rel="alternate" hreflang={site.languageTag} href={canonical} />
+      <link rel="alternate" hreflang={alternateSite.languageTag} href={alternate} />
+      <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+    </>
+  )
+}
 
 <meta property="og:locale" content={site.locale} />
 <meta property="og:locale:alternate" content={site.alternateLocale} />
