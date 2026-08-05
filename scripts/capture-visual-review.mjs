@@ -71,7 +71,7 @@ async function validateScreenshot(file, expectedWidth, expectedHeight) {
 
   if (width !== expectedWidth || height !== expectedHeight) {
     throw new Error(
-      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${expectedHeight}.`,
+      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${height}.`,
     );
   }
 
