@@ -2,9 +2,15 @@
 import SeoHead from '../components/SeoHead.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
-import { site } from '../data/site';
+import {
+  copyByLanguage,
+  getAlternatePath,
+  siteByLanguage,
+  type Language,
+} from '../data/site';
 
 interface Props {
+  lang?: Language;
   title?: string;
   description?: string;
   ogType?: 'website' | 'article';
@@ -13,26 +19,36 @@ interface Props {
 }
 
 const {
-  title = site.title,
-  description = site.description,
+  lang = 'es',
+  title,
+  description,
   ogType = 'website',
   noindex = false,
   structuredData,
 } = Astro.props;
 
-const pageTitle = title === site.title ? `${site.name} — ${title}` : `${title} — ${site.name}`;
+const site = siteByLanguage[lang];
+const copy = copyByLanguage[lang];
+const resolvedTitle = title ?? site.title;
+const resolvedDescription = description ?? site.description;
+const pageTitle = resolvedTitle === site.title
+  ? `${site.name} — ${resolvedTitle}`
+  : `${resolvedTitle} — ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const alternate = new URL(getAlternatePath(Astro.url.pathname, lang), Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
-<html lang="es-AR">
+<html lang={site.languageTag}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <SeoHead
+      lang={lang}
       title={pageTitle}
-      description={description}
+      description={resolvedDescription}
       canonical={canonical}
+      alternate={alternate}
       type={ogType}
       noindex={noindex}
       structuredData={structuredData}
@@ -42,8 +58,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <title>{pageTitle}</title>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Ir al contenido</a>
-    <SiteHeader />
+    <a class="skip-link" href="#main-content">{copy.skipLink}</a>
+    <SiteHeader lang={lang} />
     <main id="main-content" tabindex="-1"><slot /></main>
     <footer class="site-footer">
       <div class="container footer-inner">
