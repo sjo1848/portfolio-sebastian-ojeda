@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { copyByLanguage } from '../../data/site';
+
+const copy = copyByLanguage.en.notFound;
+---
+
+<BaseLayout lang="en" title={copy.title} description={copy.description} noindex>
+  <section class="container error-page">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.heading}</h1>
+    <p>{copy.body}</p>
+    <a class="button button-primary" href="/en/">{copy.action}</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: calc(100vh - 9rem);
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 1rem;
+    max-width: 48rem;
+  }
+
+  .error-page p:not(.eyebrow) {
+    max-width: 42rem;
+  }
+</style>
