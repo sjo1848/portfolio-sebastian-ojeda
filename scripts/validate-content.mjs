@@ -84,6 +84,43 @@ async function validateProjectInventory() {
   }
 }
 
+async function validateCvProjectConsistency() {
+  const projectDirectory = path.join(root, 'content/projects');
+  const projectFiles = (await readdir(projectDirectory))
+    .filter((entry) => entry.endsWith('.md'))
+    .sort();
+
+  const projectTitles = [];
+  for (const projectFile of projectFiles) {
+    const content = await readFile(path.join(projectDirectory, projectFile), 'utf8');
+    const titleMatch = content.match(/^title:\s*(.+)$/m);
+    if (!titleMatch) {
+      failures.push(`content/projects/${projectFile} does not define a title.`);
+      continue;
+    }
+    projectTitles.push(titleMatch[1].trim());
+  }
+
+  const cvFiles = [
+    'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md',
+    'scripts/generate-cv-pdf.mjs',
+  ];
+
+  for (const cvFile of cvFiles) {
+    const content = await readFile(path.join(root, cvFile), 'utf8');
+
+    for (const projectTitle of projectTitles) {
+      if (!content.includes(projectTitle)) {
+        failures.push(`${cvFile} is missing featured project: ${projectTitle}`);
+      }
+    }
+
+    if (/A-M-R(?: Refrigeraci[oó]n|-Refrigeracion)/i.test(content)) {
+      failures.push(`${cvFile} still references the retired A-M-R project.`);
+    }
+  }
+}
+
 for (const scanRoot of scanRoots) {
   const files = await collectFiles(scanRoot);
   for (const file of files) {
@@ -94,6 +131,7 @@ for (const scanRoot of scanRoots) {
 }
 
 await validateProjectInventory();
+await validateCvProjectConsistency();
 
 if (failures.length > 0) {
   console.error('Content validation failed:');
