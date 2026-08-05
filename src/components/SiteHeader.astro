@@ -1,17 +1,20 @@
 ---
 import {
   copyByLanguage,
-  getAlternatePath,
-  getLanguageRoot,
   siteByLanguage,
   type Language,
 } from '../data/site';
+import {
+  defaultLanguage,
+  getAlternatePath,
+  getLanguageRoot,
+} from '../data/routing';
 
 interface Props {
   lang?: Language;
 }
 
-const { lang = 'es' } = Astro.props;
+const { lang = defaultLanguage } = Astro.props;
 const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang];
 const root = getLanguageRoot(lang);
