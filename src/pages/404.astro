@@ -2,10 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { copyByLanguage } from '../data/site';
 
-const copy = copyByLanguage.es.notFound;
+const copy = copyByLanguage.en.notFound;
 ---
 
-<BaseLayout lang="es" title={copy.title} description={copy.description} noindex>
+<BaseLayout lang="en" title={copy.title} description={copy.description} noindex>
   <section class="container error-page">
     <p class="eyebrow">{copy.eyebrow}</p>
     <h1>{copy.heading}</h1>
