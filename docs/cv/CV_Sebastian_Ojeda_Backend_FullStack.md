@@ -37,12 +37,13 @@ Desarrollador full stack orientado a backend, con experiencia en SAP Basis, inte
 - JWT, trazabilidad, eventos de auditoría, métricas y pruebas de backend y aplicación móvil.
 - Repositorio: https://github.com/sjo1848/gasflow
 
-### A-M-R Refrigeración - Sitio comercial
+### JM Soluciones Eléctricas - Sitio comercial
 
-**Stack:** Astro, TypeScript y Docker.
+**Stack:** Astro, TypeScript, Tailwind CSS y Docker.
 
-- Arquitectura estática, UX responsive, SEO técnico, contacto por WhatsApp y controles automáticos de release.
-- Repositorio: https://github.com/sjo1848/A-M-R-Refrigeracion
+- Landing mobile-first para servicios eléctricos, con UX orientada a conversión, SEO local, galería real y consulta guiada por WhatsApp.
+- Contenido tipado, Vitest, preflight reproducible, contenedor Nginx y controles automáticos de release.
+- Repositorio: https://github.com/sjo1848/jm-soluciones
 
 ## Experiencia relevante
 
