@@ -22,11 +22,15 @@ The site includes the visual implementation, professional content, case studies,
 
 I build management systems and operational applications with Rust, TypeScript, React, React Native, and PostgreSQL. My approach combines domain modeling, architecture, UX, QA, security, and deployment.
 
+The portfolio presents this practice as a **software production laboratory**. Its public method, documented in [`docs/12-project-method.md`](docs/12-project-method.md), is **Project Method: a verifiable software construction method**. It starts with the problem and evidence, works in phases with explicit exit criteria, and uses automation or multi-agent execution only when it adds value.
+
 ## Featured projects
 
 1. **HMS Elite** — multi-hotel SaaS platform built with Rust, Axum, React, and PostgreSQL.
 2. **GasFlow** — mobile system for orders, deliveries, and stock using React Native and a Rust backend.
 3. **JM Soluciones Eléctricas** — mobile-first commercial site built with Astro, TypeScript, local SEO, and a reproducible delivery process.
+4. **Taco Loco Foodtrack** — mobile-first digital menu and order-intent system connected to WhatsApp.
+5. **Alquileres Uspallata** — full-stack rental catalog with review, publication, availability, contact, and audit workflows.
 
 ## Portfolio stack
 

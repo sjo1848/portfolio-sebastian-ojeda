@@ -5,6 +5,7 @@ import ProjectCard from './ProjectCard.astro';
 import {
   capabilityGroupsByLanguage,
   copyByLanguage,
+  methodPhasesByLanguage,
   processStepsByLanguage,
   siteByLanguage,
   type Language,
@@ -21,6 +22,7 @@ const { lang, projects } = Astro.props;
 const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang].home;
 const processSteps = processStepsByLanguage[lang];
+const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
 ---
 
@@ -67,7 +69,17 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
       <div class="section-heading">
         <p class="eyebrow">{copy.processEyebrow}</p>
         <h2 id="process-title">{copy.processTitle}</h2>
+        <p>{copy.processIntro}</p>
       </div>
+      <ol class="method-flow" aria-label={copy.processTitle}>
+        {methodPhases.map((phase, index) => (
+          <li>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{phase.name}</strong>
+            <small>{phase.description}</small>
+          </li>
+        ))}
+      </ol>
       <ol class="process-grid">
         {processSteps.map((step, index) => (
           <li>

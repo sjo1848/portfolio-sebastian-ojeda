@@ -70,6 +70,11 @@ ul, ol { padding: 0; }
 .section-heading { max-width: 46rem; margin-bottom: 2.5rem; }
 .section-heading > p:last-child { margin-top: 1rem; color: var(--muted); font-size: 1.1rem; }
 .project-grid, .process-grid, .capability-grid { display: grid; gap: 1.25rem; }
+.method-flow { display: grid; gap: .75rem; list-style: none; margin: 0 0 3rem; padding: 0; }
+.method-flow li { border: 1px solid var(--line); padding: .9rem; min-height: 7rem; display: flex; flex-direction: column; justify-content: space-between; background: var(--paper); }
+.method-flow li > span { color: var(--accent-strong); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-weight: 750; }
+.method-flow strong { font-size: .95rem; letter-spacing: .04em; }
+.method-flow small { color: var(--muted); font-size: .82rem; }
 .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--canvas); }
 .project-evidence { display: flex; min-height: 10rem; flex-direction: column; justify-content: space-between; margin: 0; padding: 1.5rem; background: var(--night); color: var(--night-text); }
 .project-evidence span { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #f2a36f; }
@@ -118,12 +123,14 @@ ul, ol { padding: 0; }
   .hero-grid, .case-hero-grid, .split-grid { grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.75fr); }
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .process-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .method-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .capability-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-panel { flex-direction: row; align-items: center; justify-content: space-between; }
 }
 @media (min-width: 68.75rem) {
   .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .process-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .method-flow { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
 @media (max-width: 43.75rem) {
   html { scroll-padding-top: 11rem; }

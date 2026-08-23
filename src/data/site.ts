@@ -67,7 +67,7 @@ export const copyByLanguage = {
     navigationLabel: 'Navegación principal',
     nav: {
       projects: 'Proyectos',
-      process: 'Proceso',
+      process: 'Método',
       experience: 'Experiencia',
       contact: 'Contacto',
       cv: 'CV',
@@ -86,8 +86,10 @@ export const copyByLanguage = {
       projectsTitle: 'Proyectos destacados',
       projectsIntro:
         'Cinco soluciones con objetivos distintos: sistemas operativos, experiencias móviles y entrega comercial.',
-      processEyebrow: 'Proceso',
-      processTitle: 'Cómo trabajo',
+      processEyebrow: 'Método',
+      processTitle: 'Laboratorio de producción de software',
+      processIntro:
+        'Project Method es una práctica de construcción verificable: parte del problema y la evidencia, convierte cada fase en un resultado revisable y usa automatización sin ocultar las decisiones humanas importantes.',
       capabilitiesEyebrow: 'Capacidades',
       capabilitiesTitle: 'Tecnología organizada alrededor del problema',
       experienceEyebrow: 'Contexto operativo',
@@ -131,7 +133,7 @@ export const copyByLanguage = {
     navigationLabel: 'Primary navigation',
     nav: {
       projects: 'Projects',
-      process: 'Process',
+      process: 'Method',
       experience: 'Experience',
       contact: 'Contact',
       cv: 'Resume',
@@ -150,8 +152,10 @@ export const copyByLanguage = {
       projectsTitle: 'Featured projects',
       projectsIntro:
         'Five solutions with different goals: operational systems, mobile experiences, and commercial delivery.',
-      processEyebrow: 'Process',
-      processTitle: 'How I work',
+      processEyebrow: 'Method',
+      processTitle: 'Software production laboratory',
+      processIntro:
+        'Project Method is a verifiable construction practice: it starts with the problem and evidence, turns each phase into a reviewable result, and uses automation without hiding important human decisions.',
       capabilitiesEyebrow: 'Capabilities',
       capabilitiesTitle: 'Technology organized around the problem',
       experienceEyebrow: 'Operational context',
@@ -234,6 +238,29 @@ export const processStepsByLanguage = {
       title: 'Prepare operations',
       description: 'I document, automate controls, and consider observability, deployment, and recovery.',
     },
+  ],
+} as const;
+
+export const methodPhasesByLanguage = {
+  es: [
+    { name: 'IDEA', description: 'Hipótesis clara' },
+    { name: 'DISCOVERY', description: 'Evidencia real' },
+    { name: 'DEFINITION', description: 'Alcance explícito' },
+    { name: 'DESIGN', description: 'Solución coherente' },
+    { name: 'BUILD', description: 'Incremento ejecutable' },
+    { name: 'VALIDATE', description: 'Prueba independiente' },
+    { name: 'RELEASE', description: 'Entrega controlada' },
+    { name: 'LEARN', description: 'Evolución informada' },
+  ],
+  en: [
+    { name: 'IDEA', description: 'Clear hypothesis' },
+    { name: 'DISCOVERY', description: 'Real evidence' },
+    { name: 'DEFINITION', description: 'Explicit scope' },
+    { name: 'DESIGN', description: 'Coherent solution' },
+    { name: 'BUILD', description: 'Executable increment' },
+    { name: 'VALIDATE', description: 'Independent proof' },
+    { name: 'RELEASE', description: 'Controlled delivery' },
+    { name: 'LEARN', description: 'Informed evolution' },
   ],
 } as const;
 
