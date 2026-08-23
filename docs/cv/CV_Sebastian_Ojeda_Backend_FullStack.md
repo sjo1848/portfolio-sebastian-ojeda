@@ -45,6 +45,22 @@ Desarrollador full stack orientado a backend, con experiencia en SAP Basis, inte
 - Contenido tipado, Vitest, preflight reproducible, contenedor Nginx y controles automáticos de release.
 - Repositorio: https://github.com/sjo1848/jm-soluciones
 
+### Taco Loco Foodtrack - Menú digital y pedidos
+
+**Stack:** Next.js, TypeScript, React, Prisma y PostgreSQL.
+
+- Menú QR mobile-first, personalización, resumen de pedido y registro de intención con continuación por WhatsApp.
+- Validación server-side de catálogo, disponibilidad y precios, con flujo administrativo y QA documentado.
+- Repositorio: https://github.com/sjo1848/taco-loco-foodtrack
+
+### Alquileres Uspallata - Catálogo y gestión de alojamientos
+
+**Stack:** NestJS, Vue, TypeScript, Prisma y PostgreSQL.
+
+- Catálogo público con revisión, publicación, disponibilidad, contacto directo y separación de datos públicos e internos.
+- Flujos de propietario y administración con migraciones, pruebas, controles de seguridad y auditoría.
+- Repositorio: https://github.com/sjo1848/alquileres-uspa
+
 ## Experiencia relevante
 
 ### Gotechy - Consultor SAP Basis / Integrador de sistemas / Administrador de bases de datos

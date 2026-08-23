@@ -85,7 +85,7 @@ export const copyByLanguage = {
       evidenceEyebrow: 'Evidencia de trabajo',
       projectsTitle: 'Proyectos destacados',
       projectsIntro:
-        'Tres soluciones con objetivos distintos: profundidad técnica, operación móvil y entrega comercial.',
+        'Cinco soluciones con objetivos distintos: sistemas operativos, experiencias móviles y entrega comercial.',
       processEyebrow: 'Proceso',
       processTitle: 'Cómo trabajo',
       capabilitiesEyebrow: 'Capacidades',
@@ -149,7 +149,7 @@ export const copyByLanguage = {
       evidenceEyebrow: 'Work evidence',
       projectsTitle: 'Featured projects',
       projectsIntro:
-        'Three solutions with different goals: technical depth, mobile operations, and commercial delivery.',
+        'Five solutions with different goals: operational systems, mobile experiences, and commercial delivery.',
       processEyebrow: 'Process',
       processTitle: 'How I work',
       capabilitiesEyebrow: 'Capabilities',

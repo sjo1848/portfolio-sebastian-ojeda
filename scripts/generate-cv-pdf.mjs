@@ -110,6 +110,22 @@ const resumes = [
         ],
         url: 'github.com/sjo1848/jm-soluciones',
       },
+      {
+        title: 'Taco Loco Foodtrack - Menú digital y pedidos | Next.js, TypeScript, Prisma',
+        bullets: [
+          'Menú QR mobile-first, personalización, resumen de pedido y registro de intención con continuación por WhatsApp.',
+          'Validación server-side de catálogo, disponibilidad y precios, con flujo administrativo y QA documentado.',
+        ],
+        url: 'github.com/sjo1848/taco-loco-foodtrack',
+      },
+      {
+        title: 'Alquileres Uspallata - Catálogo y gestión | NestJS, Vue, Prisma',
+        bullets: [
+          'Catálogo público con revisión, publicación, disponibilidad, contacto directo y separación de datos públicos e internos.',
+          'Flujos de propietario y administración con migraciones, pruebas, controles de seguridad y auditoría.',
+        ],
+        url: 'github.com/sjo1848/alquileres-uspa',
+      },
     ],
     experience: [
       {
@@ -193,6 +209,22 @@ const resumes = [
           'Typed content, Vitest, reproducible preflight, Nginx container, and automated release controls.',
         ],
         url: 'github.com/sjo1848/jm-soluciones',
+      },
+      {
+        title: 'Taco Loco Foodtrack - Digital menu and ordering | Next.js, TypeScript, Prisma',
+        bullets: [
+          'Mobile-first QR menu, customization, order summary, and intent registration with WhatsApp continuation.',
+          'Server-side catalog, availability, and price validation with an administrative flow and documented QA.',
+        ],
+        url: 'github.com/sjo1848/taco-loco-foodtrack',
+      },
+      {
+        title: 'Alquileres Uspallata - Rental catalog and management | NestJS, Vue, Prisma',
+        bullets: [
+          'Public catalog with review, publication, availability, direct contact, and separation of public and internal data.',
+          'Owner and administration workflows with migrations, tests, security controls, and auditing.',
+        ],
+        url: 'github.com/sjo1848/alquileres-uspa',
       },
     ],
     experience: [

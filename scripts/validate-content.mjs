@@ -13,7 +13,7 @@ const forbidden = [
   { label: 'Replacement marker', pattern: /\b(?:REPLACE_ME|YOUR_EMAIL|YOUR_LINKEDIN)\b/i },
 ];
 
-const expectedProjects = ['gasflow', 'hms-elite', 'jm-soluciones'];
+const expectedProjects = ['alquileres-uspa', 'gasflow', 'hms-elite', 'jm-soluciones', 'taco-loco'];
 const failures = [];
 
 async function collectFiles(relativePath) {
