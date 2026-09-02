@@ -28,7 +28,15 @@ for (const sitemapFile of pageSitemapFiles) {
   }
 }
 
-const projectSlugs = ['alquileres-uspa', 'gasflow', 'hms-elite', 'jm-soluciones', 'taco-loco'];
+const projectSlugs = [
+  'ai-commerce-platform',
+  'alquileres-uspa',
+  'gasflow',
+  'hms-cloudflare',
+  'hms-elite',
+  'jm-soluciones',
+  'taco-loco',
+];
 const expectedRoutes = [
   '/',
   ...projectSlugs.map((slug) => `/projects/${slug}/`),
