@@ -145,7 +145,8 @@ async function validateFeaturedPortfolio() {
   const siteContent = await readFile(path.join(root, 'src/data/site.ts'), 'utf8');
   for (const phrase of [
     'AI-first software developer',
-    'Software Developer · AI, Automation & Operational Systems',
+    'Software Developer · AI and Automation',
+    'Software Developer · IA y Automatización',
     'IA y sistemas agentic',
     'AI and agentic systems',
   ]) {
