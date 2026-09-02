@@ -28,15 +28,12 @@ for (const sitemapFile of pageSitemapFiles) {
   }
 }
 
+const projectSlugs = ['alquileres-uspa', 'gasflow', 'hms-elite', 'jm-soluciones', 'taco-loco'];
 const expectedRoutes = [
   '/',
-  '/projects/hms-elite/',
-  '/projects/gasflow/',
-  '/projects/jm-soluciones/',
+  ...projectSlugs.map((slug) => `/projects/${slug}/`),
   '/es/',
-  '/es/projects/hms-elite/',
-  '/es/projects/gasflow/',
-  '/es/projects/jm-soluciones/',
+  ...projectSlugs.map((slug) => `/es/projects/${slug}/`),
 ];
 const expectedLocations = new Set(expectedRoutes.map((route) => new URL(route, site).toString()));
 
