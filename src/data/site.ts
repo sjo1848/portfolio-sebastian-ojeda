@@ -15,7 +15,7 @@ const sharedSite = {
 export const siteByLanguage = {
   es: {
     ...sharedSite,
-    title: 'Software Developer · IA, Automatización y Sistemas Operativos',
+    title: 'Software Developer · IA y Automatización',
     description:
       'Construyo sistemas end-to-end que combinan IA, automatización, backend, interfaces y controles operativos verificables.',
     languageTag: 'es-AR',
@@ -38,7 +38,7 @@ export const siteByLanguage = {
   },
   en: {
     ...sharedSite,
-    title: 'Software Developer · AI, Automation & Operational Systems',
+    title: 'Software Developer · AI and Automation',
     description:
       'I build end-to-end systems that combine AI, automation, backend services, interfaces and verifiable operational controls.',
     languageTag: 'en-US',
