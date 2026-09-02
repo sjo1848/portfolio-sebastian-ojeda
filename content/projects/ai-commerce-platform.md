@@ -1,12 +1,12 @@
 ---
-title: AI Commerce Platform
+title: AI Commerce + HMS
 slug: ai-commerce-platform
 order: 1
 featured: true
-category: Plataforma agentic multi-tenant para operaciones reales
-summary: Agent Core que conecta lenguaje natural con sistemas operativos mediante tools gobernadas, políticas, Human-in-the-Loop, auditoría e idempotencia.
+category: Agent conectado a un sistema operacional real
+summary: LLM y Agent Core conectados a HMS mediante tools gobernadas, políticas, HITL, auditoría e idempotencia sin entregar autoridad operacional al modelo.
 status: active-development
-statusLabel: Validación agentic en staging
+statusLabel: Fase 2.6 en validación agentic
 year: 2026
 role: Arquitectura, desarrollo, evaluación y orquestación del producto
 repository: https://github.com/sjo1848/ai-commerce-platform
@@ -16,100 +16,83 @@ stack:
   - LLMs
   - Tool Calling
   - Cloudflare Workers
-  - Node.js
+  - Service Binding
+  - Human-in-the-Loop
+  - Model Routing
   - GitHub Actions
 evidenceNeeded:
-  - Captura del flujo conversacional HMS en staging
-  - Evidencia visual del Human-in-the-Loop
-  - Resumen público del corpus de evaluación del Model Router
+  - Captura del flujo conversacional HMS con modelo real
+  - Evidencia visual de aprobación Human-in-the-Loop
+  - Resumen público del corpus adversarial de 2.6
 ---
 
-## IA para interpretar; controles deterministas para ejecutar
+## Un agente conectado a operaciones reales sin convertir al modelo en autoridad
 
-AI Commerce Platform es un Agent Core multi-tenant diseñado para conectar experiencias conversacionales con sistemas operativos reales sin entregar autoridad directa al modelo. El objetivo no es construir un chatbot aislado, sino una capa agentic reutilizable donde el modelo interpreta intención y contexto mientras la plataforma conserva el control sobre permisos, herramientas, aprobaciones, idempotencia y auditoría.
+Esta es la historia principal del portfolio porque el problema no es “hacer un chatbot”. El problema es permitir que un modelo entienda lenguaje natural y opere sobre un sistema hotelero real sin poder inventar permisos, contexto confiable o efectos laterales.
 
-La arquitectura separa deliberadamente **inteligencia** de **autoridad operacional**. El LLM puede interpretar una solicitud, proponer un plan de tools, pedir aclaraciones y redactar una respuesta; no puede elegir por sí mismo el tenant confiable, elevar permisos, modificar metadata de aprobación ni acceder directamente a la base de datos.
+AI Commerce Platform conecta una experiencia conversacional con HMS. El LLM interpreta intención, contexto y ambigüedad; el Agent Core conserva la autoridad de ejecución.
 
-## El problema
+`Channel → ChatOrchestrator → ModelRouter → AgentCoreExecutor → ToolRegistry → PolicyEngine → Adapter → HMS`
 
-Conectar IA generativa con operaciones reales introduce riesgos que no aparecen en un chatbot informativo:
+## Qué puede hacer el modelo y qué no
 
-- una respuesta puede convertirse en una reserva o cancelación real;
-- el modelo puede interpretar correctamente el lenguaje y aun así proponer una acción no autorizada;
-- el contexto conversacional no debe reemplazar el contexto confiable del sistema;
-- reintentos y duplicados deben resolverse sin ejecutar dos veces la misma operación;
-- las acciones sensibles necesitan una aprobación humana ligada a la operación exacta;
-- el sistema debe seguir funcionando de forma segura si el proveedor LLM falla o entrega una salida inválida.
+El modelo puede:
 
-Por eso el proyecto trata al modelo como una capa reemplazable de razonamiento e interpretación, no como fuente de verdad ni como autoridad de ejecución.
+- interpretar pedidos naturales;
+- mantener contexto conversacional controlado;
+- proponer planes estructurados de tools;
+- pedir aclaraciones;
+- redactar respuestas basadas en resultados reales.
 
-## Arquitectura
+El modelo no puede:
 
-El flujo principal sigue esta separación:
+- elegir el tenant, hotel o actor confiable;
+- elevar permisos;
+- acceder directamente a la base de datos;
+- inventar metadata de aprobación;
+- crear tokens de operación arbitrarios;
+- saltar la revalidación server-side.
 
-`Channel → ChatOrchestrator → ModelRouter → AgentCoreExecutor → ToolRegistry → PolicyEngine → Adapter → Sistema operacional`
+La separación entre **inteligencia** y **autoridad** es la decisión arquitectónica central.
 
-### Model Router
+## Evidencia operacional alcanzada
 
-La capa de modelo transforma lenguaje natural y contexto conversacional en planes estructurados. El trabajo actual evoluciona desde un router determinista hacia un `LLMModelRouter` independiente del proveedor, manteniendo el router determinista como fallback seguro y fixture reproducible.
+La fase 2.5 cerró la prueba de operaciones HMS en staging con:
 
-### Agent Core
-
-Antes de ejecutar una tool, el núcleo:
-
-- resuelve contexto confiable del tenant, hotel y actor;
-- valida el plan estructurado;
-- aplica políticas y permisos;
-- determina si requiere Human-in-the-Loop;
-- controla idempotencia y tokens de operación;
-- registra evidencia y auditoría;
-- delega al adapter de dominio correspondiente.
-
-### Adapters
-
-Los adapters aíslan la integración con cada vertical. HMS funciona como primera prueba real; la incorporación de una segunda vertical está bloqueada hasta demostrar que la experiencia agentic conserva las mismas fronteras de seguridad.
-
-## Evidencia HMS alcanzada
-
-El flujo de staging ya demostró:
-
-- disponibilidad y cotización reales desde HMS mediante Service Binding;
-- creación y cancelación controlada de reservas;
+- disponibilidad y cotización reales mediante Service Binding;
+- creación controlada de reservas;
+- cancelación controlada;
 - aprobación Human-in-the-Loop ligada a la operación exacta;
 - challenges de aprobación durables;
-- ownership de la reserva;
-- semántica de replay y conflicto aguas abajo;
+- ownership de reservas;
+- semántica de replay y conflicto;
 - retiro y restauración de inventario;
-- controles de auditoría e idempotencia;
-- E2E sintético entre repositorios con limpieza posterior.
+- auditoría e idempotencia;
+- E2E sintético entre repositorios con cleanup.
 
-La fase actual trabaja sobre la calidad de la experiencia conversacional con un modelo real. El gate exige corpus congelado, planificación estructurada, revalidación server-side, contexto multi-turn seguro, telemetría de uso/latencia/costo, fallback, QA adversarial, E2E real en staging y aceptación humana del producto.
+La fase actual, 2.6, no se presenta como cerrada. Está reemplazando el parser determinista como experiencia primaria por un `LLMModelRouter` independiente del proveedor, manteniendo el router determinista como fallback y fixture reproducible.
 
-## Qué significa AI-first acá
+## Por qué esto es AI-first y no AI-only
 
-AI-first no significa sustituir toda la lógica por un LLM. En este sistema:
+La IA se usa donde tiene ventaja: lenguaje, contexto, ambigüedad y composición. Los elementos que requieren certeza siguen siendo deterministas:
 
-- la IA interpreta lenguaje, contexto y ambigüedad;
-- las tools definen qué acciones existen;
-- las políticas deciden qué está permitido;
-- HITL protege acciones sensibles;
-- el sistema operacional sigue siendo la fuente de verdad;
-- el fallback determinista mantiene una ruta controlada cuando el modelo no es confiable.
+- tools registradas;
+- políticas y permisos;
+- identidad y contexto confiable;
+- idempotencia;
+- aprobaciones;
+- auditoría;
+- estado operacional de HMS.
 
-La decisión de **dónde no usar IA** es parte del diseño.
+La capacidad importante no es “usar un LLM”; es decidir qué responsabilidad darle y qué responsabilidad negarle.
 
-## Calidad y método
+## Qué demuestra esta historia
 
-El repositorio usa un contrato de fase explícito y separa la evidencia técnica de la aceptación del producto. La validación incluye type checking, tests, QA adversarial, telemetría y gates humanos. Una fase no se declara cerrada porque “el modelo respondió bien” en una demostración: debe existir evidencia reproducible contra los criterios de salida definidos.
-
-## Qué demuestra este proyecto
-
-- diseño de sistemas agentic con autoridad limitada;
-- tool calling gobernado y revalidado del lado servidor;
-- Human-in-the-Loop para side effects reales;
+- integración de LLMs con un sistema operacional existente;
+- tool calling gobernado y revalidado en servidor;
+- Human-in-the-Loop para side effects sensibles;
 - multi-tenancy y contexto confiable fuera del prompt;
-- idempotencia, auditoría y replay semantics;
+- idempotencia, replay y auditabilidad;
 - model routing y fallback determinista;
-- evaluación conversacional y adversarial;
-- integración de IA con un sistema operacional existente;
-- uso de gates de producto antes de ampliar autonomía o alcance.
+- evaluación adversarial y gates de producto;
+- una frontera explícita entre interpretación probabilística y autoridad operacional.

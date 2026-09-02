@@ -1,18 +1,18 @@
 ---
 import { getCollection } from 'astro:content';
 import HomePage from '../../components/HomePage.astro';
+import { primaryStorySlugs, secondaryCaseSlugs } from '../../data/portfolioStories';
 
-const featuredOrder = [
-  'ai-commerce-platform',
-  'hms-cloudflare',
-  'hms-elite',
-  'gasflow',
-  'alquileres-uspa',
-];
-
-const projects = (await getCollection('projects'))
-  .filter((project) => featuredOrder.includes(project.data.slug))
-  .sort((a, b) => featuredOrder.indexOf(a.data.slug) - featuredOrder.indexOf(b.data.slug));
+const allProjects = await getCollection('projects');
+const bySlug = new Map(allProjects.map((project) => [project.data.slug, project]));
+const primaryProjects = primaryStorySlugs.flatMap((slug) => {
+  const project = bySlug.get(slug);
+  return project ? [project] : [];
+});
+const secondaryProjects = secondaryCaseSlugs.flatMap((slug) => {
+  const project = bySlug.get(slug);
+  return project ? [project] : [];
+});
 ---
 
-<HomePage lang="es" projects={projects} />
+<HomePage lang="es" primaryProjects={primaryProjects} secondaryProjects={secondaryProjects} />

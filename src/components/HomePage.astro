@@ -10,17 +10,20 @@ import {
   siteByLanguage,
   type Language,
 } from '../data/site';
+import { portfolioStoriesByLanguage } from '../data/portfolioStories';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
 interface Props {
   lang: Language;
-  projects: ProjectEntry[];
+  primaryProjects: ProjectEntry[];
+  secondaryProjects: ProjectEntry[];
 }
 
-const { lang, projects } = Astro.props;
+const { lang, primaryProjects, secondaryProjects } = Astro.props;
 const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang].home;
+const storyCopy = portfolioStoriesByLanguage[lang];
 const processSteps = processStepsByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
@@ -51,15 +54,33 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
     </div>
   </section>
 
-  <section id="projects" class="section section-surface" aria-labelledby="projects-title">
+  <section id="projects" class="section section-surface" aria-labelledby="stories-title">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">{copy.evidenceEyebrow}</p>
-        <h2 id="projects-title">{copy.projectsTitle}</h2>
-        <p>{copy.projectsIntro}</p>
+        <p class="eyebrow">{storyCopy.eyebrow}</p>
+        <h2 id="stories-title">{storyCopy.title}</h2>
+        <p>{storyCopy.intro}</p>
       </div>
-      <div class="project-grid">
-        {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
+      <div class="story-grid">
+        {primaryProjects.map((project, index) => (
+          <ProjectCard
+            project={project}
+            lang={lang}
+            displayIndex={index + 1}
+            variant={index === 0 ? 'hero' : 'story'}
+          />
+        ))}
+      </div>
+
+      <div class="secondary-heading">
+        <p class="eyebrow">{storyCopy.secondaryEyebrow}</p>
+        <h2>{storyCopy.secondaryTitle}</h2>
+        <p>{storyCopy.secondaryIntro}</p>
+      </div>
+      <div class="secondary-grid">
+        {secondaryProjects.map((project, index) => (
+          <ProjectCard project={project} lang={lang} displayIndex={index + 5} variant="secondary" />
+        ))}
       </div>
     </div>
   </section>
@@ -134,3 +155,40 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .story-grid,
+  .secondary-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .secondary-heading {
+    max-width: 46rem;
+    margin-top: clamp(4rem, 8vw, 6rem);
+    margin-bottom: 2rem;
+  }
+
+  .secondary-heading > p:last-child {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  @media (min-width: 48rem) {
+    .story-grid,
+    .secondary-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .story-grid :global(.project-card-hero) {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+
+    .story-grid :global(.project-card-hero .project-evidence) {
+      min-height: 100%;
+    }
+  }
+</style>

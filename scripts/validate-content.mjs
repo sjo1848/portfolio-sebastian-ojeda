@@ -14,6 +14,7 @@ const forbidden = [
 ];
 
 const expectedProjects = [
+  'agentic-engineering-governance',
   'ai-commerce-platform',
   'alquileres-uspa',
   'gasflow',
@@ -21,14 +22,15 @@ const expectedProjects = [
   'hms-elite',
   'jm-soluciones',
   'taco-loco',
+  'uspaya',
 ];
-const expectedFeaturedProjects = [
+const expectedPrimaryStories = [
   'ai-commerce-platform',
   'hms-cloudflare',
-  'hms-elite',
-  'gasflow',
-  'alquileres-uspa',
+  'agentic-engineering-governance',
+  'uspaya',
 ];
+const expectedSecondaryCases = ['alquileres-uspa', 'gasflow'];
 const expectedCvRepositories = [
   'ai-commerce-platform',
   'hotel-management-system',
@@ -109,9 +111,7 @@ async function validateProjectInventory() {
     for (const slug of expectedProjects) {
       const file = path.join(root, directory, `${slug}.md`);
       const info = await stat(file);
-      if (info.size < 1_500) {
-        failures.push(`${directory}/${slug}.md is unexpectedly small (${info.size} bytes)`);
-      }
+      if (info.size < 1_500) failures.push(`${directory}/${slug}.md is unexpectedly small (${info.size} bytes)`);
     }
   }
 
@@ -133,12 +133,35 @@ async function validateProjectInventory() {
   }
 }
 
-async function validateFeaturedPortfolio() {
-  const homeFiles = ['src/pages/index.astro', 'src/pages/es/index.astro'];
-  for (const file of homeFiles) {
+async function validatePortfolioNarrative() {
+  const storyData = await readFile(path.join(root, 'src/data/portfolioStories.ts'), 'utf8');
+  for (const slug of expectedPrimaryStories) {
+    if (!storyData.includes(`'${slug}'`)) failures.push(`portfolioStories.ts is missing primary story ${slug}.`);
+  }
+  for (const slug of expectedSecondaryCases) {
+    if (!storyData.includes(`'${slug}'`)) failures.push(`portfolioStories.ts is missing secondary case ${slug}.`);
+  }
+  for (const excluded of ['hms-elite', 'jm-soluciones', 'taco-loco']) {
+    const primaryBlock = storyData.slice(storyData.indexOf('primaryStorySlugs'), storyData.indexOf('secondaryCaseSlugs'));
+    if (primaryBlock.includes(`'${excluded}'`)) failures.push(`${excluded} must not be a primary engineering story.`);
+  }
+
+  const home = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');
+  for (const marker of ['primaryProjects', 'secondaryProjects', "variant={index === 0 ? 'hero' : 'story'}"]) {
+    if (!home.includes(marker)) failures.push(`HomePage.astro is missing engineering-story marker: ${marker}`);
+  }
+
+  const requiredEvidence = [
+    ['content/projects/ai-commerce-platform.md', ['AI Commerce + HMS', 'autoridad', 'Service Binding', 'Human-in-the-Loop']],
+    ['content/projects/hms-cloudflare.md', ['HMS Elite', 'Rust + Axum + PostgreSQL', 'parity-first', 'Agent Core']],
+    ['content/projects/agentic-engineering-governance.md', ['DICS', 'Project Integrity Kernel', 'Context Amnesia Test', 'read-only']],
+    ['content/projects/uspaya.md', ['Idempotency-Key', 'transacciones serializables', 'privacidad temporal', 'NOT READY FOR CLOSED PILOT']],
+  ];
+
+  for (const [file, phrases] of requiredEvidence) {
     const content = await readFile(path.join(root, file), 'utf8');
-    for (const slug of expectedFeaturedProjects) {
-      if (!content.includes(`'${slug}'`)) failures.push(`${file} is missing featured case ${slug}.`);
+    for (const phrase of phrases) {
+      if (!content.includes(phrase)) failures.push(`${file} is missing required engineering-story evidence: ${phrase}`);
     }
   }
 
@@ -169,13 +192,9 @@ async function validateCvProjectConsistency() {
 
   for (const cvFile of cvFiles) {
     const content = await readFile(path.join(root, cvFile), 'utf8');
-
     for (const repository of expectedCvRepositories) {
-      if (!content.includes(repository)) {
-        failures.push(`${cvFile} is missing selected CV project repository: ${repository}`);
-      }
+      if (!content.includes(repository)) failures.push(`${cvFile} is missing selected CV project repository: ${repository}`);
     }
-
     for (const rule of staleClaims) {
       if (rule.pattern.test(content)) failures.push(`${cvFile} contains ${rule.label}.`);
     }
@@ -197,7 +216,7 @@ for (const scanRoot of scanRoots) {
 }
 
 await validateProjectInventory();
-await validateFeaturedPortfolio();
+await validatePortfolioNarrative();
 await validateCvProjectConsistency();
 
 if (failures.length > 0) {

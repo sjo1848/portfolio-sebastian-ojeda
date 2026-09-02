@@ -12,18 +12,28 @@ import {
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
+type CardVariant = 'default' | 'hero' | 'story' | 'secondary';
+
 interface Props {
   project: ProjectEntry;
   lang?: Language;
+  displayIndex?: number;
+  variant?: CardVariant;
 }
 
-const { project, lang = defaultLanguage } = Astro.props;
+const {
+  project,
+  lang = defaultLanguage,
+  displayIndex,
+  variant = 'default',
+} = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
 const copy = copyByLanguage[lang].project;
+const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 ---
 
-<article class="project-card">
+<article class:list={['project-card', `project-card-${variant}`]}>
   {
     media ? (
       <figure class="project-evidence project-evidence-image">
@@ -36,13 +46,13 @@ const copy = copyByLanguage[lang].project;
           decoding="async"
         />
         <figcaption>
-          <span>{String(data.order).padStart(2, '0')}</span>
+          <span>{indexLabel}</span>
           <strong>{data.category}</strong>
         </figcaption>
       </figure>
     ) : (
       <div class="project-evidence" aria-hidden="true">
-        <span>{String(data.order).padStart(2, '0')}</span>
+        <span>{indexLabel}</span>
         <strong>{data.category}</strong>
       </div>
     )
@@ -56,7 +66,9 @@ const copy = copyByLanguage[lang].project;
     </ul>
     <div class="card-actions">
       <a class="button button-primary" href={getProjectPath(lang, data.slug)}>{copy.viewCaseStudy}</a>
-      <a class="text-link" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+      {data.repository && (
+        <a class="text-link" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+      )}
     </div>
   </div>
 </article>
