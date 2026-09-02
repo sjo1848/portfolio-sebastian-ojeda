@@ -150,9 +150,7 @@ function validateWebsite(node, route, contract) {
   if (node.url !== contract.websiteRoot) failures.push(`${route}: WebSite.url must be ${contract.websiteRoot}`);
   requireNonEmptyString(node.name, route, 'WebSite.name');
   requireNonEmptyString(node.description, route, 'WebSite.description');
-  if (node.inLanguage !== contract.htmlLang) {
-    failures.push(`${route}: WebSite.inLanguage must be ${contract.htmlLang}`);
-  }
+  if (node.inLanguage !== contract.htmlLang) failures.push(`${route}: WebSite.inLanguage must be ${contract.htmlLang}`);
   if (node.about?.['@id'] !== personId) failures.push(`${route}: WebSite.about must reference Person`);
   if (node.publisher?.['@id'] !== personId) failures.push(`${route}: WebSite.publisher must reference Person`);
 }
@@ -166,19 +164,15 @@ function validateSoftware(node, route, canonical, title, description, contract) 
   if (node.name !== title.replace(/\s+—\s+Sebastián Ojeda$/, '')) {
     failures.push(`${route}: SoftwareSourceCode.name must match the page project title`);
   }
-  if (node.description !== description) {
-    failures.push(`${route}: SoftwareSourceCode.description must match the meta description`);
+  if (node.description !== description) failures.push(`${route}: SoftwareSourceCode.description must match the meta description`);
+  if (node.inLanguage !== contract.htmlLang) failures.push(`${route}: SoftwareSourceCode.inLanguage must be ${contract.htmlLang}`);
+  if (node.codeRepository !== undefined) {
+    validateAbsoluteHttps(node.codeRepository, route, 'SoftwareSourceCode.codeRepository');
   }
-  if (node.inLanguage !== contract.htmlLang) {
-    failures.push(`${route}: SoftwareSourceCode.inLanguage must be ${contract.htmlLang}`);
-  }
-  validateAbsoluteHttps(node.codeRepository, route, 'SoftwareSourceCode.codeRepository');
   if (!Array.isArray(node.programmingLanguage) || node.programmingLanguage.length === 0) {
     failures.push(`${route}: SoftwareSourceCode.programmingLanguage must be a non-empty array`);
   }
-  if (node.author?.['@id'] !== personId) {
-    failures.push(`${route}: SoftwareSourceCode.author must reference Person`);
-  }
+  if (node.author?.['@id'] !== personId) failures.push(`${route}: SoftwareSourceCode.author must reference Person`);
   if (node.image) validateAbsoluteHttps(node.image, route, 'SoftwareSourceCode.image');
 }
 
@@ -200,18 +194,12 @@ for (const file of htmlFiles) {
   const title = titles[0] ?? '';
   const description = descriptions[0] ?? '';
 
-  if (title.length < 20 || title.length > 75) {
-    failures.push(`${route}: title length must be between 20 and 75 characters`);
-  }
-  if (description.length < 40 || description.length > 180) {
-    failures.push(`${route}: description length must be between 40 and 180 characters`);
-  }
+  if (title.length < 20 || title.length > 75) failures.push(`${route}: title length must be between 20 and 75 characters`);
+  if (description.length < 40 || description.length > 180) failures.push(`${route}: description length must be between 40 and 180 characters`);
 
   if (is404) {
     const robots = extractMeta(content, 'name', 'robots');
-    if (robots.length !== 1 || !/\bnoindex\b/i.test(robots[0])) {
-      failures.push(`${route}: robots meta must include noindex`);
-    }
+    if (robots.length !== 1 || !/\bnoindex\b/i.test(robots[0])) failures.push(`${route}: robots meta must include noindex`);
     if (extractCanonical(content).length !== 0) failures.push(`${route}: canonical must be omitted`);
     continue;
   }
@@ -246,9 +234,7 @@ for (const file of htmlFiles) {
 
   const structuredData = parseStructuredData(content, route);
   if (!structuredData) continue;
-  if (structuredData['@context'] !== 'https://schema.org') {
-    failures.push(`${route}: JSON-LD context must be https://schema.org`);
-  }
+  if (structuredData['@context'] !== 'https://schema.org') failures.push(`${route}: JSON-LD context must be https://schema.org`);
 
   const graph = structuredData['@graph'];
   if (!Array.isArray(graph)) {
@@ -265,11 +251,8 @@ for (const file of htmlFiles) {
   const isProject = route.startsWith('/projects/') || route.startsWith('/es/projects/');
 
   if (isProject) {
-    if (softwareNodes.length !== 1) {
-      failures.push(`${route}: expected exactly one SoftwareSourceCode node`);
-    } else {
-      validateSoftware(softwareNodes[0], route, canonical, title, description, contract);
-    }
+    if (softwareNodes.length !== 1) failures.push(`${route}: expected exactly one SoftwareSourceCode node`);
+    else validateSoftware(softwareNodes[0], route, canonical, title, description, contract);
   } else if (softwareNodes.length !== 0) {
     failures.push(`${route}: SoftwareSourceCode must only appear on project pages`);
   }
@@ -282,17 +265,11 @@ for (const page of pageIdentities) {
   const titleKey = `${page.language}:${page.title}`;
   const descriptionKey = `${page.language}:${page.description}`;
 
-  if (titleOwners.has(titleKey)) {
-    failures.push(`${page.route}: duplicates title used by ${titleOwners.get(titleKey)}`);
-  } else {
-    titleOwners.set(titleKey, page.route);
-  }
+  if (titleOwners.has(titleKey)) failures.push(`${page.route}: duplicates title used by ${titleOwners.get(titleKey)}`);
+  else titleOwners.set(titleKey, page.route);
 
-  if (descriptionOwners.has(descriptionKey)) {
-    failures.push(`${page.route}: duplicates description used by ${descriptionOwners.get(descriptionKey)}`);
-  } else {
-    descriptionOwners.set(descriptionKey, page.route);
-  }
+  if (descriptionOwners.has(descriptionKey)) failures.push(`${page.route}: duplicates description used by ${descriptionOwners.get(descriptionKey)}`);
+  else descriptionOwners.set(descriptionKey, page.route);
 }
 
 if (failures.length > 0) {
