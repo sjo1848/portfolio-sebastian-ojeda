@@ -11,24 +11,18 @@ if (!siteUrl) {
 }
 
 const site = new URL(siteUrl);
-const sitemapFiles = (await readdir(dist))
-  .filter((file) => /^sitemap(?:-index|-\d+)?\.xml$/.test(file));
-
-if (sitemapFiles.length === 0) {
-  failures.push('No generated sitemap was found in dist/.');
-}
+const sitemapFiles = (await readdir(dist)).filter((file) => /^sitemap(?:-index|-\d+)?\.xml$/.test(file));
+if (sitemapFiles.length === 0) failures.push('No generated sitemap was found in dist/.');
 
 const pageSitemapFiles = sitemapFiles.filter((file) => /^sitemap-\d+\.xml$/.test(file));
 const pageLocations = new Set();
-
 for (const sitemapFile of pageSitemapFiles) {
   const content = await readFile(path.join(dist, sitemapFile), 'utf8');
-  for (const match of content.matchAll(/<loc>([^<]+)<\/loc>/g)) {
-    pageLocations.add(match[1]);
-  }
+  for (const match of content.matchAll(/<loc>([^<]+)<\/loc>/g)) pageLocations.add(match[1]);
 }
 
 const projectSlugs = [
+  'agentic-engineering-governance',
   'ai-commerce-platform',
   'alquileres-uspa',
   'gasflow',
@@ -36,6 +30,7 @@ const projectSlugs = [
   'hms-elite',
   'jm-soluciones',
   'taco-loco',
+  'uspaya',
 ];
 const expectedRoutes = [
   '/',
@@ -46,9 +41,7 @@ const expectedRoutes = [
 const expectedLocations = new Set(expectedRoutes.map((route) => new URL(route, site).toString()));
 
 for (const expectedLocation of expectedLocations) {
-  if (!pageLocations.has(expectedLocation)) {
-    failures.push(`Sitemap is missing canonical URL ${expectedLocation}`);
-  }
+  if (!pageLocations.has(expectedLocation)) failures.push(`Sitemap is missing canonical URL ${expectedLocation}`);
 }
 
 for (const location of pageLocations) {
@@ -57,12 +50,8 @@ for (const location of pageLocations) {
     failures.push(`Sitemap contains an unexpected origin: ${location}`);
     continue;
   }
-  if (!expectedLocations.has(location)) {
-    failures.push(`Sitemap contains an unexpected or non-indexable URL: ${location}`);
-  }
-  if (url.pathname === '/en' || url.pathname.startsWith('/en/')) {
-    failures.push(`Sitemap contains a legacy English-prefixed URL: ${location}`);
-  }
+  if (!expectedLocations.has(location)) failures.push(`Sitemap contains an unexpected or non-indexable URL: ${location}`);
+  if (url.pathname === '/en' || url.pathname.startsWith('/en/')) failures.push(`Sitemap contains a legacy English-prefixed URL: ${location}`);
 }
 
 if (pageLocations.size !== expectedLocations.size) {

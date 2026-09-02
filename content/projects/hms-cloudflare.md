@@ -3,116 +3,99 @@ title: HMS Cloudflare
 slug: hms-cloudflare
 order: 2
 featured: true
-category: Migración brownfield cloud-native para operaciones hoteleras
-summary: Migración parity-first de un HMS existente a Workers y D1, preservando dominio, autorización, aislamiento multi-hotel, recuperación y evidencia de producto.
+category: Evolución brownfield de un SaaS operacional
+summary: De Rust/PostgreSQL a Workers/D1 mediante análisis de contrato, migración parity-first, seguridad multi-tenant, browser validation y recovery verificable.
 status: active-development
-statusLabel: Migración y validación activas
+statusLabel: Migración validada técnicamente; aceptación separada
 year: 2026
 role: Arquitectura de migración, implementación full stack, seguridad y QA operacional
 repository: https://github.com/sjo1848/hms-cloudflare
 demo: null
 stack:
+  - Rust / Axum
+  - PostgreSQL
   - Cloudflare Workers
   - Hono
-  - TypeScript
   - React
-  - D1
+  - D1 / SQLite
   - Cloudflare Access
-  - Vitest
   - GitHub Actions
 evidenceNeeded:
-  - Capturas del recorrido de recepción en staging
-  - Evidencia visual de experiencia mobile
+  - Capturas remotas del recorrido de recepción
+  - Evidencia visual mobile del candidato aceptado
   - Evidencia remota de Product Acceptance
 ---
 
+## La historia no empieza en Cloudflare
+
+HMS Cloudflare es más potente cuando se entiende como evolución de un sistema operacional existente, no como otro proyecto serverless aislado.
+
+La secuencia técnica es:
+
+`HMS Elite / Rust + Axum + PostgreSQL → inventario del contrato → migración parity-first → Workers + Hono + D1 → validación de producto y recovery → integración agentic gobernada como siguiente capa`
+
+El repositorio fuente `hotel-management-system` modeló primero reservas, recepción, habitaciones, huéspedes, housekeeping, facturación, permisos y operación multi-hotel. La migración no podía tratar ese comportamiento como descartable.
+
 ## Migrar arquitectura sin cambiar silenciosamente el producto
 
-HMS Cloudflare toma un sistema hotelero ya modelado y lo migra desde una arquitectura tradicional hacia Cloudflare Workers + D1. El objetivo no es reescribir un CRUD, sino preservar el contrato observable del producto mientras cambia la infraestructura, el modelo de aislamiento de tenants y el modo de operar el sistema.
+El objetivo de HMS Cloudflare es reemplazar infraestructura y topología de datos preservando el contrato observable del producto.
 
-El proyecto cubre recepción, habitaciones, huéspedes, housekeeping, mantenimiento, billing, reporting, administración multi-hotel, autorización y recuperación operacional.
+Eso obliga a responder preguntas más difíciles que “¿compila?”:
 
-## El problema
+- ¿se conservan las transiciones de estado que recepción ya necesita?;
+- ¿los permisos mantienen la misma semántica?;
+- ¿cómo se aísla cada hotel sin PostgreSQL RLS?;
+- ¿qué operaciones necesitan atomicidad dentro de una sola base?;
+- ¿qué evidencia prueba un recorrido real de navegador?;
+- ¿un backup realmente vuelve a un estado reconciliado cuando se restaura?
 
-Una migración brownfield puede “funcionar” técnicamente y aun así romper el producto. Entre los riesgos principales están:
+## De PostgreSQL a una topología D1 explícita
 
-- modificar transiciones de estado que los usuarios ya dependen;
-- perder reglas de autorización al cambiar la infraestructura;
-- asumir transacciones que no existen entre bases D1 separadas;
-- confundir autenticación de edge con autorización de aplicación;
-- declarar equivalencia porque las APIs responden, sin probar el recorrido real del usuario;
-- tener backups sin demostrar que el restore realmente devuelve el sistema a un estado reconciliado.
+La arquitectura activa usa:
 
-La estrategia fue por eso **parity-first**: primero preservar semántica y comportamiento; después optimizar o evolucionar.
+- un `CONTROL_DB` para identidades, hoteles, memberships, roles y routing;
+- un D1 operacional separado por hotel para reservas, habitaciones, huéspedes, billing, housekeeping y auditoría.
 
-## Arquitectura multi-hotel
+La separación física no reemplaza autorización. Cada request debe validar identidad, membership, rol y contexto antes de resolver la base operacional correcta.
 
-La topología activa usa:
-
-- **un D1 de control plane**, con identidades, hoteles, memberships, roles y metadata de routing;
-- **un D1 operacional por hotel**, con habitaciones, huéspedes, reservas, billing, housekeeping y auditoría.
-
-La separación física reduce superficie de exposición entre hoteles, pero no reemplaza la autorización en la aplicación. Cada request debe validar identidad, membership, rol y contexto del hotel antes de resolver la base operacional correspondiente.
-
-La arquitectura evita fingir atomicidad entre D1 diferentes. Las operaciones críticas se diseñan para permanecer dentro de una única base de hotel cuando la atomicidad importa.
+Tampoco se simula una transacción distribuida inexistente: las operaciones críticas se mantienen dentro de un D1 de hotel cuando la atomicidad importa.
 
 ## Seguridad en capas
 
 1. Cloudflare Access autentica a la persona en el edge.
-2. La API verifica esa identidad.
-3. HMS la mapea a memberships y roles.
-4. Se autoriza el contexto de hotel o red solicitado.
-5. Recién entonces se resuelve el D1 operacional correspondiente.
+2. La API valida esa identidad.
+3. HMS la relaciona con memberships y roles.
+4. Se autoriza el hotel o contexto de red solicitado.
+5. Recién entonces se resuelve el D1 correspondiente.
 
-Esto mantiene separadas **autenticación** y **autoridad de negocio**.
+Autenticación de infraestructura y autoridad de negocio son fronteras distintas.
 
-## Estrategia de migración
+## Parity-first y evidencia
 
-La migración se dividió en incrementos verificables:
+La migración se dividió en incrementos verificables: foundation, inventario del contrato, rooms/guests/bookings, recepción, housekeeping, mantenimiento, billing, seguridad, administración, reporting y readiness operacional.
 
-1. foundation Cloudflare;
-2. inventario del contrato fuente;
-3. parity de rooms, guests y bookings;
-4. lifecycle de recepción;
-5. housekeeping y mantenimiento;
-6. billing;
-7. seguridad y administración;
-8. analytics y reporting;
-9. migración y operational readiness local.
+La validación combina typecheck, tests unitarios e integración, regresiones específicas, browser journeys, checks RBAC/tenant, failure paths, concurrencia, migración, backup/restore e Independent Review.
 
-Cada incremento agrega evidencia específica en lugar de inferir el estado del producto desde una suite genérica.
+El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación. Se presenta como evidencia local de recuperación, no como prueba falsa de rollback atómico remoto entre D1.
 
-## QA, browser journeys y recovery
+## HMS Elite no desaparece: se convierte en la primera mitad de la historia
 
-La validación combina:
+Mantener HMS Elite como caso independiente tiene valor histórico, pero la evidencia más fuerte aparece al mostrar continuidad:
 
-- type checking;
-- unit e integration tests;
-- suites de regresión por incremento;
-- browser journeys;
-- rehearsal de migración;
-- checks de tenant/RBAC/seguridad;
-- failure paths y concurrencia;
-- backup/restore rehearsal;
-- revisión independiente;
-- Human Product Acceptance como autoridad separada.
+- primero hubo que modelar un SaaS operacional real en Rust/PostgreSQL;
+- después identificar su contrato observable;
+- luego cambiar infraestructura sin perder comportamiento ni autoridad;
+- finalmente producir una frontera suficientemente explícita como para que una capa agentic pueda integrarse sin convertir al modelo en fuente de verdad.
 
-El rehearsal de recovery exporta las tres bases D1, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación para demostrar que las mutaciones desaparecieron. Esa evidencia se presenta explícitamente como recovery local, no como prueba de rollback atómico remoto entre D1.
+El Agent Core pertenece a otro repositorio y otro gate. La historia del portfolio los conecta como evolución de arquitectura, no como si fueran un único monorepo.
 
-## Relación con AI-first
+## Qué demuestra esta historia
 
-Este proyecto no necesita un LLM en cada pantalla para ser parte de un portfolio AI-first. Demuestra la capa que la IA necesita para operar de forma confiable: dominio estable, autorización explícita, aislamiento, contratos verificables, observabilidad, recovery y límites claros de autoridad.
-
-Además, el repositorio funciona como banco de prueba del Project Method / Harness: estado persistente fuera de la memoria conversacional, Task Contracts, evidence gates, Critic independiente y separación entre PASS técnico, Product Acceptance, Production Readiness y Release.
-
-## Qué demuestra este proyecto
-
-- migración brownfield preservando comportamiento;
-- arquitectura serverless/edge;
-- aislamiento multi-tenant por topología y autorización;
-- RBAC y separación autenticación/autorización;
-- razonamiento sobre transacciones y concurrencia;
-- browser-level validation;
-- migración y recovery engineering;
-- CI basado en evidencia;
-- diseño de sistemas preparados para integrar automatización e IA sin debilitar controles operacionales.
+- brownfield migration en lugar de greenfield solamente;
+- preservación de contratos de dominio;
+- Rust/PostgreSQL y edge/serverless en una misma evolución;
+- aislamiento multi-tenant y RBAC;
+- razonamiento transaccional y de concurrencia;
+- browser-level product validation;
+- migration y recovery engineering;
+- separación entre Technical PASS, Product Acceptance, Production Readiness y Release.

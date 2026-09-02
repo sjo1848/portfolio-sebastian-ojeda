@@ -19,7 +19,7 @@ const projectSchema = z.object({
   statusLabel: z.string().min(1),
   year: z.number().int().min(2020),
   role: z.string().min(1),
-  repository: z.string().url(),
+  repository: z.string().url().nullable(),
   demo: z.string().url().nullable(),
   stack: z.array(z.string().min(1)).min(1).max(8),
   evidenceNeeded: z.array(z.string().min(1)).default([]),

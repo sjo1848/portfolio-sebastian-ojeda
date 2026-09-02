@@ -33,7 +33,7 @@ const projectSchema = {
   name: data.title,
   description: data.summary,
   url: projectUrl.toString(),
-  codeRepository: data.repository,
+  codeRepository: data.repository ?? undefined,
   programmingLanguage: data.stack,
   inLanguage: site.languageTag,
   image: media ? new URL(media.src, projectUrl).toString() : undefined,
@@ -61,7 +61,9 @@ const projectSchema = {
             <div><dt>{copy.year}</dt><dd>{data.year}</dd></div>
           </dl>
           <div class="hero-actions">
-            <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+            {data.repository && (
+              <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+            )}
             <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>
           </div>
         </div>
