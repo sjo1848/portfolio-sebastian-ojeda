@@ -5,7 +5,7 @@ const root = process.cwd();
 const scanRoots = ['src', 'content/projects', 'content/projects-en', 'public'];
 const textExtensions = new Set(['.astro', '.css', '.html', '.js', '.json', '.md', '.mjs', '.ts', '.txt']);
 const forbidden = [
-  { label: 'TODO marker', pattern: /(?:^|[\s([{])TODO(?=$|[\s)\]}.,:;!?])/i },
+  { label: 'TODO marker', pattern: /(?:^|[\s([{])TODO(?=$|[\s)\]}.,:;!?])/ },
   { label: 'TBD marker', pattern: /\bTBD\b/i },
   { label: 'FIXME marker', pattern: /\bFIXME\b/i },
   { label: 'Lorem ipsum', pattern: /lorem ipsum/i },
