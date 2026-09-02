@@ -14,6 +14,13 @@ const forbidden = [
 ];
 
 const expectedProjects = ['alquileres-uspa', 'gasflow', 'hms-elite', 'jm-soluciones', 'taco-loco'];
+const expectedCvRepositories = [
+  'ai-commerce-platform',
+  'hotel-management-system',
+  'hms-cloudflare',
+  'gasflow',
+  'alquileres-uspa',
+];
 const failures = [];
 
 async function collectFiles(relativePath) {
@@ -112,31 +119,29 @@ async function validateProjectInventory() {
 }
 
 async function validateCvProjectConsistency() {
-  const projectTitles = [];
-  for (const slug of expectedProjects) {
-    const content = await readFile(path.join(root, 'content/projects', `${slug}.md`), 'utf8');
-    const title = extractFrontMatterValue(content, 'title');
-    if (!title) failures.push(`content/projects/${slug}.md does not define a title.`);
-    else projectTitles.push(title);
-  }
-
   const cvFiles = [
     'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md',
     'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack_EN.md',
     'scripts/generate-cv-pdf.mjs',
   ];
 
+  const staleClaims = [
+    { label: 'stale Systems year claim', pattern: /4\.?º?\s*año\s*cursado|completed coursework through year 4/i },
+    { label: 'stale Electronics year claim', pattern: /3\.?º?\s*año\s*cursado|completed coursework through year 3/i },
+    { label: 'retired A-M-R project', pattern: /A-M-R(?: Refrigeraci[oó]n|-Refrigeracion)/i },
+  ];
+
   for (const cvFile of cvFiles) {
     const content = await readFile(path.join(root, cvFile), 'utf8');
 
-    for (const projectTitle of projectTitles) {
-      if (!content.includes(projectTitle)) {
-        failures.push(`${cvFile} is missing featured project: ${projectTitle}`);
+    for (const repository of expectedCvRepositories) {
+      if (!content.includes(repository)) {
+        failures.push(`${cvFile} is missing selected CV project repository: ${repository}`);
       }
     }
 
-    if (/A-M-R(?: Refrigeraci[oó]n|-Refrigeracion)/i.test(content)) {
-      failures.push(`${cvFile} still references the retired A-M-R project.`);
+    for (const rule of staleClaims) {
+      if (rule.pattern.test(content)) failures.push(`${cvFile} contains ${rule.label}.`);
     }
   }
 
