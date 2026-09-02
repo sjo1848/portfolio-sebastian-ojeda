@@ -1,96 +1,90 @@
 # Sebastián Ojeda
 
-**Backend-Focused Full-Stack Developer**
+**Software Developer | AI-First | Full Stack & Systems**
 
 Mendoza, Argentina  
 sebastian.ojeda.dev@gmail.com  
-github.com/sjo1848
+github.com/sjo1848  
+sebastian-ojeda.pages.dev
 
-Remote-first | Hybrid or on-site in Mendoza | Relocation considered | Intermediate English
+Remote | Hybrid or on-site in Mendoza | Relocation considered | Intermediate English
 
 ## Professional profile
 
-Backend-focused full-stack developer with experience in SAP Basis, integrations, systems administration, and databases. I build management systems and operational applications with Rust, TypeScript, PostgreSQL, React, and React Native. I work from domain analysis through APIs, persistence, security, automated testing, CI/CD, and deployment.
+Software developer focused on building end-to-end solutions for real operational processes. I work from domain and architecture through backend, interfaces, data, integrations, testing, CI/CD and operations. I build multi-tenant systems, cloud/serverless migrations and AI/agentic experiences with governed tool calling, Human-in-the-Loop, auditability, idempotency and deterministic fallback.
 
-## Technical skills
+## Skills
 
-- **Backend:** Rust, Axum, NestJS, Node.js, REST APIs, JWT, RBAC, and domain modeling.
-- **Web and mobile:** React, React Native, Vue, Astro, and TypeScript; responsive design and operational workflows.
-- **Data and infrastructure:** PostgreSQL, SQLx, Prisma, MySQL, MongoDB, Docker, Linux, and GitHub Actions.
-- **Enterprise systems:** SAP R/3, S/4HANA, Basis, Solution Manager, SAP HANA, Sybase, and PI/PO integrations.
+- **AI / Agentic:** LLMs, model routing, tool calling, HITL, policies, telemetry, and fallback.
+- **Backend:** TypeScript, Node.js, NestJS, Rust/Axum, Hono, REST, and OpenAPI.
+- **Frontend / Mobile:** React, Vue 3, React Native, Vite, and Tailwind.
+- **Data / Cloud:** PostgreSQL, SQLx, Prisma, SQLite/D1, Docker, Cloudflare Workers, and Linux.
+- **Quality / Enterprise:** Playwright, Vitest, E2E, GitHub Actions, SAP Basis, PI/PO, and CPI.
 
-## Featured projects
+## Selected projects
 
-### HMS Elite - Multi-hotel SaaS
+### AI Commerce Platform - Multi-tenant Agent Core
 
-**Stack:** Rust, Axum, React, and PostgreSQL.
+**Stack:** TypeScript, LLMs, tooling, and staging.
 
-- Reservations, rooms, guests, billing, housekeeping, reporting, and audit-domain modeling.
-- Multi-tenancy, RBAC, row-level security, transactions, OpenAPI, CI, and observability.
+- Separates LLM interpretation from operational authority through registered tools, trusted context, policies, HITL, auditability, and idempotency.
+- Integrates with HMS for availability, quoting, and reservations; includes model evaluation, latency/cost telemetry, and adversarial QA.
+- Current state: active staging validation; it is not presented as production or as having final product acceptance.
+- Repository: https://github.com/sjo1848/ai-commerce-platform
+
+### HMS Elite - Multi-hotel management system
+
+**Stack:** Rust/Axum, PostgreSQL, and React/TypeScript.
+
+- Reservations, check-in/out, rooms, housekeeping, charges, and payments with modular domain boundaries and OpenAPI contracts.
+- RBAC, hotel isolation, selective RLS, full-stack CI, browser/mobile E2E, security, and recovery.
 - Repository: https://github.com/sjo1848/hotel-management-system
 
-### GasFlow - Orders, deliveries, and stock
+### HMS Cloudflare - Brownfield cloud-native migration
 
-**Stack:** React Native, Rust, and PostgreSQL.
+**Stack:** Cloudflare Workers, Hono, D1/SQLite, and React.
 
-- Administrator and driver workflows, scheduled deliveries, assignment, and cylinder reconciliation.
-- JWT, traceability, audit events, metrics, and backend and mobile application testing.
+- Parity-first migration to Workers + D1 while preserving observable behavior, domain rules, and authorization.
+- Control plane + per-hotel D1, Cloudflare Access, RBAC, regressions, browser journeys, and backup/restore rehearsal.
+- Repository: https://github.com/sjo1848/hms-cloudflare
+
+### GasFlow - Mobile Delivery Operations
+
+**Stack:** React Native, Rust/Axum, and PostgreSQL.
+
+- Mobile MVP for scheduled orders, driver assignment, deliveries, stock, and cylinder reconciliation.
+- JWT, audit events, metrics/request IDs, mobile persistence, and CI with backend and app tests.
 - Repository: https://github.com/sjo1848/gasflow
-
-### JM Soluciones Eléctricas - Commercial website
-
-**Stack:** Astro, TypeScript, Tailwind CSS, and Docker.
-
-- Mobile-first electrical-services landing page with conversion-focused UX, local SEO, a real-work gallery, and guided WhatsApp inquiries.
-- Typed content, Vitest, reproducible preflight, Nginx container, and automated release controls.
-- Repository: https://github.com/sjo1848/jm-soluciones
-
-### Taco Loco Foodtrack - Digital menu and ordering
-
-**Stack:** Next.js, TypeScript, React, Prisma, and PostgreSQL.
-
-- Mobile-first QR menu, customization, order summary, and intent registration with WhatsApp continuation.
-- Server-side catalog, availability, and price validation with an administrative flow and documented QA.
-- Repository: https://github.com/sjo1848/taco-loco-foodtrack
 
 ### Alquileres Uspallata - Rental catalog and management
 
-**Stack:** NestJS, Vue, TypeScript, Prisma, and PostgreSQL.
+**Stack:** NestJS, Vue 3, PostgreSQL, and Prisma.
 
-- Public catalog with review, publication, availability, direct contact, and separation of public and internal data.
-- Owner and administration workflows with migrations, tests, security controls, and auditing.
+- Public catalog plus OWNER/ADMIN workflows for review, publication, availability, contact, and audit.
 - Repository: https://github.com/sjo1848/alquileres-uspa
 
-## Relevant experience
+## Professional experience
 
-### Gotechy - SAP Basis Consultant / Systems Integrator / Database Administrator
+### Gotechy - SAP Basis & Integrations Consultant | 2022-2023
 
-- Administration and support of SAP platforms, databases, and integrations in enterprise environments.
-- Incident resolution, service continuity, technical user support, and documentation.
+- SAP/HANA, jobs, dumps, certificates, and backups; incident diagnosis and service continuity.
+- PI/PO, CPI, IDoc, and workflows/automation with SAP BTP/BPA.
 
-### Rubinzal Culzoni - PC Support Technician / Junior PHP Developer
+### Rubinzal Culzoni - Technical Support / Junior PHP Developer
 
-- User support, computer maintenance, and basic PHP application development.
+- User support, troubleshooting, and PHP application development and maintenance.
 
-### Serví Red - Administration / Technical Support
+## AI-first method and quality
 
-- Service management, customer support, connectivity, and router configuration.
-
-### Línea Construcciones - Electrical and Network Installations
-
-- UTP cabling, router installation and configuration, electrical work, and field technical support.
-
-**Additional experience:** administration and accounting at Nativa S.A.; maintenance at MAPSA/Penitentes; independent electrical work.
+- Project Method / Harness with verifiable objectives and exit criteria, Task Contracts, canonical state, and traceability.
+- Independent Critic, Integration Review, Human Gates, and CI evidence before declaring PASS.
+- AI is used for interpretation, planning, and assistance; operational authority, validation, and safety boundaries remain explicit and verifiable.
 
 ## Education
 
-- Information Systems Engineering - UTN FRSF - completed coursework through year 4 (incomplete degree).
-- Electronic Engineering - UTN FRN - completed coursework through year 3 (incomplete degree).
+- UTN - incomplete university studies in Information Systems Engineering and Electronic Engineering.
 - Mining Logistics Management Program - ISTEEC - in progress.
-- Commercial high-school diploma with accounting specialization - C.P.E.M. No. 37.
-- Residential Electrician - UOCRA.
-
-**Additional training:** Intermediate Power BI, Introduction to Data Science, and Business English - Santander Open Academy.
+- Intermediate Power BI, Introduction to Data Science, and Business English - Santander Open Academy.
 
 ## PDF generation
 
@@ -100,8 +94,9 @@ Both public resume PDFs are generated deterministically through:
 npm run generate:cv
 ```
 
-Stable English output:
+Stable outputs:
 
 ```text
+public/cv-sebastian-ojeda.pdf
 public/cv-sebastian-ojeda-en.pdf
 ```
