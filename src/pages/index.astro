@@ -2,9 +2,17 @@
 import { getCollection } from 'astro:content';
 import HomePage from '../components/HomePage.astro';
 
+const featuredOrder = [
+  'ai-commerce-platform',
+  'hms-cloudflare',
+  'hms-elite',
+  'gasflow',
+  'alquileres-uspa',
+];
+
 const projects = (await getCollection('projectsEn'))
-  .filter((project) => project.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
+  .filter((project) => featuredOrder.includes(project.data.slug))
+  .sort((a, b) => featuredOrder.indexOf(a.data.slug) - featuredOrder.indexOf(b.data.slug));
 ---
 
 <HomePage lang="en" projects={projects} />
