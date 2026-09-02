@@ -9,6 +9,10 @@ const BOTTOM = 34;
 const TEXT = [0.067, 0.094, 0.125];
 const MUTED = [0.192, 0.235, 0.271];
 const ACCENT = [0.541, 0.282, 0.157];
+const COLUMN_GAP = 16;
+const LEFT_WIDTH = 324;
+const RIGHT_X = MARGIN_X + LEFT_WIDTH + COLUMN_GAP;
+const RIGHT_WIDTH = PAGE_WIDTH - MARGIN_X - RIGHT_X;
 
 const cp1252 = new Map([
   ['€', 0x80], ['‚', 0x82], ['ƒ', 0x83], ['„', 0x84], ['…', 0x85], ['†', 0x86], ['‡', 0x87],
@@ -67,207 +71,198 @@ const resumes = [
     language: 'es',
     outputPath: path.join(process.cwd(), 'public', 'cv-sebastian-ojeda.pdf'),
     name: 'SEBASTIÁN OJEDA',
-    title: 'DESARROLLADOR FULL STACK CON FOCO EN BACKEND',
-    contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848',
-    availability: 'Remoto prioritario | Híbrido o presencial en Mendoza | Relocalización evaluable | Inglés intermedio',
+    title: 'SOFTWARE DEVELOPER | AI-FIRST | FULL STACK & SYSTEMS',
+    contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848 | sebastian-ojeda.pages.dev',
+    availability: 'Remoto | Híbrido o presencial en Mendoza | Relocalización evaluable | Inglés intermedio',
     sections: {
       profile: 'Perfil profesional',
-      skills: 'Competencias técnicas',
-      projects: 'Proyectos destacados',
-      experience: 'Experiencia relevante',
+      skills: 'Competencias',
+      projects: 'Proyectos seleccionados',
+      experience: 'Experiencia profesional',
+      method: 'Método AI-first',
       education: 'Formación',
     },
     profile:
-      'Desarrollador full stack orientado a backend, con experiencia en SAP Basis, integraciones y administración de sistemas y bases de datos. Construyo sistemas de gestión y aplicaciones operativas con Rust, TypeScript, PostgreSQL, React y React Native. Trabajo desde el análisis del dominio hasta APIs, persistencia, seguridad, pruebas automatizadas, CI/CD y despliegue.',
+      'Desarrollador de software orientado a construir soluciones end-to-end para procesos reales. Trabajo desde dominio y arquitectura hasta backend, interfaces, datos, integraciones, testing, CI/CD y operación. Desarrollo sistemas multi-tenant, migraciones cloud/serverless y experiencias AI/agentic con tool calling gobernado, Human-in-the-Loop, auditoría, idempotencia y fallback determinista.',
     skills: [
-      ['Backend:', 'Rust, Axum, NestJS, Node.js, APIs REST, JWT, RBAC y modelado de dominio.'],
-      ['Web y móvil:', 'React, React Native, Vue, Astro y TypeScript; responsive design y flujos operativos.'],
-      ['Datos e infraestructura:', 'PostgreSQL, SQLx, Prisma, MySQL, MongoDB, Docker, Linux y GitHub Actions.'],
-      ['Sistemas empresariales:', 'SAP R/3, S/4HANA, Basis, Solution Manager, SAP HANA, Sybase e integraciones PI/PO.'],
+      ['AI / Agentic', 'LLMs, model routing, tool calling, HITL, policies, telemetry y fallback.'],
+      ['Backend', 'TypeScript, Node.js, NestJS, Rust/Axum, Hono, REST y OpenAPI.'],
+      ['Frontend / Mobile', 'React, Vue 3, React Native, Vite y Tailwind.'],
+      ['Datos / Cloud', 'PostgreSQL, SQLx, Prisma, SQLite/D1, Docker, Workers y Linux.'],
+      ['Quality / Enterprise', 'Playwright, Vitest, E2E, GitHub Actions, SAP Basis, PI/PO y CPI.'],
     ],
     projects: [
       {
-        title: 'HMS Elite - SaaS multi-hotel | Rust, Axum, React, PostgreSQL',
+        title: 'AI Commerce Platform - Agent Core multi-tenant',
+        stack: 'TypeScript | LLMs | Tooling | Staging',
         bullets: [
-          'Modelado de reservas, habitaciones, huéspedes, facturación, housekeeping, reportes y auditoría.',
-          'Multi-tenancy, RBAC, row-level security, transacciones, OpenAPI, CI y observabilidad.',
+          'Separa interpretación LLM de autoridad operacional mediante tools registradas, contexto confiable, políticas, HITL, auditoría e idempotencia.',
+          'Integra HMS para disponibilidad, cotización y reservas; incluye evaluación de modelos, telemetría de latencia/costo y QA adversarial.',
+        ],
+        url: 'github.com/sjo1848/ai-commerce-platform',
+      },
+      {
+        title: 'HMS Elite - Sistema hotelero multi-hotel',
+        stack: 'Rust/Axum | PostgreSQL | React/TypeScript',
+        bullets: [
+          'Reservas, check-in/out, habitaciones, housekeeping, cargos y pagos con dominio modular y contratos OpenAPI.',
+          'RBAC, aislamiento por hotel, RLS selectivo, CI full-stack, E2E browser/mobile, seguridad y recovery.',
         ],
         url: 'github.com/sjo1848/hotel-management-system',
       },
       {
-        title: 'GasFlow - Pedidos, entregas y stock | React Native, Rust, PostgreSQL',
+        title: 'HMS Cloudflare - Migración brownfield cloud-native',
+        stack: 'Workers | Hono | D1/SQLite | React',
         bullets: [
-          'Flujos de administrador y repartidor, entregas programadas, asignaciones y conciliación de envases.',
-          'JWT, trazabilidad, eventos de auditoría, métricas y pruebas de backend y aplicación móvil.',
+          'Migración parity-first a Workers + D1 preservando comportamiento, reglas de dominio y autorización.',
+          'Control plane + D1 por hotel, Cloudflare Access, RBAC, regresiones, browser journeys y backup/restore rehearsal.',
+        ],
+        url: 'github.com/sjo1848/hms-cloudflare',
+      },
+      {
+        title: 'GasFlow - Mobile Delivery Operations',
+        stack: 'React Native | Rust/Axum | PostgreSQL',
+        bullets: [
+          'MVP móvil para pedidos programados, asignación de repartidores, entregas, stock y conciliación de envases.',
+          'JWT, auditoría, métricas/request IDs, persistencia móvil y CI con pruebas de backend y app.',
         ],
         url: 'github.com/sjo1848/gasflow',
       },
       {
-        title: 'JM Soluciones Eléctricas - Sitio comercial | Astro, TypeScript, Tailwind CSS',
+        title: 'Alquileres Uspallata - Catálogo y gestión',
+        stack: 'NestJS | Vue 3 | PostgreSQL | Prisma',
         bullets: [
-          'Landing mobile-first para servicios eléctricos, con UX orientada a conversión, SEO local y consulta guiada por WhatsApp.',
-          'Contenido tipado, Vitest, preflight reproducible, contenedor Nginx y controles automáticos de release.',
-        ],
-        url: 'github.com/sjo1848/jm-soluciones',
-      },
-      {
-        title: 'Taco Loco Foodtrack - Menú digital y pedidos | Next.js, TypeScript, Prisma',
-        bullets: [
-          'Menú QR mobile-first, personalización, resumen de pedido y registro de intención con continuación por WhatsApp.',
-          'Validación server-side de catálogo, disponibilidad y precios, con flujo administrativo y QA documentado.',
-        ],
-        url: 'github.com/sjo1848/taco-loco-foodtrack',
-      },
-      {
-        title: 'Alquileres Uspallata - Catálogo y gestión | NestJS, Vue, Prisma',
-        bullets: [
-          'Catálogo público con revisión, publicación, disponibilidad, contacto directo y separación de datos públicos e internos.',
-          'Flujos de propietario y administración con migraciones, pruebas, controles de seguridad y auditoría.',
+          'Catálogo público y flujos OWNER/ADMIN para revisión, publicación, disponibilidad, contacto y auditoría.',
         ],
         url: 'github.com/sjo1848/alquileres-uspa',
       },
     ],
     experience: [
       {
-        title: 'Gotechy - Consultor SAP Basis / Integrador de sistemas / Administrador de bases de datos',
+        title: 'Gotechy - Consultor SAP Basis e Integraciones | 2022-2023',
         bullets: [
-          'Administración y soporte de plataformas SAP, bases de datos e integraciones en entornos empresariales.',
-          'Resolución de incidencias, continuidad de servicios, soporte a usuarios técnicos y documentación.',
+          'SAP/HANA, jobs, dumps, certificados y backups; diagnóstico de incidencias y continuidad operativa.',
+          'PI/PO, CPI, IDoc y workflows/automatización con SAP BTP/BPA.',
         ],
       },
       {
-        title: 'Rubinzal Culzoni - Servicio técnico de PC / Programador PHP Jr.',
-        bullets: ['Soporte a usuarios, mantenimiento de equipos y desarrollo básico de aplicaciones en PHP.'],
-      },
-      {
-        title: 'Serví Red - Administración / Soporte técnico',
-        bullets: ['Gestión de servicios, atención a clientes, conectividad y configuración de routers.'],
-      },
-      {
-        title: 'Línea Construcciones - Instalaciones eléctricas y redes',
-        bullets: ['Tendido UTP, instalación y configuración de routers, obra eléctrica y soporte técnico en campo.'],
+        title: 'Rubinzal Culzoni - Soporte Técnico / Programador PHP Jr.',
+        bullets: ['Soporte a usuarios, troubleshooting y desarrollo/mantenimiento de aplicaciones PHP.'],
       },
     ],
-    additionalExperience:
-      'Experiencia adicional: administración y contabilidad en Nativa S.A.; mantenimiento en MAPSA/Penitentes; trabajos eléctricos autónomos.',
+    method: [
+      'Project Method / Harness con objetivos y criterios de salida verificables, Task Contracts, estado canónico y trazabilidad.',
+      'Critic independiente, Integration Review, Human Gates y evidencia de CI antes de declarar PASS.',
+    ],
     education: [
-      'Ingeniería en Sistemas de Información - UTN FRSF - 4.º año cursado (incompleto).',
-      'Ingeniería Electrónica - UTN FRN - 3.º año cursado (incompleto).',
+      'UTN - estudios universitarios incompletos en Ingeniería en Sistemas de Información e Ingeniería Electrónica.',
       'Gestor en Logística Minera - ISTEEC - en curso.',
-      'Perito Mercantil, orientación Auxiliar Contable - C.P.E.M. N.º 37.',
-      'Electricista domiciliario - UOCRA.',
+      'Power BI Intermedio, Introducción a Ciencia de Datos y Business English - Santander Open Academy.',
     ],
-    complementary:
-      'Formación complementaria: Power BI Intermedio, Introducción a la Ciencia de Datos y Business English - Santander Open Academy.',
-    footer: 'Sebastián Ojeda | CV tecnológico | Agosto 2026',
-    pdfTitle: 'CV Sebastian Ojeda - Backend Full Stack',
-    pdfSubject: 'Curriculum profesional orientado a backend y full stack',
+    footer: 'Sebastián Ojeda | Software Developer | Septiembre 2026',
+    pdfTitle: 'CV Sebastian Ojeda - Software Developer AI-First',
+    pdfSubject: 'Curriculum profesional de desarrollo de software, sistemas AI-first y plataformas operativas',
   },
   {
     language: 'en',
     outputPath: path.join(process.cwd(), 'public', 'cv-sebastian-ojeda-en.pdf'),
     name: 'SEBASTIÁN OJEDA',
-    title: 'BACKEND-FOCUSED FULL-STACK DEVELOPER',
-    contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848',
-    availability: 'Remote-first | Hybrid or on-site in Mendoza | Relocation considered | Intermediate English',
+    title: 'SOFTWARE DEVELOPER | AI-FIRST | FULL STACK & SYSTEMS',
+    contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848 | sebastian-ojeda.pages.dev',
+    availability: 'Remote | Hybrid or on-site in Mendoza | Relocation considered | Intermediate English',
     sections: {
       profile: 'Professional profile',
-      skills: 'Technical skills',
-      projects: 'Featured projects',
-      experience: 'Relevant experience',
+      skills: 'Skills',
+      projects: 'Selected projects',
+      experience: 'Professional experience',
+      method: 'AI-first method',
       education: 'Education',
     },
     profile:
-      'Backend-focused full-stack developer with experience in SAP Basis, integrations, systems administration, and databases. I build management systems and operational applications with Rust, TypeScript, PostgreSQL, React, and React Native. I work from domain analysis through APIs, persistence, security, automated testing, CI/CD, and deployment.',
+      'Software developer focused on building end-to-end solutions for real operational processes. I work from domain and architecture through backend, interfaces, data, integrations, testing, CI/CD and operations. I build multi-tenant systems, cloud/serverless migrations and AI/agentic experiences with governed tool calling, Human-in-the-Loop, auditability, idempotency and deterministic fallback.',
     skills: [
-      ['Backend:', 'Rust, Axum, NestJS, Node.js, REST APIs, JWT, RBAC, and domain modeling.'],
-      ['Web and mobile:', 'React, React Native, Vue, Astro, and TypeScript; responsive design and operational workflows.'],
-      ['Data and infrastructure:', 'PostgreSQL, SQLx, Prisma, MySQL, MongoDB, Docker, Linux, and GitHub Actions.'],
-      ['Enterprise systems:', 'SAP R/3, S/4HANA, Basis, Solution Manager, SAP HANA, Sybase, and PI/PO integrations.'],
+      ['AI / Agentic', 'LLMs, model routing, tool calling, HITL, policies, telemetry, and fallback.'],
+      ['Backend', 'TypeScript, Node.js, NestJS, Rust/Axum, Hono, REST, and OpenAPI.'],
+      ['Frontend / Mobile', 'React, Vue 3, React Native, Vite, and Tailwind.'],
+      ['Data / Cloud', 'PostgreSQL, SQLx, Prisma, SQLite/D1, Docker, Workers, and Linux.'],
+      ['Quality / Enterprise', 'Playwright, Vitest, E2E, GitHub Actions, SAP Basis, PI/PO, and CPI.'],
     ],
     projects: [
       {
-        title: 'HMS Elite - Multi-hotel SaaS | Rust, Axum, React, PostgreSQL',
+        title: 'AI Commerce Platform - Multi-tenant Agent Core',
+        stack: 'TypeScript | LLMs | Tooling | Staging',
         bullets: [
-          'Reservations, rooms, guests, billing, housekeeping, reporting, and audit-domain modeling.',
-          'Multi-tenancy, RBAC, row-level security, transactions, OpenAPI, CI, and observability.',
+          'Separates LLM interpretation from operational authority through registered tools, trusted context, policies, HITL, auditability and idempotency.',
+          'Integrates with HMS for availability, quoting and reservations; includes model evaluation, latency/cost telemetry and adversarial QA.',
+        ],
+        url: 'github.com/sjo1848/ai-commerce-platform',
+      },
+      {
+        title: 'HMS Elite - Multi-hotel management system',
+        stack: 'Rust/Axum | PostgreSQL | React/TypeScript',
+        bullets: [
+          'Reservations, check-in/out, rooms, housekeeping, charges and payments with modular domain boundaries and OpenAPI contracts.',
+          'RBAC, hotel isolation, selective RLS, full-stack CI, browser/mobile E2E, security and recovery.',
         ],
         url: 'github.com/sjo1848/hotel-management-system',
       },
       {
-        title: 'GasFlow - Orders, deliveries, and stock | React Native, Rust, PostgreSQL',
+        title: 'HMS Cloudflare - Brownfield cloud-native migration',
+        stack: 'Workers | Hono | D1/SQLite | React',
         bullets: [
-          'Administrator and driver workflows, scheduled deliveries, assignment, and cylinder reconciliation.',
-          'JWT, traceability, audit events, metrics, and backend and mobile application testing.',
+          'Parity-first migration to Workers + D1 while preserving observable behavior, domain rules and authorization.',
+          'Control plane + per-hotel D1, Cloudflare Access, RBAC, regressions, browser journeys and backup/restore rehearsal.',
+        ],
+        url: 'github.com/sjo1848/hms-cloudflare',
+      },
+      {
+        title: 'GasFlow - Mobile Delivery Operations',
+        stack: 'React Native | Rust/Axum | PostgreSQL',
+        bullets: [
+          'Mobile MVP for scheduled orders, driver assignment, deliveries, stock and cylinder reconciliation.',
+          'JWT, audit events, metrics/request IDs, mobile persistence and CI with backend and app tests.',
         ],
         url: 'github.com/sjo1848/gasflow',
       },
       {
-        title: 'JM Soluciones - Commercial website | Astro, TypeScript, Tailwind CSS',
+        title: 'Alquileres Uspallata - Rental catalog and management',
+        stack: 'NestJS | Vue 3 | PostgreSQL | Prisma',
         bullets: [
-          'Mobile-first electrical-services landing page with conversion-focused UX, local SEO, and guided WhatsApp inquiries.',
-          'Typed content, Vitest, reproducible preflight, Nginx container, and automated release controls.',
-        ],
-        url: 'github.com/sjo1848/jm-soluciones',
-      },
-      {
-        title: 'Taco Loco Foodtrack - Digital menu and ordering | Next.js, TypeScript, Prisma',
-        bullets: [
-          'Mobile-first QR menu, customization, order summary, and intent registration with WhatsApp continuation.',
-          'Server-side catalog, availability, and price validation with an administrative flow and documented QA.',
-        ],
-        url: 'github.com/sjo1848/taco-loco-foodtrack',
-      },
-      {
-        title: 'Alquileres Uspallata - Rental catalog and management | NestJS, Vue, Prisma',
-        bullets: [
-          'Public catalog with review, publication, availability, direct contact, and separation of public and internal data.',
-          'Owner and administration workflows with migrations, tests, security controls, and auditing.',
+          'Public catalog plus OWNER/ADMIN workflows for review, publication, availability, contact and audit.',
         ],
         url: 'github.com/sjo1848/alquileres-uspa',
       },
     ],
     experience: [
       {
-        title: 'Gotechy - SAP Basis Consultant / Systems Integrator / Database Administrator',
+        title: 'Gotechy - SAP Basis & Integrations Consultant | 2022-2023',
         bullets: [
-          'Administration and support of SAP platforms, databases, and integrations in enterprise environments.',
-          'Incident resolution, service continuity, technical user support, and documentation.',
+          'SAP/HANA, jobs, dumps, certificates and backups; incident diagnosis and service continuity.',
+          'PI/PO, CPI, IDoc and workflows/automation with SAP BTP/BPA.',
         ],
       },
       {
-        title: 'Rubinzal Culzoni - PC Support Technician / Junior PHP Developer',
-        bullets: ['User support, computer maintenance, and basic PHP application development.'],
-      },
-      {
-        title: 'Serví Red - Administration / Technical Support',
-        bullets: ['Service management, customer support, connectivity, and router configuration.'],
-      },
-      {
-        title: 'Línea Construcciones - Electrical and Network Installations',
-        bullets: ['UTP cabling, router installation and configuration, electrical work, and field technical support.'],
+        title: 'Rubinzal Culzoni - Technical Support / Junior PHP Developer',
+        bullets: ['User support, troubleshooting, and PHP application development and maintenance.'],
       },
     ],
-    additionalExperience:
-      'Additional experience: administration and accounting at Nativa S.A.; maintenance at MAPSA/Penitentes; independent electrical work.',
+    method: [
+      'Project Method / Harness with verifiable objectives and exit criteria, Task Contracts, canonical state and traceability.',
+      'Independent Critic, Integration Review, Human Gates and CI evidence before declaring PASS.',
+    ],
     education: [
-      'Information Systems Engineering - UTN FRSF - completed coursework through year 4 (incomplete degree).',
-      'Electronic Engineering - UTN FRN - completed coursework through year 3 (incomplete degree).',
+      'UTN - incomplete university studies in Information Systems Engineering and Electronic Engineering.',
       'Mining Logistics Management Program - ISTEEC - in progress.',
-      'Commercial high-school diploma with accounting specialization - C.P.E.M. No. 37.',
-      'Residential Electrician - UOCRA.',
+      'Intermediate Power BI, Introduction to Data Science, and Business English - Santander Open Academy.',
     ],
-    complementary:
-      'Additional training: Intermediate Power BI, Introduction to Data Science, and Business English - Santander Open Academy.',
-    footer: 'Sebastián Ojeda | Technology resume | August 2026',
-    pdfTitle: 'Resume Sebastian Ojeda - Backend Full Stack',
-    pdfSubject: 'Professional resume focused on backend and full-stack development',
+    footer: 'Sebastián Ojeda | Software Developer | September 2026',
+    pdfTitle: 'Resume Sebastian Ojeda - AI-First Software Developer',
+    pdfSubject: 'Professional resume focused on software development, AI-first systems and operational platforms',
   },
 ];
 
 function buildPdf(resume) {
   const commands = [];
-  let y = TOP;
 
   function drawText(text, x, baselineY, { size = 8, bold = false, fill = TEXT } = {}) {
     commands.push('BT');
@@ -283,52 +278,50 @@ function buildPdf(resume) {
     drawText(text, (PAGE_WIDTH - width) / 2, baselineY, options);
   }
 
-  function drawRule(baselineY) {
+  function drawRule(x, width, baselineY) {
     commands.push(`${ACCENT[0]} ${ACCENT[1]} ${ACCENT[2]} RG`);
     commands.push('0.65 w');
-    commands.push(`${MARGIN_X} ${baselineY.toFixed(2)} m ${(PAGE_WIDTH - MARGIN_X).toFixed(2)} ${baselineY.toFixed(2)} l S`);
+    commands.push(`${x.toFixed(2)} ${baselineY.toFixed(2)} m ${(x + width).toFixed(2)} ${baselineY.toFixed(2)} l S`);
   }
 
-  function addParagraph(text, { size = 8, bold = false, fill = TEXT, indent = 0, gapAfter = 2, lineHeight = size * 1.18 } = {}) {
-    const width = PAGE_WIDTH - 2 * MARGIN_X - indent;
+  function addParagraph(text, x, width, y, { size = 8, bold = false, fill = TEXT, gapAfter = 2, lineHeight = size * 1.18 } = {}) {
     const lines = wrapText(text, width, size, bold);
     for (const line of lines) {
-      drawText(line, MARGIN_X + indent, y, { size, bold, fill });
+      drawText(line, x, y, { size, bold, fill });
       y -= lineHeight;
     }
-    y -= gapAfter;
+    return y - gapAfter;
   }
 
-  function addSection(title) {
-    y -= 2;
-    drawText(title.toUpperCase(), MARGIN_X, y, { size: 9.7, bold: true });
-    y -= 2.8;
-    drawRule(y);
-    y -= 11.6;
+  function addSection(title, x, width, y, { size = 10.0 } = {}) {
+    y -= 1.5;
+    drawText(title.toUpperCase(), x, y, { size, bold: true });
+    y -= 2.7;
+    drawRule(x, width, y);
+    return y - 11.1;
   }
 
-  function addItemTitle(text) {
-    const lines = wrapText(text, PAGE_WIDTH - 2 * MARGIN_X, 8.55, true);
+  function addItemTitle(text, x, width, y, { size = 9.05 } = {}) {
+    const lines = wrapText(text, width, size, true);
     for (const line of lines) {
-      drawText(line, MARGIN_X, y, { size: 8.55, bold: true });
-      y -= 10.1;
+      drawText(line, x, y, { size, bold: true });
+      y -= 9.8;
     }
-    y -= 0.4;
+    return y - 0.2;
   }
 
-  function addBullet(text) {
+  function addBullet(text, x, width, y, { size = 8.15, gapAfter = 0.5 } = {}) {
     const prefix = '- ';
-    const size = 7.85;
-    const indent = 8;
-    const width = PAGE_WIDTH - 2 * MARGIN_X - indent;
-    const lines = wrapText(text, width - estimateWidth(prefix, size), size, false);
+    const indent = 7.5;
+    const lines = wrapText(text, width - indent - estimateWidth(prefix, size), size, false);
     lines.forEach((line, index) => {
-      drawText(index === 0 ? `${prefix}${line}` : line, MARGIN_X + (index === 0 ? 1 : indent), y, { size });
-      y -= 9.15;
+      drawText(index === 0 ? `${prefix}${line}` : line, x + (index === 0 ? 0 : indent), y, { size });
+      y -= 9.7;
     });
-    y -= 0.1;
+    return y - gapAfter;
   }
 
+  let y = TOP;
   drawCentered(resume.name, y, { size: 19.2, bold: true });
   y -= 21.5;
   drawCentered(resume.title, y, { size: 10.5, bold: true, fill: ACCENT });
@@ -338,37 +331,46 @@ function buildPdf(resume) {
   drawCentered(resume.availability, y, { size: 7.35, fill: MUTED });
   y -= 12.5;
 
-  addSection(resume.sections.profile);
-  addParagraph(resume.profile, { size: 8.05, gapAfter: 2.2, lineHeight: 9.55 });
+  y = addSection(resume.sections.profile, MARGIN_X, PAGE_WIDTH - 2 * MARGIN_X, y);
+  y = addParagraph(resume.profile, MARGIN_X, PAGE_WIDTH - 2 * MARGIN_X, y, { size: 8.65, gapAfter: 4, lineHeight: 10.35 });
 
-  addSection(resume.sections.skills);
-  for (const [label, detail] of resume.skills) {
-    drawText(label, MARGIN_X, y, { size: 7.95, bold: true });
-    drawText(detail, MARGIN_X + 126, y, { size: 7.95 });
-    y -= 9.65;
-  }
-  y -= 0.4;
+  let leftY = y;
+  let rightY = y;
 
-  addSection(resume.sections.projects);
+  leftY = addSection(resume.sections.projects, MARGIN_X, LEFT_WIDTH, leftY);
   for (const project of resume.projects) {
-    addItemTitle(project.title);
-    for (const bullet of project.bullets) addBullet(bullet);
-    addParagraph(project.url, { size: 7.6, fill: ACCENT, gapAfter: 1.2, lineHeight: 8.8 });
+    leftY = addItemTitle(project.title, MARGIN_X, LEFT_WIDTH, leftY);
+    leftY = addParagraph(project.stack, MARGIN_X, LEFT_WIDTH, leftY, { size: 7.9, bold: true, fill: MUTED, gapAfter: 1.0, lineHeight: 9.0 });
+    for (const bullet of project.bullets) leftY = addBullet(bullet, MARGIN_X, LEFT_WIDTH, leftY);
+    leftY = addParagraph(project.url, MARGIN_X, LEFT_WIDTH, leftY, { size: 7.7, fill: ACCENT, gapAfter: 3.4, lineHeight: 8.9 });
   }
 
-  addSection(resume.sections.experience);
+  leftY = addSection(resume.sections.experience, MARGIN_X, LEFT_WIDTH, leftY);
   for (const item of resume.experience) {
-    addItemTitle(item.title);
-    for (const bullet of item.bullets) addBullet(bullet);
+    leftY = addItemTitle(item.title, MARGIN_X, LEFT_WIDTH, leftY, { size: 8.75 });
+    for (const bullet of item.bullets) leftY = addBullet(bullet, MARGIN_X, LEFT_WIDTH, leftY, { size: 8.05 });
+    leftY -= 1.2;
   }
-  addParagraph(resume.additionalExperience, { size: 7.7, gapAfter: 0.8, lineHeight: 9.0 });
 
-  addSection(resume.sections.education);
-  for (const item of resume.education) addBullet(item);
-  addParagraph(resume.complementary, { size: 7.7, lineHeight: 9.0, gapAfter: 0 });
+  rightY = addSection(resume.sections.skills, RIGHT_X, RIGHT_WIDTH, rightY);
+  for (const [label, detail] of resume.skills) {
+    rightY = addParagraph(label, RIGHT_X, RIGHT_WIDTH, rightY, { size: 8.35, bold: true, gapAfter: 0.6, lineHeight: 9.3 });
+    rightY = addParagraph(detail, RIGHT_X, RIGHT_WIDTH, rightY, { size: 7.95, fill: MUTED, gapAfter: 4.6, lineHeight: 9.2 });
+  }
 
-  if (y < BOTTOM) {
-    throw new Error(`${resume.language} resume content overflowed the page: y=${y.toFixed(2)}`);
+  rightY = addSection(resume.sections.method, RIGHT_X, RIGHT_WIDTH, rightY);
+  for (const item of resume.method) {
+    rightY = addBullet(item, RIGHT_X, RIGHT_WIDTH, rightY, { size: 7.9, gapAfter: 2.8 });
+  }
+
+  rightY = addSection(resume.sections.education, RIGHT_X, RIGHT_WIDTH, rightY);
+  for (const item of resume.education) {
+    rightY = addBullet(item, RIGHT_X, RIGHT_WIDTH, rightY, { size: 7.9, gapAfter: 2.6 });
+  }
+
+  const minY = Math.min(leftY, rightY);
+  if (minY < BOTTOM + 20) {
+    throw new Error(`${resume.language} resume content overflowed the page: y=${minY.toFixed(2)}`);
   }
 
   drawCentered(resume.footer, 22, { size: 6.7, fill: [0.4, 0.4, 0.4] });
@@ -397,7 +399,7 @@ function buildPdf(resume) {
   }
   pdf += `trailer\n<< /Size ${objects.length} /Root 1 0 R /Info 7 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
 
-  return { pdf, remainingSpace: y - BOTTOM };
+  return { pdf, remainingSpace: minY - BOTTOM };
 }
 
 const requestedOutput = process.argv[2];

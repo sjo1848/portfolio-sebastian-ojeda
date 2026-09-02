@@ -140,6 +140,12 @@ function validateHreflang(content, route, canonicalUrl) {
   }
 }
 
+function hasUnresolvedPublicPlaceholder(content) {
+  const todoMarker = /(?:^|[\s([{])TODO(?=$|[\s)\]}.,:;!?])/;
+  const otherPlaceholders = /\b(?:TBD|FIXME|REPLACE_ME|YOUR_EMAIL|YOUR_LINKEDIN)\b|lorem ipsum|example@example\.com/i;
+  return todoMarker.test(content) || otherPlaceholders.test(content);
+}
+
 async function validatePage(file) {
   const content = await readFile(file, 'utf8');
   const route = publicPathForFile(file);
@@ -167,7 +173,7 @@ async function validatePage(file) {
     failures.push(`${route}: expected exactly one h1`);
   }
 
-  if (/\b(?:TODO|TBD|FIXME|REPLACE_ME|YOUR_EMAIL|YOUR_LINKEDIN)\b|lorem ipsum|example@example\.com/i.test(content)) {
+  if (hasUnresolvedPublicPlaceholder(content)) {
     failures.push(`${route}: unresolved public placeholder detected`);
   }
 
