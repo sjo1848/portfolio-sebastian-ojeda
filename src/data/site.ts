@@ -15,9 +15,9 @@ const sharedSite = {
 export const siteByLanguage = {
   es: {
     ...sharedSite,
-    title: 'Desarrollador Full Stack con foco en Backend',
+    title: 'Software Developer · IA, Automatización y Sistemas Operativos',
     description:
-      'Desarrollo sistemas de gestión y aplicaciones operativas con Rust, TypeScript, React, React Native y PostgreSQL.',
+      'Construyo sistemas end-to-end que combinan IA, automatización, backend, interfaces y controles operativos verificables.',
     languageTag: 'es-AR',
     locale: 'es_AR',
     alternateLocale: 'en_US',
@@ -25,10 +25,11 @@ export const siteByLanguage = {
     workMode:
       'Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.',
     roles: [
+      'Software Developer',
+      'Applied AI / Agentic Software Developer',
       'Backend Developer',
-      'Full-Stack Developer con foco en backend',
-      'Rust Developer junior/intermediate',
-      'Software Developer para sistemas de gestión y operaciones',
+      'Full-Stack Developer',
+      'Software Developer para automatización y sistemas operativos',
     ],
     languages: [
       { name: 'Español', level: 'Nativo' },
@@ -37,9 +38,9 @@ export const siteByLanguage = {
   },
   en: {
     ...sharedSite,
-    title: 'Backend-Focused Full-Stack Developer',
+    title: 'Software Developer · AI, Automation & Operational Systems',
     description:
-      'I build management systems and operational applications with Rust, TypeScript, React, React Native, and PostgreSQL.',
+      'I build end-to-end systems that combine AI, automation, backend services, interfaces and verifiable operational controls.',
     languageTag: 'en-US',
     locale: 'en_US',
     alternateLocale: 'es_AR',
@@ -47,10 +48,11 @@ export const siteByLanguage = {
     workMode:
       'Remote-first, available for hybrid or on-site work in Mendoza, with relocation considered for the right opportunity.',
     roles: [
+      'Software Developer',
+      'Applied AI / Agentic Software Developer',
       'Backend Developer',
-      'Backend-Focused Full-Stack Developer',
-      'Junior/Intermediate Rust Developer',
-      'Software Developer for management and operational systems',
+      'Full-Stack Developer',
+      'Software Developer for automation and operational systems',
     ],
     languages: [
       { name: 'Spanish', level: 'Native' },
@@ -62,7 +64,7 @@ export const siteByLanguage = {
 export const copyByLanguage = {
   es: {
     portfolioLabel: 'Portfolio profesional',
-    socialImageAlt: 'Portfolio profesional de Sebastián Ojeda, desarrollador backend y full stack.',
+    socialImageAlt: 'Portfolio profesional de Sebastián Ojeda, software developer enfocado en IA, automatización y sistemas operativos.',
     skipLink: 'Ir al contenido',
     navigationLabel: 'Navegación principal',
     nav: {
@@ -75,31 +77,31 @@ export const copyByLanguage = {
     languageSwitch: 'EN',
     languageSwitchAria: 'View the portfolio in English',
     home: {
-      eyebrow: 'Backend-focused full-stack developer',
+      eyebrow: 'AI-first software developer',
       context:
-        'Trabajo desde el análisis del dominio hasta la implementación, las pruebas y el despliegue. Mi experiencia con sistemas empresariales e integraciones me ayuda a convertir procesos reales en software confiable.',
-      viewProjects: 'Ver proyectos',
+        'Diseño software desde el dominio y la arquitectura hasta la operación. Uso IA donde aporta interpretación, contexto o automatización, y mantengo reglas, permisos, datos críticos y side effects bajo controles deterministas y verificables.',
+      viewProjects: 'Ver casos de estudio',
       downloadCv: 'Descargar CV',
       workflowAria: 'Enfoque de trabajo',
-      workflow: ['Dominio', 'Arquitectura', 'Implementación', 'QA', 'Operación'],
+      workflow: ['Dominio', 'Arquitectura', 'IA + Automatización', 'QA', 'Operación'],
       evidenceEyebrow: 'Evidencia de trabajo',
-      projectsTitle: 'Proyectos destacados',
+      projectsTitle: 'Casos destacados',
       projectsIntro:
-        'Cinco soluciones con objetivos distintos: sistemas operativos, experiencias móviles y entrega comercial.',
+        'Cinco casos que muestran software completo, sistemas agentic, migración cloud, experiencias móviles y operaciones reales, con repositorios y límites de evidencia explícitos.',
       processEyebrow: 'Método',
-      processTitle: 'Laboratorio de producción de software',
+      processTitle: 'Construcción verificable de software y sistemas AI-first',
       processIntro:
-        'Project Method es una práctica de construcción verificable: parte del problema y la evidencia, convierte cada fase en un resultado revisable y usa automatización sin ocultar las decisiones humanas importantes.',
+        'Project Method convierte cada fase en un resultado revisable: parte del problema y la evidencia, separa autoridad técnica de aceptación humana y usa agentes y automatización sin ocultar decisiones críticas.',
       capabilitiesEyebrow: 'Capacidades',
-      capabilitiesTitle: 'Tecnología organizada alrededor del problema',
+      capabilitiesTitle: 'IA sobre una base de ingeniería completa',
       experienceEyebrow: 'Contexto operativo',
-      experienceTitle: 'Sistemas empresariales, integraciones y procesos reales',
+      experienceTitle: 'Software conectado con procesos, integraciones y operación real',
       experienceParagraphs: [
-        'Mi experiencia incluye administración SAP, integraciones SAP PI/PO y trabajo con procesos operativos. Ese contexto influye en cómo diseño software: considero actores, excepciones, trazabilidad, continuidad y calidad de datos desde el comienzo.',
-        'Me interesa construir sistemas de gestión, aplicaciones móviles y herramientas internas donde la arquitectura técnica esté conectada con una necesidad concreta.',
+        'Mi experiencia incluye SAP Basis, integraciones SAP PI/PO y trabajo con procesos operativos. Ese contexto influye en cómo diseño software: considero actores, excepciones, permisos, trazabilidad, continuidad y calidad de datos desde el comienzo.',
+        'Mi enfoque AI-first no reemplaza ingeniería por prompts. Combino modelos y agentes con APIs, datos, interfaces, políticas, Human-in-the-Loop, testing, CI/CD y observabilidad para que la automatización opere dentro de límites explícitos.',
       ],
       contactEyebrow: 'Contacto',
-      contactTitle: 'Busco oportunidades en backend, full stack y software operativo',
+      contactTitle: 'Busco oportunidades en software, Applied AI, automatización y sistemas operativos',
       englishLevel: 'Inglés intermedio en desarrollo y práctica profesional.',
       sendEmail: 'Enviar email',
       viewGithub: 'Ver GitHub',
@@ -128,7 +130,7 @@ export const copyByLanguage = {
   },
   en: {
     portfolioLabel: 'Professional portfolio',
-    socialImageAlt: 'Professional portfolio of Sebastián Ojeda, backend and full-stack developer.',
+    socialImageAlt: 'Professional portfolio of Sebastián Ojeda, software developer focused on AI, automation and operational systems.',
     skipLink: 'Skip to content',
     navigationLabel: 'Primary navigation',
     nav: {
@@ -141,31 +143,31 @@ export const copyByLanguage = {
     languageSwitch: 'ES',
     languageSwitchAria: 'Ver el portfolio en español',
     home: {
-      eyebrow: 'Backend-focused full-stack developer',
+      eyebrow: 'AI-first software developer',
       context:
-        'I work from domain analysis through implementation, testing, and deployment. My background in enterprise systems and integrations helps me turn real operational processes into reliable software.',
-      viewProjects: 'View projects',
+        'I design software from domain and architecture through operations. I use AI where interpretation, context or automation adds value, while keeping rules, permissions, critical data and side effects behind deterministic and verifiable controls.',
+      viewProjects: 'View case studies',
       downloadCv: 'Download resume',
       workflowAria: 'Engineering approach',
-      workflow: ['Domain', 'Architecture', 'Implementation', 'QA', 'Operations'],
+      workflow: ['Domain', 'Architecture', 'AI + Automation', 'QA', 'Operations'],
       evidenceEyebrow: 'Work evidence',
-      projectsTitle: 'Featured projects',
+      projectsTitle: 'Featured case studies',
       projectsIntro:
-        'Five solutions with different goals: operational systems, mobile experiences, and commercial delivery.',
+        'Five cases showing complete software systems, agentic workflows, cloud migration, mobile experiences and real operations, with repositories and explicit evidence boundaries.',
       processEyebrow: 'Method',
-      processTitle: 'Software production laboratory',
+      processTitle: 'Verifiable software and AI-first system delivery',
       processIntro:
-        'Project Method is a verifiable construction practice: it starts with the problem and evidence, turns each phase into a reviewable result, and uses automation without hiding important human decisions.',
+        'Project Method turns every phase into a reviewable outcome: it starts from the problem and evidence, separates technical authority from human acceptance, and uses agents and automation without hiding critical decisions.',
       capabilitiesEyebrow: 'Capabilities',
-      capabilitiesTitle: 'Technology organized around the problem',
+      capabilitiesTitle: 'AI built on complete software engineering',
       experienceEyebrow: 'Operational context',
-      experienceTitle: 'Enterprise systems, integrations, and real-world processes',
+      experienceTitle: 'Software connected to processes, integrations and real operations',
       experienceParagraphs: [
-        'My experience includes SAP administration, SAP PI/PO integrations, and operational processes. That background shapes how I design software: I consider actors, exceptions, traceability, continuity, and data quality from the beginning.',
-        'I am interested in building management systems, mobile applications, and internal tools where technical architecture is directly connected to a concrete operational need.',
+        'My background includes SAP Basis, SAP PI/PO integrations and operational processes. That context shapes how I design software: I consider actors, exceptions, permissions, traceability, continuity and data quality from the beginning.',
+        'My AI-first approach does not replace engineering with prompts. I combine models and agents with APIs, data, interfaces, policies, Human-in-the-Loop, testing, CI/CD and observability so automation operates within explicit boundaries.',
       ],
       contactEyebrow: 'Contact',
-      contactTitle: 'Open to backend, full-stack, and operational software opportunities',
+      contactTitle: 'Open to software, Applied AI, automation and operational systems opportunities',
       englishLevel: 'Intermediate English, actively improving through professional practice.',
       sendEmail: 'Send email',
       viewGithub: 'View GitHub',
@@ -198,45 +200,45 @@ export const processStepsByLanguage = {
   es: [
     {
       title: 'Entender el dominio',
-      description: 'Identifico usuarios, procesos, restricciones y riesgos antes de elegir una solución técnica.',
+      description: 'Identifico usuarios, procesos, restricciones, fuentes de verdad y riesgos antes de elegir una solución técnica o incorporar IA.',
     },
     {
-      title: 'Diseñar el flujo',
-      description: 'Defino estados, responsabilidades, datos y recorridos para reducir ambigüedad y deuda temprana.',
+      title: 'Diseñar autoridad y flujo',
+      description: 'Defino estados, responsabilidades, tools, permisos, datos y Human Gates para separar interpretación de autoridad operacional.',
     },
     {
-      title: 'Construir la solución',
-      description: 'Implemento backend, interfaces, persistencia e integraciones con una arquitectura proporcional.',
+      title: 'Construir el sistema',
+      description: 'Implemento backend, interfaces, persistencia, integraciones, automatización y componentes AI/agentic con una arquitectura proporcional.',
     },
     {
-      title: 'Validar la calidad',
-      description: 'Integro pruebas, seguridad, accesibilidad y revisión de UX dentro del desarrollo.',
+      title: 'Evaluar y validar',
+      description: 'Integro tests, seguridad, evaluación adversarial, accesibilidad, UX y revisión independiente dentro del desarrollo.',
     },
     {
       title: 'Preparar la operación',
-      description: 'Documento, automatizo controles y considero observabilidad, despliegue y recuperación.',
+      description: 'Documento, automatizo controles y considero telemetría, costo, despliegue, fallback, recuperación y aceptación humana.',
     },
   ],
   en: [
     {
       title: 'Understand the domain',
-      description: 'I identify users, processes, constraints, and risks before choosing a technical solution.',
+      description: 'I identify users, processes, constraints, sources of truth and risks before choosing a technical solution or adding AI.',
     },
     {
-      title: 'Design the workflow',
-      description: 'I define states, responsibilities, data, and user journeys to reduce ambiguity and early debt.',
+      title: 'Design authority and flow',
+      description: 'I define states, responsibilities, tools, permissions, data and Human Gates to separate interpretation from operational authority.',
     },
     {
-      title: 'Build the solution',
-      description: 'I implement backend services, interfaces, persistence, and integrations with proportional architecture.',
+      title: 'Build the system',
+      description: 'I implement backend services, interfaces, persistence, integrations, automation and AI/agentic components with proportional architecture.',
     },
     {
-      title: 'Validate quality',
-      description: 'I integrate testing, security, accessibility, and UX review into the development process.',
+      title: 'Evaluate and validate',
+      description: 'I integrate testing, security, adversarial evaluation, accessibility, UX and independent review into development.',
     },
     {
       title: 'Prepare operations',
-      description: 'I document, automate controls, and consider observability, deployment, and recovery.',
+      description: 'I document, automate controls and consider telemetry, cost, deployment, fallback, recovery and human acceptance.',
     },
   ],
 } as const;
@@ -246,7 +248,7 @@ export const methodPhasesByLanguage = {
     { name: 'IDEA', description: 'Hipótesis clara' },
     { name: 'DISCOVERY', description: 'Evidencia real' },
     { name: 'DEFINITION', description: 'Alcance explícito' },
-    { name: 'DESIGN', description: 'Solución coherente' },
+    { name: 'DESIGN', description: 'Autoridad y solución' },
     { name: 'BUILD', description: 'Incremento ejecutable' },
     { name: 'VALIDATE', description: 'Prueba independiente' },
     { name: 'RELEASE', description: 'Entrega controlada' },
@@ -256,7 +258,7 @@ export const methodPhasesByLanguage = {
     { name: 'IDEA', description: 'Clear hypothesis' },
     { name: 'DISCOVERY', description: 'Real evidence' },
     { name: 'DEFINITION', description: 'Explicit scope' },
-    { name: 'DESIGN', description: 'Coherent solution' },
+    { name: 'DESIGN', description: 'Authority and solution' },
     { name: 'BUILD', description: 'Executable increment' },
     { name: 'VALIDATE', description: 'Independent proof' },
     { name: 'RELEASE', description: 'Controlled delivery' },
@@ -267,59 +269,67 @@ export const methodPhasesByLanguage = {
 export const capabilityGroupsByLanguage = {
   es: [
     {
+      title: 'IA y sistemas agentic',
+      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, contexto confiable, evaluación, telemetría y fallback.',
+    },
+    {
       title: 'Backend y arquitectura',
-      description: 'Rust, Axum, NestJS, APIs REST, autenticación, RBAC y modelado de dominio.',
+      description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, APIs REST, OpenAPI, autenticación, RBAC y modelado de dominio.',
     },
     {
-      title: 'Aplicaciones web y móviles',
-      description: 'React, React Native, Vue, Astro y TypeScript con foco en flujos y responsive design.',
+      title: 'Interfaces web y móviles',
+      description: 'React, React Native, Vue, Astro y TypeScript con foco en flujos operativos, accesibilidad y responsive design.',
     },
     {
-      title: 'Datos e integración',
-      description: 'PostgreSQL, SQLx, Prisma, migraciones, SAP Basis y SAP PI/PO.',
+      title: 'Datos, cloud e integración',
+      description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis y SAP PI/PO.',
     },
     {
-      title: 'Calidad e infraestructura',
-      description: 'Docker, GitHub Actions, pruebas, seguridad, observabilidad y rendimiento.',
+      title: 'Calidad y operación',
+      description: 'GitHub Actions, Playwright, Vitest, E2E, seguridad, observabilidad, recovery, CI/CD y evidence gates.',
     },
   ],
   en: [
     {
+      title: 'AI and agentic systems',
+      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, trusted context, evaluation, telemetry and fallback.',
+    },
+    {
       title: 'Backend and architecture',
-      description: 'Rust, Axum, NestJS, REST APIs, authentication, RBAC, and domain modeling.',
+      description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, REST APIs, OpenAPI, authentication, RBAC and domain modeling.',
     },
     {
-      title: 'Web and mobile applications',
-      description: 'React, React Native, Vue, Astro, and TypeScript focused on workflows and responsive design.',
+      title: 'Web and mobile interfaces',
+      description: 'React, React Native, Vue, Astro and TypeScript focused on operational workflows, accessibility and responsive design.',
     },
     {
-      title: 'Data and integration',
-      description: 'PostgreSQL, SQLx, Prisma, migrations, SAP Basis, and SAP PI/PO.',
+      title: 'Data, cloud and integration',
+      description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis and SAP PI/PO.',
     },
     {
-      title: 'Quality and infrastructure',
-      description: 'Docker, GitHub Actions, testing, security, observability, and performance.',
+      title: 'Quality and operations',
+      description: 'GitHub Actions, Playwright, Vitest, E2E, security, observability, recovery, CI/CD and evidence gates.',
     },
   ],
 } as const;
 
 export function getLanguageRoot(language: Language) {
-  return language === 'en' ? '/en/' : '/';
+  return language === 'es' ? '/es/' : '/';
 }
 
 export function getProjectPath(language: Language, slug: string) {
-  return `${language === 'en' ? '/en' : ''}/projects/${slug}/`;
+  return `${language === 'es' ? '/es' : ''}/projects/${slug}/`;
 }
 
 export function getAlternatePath(pathname: string, language: Language) {
-  if (language === 'es') {
-    if (pathname === '/404.html') return '/en/404/';
-    return pathname === '/' ? '/en/' : `/en${pathname}`;
+  if (language === 'en') {
+    if (pathname === '/404.html') return '/es/404/';
+    return pathname === '/' ? '/es/' : `/es${pathname}`;
   }
 
-  if (pathname === '/en' || pathname === '/en/') return '/';
-  if (pathname === '/en/404' || pathname === '/en/404/') return '/404.html';
-  return pathname.startsWith('/en/') ? pathname.slice(3) : pathname;
+  if (pathname === '/es' || pathname === '/es/') return '/';
+  if (pathname === '/es/404' || pathname === '/es/404/') return '/404.html';
+  return pathname.startsWith('/es/') ? pathname.slice(3) : pathname;
 }
 
 export const site = siteByLanguage.es;
