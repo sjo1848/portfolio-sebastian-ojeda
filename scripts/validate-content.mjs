@@ -13,7 +13,22 @@ const forbidden = [
   { label: 'Replacement marker', pattern: /\b(?:REPLACE_ME|YOUR_EMAIL|YOUR_LINKEDIN)\b/i },
 ];
 
-const expectedProjects = ['alquileres-uspa', 'gasflow', 'hms-elite', 'jm-soluciones', 'taco-loco'];
+const expectedProjects = [
+  'ai-commerce-platform',
+  'alquileres-uspa',
+  'gasflow',
+  'hms-cloudflare',
+  'hms-elite',
+  'jm-soluciones',
+  'taco-loco',
+];
+const expectedFeaturedProjects = [
+  'ai-commerce-platform',
+  'hms-cloudflare',
+  'hms-elite',
+  'gasflow',
+  'alquileres-uspa',
+];
 const expectedCvRepositories = [
   'ai-commerce-platform',
   'hotel-management-system',
@@ -118,6 +133,26 @@ async function validateProjectInventory() {
   }
 }
 
+async function validateFeaturedPortfolio() {
+  const homeFiles = ['src/pages/index.astro', 'src/pages/es/index.astro'];
+  for (const file of homeFiles) {
+    const content = await readFile(path.join(root, file), 'utf8');
+    for (const slug of expectedFeaturedProjects) {
+      if (!content.includes(`'${slug}'`)) failures.push(`${file} is missing featured case ${slug}.`);
+    }
+  }
+
+  const siteContent = await readFile(path.join(root, 'src/data/site.ts'), 'utf8');
+  for (const phrase of [
+    'AI-first software developer',
+    'Software Developer · AI, Automation & Operational Systems',
+    'IA y sistemas agentic',
+    'AI and agentic systems',
+  ]) {
+    if (!siteContent.includes(phrase)) failures.push(`src/data/site.ts is missing positioning phrase: ${phrase}`);
+  }
+}
+
 async function validateCvProjectConsistency() {
   const cvFiles = [
     'docs/cv/CV_Sebastian_Ojeda_Backend_FullStack.md',
@@ -161,6 +196,7 @@ for (const scanRoot of scanRoots) {
 }
 
 await validateProjectInventory();
+await validateFeaturedPortfolio();
 await validateCvProjectConsistency();
 
 if (failures.length > 0) {
