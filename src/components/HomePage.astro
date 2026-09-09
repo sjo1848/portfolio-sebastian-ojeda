@@ -27,15 +27,29 @@ const storyCopy = portfolioStoriesByLanguage[lang];
 const processSteps = processStepsByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
+const brandCopy = lang === 'es'
+  ? {
+      headline: 'Del proceso al sistema.',
+      role: 'Full-Stack Software Developer',
+      proposition:
+        'Construyo software end-to-end para flujos reales: backend, interfaces, datos, integraciones y automatización con evidencia verificable.',
+    }
+  : {
+      headline: 'From workflow to system.',
+      role: 'Full-Stack Software Developer',
+      proposition:
+        'I build end-to-end software for real workflows across backend, interfaces, data, integrations and automation, backed by verifiable evidence.',
+    };
 ---
 
 <BaseLayout lang={lang}>
   <section class="hero section">
     <div class="container hero-grid">
-      <div>
-        <p class="eyebrow">{copy.eyebrow}</p>
-        <h1>{site.title}</h1>
-        <p class="hero-copy">{site.description}</p>
+      <div class="hero-message">
+        <p class="eyebrow hero-identity">{site.name}</p>
+        <h1>{brandCopy.headline}</h1>
+        <p class="hero-role">{brandCopy.role}</p>
+        <p class="hero-copy">{brandCopy.proposition}</p>
         <p class="hero-context">{copy.context}</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
@@ -155,6 +169,42 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
 </BaseLayout>
 
 <style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 24%, transparent), transparent 48%),
+      var(--canvas);
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-message {
+    max-width: 49rem;
+  }
+
+  .hero-identity {
+    margin-bottom: 1.25rem;
+    color: var(--muted);
+  }
+
+  .hero h1 {
+    max-width: 11ch;
+  }
+
+  .hero-role {
+    margin-top: 1.2rem;
+    color: var(--accent-strong);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 760;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
   #projects {
     position: relative;
     overflow: hidden;
@@ -194,6 +244,10 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
   }
 
   @media (min-width: 48rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.72fr);
+    }
+
     .story-grid,
     .secondary-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
