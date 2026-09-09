@@ -14,13 +14,21 @@ const viewports = [
   { name: 'desktop', width: 1440, height: 1200 },
 ];
 
+const supportCaptureHeights = {
+  mobile: 12_000,
+  tablet: 7_000,
+  desktop: 5_200,
+};
+
 const routes = [
   { name: 'home-en', pathname: '/' },
   { name: 'home-en-projects', pathname: '/', captureHeight: 2400 },
+  { name: 'home-en-support', pathname: '/', captureHeight: supportCaptureHeights },
   { name: 'hms-cloudflare-en', pathname: '/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-en', pathname: '/projects/alquileres-uspa/' },
   { name: 'home-es', pathname: '/es/' },
   { name: 'home-es-projects', pathname: '/es/', captureHeight: 2400 },
+  { name: 'home-es-support', pathname: '/es/', captureHeight: supportCaptureHeights },
   { name: 'hms-cloudflare-es', pathname: '/es/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-es', pathname: '/es/projects/alquileres-uspa/' },
   { name: 'not-found-en', pathname: '/404.html' },
@@ -86,7 +94,9 @@ await mkdir(outputDir, { recursive: true });
 for (const viewport of viewports) {
   for (const route of routes) {
     const target = new URL(route.pathname, baseUrl).toString();
-    const captureHeight = route.captureHeight ?? viewport.height;
+    const captureHeight = typeof route.captureHeight === 'object'
+      ? route.captureHeight[viewport.name]
+      : route.captureHeight ?? viewport.height;
     const filename = `${route.name}-${viewport.name}-${viewport.width}x${captureHeight}.png`;
     const output = path.join(outputDir, filename);
 
