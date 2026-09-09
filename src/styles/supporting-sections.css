@@ -39,6 +39,7 @@
 
 #capabilities .capability-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
   counter-reset: capability;
 }
@@ -268,6 +269,10 @@
 #contact .button-secondary:hover {
   border-color: var(--copper-light);
   background: rgb(255 248 237 / 6%);
+}
+
+#contact a:focus-visible {
+  outline-color: var(--copper-light);
 }
 
 .site-footer {
