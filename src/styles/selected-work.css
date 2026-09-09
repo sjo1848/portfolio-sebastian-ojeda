@@ -93,6 +93,24 @@
   border-top-color: color-mix(in srgb, var(--line) 86%, var(--ink));
 }
 
+@media (min-width: 48rem) and (max-width: 68.74rem) {
+  #projects .story-grid .project-card-hero {
+    display: block;
+  }
+
+  #projects .story-grid .project-card-hero .project-evidence {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  #projects .story-grid .project-card-hero .project-body {
+    padding: clamp(1.5rem, 3vw, 1.9rem);
+  }
+}
+
 @media (min-width: 68.75rem) {
   #projects .projects-heading {
     display: grid;
