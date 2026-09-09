@@ -28,6 +28,7 @@ export interface ProjectMediaSet {
 const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/b2f300df3450c7a1eb1f75539fdca7627802055c/docs/screenshots';
 const hmsWalkthroughBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/media';
 const alquileresEvidenceBase = 'https://github.com/sjo1848/alquileres-uspa/raw/5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51/docs/media/portfolio';
+const tacoLocoEvidenceBase = 'https://github.com/sjo1848/taco-loco-foodtrack/raw/a9a9e2c1c70d2a654f7d6b181bf2b18778b49f48/output/playwright';
 
 export const projectMedia = {
   'hms-elite': {
@@ -186,6 +187,38 @@ export const projectMedia = {
         caption: {
           es: 'Validación mobile del catálogo real con datos sintéticos; confirma el comportamiento responsive de imagen, contenido y disponibilidad.',
           en: 'Mobile validation of the real catalog with synthetic data; it confirms responsive image, content, and availability behavior.',
+        },
+        width: 390,
+        height: 844,
+      },
+    ],
+  },
+  'taco-loco': {
+    cover: {
+      kind: 'image',
+      src: `${tacoLocoEvidenceBase}/menu-current-desktop.png`,
+      alt: {
+        es: 'Menú digital de Taco Loco Foodtrack en escritorio, con catálogo gastronómico y experiencia de selección del MVP.',
+        en: 'Taco Loco Foodtrack digital menu on desktop, showing the food catalog and MVP selection experience.',
+      },
+      caption: {
+        es: 'Captura Playwright ya versionada en el repositorio del MVP; documenta el estado local del menú y no implica un despliegue productivo.',
+        en: 'Playwright screenshot already versioned in the MVP repository; it documents the local menu state and does not imply a production deployment.',
+      },
+      width: 1050,
+      height: 655,
+    },
+    gallery: [
+      {
+        kind: 'image',
+        src: `${tacoLocoEvidenceBase}/menu-current-mobile.png`,
+        alt: {
+          es: 'Menú mobile de Taco Loco Foodtrack capturado a 390 por 844 píxeles.',
+          en: 'Taco Loco Foodtrack mobile menu captured at 390 by 844 pixels.',
+        },
+        caption: {
+          es: 'Evidencia mobile existente del menú QR, conservada como salida Playwright en el repositorio fuente.',
+          en: 'Existing mobile evidence of the QR menu, preserved as Playwright output in the source repository.',
         },
         width: 390,
         height: 844,
