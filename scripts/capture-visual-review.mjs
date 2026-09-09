@@ -97,6 +97,7 @@ for (const viewport of viewports) {
       '--disable-smooth-scrolling',
       '--hide-scrollbars',
       '--force-device-scale-factor=1',
+      '--virtual-time-budget=1500',
       `--window-size=${viewport.width},${viewport.height}`,
       `--screenshot=${output}`,
       target,
