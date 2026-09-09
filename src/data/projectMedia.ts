@@ -125,7 +125,7 @@ export const projectMedia = {
         },
         caption: {
           es: 'Housekeeping: cola del turno para habitaciones por limpiar, en limpieza, listas y mantenimiento.',
-          en: 'Housekeeping: shift queue for rooms to clean, in cleaning, ready, and under maintenance states.',
+          en: 'Housekeeping: shift queue for rooms to clean, in cleaning, ready, and under maintenance.',
         },
         width: 1440,
         height: 900,
