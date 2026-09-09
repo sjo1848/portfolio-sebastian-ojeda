@@ -88,12 +88,28 @@ La validación combina:
 
 El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación. Se presenta como evidencia local de recuperación, no como prueba de rollback atómico remoto entre bases D1.
 
+## Evidencia visual
+
+Las capturas siguientes están versionadas en el repositorio y provienen de regresiones Playwright sobre el runtime migrado. Documentan comportamiento local reproducible; no se presentan como aceptación remota ni como prueba de producción.
+
+![Flujo de recepción de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i04-reception-lifecycle.png)
+
+*Recepción: ciclo operacional capturado durante la regresión del proyecto.*
+
+![Workspace de housekeeping de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i05-integrated-housekeeping.png)
+
+*Housekeeping: evidencia del workspace integrado sobre la migración Cloudflare.*
+
+![Flujo de facturación de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i06-billing.png)
+
+*Billing: comportamiento de producto capturado por Playwright; no implica Product Acceptance remota.*
+
 ## Resultado actual
 
 La migración alcanzó validación técnica y conserva una separación explícita entre aceptación técnica y aceptación de producto. El caso demuestra continuidad entre un backend Rust/PostgreSQL y una arquitectura edge/serverless sin presentar la segunda como un sistema independiente del dominio original.
 
 ## Evidencia y límites
 
-La evidencia disponible cubre código, contrato de migración, pruebas automatizadas, recorridos de navegador y rehearsal de recovery. Permanecen pendientes capturas remotas del recorrido de recepción, evidencia visual mobile del candidato aceptado y evidencia remota de Product Acceptance.
+La evidencia disponible cubre código, contrato de migración, pruebas automatizadas, recorridos de navegador, capturas Playwright y rehearsal de recovery. Permanecen pendientes capturas remotas del recorrido de recepción, evidencia visual mobile del candidato aceptado y evidencia remota de Product Acceptance.
 
 Por eso el estado publicado es **migración validada técnicamente; aceptación separada**. No se presenta como release productivo final.
