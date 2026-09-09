@@ -16,9 +16,11 @@ const viewports = [
 
 const routes = [
   { name: 'home-en', pathname: '/' },
+  { name: 'home-en-projects', pathname: '/#projects' },
   { name: 'hms-cloudflare-en', pathname: '/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-en', pathname: '/projects/alquileres-uspa/' },
   { name: 'home-es', pathname: '/es/' },
+  { name: 'home-es-projects', pathname: '/es/#projects' },
   { name: 'hms-cloudflare-es', pathname: '/es/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-es', pathname: '/es/projects/alquileres-uspa/' },
   { name: 'not-found-en', pathname: '/404.html' },
