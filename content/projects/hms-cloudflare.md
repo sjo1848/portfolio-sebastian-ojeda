@@ -26,76 +26,74 @@ evidenceNeeded:
   - Evidencia remota de Product Acceptance
 ---
 
-## La historia no empieza en Cloudflare
+## Problema
 
-HMS Cloudflare es más potente cuando se entiende como evolución de un sistema operacional existente, no como otro proyecto serverless aislado.
+HMS Cloudflare no nació como una aplicación serverless nueva. Es la evolución de un sistema de gestión hotelera que ya modelaba reservas, recepción, habitaciones, huéspedes, housekeeping, facturación, permisos y operación multi-hotel.
+
+El problema era cambiar infraestructura y topología de datos sin cambiar silenciosamente el producto. Migrar de Rust + Axum + PostgreSQL hacia Workers, Hono y D1 exigía conservar estados, permisos, aislamiento entre hoteles y comportamiento observable, además de demostrar que backup y recovery funcionaban de forma verificable.
+
+## Contexto y restricciones
 
 La secuencia técnica es:
 
-`HMS Elite / Rust + Axum + PostgreSQL → inventario del contrato → migración parity-first → Workers + Hono + D1 → validación de producto y recovery → integración agentic gobernada como siguiente capa`
+`HMS Elite / Rust + Axum + PostgreSQL → inventario del contrato → migración parity-first → Workers + Hono + D1 → validación de producto y recovery → Agent Core como capa posterior`
 
-El repositorio fuente `hotel-management-system` modeló primero reservas, recepción, habitaciones, huéspedes, housekeeping, facturación, permisos y operación multi-hotel. La migración no podía tratar ese comportamiento como descartable.
+Las restricciones que guiaron el trabajo fueron concretas:
 
-## Migrar arquitectura sin cambiar silenciosamente el producto
+- preservar las transiciones de estado utilizadas por recepción;
+- mantener la semántica de permisos y memberships;
+- reemplazar PostgreSQL RLS sin perder aislamiento multi-tenant;
+- evitar prometer atomicidad distribuida donde D1 no la ofrece;
+- validar recorridos reales de navegador, no solo compilación;
+- distinguir Technical PASS, Product Acceptance, Production Readiness y Release.
 
-El objetivo de HMS Cloudflare es reemplazar infraestructura y topología de datos preservando el contrato observable del producto.
+## Arquitectura
 
-Eso obliga a responder preguntas más difíciles que “¿compila?”:
+La arquitectura activa separa dos responsabilidades:
 
-- ¿se conservan las transiciones de estado que recepción ya necesita?;
-- ¿los permisos mantienen la misma semántica?;
-- ¿cómo se aísla cada hotel sin PostgreSQL RLS?;
-- ¿qué operaciones necesitan atomicidad dentro de una sola base?;
-- ¿qué evidencia prueba un recorrido real de navegador?;
-- ¿un backup realmente vuelve a un estado reconciliado cuando se restaura?
+- `CONTROL_DB`: identidades, hoteles, memberships, roles y routing;
+- un D1 operacional por hotel: reservas, habitaciones, huéspedes, billing, housekeeping y auditoría.
 
-## De PostgreSQL a una topología D1 explícita
+Cada request valida identidad, membership, rol y contexto antes de resolver la base operacional correspondiente. La separación física de datos reduce el radio de impacto, pero no reemplaza autorización.
 
-La arquitectura activa usa:
+Cloudflare Access autentica en el edge; la API valida esa identidad y HMS aplica la autoridad de negocio. Son capas distintas y se mantienen separadas intencionalmente.
 
-- un `CONTROL_DB` para identidades, hoteles, memberships, roles y routing;
-- un D1 operacional separado por hotel para reservas, habitaciones, huéspedes, billing, housekeeping y auditoría.
+## Decisiones de ingeniería
 
-La separación física no reemplaza autorización. Cada request debe validar identidad, membership, rol y contexto antes de resolver la base operacional correcta.
+**Parity-first antes que rediseño.** La migración prioriza conservar el contrato observable antes de introducir nuevas capacidades.
 
-Tampoco se simula una transacción distribuida inexistente: las operaciones críticas se mantienen dentro de un D1 de hotel cuando la atomicidad importa.
+**Atomicidad local.** Las operaciones críticas permanecen dentro del D1 de un hotel cuando la consistencia transaccional importa. No se simula una transacción distribuida inexistente.
 
-## Seguridad en capas
+**Autoridad explícita.** Access resuelve autenticación de infraestructura; memberships y RBAC resuelven autoridad de negocio.
 
-1. Cloudflare Access autentica a la persona en el edge.
-2. La API valida esa identidad.
-3. HMS la relaciona con memberships y roles.
-4. Se autoriza el hotel o contexto de red solicitado.
-5. Recién entonces se resuelve el D1 correspondiente.
+**Recovery como comportamiento probado.** Un backup no se considera evidencia suficiente hasta restaurarlo y reconciliar el estado resultante.
 
-Autenticación de infraestructura y autoridad de negocio son fronteras distintas.
-
-## Parity-first y evidencia
+## Implementación
 
 La migración se dividió en incrementos verificables: foundation, inventario del contrato, rooms/guests/bookings, recepción, housekeeping, mantenimiento, billing, seguridad, administración, reporting y readiness operacional.
 
-La validación combina typecheck, tests unitarios e integración, regresiones específicas, browser journeys, checks RBAC/tenant, failure paths, concurrencia, migración, backup/restore e Independent Review.
+El trabajo conecta backend, datos, interfaces, seguridad e infraestructura. HMS Elite aporta el contrato fuente; HMS Cloudflare implementa el nuevo runtime y la nueva topología; Agent Core pertenece a otro repositorio y otro gate, y se integra solo sobre una frontera operacional explícita.
 
-El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación. Se presenta como evidencia local de recuperación, no como prueba falsa de rollback atómico remoto entre D1.
+## QA y validación
 
-## HMS Elite no desaparece: se convierte en la primera mitad de la historia
+La validación combina:
 
-Mantener HMS Elite como caso independiente tiene valor histórico, pero la evidencia más fuerte aparece al mostrar continuidad:
+- typecheck y tests unitarios/integración;
+- regresiones específicas de dominio;
+- browser journeys;
+- checks RBAC y tenant isolation;
+- failure paths y concurrencia;
+- migración y backup/restore;
+- Independent Review.
 
-- primero hubo que modelar un SaaS operacional real en Rust/PostgreSQL;
-- después identificar su contrato observable;
-- luego cambiar infraestructura sin perder comportamiento ni autoridad;
-- finalmente producir una frontera suficientemente explícita como para que una capa agentic pueda integrarse sin convertir al modelo en fuente de verdad.
+El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación. Se presenta como evidencia local de recuperación, no como prueba de rollback atómico remoto entre bases D1.
 
-El Agent Core pertenece a otro repositorio y otro gate. La historia del portfolio los conecta como evolución de arquitectura, no como si fueran un único monorepo.
+## Resultado actual
 
-## Qué demuestra esta historia
+La migración alcanzó validación técnica y conserva una separación explícita entre aceptación técnica y aceptación de producto. El caso demuestra continuidad entre un backend Rust/PostgreSQL y una arquitectura edge/serverless sin presentar la segunda como un sistema independiente del dominio original.
 
-- brownfield migration en lugar de greenfield solamente;
-- preservación de contratos de dominio;
-- Rust/PostgreSQL y edge/serverless en una misma evolución;
-- aislamiento multi-tenant y RBAC;
-- razonamiento transaccional y de concurrencia;
-- browser-level product validation;
-- migration y recovery engineering;
-- separación entre Technical PASS, Product Acceptance, Production Readiness y Release.
+## Evidencia y límites
+
+La evidencia disponible cubre código, contrato de migración, pruebas automatizadas, recorridos de navegador y rehearsal de recovery. Permanecen pendientes capturas remotas del recorrido de recepción, evidencia visual mobile del candidato aceptado y evidencia remota de Product Acceptance.
+
+Por eso el estado publicado es **migración validada técnicamente; aceptación separada**. No se presenta como release productivo final.
