@@ -15,9 +15,9 @@ const sharedSite = {
 export const siteByLanguage = {
   es: {
     ...sharedSite,
-    title: 'Software Developer · IA y Automatización',
+    title: 'Full-Stack Software Developer · Backend, IA y Automatización',
     description:
-      'Construyo sistemas end-to-end que combinan IA, automatización, backend, interfaces y controles operativos verificables.',
+      'Construyo productos y sistemas end-to-end: backend, interfaces, datos, integraciones, infraestructura y automatización con IA cuando aporta valor.',
     languageTag: 'es-AR',
     locale: 'es_AR',
     alternateLocale: 'en_US',
@@ -25,10 +25,10 @@ export const siteByLanguage = {
     workMode:
       'Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.',
     roles: [
+      'Full-Stack Developer',
+      'Backend Developer',
       'Software Developer',
       'Applied AI / Agentic Software Developer',
-      'Backend Developer',
-      'Full-Stack Developer',
       'Software Developer para automatización y sistemas operativos',
     ],
     languages: [
@@ -38,9 +38,9 @@ export const siteByLanguage = {
   },
   en: {
     ...sharedSite,
-    title: 'Software Developer · AI and Automation',
+    title: 'Full-Stack Software Developer · Backend, AI and Automation',
     description:
-      'I build end-to-end systems that combine AI, automation, backend services, interfaces and verifiable operational controls.',
+      'I build end-to-end products and systems across backend services, interfaces, data, integrations, infrastructure and AI-powered automation when it adds value.',
     languageTag: 'en-US',
     locale: 'en_US',
     alternateLocale: 'es_AR',
@@ -48,10 +48,10 @@ export const siteByLanguage = {
     workMode:
       'Remote-first, available for hybrid or on-site work in Mendoza, with relocation considered for the right opportunity.',
     roles: [
+      'Full-Stack Developer',
+      'Backend Developer',
       'Software Developer',
       'Applied AI / Agentic Software Developer',
-      'Backend Developer',
-      'Full-Stack Developer',
       'Software Developer for automation and operational systems',
     ],
     languages: [
@@ -64,7 +64,7 @@ export const siteByLanguage = {
 export const copyByLanguage = {
   es: {
     portfolioLabel: 'Portfolio profesional',
-    socialImageAlt: 'Portfolio profesional de Sebastián Ojeda, software developer enfocado en IA, automatización y sistemas operativos.',
+    socialImageAlt: 'Portfolio profesional de Sebastián Ojeda, desarrollador full-stack enfocado en backend, IA aplicada, automatización y sistemas operativos.',
     skipLink: 'Ir al contenido',
     navigationLabel: 'Navegación principal',
     nav: {
@@ -77,31 +77,31 @@ export const copyByLanguage = {
     languageSwitch: 'EN',
     languageSwitchAria: 'View the portfolio in English',
     home: {
-      eyebrow: 'AI-first software developer',
+      eyebrow: 'Full-stack software developer',
       context:
-        'Diseño software desde el dominio y la arquitectura hasta la operación. Uso IA donde aporta interpretación, contexto o automatización, y mantengo reglas, permisos, datos críticos y side effects bajo controles deterministas y verificables.',
+        'Trabajo de punta a punta: modelo el dominio, diseño APIs y datos, construyo interfaces e integraciones, preparo despliegue y calidad, e incorporo IA cuando mejora interpretación, contexto o automatización sin ceder reglas y decisiones críticas.',
       viewProjects: 'Ver casos de estudio',
       downloadCv: 'Descargar CV',
       workflowAria: 'Enfoque de trabajo',
-      workflow: ['Dominio', 'Arquitectura', 'IA + Automatización', 'QA', 'Operación'],
+      workflow: ['Producto', 'Backend', 'Interfaces', 'Datos + Integraciones', 'QA + Operación'],
       evidenceEyebrow: 'Evidencia de trabajo',
       projectsTitle: 'Casos destacados',
       projectsIntro:
-        'Cinco casos que muestran software completo, sistemas agentic, migración cloud, experiencias móviles y operaciones reales, con repositorios y límites de evidencia explícitos.',
+        'Cuatro casos principales muestran desarrollo full-stack, backend, workflows, datos, cloud e IA aplicada sobre problemas y restricciones concretas.',
       processEyebrow: 'Método',
-      processTitle: 'Construcción verificable de software y sistemas AI-first',
+      processTitle: 'Construcción verificable de sistemas end-to-end',
       processIntro:
-        'Project Method convierte cada fase en un resultado revisable: parte del problema y la evidencia, separa autoridad técnica de aceptación humana y usa agentes y automatización sin ocultar decisiones críticas.',
+        'Project Method convierte cada fase en un resultado revisable: parte del problema y la evidencia, hace explícitas arquitectura y autoridad, y usa automatización y agentes sin ocultar decisiones críticas.',
       capabilitiesEyebrow: 'Capacidades',
-      capabilitiesTitle: 'IA sobre una base de ingeniería completa',
+      capabilitiesTitle: 'Full-stack con backend, datos, cloud e IA aplicada',
       experienceEyebrow: 'Contexto operativo',
       experienceTitle: 'Software conectado con procesos, integraciones y operación real',
       experienceParagraphs: [
         'Mi experiencia incluye SAP Basis, integraciones SAP PI/PO y trabajo con procesos operativos. Ese contexto influye en cómo diseño software: considero actores, excepciones, permisos, trazabilidad, continuidad y calidad de datos desde el comienzo.',
-        'Mi enfoque AI-first no reemplaza ingeniería por prompts. Combino modelos y agentes con APIs, datos, interfaces, políticas, Human-in-the-Loop, testing, CI/CD y observabilidad para que la automatización opere dentro de límites explícitos.',
+        'Incorporo IA cuando aporta una ventaja concreta. Combino modelos y agentes con APIs, datos, interfaces, políticas, Human-in-the-Loop, testing, CI/CD y observabilidad para que la automatización opere dentro de límites explícitos.',
       ],
       contactEyebrow: 'Contacto',
-      contactTitle: 'Busco oportunidades en software, Applied AI, automatización y sistemas operativos',
+      contactTitle: 'Busco oportunidades Full-Stack, Backend, Applied AI y automatización',
       englishLevel: 'Inglés intermedio en desarrollo y práctica profesional.',
       sendEmail: 'Enviar email',
       viewGithub: 'Ver GitHub',
@@ -130,7 +130,7 @@ export const copyByLanguage = {
   },
   en: {
     portfolioLabel: 'Professional portfolio',
-    socialImageAlt: 'Professional portfolio of Sebastián Ojeda, software developer focused on AI, automation and operational systems.',
+    socialImageAlt: 'Professional portfolio of Sebastián Ojeda, a full-stack developer focused on backend engineering, applied AI, automation and operational systems.',
     skipLink: 'Skip to content',
     navigationLabel: 'Primary navigation',
     nav: {
@@ -143,31 +143,31 @@ export const copyByLanguage = {
     languageSwitch: 'ES',
     languageSwitchAria: 'Ver el portfolio en español',
     home: {
-      eyebrow: 'AI-first software developer',
+      eyebrow: 'Full-stack software developer',
       context:
-        'I design software from domain and architecture through operations. I use AI where interpretation, context or automation adds value, while keeping rules, permissions, critical data and side effects behind deterministic and verifiable controls.',
+        'I work end to end: modeling the domain, designing APIs and data, building interfaces and integrations, preparing deployment and quality, and adding AI when it improves interpretation, context or automation without giving up control of critical rules and decisions.',
       viewProjects: 'View case studies',
       downloadCv: 'Download resume',
       workflowAria: 'Engineering approach',
-      workflow: ['Domain', 'Architecture', 'AI + Automation', 'QA', 'Operations'],
+      workflow: ['Product', 'Backend', 'Interfaces', 'Data + Integrations', 'QA + Operations'],
       evidenceEyebrow: 'Work evidence',
       projectsTitle: 'Featured case studies',
       projectsIntro:
-        'Five cases showing complete software systems, agentic workflows, cloud migration, mobile experiences and real operations, with repositories and explicit evidence boundaries.',
+        'Four primary cases demonstrate full-stack development, backend engineering, workflows, data, cloud and applied AI across concrete problems and constraints.',
       processEyebrow: 'Method',
-      processTitle: 'Verifiable software and AI-first system delivery',
+      processTitle: 'Verifiable end-to-end system delivery',
       processIntro:
-        'Project Method turns every phase into a reviewable outcome: it starts from the problem and evidence, separates technical authority from human acceptance, and uses agents and automation without hiding critical decisions.',
+        'Project Method turns every phase into a reviewable outcome: it starts from the problem and evidence, makes architecture and authority explicit, and uses automation and agents without hiding critical decisions.',
       capabilitiesEyebrow: 'Capabilities',
-      capabilitiesTitle: 'AI built on complete software engineering',
+      capabilitiesTitle: 'Full-stack engineering across backend, data, cloud and applied AI',
       experienceEyebrow: 'Operational context',
       experienceTitle: 'Software connected to processes, integrations and real operations',
       experienceParagraphs: [
         'My background includes SAP Basis, SAP PI/PO integrations and operational processes. That context shapes how I design software: I consider actors, exceptions, permissions, traceability, continuity and data quality from the beginning.',
-        'My AI-first approach does not replace engineering with prompts. I combine models and agents with APIs, data, interfaces, policies, Human-in-the-Loop, testing, CI/CD and observability so automation operates within explicit boundaries.',
+        'I add AI when it provides a concrete advantage. I combine models and agents with APIs, data, interfaces, policies, Human-in-the-Loop, testing, CI/CD and observability so automation operates within explicit boundaries.',
       ],
       contactEyebrow: 'Contact',
-      contactTitle: 'Open to software, Applied AI, automation and operational systems opportunities',
+      contactTitle: 'Open to Full-Stack, Backend, Applied AI and automation opportunities',
       englishLevel: 'Intermediate English, actively improving through professional practice.',
       sendEmail: 'Send email',
       viewGithub: 'View GitHub',
@@ -269,10 +269,6 @@ export const methodPhasesByLanguage = {
 export const capabilityGroupsByLanguage = {
   es: [
     {
-      title: 'IA y sistemas agentic',
-      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, contexto confiable, evaluación, telemetría y fallback.',
-    },
-    {
       title: 'Backend y arquitectura',
       description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, APIs REST, OpenAPI, autenticación, RBAC y modelado de dominio.',
     },
@@ -285,15 +281,15 @@ export const capabilityGroupsByLanguage = {
       description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis y SAP PI/PO.',
     },
     {
+      title: 'IA y sistemas agentic',
+      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, contexto confiable, evaluación, telemetría y fallback.',
+    },
+    {
       title: 'Calidad y operación',
       description: 'GitHub Actions, Playwright, Vitest, E2E, seguridad, observabilidad, recovery, CI/CD y evidence gates.',
     },
   ],
   en: [
-    {
-      title: 'AI and agentic systems',
-      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, trusted context, evaluation, telemetry and fallback.',
-    },
     {
       title: 'Backend and architecture',
       description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, REST APIs, OpenAPI, authentication, RBAC and domain modeling.',
@@ -305,6 +301,10 @@ export const capabilityGroupsByLanguage = {
     {
       title: 'Data, cloud and integration',
       description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis and SAP PI/PO.',
+    },
+    {
+      title: 'AI and agentic systems',
+      description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, trusted context, evaluation, telemetry and fallback.',
     },
     {
       title: 'Quality and operations',

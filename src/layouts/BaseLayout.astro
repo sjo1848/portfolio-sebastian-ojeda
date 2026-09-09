@@ -35,7 +35,9 @@ const copy = copyByLanguage[lang];
 const resolvedTitle = title ?? site.title;
 const resolvedDescription = description ?? site.description;
 const pageTitle = resolvedTitle === site.title
-  ? `${site.name} — ${resolvedTitle}`
+  ? lang === 'es'
+    ? `${site.name} — Full-Stack Developer`
+    : `${site.name} — Full-Stack Developer`
   : `${resolvedTitle} — ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 const alternate = new URL(getAlternatePath(Astro.url.pathname, lang), Astro.site ?? Astro.url);

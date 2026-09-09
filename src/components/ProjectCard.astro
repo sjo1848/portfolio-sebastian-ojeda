@@ -33,6 +33,31 @@ const media = getProjectMedia(data.slug);
 const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
+const labels = lang === 'es'
+  ? {
+      role: 'Rol',
+      evidence: 'Evidencia',
+      documented: 'Caso documentado',
+      visual: 'Evidencia visual',
+      code: 'Código disponible',
+      demo: 'Demo disponible',
+      stack: 'Stack principal',
+    }
+  : {
+      role: 'Role',
+      evidence: 'Evidence',
+      documented: 'Documented case study',
+      visual: 'Visual evidence',
+      code: 'Code available',
+      demo: 'Demo available',
+      stack: 'Core stack',
+    };
+const evidenceSignals = [
+  labels.documented,
+  cover ? labels.visual : null,
+  data.repository ? labels.code : null,
+  data.demo ? labels.demo : null,
+].filter(Boolean);
 ---
 
 <article class:list={['project-card', `project-card-${variant}`]}>
@@ -62,10 +87,26 @@ const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
   <div class="project-body">
     <p class="eyebrow">{data.statusLabel}</p>
     <h3>{data.title}</h3>
-    <p>{data.summary}</p>
-    <ul class="stack-list" aria-label={`${copy.technologiesAria} ${data.title}`}>
-      {data.stack.slice(0, 5).map((technology) => <li>{technology}</li>)}
-    </ul>
+    <p class="project-context">{data.summary}</p>
+
+    <dl class="project-card-meta">
+      <div>
+        <dt>{labels.role}</dt>
+        <dd>{data.role}</dd>
+      </div>
+      <div>
+        <dt>{labels.evidence}</dt>
+        <dd>{evidenceSignals.join(' · ')}</dd>
+      </div>
+    </dl>
+
+    <div class="project-stack">
+      <p>{labels.stack}</p>
+      <ul class="stack-list" aria-label={`${copy.technologiesAria} ${data.title}`}>
+        {data.stack.slice(0, 4).map((technology) => <li>{technology}</li>)}
+      </ul>
+    </div>
+
     <div class="card-actions">
       <a class="button button-primary" href={getProjectPath(lang, data.slug)}>{copy.viewCaseStudy}</a>
       {data.repository && (
@@ -74,3 +115,54 @@ const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
     </div>
   </div>
 </article>
+
+<style>
+  .project-context {
+    margin-top: 1rem;
+    color: var(--muted);
+  }
+
+  .project-card-meta {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1.5rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-card-meta div {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .project-card-meta dt,
+  .project-stack > p {
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-card-meta dd {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 650;
+    line-height: 1.45;
+  }
+
+  .project-stack {
+    margin-top: 1.4rem;
+  }
+
+  .project-stack :global(.stack-list) {
+    margin-top: 0.65rem;
+  }
+
+  @media (min-width: 48rem) {
+    .project-card-hero .project-card-meta {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -25,12 +25,12 @@ const expectedProjects = [
   'uspaya',
 ];
 const expectedPrimaryStories = [
-  'ai-commerce-platform',
   'hms-cloudflare',
-  'agentic-engineering-governance',
+  'alquileres-uspa',
+  'ai-commerce-platform',
   'uspaya',
 ];
-const expectedSecondaryCases = ['alquileres-uspa', 'gasflow'];
+const expectedSecondaryCases = ['gasflow', 'agentic-engineering-governance'];
 const expectedCvRepositories = [
   'ai-commerce-platform',
   'hotel-management-system',
@@ -167,11 +167,11 @@ async function validatePortfolioNarrative() {
 
   const siteContent = await readFile(path.join(root, 'src/data/site.ts'), 'utf8');
   for (const phrase of [
-    'AI-first software developer',
-    'Software Developer · AI and Automation',
-    'Software Developer · IA y Automatización',
-    'IA y sistemas agentic',
-    'AI and agentic systems',
+    'Full-stack software developer',
+    'Full-Stack Software Developer · Backend, AI and Automation',
+    'Full-Stack Software Developer · Backend, IA y Automatización',
+    'Backend y arquitectura',
+    'Backend and architecture',
   ]) {
     if (!siteContent.includes(phrase)) failures.push(`src/data/site.ts is missing positioning phrase: ${phrase}`);
   }

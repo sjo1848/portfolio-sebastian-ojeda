@@ -22,6 +22,7 @@ const alternateLanguage = lang === 'es' ? 'en' : 'es';
 const alternatePath = getAlternatePath(Astro.url.pathname, lang);
 const brandInitial = site.name.slice(0, 1);
 const brandRest = site.name.slice(1);
+const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
 ---
 
 <header class="site-header">
@@ -33,10 +34,10 @@ const brandRest = site.name.slice(1);
     <nav aria-label={copy.navigationLabel}>
       <ul class="nav-list">
         <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
-        <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
+        <li><a href={`${root}#capabilities`}>{capabilitiesLabel}</a></li>
         <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
+        <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
         <li><a href={`${root}#contact`}>{copy.nav.contact}</a></li>
-        <li><a href={site.cv} download>{copy.nav.cv}</a></li>
         <li>
           <a
             class="language-link"

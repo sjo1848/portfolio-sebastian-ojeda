@@ -25,41 +25,67 @@ evidenceNeeded:
   - Direct contact and administrative audit
 ---
 
-## A public catalog with operational controls
+## Problem
 
-Alquileres Uspallata is a platform for managing and publishing vacation rentals. It combines a public catalog with private owner and administration workflows, so a listing must pass explicit review and publication steps before it becomes visible to visitors.
+A vacation-rental catalog is not solved by displaying cards alone. It also needs to control who can edit a listing, when publication is approved, whether availability is still current, and how a visitor inquiry reaches the correct owner without exposing internal data.
 
-The solution is designed for a domain where information changes, availability needs confirmation, and administrative actions must remain explainable later. The system separates public fields from internal ownership, review, storage, and audit data.
+Alquileres Uspallata addresses that journey as a full-stack system with a public catalog, private owner and administration workflows, timestamped availability, and auditability for sensitive actions.
 
-## The problem
+## Context and constraints
 
-A rental catalog is not solved by displaying cards alone. It also needs to control who can edit a listing, when publication is approved, whether availability is current, and how a visitor inquiry reaches the correct owner.
+The domain combines public information with private operations. A visible listing must pass explicit review and publication steps, while availability can become stale even if the listing remains published.
 
-The platform addresses that journey with:
+The main constraints were:
 
-- Drafts and owner submission for review.
-- Administrative approval or rejection with a persisted reason.
-- Publication independent from review status.
-- A paginated public catalog filtered by location, price, and guest count.
-- Public listing pages exposing only allowed fields.
-- Availability status and last-confirmed timestamp.
-- Direct visitor contact without accepting owner identity from the client.
-- Admin-assisted actions with an audit record.
+- separate ownership, review, and publication;
+- derive the owner from the authenticated session;
+- never trust arbitrary owner identity sent by the client;
+- expose only allowed fields through public routes;
+- preserve rejection reasons and administrative actions;
+- avoid presenting stale availability as currently confirmed availability.
 
-## State model
+## Architecture
 
-Review status and publication status are independent. A listing can move from `DRAFT` to `SUBMITTED`, become `APPROVED` or `REJECTED`, and only an approved listing can be published. This separation prevents editing or reviewing a listing from making it visible automatically.
+The NestJS API organizes authentication, owners, listings, review, contact, and auditing. Prisma and PostgreSQL support the transactional model. Vue consumes separate routes for the public experience, owner workflows, and administration.
 
-Availability has its own status and timestamp. The catalog exposes whether the confirmation is fresh or stale without turning an old timestamp into a promise of current availability.
+The system separates public fields from ownership, storage, review, and audit data. Private operations derive owner context from the session, and administrative actions are associated with actor, action, entity, target owner, and timestamp.
 
-## Architecture and security
+## Engineering decisions
 
-The NestJS API organizes authentication, owners, listings, review, contact, and auditing. Prisma and PostgreSQL support the transactional model, while the Vue application consumes separate routes for public and administrative experiences.
+**Review and publication are separate states.** A listing can move from `DRAFT` to `SUBMITTED`, then to `APPROVED` or `REJECTED`; only an approved listing can be published. Editing or reviewing does not automatically make a listing visible.
 
-Private routes derive ownership from the authenticated session. The server does not accept an arbitrary owner supplied by the browser. Credentials, tokens, storage keys, and internal data are never returned in public responses. Assisted administrative operations are associated with an actor, action, entity, target owner, and timestamp.
+**Availability has explicit freshness.** Availability stores a last-confirmed timestamp so the UI can distinguish fresh information from potentially stale information.
 
-## Current state
+**Server-side authority.** The browser does not decide which owner controls a listing or which internal fields become public.
 
-The repository includes versioned migrations, API and guard tests, linting, builds, secret validation, and a health smoke test. Catalog, review, availability, contact, and audit workflows are part of the documented project checkpoint.
+**Auditable assisted actions.** Relevant administrative operations leave a trace tied to the actor and affected entity.
 
-The current scope excludes reservations, payments, full tourism operations, realtime flows, notifications, and a public production deployment. The portfolio therefore presents it as active development and leaves the demo unset until a verifiable instance is available.
+## Implementation
+
+The implemented flow covers:
+
+- drafts and submission for review;
+- approval or rejection with a persisted reason;
+- controlled publication;
+- paginated public catalog with filters;
+- public listing with availability;
+- direct contact with the correct owner;
+- administrative actions with audit records.
+
+The core stack combines NestJS, Vue, TypeScript, Prisma, and PostgreSQL with a clear separation between API, persistence, and user experience.
+
+## QA and validation
+
+The repository includes versioned migrations, API and guard tests, linting, builds, secret validation, and a health smoke test. Documented checkpoints cover catalog, review, availability, contact, and audit workflows.
+
+Validation focuses especially on authorization boundaries, public responses without internal data, and consistent state transitions.
+
+## Current result
+
+The product core is implemented and remains in active development. The platform already models the full journey from listing creation and review through publication, public discovery, and contact without mixing client authority with server authority.
+
+## Evidence and limits
+
+Available evidence is in the repository, automated tests, and documented case study. A public verifiable deployment and final visual evidence for the catalog, listing detail, review/publication, and administrative audit remain pending.
+
+The current scope **does not include** reservations, payments, realtime flows, notifications, full tourism operations, or a public production deployment. The demo therefore remains unset and the project is presented as active development rather than a finished production product.

@@ -25,41 +25,67 @@ evidenceNeeded:
   - Contacto directo y auditoría administrativa
 ---
 
-## Catálogo público con control operativo
+## Problema
 
-Alquileres Uspallata es una plataforma para gestionar y publicar alojamientos turísticos. El proyecto combina un catálogo público con flujos privados para propietarios y administración, de modo que una ficha visible debe atravesar revisión y publicación explícitas antes de aparecer para visitantes.
+Un catálogo de alojamientos no se resuelve mostrando tarjetas. También necesita controlar quién puede editar una ficha, cuándo una publicación queda aprobada, si la disponibilidad sigue vigente y cómo llega una consulta al propietario correcto sin exponer datos internos.
 
-La solución está pensada para un dominio donde la información cambia, la disponibilidad necesita confirmación y las acciones administrativas deben poder explicarse después. El sistema diferencia los datos públicos de los campos internos de propiedad, revisión, almacenamiento y auditoría.
+Alquileres Uspallata aborda ese recorrido como un sistema full stack con catálogo público, workflows privados para propietarios y administración, disponibilidad con marca temporal y auditoría de acciones sensibles.
 
-## El problema
+## Contexto y restricciones
 
-Un catálogo de alojamientos no se resuelve únicamente mostrando tarjetas. También necesita controlar quién puede editar una ficha, cuándo una publicación está aprobada, si la disponibilidad está actualizada y cómo llega una consulta al propietario correcto.
+El dominio combina información pública y operación privada. Una ficha visible debe atravesar revisión y publicación explícitas, mientras que la disponibilidad puede quedar desactualizada aunque la ficha siga publicada.
 
-La plataforma aborda ese recorrido con:
+Las restricciones principales fueron:
 
-- Borradores y envío a revisión por parte de propietarios.
-- Aprobación o rechazo administrativo con motivo persistido.
-- Publicación independiente del estado de revisión.
-- Catálogo público paginado con filtros por ubicación, precio y huéspedes.
-- Fichas públicas que exponen solo campos permitidos.
-- Estado de disponibilidad y fecha de última confirmación.
-- Contacto directo del visitante sin aceptar identidad del propietario desde el cliente.
-- Acciones asistidas por administración con registro de auditoría.
+- separar propiedad, revisión y publicación;
+- derivar al propietario desde la sesión autenticada;
+- no aceptar identidad arbitraria enviada por el cliente;
+- exponer solo campos permitidos en rutas públicas;
+- conservar motivos de rechazo y acciones administrativas;
+- no presentar disponibilidad vieja como disponibilidad confirmada actual.
 
-## Modelo de estados
+## Arquitectura
 
-El estado de revisión y el estado de publicación son independientes. Una ficha puede avanzar de `DRAFT` a `SUBMITTED`, ser `APPROVED` o `REJECTED`, y solo una ficha aprobada puede publicarse. Esta separación evita que editar o revisar una ficha implique hacerla visible automáticamente.
+La API NestJS organiza autenticación, propietarios, listados, revisión, contacto y auditoría. Prisma y PostgreSQL sostienen el modelo transaccional. Vue consume rutas diferenciadas para la experiencia pública, el propietario y la administración.
 
-La disponibilidad también tiene su propio estado y una marca temporal. El catálogo expone si la confirmación es reciente o antigua, sin convertir una fecha vieja en una promesa de disponibilidad actual.
+El sistema separa campos públicos de ownership, almacenamiento, revisión y auditoría. Las operaciones privadas obtienen el contexto de propietario desde la sesión y las acciones administrativas quedan asociadas a actor, acción, entidad, propietario objetivo y fecha.
 
-## Arquitectura y seguridad
+## Decisiones de ingeniería
 
-La API NestJS organiza autenticación, propietarios, listados, revisión, contacto y auditoría. Prisma y PostgreSQL sostienen el modelo transaccional, mientras que la aplicación Vue consume rutas diferenciadas para la experiencia pública y la administración.
+**Revisión y publicación son estados distintos.** Una ficha puede pasar de `DRAFT` a `SUBMITTED`, luego a `APPROVED` o `REJECTED`; solo una ficha aprobada puede publicarse. Editar o revisar no implica hacer visible la publicación.
 
-Las rutas privadas derivan la propiedad desde la sesión autenticada. El servidor no acepta un propietario arbitrario enviado por el navegador. Las credenciales, tokens, claves de almacenamiento y datos internos no se devuelven en respuestas públicas. Las operaciones administrativas asistidas quedan asociadas a actor, acción, entidad, propietario objetivo y fecha.
+**Disponibilidad con frescura explícita.** El estado de disponibilidad guarda una fecha de última confirmación para diferenciar información reciente de información potencialmente obsoleta.
 
-## Estado real
+**Autoridad del servidor.** El navegador no decide qué propietario modifica una ficha ni qué datos internos se exponen.
 
-El repositorio incluye migraciones versionadas, pruebas de API y guards, lint, build, validación de secretos y smoke test de salud. El catálogo y los flujos de revisión, disponibilidad, contacto y auditoría forman parte del checkpoint documentado del proyecto.
+**Auditoría de acciones asistidas.** Las operaciones administrativas relevantes dejan una traza asociada al actor y a la entidad afectada.
 
-El alcance actual no incluye reservas, pagos, turismo completo, realtime, notificaciones ni un despliegue productivo público. Por eso el portfolio lo presenta como desarrollo activo y mantiene la demo sin URL hasta contar con una instancia verificable.
+## Implementación
+
+El flujo implementado cubre:
+
+- borradores y envío a revisión;
+- aprobación o rechazo con motivo persistido;
+- publicación controlada;
+- catálogo público paginado con filtros;
+- ficha pública con disponibilidad;
+- contacto directo al propietario correcto;
+- acciones administrativas con auditoría.
+
+El stack principal combina NestJS, Vue, TypeScript, Prisma y PostgreSQL, con separación clara entre API, persistencia y experiencia de usuario.
+
+## QA y validación
+
+El repositorio incluye migraciones versionadas, pruebas de API y guards, lint, build, validación de secretos y smoke test de salud. Los checkpoints documentados cubren catálogo, revisión, disponibilidad, contacto y auditoría.
+
+La validación prioriza especialmente límites de autorización, respuestas públicas sin datos internos y consistencia de las transiciones de estado.
+
+## Resultado actual
+
+El núcleo del producto está implementado y en desarrollo activo. La plataforma ya modela el recorrido completo desde creación y revisión de una ficha hasta publicación, consulta pública y contacto, sin mezclar autoridad del cliente con autoridad del servidor.
+
+## Evidencia y límites
+
+La evidencia disponible está en el repositorio, las pruebas y el caso documentado. Siguen pendientes una instancia pública verificable y evidencia visual definitiva de catálogo, ficha pública, revisión/publicación y auditoría administrativa.
+
+El alcance actual **no incluye** reservas, pagos, realtime, notificaciones, turismo completo ni despliegue productivo público. Por eso la demo permanece sin URL y el proyecto se presenta como desarrollo activo, no como producto terminado en producción.

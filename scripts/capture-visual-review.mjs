@@ -16,15 +16,11 @@ const viewports = [
 
 const routes = [
   { name: 'home-en', pathname: '/' },
-  { name: 'hms-elite-en', pathname: '/projects/hms-elite/' },
-  { name: 'hms-gallery-en', pathname: '/projects/hms-elite/#gallery-hms-elite' },
-  { name: 'gasflow-en', pathname: '/projects/gasflow/' },
-  { name: 'jm-soluciones-en', pathname: '/projects/jm-soluciones/' },
+  { name: 'hms-cloudflare-en', pathname: '/projects/hms-cloudflare/' },
+  { name: 'alquileres-uspa-en', pathname: '/projects/alquileres-uspa/' },
   { name: 'home-es', pathname: '/es/' },
-  { name: 'hms-elite-es', pathname: '/es/projects/hms-elite/' },
-  { name: 'hms-gallery-es', pathname: '/es/projects/hms-elite/#gallery-hms-elite' },
-  { name: 'gasflow-es', pathname: '/es/projects/gasflow/' },
-  { name: 'jm-soluciones-es', pathname: '/es/projects/jm-soluciones/' },
+  { name: 'hms-cloudflare-es', pathname: '/es/projects/hms-cloudflare/' },
+  { name: 'alquileres-uspa-es', pathname: '/es/projects/alquileres-uspa/' },
   { name: 'not-found-en', pathname: '/404.html' },
   { name: 'not-found-es', pathname: '/es/404/' },
 ];

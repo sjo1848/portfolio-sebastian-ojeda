@@ -26,76 +26,90 @@ evidenceNeeded:
   - Remote Product Acceptance evidence
 ---
 
-## The story does not start with Cloudflare
+## Problem
 
-HMS Cloudflare is stronger when understood as the evolution of an existing operational system, not as another isolated serverless project.
+HMS Cloudflare did not start as a new serverless application. It is the evolution of a hotel-management system that already modeled bookings, reception, rooms, guests, housekeeping, billing, permissions, and multi-hotel operations.
+
+The problem was to change infrastructure and data topology without silently changing the product. Moving from Rust + Axum + PostgreSQL to Workers, Hono, and D1 required preserving states, permissions, hotel isolation, and observable behavior while also proving backup and recovery in a verifiable way.
+
+## Context and constraints
 
 The technical sequence is:
 
-`HMS Elite / Rust + Axum + PostgreSQL → contract inventory → parity-first migration → Workers + Hono + D1 → product and recovery validation → governed agentic integration as the next layer`
+`HMS Elite / Rust + Axum + PostgreSQL → contract inventory → parity-first migration → Workers + Hono + D1 → product and recovery validation → Agent Core as a later layer`
 
-The source `hotel-management-system` repository first modeled reservations, reception, rooms, guests, housekeeping, billing, permissions and multi-hotel operations. The migration could not treat that behavior as disposable.
+The work was constrained by several concrete requirements:
 
-## Changing architecture without silently changing the product
+- preserve reception-facing state transitions;
+- retain membership and permission semantics;
+- replace PostgreSQL RLS without losing tenant isolation;
+- avoid claiming distributed atomicity where D1 does not provide it;
+- validate real browser journeys rather than compilation alone;
+- keep Technical PASS, Product Acceptance, Production Readiness, and Release as separate gates.
 
-HMS Cloudflare replaces infrastructure and data topology while preserving the observable product contract.
+## Architecture
 
-That forces questions beyond “does it compile?”:
+The active architecture separates two responsibilities:
 
-- are the state transitions reception relies on preserved?;
-- do permissions retain their semantics?;
-- how is each hotel isolated without PostgreSQL RLS?;
-- which operations need atomicity inside one database?;
-- what evidence proves a real browser journey?;
-- does a backup actually restore a reconciled state?
+- `CONTROL_DB`: identities, hotels, memberships, roles, and routing;
+- one operational D1 per hotel: bookings, rooms, guests, billing, housekeeping, and audit.
 
-## From PostgreSQL to an explicit D1 topology
+Every request validates identity, membership, role, and context before resolving the corresponding operational database. Physical separation reduces blast radius, but it does not replace authorization.
 
-The active architecture uses:
+Cloudflare Access authenticates at the edge; the API validates that identity and HMS applies business authority. Those are intentionally different layers.
 
-- one `CONTROL_DB` for identities, hotels, memberships, roles and routing;
-- one separate operational D1 per hotel for bookings, rooms, guests, billing, housekeeping and audit.
+## Engineering decisions
 
-Physical separation does not replace authorization. Every request must validate identity, membership, role and context before resolving the correct operational database.
+**Parity-first before redesign.** The migration preserves the observable contract before introducing new capabilities.
 
-The architecture also refuses to pretend cross-D1 writes are atomic. Critical business operations stay inside one hotel database whenever atomicity matters.
+**Local atomicity.** Critical operations stay inside one hotel's D1 whenever transactional consistency matters. The architecture does not pretend a nonexistent distributed transaction exists.
 
-## Layered security
+**Explicit authority.** Access handles infrastructure authentication; memberships and RBAC handle business authority.
 
-1. Cloudflare Access authenticates the person at the edge.
-2. The API validates that identity.
-3. HMS maps it to memberships and roles.
-4. The requested hotel or network context is authorized.
-5. Only then is the corresponding D1 resolved.
+**Recovery as tested behavior.** A backup is not treated as sufficient evidence until it is restored and the resulting state is reconciled.
 
-Infrastructure authentication and business authority are different boundaries.
+## Implementation
 
-## Parity-first and evidence
+The migration was decomposed into verifiable increments: foundation, source-contract inventory, rooms/guests/bookings, reception, housekeeping, maintenance, billing, security, administration, reporting, and operational readiness.
 
-The migration is decomposed into verifiable increments: foundation, source-contract inventory, rooms/guests/bookings, reception, housekeeping, maintenance, billing, security, administration, reporting and operational readiness.
+The work spans backend, data, interfaces, security, and infrastructure. HMS Elite provides the source contract; HMS Cloudflare implements the new runtime and topology; Agent Core remains a separate repository and gate and integrates only over an explicit operational boundary.
 
-Validation combines type checking, unit and integration tests, targeted regressions, browser journeys, RBAC/tenant checks, failure paths, concurrency, migration rehearsal, backup/restore and independent review.
+## QA and validation
 
-The recovery rehearsal exports the databases, introduces synthetic mutations, restores the backup and verifies checksums and reconciliation. It is presented as local recovery evidence, not as a false claim of remote atomic rollback across D1.
+Validation combines:
 
-## HMS Elite does not disappear: it becomes the first half of the story
+- type checking plus unit and integration tests;
+- targeted domain regressions;
+- browser journeys;
+- RBAC and tenant-isolation checks;
+- failure paths and concurrency;
+- migration and backup/restore;
+- independent review.
 
-Keeping HMS Elite as a separate historical case still has value, but the stronger evidence comes from continuity:
+The recovery rehearsal exports the databases, introduces synthetic mutations, restores the backup, and verifies checksums and reconciliation. It is presented as local recovery evidence, not as proof of remote atomic rollback across D1 databases.
 
-- first, an operational SaaS had to be modeled in Rust/PostgreSQL;
-- then its observable contract had to be identified;
-- then infrastructure changed without losing behavior or authority;
-- finally, the boundary became explicit enough for an agentic layer to integrate without making the model the source of truth.
+## Visual evidence
 
-Agent Core belongs to another repository and another gate. The portfolio connects them as an architecture evolution, not as if they were one monorepo.
+The following screenshots are versioned in the repository and come from Playwright regressions against the migrated runtime. They document reproducible local behavior; they are not presented as remote acceptance or production proof.
 
-## What this story demonstrates
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i04-reception-lifecycle.png" alt="HMS Cloudflare reception workflow" width="1024" height="900" loading="lazy" decoding="async" />
 
-- brownfield migration rather than greenfield-only work;
-- domain-contract preservation;
-- Rust/PostgreSQL and edge/serverless in one evolution;
-- multi-tenant isolation and RBAC;
-- transaction and concurrency reasoning;
-- browser-level product validation;
-- migration and recovery engineering;
-- separation between Technical PASS, Product Acceptance, Production Readiness and Release.
+*Reception: operational lifecycle captured during the project regression suite.*
+
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i05-integrated-housekeeping.png" alt="HMS Cloudflare housekeeping workspace" width="1024" height="1770" loading="lazy" decoding="async" />
+
+*Housekeeping: evidence of the integrated workspace on the Cloudflare migration.*
+
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i06-billing.png" alt="HMS Cloudflare billing workflow" width="1024" height="2039" loading="lazy" decoding="async" />
+
+*Billing: product behavior captured by Playwright; it does not imply remote Product Acceptance.*
+
+## Current result
+
+The migration reached technical validation while preserving an explicit separation between technical acceptance and product acceptance. The case demonstrates continuity between a Rust/PostgreSQL backend and an edge/serverless architecture instead of presenting the latter as disconnected from the original domain.
+
+## Evidence and limits
+
+Available evidence covers code, migration contracts, automated tests, browser journeys, Playwright screenshots, and recovery rehearsal. Remote reception screenshots, final mobile visual evidence, and remote Product Acceptance evidence remain pending.
+
+The published status is therefore **technically validated migration; acceptance remains separate**. It is not presented as a final production release.
