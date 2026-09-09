@@ -65,56 +65,47 @@ const brandRest = site.name.slice(1);
   }
 
   .brand-initial {
-    transform-origin: left center;
-    animation: brand-initial-arrive 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    position: relative;
+    z-index: 1;
   }
 
   .brand-rest {
-    overflow: hidden;
-    max-inline-size: 0;
-    opacity: 0;
-    transform: translateX(-0.35rem);
-    vertical-align: bottom;
-    animation: brand-name-unfold 720ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
+    transform-origin: left center;
   }
 
-  @keyframes brand-initial-arrive {
+  @media (prefers-reduced-motion: no-preference) {
+    .brand-initial {
+      animation: brand-initial-settle 180ms ease-out both;
+    }
+
+    .brand-rest {
+      will-change: clip-path, transform, opacity;
+      animation: brand-name-unveil 720ms cubic-bezier(0.16, 1, 0.3, 1) 130ms both;
+    }
+  }
+
+  @keyframes brand-initial-settle {
     from {
       opacity: 0;
-      transform: translateY(0.2rem) scale(0.92);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
     }
   }
 
-  @keyframes brand-name-unfold {
+  @keyframes brand-name-unveil {
     0% {
-      max-inline-size: 0;
-      opacity: 0;
-      transform: translateX(-0.35rem);
+      clip-path: inset(0 100% 0 0);
+      opacity: 0.82;
+      transform: translate3d(-0.18em, 0, 0);
     }
-    35% {
+    22% {
       opacity: 1;
     }
     100% {
-      max-inline-size: 12rem;
+      clip-path: inset(0 0 0 0);
       opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .brand-initial,
-    .brand-rest {
-      animation: none;
-      transform: none;
-    }
-
-    .brand-rest {
-      max-inline-size: none;
-      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
   }
 </style>
