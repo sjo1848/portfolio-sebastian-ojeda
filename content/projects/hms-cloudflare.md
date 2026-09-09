@@ -92,15 +92,15 @@ El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, re
 
 Las capturas siguientes están versionadas en el repositorio y provienen de regresiones Playwright sobre el runtime migrado. Documentan comportamiento local reproducible; no se presentan como aceptación remota ni como prueba de producción.
 
-![Flujo de recepción de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i04-reception-lifecycle.png)
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i04-reception-lifecycle.png" alt="Flujo de recepción de HMS Cloudflare" width="1024" height="900" loading="lazy" decoding="async" />
 
 *Recepción: ciclo operacional capturado durante la regresión del proyecto.*
 
-![Workspace de housekeeping de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i05-integrated-housekeeping.png)
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i05-integrated-housekeeping.png" alt="Workspace de housekeeping de HMS Cloudflare" width="1024" height="1770" loading="lazy" decoding="async" />
 
 *Housekeeping: evidencia del workspace integrado sobre la migración Cloudflare.*
 
-![Flujo de facturación de HMS Cloudflare](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i06-billing.png)
+<img src="https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i06-billing.png" alt="Flujo de facturación de HMS Cloudflare" width="1024" height="2039" loading="lazy" decoding="async" />
 
 *Billing: comportamiento de producto capturado por Playwright; no implica Product Acceptance remota.*
 
