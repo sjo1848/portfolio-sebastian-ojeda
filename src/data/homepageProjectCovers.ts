@@ -2,6 +2,8 @@ import type { ProjectMediaImage, ProjectMediaSet } from './projectMedia';
 
 const hmsCloudflareEvidenceBase =
   'https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright';
+const uspayaEvidenceBase =
+  'https://github.com/sjo1848/UspaYa/raw/2abc58a3ea7efb131df248472ea4473d67445760/docs/media/portfolio';
 
 export const homepageProjectMedia = {
   'hms-cloudflare': {
@@ -61,6 +63,66 @@ export const homepageProjectMedia = {
         },
         width: 1024,
         height: 980,
+      },
+    ],
+  },
+  uspaya: {
+    cover: {
+      kind: 'image',
+      src: `${uspayaEvidenceBase}/uspaya-operations-mobile.png`,
+      alt: {
+        es: 'Superficie de Operaciones de UspaYa con un pedido demo listo y todavía sin repartidor asignado.',
+        en: 'UspaYa Operations surface with a demo order ready and still awaiting courier assignment.',
+      },
+      caption: {
+        es: 'Captura del runtime local reproducible con PostgreSQL, API y frontend reales; usa exclusivamente datos sembrados de demostración.',
+        en: 'Screenshot from the reproducible local runtime with real PostgreSQL, API, and frontend; it uses seeded demo data only.',
+      },
+      width: 1107,
+      height: 1908,
+    },
+    gallery: [
+      {
+        kind: 'image',
+        src: `${uspayaEvidenceBase}/uspaya-customer-mobile.png`,
+        alt: {
+          es: 'Flujo de cliente de UspaYa con comercio y productos del dataset demo.',
+          en: 'UspaYa customer flow with the demo commerce and product dataset.',
+        },
+        caption: {
+          es: 'Superficie de cliente capturada después de levantar el runtime y aplicar el seed determinista.',
+          en: 'Customer surface captured after starting the runtime and applying the deterministic seed.',
+        },
+        width: 1107,
+        height: 3339,
+      },
+      {
+        kind: 'image',
+        src: `${uspayaEvidenceBase}/uspaya-merchant-mobile.png`,
+        alt: {
+          es: 'Bandeja de Comercio de UspaYa mostrando un pedido demo pendiente de revisión.',
+          en: 'UspaYa Merchant inbox showing a demo order pending review.',
+        },
+        caption: {
+          es: 'Bandeja autoritativa del comercio durante el mismo recorrido E2E reproducible.',
+          en: 'Authoritative merchant inbox during the same reproducible E2E workflow.',
+        },
+        width: 1107,
+        height: 2022,
+      },
+      {
+        kind: 'image',
+        src: `${uspayaEvidenceBase}/uspaya-courier-mobile.png`,
+        alt: {
+          es: 'Flujo de Repartidor de UspaYa con custodia confirmada y destino demo disponible.',
+          en: 'UspaYa Courier flow with custody confirmed and the demo destination available.',
+        },
+        caption: {
+          es: 'Estado del repartidor después de la asignación y confirmación de custodia en el runtime de prueba.',
+          en: 'Courier state after assignment and custody confirmation in the test runtime.',
+        },
+        width: 1107,
+        height: 3150,
       },
     ],
   },
