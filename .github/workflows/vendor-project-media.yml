@@ -26,7 +26,7 @@ jobs:
       - name: Commit vendored media
         shell: bash
         run: |
-          if git diff --quiet -- public/media/projects; then
+          if [[ -z "$(git status --porcelain -- public/media/projects)" ]]; then
             echo "Project media already vendored."
             exit 0
           fi
