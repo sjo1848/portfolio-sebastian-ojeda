@@ -2,6 +2,7 @@ import type { ProjectMediaImage, ProjectMediaSet } from './projectMedia';
 
 const hmsCloudflareEvidenceBase = '/media/projects/hms-cloudflare';
 const uspayaEvidenceBase = '/media/projects/uspaya';
+const alquileresEvidenceBase = '/media/projects/alquileres-uspa';
 
 export const homepageProjectMedia = {
   'hms-cloudflare': {
@@ -63,6 +64,23 @@ export const homepageProjectMedia = {
         height: 980,
       },
     ],
+  },
+  'alquileres-uspa': {
+    cover: {
+      kind: 'image',
+      src: `${alquileresEvidenceBase}/catalog-results-desktop-1440x1200.png`,
+      alt: {
+        es: 'Catálogo público de Alquileres Uspallata con publicaciones demo, imágenes sintéticas, precios, disponibilidad y acceso al detalle.',
+        en: 'Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access.',
+      },
+      caption: {
+        es: 'Catálogo generado desde el runtime real con PostgreSQL, API Nest y frontend Vue; propiedades e imágenes son fixtures sintéticos reproducibles.',
+        en: 'Catalog generated from the real runtime with PostgreSQL, Nest API, and Vue frontend; properties and images are reproducible synthetic fixtures.',
+      },
+      width: 1440,
+      height: 1200,
+    },
+    gallery: [],
   },
   uspaya: {
     cover: {
