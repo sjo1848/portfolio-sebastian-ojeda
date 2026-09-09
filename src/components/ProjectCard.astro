@@ -34,7 +34,6 @@ const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const coverIsPortrait = cover ? cover.height > cover.width * 1.15 : false;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
-const stackLimit = variant === 'hero' ? 4 : 3;
 const labels = lang === 'es'
   ? {
       role: 'Rol',
@@ -108,7 +107,7 @@ const evidenceSignals = [
     </p>
 
     <ul class="project-stack-inline" aria-label={`${copy.technologiesAria} ${data.title}`}>
-      {data.stack.slice(0, stackLimit).map((technology) => <li>{technology}</li>)}
+      {data.stack.slice(0, 4).map((technology) => <li>{technology}</li>)}
     </ul>
 
     <div class="card-actions">
