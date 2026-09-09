@@ -94,6 +94,7 @@ for (const viewport of viewports) {
       '--no-sandbox',
       '--disable-dev-shm-usage',
       '--disable-gpu',
+      '--disable-smooth-scrolling',
       '--hide-scrollbars',
       '--force-device-scale-factor=1',
       `--window-size=${viewport.width},${viewport.height}`,
