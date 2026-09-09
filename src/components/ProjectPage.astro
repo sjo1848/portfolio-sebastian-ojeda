@@ -117,11 +117,15 @@ const projectSchema = {
     </header>
     {
       gallery.length > 0 && (
-        <section class="project-gallery section" aria-labelledby={`gallery-${data.slug}`}>
+        <section
+          id={`gallery-${data.slug}`}
+          class="project-gallery section"
+          aria-labelledby={`gallery-title-${data.slug}`}
+        >
           <div class="container">
             <div class="section-heading">
               <p class="eyebrow">{galleryCopy.eyebrow}</p>
-              <h2 id={`gallery-${data.slug}`}>{galleryCopy.title}</h2>
+              <h2 id={`gallery-title-${data.slug}`}>{galleryCopy.title}</h2>
               <p>{galleryCopy.description}</p>
             </div>
             <div class="project-gallery-grid">
@@ -199,6 +203,25 @@ const projectSchema = {
 </BaseLayout>
 
 <script>
+  const stabilizeGalleryAnchor = () => {
+    const hash = window.location.hash;
+    if (!hash.startsWith('#gallery-')) return;
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) return;
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: 'start' });
+    });
+  };
+
+  if (document.readyState === 'complete') {
+    stabilizeGalleryAnchor();
+  } else {
+    window.addEventListener('load', stabilizeGalleryAnchor, { once: true });
+  }
+  window.addEventListener('hashchange', stabilizeGalleryAnchor);
+
   document.querySelectorAll('[data-gif-shell]').forEach((shell) => {
     const stage = shell.querySelector('[data-gif-stage]');
     const placeholder = shell.querySelector('[data-gif-placeholder]');
@@ -249,6 +272,7 @@ const projectSchema = {
 
 <style>
   .project-gallery {
+    scroll-margin-top: 1rem;
     border-bottom: 1px solid var(--line);
     background: var(--canvas);
   }
