@@ -37,28 +37,13 @@ const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 const labels = lang === 'es'
   ? {
       role: 'Rol',
-      evidence: 'Evidencia',
-      documented: 'Caso documentado',
-      visual: 'Evidencia visual',
-      code: 'Código disponible',
-      demo: 'Demo disponible',
-      stack: 'Stack principal',
+      stack: 'Stack',
     }
   : {
       role: 'Role',
-      evidence: 'Evidence',
-      documented: 'Documented case study',
-      visual: 'Visual evidence',
-      code: 'Code available',
-      demo: 'Demo available',
-      stack: 'Core stack',
+      stack: 'Stack',
     };
-const evidenceSignals = [
-  labels.documented,
-  cover ? labels.visual : null,
-  data.repository ? labels.code : null,
-  data.demo ? labels.demo : null,
-].filter((signal): signal is string => Boolean(signal));
+const visibleStack = data.stack.slice(0, variant === 'hero' ? 4 : 3);
 ---
 
 <article class:list={['project-card', `project-card-${variant}`, cover && 'project-card-has-evidence']}>
@@ -93,113 +78,137 @@ const evidenceSignals = [
       </div>
     )
   }
+
   <div class="project-body">
-    <p class="eyebrow project-status">{data.statusLabel}</p>
+    <p class="project-status">{data.statusLabel}</p>
     <h3>{data.title}</h3>
     <p class="project-context">{data.summary}</p>
 
-    <dl class="project-card-meta">
-      <div>
-        <dt>{labels.role}</dt>
-        <dd>{data.role}</dd>
-      </div>
-      <div>
-        <dt>{labels.evidence}</dt>
-        <dd class="project-signal-list">
-          {evidenceSignals.map((signal) => <span>{signal}</span>)}
-        </dd>
-      </div>
-    </dl>
-
-    <div class="project-stack">
-      <p>{labels.stack}</p>
-      <ul class="stack-list" aria-label={`${copy.technologiesAria} ${data.title}`}>
-        {data.stack.slice(0, 4).map((technology) => <li>{technology}</li>)}
-      </ul>
+    <div class="project-proof">
+      <p class="project-role">
+        <span>{labels.role}</span>
+        <strong>{data.role}</strong>
+      </p>
+      <p class="project-tech" aria-label={`${labels.stack}: ${visibleStack.join(', ')}`}>
+        {visibleStack.join(' · ')}
+      </p>
     </div>
 
-    <div class="card-actions">
-      <a class="button button-primary" href={getProjectPath(lang, data.slug)}>{copy.viewCaseStudy}</a>
-      {data.repository && (
-        <a class="text-link" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
-      )}
-    </div>
+    <a class="project-case-link" href={getProjectPath(lang, data.slug)}>
+      <span>{copy.viewCaseStudy}</span>
+      <span aria-hidden="true">→</span>
+    </a>
   </div>
 </article>
 
 <style>
+  .project-body {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+  }
+
   .project-status {
-    display: inline-flex;
     width: fit-content;
-    margin-bottom: 1rem;
-    border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
-    border-radius: 999px;
-    padding: 0.35rem 0.65rem;
-    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+    margin-bottom: 0.85rem;
+    color: var(--accent-strong);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-transform: uppercase;
   }
 
   .project-context {
     margin-top: 1rem;
     color: var(--muted);
+    line-height: 1.62;
   }
 
-  .project-card-meta {
+  .project-proof {
     display: grid;
-    gap: 1rem;
-    margin: 1.5rem 0 0;
-    padding-top: 1.25rem;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.15rem;
     border-top: 1px solid var(--line);
   }
 
-  .project-card-meta div {
+  .project-role {
     display: grid;
-    gap: 0.35rem;
+    gap: 0.25rem;
   }
 
-  .project-card-meta dt,
-  .project-stack > p {
+  .project-role span {
     color: var(--muted);
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 750;
     letter-spacing: 0.09em;
     text-transform: uppercase;
   }
 
-  .project-card-meta dd {
-    margin: 0;
-    font-size: 0.95rem;
-    font-weight: 650;
+  .project-role strong {
+    color: var(--ink);
+    font-size: 0.92rem;
+    font-weight: 680;
     line-height: 1.45;
   }
 
-  .project-signal-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .project-signal-list span {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.24rem 0.55rem;
-    background: color-mix(in srgb, var(--surface) 86%, var(--canvas));
+  .project-tech {
     color: var(--muted);
-    font-size: 0.76rem;
-    font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.74rem;
+    line-height: 1.55;
   }
 
-  .project-stack {
-    margin-top: 1.4rem;
+  .project-case-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    color: var(--ink);
+    font-weight: 780;
+    text-decoration: none;
   }
 
-  .project-stack :global(.stack-list) {
-    margin-top: 0.65rem;
+  .project-case-link > span:last-child {
+    color: var(--accent);
+    font-size: 1.1rem;
+    transition: transform 160ms ease;
+  }
+
+  .project-case-link:hover {
+    color: var(--accent-strong);
+  }
+
+  .project-case-link:hover > span:last-child,
+  .project-case-link:focus-visible > span:last-child {
+    transform: translateX(0.2rem);
+  }
+
+  .project-card-secondary .project-context {
+    font-size: 0.95rem;
   }
 
   @media (min-width: 48rem) {
-    .project-card-hero .project-card-meta {
-      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    .project-card-hero .project-proof {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      align-items: end;
+      column-gap: 1.5rem;
+    }
+
+    .project-card-hero .project-tech {
+      text-align: right;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-case-link > span:last-child {
+      transition: none;
     }
   }
 </style>
