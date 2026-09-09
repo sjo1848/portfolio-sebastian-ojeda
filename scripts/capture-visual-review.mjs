@@ -16,11 +16,11 @@ const viewports = [
 
 const routes = [
   { name: 'home-en', pathname: '/' },
-  { name: 'home-en-projects', pathname: '/#projects' },
+  { name: 'home-en-projects', pathname: '/', captureHeight: 2400 },
   { name: 'hms-cloudflare-en', pathname: '/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-en', pathname: '/projects/alquileres-uspa/' },
   { name: 'home-es', pathname: '/es/' },
-  { name: 'home-es-projects', pathname: '/es/#projects' },
+  { name: 'home-es-projects', pathname: '/es/', captureHeight: 2400 },
   { name: 'hms-cloudflare-es', pathname: '/es/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-es', pathname: '/es/projects/alquileres-uspa/' },
   { name: 'not-found-en', pathname: '/404.html' },
@@ -86,7 +86,8 @@ await mkdir(outputDir, { recursive: true });
 for (const viewport of viewports) {
   for (const route of routes) {
     const target = new URL(route.pathname, baseUrl).toString();
-    const filename = `${route.name}-${viewport.name}-${viewport.width}x${viewport.height}.png`;
+    const captureHeight = route.captureHeight ?? viewport.height;
+    const filename = `${route.name}-${viewport.name}-${viewport.width}x${captureHeight}.png`;
     const output = path.join(outputDir, filename);
 
     await run(chrome, [
@@ -94,14 +95,16 @@ for (const viewport of viewports) {
       '--no-sandbox',
       '--disable-dev-shm-usage',
       '--disable-gpu',
+      '--disable-smooth-scrolling',
       '--hide-scrollbars',
       '--force-device-scale-factor=1',
-      `--window-size=${viewport.width},${viewport.height}`,
+      '--virtual-time-budget=1000',
+      `--window-size=${viewport.width},${captureHeight}`,
       `--screenshot=${output}`,
       target,
     ]);
 
-    await validateScreenshot(output, viewport.width, viewport.height);
+    await validateScreenshot(output, viewport.width, captureHeight);
     console.log(`Captured ${filename}`);
   }
 }

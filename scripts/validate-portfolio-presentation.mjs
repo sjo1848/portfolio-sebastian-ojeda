@@ -64,16 +64,21 @@ for (const slug of expectedStoryOrder) {
   previousIndex = index;
 }
 
-// Cards must expose scope/evidence before a reduced technology list.
+// Selected work is proof-first: one role signal, a reduced stack line and one case-study CTA.
 for (const marker of [
   "role: 'Rol'",
-  "evidence: 'Evidencia'",
   'data.role',
-  'evidenceSignals',
-  'data.stack.slice(0, 4)',
+  "data.stack.slice(0, variant === 'hero' ? 4 : 3)",
+  'class="project-case-link"',
+  'getProjectPath(lang, data.slug)',
 ]) {
   requireText(card, marker, 'ProjectCard.astro');
 }
+forbidText(card, 'evidenceSignals', 'ProjectCard.astro');
+forbidText(card, 'project-signal-list', 'ProjectCard.astro');
+forbidText(card, 'class="stack-list"', 'ProjectCard.astro');
+requireText(stories, "eyebrow: 'Trabajo seleccionado'", 'portfolioStories.ts ES selected-work copy');
+requireText(stories, "eyebrow: 'Selected work'", 'portfolioStories.ts EN selected-work copy');
 
 // Flagship case studies must use the normalized evidence-first structure in both languages.
 const caseStudyContracts = [
