@@ -71,7 +71,7 @@ async function validateScreenshot(file, expectedWidth, expectedHeight) {
 
   if (width !== expectedWidth || height !== expectedHeight) {
     throw new Error(
-      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${height}.`,
+      `${path.basename(file)} expected ${expectedWidth}x${expectedHeight}, received ${width}x${expectedHeight}.`,
     );
   }
 
@@ -98,6 +98,7 @@ for (const viewport of viewports) {
       '--disable-smooth-scrolling',
       '--hide-scrollbars',
       '--force-device-scale-factor=1',
+      '--virtual-time-budget=1000',
       `--window-size=${viewport.width},${captureHeight}`,
       `--screenshot=${output}`,
       target,
