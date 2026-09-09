@@ -27,6 +27,7 @@ export interface ProjectMediaSet {
 
 const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/b2f300df3450c7a1eb1f75539fdca7627802055c/docs/screenshots';
 const hmsWalkthroughBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/media';
+const alquileresEvidenceBase = 'https://raw.githubusercontent.com/sjo1848/alquileres-uspa/5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51/docs/media/portfolio';
 
 export const projectMedia = {
   'hms-elite': {
@@ -142,6 +143,52 @@ export const projectMedia = {
         },
         width: 1440,
         height: 900,
+      },
+    ],
+  },
+  'alquileres-uspa': {
+    cover: {
+      kind: 'image',
+      src: `${alquileresEvidenceBase}/catalog-results-desktop-1440x1200.png`,
+      alt: {
+        es: 'Catálogo público de Alquileres Uspallata con publicaciones demo, imágenes sintéticas, precios, disponibilidad y acceso al detalle.',
+        en: 'Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access.',
+      },
+      caption: {
+        es: 'Catálogo generado desde el runtime real con PostgreSQL, API Nest y frontend Vue; propiedades e imágenes son fixtures sintéticos reproducibles.',
+        en: 'Catalog generated from the real runtime with PostgreSQL, Nest API, and Vue frontend; properties and images are reproducible synthetic fixtures.',
+      },
+      width: 1440,
+      height: 1200,
+    },
+    gallery: [
+      {
+        kind: 'image',
+        src: `${alquileresEvidenceBase}/listing-detail-desktop-1440x1200.png`,
+        alt: {
+          es: 'Ficha pública de una propiedad demo en Alquileres Uspallata con imagen, precio, capacidad, disponibilidad y datos de la publicación.',
+          en: 'Public detail page for a demo Alquileres Uspallata property with image, price, capacity, availability, and listing information.',
+        },
+        caption: {
+          es: 'Ficha capturada desde el runtime reproducible; la propiedad, el contenido y la ilustración son datos sintéticos de demostración.',
+          en: 'Detail page captured from the reproducible runtime; the property, content, and illustration are synthetic demo data.',
+        },
+        width: 1440,
+        height: 1200,
+      },
+      {
+        kind: 'image',
+        src: `${alquileresEvidenceBase}/catalog-results-mobile-390x844.png`,
+        alt: {
+          es: 'Catálogo mobile de Alquileres Uspallata mostrando una publicación demo con imagen contenida dentro de la tarjeta responsive.',
+          en: 'Alquileres Uspallata mobile catalog showing a demo listing with its image contained inside the responsive card.',
+        },
+        caption: {
+          es: 'Validación mobile del catálogo real con datos sintéticos; confirma el comportamiento responsive de imagen, contenido y disponibilidad.',
+          en: 'Mobile validation of the real catalog with synthetic data; it confirms responsive image, content, and availability behavior.',
+        },
+        width: 390,
+        height: 844,
       },
     ],
   },
