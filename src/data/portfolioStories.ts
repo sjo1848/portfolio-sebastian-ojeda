@@ -14,24 +14,24 @@ export const secondaryCaseSlugs = [
 
 export const portfolioStoriesByLanguage = {
   es: {
-    eyebrow: 'Selected work',
-    title: 'Cuatro casos de producto e ingeniería end-to-end',
+    eyebrow: 'Trabajo seleccionado',
+    title: 'Sistemas construidos alrededor de problemas reales',
     intro:
-      'Los casos principales muestran desarrollo full-stack sobre problemas concretos: operación hotelera, publicación y gestión de alojamientos, comercio asistido por IA y logística transaccional multi-actor.',
+      'Cuatro casos principales muestran cómo conecto producto, backend, interfaces, datos e integración. Cada caso documenta el problema, las decisiones y la evidencia disponible.',
     secondaryEyebrow: 'Casos complementarios',
-    secondaryTitle: 'Profundidad adicional según el rol',
+    secondaryTitle: 'Más profundidad según el problema',
     secondaryIntro:
-      'GasFlow refuerza mobile, logística y software operativo; Agentic Engineering Governance muestra automatización, QA y gobierno de workflows con agentes.',
+      'GasFlow amplía el trabajo hacia mobile y logística; Agentic Engineering Governance muestra automatización, QA y gobierno de workflows con agentes.',
   },
   en: {
     eyebrow: 'Selected work',
-    title: 'Four end-to-end product and engineering case studies',
+    title: 'Systems built around real problems',
     intro:
-      'The primary cases demonstrate full-stack delivery across concrete problems: hotel operations, accommodation publishing and management, AI-assisted commerce, and transactional multi-actor logistics.',
+      'Four primary cases show how I connect product, backend, interfaces, data and integrations. Each case documents the problem, key decisions and available evidence.',
     secondaryEyebrow: 'Complementary cases',
-    secondaryTitle: 'Additional depth depending on the role',
+    secondaryTitle: 'Additional depth depending on the problem',
     secondaryIntro:
-      'GasFlow reinforces mobile, logistics and operational software; Agentic Engineering Governance demonstrates automation, QA and governance for agent-driven workflows.',
+      'GasFlow extends the work into mobile and logistics; Agentic Engineering Governance demonstrates automation, QA and governance for agent-driven workflows.',
   },
 } satisfies Record<Language, {
   eyebrow: string;
