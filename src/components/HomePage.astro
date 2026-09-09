@@ -39,7 +39,6 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
         <p class="hero-context">{copy.context}</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
-          <a class="button button-secondary" href={site.cv} download>{copy.downloadCv}</a>
           <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
@@ -85,7 +84,33 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
     </div>
   </section>
 
-  <section id="process" class="section" aria-labelledby="process-title">
+  <section id="capabilities" class="section section-night" aria-labelledby="capabilities-title">
+    <div class="container split-grid">
+      <div>
+        <p class="eyebrow eyebrow-light">{copy.capabilitiesEyebrow}</p>
+        <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
+      </div>
+      <div class="capability-grid">
+        {capabilityGroups.map((group) => (
+          <article><h3>{group.title}</h3><p>{group.description}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section" aria-labelledby="experience-title">
+    <div class="container split-grid">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.experienceEyebrow}</p>
+        <h2 id="experience-title">{copy.experienceTitle}</h2>
+      </div>
+      <div class="reading-column">
+        {copy.experienceParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section section-surface" aria-labelledby="process-title">
     <div class="container">
       <div class="section-heading">
         <p class="eyebrow">{copy.processEyebrow}</p>
@@ -113,33 +138,7 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
     </div>
   </section>
 
-  <section class="section section-night" aria-labelledby="capabilities-title">
-    <div class="container split-grid">
-      <div>
-        <p class="eyebrow eyebrow-light">{copy.capabilitiesEyebrow}</p>
-        <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
-      </div>
-      <div class="capability-grid">
-        {capabilityGroups.map((group) => (
-          <article><h3>{group.title}</h3><p>{group.description}</p></article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="experience" class="section" aria-labelledby="experience-title">
-    <div class="container split-grid">
-      <div class="section-heading">
-        <p class="eyebrow">{copy.experienceEyebrow}</p>
-        <h2 id="experience-title">{copy.experienceTitle}</h2>
-      </div>
-      <div class="reading-column">
-        {copy.experienceParagraphs.map((paragraph) => <p>{paragraph}</p>)}
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section section-surface" aria-labelledby="contact-title">
+  <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="container contact-panel">
       <div>
         <p class="eyebrow">{copy.contactEyebrow}</p>
@@ -149,7 +148,6 @@ const capabilityGroups = capabilityGroupsByLanguage[lang];
       </div>
       <div class="hero-actions">
         <a class="button button-primary" href={`mailto:${site.email}`}>{copy.sendEmail}</a>
-        <a class="button button-secondary" href={site.cv} download>{copy.downloadCv}</a>
         <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">{copy.viewGithub}</a>
       </div>
     </div>
