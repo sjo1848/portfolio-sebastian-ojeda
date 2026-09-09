@@ -1,9 +1,7 @@
 import type { ProjectMediaImage, ProjectMediaSet } from './projectMedia';
 
-const hmsCloudflareEvidenceBase =
-  'https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright';
-const uspayaEvidenceBase =
-  'https://github.com/sjo1848/UspaYa/raw/2abc58a3ea7efb131df248472ea4473d67445760/docs/media/portfolio';
+const hmsCloudflareEvidenceBase = '/media/projects/hms-cloudflare';
+const uspayaEvidenceBase = '/media/projects/uspaya';
 
 export const homepageProjectMedia = {
   'hms-cloudflare': {
