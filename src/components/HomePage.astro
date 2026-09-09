@@ -177,20 +177,6 @@ const brandCopy = lang === 'es'
       var(--canvas);
   }
 
-  .hero::after {
-    position: absolute;
-    z-index: 0;
-    top: clamp(2rem, 7vw, 5rem);
-    right: -4rem;
-    width: clamp(10rem, 22vw, 19rem);
-    height: clamp(5rem, 12vw, 9rem);
-    border-top: 1px solid color-mix(in srgb, var(--line-strong) 65%, transparent);
-    border-left: 1px solid color-mix(in srgb, var(--line-strong) 45%, transparent);
-    content: '';
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
   .hero-grid {
     position: relative;
     z-index: 1;
@@ -303,12 +289,6 @@ const brandCopy = lang === 'es'
 
     .story-grid :global(.project-card-story:last-child) {
       grid-column: auto;
-    }
-  }
-
-  @media (max-width: 47.99rem) {
-    .hero::after {
-      display: none;
     }
   }
 </style>
