@@ -24,8 +24,23 @@ const { project, lang } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
 const media = getProjectMedia(data.slug);
+const cover = media?.cover ?? null;
+const gallery = media?.gallery ?? [];
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
+const galleryCopy = lang === 'es'
+  ? {
+      eyebrow: 'Evidencia visual',
+      title: 'Pantallas verificadas del sistema',
+      description: 'Capturas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.',
+      openImage: 'Abrir captura a tamaño completo',
+    }
+  : {
+      eyebrow: 'Visual evidence',
+      title: 'Verified system screens',
+      description: 'Real product screenshots documented as evidence of the workflow and interface decisions.',
+      openImage: 'Open full-size screenshot',
+    };
 const projectUrl = new URL(getProjectPath(lang, data.slug), Astro.site ?? Astro.url);
 const projectSchema = {
   '@type': 'SoftwareSourceCode',
@@ -36,7 +51,7 @@ const projectSchema = {
   codeRepository: data.repository ?? undefined,
   programmingLanguage: data.stack,
   inLanguage: site.languageTag,
-  image: media ? new URL(media.src, projectUrl).toString() : undefined,
+  image: cover ? new URL(cover.src, projectUrl).toString() : undefined,
   author: { '@id': new URL('/#person', projectUrl).toString() },
 };
 ---
@@ -67,18 +82,18 @@ const projectSchema = {
             <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>
           </div>
         </div>
-        <aside class:list={['case-evidence', { 'case-evidence-with-media': media }]}>
+        <aside class:list={['case-evidence', { 'case-evidence-with-media': cover }]}>
           {
-            media && (
+            cover && (
               <figure class="case-media">
                 <img
-                  src={media.src}
-                  alt={media.alt[lang]}
-                  width={media.width}
-                  height={media.height}
+                  src={cover.src}
+                  alt={cover.alt[lang]}
+                  width={cover.width}
+                  height={cover.height}
                   decoding="async"
                 />
-                <figcaption>{media.caption[lang]}</figcaption>
+                <figcaption>{cover.caption[lang]}</figcaption>
               </figure>
             )
           }
@@ -86,12 +101,106 @@ const projectSchema = {
           <ul class="stack-list stack-list-large">
             {data.stack.map((technology) => <li>{technology}</li>)}
           </ul>
-          {!media && <p class="evidence-note">{copy.pendingEvidence}</p>}
+          {!cover && <p class="evidence-note">{copy.pendingEvidence}</p>}
         </aside>
       </div>
     </header>
+    {
+      gallery.length > 0 && (
+        <section class="project-gallery section" aria-labelledby={`gallery-${data.slug}`}>
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{galleryCopy.eyebrow}</p>
+              <h2 id={`gallery-${data.slug}`}>{galleryCopy.title}</h2>
+              <p>{galleryCopy.description}</p>
+            </div>
+            <div class="project-gallery-grid">
+              {gallery.map((image) => (
+                <figure class="gallery-media">
+                  <a
+                    href={image.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${galleryCopy.openImage}: ${image.alt[lang]}`}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt[lang]}
+                      width={image.width}
+                      height={image.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </a>
+                  <figcaption>{image.caption[lang]}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
     <div class="container content-layout">
       <div class="prose"><Content /></div>
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .project-gallery {
+    border-bottom: 1px solid var(--line);
+    background: var(--canvas);
+  }
+
+  .project-gallery-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .gallery-media {
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+
+  .gallery-media a {
+    display: block;
+    overflow: hidden;
+    background: var(--night);
+  }
+
+  .gallery-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 160ms ease;
+  }
+
+  .gallery-media a:hover img {
+    transform: scale(1.01);
+  }
+
+  .gallery-media figcaption {
+    padding: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 48rem) {
+    .project-gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-media img {
+      transition: none;
+    }
+  }
+</style>
