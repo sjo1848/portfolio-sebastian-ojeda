@@ -2,7 +2,7 @@ type Language = 'es' | 'en';
 
 type LocalizedText = Record<Language, string>;
 
-export interface ProjectMediaImage {
+interface ProjectMediaBase {
   src: string;
   alt: LocalizedText;
   caption: LocalizedText;
@@ -10,16 +10,28 @@ export interface ProjectMediaImage {
   height: number;
 }
 
+export interface ProjectMediaImage extends ProjectMediaBase {
+  kind: 'image';
+}
+
+export interface ProjectMediaGif extends ProjectMediaBase {
+  kind: 'gif';
+}
+
+export type ProjectMediaAsset = ProjectMediaImage | ProjectMediaGif;
+
 export interface ProjectMediaSet {
   cover: ProjectMediaImage;
-  gallery: readonly ProjectMediaImage[];
+  gallery: readonly ProjectMediaAsset[];
 }
 
 const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/b2f300df3450c7a1eb1f75539fdca7627802055c/docs/screenshots';
+const hmsWalkthroughBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/media';
 
 export const projectMedia = {
   'hms-elite': {
     cover: {
+      kind: 'image',
       src: `${hmsScreenshotBase}/03-dashboard.png`,
       alt: {
         es: 'Dashboard operativo de HMS Elite con indicadores de ocupación, llegadas, salidas, reservas y caja del turno.',
@@ -34,6 +46,7 @@ export const projectMedia = {
     },
     gallery: [
       {
+        kind: 'image',
         src: `${hmsScreenshotBase}/04-bookings.png`,
         alt: {
           es: 'Workspace de recepción de HMS Elite con llegadas, huéspedes en casa, salidas y reservas del turno.',
@@ -47,6 +60,35 @@ export const projectMedia = {
         height: 900,
       },
       {
+        kind: 'gif',
+        src: `${hmsWalkthroughBase}/hms-reception-workflow.gif`,
+        alt: {
+          es: 'GIF animado del flujo principal de recepción de HMS Elite en escritorio.',
+          en: 'Animated GIF of the main HMS Elite front desk workflow on desktop.',
+        },
+        caption: {
+          es: 'Walkthrough desktop de recepción capturado desde el runtime con datos sintéticos; muestra navegación y estados reales del flujo principal.',
+          en: 'Desktop front desk walkthrough captured from the runtime with synthetic data; it shows real navigation and states of the main workflow.',
+        },
+        width: 960,
+        height: 600,
+      },
+      {
+        kind: 'gif',
+        src: `${hmsWalkthroughBase}/hms-mobile-reception.gif`,
+        alt: {
+          es: 'GIF animado del flujo mobile de recepción de HMS Elite con navegación, walk-in y revisión.',
+          en: 'Animated GIF of the HMS Elite mobile front desk flow with navigation, walk-in, and review.',
+        },
+        caption: {
+          es: 'Walkthrough mobile de recepción capturado desde el runtime con datos sintéticos y sin información personal real.',
+          en: 'Mobile front desk walkthrough captured from the runtime with synthetic data and no real personal information.',
+        },
+        width: 390,
+        height: 844,
+      },
+      {
+        kind: 'image',
         src: `${hmsScreenshotBase}/04-calendar.png`,
         alt: {
           es: 'Calendario de HMS Elite organizado por habitación y fecha para visualizar reservas y disponibilidad.',
@@ -60,6 +102,7 @@ export const projectMedia = {
         height: 900,
       },
       {
+        kind: 'image',
         src: `${hmsScreenshotBase}/04-rooms.png`,
         alt: {
           es: 'Inventario de habitaciones de HMS Elite con estados operativos y tarifas.',
@@ -73,6 +116,7 @@ export const projectMedia = {
         height: 900,
       },
       {
+        kind: 'image',
         src: `${hmsScreenshotBase}/04-housekeeping.png`,
         alt: {
           es: 'Workspace de housekeeping de HMS Elite con cola de limpieza y mantenimiento.',
@@ -86,6 +130,7 @@ export const projectMedia = {
         height: 900,
       },
       {
+        kind: 'image',
         src: `${hmsScreenshotBase}/04-reports.png`,
         alt: {
           es: 'Panel de reportes de HMS Elite con indicadores financieros, ocupación e información de caja.',
@@ -102,6 +147,7 @@ export const projectMedia = {
   },
   'jm-soluciones': {
     cover: {
+      kind: 'image',
       src: '/media/jm-guide-desktop.webp',
       alt: {
         es: 'Resultado del orientador interactivo de JM Soluciones con una recomendación de servicio, zona seleccionada y estado del trabajo.',
