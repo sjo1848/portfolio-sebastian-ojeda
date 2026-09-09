@@ -17,10 +17,12 @@ const viewports = [
 const routes = [
   { name: 'home-en', pathname: '/' },
   { name: 'hms-elite-en', pathname: '/projects/hms-elite/' },
+  { name: 'hms-gallery-en', pathname: '/projects/hms-elite/#gallery-hms-elite' },
   { name: 'gasflow-en', pathname: '/projects/gasflow/' },
   { name: 'jm-soluciones-en', pathname: '/projects/jm-soluciones/' },
   { name: 'home-es', pathname: '/es/' },
   { name: 'hms-elite-es', pathname: '/es/projects/hms-elite/' },
+  { name: 'hms-gallery-es', pathname: '/es/projects/hms-elite/#gallery-hms-elite' },
   { name: 'gasflow-es', pathname: '/es/projects/gasflow/' },
   { name: 'jm-soluciones-es', pathname: '/es/projects/jm-soluciones/' },
   { name: 'not-found-en', pathname: '/404.html' },

@@ -24,8 +24,33 @@ const { project, lang } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
 const media = getProjectMedia(data.slug);
+const cover = media?.cover ?? null;
+const gallery = media?.gallery ?? [];
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
+const galleryCopy = lang === 'es'
+  ? {
+      eyebrow: 'Evidencia visual',
+      title: 'Capturas y recorridos verificados',
+      description: 'Imágenes y demostraciones animadas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.',
+      openImage: 'Abrir captura a tamaño completo',
+      playGif: 'Reproducir GIF',
+      stopGif: 'Detener GIF',
+      openGif: 'Abrir GIF completo',
+      gifReady: 'Demostración animada disponible',
+      gifAvailable: 'GIF disponible',
+    }
+  : {
+      eyebrow: 'Visual evidence',
+      title: 'Verified screenshots and walkthroughs',
+      description: 'Real product images and animated demonstrations documented as evidence of the workflow and interface decisions.',
+      openImage: 'Open full-size screenshot',
+      playGif: 'Play GIF',
+      stopGif: 'Stop GIF',
+      openGif: 'Open full GIF',
+      gifReady: 'Animated demonstration available',
+      gifAvailable: 'GIF available',
+    };
 const projectUrl = new URL(getProjectPath(lang, data.slug), Astro.site ?? Astro.url);
 const projectSchema = {
   '@type': 'SoftwareSourceCode',
@@ -36,7 +61,7 @@ const projectSchema = {
   codeRepository: data.repository ?? undefined,
   programmingLanguage: data.stack,
   inLanguage: site.languageTag,
-  image: media ? new URL(media.src, projectUrl).toString() : undefined,
+  image: cover ? new URL(cover.src, projectUrl).toString() : undefined,
   author: { '@id': new URL('/#person', projectUrl).toString() },
 };
 ---
@@ -67,18 +92,18 @@ const projectSchema = {
             <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>
           </div>
         </div>
-        <aside class:list={['case-evidence', { 'case-evidence-with-media': media }]}>
+        <aside class:list={['case-evidence', { 'case-evidence-with-media': cover }]}>
           {
-            media && (
+            cover && (
               <figure class="case-media">
                 <img
-                  src={media.src}
-                  alt={media.alt[lang]}
-                  width={media.width}
-                  height={media.height}
+                  src={cover.src}
+                  alt={cover.alt[lang]}
+                  width={cover.width}
+                  height={cover.height}
                   decoding="async"
                 />
-                <figcaption>{media.caption[lang]}</figcaption>
+                <figcaption>{cover.caption[lang]}</figcaption>
               </figure>
             )
           }
@@ -86,12 +111,291 @@ const projectSchema = {
           <ul class="stack-list stack-list-large">
             {data.stack.map((technology) => <li>{technology}</li>)}
           </ul>
-          {!media && <p class="evidence-note">{copy.pendingEvidence}</p>}
+          {!cover && <p class="evidence-note">{copy.pendingEvidence}</p>}
         </aside>
       </div>
     </header>
+    {
+      gallery.length > 0 && (
+        <section
+          id={`gallery-${data.slug}`}
+          class="project-gallery section"
+          aria-labelledby={`gallery-title-${data.slug}`}
+        >
+          <div class="container">
+            <div class="section-heading">
+              <p class="eyebrow">{galleryCopy.eyebrow}</p>
+              <h2 id={`gallery-title-${data.slug}`}>{galleryCopy.title}</h2>
+              <p>{galleryCopy.description}</p>
+            </div>
+            <div class="project-gallery-grid">
+              {gallery.map((asset) => (
+                <figure class:list={['gallery-media', { 'gallery-media-portrait': asset.height > asset.width }]}>
+                  {
+                    asset.kind === 'gif' ? (
+                      <div class="gallery-gif" data-gif-shell>
+                        <div
+                          class="gallery-gif-stage"
+                          style={`--media-ratio: ${asset.width} / ${asset.height};`}
+                          data-gif-stage
+                          data-src={asset.src}
+                          data-alt={asset.alt[lang]}
+                          data-width={asset.width}
+                          data-height={asset.height}
+                        >
+                          <div
+                            class="gallery-gif-placeholder"
+                            data-gif-placeholder
+                            role="img"
+                            aria-label={`${galleryCopy.gifAvailable}: ${asset.alt[lang]}`}
+                          >
+                            <span>GIF</span>
+                            <strong>{galleryCopy.gifReady}</strong>
+                          </div>
+                        </div>
+                        <div class="gallery-gif-controls">
+                          <button
+                            class="button button-secondary gallery-gif-toggle"
+                            type="button"
+                            data-gif-toggle
+                            data-play-label={galleryCopy.playGif}
+                            data-stop-label={galleryCopy.stopGif}
+                            aria-pressed="false"
+                          >
+                            {galleryCopy.playGif}
+                          </button>
+                          <a class="text-link" href={asset.src} target="_blank" rel="noopener noreferrer">
+                            {galleryCopy.openGif}
+                          </a>
+                        </div>
+                      </div>
+                    ) : (
+                      <a
+                        class="gallery-image"
+                        href={asset.src}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${galleryCopy.openImage}: ${asset.alt[lang]}`}
+                      >
+                        <img
+                          src={asset.src}
+                          alt={asset.alt[lang]}
+                          width={asset.width}
+                          height={asset.height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    )
+                  }
+                  <figcaption>{asset.caption[lang]}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
     <div class="container content-layout">
       <div class="prose"><Content /></div>
     </div>
   </article>
 </BaseLayout>
+
+<script>
+  const stabilizeGalleryAnchor = () => {
+    const hash = window.location.hash;
+    if (!hash.startsWith('#gallery-')) return;
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) return;
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: 'start' });
+    });
+  };
+
+  if (document.readyState === 'complete') {
+    stabilizeGalleryAnchor();
+  } else {
+    window.addEventListener('load', stabilizeGalleryAnchor, { once: true });
+  }
+  window.addEventListener('hashchange', stabilizeGalleryAnchor);
+
+  document.querySelectorAll('[data-gif-shell]').forEach((shell) => {
+    const stage = shell.querySelector('[data-gif-stage]');
+    const placeholder = shell.querySelector('[data-gif-placeholder]');
+    const button = shell.querySelector('[data-gif-toggle]');
+
+    if (!(stage instanceof HTMLElement) || !(placeholder instanceof HTMLElement) || !(button instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const stop = () => {
+      const image = stage.querySelector('[data-gif-image]');
+      if (image instanceof HTMLImageElement) {
+        image.remove();
+      }
+      placeholder.hidden = false;
+      button.textContent = button.dataset.playLabel ?? 'Play GIF';
+      button.setAttribute('aria-pressed', 'false');
+    };
+
+    const play = () => {
+      const src = stage.dataset.src;
+      if (!src) return;
+
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = stage.dataset.alt ?? '';
+      image.width = Number(stage.dataset.width) || 1;
+      image.height = Number(stage.dataset.height) || 1;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.setAttribute('data-gif-image', '');
+
+      placeholder.hidden = true;
+      stage.append(image);
+      button.textContent = button.dataset.stopLabel ?? 'Stop GIF';
+      button.setAttribute('aria-pressed', 'true');
+    };
+
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-pressed') === 'true') {
+        stop();
+      } else {
+        play();
+      }
+    });
+  });
+</script>
+
+<style>
+  .project-gallery {
+    scroll-margin-top: 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--canvas);
+  }
+
+  .project-gallery-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .gallery-media {
+    overflow: hidden;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+  }
+
+  .gallery-image {
+    display: block;
+    overflow: hidden;
+    background: var(--night);
+  }
+
+  .gallery-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 160ms ease;
+  }
+
+  .gallery-image:hover img {
+    transform: scale(1.01);
+  }
+
+  .gallery-gif {
+    background: var(--night);
+  }
+
+  .gallery-gif-stage {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: var(--media-ratio);
+    background: var(--night);
+  }
+
+  .gallery-gif-stage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--night);
+  }
+
+  .gallery-gif-placeholder {
+    display: grid;
+    place-items: center;
+    gap: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    color: var(--surface);
+  }
+
+  .gallery-gif-placeholder[hidden] {
+    display: none;
+  }
+
+  .gallery-gif-placeholder span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.25rem;
+    min-height: 2rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .gallery-gif-placeholder strong {
+    max-width: 20rem;
+    font-size: 1rem;
+  }
+
+  .gallery-gif-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface);
+  }
+
+  .gallery-gif-toggle {
+    cursor: pointer;
+  }
+
+  .gallery-media figcaption {
+    padding: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 48rem) {
+    .project-gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-media-portrait {
+      width: min(100%, 30rem);
+      justify-self: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-image img {
+      transition: none;
+    }
+  }
+</style>

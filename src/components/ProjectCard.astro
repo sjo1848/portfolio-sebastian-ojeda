@@ -29,19 +29,20 @@ const {
 } = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
+const cover = media?.cover ?? null;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 ---
 
 <article class:list={['project-card', `project-card-${variant}`]}>
   {
-    media ? (
+    cover ? (
       <figure class="project-evidence project-evidence-image">
         <img
-          src={media.src}
-          alt={media.alt[lang]}
-          width={media.width}
-          height={media.height}
+          src={cover.src}
+          alt={cover.alt[lang]}
+          width={cover.width}
+          height={cover.height}
           loading="lazy"
           decoding="async"
         />
