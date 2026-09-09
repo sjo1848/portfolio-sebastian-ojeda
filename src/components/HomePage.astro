@@ -27,28 +27,57 @@ const storyCopy = portfolioStoriesByLanguage[lang];
 const processSteps = processStepsByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
+const brandHero = lang === 'es'
+  ? {
+      headline: 'Del proceso al sistema.',
+      lead: 'Construyo software end-to-end para flujos reales: backend, interfaces, datos, integraciones y automatización cuando aporta valor.',
+      ledgerLabel: 'Alcance del sistema',
+      ledgerIndex: 'SO / 01',
+      from: 'Problema real',
+      to: 'Sistema verificable',
+    }
+  : {
+      headline: 'From workflow to system.',
+      lead: 'I build end-to-end software for real workflows across backend, interfaces, data, integrations and automation when it adds value.',
+      ledgerLabel: 'System scope',
+      ledgerIndex: 'SO / 01',
+      from: 'Real problem',
+      to: 'Verifiable system',
+    };
 ---
 
 <BaseLayout lang={lang}>
   <section class="hero section">
-    <div class="container hero-grid">
-      <div>
+    <div class="container hero-grid brand-hero-grid">
+      <div class="brand-hero-copy">
         <p class="eyebrow">{copy.eyebrow}</p>
-        <h1>{site.title}</h1>
-        <p class="hero-copy">{site.description}</p>
+        <h1 class="brand-headline">{brandHero.headline}</h1>
+        <p class="hero-copy">{brandHero.lead}</p>
         <p class="hero-context">{copy.context}</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
           <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
-      <aside class="hero-proof" aria-label={copy.workflowAria}>
-        {copy.workflow.map((step, index) => (
-          <Fragment>
-            <p>{step}</p>
-            {index < copy.workflow.length - 1 && <span aria-hidden="true">→</span>}
-          </Fragment>
-        ))}
+      <aside class="hero-proof system-ledger" aria-label={copy.workflowAria}>
+        <div class="system-ledger-head">
+          <span class="system-ledger-kicker">{brandHero.ledgerLabel}</span>
+          <span class="system-ledger-index">{brandHero.ledgerIndex}</span>
+        </div>
+        <ol class="system-ledger-flow">
+          {copy.workflow.map((step, index) => (
+            <li>
+              <span class="system-ledger-node" aria-hidden="true"></span>
+              <span>{step}</span>
+              <span class="system-ledger-step">{String(index + 1).padStart(2, '0')}</span>
+            </li>
+          ))}
+        </ol>
+        <div class="system-ledger-foot">
+          <span>{brandHero.from}</span>
+          <strong>→</strong>
+          <span>{brandHero.to}</span>
+        </div>
       </aside>
     </div>
   </section>
