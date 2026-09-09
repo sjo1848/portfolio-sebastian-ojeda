@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getHomepageProjectCover } from '../data/homepageProjectCovers';
 import { getProjectMedia } from '../data/projectMedia';
 import {
   copyByLanguage,
@@ -29,7 +30,7 @@ const {
 } = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
-const cover = media?.cover ?? null;
+const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 ---
