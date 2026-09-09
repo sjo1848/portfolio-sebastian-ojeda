@@ -1,37 +1,37 @@
 import type { Language } from './site';
 
 export const primaryStorySlugs = [
-  'ai-commerce-platform',
   'hms-cloudflare',
-  'agentic-engineering-governance',
+  'alquileres-uspa',
+  'ai-commerce-platform',
   'uspaya',
 ] as const;
 
 export const secondaryCaseSlugs = [
-  'alquileres-uspa',
   'gasflow',
+  'agentic-engineering-governance',
 ] as const;
 
 export const portfolioStoriesByLanguage = {
   es: {
-    eyebrow: 'Engineering stories',
-    title: 'Cuatro historias de ingeniería, no una colección de demos',
+    eyebrow: 'Selected work',
+    title: 'Cuatro casos de producto e ingeniería end-to-end',
     intro:
-      'Los casos principales muestran sistemas que evolucionan bajo restricciones reales: IA con autoridad acotada, migración brownfield, gobierno agentic basado en evidencia y logística transaccional multi-actor.',
-    secondaryEyebrow: 'Casos secundarios',
+      'Los casos principales muestran desarrollo full-stack sobre problemas concretos: operación hotelera, publicación y gestión de alojamientos, comercio asistido por IA y logística transaccional multi-actor.',
+    secondaryEyebrow: 'Casos complementarios',
     secondaryTitle: 'Profundidad adicional según el rol',
     secondaryIntro:
-      'Alquileres Uspallata refuerza backend, workflows e integraciones; GasFlow refuerza mobile, logística y software operativo.',
+      'GasFlow refuerza mobile, logística y software operativo; Agentic Engineering Governance muestra automatización, QA y gobierno de workflows con agentes.',
   },
   en: {
-    eyebrow: 'Engineering stories',
-    title: 'Four engineering stories, not a collection of demos',
+    eyebrow: 'Selected work',
+    title: 'Four end-to-end product and engineering case studies',
     intro:
-      'The primary cases show systems evolving under real constraints: AI with bounded authority, brownfield migration, evidence-based agentic governance, and transactional multi-actor logistics.',
-    secondaryEyebrow: 'Secondary cases',
+      'The primary cases demonstrate full-stack delivery across concrete problems: hotel operations, accommodation publishing and management, AI-assisted commerce, and transactional multi-actor logistics.',
+    secondaryEyebrow: 'Complementary cases',
     secondaryTitle: 'Additional depth depending on the role',
     secondaryIntro:
-      'Alquileres Uspallata reinforces backend, workflows and integrations; GasFlow reinforces mobile, logistics and operational software.',
+      'GasFlow reinforces mobile, logistics and operational software; Agentic Engineering Governance demonstrates automation, QA and governance for agent-driven workflows.',
   },
 } satisfies Record<Language, {
   eyebrow: string;
