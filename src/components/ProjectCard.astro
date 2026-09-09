@@ -34,24 +34,23 @@ const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const coverIsPortrait = cover ? cover.height > cover.width * 1.15 : false;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
+const stackLimit = variant === 'hero' ? 4 : 3;
 const labels = lang === 'es'
   ? {
       role: 'Rol',
       evidence: 'Evidencia',
       documented: 'Caso documentado',
-      visual: 'Evidencia visual',
-      code: 'Código disponible',
-      demo: 'Demo disponible',
-      stack: 'Stack principal',
+      visual: 'Capturas',
+      code: 'Código',
+      demo: 'Demo',
     }
   : {
       role: 'Role',
       evidence: 'Evidence',
-      documented: 'Documented case study',
-      visual: 'Visual evidence',
-      code: 'Code available',
-      demo: 'Demo available',
-      stack: 'Core stack',
+      documented: 'Documented case',
+      visual: 'Screenshots',
+      code: 'Code',
+      demo: 'Demo',
     };
 const evidenceSignals = [
   labels.documented,
@@ -98,25 +97,19 @@ const evidenceSignals = [
     <h3>{data.title}</h3>
     <p class="project-context">{data.summary}</p>
 
-    <dl class="project-card-meta">
-      <div>
-        <dt>{labels.role}</dt>
-        <dd>{data.role}</dd>
-      </div>
-      <div>
-        <dt>{labels.evidence}</dt>
-        <dd class="project-signal-list">
-          {evidenceSignals.map((signal) => <span>{signal}</span>)}
-        </dd>
-      </div>
-    </dl>
+    <p class="project-role">
+      <span>{labels.role}</span>
+      <strong>{data.role}</strong>
+    </p>
 
-    <div class="project-stack">
-      <p>{labels.stack}</p>
-      <ul class="stack-list" aria-label={`${copy.technologiesAria} ${data.title}`}>
-        {data.stack.slice(0, 4).map((technology) => <li>{technology}</li>)}
-      </ul>
-    </div>
+    <p class="project-proof">
+      <span>{labels.evidence}</span>
+      <strong>{evidenceSignals.join(' · ')}</strong>
+    </p>
+
+    <ul class="project-stack-inline" aria-label={`${copy.technologiesAria} ${data.title}`}>
+      {data.stack.slice(0, stackLimit).map((technology) => <li>{technology}</li>)}
+    </ul>
 
     <div class="card-actions">
       <a class="button button-primary" href={getProjectPath(lang, data.slug)}>{copy.viewCaseStudy}</a>
@@ -129,13 +122,8 @@ const evidenceSignals = [
 
 <style>
   .project-status {
-    display: inline-flex;
     width: fit-content;
-    margin-bottom: 1rem;
-    border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
-    border-radius: 999px;
-    padding: 0.35rem 0.65rem;
-    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+    margin-bottom: 0.85rem;
   }
 
   .project-context {
@@ -143,63 +131,70 @@ const evidenceSignals = [
     color: var(--muted);
   }
 
-  .project-card-meta {
+  .project-role,
+  .project-proof {
     display: grid;
-    gap: 1rem;
-    margin: 1.5rem 0 0;
-    padding-top: 1.25rem;
+    grid-template-columns: minmax(4.5rem, auto) 1fr;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
-  .project-card-meta div {
-    display: grid;
-    gap: 0.35rem;
+  .project-proof {
+    margin-top: 0.8rem;
+    padding-top: 0;
+    border-top: 0;
   }
 
-  .project-card-meta dt,
-  .project-stack > p {
+  .project-role > span,
+  .project-proof > span {
     color: var(--muted);
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     font-weight: 750;
     letter-spacing: 0.09em;
     text-transform: uppercase;
   }
 
-  .project-card-meta dd {
-    margin: 0;
-    font-size: 0.95rem;
+  .project-role strong,
+  .project-proof strong {
     font-weight: 650;
-    line-height: 1.45;
   }
 
-  .project-signal-list {
+  .project-proof strong {
+    color: var(--muted);
+    font-size: 0.84rem;
+  }
+
+  .project-stack-inline {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .project-signal-list span {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.24rem 0.55rem;
-    background: color-mix(in srgb, var(--surface) 86%, var(--canvas));
+    gap: 0.3rem 0.55rem;
+    margin-top: 1.2rem;
     color: var(--muted);
-    font-size: 0.76rem;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    list-style: none;
   }
 
-  .project-stack {
-    margin-top: 1.4rem;
+  .project-stack-inline li + li::before {
+    margin-right: 0.55rem;
+    color: var(--accent);
+    content: '·';
   }
 
-  .project-stack :global(.stack-list) {
-    margin-top: 0.65rem;
+  .card-actions {
+    margin-top: 1.5rem;
   }
 
-  @media (min-width: 48rem) {
-    .project-card-hero .project-card-meta {
-      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  @media (max-width: 31rem) {
+    .project-role,
+    .project-proof {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
     }
   }
 </style>
