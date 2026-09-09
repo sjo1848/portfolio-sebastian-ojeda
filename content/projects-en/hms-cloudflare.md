@@ -88,12 +88,28 @@ Validation combines:
 
 The recovery rehearsal exports the databases, introduces synthetic mutations, restores the backup, and verifies checksums and reconciliation. It is presented as local recovery evidence, not as proof of remote atomic rollback across D1 databases.
 
+## Visual evidence
+
+The following screenshots are versioned in the repository and come from Playwright regressions against the migrated runtime. They document reproducible local behavior; they are not presented as remote acceptance or production proof.
+
+![HMS Cloudflare reception workflow](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i04-reception-lifecycle.png)
+
+*Reception: operational lifecycle captured during the project regression suite.*
+
+![HMS Cloudflare housekeeping workspace](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i05-integrated-housekeeping.png)
+
+*Housekeeping: evidence of the integrated workspace on the Cloudflare migration.*
+
+![HMS Cloudflare billing workflow](https://github.com/sjo1848/hms-cloudflare/raw/dd7d536848708346ca9616e0f54b0fc48ace0b07/output/playwright/cf-i06-billing.png)
+
+*Billing: product behavior captured by Playwright; it does not imply remote Product Acceptance.*
+
 ## Current result
 
 The migration reached technical validation while preserving an explicit separation between technical acceptance and product acceptance. The case demonstrates continuity between a Rust/PostgreSQL backend and an edge/serverless architecture instead of presenting the latter as disconnected from the original domain.
 
 ## Evidence and limits
 
-Available evidence covers code, migration contracts, automated tests, browser journeys, and recovery rehearsal. Remote reception screenshots, final mobile visual evidence, and remote Product Acceptance evidence remain pending.
+Available evidence covers code, migration contracts, automated tests, browser journeys, Playwright screenshots, and recovery rehearsal. Remote reception screenshots, final mobile visual evidence, and remote Product Acceptance evidence remain pending.
 
 The published status is therefore **technically validated migration; acceptance remains separate**. It is not presented as a final production release.
