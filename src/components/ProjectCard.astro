@@ -31,6 +31,7 @@ const {
 const { data } = project;
 const media = getProjectMedia(data.slug);
 const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
+const coverIsPortrait = cover ? cover.height > cover.width * 1.15 : false;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 const labels = lang === 'es'
@@ -57,35 +58,43 @@ const evidenceSignals = [
   cover ? labels.visual : null,
   data.repository ? labels.code : null,
   data.demo ? labels.demo : null,
-].filter(Boolean);
+].filter((signal): signal is string => Boolean(signal));
 ---
 
-<article class:list={['project-card', `project-card-${variant}`]}>
+<article class:list={['project-card', `project-card-${variant}`, cover && 'project-card-has-evidence']}>
   {
     cover ? (
-      <figure class="project-evidence project-evidence-image">
-        <img
-          src={cover.src}
-          alt={cover.alt[lang]}
-          width={cover.width}
-          height={cover.height}
-          loading="lazy"
-          decoding="async"
-        />
+      <figure
+        class:list={[
+          'project-evidence',
+          'project-evidence-image',
+          coverIsPortrait && 'project-evidence-portrait',
+        ]}
+      >
+        <div class="project-shot">
+          <img
+            src={cover.src}
+            alt={cover.alt[lang]}
+            width={cover.width}
+            height={cover.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <figcaption>
           <span>{indexLabel}</span>
           <strong>{data.category}</strong>
         </figcaption>
       </figure>
     ) : (
-      <div class="project-evidence" aria-hidden="true">
+      <div class="project-evidence project-evidence-placeholder" aria-hidden="true">
         <span>{indexLabel}</span>
         <strong>{data.category}</strong>
       </div>
     )
   }
   <div class="project-body">
-    <p class="eyebrow">{data.statusLabel}</p>
+    <p class="eyebrow project-status">{data.statusLabel}</p>
     <h3>{data.title}</h3>
     <p class="project-context">{data.summary}</p>
 
@@ -96,7 +105,9 @@ const evidenceSignals = [
       </div>
       <div>
         <dt>{labels.evidence}</dt>
-        <dd>{evidenceSignals.join(' · ')}</dd>
+        <dd class="project-signal-list">
+          {evidenceSignals.map((signal) => <span>{signal}</span>)}
+        </dd>
       </div>
     </dl>
 
@@ -117,6 +128,16 @@ const evidenceSignals = [
 </article>
 
 <style>
+  .project-status {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 1rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+    border-radius: 999px;
+    padding: 0.35rem 0.65rem;
+    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  }
+
   .project-context {
     margin-top: 1rem;
     color: var(--muted);
@@ -124,7 +145,7 @@ const evidenceSignals = [
 
   .project-card-meta {
     display: grid;
-    gap: 0.85rem;
+    gap: 1rem;
     margin: 1.5rem 0 0;
     padding-top: 1.25rem;
     border-top: 1px solid var(--line);
@@ -132,16 +153,16 @@ const evidenceSignals = [
 
   .project-card-meta div {
     display: grid;
-    gap: 0.25rem;
+    gap: 0.35rem;
   }
 
   .project-card-meta dt,
   .project-stack > p {
     color: var(--muted);
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 750;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
   }
 
@@ -150,6 +171,22 @@ const evidenceSignals = [
     font-size: 0.95rem;
     font-weight: 650;
     line-height: 1.45;
+  }
+
+  .project-signal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-signal-list span {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.24rem 0.55rem;
+    background: color-mix(in srgb, var(--surface) 86%, var(--canvas));
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 700;
   }
 
   .project-stack {
@@ -162,7 +199,7 @@ const evidenceSignals = [
 
   @media (min-width: 48rem) {
     .project-card-hero .project-card-meta {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
     }
   }
 </style>
