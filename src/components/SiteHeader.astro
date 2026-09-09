@@ -26,31 +26,31 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
 ---
 
 <header class="site-header">
-  <div class="container header-inner">
+  <div class="container header-inner brand-header-inner">
     <a class="brand brand-reveal" href={root} aria-label={site.name}>
       <span class="brand-initial" aria-hidden="true">{brandInitial}</span>
       <span class="brand-rest" aria-hidden="true">{brandRest}</span>
     </a>
-    <nav aria-label={copy.navigationLabel}>
-      <ul class="nav-list">
-        <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
-        <li><a href={`${root}#capabilities`}>{capabilitiesLabel}</a></li>
-        <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
-        <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
-        <li><a href={`${root}#contact`}>{copy.nav.contact}</a></li>
-        <li>
-          <a
-            class="language-link"
-            href={alternatePath}
-            hreflang={alternateLanguage}
-            lang={alternateLanguage}
-            aria-label={copy.languageSwitchAria}
-          >
-            {copy.languageSwitch}
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="header-actions">
+      <nav aria-label={copy.navigationLabel}>
+        <ul class="nav-list">
+          <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
+          <li><a href={`${root}#capabilities`}>{capabilitiesLabel}</a></li>
+          <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
+          <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
+          <li><a href={`${root}#contact`}>{copy.nav.contact}</a></li>
+        </ul>
+      </nav>
+      <a
+        class="language-link"
+        href={alternatePath}
+        hreflang={alternateLanguage}
+        lang={alternateLanguage}
+        aria-label={copy.languageSwitchAria}
+      >
+        {copy.languageSwitch}
+      </a>
+    </div>
   </div>
 </header>
 
@@ -72,6 +72,75 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
 
   .brand-rest {
     transform-origin: left center;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.65rem;
+  }
+
+  .language-link {
+    display: inline-flex;
+    min-width: 2.8rem;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding-inline: 0.65rem;
+    background: color-mix(in srgb, var(--surface) 76%, transparent);
+    color: var(--accent-strong);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+  }
+
+  @media (max-width: 47.99rem) {
+    .brand-header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.25rem 1rem;
+      padding-block: 0.55rem;
+    }
+
+    .header-actions {
+      display: contents;
+    }
+
+    .header-actions nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .language-link {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    .nav-list {
+      display: grid;
+      grid-template-columns: repeat(5, max-content);
+      justify-content: space-between;
+      gap: 0.15rem;
+      overflow-x: auto;
+      padding-bottom: 0.1rem;
+      scrollbar-width: none;
+    }
+
+    .nav-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-list a {
+      min-height: 2.2rem;
+      padding-inline: 0.15rem;
+      font-size: 0.72rem;
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
