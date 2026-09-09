@@ -27,7 +27,7 @@ export interface ProjectMediaSet {
 
 const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/b2f300df3450c7a1eb1f75539fdca7627802055c/docs/screenshots';
 const hmsWalkthroughBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/media';
-const alquileresEvidenceBase = 'https://raw.githubusercontent.com/sjo1848/alquileres-uspa/5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51/docs/media/portfolio';
+const alquileresEvidenceBase = 'https://github.com/sjo1848/alquileres-uspa/raw/5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51/docs/media/portfolio';
 
 export const projectMedia = {
   'hms-elite': {
@@ -125,7 +125,7 @@ export const projectMedia = {
         },
         caption: {
           es: 'Housekeeping: cola del turno para habitaciones por limpiar, en limpieza, listas y mantenimiento.',
-          en: 'Housekeeping: shift queue for rooms to clean, in cleaning, ready, and under maintenance.',
+          en: 'Housekeeping: shift queue for rooms to clean, in cleaning, ready, and under maintenance states.',
         },
         width: 1440,
         height: 900,
