@@ -1,0 +1,20 @@
+services:
+  portfolio-runner:
+    build:
+      context: .
+      args:
+        RUNNER_VERSION: ${RUNNER_VERSION:-2.337.0}
+    container_name: portfolio-github-runner
+    restart: unless-stopped
+    environment:
+      REPO_URL: ${REPO_URL:-https://github.com/sjo1848/portfolio-sebastian-ojeda}
+      RUNNER_TOKEN: ${RUNNER_TOKEN:-}
+      RUNNER_NAME: ${RUNNER_NAME:-portfolio-local-docker}
+      RUNNER_LABELS: ${RUNNER_LABELS:-portfolio,docker}
+    volumes:
+      - runner-state:/runner-state
+      - runner-work:/opt/actions-runner/_work
+
+volumes:
+  runner-state:
+  runner-work:
