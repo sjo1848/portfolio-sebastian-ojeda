@@ -17,7 +17,7 @@ env:
 jobs:
   validate-release:
     name: Validate release contract
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, portfolio]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
