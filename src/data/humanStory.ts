@@ -10,23 +10,25 @@ type HumanStory = {
 
 export const humanStoryByLanguage: Record<Language, HumanStory> = {
   es: {
-    eyebrow: 'Un poco sobre mí',
-    title: 'No llegué al software por un camino recto. Y eso terminó siendo una ventaja.',
+    eyebrow: '',
+    title: 'Un poco sobre mí',
     paragraphs: [
-      'Soy Sebastián Ojeda, desarrollador radicado en Uspallata, Mendoza. Mi recorrido pasó por soporte, infraestructura, SAP e integraciones, operaciones y desarrollo; por eso aprendí temprano que un sistema es mucho más que su interfaz.',
-      'Me gusta entender el problema antes de elegir la tecnología: qué necesita la persona que lo usa, dónde se rompe el proceso y qué tiene que seguir funcionando cuando el escenario no es perfecto. Esa es la clase de problema que más disfruto convertir en software.',
-      'Soy curioso y casi siempre estoy aprendiendo algo, desde arquitectura, datos o SAP hasta idiomas y dominios nuevos. Fuera de la pantalla, la montaña es una parte importante de mi vida y de haber elegido vivir en Uspallata.',
+      'Vivo en Uspallata, Mendoza, Argentina. Antes de concentrarme en el desarrollo de software pasé por soporte, infraestructura, SAP e integraciones en distintos entornos operativos. Ese recorrido fue moldeando mi manera de pensar la tecnología: aprendí a verla como una herramienta para comprender, conectar y mejorar procesos reales, siempre teniendo en cuenta a las personas que los hacen funcionar.',
+      'Disfruto especialmente la etapa de descubrimiento y comprensión del problema. Me resulta muy satisfactorio llegar a algo que todavía no está del todo claro, hacer las preguntas correctas y empezar a entender qué está pasando, por qué funciona de determinada manera, dónde aparecen las fricciones y qué necesita realmente quien lo usa. A partir de ahí, la tecnología empieza a tener sentido. Para mí, una buena solución nace de comprender bien el problema antes de escribir la primera línea de código.',
+      'Aprender es una constante en mi vida. Siempre estoy profundizando algo, descubriendo una herramienta, entrando en un dominio nuevo o tratando de mirar un problema desde otra perspectiva. Puedo estar estudiando arquitectura de software, datos o SAP y después dedicar tiempo a aprender un idioma completamente nuevo. Lo que me mueve no es acumular tecnologías, sino esa satisfacción de comprender algo que antes no entendía y descubrir nuevas formas de pensar, construir y hacer mejor las cosas.',
+      'Fuera de la pantalla, la montaña ocupa un lugar importante en mi vida. Disfruto correr, caminar, explorar y estar cerca de un entorno que contrasta bastante con pasar horas construyendo sistemas. Elegir vivir en Uspallata tiene mucho que ver con eso: poder desarrollar tecnología sin alejarme del mundo real, de la naturaleza y de las cosas que también despiertan mi curiosidad.',
     ],
     signals: ['Uspallata · Mendoza', 'Montaña', 'Aprendizaje continuo'],
     ariaLabel: 'Rasgos personales',
   },
   en: {
-    eyebrow: 'A little about me',
-    title: 'My path into software was not a straight line. That became an advantage.',
+    eyebrow: '',
+    title: 'A little about me',
     paragraphs: [
-      'I’m Sebastián Ojeda, a software developer based in Uspallata, Mendoza. My background crosses technical support, infrastructure, SAP and integrations, operations, and software development, so I learned early that a system is much more than its interface.',
-      'I like to understand the problem before choosing the technology: what the person using it needs, where the process breaks, and what still has to work when the situation is not ideal. Those are the problems I most enjoy turning into software.',
-      'I am naturally curious and usually learning something, from architecture, data or SAP to languages and unfamiliar domains. Away from the screen, the mountains are an important part of my life and of why I chose to live in Uspallata.',
+      'I live in Uspallata, Mendoza, Argentina. Before focusing on software development, I worked across technical support, infrastructure, SAP and integrations in different operational environments. That path gradually shaped how I think about technology: I learned to see it as a tool for understanding, connecting and improving real processes without losing sight of the people who make them work.',
+      'I especially enjoy the discovery stage and the work of understanding the problem. I find it deeply satisfying to step into something that is still unclear, ask the right questions and start making sense of what is actually happening: why a process works the way it does, where friction appears and what the person using it really needs. From there, technology starts to make sense. To me, a good solution begins with understanding the problem well before writing the first line of code.',
+      'Learning is a constant in my life. I am always going deeper into something, discovering a tool, entering a new domain or trying to look at a problem from another angle. I might be studying software architecture, data or SAP and then spend time learning a completely new language. What drives me is not collecting technologies, but the satisfaction of understanding something I did not understand before and finding new ways to think, build and make things better.',
+      'Away from the screen, the mountains are an important part of my life. I enjoy running, hiking, exploring and being close to an environment that contrasts with spending hours building systems. Choosing to live in Uspallata has a lot to do with that: being able to build technology without losing touch with the real world, nature and the things that keep my curiosity alive.',
     ],
     signals: ['Uspallata · Mendoza', 'Mountains', 'Continuous learning'],
     ariaLabel: 'Personal signals',
