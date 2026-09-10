@@ -11,7 +11,7 @@ permissions:
 jobs:
   validate:
     name: Release QA and Lighthouse
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, portfolio]
     env:
       PUBLIC_SITE_URL: https://portfolio-sebastian-ojeda.pages.dev
     steps:
@@ -44,7 +44,7 @@ jobs:
 
   secret-scan:
     name: Secret scanning
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, portfolio]
     steps:
       - name: Checkout full history
         uses: actions/checkout@v4
