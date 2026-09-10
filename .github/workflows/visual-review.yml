@@ -12,6 +12,7 @@ on:
       - 'public/**'
       - 'scripts/**'
       - 'src/**'
+      - 'infra/github-runner/**'
   workflow_dispatch:
 
 permissions:
@@ -27,7 +28,7 @@ env:
 jobs:
   capture:
     name: Capture responsive evidence
-    runs-on: ubuntu-24.04
+    runs-on: [self-hosted, Linux, X64, portfolio]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
