@@ -4,7 +4,8 @@ ARG RUNNER_VERSION=2.337.0
 ARG TARGETARCH=amd64
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    RUNNER_ALLOW_RUNASROOT=1
+    RUNNER_HOME=/opt/actions-runner \
+    HOME=/home/runner
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -40,6 +41,9 @@ RUN test "$TARGETARCH" = "amd64" \
 
 COPY entrypoint.sh /usr/local/bin/runner-entrypoint
 RUN chmod +x /usr/local/bin/runner-entrypoint \
-    && mkdir -p /runner-state /opt/actions-runner/_work
+    && useradd --create-home --uid 10001 --shell /usr/sbin/nologin runner \
+    && mkdir -p /runner-state /opt/actions-runner/_work /opt/actions-runner/_diag \
+    && chown runner:runner /runner-state /opt/actions-runner /opt/actions-runner/_work /opt/actions-runner/_diag
 
+USER runner
 ENTRYPOINT ["/usr/local/bin/runner-entrypoint"]

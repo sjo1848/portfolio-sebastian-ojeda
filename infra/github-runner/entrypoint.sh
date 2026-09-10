@@ -27,9 +27,19 @@ persist_state() {
   done
 }
 
+has_runner_state() {
+  [[ -f "$STATE_DIR/.runner" && -f "$STATE_DIR/.credentials" ]]
+}
+
 restore_state
 
-if [[ ! -f .runner ]]; then
+if ! has_runner_state; then
+  if [[ -f .runner || -f .credentials ]]; then
+    echo "Runner state is incomplete; refusing to register over partial local state." >&2
+    echo "Remove the runner-state volume only after removing the runner from GitHub, then register again." >&2
+    exit 1
+  fi
+
   if [[ -z "${RUNNER_TOKEN:-}" ]]; then
     echo "RUNNER_TOKEN is required for first-time registration." >&2
     echo "GitHub: Settings -> Actions -> Runners -> New self-hosted runner." >&2

@@ -14,6 +14,7 @@ This runner is a temporary/local execution target for the portfolio workflows wh
 - Linux x64 host.
 - Docker Engine with Docker Compose v2.
 - Outbound HTTPS access to GitHub, Node distribution endpoints and npm.
+- The container runs the runner as a dedicated non-root user.
 
 The image includes Git, Python 3, curl and Google Chrome because the current portfolio workflows require them. Node 20 is installed by `actions/setup-node` inside each job.
 
@@ -76,7 +77,7 @@ The current PR workflows are expected to remain `queued` until this runner comes
 
 `RUNNER_TOKEN` is only used for first registration. Runner credentials are copied into the `runner-state` Docker volume, so ordinary container restarts do not need a fresh registration token.
 
-After successful registration you may remove the token value from the local `.env` file. Do not remove the `runner-state` volume unless you intend to register the runner again.
+After successful registration remove the token value from the local `.env` file. Do not remove the `runner-state` volume unless you intend to register the runner again.
 
 ## Useful commands
 
