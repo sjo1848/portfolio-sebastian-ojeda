@@ -44,7 +44,7 @@
 }
 
 .human-story-copy {
-  max-width: 56rem;
+  max-width: 58rem;
   padding-top: 1.5rem;
   border-top: 2px solid var(--ink);
 }
@@ -64,10 +64,4 @@
 
 .human-story-copy p + p {
   margin-top: 1.5rem;
-}
-
-@media (min-width: 68.75rem) {
-  .human-story-copy {
-    margin-left: clamp(2rem, 7vw, 7rem);
-  }
 }
