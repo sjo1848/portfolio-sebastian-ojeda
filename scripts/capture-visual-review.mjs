@@ -15,9 +15,9 @@ const viewports = [
 ];
 
 const supportCaptureHeights = {
-  mobile: 13_000,
-  tablet: 10_000,
-  desktop: 8_000,
+  mobile: 15_000,
+  tablet: 12_000,
+  desktop: 9_500,
 };
 
 const routes = [
