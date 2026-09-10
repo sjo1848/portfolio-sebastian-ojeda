@@ -70,6 +70,8 @@ runs-on: [self-hosted, Linux, X64, portfolio]
 
 Only one job can run at a time on this single runner. Other jobs remain queued and execute sequentially.
 
+The current PR workflows are expected to remain `queued` until this runner comes online. Once registration succeeds, GitHub should assign those queued jobs automatically; no extra rerun is normally needed.
+
 ## 4. Registration token lifecycle
 
 `RUNNER_TOKEN` is only used for first registration. Runner credentials are copied into the `runner-state` Docker volume, so ordinary container restarts do not need a fresh registration token.
