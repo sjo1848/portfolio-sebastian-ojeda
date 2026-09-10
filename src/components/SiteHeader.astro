@@ -20,6 +20,7 @@ const copy = copyByLanguage[lang];
 const root = getLanguageRoot(lang);
 const alternateLanguage = lang === 'es' ? 'en' : 'es';
 const alternatePath = getAlternatePath(Astro.url.pathname, lang);
+const aboutLabel = lang === 'es' ? 'Sobre mí' : 'About';
 const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
 ---
 
@@ -30,6 +31,7 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
       <nav aria-label={copy.navigationLabel}>
         <ul class="nav-list">
           <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
+          <li><a href={`${root}#about`}>{aboutLabel}</a></li>
           <li><a href={`${root}#capabilities`}>{capabilitiesLabel}</a></li>
           <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
           <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
