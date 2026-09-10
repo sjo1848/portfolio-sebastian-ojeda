@@ -26,27 +26,35 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: clamp(2rem, 4vw, 3.25rem);
 }
 
 .human-story-heading {
-  max-width: 48rem;
+  max-width: none;
+}
+
+.human-story-heading .eyebrow:empty {
+  display: none;
 }
 
 .human-story-heading h2 {
-  max-width: 18ch;
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -0.045em;
+  max-width: none;
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .human-story-content {
   display: grid;
-  gap: clamp(2.25rem, 5vw, 4rem);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
 }
 
 .human-story-copy {
-  max-width: 45rem;
+  max-width: 50rem;
   padding-top: 1.35rem;
   border-top: 2px solid var(--ink);
 }
@@ -65,7 +73,7 @@
 }
 
 .human-story-copy p + p {
-  margin-top: 1.35rem;
+  margin-top: 1.5rem;
 }
 
 .human-story-signals {
@@ -106,46 +114,18 @@
 
 @media (min-width: 48rem) {
   .human-story-content {
-    grid-template-columns: minmax(0, 1.38fr) minmax(13rem, 0.62fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(13rem, 0.5fr);
     align-items: start;
   }
 }
 
 @media (min-width: 68.75rem) {
-  .human-story-grid {
-    grid-template-columns: minmax(20rem, 0.78fr) minmax(0, 1.22fr);
-    align-items: start;
-  }
-
-  .human-story-heading {
-    position: sticky;
-    top: 7.5rem;
-  }
-
   .human-story-content {
-    grid-template-columns: 1fr;
-    max-width: 46rem;
-    justify-self: end;
-  }
-
-  .human-story-signals ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border-left: 1px solid var(--line);
+    grid-template-columns: minmax(0, 1.62fr) minmax(15rem, 0.38fr);
+    gap: clamp(4rem, 7vw, 6rem);
   }
 
   .human-story-signals li {
-    display: flex;
-    min-height: 5.75rem;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    border-right: 1px solid var(--line);
-    padding: 0.9rem 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .human-story-heading {
-    position: static;
+    min-height: 5rem;
   }
 }
