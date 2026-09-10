@@ -33,16 +33,44 @@ const brandHero = lang === 'es'
   ? {
       headline: 'Del proceso al sistema.',
       lead: 'Construyo software end-to-end para flujos reales: backend, interfaces, datos, integraciones y automatización cuando aporta valor.',
-      ledgerLabel: 'Alcance del sistema',
-      ledgerIndex: 'SO / 01',
+      approachLabel: 'Cómo trabajo',
+      approachStatement: 'Primero entender. Después construir y verificar.',
+      approachSteps: [
+        {
+          title: 'Descubrir',
+          description: 'Entender el problema, el contexto y qué necesita realmente quien lo usa.',
+        },
+        {
+          title: 'Construir',
+          description: 'Unir backend, interfaces, datos e integraciones en un sistema coherente.',
+        },
+        {
+          title: 'Verificar',
+          description: 'Validar con QA y evidencia que funciona más allá del escenario ideal.',
+        },
+      ],
       from: 'Problema real',
       to: 'Sistema verificable',
     }
   : {
       headline: 'From workflow to system.',
       lead: 'I build end-to-end software for real workflows across backend, interfaces, data, integrations and automation when it adds value.',
-      ledgerLabel: 'System scope',
-      ledgerIndex: 'SO / 01',
+      approachLabel: 'How I work',
+      approachStatement: 'Understand first. Then build and verify.',
+      approachSteps: [
+        {
+          title: 'Discover',
+          description: 'Understand the problem, its context and what the person using it actually needs.',
+        },
+        {
+          title: 'Build',
+          description: 'Connect backend, interfaces, data and integrations into one coherent system.',
+        },
+        {
+          title: 'Verify',
+          description: 'Validate with QA and evidence that it works beyond the ideal scenario.',
+        },
+      ],
       from: 'Real problem',
       to: 'Verifiable system',
     };
@@ -61,23 +89,27 @@ const brandHero = lang === 'es'
           <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
-      <aside class="hero-proof system-ledger" aria-label={copy.workflowAria}>
-        <div class="system-ledger-head">
-          <span class="system-ledger-kicker">{brandHero.ledgerLabel}</span>
-          <span class="system-ledger-index">{brandHero.ledgerIndex}</span>
+      <aside class="hero-proof approach-panel" aria-label={copy.workflowAria}>
+        <div class="approach-panel-head">
+          <span class="approach-panel-kicker">{brandHero.approachLabel}</span>
+          <p class="approach-panel-statement">{brandHero.approachStatement}</p>
         </div>
-        <ol class="system-ledger-flow">
-          {copy.workflow.map((step, index) => (
+        <ol class="approach-stages">
+          {brandHero.approachSteps.map((step, index) => (
             <li>
-              <span class="system-ledger-node" aria-hidden="true"></span>
-              <span>{step}</span>
-              <span class="system-ledger-step">{String(index + 1).padStart(2, '0')}</span>
+              <span class="approach-stage-index">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <strong>{step.title}</strong>
+                <p>{step.description}</p>
+              </div>
             </li>
           ))}
         </ol>
-        <div class="system-ledger-foot">
+        <div class="approach-path" aria-hidden="true">
           <span>{brandHero.from}</span>
+          <i></i>
           <strong>→</strong>
+          <i></i>
           <span>{brandHero.to}</span>
         </div>
       </aside>
@@ -118,23 +150,12 @@ const brandHero = lang === 'es'
   <section id="about" class="section human-story" aria-labelledby="about-title">
     <div class="container human-story-grid">
       <div class="human-story-heading">
-        <p class="eyebrow">{humanStory.eyebrow}</p>
         <h2 id="about-title">{humanStory.title}</h2>
       </div>
       <div class="human-story-content">
         <div class="human-story-copy">
           {humanStory.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-        <aside class="human-story-signals" aria-label={humanStory.ariaLabel}>
-          <ul>
-            {humanStory.signals.map((signal, index) => (
-              <li>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{signal}</strong>
-              </li>
-            ))}
-          </ul>
-        </aside>
       </div>
     </div>
   </section>
