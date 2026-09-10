@@ -23,11 +23,13 @@ const supportCaptureHeights = {
 const routes = [
   { name: 'home-en', pathname: '/' },
   { name: 'home-en-projects', pathname: '/', captureHeight: 2400 },
+  { name: 'home-en-about', pathname: '/#about', captureHeight: 1800 },
   { name: 'home-en-support', pathname: '/', captureHeight: supportCaptureHeights },
   { name: 'hms-cloudflare-en', pathname: '/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-en', pathname: '/projects/alquileres-uspa/' },
   { name: 'home-es', pathname: '/es/' },
   { name: 'home-es-projects', pathname: '/es/', captureHeight: 2400 },
+  { name: 'home-es-about', pathname: '/es/#about', captureHeight: 1800 },
   { name: 'home-es-support', pathname: '/es/', captureHeight: supportCaptureHeights },
   { name: 'hms-cloudflare-es', pathname: '/es/projects/hms-cloudflare/' },
   { name: 'alquileres-uspa-es', pathname: '/es/projects/alquileres-uspa/' },
