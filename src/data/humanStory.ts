@@ -1,7 +1,8 @@
 import type { Language } from './site';
 
 type HumanStory = {
-  heading: string;
+  eyebrow: string;
+  title: string;
   paragraphs: string[];
   signals: string[];
   ariaLabel: string;
@@ -9,7 +10,8 @@ type HumanStory = {
 
 export const humanStoryByLanguage: Record<Language, HumanStory> = {
   es: {
-    heading: 'Un poco sobre mí',
+    eyebrow: '',
+    title: 'Un poco sobre mí',
     paragraphs: [
       'Vivo en Uspallata, Mendoza, Argentina. Antes de concentrarme en el desarrollo de software pasé por soporte, infraestructura, SAP e integraciones en distintos entornos operativos. Ese recorrido fue moldeando mi manera de pensar la tecnología: aprendí a verla como una herramienta para comprender, conectar y mejorar procesos reales, siempre teniendo en cuenta a las personas que los hacen funcionar.',
       'Disfruto especialmente la etapa de descubrimiento y comprensión del problema. Me resulta muy satisfactorio llegar a algo que todavía no está del todo claro, hacer las preguntas correctas y empezar a entender qué está pasando, por qué funciona de determinada manera, dónde aparecen las fricciones y qué necesita realmente quien lo usa. A partir de ahí, la tecnología empieza a tener sentido. Para mí, una buena solución nace de comprender bien el problema antes de escribir la primera línea de código.',
@@ -20,7 +22,8 @@ export const humanStoryByLanguage: Record<Language, HumanStory> = {
     ariaLabel: 'Rasgos personales',
   },
   en: {
-    heading: 'A little about me',
+    eyebrow: '',
+    title: 'A little about me',
     paragraphs: [
       'I live in Uspallata, Mendoza, Argentina. Before focusing on software development, I worked across technical support, infrastructure, SAP and integrations in different operational environments. That path gradually shaped how I think about technology: I learned to see it as a tool for understanding, connecting and improving real processes, while keeping the people who make them work in view.',
       'I especially enjoy the discovery stage and the work of understanding the problem. I find it deeply satisfying to arrive at something that is still unclear, ask the right questions and start making sense of what is actually happening: why a process works the way it does, where friction appears and what the person using it really needs. From there, technology starts to make sense. To me, a good solution begins with understanding the problem well before writing the first line of code.',
