@@ -11,6 +11,7 @@ import {
   type Language,
 } from '../data/site';
 import { portfolioStoriesByLanguage } from '../data/portfolioStories';
+import { humanStoryByLanguage } from '../data/humanStory';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -24,6 +25,7 @@ const { lang, primaryProjects, secondaryProjects } = Astro.props;
 const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang].home;
 const storyCopy = portfolioStoriesByLanguage[lang];
+const humanStory = humanStoryByLanguage[lang];
 const processSteps = processStepsByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
@@ -109,6 +111,30 @@ const brandHero = lang === 'es'
         {secondaryProjects.map((project, index) => (
           <ProjectCard project={project} lang={lang} displayIndex={index + 5} variant="secondary" />
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section human-story" aria-labelledby="about-title">
+    <div class="container human-story-grid">
+      <div class="human-story-heading">
+        <p class="eyebrow">{humanStory.eyebrow}</p>
+        <h2 id="about-title">{humanStory.title}</h2>
+      </div>
+      <div class="human-story-content">
+        <div class="human-story-copy">
+          {humanStory.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <aside class="human-story-signals" aria-label={humanStory.ariaLabel}>
+          <ul>
+            {humanStory.signals.map((signal, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{signal}</strong>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
