@@ -29,16 +29,7 @@
   gap: clamp(2rem, 4vw, 3.25rem);
 }
 
-.human-story-heading {
-  max-width: none;
-}
-
-.human-story-heading .eyebrow:empty {
-  display: none;
-}
-
 .human-story-heading h2 {
-  max-width: none;
   margin: 0;
   color: var(--accent-strong);
   font-size: 0.78rem;
@@ -49,20 +40,19 @@
 }
 
 .human-story-content {
-  display: grid;
-  gap: clamp(2.25rem, 5vw, 4.5rem);
+  display: block;
 }
 
 .human-story-copy {
-  max-width: 50rem;
-  padding-top: 1.35rem;
+  max-width: 58rem;
+  padding-top: 1.5rem;
   border-top: 2px solid var(--ink);
 }
 
 .human-story-copy p {
   color: var(--muted);
   font-size: clamp(1.05rem, 1.7vw, 1.18rem);
-  line-height: 1.75;
+  line-height: 1.78;
 }
 
 .human-story-copy p:first-child {
@@ -74,58 +64,4 @@
 
 .human-story-copy p + p {
   margin-top: 1.5rem;
-}
-
-.human-story-signals {
-  align-self: start;
-}
-
-.human-story-signals ul {
-  display: grid;
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--line);
-  list-style: none;
-}
-
-.human-story-signals li {
-  display: grid;
-  grid-template-columns: 2.35rem minmax(0, 1fr);
-  align-items: center;
-  gap: 0.85rem;
-  min-height: 4.25rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.human-story-signals span {
-  color: var(--accent-strong);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-}
-
-.human-story-signals strong {
-  color: var(--ink);
-  font-size: 0.95rem;
-  font-weight: 680;
-  letter-spacing: -0.01em;
-}
-
-@media (min-width: 48rem) {
-  .human-story-content {
-    grid-template-columns: minmax(0, 1.5fr) minmax(13rem, 0.5fr);
-    align-items: start;
-  }
-}
-
-@media (min-width: 68.75rem) {
-  .human-story-content {
-    grid-template-columns: minmax(0, 1.62fr) minmax(15rem, 0.38fr);
-    gap: clamp(4rem, 7vw, 6rem);
-  }
-
-  .human-story-signals li {
-    min-height: 5rem;
-  }
 }
