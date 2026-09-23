@@ -8,17 +8,17 @@ export const homepageProjectMedia = {
   'hms-cloudflare': {
     cover: {
       kind: 'image',
-      src: '/media/projects/hms-elite/ui-actual.png',
+      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-lifecycle.png`,
       alt: {
-        es: 'Interfaz actual de HMS Elite para gestionar reservas desde la recepción del hotel.',
-        en: 'Current HMS Elite interface for managing hotel reservations from the front desk.',
+        es: 'Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel.',
+        en: 'Current HMS Cloudflare reception workspace for managing hotel reservations.',
       },
       caption: {
-        es: 'Captura actual del runtime de HMS Elite con datos de staging y sin información personal real.',
-        en: 'Current HMS Elite runtime capture using staging data and no real personal information.',
+        es: 'Captura actual del runtime local de HMS Cloudflare generada con Playwright y datos de staging.',
+        en: 'Current HMS Cloudflare local runtime capture generated with Playwright and staging data.',
       },
-      width: 1266,
-      height: 643,
+      width: 1440,
+      height: 1296,
     },
     gallery: [
       {
@@ -32,8 +32,8 @@ export const homepageProjectMedia = {
           es: 'Regresión local del workspace de housekeeping sobre el runtime migrado a Cloudflare.',
           en: 'Local regression evidence of the housekeeping workspace on the Cloudflare-migrated runtime.',
         },
-        width: 1024,
-        height: 1770,
+        width: 1440,
+        height: 900,
       },
       {
         kind: 'image',
@@ -46,8 +46,8 @@ export const homepageProjectMedia = {
           es: 'Evidencia local del flujo de facturación; la captura documenta comportamiento de producto, no aceptación remota.',
           en: 'Local billing-flow evidence; the screenshot documents product behavior, not remote acceptance.',
         },
-        width: 1024,
-        height: 2039,
+        width: 1440,
+        height: 900,
       },
       {
         kind: 'image',
@@ -60,8 +60,8 @@ export const homepageProjectMedia = {
           es: 'Regresión local de la superficie administrativa versionada en el repositorio fuente.',
           en: 'Local regression of the administrative surface versioned in the source repository.',
         },
-        width: 1024,
-        height: 980,
+        width: 1440,
+        height: 900,
       },
     ],
   },
