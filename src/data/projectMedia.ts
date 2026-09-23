@@ -25,26 +25,26 @@ export interface ProjectMediaSet {
   gallery: readonly ProjectMediaAsset[];
 }
 
-const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/b2f300df3450c7a1eb1f75539fdca7627802055c/docs/screenshots';
+const hmsScreenshotBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/screenshots';
 const hmsWalkthroughBase = 'https://raw.githubusercontent.com/sjo1848/hotel-management-system/4df56a6217caab611f2f5fcbd98bde8386bb5629/docs/media';
-const alquileresEvidenceBase = 'https://github.com/sjo1848/alquileres-uspa/raw/5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51/docs/media/portfolio';
-const tacoLocoEvidenceBase = 'https://github.com/sjo1848/taco-loco-foodtrack/raw/a9a9e2c1c70d2a654f7d6b181bf2b18778b49f48/output/playwright';
+const alquileresEvidenceBase = '/media/projects/alquileres-uspa';
+const tacoLocoEvidenceBase = '/media/projects/taco-loco';
 
 export const projectMedia = {
   'hms-elite': {
     cover: {
       kind: 'image',
-      src: `${hmsScreenshotBase}/03-dashboard.png`,
+      src: '/media/projects/hms-elite/ui-actual.png',
       alt: {
-        es: 'Dashboard operativo de HMS Elite con indicadores de ocupación, llegadas, salidas, reservas y caja del turno.',
-        en: 'HMS Elite operations dashboard with occupancy, arrivals, departures, reservations, and shift cash indicators.',
+        es: 'Interfaz actual de HMS Elite para gestionar reservas desde la recepción del hotel.',
+        en: 'Current HMS Elite interface for managing hotel reservations from the front desk.',
       },
       caption: {
-        es: 'Dashboard verificado con datos demo reproducibles y capturado mediante Playwright en una resolución de 1440 por 900 píxeles.',
-        en: 'Dashboard verified with reproducible demo data and captured through Playwright at a resolution of 1440 by 900 pixels.',
+        es: 'Interfaz actual de la aplicación, con datos de staging y sin información personal real.',
+        en: 'Current application interface, using staging data and no real personal information.',
       },
-      width: 1440,
-      height: 900,
+      width: 1266,
+      height: 643,
     },
     gallery: [
       {
