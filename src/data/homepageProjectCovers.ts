@@ -8,17 +8,17 @@ export const homepageProjectMedia = {
   'hms-cloudflare': {
     cover: {
       kind: 'image',
-      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-lifecycle.png`,
+      src: '/media/projects/hms-elite/ui-actual.png',
       alt: {
-        es: 'Flujo de recepción de HMS Cloudflare capturado por la regresión Playwright del proyecto.',
-        en: 'HMS Cloudflare reception workflow captured by the project Playwright regression suite.',
+        es: 'Interfaz actual de HMS Elite para gestionar reservas desde la recepción del hotel.',
+        en: 'Current HMS Elite interface for managing hotel reservations from the front desk.',
       },
       caption: {
-        es: 'Evidencia local versionada del flujo de recepción sobre la migración Cloudflare; no representa aceptación remota ni un despliegue productivo.',
-        en: 'Versioned local evidence of the reception workflow on the Cloudflare migration; it does not represent remote acceptance or a production deployment.',
+        es: 'Captura actual del runtime de HMS Elite con datos de staging y sin información personal real.',
+        en: 'Current HMS Elite runtime capture using staging data and no real personal information.',
       },
-      width: 1024,
-      height: 900,
+      width: 1266,
+      height: 643,
     },
     gallery: [
       {
