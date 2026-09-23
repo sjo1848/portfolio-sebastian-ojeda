@@ -8,7 +8,7 @@ export const homepageProjectMedia = {
   'hms-cloudflare': {
     cover: {
       kind: 'image',
-      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-authorized.png`,
+      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-cover-authorized.png`,
       alt: {
         es: 'Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel.',
         en: 'Current HMS Cloudflare reception workspace for managing hotel reservations.',
@@ -18,7 +18,7 @@ export const homepageProjectMedia = {
         en: 'Current HMS Cloudflare local runtime capture generated with Playwright and staging data.',
       },
       width: 1440,
-      height: 1899,
+      height: 900,
     },
     gallery: [
       {
