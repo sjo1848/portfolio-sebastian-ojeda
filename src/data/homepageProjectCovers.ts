@@ -8,7 +8,7 @@ export const homepageProjectMedia = {
   'hms-cloudflare': {
     cover: {
       kind: 'image',
-      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-lifecycle.png`,
+      src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-authorized.png`,
       alt: {
         es: 'Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel.',
         en: 'Current HMS Cloudflare reception workspace for managing hotel reservations.',
@@ -23,7 +23,7 @@ export const homepageProjectMedia = {
     gallery: [
       {
         kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i05-integrated-housekeeping.png`,
+        src: `${hmsCloudflareEvidenceBase}/cf-i05-housekeeping-authorized.png`,
         alt: {
           es: 'Flujo integrado de housekeeping de HMS Cloudflare capturado por Playwright.',
           en: 'HMS Cloudflare integrated housekeeping workflow captured by Playwright.',
@@ -37,7 +37,7 @@ export const homepageProjectMedia = {
       },
       {
         kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i06-billing.png`,
+        src: `${hmsCloudflareEvidenceBase}/cf-i06-billing-authorized.png`,
         alt: {
           es: 'Pantalla de facturación de HMS Cloudflare capturada durante la regresión Playwright.',
           en: 'HMS Cloudflare billing screen captured during the Playwright regression.',
@@ -51,7 +51,7 @@ export const homepageProjectMedia = {
       },
       {
         kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i07-admin.png`,
+        src: `${hmsCloudflareEvidenceBase}/cf-i07-admin-authorized.png`,
         alt: {
           es: 'Superficie administrativa de HMS Cloudflare verificada por Playwright.',
           en: 'HMS Cloudflare administrative surface verified by Playwright.',

@@ -92,19 +92,19 @@ El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, re
 
 Las capturas siguientes están versionadas en el repositorio y provienen de regresiones Playwright sobre el runtime migrado. Documentan comportamiento local reproducible; no se presentan como aceptación remota ni como prueba de producción.
 
-<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="Flujo de recepción de HMS Cloudflare" width="1440" height="1899" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i04-reception-authorized.png" alt="Flujo de recepción de HMS Cloudflare" width="1440" height="1899" loading="lazy" decoding="async" />
 
 *Recepción: ciclo operacional capturado durante la regresión del proyecto.*
 
-<img src="/media/projects/hms-cloudflare/cf-i05-integrated-housekeeping.png" alt="Workspace de housekeeping de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png" alt="Workspace de housekeeping de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Housekeeping: evidencia del workspace integrado sobre la migración Cloudflare.*
 
-<img src="/media/projects/hms-cloudflare/cf-i06-billing.png" alt="Flujo de facturación de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i06-billing-authorized.png" alt="Flujo de facturación de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Billing: comportamiento de producto capturado por Playwright; no implica Product Acceptance remota.*
 
-<img src="/media/projects/hms-cloudflare/cf-i07-admin.png" alt="Workspace administrativo de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i07-admin-authorized.png" alt="Workspace administrativo de HMS Cloudflare" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Administración: workspace actual de accesos y roles capturado por Playwright.*
 

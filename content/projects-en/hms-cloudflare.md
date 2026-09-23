@@ -92,19 +92,19 @@ The recovery rehearsal exports the databases, introduces synthetic mutations, re
 
 The following screenshots are versioned in the repository and come from Playwright regressions against the migrated runtime. They document reproducible local behavior; they are not presented as remote acceptance or production proof.
 
-<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="HMS Cloudflare reception workflow" width="1440" height="1899" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i04-reception-authorized.png" alt="HMS Cloudflare reception workflow" width="1440" height="1899" loading="lazy" decoding="async" />
 
 *Reception: operational lifecycle captured during the project regression suite.*
 
-<img src="/media/projects/hms-cloudflare/cf-i05-integrated-housekeeping.png" alt="HMS Cloudflare housekeeping workspace" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png" alt="HMS Cloudflare housekeeping workspace" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Housekeeping: evidence of the integrated workspace on the Cloudflare migration.*
 
-<img src="/media/projects/hms-cloudflare/cf-i06-billing.png" alt="HMS Cloudflare billing workflow" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i06-billing-authorized.png" alt="HMS Cloudflare billing workflow" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Billing: product behavior captured by Playwright; it does not imply remote Product Acceptance.*
 
-<img src="/media/projects/hms-cloudflare/cf-i07-admin.png" alt="HMS Cloudflare administrative workspace" width="1440" height="900" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i07-admin-authorized.png" alt="HMS Cloudflare administrative workspace" width="1440" height="900" loading="lazy" decoding="async" />
 
 *Administration: current access and roles workspace captured by Playwright.*
 
