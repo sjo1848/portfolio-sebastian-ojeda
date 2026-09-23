@@ -92,7 +92,7 @@ The recovery rehearsal exports the databases, introduces synthetic mutations, re
 
 The following screenshots are versioned in the repository and come from Playwright regressions against the migrated runtime. They document reproducible local behavior; they are not presented as remote acceptance or production proof.
 
-<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="HMS Cloudflare reception workflow" width="1440" height="1296" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="HMS Cloudflare reception workflow" width="1440" height="1899" loading="lazy" decoding="async" />
 
 *Reception: operational lifecycle captured during the project regression suite.*
 

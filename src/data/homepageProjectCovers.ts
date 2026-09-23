@@ -18,7 +18,7 @@ export const homepageProjectMedia = {
         en: 'Current HMS Cloudflare local runtime capture generated with Playwright and staging data.',
       },
       width: 1440,
-      height: 1296,
+      height: 1899,
     },
     gallery: [
       {

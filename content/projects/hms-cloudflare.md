@@ -92,7 +92,7 @@ El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, re
 
 Las capturas siguientes están versionadas en el repositorio y provienen de regresiones Playwright sobre el runtime migrado. Documentan comportamiento local reproducible; no se presentan como aceptación remota ni como prueba de producción.
 
-<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="Flujo de recepción de HMS Cloudflare" width="1440" height="1296" loading="lazy" decoding="async" />
+<img src="/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png" alt="Flujo de recepción de HMS Cloudflare" width="1440" height="1899" loading="lazy" decoding="async" />
 
 *Recepción: ciclo operacional capturado durante la regresión del proyecto.*
 
