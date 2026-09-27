@@ -4,6 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EvidenceGallery from './EvidenceGallery';
 import ResponsiveMediaViewer from './ResponsiveMediaViewer';
+import CaseStudyContents from './CaseStudyContents';
 import { getProjectMedia } from '../data/projectMedia';
 import {
   copyByLanguage,
@@ -23,7 +24,7 @@ interface Props {
 }
 
 const { project, lang } = Astro.props;
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
 const { data } = project;
 const media = getProjectMedia(data.slug);
 const cover = media?.cover ?? null;
@@ -31,6 +32,19 @@ const gallery = media?.gallery ?? [];
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
 const galleryRootId = `gallery-items-${data.slug}`;
+const gallerySectionId = `gallery-${data.slug}`;
+const galleryTitle = lang === 'es' ? 'Capturas y recorridos verificados' : 'Verified screenshots and walkthroughs';
+const contentsItems = [
+  ...(gallery.length > 0
+    ? [{
+        id: gallerySectionId,
+        text: galleryTitle,
+        depth: 2,
+        kind: 'section' as const,
+      }]
+    : []),
+  ...headings.map(({ slug, text, depth }) => ({ id: slug, text, depth, kind: 'markdown' as const })),
+];
 const galleryItems = gallery.map((asset) => ({
   kind: asset.kind,
   src: asset.src,
@@ -42,7 +56,7 @@ const galleryItems = gallery.map((asset) => ({
 const galleryCopy = lang === 'es'
   ? {
       eyebrow: 'Evidencia visual',
-      title: 'Capturas y recorridos verificados',
+      title: galleryTitle,
       description: 'Imágenes y demostraciones animadas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.',
       openImage: 'Abrir captura a tamaño completo',
       playGif: 'Reproducir GIF',
@@ -58,7 +72,7 @@ const galleryCopy = lang === 'es'
     }
   : {
       eyebrow: 'Visual evidence',
-      title: 'Verified screenshots and walkthroughs',
+      title: galleryTitle,
       description: 'Real product images and animated demonstrations documented as evidence of the workflow and interface decisions.',
       openImage: 'Open full-size screenshot',
       playGif: 'Play GIF',
@@ -139,7 +153,7 @@ const projectSchema = {
     {
       gallery.length > 0 && (
         <section
-          id={`gallery-${data.slug}`}
+          id={gallerySectionId}
           class="project-gallery section"
           aria-labelledby={`gallery-title-${data.slug}`}
         >
@@ -161,7 +175,16 @@ const projectSchema = {
         </section>
       )
     }
-    <div class="container content-layout">
+    <div class:list={['container', 'content-layout', { 'content-layout-with-contents': contentsItems.length > 0 }]}>
+      {contentsItems.length > 0 && (
+        <CaseStudyContents
+          client:idle
+          lang={lang}
+          title={lang === 'es' ? 'Contenido del caso' : 'Case study contents'}
+          triggerLabel={lang === 'es' ? 'Contenido' : 'Contents'}
+          items={contentsItems}
+        />
+      )}
       <div class="prose" id={`project-content-${data.slug}`}>
         {data.slug === 'hms-cloudflare' && (
           <div class="media-viewer-island" aria-hidden="true">

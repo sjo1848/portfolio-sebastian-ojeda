@@ -39,7 +39,7 @@ for (const route of routes) {
         expect(menuBox?.width).toBeGreaterThanOrEqual(44);
         expect(menuBox?.height).toBeGreaterThanOrEqual(44);
       } else {
-        await expect(page.getByRole('navigation')).toHaveCount(1);
+        await expect(page.getByRole('navigation', { name: /primary navigation|navegación principal/i })).toHaveCount(1);
         await expect(page.getByRole('button', { name: /menu|menú/i })).toBeHidden();
       }
 
