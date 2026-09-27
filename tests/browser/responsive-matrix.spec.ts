@@ -31,7 +31,17 @@ for (const route of routes) {
       await page.goto(route.path, { waitUntil: 'networkidle' });
       await expect(page.getByRole('main')).toBeVisible();
       await expect(page.locator('main h1').first()).toBeVisible();
-      await expect(page.getByRole('navigation')).toHaveCount(1);
+      if (width < 768) {
+        await expect(page.getByRole('navigation')).toHaveCount(0);
+        const menu = page.getByRole('button', { name: /menu|menú/i });
+        await expect(menu).toBeVisible();
+        const menuBox = await menu.boundingBox();
+        expect(menuBox?.width).toBeGreaterThanOrEqual(44);
+        expect(menuBox?.height).toBeGreaterThanOrEqual(44);
+      } else {
+        await expect(page.getByRole('navigation')).toHaveCount(1);
+        await expect(page.getByRole('button', { name: /menu|menú/i })).toBeHidden();
+      }
 
       const dimensions = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
@@ -40,7 +50,7 @@ for (const route of routes) {
       expect(dimensions.document, `${route.path} overflows at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
 
       if (route.path === '/' || route.path === '/es/') {
-        const caseStudyLink = page.getByRole('link', { name: /view case study|ver caso de estudio/i }).first();
+        const caseStudyLink = page.locator('.project-case-link').first();
         await expect(caseStudyLink).toBeVisible();
         const box = await caseStudyLink.boundingBox();
         expect(box).not.toBeNull();
@@ -51,7 +61,7 @@ for (const route of routes) {
       expect(consoleMessages, `${route.path} console at ${width}px`).toEqual([]);
 
       if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-0');
+        const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-1');
         await mkdir(outputDir, { recursive: true });
         await page.screenshot({
           path: path.join(outputDir, `${route.name}-${width}x900.png`),
