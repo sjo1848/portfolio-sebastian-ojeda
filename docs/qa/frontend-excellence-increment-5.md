@@ -19,19 +19,19 @@
 
 ## Files and evidence
 
-- Changed: `src/components/HomePage.astro`, `src/data/site.ts`, `src/styles/global.css`, `src/styles/supporting-sections.css`.
+- Changed: `src/components/HomePage.astro`, `src/data/site.ts`, `src/styles/global.css`, `src/styles/supporting-sections.css`, and the bounded I4 screenshot-test stabilization in `tests/browser/case-study-contents.spec.ts`.
 - Added: `src/components/CopyAction.tsx`, `tests/browser/copy-action.spec.ts`, this report, and screenshots under [`artifacts/visual/frontend-excellence/increment-5`](../../artifacts/visual/frontend-excellence/increment-5/).
-- Browser coverage checks success, permission/API rejection and inline error, Clipboard API absent with legacy fallback, mailto availability when the island bundle is blocked, keyboard activation and focus retention, gradual feedback reset, axe WCAG 2.2 AA in idle/copied/error states, and ES/EN visual states.
+- Browser coverage checks success, permission/API rejection and inline error, Clipboard API absent with legacy fallback, mailto availability when the island bundle is blocked, keyboard activation and focus retention, gradual feedback reset, axe WCAG 2.2 AA in idle/copied/error states, and ES/EN visual states. Axe state scans run once in desktop Chromium for both locales; functional behavior runs across all five browser profiles.
 - Responsive target and horizontal-overflow checks run at 360, 390, and 430 px for both language routes.
 - Screenshots cover ES/EN idle, success, and error states at 390 px. The captures use the production build.
 
 ## Validation
 
 - `npm run qa:release`: PASS after final source, including `astro check` (54 files, 0 errors/warnings/hints), 22-page static build and the existing content, presentation, asset, SEO, UX, fragment, and sitemap validators.
-- Focused Playwright: **31 passed, 4 expected skips, 0 failed** across Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit after final fallback, focus, feedback reset, 360/390/430, and contrast changes. The timed reset test runs once in Chromium to avoid repeating its deliberate 17-second wall-clock wait in every profile.
+- Focused Playwright: **33 passed, 12 expected skips, 0 failed** across Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit after final fallback, focus, feedback reset, 360/390/430, and contrast changes. Timed reset runs once in Chromium; axe state scans run on desktop Chromium to avoid duplicating expensive audits across the browser matrix.
 - Axe WCAG 2.2 AA tagged checks pass in idle, copied, and error states in both locales. Page errors: none in focused cases.
 - Screenshots show ES/EN idle, copied, and error states at 390 px with the selectable address visible. I inspected the EN states after scrolling to Contact; inline feedback is legible against the dark panel.
-- Full portfolio suite and Lighthouse are part of Increment 6 hardening and the repository PR workflow; field CWV remain `NOT_YET_OBSERVABLE`.
+- The PR workflow's full suite exposed a timing race in the existing I4 TOC visual capture after viewport change. The test now waits for font/layout stability, forces an instant scroll, and confirms the document reached its end; the Chromium visual case passed 5/5 local repetitions. The full suite and Lighthouse are pending rerun on the amended PR. Field CWV remain `NOT_YET_OBSERVABLE`.
 
 ## Bundle and risks
 

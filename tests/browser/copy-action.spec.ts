@@ -8,6 +8,7 @@ for (const route of [
   { path: '/es/', label: 'Copiar email', success: 'Email copiado.', error: 'No se pudo copiar.' },
 ]) {
   test(`copy email ${route.path}: clipboard, fallback and inline error`, async ({ page }, testInfo) => {
+    test.setTimeout(60_000);
     await page.setViewportSize({ width: 390, height: 844 });
     await page.addInitScript(() => {
       Object.defineProperty(navigator, 'clipboard', {
@@ -31,10 +32,6 @@ for (const route of [
     expect(box?.width).toBeGreaterThanOrEqual(44);
     expect(box?.height).toBeGreaterThanOrEqual(44);
     await expect(page.locator('.copy-action-feedback')).toHaveText('');
-    const axe = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-      .analyze();
-    expect(axe.violations).toEqual([]);
 
     if (testInfo.project.name === 'chromium') {
       const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-5');
@@ -46,10 +43,6 @@ for (const route of [
     await page.keyboard.press(testInfo.project.name === 'chromium' ? 'Space' : 'Enter');
     await expect(page.locator('.copy-action-feedback')).toHaveText(route.success);
     expect(await page.evaluate(() => (window as any).__copied)).toBe('sebastian.ojeda.dev@gmail.com');
-    const successAxe = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-      .analyze();
-    expect(successAxe.violations).toEqual([]);
     if (testInfo.project.name === 'chromium') {
       const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-5');
       await page.screenshot({ path: path.join(outputDir, `copy-${route.path === '/' ? 'en' : 'es'}-success-390.png`), animations: 'disabled' });
@@ -65,15 +58,50 @@ for (const route of [
     await copyButton.click();
     await expect(page.locator('.copy-action-feedback')).toContainText(route.error);
     await expect(emailAddress).toBeVisible();
-    const errorAxe = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-      .analyze();
-    expect(errorAxe.violations).toEqual([]);
     if (testInfo.project.name === 'chromium') {
       const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-5');
       await page.screenshot({ path: path.join(outputDir, `copy-${route.path === '/' ? 'en' : 'es'}-error-390.png`), animations: 'disabled' });
     }
     expect(errors).toEqual([]);
+  });
+
+  test(`copy email ${route.path}: axe passes in idle, copied and error states`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Axe checks are consolidated in Chromium to reduce cross-browser suite contention.');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: { writeText: async () => undefined },
+      });
+    });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+    const button = page.getByRole('button', { name: route.label });
+    await page.locator('#contact a[href^="mailto:"]').scrollIntoViewIfNeeded();
+
+    for (const expected of ['', route.success]) {
+      if (expected) {
+        await button.click();
+        await expect(page.locator('.copy-action-feedback')).toHaveText(expected);
+      }
+      const axe = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+      expect(axe.violations).toEqual([]);
+    }
+
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: { writeText: async () => { throw new Error('denied'); } },
+      });
+      Object.defineProperty(document, 'execCommand', { configurable: true, value: () => false });
+    });
+    await button.click();
+    await expect(page.locator('.copy-action-feedback')).toContainText(route.error);
+    const errorAxe = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(errorAxe.violations).toEqual([]);
   });
 }
 

@@ -216,7 +216,19 @@ test('captures responsive case study contents evidence', async ({ page }, testIn
   }
 
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'auto' }));
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    window.scrollTo(0, document.scrollingElement?.scrollHeight ?? document.documentElement.scrollHeight);
+  });
+  await expect.poll(() => page.evaluate(() => {
+    const root = document.scrollingElement;
+    return Boolean(root && Math.ceil(window.scrollY + window.innerHeight) >= root.scrollHeight - 2);
+  })).toBe(true);
   await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]')).toHaveAttribute('href', '#evidence-and-limits');
   await page.screenshot({ path: path.join(outputDir, 'contents-sticky-active-desktop-1440.png'), animations: 'disabled' });
 });
