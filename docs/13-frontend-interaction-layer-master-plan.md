@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Versión:** 2.1 — Excellence Rework after Independent Critic  
+**Versión:** 2.2 — Excellence Rework after Integration Review  
 **Fase actual:** DEFINITION → DESIGN  
 **Build:** BLOQUEADO hasta Human Gate  
 **Issue de control:** #75  
@@ -232,7 +232,11 @@ Si no existe una respuesta material, no debe ser React.
 
 Astro permite hidratar sólo componentes explícitos y usar prioridades distintas con `client:load`, `client:idle` y `client:visible`. Esa propiedad es parte de la solución, no sólo una optimización posterior.
 
-### 6.4 No aprobado
+### 6.4 Single-owner interaction rule
+
+Cada comportamiento interactivo tiene un único owner después de su migración. Cuando una isla React reemplaza JavaScript imperativo existente, el script anterior se retira en el mismo incremento. No quedan listeners, estados o rutas de interacción paralelas para el mismo comportamiento.
+
+### 6.5 No aprobado
 
 - SPA routing;
 - React root global;
@@ -761,6 +765,10 @@ Si no se puede cumplir, no se baja silenciosamente el objetivo: se abre Human Ga
 
 La excelencia incluye comportamiento cuando algo falla.
 
+### Primary navigation integration
+
+El header debe mantener **un único modelo de navegación primaria** en el accessibility tree. No se permite una nav desktop y otra mobile simultáneamente expuestas sólo porque una se oculte visualmente. La estrategia SSR/hidratación debe verificarse contra el validator estático actual y con axe/browser tests.
+
 ### React no hidrata
 
 No se exige equivalencia total de las mejoras React. Se exige **traversability** y acceso al contenido esencial.
@@ -827,6 +835,8 @@ Automatizar con Playwright:
 - 1024;
 - 1440.
 
+Esta matriz no puede quedar como checklist manual informal. Los tamaños críticos deben existir como proyectos/casos automatizados o capturas Playwright reproducibles. Los estados abiertos de Sheet/Dialog/Drawer/Carousel/TOC se capturan mediante browser tests.
+
 ### Casos especiales
 
 Validar específicamente:
@@ -855,6 +865,8 @@ Cuando sea proporcional:
 ### 18.2 Browser interaction
 
 #### MobileNavigation
+- exactamente un modelo de navegación primaria expuesto al accessibility tree;
+- variantes responsive no dejan un segundo nav activo/descubrible;
 - open;
 - close;
 - outside;
@@ -874,6 +886,7 @@ Cuando sea proporcional:
 - close.
 
 #### EvidenceGallery
+- al migrar, retirar en el mismo incremento el JavaScript imperativo de GIF que haya quedado reemplazado;
 - 0/1/multiple assets;
 - image and GIF assets;
 - controls;
@@ -885,6 +898,7 @@ Cuando sea proporcional:
 - complete asset visible in viewer without destructive crop.
 
 #### CaseStudyNavigation
+- al migrar comportamiento de anchors/hash, revisar y retirar cualquier script legacy que duplique esa responsabilidad;
 - headings source;
 - anchors;
 - active section;
@@ -963,9 +977,11 @@ Un PASS técnico sin Visual Craft Gate e Integration Review no es suficiente.
 3. configurar shadcn para Astro existente;
 4. aliases;
 5. tokens;
-6. primitivas mínimas: Button, Sheet, Dialog, Drawer;
-7. instalar sólo dependencias requeridas;
-8. establecer Playwright cross-browser si no existe.
+6. incorporar sólo las primitivas interactivas necesarias: Sheet, Dialog y Drawer;
+7. reutilizar el contrato visual existente de botones; shadcn Button sólo se incorpora si un caso concreto lo requiere y no duplica el sistema actual;
+8. instalar sólo dependencias requeridas;
+9. establecer Playwright cross-browser si no existe;
+10. convertir la matriz 360/390/430/768/1024/1440 y los estados interactivos críticos en QA ejecutable.
 
 No modificar UX sustancial todavía.
 
