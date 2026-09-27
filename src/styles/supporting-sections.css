@@ -257,6 +257,13 @@
   font-weight: 650;
 }
 
+#contact .contact-email-address {
+  overflow-wrap: anywhere;
+  color: var(--night-text);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  user-select: text;
+}
+
 #contact .hero-actions {
   margin-top: 0;
 }
@@ -265,6 +272,8 @@
   border-color: color-mix(in srgb, var(--night-muted) 55%, var(--night));
   color: var(--night-text);
 }
+
+#contact .copy-action-feedback { color: #c9d0ce; }
 
 #contact .button-secondary:hover {
   border-color: var(--copper-light);
