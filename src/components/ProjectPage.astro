@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveMediaViewer from './ResponsiveMediaViewer';
 import { getProjectMedia } from '../data/projectMedia';
 import {
   copyByLanguage,
@@ -197,7 +198,19 @@ const projectSchema = {
       )
     }
     <div class="container content-layout">
-      <div class="prose"><Content /></div>
+      <div class="prose" id={`project-content-${data.slug}`}>
+        {data.slug === 'hms-cloudflare' && (
+          <div class="media-viewer-island" aria-hidden="true">
+            <ResponsiveMediaViewer
+              client:visible
+              rootId={`project-content-${data.slug}`}
+              title={data.title}
+              lang={lang}
+            />
+          </div>
+        )}
+        <Content />
+      </div>
     </div>
   </article>
 </BaseLayout>
@@ -275,6 +288,18 @@ const projectSchema = {
     scroll-margin-top: 1rem;
     border-bottom: 1px solid var(--line);
     background: var(--canvas);
+  }
+
+  .prose :global(.media-viewer-trigger) {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: var(--radius-card);
+  }
+
+  .prose :global(.media-viewer-trigger img) {
+    display: block;
+    height: auto;
   }
 
   .project-gallery-grid {
