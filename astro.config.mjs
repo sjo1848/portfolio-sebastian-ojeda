@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -9,6 +10,7 @@ const excludedSitemapPaths = new Set(['/404.html', '/es/404/']);
 export default defineConfig({
   site: process.env.PUBLIC_SITE_URL || productionSiteUrl,
   integrations: [
+    react(),
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname;
