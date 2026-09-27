@@ -27,8 +27,25 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
       - name: Run release QA contract
         run: npm run qa:release
+
+      - name: Run responsive and accessibility browser matrix
+        run: npm run test:browser
+
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-browser-evidence
+          path: |
+            artifacts/visual/frontend-excellence/increment-0/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Lighthouse budgets
         run: npx --yes @lhci/cli@0.15.1 autorun

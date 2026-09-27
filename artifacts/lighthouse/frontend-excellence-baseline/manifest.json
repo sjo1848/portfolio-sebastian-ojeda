@@ -1,0 +1,74 @@
+[
+  {
+    "url": "http://localhost:44065/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost--2026_09_27_16_46_28.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost--2026_09_27_16_46_28.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:44065/es/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_-2026_09_27_16_46_45.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_-2026_09_27_16_46_45.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:44065/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-projects_hms_cloudflare_-2026_09_27_16_47_12.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-projects_hms_cloudflare_-2026_09_27_16_47_12.report.json",
+    "summary": {
+      "performance": 0.91,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:44065/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_projects_hms_cloudflare_-2026_09_27_16_47_31.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_projects_hms_cloudflare_-2026_09_27_16_47_31.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:44065/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-projects_alquileres_uspa_-2026_09_27_16_47_45.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-projects_alquileres_uspa_-2026_09_27_16_47_45.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:44065/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_projects_alquileres_uspa_-2026_09_27_16_48_02.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/frontend-excellence-baseline/localhost-es_projects_alquileres_uspa_-2026_09_27_16_48_02.report.json",
+    "summary": {
+      "performance": 0.84,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
