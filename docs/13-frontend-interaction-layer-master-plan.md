@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Versión:** 2.0 — Excellence Rework  
+**Versión:** 2.1 — Excellence Rework after Independent Critic  
 **Fase actual:** DEFINITION → DESIGN  
 **Build:** BLOQUEADO hasta Human Gate  
 **Issue de control:** #75  
@@ -210,7 +210,19 @@ Astro conserva:
 
 React se usa exclusivamente para comportamiento interactivo con estado cliente.
 
-### 6.2 Principio de islas
+### 6.2 Precedencia documental
+
+Para esta iniciativa, la precedencia es:
+
+1. decisiones explícitas del usuario y Human Gates vigentes;
+2. este Master Plan;
+3. `docs/12-project-method.md`;
+4. branding/definition y decisiones aprobadas posteriores;
+5. documentación histórica previa.
+
+Los documentos iniciales que todavía muestran CV visible en header/home o un set anterior de proyectos se consideran baseline histórico en esos puntos. Una decisión posterior del portfolio eliminó deliberadamente los CTA visibles de CV y priorizó casos de estudio, GitHub y contacto. Este incremento **no reintroduce CV visible** salvo un nuevo Human Gate.
+
+### 6.3 Principio de islas
 
 Cada isla debe responder:
 
@@ -220,7 +232,7 @@ Si no existe una respuesta material, no debe ser React.
 
 Astro permite hidratar sólo componentes explícitos y usar prioridades distintas con `client:load`, `client:idle` y `client:visible`. Esa propiedad es parte de la solución, no sólo una optimización posterior.
 
-### 6.3 No aprobado
+### 6.4 No aprobado
 
 - SPA routing;
 - React root global;
@@ -249,7 +261,16 @@ No mantener manualmente:
 
 ### Gallery
 
-Metadata de imágenes permanece en la fuente actual de media/proyecto. React recibe un modelo serializable, no vuelve a descubrir contenido en runtime.
+Metadata de media permanece en la fuente actual de media/proyecto. React recibe un modelo serializable, no vuelve a descubrir contenido en runtime.
+
+### TOC compuesto
+
+El TOC se deriva en build/render time a partir de dos fuentes controladas:
+
+1. **secciones estructurales de la página** con IDs estables, por ejemplo evidencia visual cuando existe;
+2. **`render(project).headings`** para headings provenientes del Markdown.
+
+La composición ocurre una sola vez antes de pasar props a React. No se mantiene una lista manual distinta por proyecto y no se redescubren headings en runtime.
 
 ---
 
@@ -394,7 +415,21 @@ Requisitos:
 - lazy loading;
 - preserve aspect ratio;
 - error fallback;
-- no pérdida de contexto al cerrar viewer.
+- no pérdida de contexto al cerrar viewer;
+- el asset completo debe poder verse sin crop destructivo;
+- thumbnails pueden usar un recorte curado sólo si el viewer conserva el asset completo y el recorte no oculta el significado de la evidencia.
+
+#### GIF evidence
+
+La galería actual ya soporta GIFs y esa capacidad se preserva:
+
+- no autoplay;
+- carga diferida;
+- reproducción sólo por acción explícita;
+- control Play/Stop accesible;
+- el usuario puede pausar la animación;
+- fallback/link al GIF original;
+- no descargar el GIF animado antes de que la interacción o estrategia de carga lo justifique.
 
 **Hidratación:** preferir `client:visible`.
 
@@ -675,13 +710,18 @@ Se mantienen como hard gates:
 - Best Practices >= 0.95;
 - SEO >= 0.95.
 
-Además se adoptan como targets de producto:
+Además se adoptan como **targets de experiencia en campo**:
 
 - **LCP <= 2.5 s**
 - **INP <= 200 ms**
 - **CLS <= 0.1**
 
-Estos son los umbrales recomendados de Core Web Vitals.
+Los Core Web Vitals se evalúan correctamente sobre datos reales, típicamente en el percentil 75. Por tanto:
+
+- pre-release usa Lighthouse, bundle, layout-shift observado y tests de interacción como gates de laboratorio;
+- CrUX/RUM se usa como evidencia de campo sólo cuando exista suficiente tráfico/dato disponible;
+- no se agregará analítica o RUM únicamente para fabricar un PASS de esta iniciativa;
+- la ausencia de datos de campo se documenta como `NOT_YET_OBSERVABLE`, no como PASS ni FAIL de CWV.
 
 ### Presupuesto de JavaScript
 
@@ -723,13 +763,19 @@ La excelencia incluye comportamiento cuando algo falla.
 
 ### React no hidrata
 
-Debe permanecer:
+No se exige equivalencia total de las mejoras React. Se exige **traversability** y acceso al contenido esencial.
 
-- contenido;
-- links;
-- ProjectCard CTA;
-- anchors del case study;
-- navegación esencial accesible en otra superficie estática del documento.
+Debe permanecer utilizable sin la hidratación de una isla:
+
+- contenido principal generado por Astro;
+- brand/home link;
+- ProjectCard CTA y links estáticos al case study;
+- case-study back link;
+- anchors nativos del contenido cuando existan;
+- contacto y GitHub;
+- links directos a assets de evidencia cuando el viewer no monta.
+
+El Sheet mobile enriquecido puede dejar de abrir si la isla no hidrata; eso no puede bloquear el acceso a proyectos, lectura, retorno a home o contacto. No se afirmará paridad funcional completa sin JavaScript.
 
 ### Imagen falla
 
@@ -816,7 +862,8 @@ Cuando sea proporcional:
 - focus trap;
 - focus restore;
 - navigate;
-- body scroll.
+- body scroll;
+- static traversal paths remain usable when the React island is deliberately prevented from hydrating.
 
 #### ResponsiveMediaViewer
 - desktop Dialog;
@@ -828,11 +875,14 @@ Cuando sea proporcional:
 
 #### EvidenceGallery
 - 0/1/multiple assets;
+- image and GIF assets;
 - controls;
 - swipe;
 - keyboard;
 - viewer integration;
-- reduced motion.
+- reduced motion;
+- GIF Play/Stop and deferred loading;
+- complete asset visible in viewer without destructive crop.
 
 #### CaseStudyNavigation
 - headings source;
@@ -1081,7 +1131,7 @@ La iniciativa sólo puede declararse completada si:
 11. focus nunca queda oculto;
 12. cross-browser pasa;
 13. Lighthouse mantiene gates;
-14. CWV synthetic targets no muestran regresión material;
+14. los gates de laboratorio no muestran regresión material y los CWV de campo quedan PASS/FAIL sólo cuando exista evidencia real suficiente;
 15. bundle está medido y justificado;
 16. shadcn no domina la identidad;
 17. Stone / Andes Copper sigue siendo reconocible;
