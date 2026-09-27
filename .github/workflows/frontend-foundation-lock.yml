@@ -1,0 +1,41 @@
+name: Frontend foundation lock
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lock:
+    if: github.head_ref == 'build/frontend-excellence-i0-foundation'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install current dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Generate reduced foundation lock
+        run: |
+          npm install --package-lock-only --no-audit --no-fund \
+            @astrojs/react@^7.0.0 @base-ui/react@^1.8.0 cn@^0.4.0 react@^19.3.0 react-dom@^19.3.0
+          npm install --package-lock-only --save-dev --no-audit --no-fund \
+            @types/react@^19.3.0 @types/react-dom@^19.3.0 @playwright/test@^1.63.0 @axe-core/playwright@^4.13.0
+
+      - name: Package lock
+        run: tar -czf frontend-foundation-lock.tgz package.json package-lock.json
+
+      - name: Upload lock
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-foundation-lock
+          path: frontend-foundation-lock.tgz
