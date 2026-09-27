@@ -2,520 +2,501 @@
 
 ## Estado
 
+**Versión:** 2.0 — Excellence Rework  
 **Fase actual:** DEFINITION → DESIGN  
 **Build:** BLOQUEADO hasta Human Gate  
 **Issue de control:** #75  
 **Implementador:** Codex  
 **Controller / UX-Frontend Architect + Gatekeeper:** ChatGPT  
-**Fuente de verdad técnica:** este documento + `docs/12-project-method.md`
+**Fuente de verdad:** este documento + `docs/12-project-method.md`
 
 ---
 
 ## 1. Propósito
 
-Este documento define el contrato maestro para evolucionar el portfolio de Sebastián Ojeda desde una experiencia principalmente estática a una experiencia frontend interactiva que:
+Evolucionar el portfolio de Sebastián Ojeda hacia un producto frontend de excelencia que cumpla simultáneamente cuatro objetivos:
 
-1. mejore la UX real, especialmente en mobile;
-2. demuestre habilidades frontend modernas sin convertir el portfolio en una demo de componentes;
-3. mantenga Astro como shell, contenido y routing principal;
-4. introduzca React únicamente como islas interactivas;
-5. use shadcn/ui de manera selectiva y justificable;
-6. preserve accesibilidad, performance, SEO, bilingüismo y la identidad visual Stone / Andes Copper;
-7. mantenga el trabajo alineado al Project Method del repositorio.
+1. **Convertir mejor:** que recruiters, engineering managers y technical leads entiendan rápido el perfil, encuentren evidencia y lleguen a los casos de estudio sin fricción.
+2. **Demostrar frontend:** que la propia experiencia evidencie React, TypeScript, responsive composition, accesibilidad, state management acotado, browser APIs y criterio de interacción.
+3. **Preservar calidad técnica:** mantener Astro como shell estático, limitar JavaScript cliente, conservar SEO, performance, resiliencia y trazabilidad.
+4. **Mostrar criterio de producto:** la excelencia no se demostrará por cantidad de componentes, sino por decisiones justificadas, detalle de interacción, consistencia y validación.
 
-El objetivo no es “usar shadcn”. El objetivo es que un recruiter o developer pueda inferir del propio producto que existe criterio en responsive UX, component composition, state management, accessibility, browser APIs, media interaction y progressive enhancement.
+El objetivo no es “usar shadcn”. El objetivo es que el resultado parezca diseñado y construido deliberadamente, no ensamblado desde una librería.
 
 ---
 
-## 2. Resultado esperado
+## 2. Definición de excelencia
 
-La versión resultante debe comunicar dos cosas simultáneamente:
+Para esta iniciativa, **producto de excelencia** significa:
 
-### 2.1 Como portfolio
+- claridad antes que ornamentación;
+- interacción útil antes que interactividad decorativa;
+- mobile diseñado como experiencia propia;
+- evidencia visible antes que claims;
+- estados completos, no sólo happy path;
+- accesibilidad tratada como contrato;
+- performance controlada como presupuesto;
+- comportamiento consistente entre navegadores;
+- fallos degradados de forma segura;
+- decisiones frontend explicables en una entrevista;
+- ausencia de deuda visual evidente;
+- ausencia de “component zoo”.
 
-- quién es Sebastián;
-- qué construye;
-- qué proyectos son importantes;
-- cómo trabaja;
-- cómo acceder a cada caso de estudio;
-- qué evidencia existe.
-
-### 2.2 Como demostración frontend
-
-La experiencia debe evidenciar:
-
-- React + TypeScript integrado dentro de Astro;
-- arquitectura de islas;
-- responsive composition;
-- componentes accesibles;
-- manejo de estado acotado;
-- comportamiento mouse / teclado / touch;
-- adaptación desktop / mobile;
-- IntersectionObserver u otras browser APIs donde aporten;
-- motion reducido y focus management;
-- media gallery usable;
-- decisiones de hidratación proporcionales;
-- QA responsive y de accesibilidad.
+Una implementación técnicamente correcta que se sienta genérica, inconsistente, pesada o innecesariamente compleja **no pasa**.
 
 ---
 
-## 3. Roles y responsabilidades
+## 3. Audiencias y journeys críticos
 
-### 3.1 Controller / UX-Frontend Architect + Gatekeeper — ChatGPT
+### 3.1 Recruiter — scan de 10–30 segundos
+
+Debe poder:
+
+1. identificar a Sebastián;
+2. clasificarlo como Full-Stack Software Developer;
+3. entender el diferenciador;
+4. ver proyectos reales;
+5. abrir un caso de estudio sin buscar el CTA.
+
+### 3.2 Technical reviewer — 3–5 minutos
+
+Debe poder:
+
+1. entrar a un caso;
+2. orientarse dentro de un documento largo;
+3. encontrar arquitectura, decisiones, QA y evidencia;
+4. ampliar screenshots;
+5. navegar entre evidencias;
+6. abrir repositorio cuando corresponda.
+
+### 3.3 Mobile recruiter
+
+Debe poder completar el journey principal con una mano, sin hover y sin menús comprimidos:
+
+`Header → Proyectos → Caso de estudio → Evidencia → Contacto/GitHub`.
+
+### 3.4 Reviewer accesible por teclado
+
+Debe poder completar las mismas tareas sin mouse, con foco siempre visible y nunca oculto por headers, drawers o overlays.
+
+---
+
+## 4. North Star de experiencia
+
+La experiencia debe sentirse:
+
+- **rápida**: sin espera perceptible para navegar contenido;
+- **calma**: motion breve, sin estímulos constantes;
+- **precisa**: acciones obvias, estados claros;
+- **editorial-técnica**: producto y evidencia dominan sobre chrome;
+- **coherente**: homepage y case studies pertenecen al mismo sistema;
+- **robusta**: si una isla React falla, el contenido esencial permanece disponible.
+
+### Anti-objetivos
+
+No debe sentirse como:
+
+- dashboard SaaS;
+- showcase de shadcn;
+- template genérico;
+- landing con animaciones;
+- SPA innecesaria;
+- portafolio “hacker”;
+- playground de efectos frontend.
+
+---
+
+## 5. Roles y responsabilidades
+
+### 5.1 Controller / UX-Frontend Architect + Gatekeeper — ChatGPT
 
 Responsabilidades:
 
-- conservar fase, alcance, restricciones y decisiones;
-- definir contratos de UX, frontend y responsive;
-- mantener este documento como fuente de verdad;
-- abrir Human Gates cuando cambie alcance, estrategia o riesgo;
-- revisar outputs de Codex;
-- exigir evidencia de tests y comportamiento;
-- coordinar Independent Critic / Verifier;
-- realizar Integration Review;
-- impedir que BUILD avance sobre supuestos no aprobados.
+- custodiar fase, alcance y decisiones;
+- mantener este contrato;
+- definir journeys, behavior contracts y criterios de aceptación;
+- abrir Human Gates ante cambios materiales;
+- revisar outputs y evidencia;
+- exigir Independent Critic;
+- ejecutar Integration Review;
+- bloquear BUILD cuando falte evidencia o exista contradicción.
 
-No implementa el código productivo de esta iniciativa.
+No implementa código productivo de esta iniciativa.
 
-### 3.2 Implementador — Codex
+### 5.2 Implementador — Codex
 
-Codex es el único implementador autorizado para este alcance.
+Codex es el único implementador autorizado.
 
-Debe:
+Antes de tocar código debe:
 
-- leer primero `docs/12-project-method.md`;
-- leer este documento completo antes de modificar código;
-- trabajar por incrementos pequeños y trazables;
-- usar subagentes especialistas con contratos acotados;
-- no delegar decisiones de producto o UX que ya estén fijadas aquí;
-- no introducir componentes fuera del alcance sin Human Gate;
-- no migrar el portfolio completo a React;
-- producir evidencia de cada incremento;
-- solicitar revisión independiente antes de integrar;
-- dejar documentación y QA actualizados.
+1. leer `docs/12-project-method.md`;
+2. leer este documento completo;
+3. revisar baseline relevante;
+4. emitir plan de incremento;
+5. asignar subagentes;
+6. declarar archivos y rutas que espera modificar;
+7. declarar riesgos.
 
-### 3.3 Subagentes mínimos requeridos para BUILD
+Codex no puede:
 
-Codex debe usar al menos los siguientes roles lógicos, aunque pueda resolverlos con diferentes subagentes concretos:
+- migrar el portfolio completo a React;
+- introducir estado global sin Human Gate;
+- agregar primitivas no aprobadas;
+- cambiar la identidad visual;
+- bajar gates de QA;
+- aceptar performance regression como “trade-off” sin aprobación;
+- fusionar su propio trabajo sin critic independiente.
 
-1. **Frontend / React Specialist**
-   - componentes;
-   - estado;
-   - integración Astro/React;
-   - shadcn/ui;
-   - TypeScript.
+### 5.3 Subagentes mínimos
 
-2. **Responsive UX / Accessibility Specialist**
-   - keyboard;
-   - focus;
-   - touch;
-   - ARIA;
-   - reduced motion;
-   - mobile behavior.
+Cada incremento debe utilizar roles separados:
 
-3. **QA / Validation Specialist**
-   - tests;
-   - viewport matrix;
-   - regression;
-   - Lighthouse;
-   - behavior validation.
+**Frontend / React Specialist**
+- Astro/React;
+- TypeScript;
+- composition;
+- state;
+- shadcn.
 
-4. **Independent Critic / Verifier**
-   - no implementa;
-   - revisa contra este contrato;
-   - emite PASS / REWORK / HUMAN_GATE.
+**Responsive / Interaction Specialist**
+- touch;
+- layout;
+- breakpoints;
+- safe areas;
+- interaction details.
 
-5. **Integration Review**
-   - comprueba coherencia con portfolio completo;
-   - revisa deuda, redundancia, estética y performance;
-   - evita “component zoo”.
+**Accessibility Specialist**
+- keyboard;
+- focus;
+- ARIA;
+- reduced motion;
+- WCAG 2.2.
 
-Un subagente no puede aprobar su propio trabajo.
+**QA / Browser Specialist**
+- Playwright;
+- cross-browser;
+- visual evidence;
+- regression.
+
+**Independent Critic / Verifier**
+- revisa contra el contrato original;
+- no implementa;
+- emite PASS / REWORK / HUMAN_GATE.
+
+**Integration Review**
+- evalúa producto completo;
+- busca inconsistencias, duplicación, deuda y sobreingeniería.
+
+Un agente que implementó un cambio no puede emitir su PASS final.
 
 ---
 
-## 4. Decisión arquitectónica principal
+## 6. Arquitectura aprobada
 
-### 4.1 Opción aprobada
+### 6.1 Decisión
 
 **Astro + React Islands + shadcn/ui selectivo.**
 
-Astro continúa siendo responsable de:
+Astro conserva:
 
 - routing;
 - layouts;
 - contenido;
+- Markdown;
 - SEO;
 - generación estática;
-- páginas de proyecto;
-- contenido que no necesita estado cliente.
+- estructura semántica;
+- contenido esencial.
 
-React se incorpora exclusivamente para componentes interactivos que lo justifiquen.
+React se usa exclusivamente para comportamiento interactivo con estado cliente.
 
-### 4.2 No se aprueba
-
-- migrar la home completa a React;
-- convertir cada sección en una isla;
-- SPA routing;
-- estado global de aplicación;
-- Redux/Zustand u otro store global para esta iniciativa;
-- reemplazar el design system Stone / Andes Copper por defaults visuales de shadcn;
-- introducir componentes sólo para demostrar que existen.
-
-### 4.3 Regla de hidratación
+### 6.2 Principio de islas
 
 Cada isla debe responder:
 
-> ¿Qué comportamiento pierde el usuario si este componente no hidrata?
+> ¿Qué comportamiento específico requiere JavaScript cliente y por qué no conviene resolverlo sólo con HTML/CSS?
 
-Si la respuesta es “ninguno relevante”, no debe ser una isla React.
+Si no existe una respuesta material, no debe ser React.
 
----
+Astro permite hidratar sólo componentes explícitos y usar prioridades distintas con `client:load`, `client:idle` y `client:visible`. Esa propiedad es parte de la solución, no sólo una optimización posterior.
 
-## 5. Baseline y problemas identificados
+### 6.3 No aprobado
 
-### 5.1 Project Card mobile
-
-El CTA `Ver caso de estudio` existe en el código, pero el usuario reporta que no aparece o no resulta accesible en mobile.
-
-Esto se clasifica como **P0 de UX**.
-
-Antes de cualquier rediseño se debe validar:
-
-- si el CTA existe en el HTML de producción;
-- si está recortado, desplazado o visualmente perdido;
-- si existe diferencia entre build local y deploy;
-- si el problema ocurre en 360 / 390 / 430 px;
-- si alguna combinación de altura de contenido o card variant provoca el fallo.
-
-El caso de estudio no puede depender de hover.
-
-### 5.2 Header mobile
-
-La implementación actual muestra la navegación mobile como una grilla de enlaces.
-
-El diseño ya documentado del repositorio define un menú mobile compacto.
-
-La nueva solución debe usar un **Sheet mobile** y mantener navegación desktop visible.
-
-### 5.3 Case studies
-
-Los casos de estudio actuales son funcionales, pero largos.
-
-Problemas:
-
-- poca orientación dentro del documento;
-- galería mejorable;
-- evidencia visual abre en otra pestaña;
-- mobile no tiene una navegación contextual compacta;
-- no existe sección activa sincronizada.
-
-### 5.4 Interactividad actual
-
-El portfolio tiene buen HTML/CSS, pero demuestra poco manejo explícito de frontend interactivo.
-
-La nueva capa debe elevar esa señal sin degradar el carácter editorial y técnico del sitio.
+- SPA routing;
+- React root global;
+- Redux/Zustand/contexto global de aplicación;
+- hydration de secciones estáticas;
+- duplicar contenido Astro dentro de React;
+- reemplazar Stone / Andes Copper por estilos default de shadcn.
 
 ---
 
-## 6. Principios de diseño de interacción
+## 7. Fuente única de contenido
 
-1. **Una interacción necesita una razón.**
-2. **Mobile no es desktop reducido.**
-3. **Nada esencial depende de hover.**
-4. **El contenido debe seguir siendo navegable con JavaScript limitado.**
-5. **Las acciones principales deben ser visibles.**
-6. **El estado debe comunicarse visual y semánticamente.**
-7. **La UI no debe competir con los proyectos.**
-8. **La navegación del case study debe reducir esfuerzo, no agregar chrome.**
-9. **Los componentes shadcn deben ser adaptados al design system existente.**
-10. **No se introduce una dependencia si una solución nativa equivalente es más simple, salvo que la interacción elegida forme parte explícita de la demostración frontend aprobada.**
+La capa interactiva no debe crear una segunda fuente de verdad.
+
+### CaseStudyNavigation
+
+Debe derivar headings de Astro Content.
+
+`render(project)` expone `headings`; Astro también genera IDs para headings Markdown. Se debe aprovechar esa estructura para producir el TOC y pasar sólo los datos necesarios a la isla React.
+
+No mantener manualmente:
+
+- lista de headings en Markdown;
+- lista duplicada en TS;
+- lista duplicada en React.
+
+### Gallery
+
+Metadata de imágenes permanece en la fuente actual de media/proyecto. React recibe un modelo serializable, no vuelve a descubrir contenido en runtime.
 
 ---
 
-## 7. Componentes aprobados
+## 8. Baseline obligatorio antes de BUILD
 
-## 7.1 MobileNavigation
+Incremento 0 empieza con medición, no con instalación.
 
-### Patrón
+Codex debe registrar:
 
-Desktop:
-- navegación inline existente refinada.
+- bundle actual;
+- JavaScript cliente actual por ruta;
+- Lighthouse actual;
+- screenshots baseline;
+- navegación actual 360/390/430;
+- current layout shifts observables;
+- CTA de ProjectCard en mobile;
+- comportamiento de galleries;
+- console warnings/errors;
+- rutas prioritarias ES/EN.
 
-Mobile:
-- trigger compacto;
-- Sheet lateral o equivalente shadcn;
-- navegación vertical.
+El baseline se guarda como evidencia.
 
-### Objetivo frontend
+Sin baseline no se puede afirmar “sin regresión”.
 
-Demostrar:
+---
+
+## 9. Componentes de producto aprobados
+
+### 9.1 MobileNavigation
+
+**Desktop:** navegación inline.  
+**Mobile:** trigger + Sheet.
+
+Debe demostrar:
 
 - responsive composition;
-- overlay;
-- focus management;
-- escape;
-- keyboard;
 - state;
-- React island;
-- accessibility.
+- focus management;
+- overlay;
+- keyboard;
+- React island.
 
-### Requisitos
+Requisitos:
 
 - nombre visible;
-- selector ES/EN visible;
-- botón menú con nombre accesible;
+- ES/EN visible;
+- trigger mínimo 44×44;
 - `aria-expanded`;
-- focus trap correcto mientras está abierto;
-- Escape cierra;
-- click en una opción navega y cierra;
-- scroll body bloqueado mientras corresponde;
-- focus vuelve al trigger al cerrar;
-- sin navegación duplicada accesible para screen reader.
-
-### Hidratación
-
-**`client:load`**.
-
-Justificación: es navegación primaria y debe estar disponible de inmediato.
-
----
-
-## 7.2 ResponsiveMediaDialog
-
-### Patrón
-
-Desktop:
-- Dialog.
-
-Mobile:
-- Drawer o presentación fullscreen equivalente.
-
-Debe existir como una única abstracción de producto, aunque internamente componga dos primitivas.
-
-### Objetivo frontend
-
-Demostrar:
-
-- responsive behavior;
-- component composition;
-- breakpoint-aware rendering;
-- accessible modal behavior;
-- reusable API.
-
-### Requisitos
-
-- trigger desde screenshot;
-- título y descripción accesibles;
 - Escape;
 - focus trap;
-- click externo según comportamiento elegido;
-- botón cerrar visible;
-- imagen mantiene proporción;
-- no overflow horizontal;
-- mobile respeta safe area;
-- navegación anterior/siguiente si se invoca desde una galería.
+- focus restore;
+- navegación vertical;
+- cierra después de elegir destino;
+- body sin scroll accidental;
+- ningún enlace esencial depende de JS para existir en el producto completo;
+- no layout jump al hidratar.
 
-### Breakpoint de referencia
+**Hidratación:** `client:load`.
 
-Usar la frontera existente del sistema: aproximadamente **48rem**.
+#### Detalle de excelencia
 
-No crear un breakpoint alternativo sólo para este componente sin justificación.
+- hover sólo como enhancement bajo dispositivos con hover;
+- active/pressed state consistente;
+- overlay no debe producir parpadeo;
+- apertura/cierre debe sentirse instantánea;
+- no scroll “teleport” al cerrar;
+- validar iOS/WebKit.
 
 ---
 
-## 7.3 EvidenceGallery
+### 9.2 ResponsiveMediaViewer
 
-### Desktop
+Abstracción de producto única.
 
-Grid de evidencia.
+**Desktop:** Dialog.  
+**Mobile:** Drawer casi fullscreen o equivalente aprobado.
 
-### Mobile
+No exponer primitivas directamente a la página.
 
-Carousel.
+Debe demostrar:
 
-### Integración
+- responsive composition;
+- modal state;
+- breakpoint behavior;
+- reusable API;
+- focus management.
 
-Al activar una imagen:
-- abre `ResponsiveMediaDialog`;
-- conserva índice activo;
-- puede navegar al asset anterior/siguiente.
+Requisitos:
 
-### Objetivo frontend
+- título;
+- caption/description;
+- close explícito;
+- Escape;
+- focus trap;
+- focus restore;
+- inert background;
+- safe areas;
+- imagen sin crop destructivo;
+- zoom del navegador no rompe layout;
+- no horizontal overflow;
+- next/previous si pertenece a gallery;
+- index actual visible;
+- loading/error state de imagen;
+- fallback “abrir imagen original” si la visualización falla.
 
-Demostrar:
+#### Mobile
 
-- state;
-- component composition;
-- responsive rendering;
+- usar `100dvh`, no asumir `100vh`;
+- considerar safe-area insets;
+- swipe no puede ser la única forma de cerrar o navegar;
+- no utilizar snap points salvo que exista necesidad de producto.
+
+---
+
+### 9.3 EvidenceGallery
+
+**0 assets:** no renderizar container vacío.  
+**1 asset:** evidencia estática + viewer, sin carousel.  
+**2+ assets:** grid desktop + carousel mobile.
+
+Esto evita introducir carousel donde no aporta.
+
+Debe demostrar:
+
+- derived state;
 - touch;
 - keyboard;
-- media;
-- coordinación Gallery → Dialog/Drawer.
+- responsive composition;
+- integración Gallery → Viewer.
 
-### Requisitos
+Requisitos:
 
 - no autoplay;
-- indicadores de posición;
-- controles con nombres accesibles;
-- soporte touch/swipe si la librería elegida lo ofrece;
-- flechas de teclado cuando el foco está dentro de la galería/modal;
+- no loop infinito por default;
+- previous/next;
+- índice actual;
+- swipe + botones;
+- teclado;
 - reduced motion;
-- imágenes con dimensiones conocidas;
-- lazy loading donde corresponda;
-- desktop no debe forzar carrusel si el grid es más escaneable.
+- alt/captions;
+- dimensiones explícitas;
+- lazy loading;
+- preserve aspect ratio;
+- error fallback;
+- no pérdida de contexto al cerrar viewer.
 
-### Decisión sobre shadcn Carousel
+**Hidratación:** preferir `client:visible`.
 
-Aprobado para evaluación durante BUILD.
-
-Si se adopta, debe justificarse el peso y dependencias. Si un carousel accesible ya incluido por shadcn introduce una dependencia razonable, se acepta porque esta interacción forma parte de la demostración frontend.
+El carousel de shadcn usa Embla; cualquier adopción debe registrar impacto de bundle.
 
 ---
 
-## 7.4 CaseStudyNavigation
+### 9.4 CaseStudyNavigation
 
-### Desktop
+#### Desktop ancho
 
-Sidebar / TOC sticky.
+Sidebar sticky.
 
-### Mobile
+#### Tablet / mobile
 
-Botón “Contenido” que abre Sheet/Drawer.
+Trigger “Contenido” + Sheet/Drawer.
 
-### Secciones
+No forzar sidebar en anchos donde reduzca lectura.
 
-El TOC no puede derivarse de strings arbitrarios duplicados manualmente si existe una fuente estructurada reutilizable.
+Breakpoint recomendado para sidebar: evaluar a partir de la zona desktop real del diseño, probablemente alrededor de `68.75rem`, no automáticamente a 48rem.
 
-Mínimo esperado cuando exista en el proyecto:
+Debe demostrar:
 
-- Overview / Resumen;
-- Problema;
-- Contexto;
-- Solución;
-- Arquitectura;
-- Decisiones;
-- UX / estados;
-- QA / validación;
-- Estado actual;
-- Evidencia;
-- Próximos pasos.
-
-No todos los proyectos deben fingir tener todas las secciones. El TOC debe reflejar el contenido real.
-
-### Active section
-
-Usar `IntersectionObserver` o mecanismo equivalente.
-
-La navegación por anchors debe seguir funcionando aunque el tracking activo falle.
-
-### Objetivo frontend
-
-Demostrar:
-
-- browser APIs;
-- sticky layout;
-- responsive adaptation;
+- Astro headings;
+- IntersectionObserver;
 - derived state;
-- scroll behavior;
-- accessible anchors.
+- anchors;
+- sticky layout.
 
-### Requisitos
+Requisitos:
 
-- anchor offset correcto con header sticky;
-- estado activo no depende sólo de color;
+- TOC derivado de headings reales;
+- anchors funcionan sin tracking;
+- active section clara y redundante;
+- sticky header no tapa el destino;
+- `scroll-margin-top` / `scroll-padding-top`;
 - no scroll hijacking;
-- click en item no debe romper back/forward;
-- mobile cierra el Sheet después de navegar;
-- el primer render no debe saltar por hidratación.
+- historial/back funcionan;
+- mobile Sheet cierra al navegar;
+- hidratación no mueve layout.
 
-### Hidratación
-
-Preferir **`client:idle`** o equivalente si la navegación básica ya funciona con anchors sin React.
+**Hidratación:** `client:idle` si los anchors base ya funcionan sin JS.
 
 ---
 
-## 7.5 CopyAction
+### 9.5 CopyAction
 
-### Uso inicial
+Uso:
 
 - copiar email;
-- opcionalmente copiar link del case study.
+- copiar link del case study si sigue aportando.
 
-### Feedback
-
-Usar cambio de estado inline y, si se agrega feedback global, usar **Sonner**, no el Toast legado.
-
-### Objetivo frontend
-
-Demostrar:
-
-- Clipboard API;
-- async state;
-- feedback;
-- error fallback;
-- microinteraction.
-
-### Requisitos
-
-Estados mínimos:
+Estados:
 
 - idle;
+- pending;
 - copied;
 - error.
 
-El feedback debe ser comprensible sin depender únicamente de un toast.
+Requisitos:
+
+- Clipboard API;
+- fallback si Clipboard API no está disponible;
+- feedback inline obligatorio;
+- Sonner opcional y complementario, nunca única señal;
+- anuncio accesible del estado;
+- reset no abrupto.
 
 ---
 
-## 8. Componentes no aprobados para esta fase
+## 10. Componentes explícitamente no aprobados
 
-### Alert Dialog
+No se añaden en esta fase salvo Human Gate:
 
-No existe una acción destructiva o irreversible que lo justifique.
-
-### Hover Card
-
-No debe usarse para información esencial y no mejora mobile.
-
-### Menubar
-
-No corresponde a la arquitectura de información del portfolio.
-
-### Native Select
-
-Dos idiomas no justifican un select.
-
-### Navigation Menu
-
-La navegación principal no tiene jerarquía suficiente para justificar un mega/navigation menu.
-
-### Dropdown Menu
-
-No aprobado salvo que surja un conjunto real de acciones secundarias.
-
-### Popover
-
-No aprobado salvo necesidad concreta de acciones contextuales.
+- Alert Dialog;
+- Hover Card;
+- Menubar;
+- Native Select;
+- Navigation Menu;
+- Dropdown Menu;
+- Popover;
+- Tabs como estructura primaria;
+- Sidebar global de aplicación;
+- Skeletons artificiales para contenido estático.
 
 ### Tabs
 
-No deben usarse para fragmentar el case study principal.
+Sólo podrían aprobarse más adelante para comparaciones locales:
 
-Podrán evaluarse en una fase posterior para comparaciones acotadas, por ejemplo:
 - Desktop / Mobile;
 - Before / After;
 - Architecture / Flow.
 
-Debe existir una necesidad real.
+Nunca para esconder el case study principal.
 
 ---
 
-## 9. ProjectCard — contrato mobile
+## 11. ProjectCard — P0 mobile
 
-La card debe mantener esta jerarquía:
+La card debe mantener:
 
-1. evidencia/captura;
+1. evidencia;
 2. estado;
 3. título;
 4. resumen;
@@ -523,524 +504,654 @@ La card debe mantener esta jerarquía:
 6. stack breve;
 7. CTA.
 
-### CTA
+### Acceso al case study
 
-En mobile:
+Se permiten tres entradas coherentes:
 
-- visible sin hover;
-- ancho suficiente;
-- target mínimo 44 px;
-- texto explícito;
-- flecha opcional;
-- no quedar pegado al borde inferior.
-
-### Accesos redundantes permitidos
-
-Pueden navegar al caso:
-
-- título;
 - captura;
-- CTA.
+- título;
+- CTA explícito.
 
-No convertir toda la card en un único anchor si contiene otras acciones.
+No hacer toda la card un enlace si existen acciones secundarias.
 
-### Acceptance
+### CTA mobile
 
-A 360 / 390 / 430 px:
+- siempre visible;
+- no depende de hover;
+- mínimo 44 px de área;
+- jerarquía visual clara;
+- separación suficiente;
+- no recortado por overflow/height.
 
-- CTA siempre visible;
-- no overflow;
-- no solapamiento;
-- no corte por alturas implícitas;
-- texto no invade imagen;
-- focus visible.
+### Gate P0
+
+Debe probarse en:
+
+- 360;
+- 390;
+- 430 px.
+
+Y en cards:
+
+- hero;
+- story;
+- secondary;
+- con imagen;
+- sin imagen;
+- resumen corto/largo.
 
 ---
 
-## 10. Diseño de case study
+## 12. Diseño del case study
 
-## 10.1 Desktop
-
-Layout conceptual:
+### 12.1 Desktop
 
 ```text
-┌───────────────┬──────────────────────────────────────┐
-│ TOC sticky    │ Case study content                   │
-│               │                                      │
-│ Overview      │ Hero                                 │
-│ Problem       │ Evidence                             │
-│ Architecture  │ Sections                             │
-│ UX            │                                      │
-│ QA            │                                      │
-│ Evidence      │                                      │
-└───────────────┴──────────────────────────────────────┘
+┌────────────────┬────────────────────────────────────┐
+│ TOC            │ Hero                               │
+│ sticky         │                                    │
+│                │ Summary / Metadata                 │
+│ Overview       │                                    │
+│ Problem        │ Evidence                           │
+│ Architecture   │                                    │
+│ UX             │ Main content                       │
+│ QA             │                                    │
+│ Result         │                                    │
+└────────────────┴────────────────────────────────────┘
 ```
 
-El TOC no debe reducir excesivamente el ancho de lectura.
+El ancho principal de lectura debe seguir dentro de aproximadamente 60–75 caracteres.
 
-## 10.2 Mobile
+### 12.2 Tablet
+
+No asumir sidebar.
+
+Priorizar lectura y usar trigger de contenido si el sidebar comprime excesivamente.
+
+### 12.3 Mobile
 
 ```text
 Header
-
 Project hero
-
+Primary actions
 [ Contenido ]
-
-Main content
-
+Case content
 Evidence carousel
-
-...
+Next project / Contact
 ```
 
-“Contenido” abre un Sheet/Drawer.
+El usuario nunca debe llegar a un dead-end al final de un caso.
 
 ---
 
-## 11. Design system integration
+## 13. Design system y craft visual
 
-shadcn no define la identidad visual del portfolio.
+shadcn aporta primitivas; **Stone / Andes Copper define la identidad**.
 
-Los componentes deben mapearse a los tokens actuales:
+Todos los componentes deben mapearse a tokens existentes.
 
-- `--canvas`;
-- `--paper`;
-- `--surface`;
-- `--ink`;
-- `--muted`;
-- `--line`;
-- `--accent`;
-- `--accent-strong`;
-- `--accent-soft`;
-- `--night`;
-- `--night-raised`;
-- `--night-text`;
-- `--focus`.
+### Craft requirements
 
-### Reglas
+- spacing coherente con escala existente;
+- radios coherentes;
+- border treatment coherente;
+- overlays con opacidad consistente;
+- estados hover/focus/active definidos;
+- ninguna primitive queda con estilos default reconocibles;
+- iconografía consistente;
+- no usar iconos si un label textual es más claro;
+- motion 120–200 ms en interacciones simples;
+- curvas y duración consistentes;
+- reduce motion elimina desplazamiento no esencial.
 
-- no introducir una segunda paleta;
-- no dejar componentes con apariencia default de shadcn si rompe coherencia;
-- preservar radios y densidad actuales salvo razón UX;
-- no convertir la UI en dashboard;
-- motion entre 120–200 ms salvo interacción que requiera otra curva;
-- respetar `prefers-reduced-motion`.
+### Interaction polish
 
----
+Cada control relevante debe definir:
 
-## 12. Estrategia Astro + React
-
-### 12.1 Estructura propuesta
-
-```text
-src/
-  components/
-    astro/
-      ...
-    interactive/
-      MobileNavigation.tsx
-      ResponsiveMediaDialog.tsx
-      EvidenceGallery.tsx
-      CaseStudyNavigation.tsx
-      CopyAction.tsx
-    ui/
-      ...componentes shadcn seleccionados
-```
-
-Codex puede ajustar nombres si mantiene la separación conceptual.
-
-### 12.2 Regla de importación
-
-Los componentes shadcn viven en la capa `ui`.
-
-Los componentes de producto no deben exportar directamente detalles de primitivas.
-
-Ejemplo:
-
-`EvidenceGallery` puede usar `Carousel`, `Dialog` y `Drawer`, pero la página Astro consume `EvidenceGallery`, no las primitivas.
-
-### 12.3 No estado global
-
-Cada isla mantiene el mínimo estado local necesario.
-
-No se comparte estado entre islas salvo que aparezca una necesidad material y pase Human Gate.
+- default;
+- hover;
+- focus-visible;
+- active;
+- open/expanded;
+- disabled si existe;
+- error si existe.
 
 ---
 
-## 13. Progressive enhancement
+## 14. Accesibilidad — estándar de excelencia
 
-Requisitos:
+### Target
 
-- anchors del case study funcionan sin tracking activo;
-- contenido del proyecto existe en HTML;
-- imágenes tienen links o fallback navegable cuando sea razonable;
-- el portfolio no depende de React para mostrar contenido esencial;
-- si falla una isla, la navegación general y lectura siguen siendo posibles.
+**WCAG 2.2 AA como mínimo.**
 
-No se exige equivalencia completa sin JavaScript para modal/carousel, pero sí acceso al contenido.
+Además se adopta internamente un estándar más fuerte para focus visible.
 
----
-
-## 14. Accessibility contract
-
-Todo incremento debe validar:
-
-### Keyboard
-
-- Tab alcanza todas las acciones;
-- Shift+Tab funciona;
-- Escape cierra overlays;
-- Enter/Space activan controles correspondientes;
-- arrows se usan sólo donde el patrón accesible lo define.
+WCAG 2.2 incorpora, entre otros, Focus Not Obscured y Target Size Minimum. El portfolio mantendrá targets de **44×44 px** para controles principales, superior al mínimo normativo de 24×24 px.
 
 ### Focus
 
-- focus visible;
-- focus trap dentro de Dialog/Drawer;
-- focus restaurado al trigger;
-- no focus oculto detrás de overlay.
+- nunca oculto por sticky header;
+- nunca detrás de overlays;
+- outline visible;
+- objetivo interno: focus indicator equivalente al menos a un perímetro de 2 CSS px y contraste 3:1 cuando sea controlable;
+- focus restore después de overlays.
+
+### Keyboard
+
+- flujo completo sin mouse;
+- Escape;
+- Enter/Space;
+- arrows sólo en patrones correspondientes;
+- no focus traps accidentales.
+
+### Pointer / touch
+
+- drag nunca es obligatorio;
+- swipe tiene botones alternativos;
+- controles no dependen de hover;
+- evitar targets cercanos difíciles de tocar.
 
 ### Screen reader
 
+- landmarks;
 - nombres accesibles;
-- títulos y descripciones de Dialog/Drawer;
-- estado expandido;
-- controles siguiente/anterior;
-- índice de galería;
-- estado “copiado” disponible.
+- Dialog/Drawer title y description;
+- states expandidos;
+- live feedback cuando corresponda;
+- índice de carousel comprensible.
 
-### Touch
+### Testing
 
-- targets >= 44 × 44 px;
-- no acciones hover-only;
-- no drag obligatorio sin alternativa.
-
-### Motion
-
-- reduced motion;
-- no parallax;
-- no scroll hijacking;
-- no animaciones que bloqueen interacción.
+Automático con axe/Playwright cuando sea viable, más revisión manual. Los tests automáticos no sustituyen el test manual de teclado y screen reader.
 
 ---
 
-## 15. Responsive validation matrix
+## 15. Performance y Core Web Vitals
 
-Mínimo obligatorio:
+Se mantienen como hard gates:
 
-- 360 px;
-- 390 px;
-- 430 px;
-- 768 px;
-- 1024 px;
-- 1440 px.
-
-La automatización existente ya cubre:
-
-- 360;
-- 768;
-- 1440.
-
-Codex debe ampliar las pruebas manuales o automatizadas para cubrir 390 y 430 en las interacciones críticas.
-
-### Rutas prioritarias
-
-- home ES;
-- home EN;
-- HMS Cloudflare ES/EN;
-- Alquileres Uspallata ES/EN.
-
-HMS es el caso principal para validar comportamiento complejo.
-
----
-
-## 16. Performance contract
-
-Se preservan los thresholds actuales de Lighthouse:
-
-- Performance >= 0.90;
+- Lighthouse Performance >= 0.90;
 - Accessibility >= 0.95;
 - Best Practices >= 0.95;
 - SEO >= 0.95.
 
-Además:
+Además se adoptan como targets de producto:
 
-- React no debe hidratar toda la página;
-- MobileNavigation puede usar `client:load`;
-- componentes below-the-fold deben preferir `client:idle` o `client:visible` cuando corresponda;
-- no introducir paquetes grandes sin justificación;
-- imágenes no deben perder dimensiones explícitas;
-- no agregar autoplay;
-- no convertir capturas a fondos CSS si son contenido.
+- **LCP <= 2.5 s**
+- **INP <= 200 ms**
+- **CLS <= 0.1**
 
-Si una dependencia baja Lighthouse bajo el gate, el resultado es REWORK.
+Estos son los umbrales recomendados de Core Web Vitals.
+
+### Presupuesto de JavaScript
+
+Antes de instalar React/shadcn se mide baseline.
+
+Después:
+
+- registrar bytes transferidos/gzip por ruta;
+- registrar delta por incremento;
+- home no carga Gallery/Viewer si no lo necesita;
+- Gallery usa `client:visible`;
+- TOC evita eager hydration;
+- sólo MobileNavigation puede justificar `client:load` inicialmente.
+
+### Soft budget inicial
+
+Hasta medir el baseline, se establece como objetivo:
+
+- **home initial client JS <= 100 KB gzip**;
+- **case study initial client JS <= 150 KB gzip**, excluyendo código diferido de gallery cuando no es visible.
+
+Si no se puede cumplir, no se baja silenciosamente el objetivo: se abre Human Gate con bundle breakdown.
+
+### Otros gates
+
+- cero hydration mismatch;
+- cero console error;
+- cero layout shift introducido por hidratación;
+- no imagen LCP cargada con lazy;
+- media below-the-fold sí puede usar lazy;
+- no autoplay;
+- dependencies auditadas.
 
 ---
 
-## 17. Testing contract
+## 16. Resiliencia y failure states
 
-Codex debe definir y ejecutar tests en tres niveles.
+La excelencia incluye comportamiento cuando algo falla.
 
-### 17.1 Unit / component
+### React no hidrata
+
+Debe permanecer:
+
+- contenido;
+- links;
+- ProjectCard CTA;
+- anchors del case study;
+- navegación esencial accesible en otra superficie estática del documento.
+
+### Imagen falla
+
+- container mantiene tamaño;
+- fallback visual;
+- caption sigue disponible;
+- link a asset original cuando corresponda.
+
+### Clipboard falla
+
+- feedback de error;
+- email sigue visible/copiable manualmente.
+
+### IntersectionObserver no disponible/falla
+
+- anchors siguen funcionando;
+- sólo se pierde el active tracking.
+
+### Drawer/Dialog
+
+Si el componente interactivo no monta, el screenshot debe seguir siendo un enlace usable al asset.
+
+---
+
+## 17. Browser y device quality matrix
+
+### Browsers
+
+Automatizar con Playwright:
+
+- Chromium;
+- Firefox;
+- WebKit.
+
+### Device profiles mínimos
+
+- Desktop Chromium;
+- Desktop Firefox;
+- Desktop WebKit;
+- Mobile Chrome emulado;
+- Mobile Safari/WebKit emulado.
+
+### Width matrix visual
+
+- 360;
+- 390;
+- 430;
+- 768;
+- 1024;
+- 1440.
+
+### Casos especiales
+
+Validar específicamente:
+
+- iOS/WebKit Drawer;
+- `100dvh`;
+- body scroll lock;
+- sticky TOC;
+- focus after close;
+- carousel touch;
+- orientation/resize básico.
+
+---
+
+## 18. Testing contract
+
+### 18.1 Component / logic
 
 Cuando sea proporcional:
 
-- estado del ResponsiveMediaDialog;
-- índice de EvidenceGallery;
-- comportamiento de CopyAction;
-- lógica de active section.
+- gallery index;
+- copy state;
+- TOC active-section derivation;
+- responsive viewer state.
 
-### 17.2 Browser behavior
-
-Debe probarse al menos:
+### 18.2 Browser interaction
 
 #### MobileNavigation
-- abre;
-- cierra;
-- Escape;
-- navegación;
-- focus restore.
-
-#### ResponsiveMediaDialog
-- Dialog desktop;
-- Drawer mobile;
+- open;
 - close;
+- outside;
+- Escape;
+- focus trap;
+- focus restore;
+- navigate;
+- body scroll.
+
+#### ResponsiveMediaViewer
+- desktop Dialog;
+- mobile Drawer;
 - next/previous;
-- keyboard.
+- image error;
+- keyboard;
+- close.
 
 #### EvidenceGallery
-- índice;
+- 0/1/multiple assets;
 - controls;
-- mobile;
-- dialog integration.
+- swipe;
+- keyboard;
+- viewer integration;
+- reduced motion.
 
 #### CaseStudyNavigation
+- headings source;
 - anchors;
-- sección activa;
-- Sheet mobile.
+- active section;
+- sticky behavior;
+- mobile sheet.
 
 #### ProjectCard
-- CTA visible y navegable en mobile.
+- CTA mobile;
+- image/title/CTA links;
+- no clipping.
 
-### 17.3 Regression
+### 18.3 Accessibility scans
 
-- `npm run check`;
-- `npm run qa:release`;
-- Lighthouse;
-- Visual Review;
-- no overflow;
-- ES/EN parity.
+Axe debe ejecutarse:
 
----
+- página base;
+- mobile nav abierto;
+- viewer abierto;
+- TOC mobile abierto;
+- carousel interaction state.
 
-## 18. Evidencia requerida por incremento
+### 18.4 Visual states
 
-Cada PR de BUILD debe incluir:
+Visual Review no debe capturar sólo páginas cerradas.
 
-1. objetivo;
-2. componente o comportamiento;
-3. rutas afectadas;
-4. desktop evidence;
-5. mobile evidence;
-6. tests ejecutados;
-7. resultados;
-8. riesgos residuales;
-9. Independent Critic verdict;
-10. Integration Review verdict.
+Debe guardar evidencia de estados:
 
-No aceptar “se ve bien” como evidencia.
+- mobile nav open;
+- Dialog open;
+- Drawer open;
+- carousel item intermedio;
+- active TOC;
+- ProjectCard 390 px;
+- reduced-motion smoke cuando corresponda.
 
 ---
 
-## 19. Secuencia de BUILD propuesta
+## 19. Quality Gates por incremento
 
-Codex no debe implementar todo en un único PR.
+Cada incremento requiere:
 
-### Incremento 0 — Foundation
+### Functional Gate
+Comportamiento correcto.
 
-- integrar React en Astro;
-- configurar shadcn para el proyecto existente;
-- aliases si hacen falta;
-- adaptar tokens;
-- Button/Sheet/Dialog/Drawer base;
-- sin rediseñar páginas.
+### Responsive Gate
+360/390/430 + desktop relevante.
 
-**Gate:** build + Lighthouse + smoke visual.
+### Accessibility Gate
+Keyboard + axe + focus.
 
-### Incremento 1 — Mobile Project Access + Navigation
+### Performance Gate
+Bundle delta + Lighthouse relevante.
 
-- corregir CTA mobile;
-- MobileNavigation con Sheet;
-- validar 360/390/430.
+### Cross-browser Gate
+Chromium + Firefox + WebKit para interacciones tocadas.
 
-**Gate:** P0 resuelto.
+### Visual Craft Gate
+Comparación con baseline y revisión humana.
+
+### Independent Critic
+PASS / REWORK / HUMAN_GATE.
+
+### Integration Review
+Comprueba coherencia de producto completo.
+
+Un PASS técnico sin Visual Craft Gate e Integration Review no es suficiente.
+
+---
+
+## 20. Secuencia de BUILD revisada
+
+### Incremento 0 — Baseline + Foundation
+
+1. medir baseline;
+2. integrar React;
+3. configurar shadcn para Astro existente;
+4. aliases;
+5. tokens;
+6. primitivas mínimas: Button, Sheet, Dialog, Drawer;
+7. instalar sólo dependencias requeridas;
+8. establecer Playwright cross-browser si no existe.
+
+No modificar UX sustancial todavía.
+
+**Gate:** no regresión baseline + bundle report.
+
+---
+
+### Incremento 1 — P0 Mobile Access + Navigation
+
+- root-cause CTA mobile;
+- corregir ProjectCard;
+- captura/título/CTA;
+- MobileNavigation Sheet;
+- 360/390/430;
+- WebKit mobile.
+
+**Gate:** principal journey mobile completo.
+
+---
 
 ### Incremento 2 — Responsive Media Viewer
 
-- ResponsiveMediaDialog;
-- Desktop Dialog;
-- Mobile Drawer;
-- una ruta piloto: HMS.
+Piloto HMS:
+
+- Dialog desktop;
+- Drawer mobile;
+- focus;
+- safe area;
+- fallback link;
+- media error state.
+
+**Gate:** Desktop + Mobile Safari/WebKit.
+
+---
 
 ### Incremento 3 — EvidenceGallery
 
+- 0/1/multiple logic;
 - grid desktop;
 - carousel mobile;
-- integración con viewer;
-- navegación de imágenes.
+- viewer integration;
+- no autoplay;
+- keyboard/touch.
+
+**Gate:** interaction + bundle + a11y.
+
+---
 
 ### Incremento 4 — CaseStudyNavigation
 
-- TOC generado;
-- sidebar desktop;
-- Sheet mobile;
-- active section tracking.
+- usar `headings` de Astro;
+- TOC único;
+- sticky sólo donde aporta;
+- tablet fallback;
+- mobile Sheet;
+- IntersectionObserver;
+- anchors resilient.
 
-### Incremento 5 — CopyAction + microfeedback
+**Gate:** lectura larga mejora sin comprimir contenido.
 
-- copiar email;
-- feedback inline;
-- Sonner sólo si sigue justificado.
+---
 
-### Incremento 6 — Portfolio-wide hardening
+### Incremento 5 — Microfeedback
+
+- CopyAction;
+- inline feedback;
+- Sonner sólo si mejora producto después de evaluar coste.
+
+**Gate:** no agregar notification infrastructure sin uso suficiente.
+
+---
+
+### Incremento 6 — Excellence Hardening
 
 - ES/EN;
-- HMS + Alquileres;
-- responsive;
-- accessibility;
-- performance;
-- visual polish;
-- documentation.
-
-Cada incremento pasa VALIDATE antes de continuar si toca una primitiva base o una interacción crítica.
-
----
-
-## 20. Estrategia de subagentes para Codex
-
-Para cada incremento:
-
-```text
-Controller contract
-      ↓
-Codex Orchestrator
-      ↓
-Frontend Specialist
-      ↓
-Responsive/A11y Specialist
-      ↓
-QA Specialist
-      ↓
-Independent Critic
-      ↓
-Integration Review
-      ↓
-PASS / REWORK / HUMAN_GATE
-```
-
-### Reglas
-
-- cada subagente recibe scope, inputs, outputs y criterios;
-- evitar pedir “revisa todo el portfolio” a un specialist;
-- Critic recibe el contrato original, no sólo el resumen del implementador;
-- Integration Review ocurre después de Critic;
-- cualquier cambio de arquitectura vuelve a Human Gate.
+- HMS;
+- Alquileres;
+- todos los variants de card;
+- Chromium/Firefox/WebKit;
+- axe;
+- visual state matrix;
+- Lighthouse;
+- bundle;
+- console;
+- reduced motion;
+- failure states;
+- documentación.
 
 ---
 
-## 21. Human Gates
+## 21. Evidencia obligatoria por PR
 
-Se requiere Human Gate antes de:
+Cada PR debe incluir:
 
-- BUILD inicial;
-- migrar más partes a React;
-- agregar estado global;
-- agregar nuevas dependencias relevantes;
-- cambiar la identidad visual;
-- cambiar la IA de la home;
-- reemplazar el case study por tabs;
-- añadir componentes no aprobados;
-- cambiar thresholds de QA;
-- aceptar una regresión de performance;
-- cambiar el objetivo de “portfolio demostrativo” por “component showcase”.
+1. fase;
+2. objetivo;
+3. baseline relevante;
+4. scope;
+5. fuera de scope;
+6. subagentes utilizados;
+7. rutas;
+8. desktop screenshots;
+9. mobile screenshots;
+10. interaction-state screenshots;
+11. tests;
+12. browser matrix;
+13. accessibility result;
+14. Lighthouse;
+15. bundle delta;
+16. console status;
+17. residual risks;
+18. Independent Critic;
+19. Integration Review;
+20. decisión final.
 
----
+No aceptar:
 
-## 22. Criterios de aceptación de producto
-
-El trabajo se considera exitoso cuando:
-
-1. el caso de estudio es accesible claramente desde mobile;
-2. el header mobile deja de ser una grilla comprimida;
-3. el portfolio demuestra React sin convertirse en una SPA;
-4. la galería se siente natural en touch;
-5. Dialog y Drawer responden al dispositivo;
-6. los case studies largos se pueden recorrer con claridad;
-7. teclado y focus funcionan;
-8. no hay dependencia de hover;
-9. Lighthouse mantiene los gates;
-10. no aparece una estética genérica shadcn;
-11. ES/EN mantienen paridad;
-12. el portfolio sigue cargando contenido esencial desde Astro;
-13. la interacción agrega valor real;
-14. un reviewer puede identificar decisiones frontend concretas;
-15. la implementación puede explicarse en una entrevista técnica.
+- “se ve bien”;
+- “funciona local”;
+- “tests verdes” sin evidencia de comportamiento;
+- screenshots sólo desktop;
+- aprobación del mismo implementador.
 
 ---
 
-## 23. Qué debería poder explicar Sebastián en una entrevista
+## 22. Human Gates
 
-Después de este trabajo, el portfolio debe permitir responder con ejemplos reales:
+Human Gate obligatorio si se propone:
 
-- por qué se mantuvo Astro;
-- por qué React se usó sólo en islas;
-- cuándo usar `client:load` vs `client:idle` / `client:visible`;
-- cómo se compuso Dialog desktop + Drawer mobile;
-- cómo se manejó focus;
-- cómo se modeló una galería responsive;
-- cómo se usó IntersectionObserver;
-- cómo se evitó estado global innecesario;
-- cómo se preservó performance;
-- cómo se validó mobile;
-- cómo se adaptó shadcn a un design system existente;
-- cómo se diseñó una interacción usable con teclado y touch.
-
----
-
-## 24. Fuentes técnicas de referencia
-
-Referencias externas autorizadas para BUILD:
-
-- shadcn/ui — Astro installation: https://ui.shadcn.com/docs/installation/astro
-- shadcn/ui — Drawer / responsive Dialog: https://ui.shadcn.com/docs/components/base/drawer
-- shadcn/ui — Tailwind v4: https://ui.shadcn.com/docs/tailwind-v4
-- Astro — React integration: https://docs.astro.build/en/guides/integrations-guide/react/
-- Astro — Framework components / client directives: https://docs.astro.build/en/guides/framework-components/
-
-Codex debe volver a verificar documentación vigente antes de instalar o migrar dependencias.
+- React fuera de islas aprobadas;
+- estado global;
+- nueva primitive;
+- dependencia relevante;
+- animation library;
+- cambio visual de marca;
+- cambio de IA;
+- tabs primarias;
+- pérdida de progressive enhancement;
+- performance por debajo de gate;
+- bundle por encima del soft budget;
+- cambio de breakpoint estructural;
+- cambio de contenido/copy no requerido por la interacción;
+- eliminación de evidencia;
+- reducción de browser coverage;
+- reducción de accessibility target.
 
 ---
 
-## 25. Gate actual
+## 23. Definition of Excellence
 
-### Estado
+La iniciativa sólo puede declararse completada si:
 
-**DEFINITION/DESIGN MASTER CONTRACT: READY FOR HUMAN REVIEW**
+1. el CTA mobile funciona de forma inequívoca;
+2. el journey mobile principal puede completarse sin hover;
+3. navigation mobile se siente nativa, no comprimida;
+4. los case studies largos son fáciles de recorrer;
+5. evidence viewing funciona con mouse, teclado y touch;
+6. cada interacción tiene fallback razonable;
+7. React está acotado a islas;
+8. ninguna hidratación produce salto visual;
+9. no hay errores de consola;
+10. WCAG 2.2 AA es el mínimo de accesibilidad;
+11. focus nunca queda oculto;
+12. cross-browser pasa;
+13. Lighthouse mantiene gates;
+14. CWV synthetic targets no muestran regresión material;
+15. bundle está medido y justificado;
+16. shadcn no domina la identidad;
+17. Stone / Andes Copper sigue siendo reconocible;
+18. screenshots continúan siendo evidencia, no decoración;
+19. ES/EN mantienen paridad;
+20. Independent Critic da PASS;
+21. Integration Review da PASS;
+22. Sebastián puede explicar las decisiones técnicas sin recurrir a “lo hizo la librería”.
 
-### BUILD
+---
+
+## 24. Interview Evidence
+
+El resultado debe permitir explicar con código real:
+
+- por qué Astro sigue siendo el shell;
+- por qué React se limita a islas;
+- elección de `client:load`, `client:idle`, `client:visible`;
+- cómo se compone Dialog/Drawer;
+- cómo se maneja focus;
+- cómo se evita hydration shift;
+- cómo se usa Astro `headings` para TOC;
+- cómo funciona IntersectionObserver;
+- cómo se diseña carousel con fallback;
+- cómo se prueba Chromium/Firefox/WebKit;
+- cómo se usa axe sin confundir automatización con accesibilidad completa;
+- cómo se mide el coste de cada dependencia;
+- cómo se protege performance;
+- cómo se diseña mobile desde comportamiento y no sólo CSS.
+
+---
+
+## 25. Referencias técnicas autorizadas
+
+Codex debe verificar documentación vigente antes de instalar.
+
+- Astro Islands Architecture: https://docs.astro.build/en/concepts/islands/
+- Astro Content Collections `render()` / `headings`: https://docs.astro.build/en/reference/modules/astro-content/
+- shadcn Astro: https://ui.shadcn.com/docs/installation/astro
+- shadcn Drawer / responsive Dialog: https://ui.shadcn.com/docs/components/base/drawer
+- shadcn Dialog: https://ui.shadcn.com/docs/components/base/dialog
+- shadcn Carousel: https://ui.shadcn.com/docs/components/base/carousel
+- shadcn Sonner: https://ui.shadcn.com/docs/components/aria/sonner
+- WCAG 2.2: https://www.w3.org/TR/WCAG22/
+- WCAG 2.2 changes: https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/
+- Core Web Vitals: https://web.dev/articles/vitals
+- Playwright browsers: https://playwright.dev/docs/browsers
+- Playwright accessibility testing: https://playwright.dev/docs/accessibility-testing
+
+---
+
+## 26. Gate actual
+
+**EXCELLENCE REWORK: READY FOR HUMAN REVIEW**
+
+BUILD continúa:
 
 **BLOCKED**
 
-### Próxima decisión humana
+La próxima decisión humana debe validar:
 
-Aprobar o modificar:
+- definición de excelencia;
+- journeys;
+- arquitectura;
+- component scope;
+- accessibility target;
+- performance/CWV contract;
+- browser matrix;
+- failure states;
+- build sequence;
+- evidence requirements.
 
-- arquitectura Astro + React Islands;
-- componentes aprobados;
-- secuencia de incrementos;
-- criterios de aceptación;
-- estrategia de subagentes;
-- límites de shadcn.
-
-Sólo después de esa aprobación Codex puede comenzar Incremento 0.
+Sólo después de ese Human Gate Codex puede iniciar Incremento 0.
