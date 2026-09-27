@@ -266,7 +266,14 @@ async function validatePage(file) {
 
     if (target.hash && targetFile.endsWith('.html')) {
       const targetContent = targetFile === file ? content : await readFile(targetFile, 'utf8');
-      const id = target.hash.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      let decodedHash;
+      try {
+        decodedHash = decodeURIComponent(target.hash.slice(1));
+      } catch {
+        failures.push(`${route}: invalid encoded href fragment ${href}`);
+        continue;
+      }
+      const id = decodedHash.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       if (!new RegExp(`(?:id|name)=["']${id}["']`, 'i').test(targetContent)) {
         failures.push(`${route}: href ${href} targets a missing anchor`);
       }
