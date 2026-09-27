@@ -1,0 +1,57 @@
+name: Frontend foundation bootstrap
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    if: github.head_ref == 'build/frontend-excellence-i0-foundation'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install current dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Add Astro React integration
+        run: npx astro add react --yes
+
+      - name: Initialize shadcn for existing project
+        run: npx shadcn@latest init --base base --preset nova -y --no-rtl --no-pointer
+
+      - name: Add approved primitives
+        run: npx shadcn@latest add sheet dialog drawer -y
+
+      - name: Show generated change set
+        run: |
+          git status --short
+          git diff -- package.json package-lock.json astro.config.mjs tsconfig.json src/styles/global.css || true
+
+      - name: Typecheck generated foundation
+        run: npm run check
+
+      - name: Package generated foundation
+        if: always()
+        run: |
+          tar --ignore-failed-read -czf frontend-foundation-bootstrap.tgz \
+            package.json package-lock.json astro.config.mjs tsconfig.json components.json \
+            src/lib src/components/ui src/styles/global.css
+
+      - name: Upload generated foundation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-foundation-bootstrap
+          path: frontend-foundation-bootstrap.tgz
+          if-no-files-found: error
