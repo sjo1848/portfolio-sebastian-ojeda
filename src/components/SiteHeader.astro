@@ -9,6 +9,7 @@ import {
   getAlternatePath,
   getLanguageRoot,
 } from '../data/routing';
+import MobileNavigation from './MobileNavigation';
 
 interface Props {
   lang?: Language;
@@ -22,20 +23,23 @@ const alternateLanguage = lang === 'es' ? 'en' : 'es';
 const alternatePath = getAlternatePath(Astro.url.pathname, lang);
 const aboutLabel = lang === 'es' ? 'Sobre mí' : 'About';
 const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
+const navigationItems = [
+  { label: copy.nav.projects, href: `${root}#projects` },
+  { label: aboutLabel, href: `${root}#about` },
+  { label: capabilitiesLabel, href: `${root}#capabilities` },
+  { label: copy.nav.experience, href: `${root}#experience` },
+  { label: copy.nav.process, href: `${root}#process` },
+  { label: copy.nav.contact, href: `${root}#contact` },
+];
 ---
 
 <header class="site-header">
   <div class="container header-inner brand-header-inner">
     <a class="brand" href={root} aria-label={site.name}>{site.name}</a>
     <div class="header-actions">
-      <nav aria-label={copy.navigationLabel}>
+      <nav class="desktop-navigation" aria-label={copy.navigationLabel}>
         <ul class="nav-list">
-          <li><a href={`${root}#projects`}>{copy.nav.projects}</a></li>
-          <li><a href={`${root}#about`}>{aboutLabel}</a></li>
-          <li><a href={`${root}#capabilities`}>{capabilitiesLabel}</a></li>
-          <li><a href={`${root}#experience`}>{copy.nav.experience}</a></li>
-          <li><a href={`${root}#process`}>{copy.nav.process}</a></li>
-          <li><a href={`${root}#contact`}>{copy.nav.contact}</a></li>
+          {navigationItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
       </nav>
       <a
@@ -47,6 +51,18 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
       >
         {copy.languageSwitch}
       </a>
+      <div class="mobile-navigation-slot">
+        <MobileNavigation
+          client:load
+          brandName={site.name}
+          lang={lang}
+          navigationLabel={copy.navigationLabel}
+          items={navigationItems}
+          languageHref={alternatePath}
+          languageLabel={copy.languageSwitchAria}
+          languageCode={copy.languageSwitch}
+        />
+      </div>
     </div>
   </div>
 </header>
@@ -62,6 +78,10 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
     align-items: center;
     justify-content: flex-end;
     gap: 0.65rem;
+  }
+
+  .mobile-navigation-slot {
+    display: none;
   }
 
   .language-link {
@@ -85,8 +105,8 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
   @media (max-width: 47.99rem) {
     .brand-header-inner {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.35rem 1rem;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.35rem 0.75rem;
       padding-block: 0.55rem;
     }
 
@@ -94,30 +114,22 @@ const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
       display: contents;
     }
 
-    .header-actions nav {
-      grid-column: 1 / -1;
-      grid-row: 2;
+    .desktop-navigation {
+      display: none;
+    }
+
+    .mobile-navigation-slot {
+      display: block;
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
     }
 
     .language-link {
       grid-column: 2;
       grid-row: 1;
       justify-self: end;
-    }
-
-    .nav-list {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.05rem 0.35rem;
-      width: 100%;
-    }
-
-    .nav-list a {
-      min-height: 2rem;
-      justify-content: center;
-      padding-inline: 0.1rem;
-      font-size: 0.69rem;
-      text-align: center;
+      display: none;
     }
   }
 </style>

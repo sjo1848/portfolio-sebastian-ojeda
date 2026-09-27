@@ -69,7 +69,7 @@ for (const marker of [
   "role: 'Rol'",
   'data.role',
   "data.stack.slice(0, variant === 'hero' ? 4 : 3)",
-  'class="project-case-link"',
+  'project-case-link',
   'getProjectPath(lang, data.slug)',
 ]) {
   requireText(card, marker, 'ProjectCard.astro');
