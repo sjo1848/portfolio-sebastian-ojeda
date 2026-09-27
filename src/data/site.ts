@@ -104,6 +104,10 @@ export const copyByLanguage = {
       contactTitle: 'Busco oportunidades Full-Stack, Backend, Applied AI y automatización',
       englishLevel: 'Inglés intermedio en desarrollo y práctica profesional.',
       sendEmail: 'Enviar email',
+      copyEmail: 'Copiar email',
+      copyingEmail: 'Copiando…',
+      emailCopied: 'Email copiado.',
+      emailCopyError: 'No se pudo copiar. Podés usar el enlace para enviar un email.',
       viewGithub: 'Ver GitHub',
     },
     project: {
@@ -170,6 +174,10 @@ export const copyByLanguage = {
       contactTitle: 'Open to Full-Stack, Backend, Applied AI and automation opportunities',
       englishLevel: 'Intermediate English, actively improving through professional practice.',
       sendEmail: 'Send email',
+      copyEmail: 'Copy email',
+      copyingEmail: 'Copying…',
+      emailCopied: 'Email copied.',
+      emailCopyError: 'Could not copy. You can use the email link to send a message instead.',
       viewGithub: 'View GitHub',
     },
     project: {
