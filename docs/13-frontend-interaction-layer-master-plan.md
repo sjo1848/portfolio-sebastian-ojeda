@@ -2,10 +2,10 @@
 
 ## Estado
 
-**Versión:** 2.2 — Excellence Rework after Integration Review  
-**Fase actual:** DEFINITION → DESIGN  
-**Build:** BLOQUEADO hasta Human Gate  
-**Issue de control:** #75  
+**Versión:** 2.3 — BUILD Authorized  
+**Fase actual:** BUILD — preflight  
+**Build:** AUTORIZADO para Codex, condicionado al baseline P0 #77  
+**Issue de ejecución:** #78  
 **Implementador:** Codex  
 **Controller / UX-Frontend Architect + Gatekeeper:** ChatGPT  
 **Fuente de verdad:** este documento + `docs/12-project-method.md`
@@ -1201,23 +1201,25 @@ Codex debe verificar documentación vigente antes de instalar.
 
 ## 26. Gate actual
 
-**EXCELLENCE REWORK: READY FOR HUMAN REVIEW**
+**DESIGN: PASS**
 
-BUILD continúa:
+Revisiones:
+- Independent Critic: PASS;
+- Integration Review: PASS;
+- Human Gate: APPROVED.
 
-**BLOCKED**
+El contrato fue integrado en `main` mediante PR #76.
 
-La próxima decisión humana debe validar:
+### Estado de BUILD
 
-- definición de excelencia;
-- journeys;
-- arquitectura;
-- component scope;
-- accessibility target;
-- performance/CWV contract;
-- browser matrix;
-- failure states;
-- build sequence;
-- evidence requirements.
+**AUTHORIZED FOR CODEX**
 
-Sólo después de ese Human Gate Codex puede iniciar Incremento 0.
+Existe un único prerequisito de baseline antes de medir regresión:
+
+- **P0 #77:** resolver el mismatch preexistente entre el presentation validator y la evidencia HMS.
+
+La ejecución canónica está en:
+
+- **Issue #78 — Codex BUILD — Frontend Excellence execution**
+
+Codex debe reparar #77, obtener baseline verde y continuar por Incrementos 0–6 automáticamente. Sólo debe detenerse ante un HUMAN_GATE real según el Project Method.
