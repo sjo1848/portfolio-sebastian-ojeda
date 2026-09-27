@@ -94,8 +94,8 @@ for (const [file, markers] of caseStudyContracts) {
 
 const hmsEs = await read('content/projects/hms-cloudflare.md');
 const hmsEn = await read('content/projects-en/hms-cloudflare.md');
-requireText(hmsEs, 'cf-i04-reception-lifecycle.png', 'HMS ES visual evidence');
-requireText(hmsEn, 'cf-i04-reception-lifecycle.png', 'HMS EN visual evidence');
+requireText(hmsEs, 'cf-i04-reception-authorized.png', 'HMS ES visual evidence');
+requireText(hmsEn, 'cf-i04-reception-authorized.png', 'HMS EN visual evidence');
 
 if (failures.length > 0) {
   console.error('Portfolio presentation validation failed:');
