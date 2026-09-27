@@ -27,6 +27,18 @@ jobs:
       - name: Add Astro React integration
         run: npx astro add react --yes
 
+      - name: Configure import alias for shadcn
+        run: |
+          node - <<'NODE'
+          const fs = require('fs')
+          const path = 'tsconfig.json'
+          const config = JSON.parse(fs.readFileSync(path, 'utf8'))
+          config.compilerOptions ??= {}
+          config.compilerOptions.baseUrl = '.'
+          config.compilerOptions.paths = { ...(config.compilerOptions.paths ?? {}), '@/*': ['./src/*'] }
+          fs.writeFileSync(path, JSON.stringify(config, null, 2) + '\n')
+          NODE
+
       - name: Initialize shadcn for existing project
         run: npx shadcn@latest init --base base --preset nova -y --no-rtl --no-pointer
 
