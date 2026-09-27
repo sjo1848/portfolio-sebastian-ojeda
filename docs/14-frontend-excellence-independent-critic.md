@@ -133,3 +133,67 @@ The following are strong enough to retain:
 Re-review after C1–C6 are resolved in the master contract.
 
 **Current status: DESIGN REWORK REQUIRED.**
+
+
+---
+
+## Review 2
+
+**Artifact reviewed:** `docs/13-frontend-interaction-layer-master-plan.md` v2.1  
+**Method phase:** DESIGN  
+**Reviewer role:** Independent Critic / Verifier  
+**Verdict:** **PASS**
+
+## Verification of prior findings
+
+### C1 — Progressive enhancement
+**Resolved.**
+
+The contract now distinguishes full functional parity from traversability. It explicitly preserves Astro-rendered content, ProjectCard links, case-study return paths, direct evidence links and contact paths when an island fails to hydrate.
+
+### C2 — Core Web Vitals
+**Resolved.**
+
+The contract now separates pre-release lab evidence from field CWV. LCP/INP/CLS remain product targets, while field PASS/FAIL is only assigned when sufficient CrUX/RUM evidence exists. No analytics dependency is introduced solely for compliance.
+
+### C3 — TOC source of truth
+**Resolved.**
+
+The TOC is now a single derived model composed from page-owned stable sections plus Astro `render(project).headings`, with no per-project duplicate list.
+
+### C4 — GIF parity
+**Resolved.**
+
+Existing GIF semantics are preserved: no autoplay, deferred loading, explicit Play/Stop, pause capability and direct asset fallback.
+
+### C5 — Documentation precedence
+**Resolved.**
+
+The master now records precedence and explicitly treats old CV/header requirements and older project counts as historical where superseded by later approved portfolio decisions.
+
+### C6 — Evidence cropping
+**Resolved.**
+
+The contract now requires the complete evidence asset to remain available without destructive crop. Thumbnail crops are permitted only when the full viewer preserves meaning.
+
+## Remaining non-blocking risks
+
+- The provisional JavaScript soft budgets require baseline measurement before they become meaningful.
+- The final breakpoint for sticky case-study TOC should be validated against actual reading width, not chosen from convention.
+- The mobile media surface should be visually tested on WebKit before the Drawer pattern is considered final.
+
+These are already covered by Incremento 0/validation gates and do not block DESIGN.
+
+## Final critic verdict
+
+The master contract is now:
+
+- internally consistent;
+- proportional to the portfolio;
+- compatible with the existing Astro architecture;
+- explicit about progressive enhancement;
+- explicit about accessibility and performance evidence;
+- protective of current media behavior;
+- sufficiently bounded for Codex implementation.
+
+**Independent Critic: PASS.**
