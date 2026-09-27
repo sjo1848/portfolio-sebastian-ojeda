@@ -154,9 +154,11 @@ export default function ResponsiveMediaViewer({ rootId, title, lang }: Props) {
   const controls = activeItem && activeIndex !== null ? (
     <>
       <div className="media-viewer-toolbar">
-        <p className="media-viewer-count" aria-live="polite">
-          {activeIndex + 1} {lang === 'es' ? 'de' : 'of'} {items.length}
-        </p>
+        {items.length > 1 && (
+          <p className="media-viewer-count" aria-live="polite">
+            {activeIndex + 1} {lang === 'es' ? 'de' : 'of'} {items.length}
+          </p>
+        )}
         {mode === 'dialog' ? (
           <DialogClose className="media-viewer-close" aria-label={copy.close} ref={closeRef}>×</DialogClose>
         ) : (
@@ -184,10 +186,12 @@ export default function ResponsiveMediaViewer({ rootId, title, lang }: Props) {
       <div className="media-viewer-footer">
         <p className="media-viewer-caption">{activeItem.caption}</p>
         <a className="text-link" href={activeItem.src} target="_blank" rel="noopener noreferrer">{copy.original}</a>
-        <div className="media-viewer-navigation">
-          <button className="button button-secondary" type="button" onClick={() => move(-1)} disabled={activeIndex === 0} aria-label={copy.previous}>←</button>
-          <button className="button button-secondary" type="button" onClick={() => move(1)} disabled={activeIndex === items.length - 1} aria-label={copy.next}>→</button>
-        </div>
+        {items.length > 1 && (
+          <div className="media-viewer-navigation">
+            <button className="button button-secondary" type="button" onClick={() => move(-1)} disabled={activeIndex === 0} aria-label={copy.previous}>←</button>
+            <button className="button button-secondary" type="button" onClick={() => move(1)} disabled={activeIndex === items.length - 1} aria-label={copy.next}>→</button>
+          </div>
+        )}
       </div>
     </>
   ) : null;
