@@ -8,7 +8,7 @@ Professional portfolio focused on backend, backend-oriented full-stack developme
 
 The site includes the visual implementation, professional content, case studies, downloadable resumes, bilingual SEO, accessibility controls, automated QA, and Cloudflare Pages deployment.
 
-- Production: `https://portfolio-sebastian-ojeda.pages.dev`
+- Production: `https://sebastian-ojeda.pages.dev`
 - Production branch: `main`
 - Hosting: Cloudflare Pages
 - Primary language: English at `/`

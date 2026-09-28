@@ -4,7 +4,7 @@
 
 This runbook covers the static Astro portfolio deployed to Cloudflare Pages from the `main` branch.
 
-Production URL: `https://portfolio-sebastian-ojeda.pages.dev`
+Production URL: `https://sebastian-ojeda.pages.dev`
 
 ## Release procedure
 

@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const productionSiteUrl = 'https://portfolio-sebastian-ojeda.pages.dev';
+const productionSiteUrl = 'https://sebastian-ojeda.pages.dev';
 const excludedSitemapPaths = new Set(['/404.html', '/es/404/']);
 
 export default defineConfig({

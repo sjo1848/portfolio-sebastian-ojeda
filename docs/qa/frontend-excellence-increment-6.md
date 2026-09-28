@@ -37,12 +37,12 @@ Browser profiles: Chromium, Firefox, WebKit, Mobile Chromium, Mobile WebKit. Res
 
 | Route | Performance | Accessibility | Best Practices | SEO | Lab LCP range | CLS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `/` | 0.96–0.99 | 1.00 | 1.00 | 1.00 | 1,877–1,960 ms | 0.000 |
-| `/es/` | 0.99–1.00 | 1.00 | 1.00 | 1.00 | 1,904–2,117 ms | 0.000 |
-| `/projects/hms-cloudflare/` | 1.00 | 1.00 | 1.00 | 1.00 | 1,665–1,901 ms | 0.000 |
-| `/es/projects/hms-cloudflare/` | 0.99–1.00 | 1.00 | 1.00 | 1.00 | 1,531–1,680 ms | 0.000 |
-| `/projects/alquileres-uspa/` | 0.97–0.98 | 1.00 | 1.00 | 1.00 | 2,431–2,569 ms | 0.000 |
-| `/es/projects/alquileres-uspa/` | 0.96–0.98 | 1.00 | 1.00 | 1.00 | 2,493–2,726 ms | 0.000 |
+| `/` | 0.98–1.00 | 1.00 | 1.00 | 1.00 | 1,896–2,170 ms | 0.000 |
+| `/es/` | 0.98–0.99 | 1.00 | 1.00 | 1.00 | 2,036–2,217 ms | 0.000 |
+| `/projects/hms-cloudflare/` | 0.99–1.00 | 1.00 | 1.00 | 1.00 | 1,595–1,666 ms | 0.000 |
+| `/es/projects/hms-cloudflare/` | 0.99–1.00 | 1.00 | 1.00 | 1.00 | 1,480–1,669 ms | 0.000 |
+| `/projects/alquileres-uspa/` | 0.93–0.97 | 1.00 | 1.00 | 1.00 | 2,433–2,873 ms | 0.000 |
+| `/es/projects/alquileres-uspa/` | 0.93–0.94 | 1.00 | 1.00 | 1.00 | 2,429–2,588 ms | 0.000 |
 
 All 18 full JSON Lighthouse reports and the manifest are persisted under [`artifacts/lighthouse/frontend-excellence-increment-6`](../../artifacts/lighthouse/frontend-excellence-increment-6/). Lab LCP above 2.5 seconds was observed in one Alquileres ES run; Lighthouse performance still passed. These lab values do not establish field CWV.
 - The responsive matrix checked browser console/page errors at each route/width and passed with none. Interaction tests across all five profiles also passed; Axe state audits ran in desktop Chromium.
@@ -55,30 +55,36 @@ All 18 full JSON Lighthouse reports and the manifest are persisted under [`artif
 - Gallery/viewer chunks remain deferred.
 - Focus-state screenshots are in [`artifacts/visual/frontend-excellence/increment-6`](../../artifacts/visual/frontend-excellence/increment-6/).
 
-## Release observation and limitation
+## Bounded RELEASE rework — canonical hostname
 
-- Post-merge I5 GitHub CI passed Release QA, browser/accessibility matrix, Lighthouse, release-contract validation, and secret scanning.
-- `https://sebastian-ojeda.pages.dev` returned HTTP 200 and exposed the I5 mobile navigation and CopyAction. All six priority ES/EN routes returned HTTP 200 on that host.
-- The production URL configured in `astro.config.mjs`, CI/release workflows, and the production runbook, `https://portfolio-sebastian-ojeda.pages.dev`, does not resolve from the verification environment. Each of the six pages on the working Pages hostname emits a canonical URL on that non-resolving hostname; homepage `og:url`, `robots.txt` sitemap directive, and sitemap index/entries also use the configured hostname.
-- Cloudflare Pages deployment history is not exposed through this repository's GitHub deployments API. Production behavior is observed at the working hostname; exact Cloudflare deployment identity/status remains unverified.
-- This domain/canonical mismatch requires a product/release decision before declaring RELEASE.
+### Task contract
+
+- **Purpose:** apply the Product Owner's resolved Option B decision so the public production identity is consistent across configuration, release workflows, documentation, and generated metadata.
+- **Scope:** replace the superseded production hostname in Astro, CI/release configuration, URL wrapper, README, and runbook; validate generated SEO/sitemap/robots/social metadata and deployed behavior.
+- **Out of scope:** branding, UX, React architecture, product behavior, professional content, redirects, and assumptions about aliases.
+- **Inputs:** Product Owner decision in Issue #78 comment `HUMAN_GATE RESOLVED — Canonical production hostname`; approved I6 candidate PR #88.
+- **Acceptance:** `https://sebastian-ojeda.pages.dev` is the only configured production identity; generated canonical/social/sitemap/robots surfaces agree; all six priority routes return HTTP 200; all existing release/browser/performance gates pass.
+- **Evidence:** `npm ci`, `npm run qa:release`, full browser matrix, unchanged Lighthouse gates, built metadata checks, deployed HTTP checks, and independent release/integration reviews.
+- **Risk:** if the live hostname's deployed build is not produced from the merged candidate, stop before declaring RELEASE and reconcile deployment identity.
+
+### Implementation and release evidence
+
+- Product Owner selected Option B. The previously configured hostname is superseded; no redirect or alias behavior is assumed.
+- Updated production URL surfaces: `astro.config.mjs`, `.github/workflows/ci.yml`, `.github/workflows/release-readiness.yml`, `scripts/run-with-site-url.mjs`, README, and the production runbook.
+- Built candidate verification: all six priority routes have matching canonical and `og:url` values at the selected production hostname; robots sitemap directive and all 21 sitemap locations use that origin. SEO/social validators pass across the complete static build.
+- Before deployment, the selected production host returned HTTP 200 on all six routes, but still served the previous release's metadata. Post-deployment canonical/SEO and browser-console checks remain part of RELEASE verification.
+- `npm ci`: PASS (lockfile unchanged; npm reported 8 existing dependency audit findings: 1 low, 1 moderate, 5 high, 1 critical).
+- `npm run qa:release`: PASS; 54 Astro files, zero diagnostics, 22 static pages and 20 canonical sitemap URLs.
+- `npm run test:browser`: PASS; 344 passed, 171 expected profile skips, 0 failed across Chromium, Firefox, WebKit, Mobile Chromium and Mobile WebKit; full route/viewport matrix and console/page-error checks included.
+- LHCI: PASS, 18/18 runs across six priority routes with unchanged thresholds (Performance ≥0.90, Accessibility/Best Practices/SEO ≥0.95). All accessibility/BP/SEO scores are 1.00; performance scores range 0.93–1.00; CLS is 0.000. The Alquileres laboratory LCP samples reach 2,873 ms; field CWV remains `NOT_YET_OBSERVABLE`.
+- Independent Critic and Integration Review for RELEASE: pending final candidate review.
 
 ## Review gates
 
 - Frontend implementation: PASS after bounded I6 fixes.
 - Responsive/browser QA: PASS; final PR CI matrix 344 passed, 171 expected skips, 0 failed.
 - Accessibility review: PASS; see focused state and contrast evidence above.
-- Independent Critic: HUMAN_GATE for release; implementation BUILD/VALIDATE passed.
-- Integration Review: PASS for I6 BUILD/VALIDATE; separate RELEASE HUMAN_GATE for host/canonical mismatch.
+- Independent Critic: PASS for BUILD/VALIDATE; RELEASE re-review pending bounded hostname rework evidence.
+- Integration Review: PASS for BUILD/VALIDATE; RELEASE re-review pending bounded hostname rework evidence.
 - Increment 6 BUILD/VALIDATE gate: PASS; final PR CI green (release QA/Lighthouse, responsive capture, release contract, secret scanning).
-- RELEASE: HUMAN_GATE on production identity/canonical mismatch.
-
-## HUMAN_GATE — production host and canonical identity
-
-1. **Problem:** the repository's intended production URL, `https://portfolio-sebastian-ojeda.pages.dev`, does not resolve. The active host is `https://sebastian-ojeda.pages.dev`.
-2. **Evidence:** the active host returns HTTP 200 for all six priority routes and exposes the merged I5 navigation/CopyAction. All six pages emit `<link rel="canonical">` pointing to the non-resolving `portfolio-sebastian-ojeda.pages.dev` host; homepage `og:url`, `robots.txt` sitemap directive, and sitemap index/entries also identify that host. The configured URL is present in `astro.config.mjs`, CI/release workflow environment, `scripts/run-with-site-url.mjs`, README, and release runbook. GitHub's deployments API shows no Cloudflare deployment record, so the exact deployed commit/status cannot be confirmed from repository tooling.
-3. **Impact:** the site is reachable at the active hostname, but canonical, sitemap, robots, and social metadata identify a hostname that cannot be reached; the Cloudflare production deployment identity is unverified. Do not declare RELEASE until reconciled.
-4. **Option A:** keep the existing intended canonical URL and repair/reconfigure Cloudflare Pages so `portfolio-sebastian-ojeda.pages.dev` serves the current production build.
-5. **Option B:** designate the active `sebastian-ojeda.pages.dev` hostname as canonical and update site configuration, workflow environment, README, runbook, and generated SEO/social metadata together.
-6. **Trade-offs and recommendation:** A preserves the documented product/SEO identity but requires external Cloudflare configuration and deployment verification. B aligns the site with a currently reachable Pages hostname but changes the public canonical identity and may need search/share migration handling. Technical recommendation: preserve the already documented canonical (A) unless the product owner confirms that the active alias is intended to be permanent.
-7. **Decision required:** confirm the canonical production hostname and authorize the corresponding Cloudflare or repository configuration change before RELEASE.
+- RELEASE: bounded hostname rework in validation; merge/deployment/review gates remain open until their evidence is recorded.
