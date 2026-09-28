@@ -1,0 +1,35 @@
+fast-uri@3.1.8 dev
+node_modules/fast-uri
+  fast-uri@"^3.0.1" from ajv@8.20.0
+  node_modules/ajv
+    peerOptional ajv@"^8.5.0" from ajv-draft-04@1.0.0
+    node_modules/ajv-draft-04
+      ajv-draft-04@"^1.0.0" from yaml-language-server@1.23.0
+      node_modules/yaml-language-server
+        yaml-language-server@"~1.23.0" from volar-service-yaml@0.0.71
+        node_modules/volar-service-yaml
+          volar-service-yaml@"0.0.71" from @astrojs/language-server@2.16.13
+          node_modules/@astrojs/language-server
+            @astrojs/language-server@"^2.16.7" from @astrojs/check@0.9.10
+            node_modules/@astrojs/check
+              dev @astrojs/check@"^0.9.4" from the root project
+    peer ajv@"^8.0.0-beta.0" from ajv-i18n@4.2.0
+    node_modules/ajv-i18n
+      ajv-i18n@"^4.2.0" from yaml-language-server@1.23.0
+      node_modules/yaml-language-server
+        yaml-language-server@"~1.23.0" from volar-service-yaml@0.0.71
+        node_modules/volar-service-yaml
+          volar-service-yaml@"0.0.71" from @astrojs/language-server@2.16.13
+          node_modules/@astrojs/language-server
+            @astrojs/language-server@"^2.16.7" from @astrojs/check@0.9.10
+            node_modules/@astrojs/check
+              dev @astrojs/check@"^0.9.4" from the root project
+    ajv@"^8.17.1" from yaml-language-server@1.23.0
+    node_modules/yaml-language-server
+      yaml-language-server@"~1.23.0" from volar-service-yaml@0.0.71
+      node_modules/volar-service-yaml
+        volar-service-yaml@"0.0.71" from @astrojs/language-server@2.16.13
+        node_modules/@astrojs/language-server
+          @astrojs/language-server@"^2.16.7" from @astrojs/check@0.9.10
+          node_modules/@astrojs/check
+            dev @astrojs/check@"^0.9.4" from the root project
