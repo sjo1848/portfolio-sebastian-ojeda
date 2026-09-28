@@ -39,7 +39,7 @@ With the exact Node 24.21.0 LTS distribution and its bundled npm 11.19.0:
 - `npm ci`: PASS (install-script policy warnings documented above).
 - `npm run qa:release`: PASS; Astro check covered 54 files with 0 errors, warnings or hints; static output generated 22 pages; content, presentation, media, social metadata, SEO/structured data, UX/accessibility, sitemap and build validators passed.
 - Node 24 is within Astro 5.18.2 / `@astrojs/react` 4.4.2 and Playwright 1.63.0 engine ranges. Separate read-only package metadata and official migration-guide review found Node 24 also meets Astro 6/7 minimum Node 22.12 requirements.
-- This is a local compatibility rehearsal, not yet GitHub Actions evidence. Increment 1 changes workflows to the same exact Node release, then verifies the hosted CI runs.
+- Hosted Node 24 proof was produced by Increment 1 before any Astro/dependency changes: [Portfolio CI on PR #93](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36462717971) passed with `setup-node` reporting Node 24.21.0. The same run completed locked install, release QA, the full browser/accessibility matrix (344 passed), and Lighthouse budgets; [Release Readiness](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36462717876) and [Visual Review](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36462718135) also passed. This closes the hosted runtime rehearsal requirement without changing baseline source or dependencies.
 
 ## Release QA and route snapshot
 
@@ -105,5 +105,6 @@ Existing reproducible measurements from I6 are confirmed by the current lock out
 - Lighthouse thresholds and baseline recorded: PASS.
 - Canonical/static/SEO snapshot: PASS.
 - Bundle and route-island baseline recorded: PASS.
-- Independent Critic: **PASS**.
-- Integration Review: **REWORK** — requested a Node 24 CI rehearsal artifact before Increment 0 can close. The local Node 24.21.0/npm 11.19.0 rehearsal passed; the required hosted CI proof will be produced by Increment 1, then this baseline gate will be revalidated.
+- Independent Critic: **PASS** — independently verified baseline commit, evidence integrity, Lighthouse medians, dependency audit snapshot, constraints, and no product/toolchain mutations.
+- Integration Review history: **REWORK → resolved** — the initial review requested hosted Node 24 CI proof; PR #93 supplied the Node 24.21.0 hosted runs above. The Integration Reviewer rechecked the runs and confirmed the missing technical evidence now exists; this report update records the evidence and post-rework verdict.
+- Integration Review: **PASS** — Node 24 hosted runtime compatibility is demonstrated against unchanged baseline product/dependencies, with locked install, release QA, browser/accessibility matrix, Lighthouse, and visual evidence passing.
