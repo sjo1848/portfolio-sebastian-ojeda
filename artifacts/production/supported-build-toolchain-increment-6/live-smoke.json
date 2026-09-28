@@ -1,0 +1,442 @@
+{
+  "origin": "https://sebastian-ojeda.pages.dev",
+  "testedAt": "2026-09-28T20:52:08.641Z",
+  "browsers": {
+    "chromium": {
+      "routes": 6,
+      "failed": []
+    },
+    "webkit-mobile": {
+      "routes": 6,
+      "failed": []
+    }
+  },
+  "routes": [
+    {
+      "browser": "chromium",
+      "path": "/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": "https://sebastian-ojeda.pages.dev/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/",
+      "h1": "From workflow to system.",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\nProjects\nAbout\nCapabilities\nExperience\nMethod\nContact\nES\n\nFULL-STACK SOFTWARE DEVELOPER\n",
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "path": "/es/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/",
+      "h1": "Del proceso al sistema.",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\nProyectos\nSobre mí\nCapacidades\nExperiencia\nMétodo\nContacto\nEN\n\nFULL-STACK SOFTWARE DEVEL",
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "path": "/projects/hms-cloudflare/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "h1": "HMS Cloudflare",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\nProjects\nAbout\nCapabilities\nExperience\nMethod\nContact\nES\n\nBROWNFIELD EVOLUTION OF AN OPE",
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "path": "/es/projects/hms-cloudflare/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "h1": "HMS Cloudflare",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\nProyectos\nSobre mí\nCapacidades\nExperiencia\nMétodo\nContacto\nEN\n\nEVOLUCIÓN BROWNFIELD DE U",
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "path": "/projects/alquileres-uspa/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "h1": "Alquileres Uspallata",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\nProjects\nAbout\nCapabilities\nExperience\nMethod\nContact\nES\n\nVACATION-RENTAL CATALOG AND MA",
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "path": "/es/projects/alquileres-uspa/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "h1": "Alquileres Uspallata",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\nProyectos\nSobre mí\nCapacidades\nExperiencia\nMétodo\nContacto\nEN\n\nCATÁLOGO Y GESTIÓN DE ALQ",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": "https://sebastian-ojeda.pages.dev/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/",
+      "h1": "From workflow to system.",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\n\nMenu\n\nFULL-STACK SOFTWARE DEVELOPER\n\nFrom workflow to system.\n\nI build end-to-end softw",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/es/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/",
+      "h1": "Del proceso al sistema.",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\n\nMenú\n\nFULL-STACK SOFTWARE DEVELOPER\n\nDel proceso al sistema.\n\nConstruyo software end-to",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/projects/hms-cloudflare/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "h1": "HMS Cloudflare",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\n\nMenu\n\nBROWNFIELD EVOLUTION OF AN OPERATIONAL SAAS\n\nHMS Cloudflare\n\nFrom Rust/PostgreSQL",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/es/projects/hms-cloudflare/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "h1": "HMS Cloudflare",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\n\nMenú\n\nEVOLUCIÓN BROWNFIELD DE UN SAAS OPERACIONAL\n\nHMS Cloudflare\n\nDe Rust/PostgreSQL a",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/projects/alquileres-uspa/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "h1": "Alquileres Uspallata",
+      "alternates": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "bodyText": "Skip to content\nSebastián Ojeda\n\nMenu\n\nVACATION-RENTAL CATALOG AND MANAGEMENT\n\nAlquileres Uspallata\n\nFull-stack platform",
+      "errors": []
+    },
+    {
+      "browser": "webkit-mobile",
+      "path": "/es/projects/alquileres-uspa/",
+      "status": 200,
+      "url": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "h1": "Alquileres Uspallata",
+      "alternates": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "bodyText": "Ir al contenido\nSebastián Ojeda\n\nMenú\n\nCATÁLOGO Y GESTIÓN DE ALQUILERES TURÍSTICOS\n\nAlquileres Uspallata\n\nPlataforma ful",
+      "errors": []
+    }
+  ],
+  "sitemap": {
+    "indexStatus": 200,
+    "indexLocations": [
+      "https://sebastian-ojeda.pages.dev/sitemap-0.xml"
+    ],
+    "leafStatus": 200,
+    "urlCount": 20,
+    "priorityRoutes": [
+      "https://sebastian-ojeda.pages.dev/",
+      "https://sebastian-ojeda.pages.dev/es/",
+      "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+    ],
+    "allPriorityRoutesPresent": true
+  },
+  "robots": {
+    "status": 200,
+    "text": "User-agent: *\nAllow: /\nSitemap: https://sebastian-ojeda.pages.dev/sitemap-index.xml\n",
+    "sitemapMatches": true
+  },
+  "errors": [],
+  "pass": true,
+  "mainCommitObservedDuringVerification": "71652be3b14eac04aa29e7502715ded8187e6bda",
+  "liveHomeStylesheetAssetSetMatchesLocalAstroBuild": true,
+  "productionEnvironment": "Cloudflare Pages canonical project host",
+  "seo": [
+    {
+      "path": "/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite"
+      ]
+    },
+    {
+      "path": "/es/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/es/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite"
+      ]
+    },
+    {
+      "path": "/projects/hms-cloudflare/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite",
+        "SoftwareSourceCode"
+      ]
+    },
+    {
+      "path": "/es/projects/hms-cloudflare/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite",
+        "SoftwareSourceCode"
+      ]
+    },
+    {
+      "path": "/projects/alquileres-uspa/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite",
+        "SoftwareSourceCode"
+      ]
+    },
+    {
+      "path": "/es/projects/alquileres-uspa/",
+      "status": 200,
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "alternateCount": 4,
+      "jsonLdTypes": [
+        "Person",
+        "WebSite",
+        "SoftwareSourceCode"
+      ]
+    }
+  ],
+  "productionResponse": {
+    "status": 200,
+    "date": "Mon, 28 Sep 2026 20:58:39 GMT",
+    "cfRay": "a425aadd1b58584a-SCL",
+    "cacheStatus": null,
+    "stylesheetAssets": [
+      "/_astro/BaseLayout.CES_6uBq.css",
+      "/_astro/HomePage.ClX7CBmu.css"
+    ],
+    "localBuildAssets": [
+      "/_astro/BaseLayout.CES_6uBq.css",
+      "/_astro/HomePage.ClX7CBmu.css"
+    ],
+    "localAssetReferencesMatch": true
+  }
+}
