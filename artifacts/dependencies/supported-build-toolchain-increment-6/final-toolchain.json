@@ -1,0 +1,14 @@
+{
+  "node": "v24.21.0",
+  "astro": "7.3.5",
+  "astroReact": "6.0.6",
+  "astroCheck": "0.9.10",
+  "astroSitemap": "3.7.3",
+  "vite": "8.3.1",
+  "react": "19.3.0",
+  "reactDom": "19.3.0",
+  "tailwind": "4.3.3",
+  "tailwindVite": "4.3.3",
+  "baseUi": "1.8.0",
+  "sharp": "0.35.5"
+}

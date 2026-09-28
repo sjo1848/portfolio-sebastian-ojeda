@@ -1,0 +1,16 @@
+portfolio-sebastian-ojeda@0.1.0 /home/sjo1848/dev/portolio/portfolio-sebastian-ojeda
+├── @astrojs/check@0.9.10
+├── @astrojs/react@6.0.6
+├── @astrojs/sitemap@3.7.3
+├── @axe-core/playwright@4.13.0
+├── @base-ui/react@1.8.0
+├── @playwright/test@1.63.0
+├── @tailwindcss/vite@4.3.3
+├── @types/react-dom@19.3.0
+├── @types/react@19.3.0
+├── astro@7.3.5
+├── react-dom@19.3.0
+├── react@19.3.0
+├── tailwindcss@4.3.3
+└── typescript@5.9.3
+
