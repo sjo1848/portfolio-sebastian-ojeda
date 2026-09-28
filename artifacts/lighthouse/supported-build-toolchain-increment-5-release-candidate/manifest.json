@@ -1,0 +1,218 @@
+[
+  {
+    "url": "http://localhost:34375/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_26_36.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_26_36.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_27_16.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_27_16.report.json",
+    "summary": {
+      "performance": 0.89,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_27_34.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_27_34.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_28_08.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_28_08.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_24.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_24.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_54.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_54.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_23.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_23.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_37.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_37.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_29_52.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_29_52.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_30_09.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_30_09.report.json",
+    "summary": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_31_01.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_31_01.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_31_19.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_31_19.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_26_58.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost--2026_09_28_20_26_58.report.json",
+    "summary": {
+      "performance": 0.88,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_27_51.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_-2026_09_28_20_27_51.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_39.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_hms_cloudflare_-2026_09_28_20_28_39.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_08.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_hms_cloudflare_-2026_09_28_20_29_08.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_30_26.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-projects_alquileres_uspa_-2026_09_28_20_30_26.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34375/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_30_43.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/supported-build-toolchain-increment-5-release-candidate/localhost-es_projects_alquileres_uspa_-2026_09_28_20_30_43.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

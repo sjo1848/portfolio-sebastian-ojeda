@@ -1,0 +1,162 @@
+{
+  "root": "https://sebastian-ojeda.pages.dev",
+  "pages": [
+    {
+      "route": "/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/"
+      ],
+      "hreflang": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "jsonLdPresent": true
+    },
+    {
+      "route": "/es/",
+      "title": "Sebastián Ojeda — Full-Stack Developer",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/es/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/es/"
+      ],
+      "hreflang": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "jsonLdPresent": true
+    },
+    {
+      "route": "/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+      ],
+      "hreflang": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "jsonLdPresent": true
+    },
+    {
+      "route": "/es/projects/hms-cloudflare/",
+      "title": "HMS Cloudflare — Sebastián Ojeda",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+      ],
+      "hreflang": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "jsonLdPresent": true
+    },
+    {
+      "route": "/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+      ],
+      "hreflang": [
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "jsonLdPresent": true
+    },
+    {
+      "route": "/es/projects/alquileres-uspa/",
+      "title": "Alquileres Uspallata — Sebastián Ojeda",
+      "canonical": [
+        "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+      ],
+      "ogUrl": [
+        "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+      ],
+      "hreflang": [
+        {
+          "lang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "jsonLdPresent": true
+    }
+  ],
+  "sitemapFiles": [
+    "dist/sitemap-index.xml",
+    "dist/sitemap-0.xml"
+  ],
+  "sitemapRoutesVerified": 6,
+  "robots": "User-agent: *\nAllow: /\nSitemap: https://sebastian-ojeda.pages.dev/sitemap-index.xml\n",
+  "failures": []
+}
