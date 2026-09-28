@@ -60,6 +60,36 @@ A missing public demo must be stated as no public demo available where needed; i
 
 These facts are a conservative upper bound. I5 must reconcile exact bilingual labels and evidence with the source repository/artifacts before changing status or evidence-needed text. In particular, do not imply production acceptance, public availability, customer validation, or an external user base.
 
+## Capability-to-proof mapping
+
+Capabilities must point to existing, relevant evidence; the map is a wayfinding device, not a claim that a case proves every aspect of a discipline. Implement this bilingual mapping with direct links to the relevant lead case section/card:
+
+| Capability group | Primary proof links | Evidence boundary |
+| --- | --- | --- |
+| Backend and architecture | HMS Cloudflare; Alquileres Uspallata | Use case architecture/backend evidence and owned implementation already described in those case studies.
+| Interfaces and product | Alquileres Uspallata | Use the product/interface work currently documented; keep Alquileres status as active development.
+| Data, cloud, and integrations | HMS Cloudflare | Describe only the migration, platform, data/integration and operations evidence present in the case.
+| Applied AI and agentic systems | AI Commerce + HMS | Distinguish the controlled Phase 2.5 evidence from experimental Phase 2.6 work.
+| Quality and operations | HMS Cloudflare; AI Commerce + HMS | HMS shows technical QA with acceptance separate; AI Commerce claims only the evaluation/operational evidence stated in its case.
+
+Do not imply the lead project is production/released merely because it is a portfolio case. The three secondary projects remain available as additional evidence but should not be used to inflate or substitute the approved lead mapping.
+
+## Evidence/status vocabulary
+
+Use the following finite vocabulary in the case scan/status labels. These labels describe different dimensions; do not collapse an evidence type into a delivery lifecycle claim:
+
+| Label | Meaning and usage rule | Current lead assignment supported by baseline |
+| --- | --- | --- |
+| Production / released | Publicly deployed/accepted product with evidence of that state. Use only after deployment and acceptance are verified. | None established by this I1 baseline.
+| Technically validated | Technical implementation/validation evidence exists; it does not assert business acceptance or production operation. | HMS Cloudflare — explicitly “technically validated; acceptance remains separate.”
+| Controlled demo | A deliberately bounded demonstration with its scope and environment stated. This does not imply production. | AI Commerce + HMS Phase 2.5 only, as described in its case; Phase 2.6 is not in this state.
+| Reproducible local evidence | A documented local procedure/evidence can be reproduced; it is not a public demo or deployed product. | Assign only after the exact local procedure/artifact has been re-verified in I5.
+| Active development | Implementation remains under development. | Alquileres Uspallata.
+| Pre-pilot | A system is explicitly prepared for a pilot but has not started one. Do not infer this from an MVP label. | No lead assignment established by I1.
+| Experimental prototype | Experimental/in-progress work without a validated product or controlled-demo claim. | AI Commerce + HMS Phase 2.6, described as experimental/in agentic validation.
+
+A case may carry one lifecycle label and a separate evidence label only if both are accurate and useful. For example, Alquileres remains “Active development”; the mere presence of screenshots is not sufficient to label the application “Reproducible local evidence.” HMS may state “Technically validated; acceptance remains separate” and link its evidence. AI Commerce must scope “Controlled demo” to Phase 2.5 and keep Phase 2.6 “Experimental prototype / under validation.” Never assign Production/released or Pre-pilot by inference. I5 verifies source, provenance, access, and privacy before changing any project-level labels or `evidenceNeeded` field.
+
 ## Capability, experience, method layering
 
 - Capabilities should be short and tied to one or more of the three lead cases using direct links to proof. Do not add a capability without evidence.
