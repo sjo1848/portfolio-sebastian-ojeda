@@ -284,6 +284,10 @@
   outline-color: var(--copper-light);
 }
 
+#contact button:focus-visible {
+  outline-color: var(--copper-light);
+}
+
 .site-footer {
   background: color-mix(in srgb, var(--canvas) 84%, var(--paper));
   color: var(--muted);

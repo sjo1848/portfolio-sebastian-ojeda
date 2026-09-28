@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: 'list',
   outputDir: './test-results',
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: 'http://127.0.0.1:4184',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
@@ -22,9 +22,9 @@ export default defineConfig({
     { name: 'mobile-webkit', use: { ...devices['iPhone 13'] } },
   ],
   webServer: {
-    command: 'npm run preview -- --host 127.0.0.1 --port 4173',
-    url: 'http://127.0.0.1:4173/',
-    reuseExistingServer: true,
+    command: 'npm run preview -- --host 127.0.0.1 --port 4184',
+    url: 'http://127.0.0.1:4184/',
+    reuseExistingServer: false,
     timeout: 30_000,
   },
 });
