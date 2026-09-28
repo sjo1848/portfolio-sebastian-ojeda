@@ -79,5 +79,5 @@ Home remains under budget with 3,362 B headroom. No new hydration roots, state s
 
 ## Independent gates
 
-- Independent Critic: **pending**.
-- Integration Review: **pending**.
+- Independent Critic: **PASS** — verified the staged Astro 5→6 scope, compatibility, audit disposition, 18 Lighthouse reports, budget deltas and hosted gates; no rework or HUMAN_GATE.
+- Integration Review: **PASS** — independently verified product/system boundaries, report calculations, six-route lab metrics and hosted Node 24 CI, Release Readiness, Visual Review and secret scan. This PASS authorizes the next migration increment, not production RELEASE; the Astro 6 advisories remain release-blocking for I3/I4. Noted non-blocking lab LCP increase on English Alquileres (median 2,423→2,734 ms); fixed Lighthouse floor passes and field CWV remains unobserved.
