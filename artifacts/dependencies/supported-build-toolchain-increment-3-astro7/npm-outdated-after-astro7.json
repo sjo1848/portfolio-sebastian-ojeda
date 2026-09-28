@@ -1,0 +1,23 @@
+{
+  "@astrojs/react": {
+    "current": "6.0.6",
+    "wanted": "6.0.6",
+    "latest": "7.0.0",
+    "dependent": "portfolio-sebastian-ojeda",
+    "location": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/node_modules/@astrojs/react"
+  },
+  "@astrojs/sitemap": {
+    "current": "3.7.3",
+    "wanted": "3.7.4",
+    "latest": "3.7.4",
+    "dependent": "portfolio-sebastian-ojeda",
+    "location": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/node_modules/@astrojs/sitemap"
+  },
+  "typescript": {
+    "current": "5.9.3",
+    "wanted": "5.9.3",
+    "latest": "7.0.2",
+    "dependent": "portfolio-sebastian-ojeda",
+    "location": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/node_modules/typescript"
+  }
+}
