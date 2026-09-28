@@ -1,0 +1,317 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Sebastián Ojeda" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e6]:
+        - navigation "Primary navigation" [ref=e7]:
+          - list [ref=e8]:
+            - listitem [ref=e9]:
+              - link "Projects" [ref=e10] [cursor=pointer]:
+                - /url: /#projects
+            - listitem [ref=e11]:
+              - link "About" [ref=e12] [cursor=pointer]:
+                - /url: /#about
+            - listitem [ref=e13]:
+              - link "Capabilities" [ref=e14] [cursor=pointer]:
+                - /url: /#capabilities
+            - listitem [ref=e15]:
+              - link "Experience" [ref=e16] [cursor=pointer]:
+                - /url: /#experience
+            - listitem [ref=e17]:
+              - link "Method" [ref=e18] [cursor=pointer]:
+                - /url: /#process
+            - listitem [ref=e19]:
+              - link "Contact" [ref=e20] [cursor=pointer]:
+                - /url: /#contact
+        - link "Ver el portfolio en español" [ref=e21] [cursor=pointer]:
+          - /url: /es/
+          - text: ES
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: Full-stack software developer
+        - heading "From workflow to system." [level=1] [ref=e27]
+        - paragraph [ref=e28]: I build end-to-end software for real workflows across backend, interfaces, data, integrations and automation when it adds value.
+        - paragraph [ref=e29]: "I work end to end: modeling the domain, designing APIs and data, building interfaces and integrations, preparing deployment and quality, and adding AI when it improves interpretation, context or automation without giving up control of critical rules and decisions."
+        - generic [ref=e30]:
+          - link "View case studies" [ref=e31] [cursor=pointer]:
+            - /url: "#projects"
+          - link "GitHub" [ref=e32] [cursor=pointer]:
+            - /url: https://github.com/sjo1848
+      - complementary "Engineering approach" [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: How I work
+          - paragraph [ref=e36]: Understand first. Then build and verify.
+        - list [ref=e37]:
+          - listitem [ref=e38]:
+            - generic [ref=e39]: "01"
+            - generic [ref=e40]:
+              - strong [ref=e41]: Discover
+              - paragraph [ref=e42]: Understand the problem, its context and what the person using it actually needs.
+          - listitem [ref=e43]:
+            - generic [ref=e44]: "02"
+            - generic [ref=e45]:
+              - strong [ref=e46]: Build
+              - paragraph [ref=e47]: Connect backend, interfaces, data and integrations into one coherent system.
+          - listitem [ref=e48]:
+            - generic [ref=e49]: "03"
+            - generic [ref=e50]:
+              - strong [ref=e51]: Verify
+              - paragraph [ref=e52]: Validate with QA and evidence that it works beyond the ideal scenario.
+        - generic [aria-hidden] [ref=e53]:
+          - generic [ref=e54]: Real problem
+          - strong [ref=e56]: →
+          - generic [ref=e58]: Verifiable system
+    - region [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - paragraph [ref=e62]: Selected work
+          - heading "Systems built around real problems" [level=2] [ref=e63]
+          - paragraph [ref=e64]: Four primary cases show how I connect product, backend, interfaces, data and integrations. Each case documents the problem, key decisions and available evidence.
+        - generic [ref=e65]:
+          - article [ref=e66]:
+            - figure "01 Brownfield evolution of an operational SaaS" [ref=e67]:
+              - 'link "View case study: HMS Cloudflare — Current HMS Cloudflare reception workspace for managing hotel reservations." [ref=e68] [cursor=pointer]':
+                - /url: /projects/hms-cloudflare/
+                - img "Current HMS Cloudflare reception workspace for managing hotel reservations." [ref=e70]
+              - generic [ref=e71]:
+                - generic [ref=e72]: "01"
+                - strong [ref=e73]: Brownfield evolution of an operational SaaS
+            - generic [ref=e74]:
+              - paragraph [ref=e75]: Technically validated migration; acceptance remains separate
+              - heading [level=3] [ref=e76]:
+                - link "HMS Cloudflare" [ref=e77] [cursor=pointer]:
+                  - /url: /projects/hms-cloudflare/
+              - paragraph [ref=e78]: From Rust/PostgreSQL to Workers/D1 through contract analysis, parity-first migration, multi-tenant security, browser validation and verifiable recovery.
+              - generic [ref=e79]:
+                - paragraph [ref=e80]:
+                  - generic [ref=e81]: Role
+                  - strong [ref=e82]: Migration architecture, full-stack implementation, security and operational QA
+                - paragraph [ref=e83]: Rust / Axum · PostgreSQL · Cloudflare Workers · Hono
+              - link "View case study" [ref=e84] [cursor=pointer]:
+                - /url: /projects/hms-cloudflare/
+                - generic [aria-hidden] [ref=e86]: →
+          - article [ref=e87]:
+            - figure "02 Vacation-rental catalog and management" [ref=e88]:
+              - 'link "View case study: Alquileres Uspallata — Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access." [ref=e89] [cursor=pointer]':
+                - /url: /projects/alquileres-uspa/
+                - img "Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access." [ref=e91]
+              - generic [ref=e92]:
+                - generic [ref=e93]: "02"
+                - strong [ref=e94]: Vacation-rental catalog and management
+            - generic [ref=e95]:
+              - paragraph [ref=e96]: Active development
+              - heading [level=3] [ref=e97]:
+                - link "Alquileres Uspallata" [ref=e98] [cursor=pointer]:
+                  - /url: /projects/alquileres-uspa/
+              - paragraph [ref=e99]: Full-stack platform for publishing properties, reviewing listings, tracking availability, and connecting visitors with owners.
+              - generic [ref=e100]:
+                - paragraph [ref=e101]:
+                  - generic [ref=e102]: Role
+                  - strong [ref=e103]: Domain analysis, architecture, and full-stack development
+                - paragraph [ref=e104]: NestJS · Vue · TypeScript
+              - link "View case study" [ref=e105] [cursor=pointer]:
+                - /url: /projects/alquileres-uspa/
+                - generic [aria-hidden] [ref=e107]: →
+          - article [ref=e108]:
+            - generic [aria-hidden] [ref=e109]:
+              - generic [ref=e110]: "03"
+              - strong [ref=e111]: Agent connected to a real operational system
+            - generic [ref=e112]:
+              - paragraph [ref=e113]: Phase 2.6 under agentic validation
+              - heading [level=3] [ref=e114]:
+                - link "AI Commerce + HMS" [ref=e115] [cursor=pointer]:
+                  - /url: /projects/ai-commerce-platform/
+              - paragraph [ref=e116]: LLM and Agent Core connected to HMS through governed tools, policies, HITL, auditability and idempotency without handing operational authority to the model.
+              - generic [ref=e117]:
+                - paragraph [ref=e118]:
+                  - generic [ref=e119]: Role
+                  - strong [ref=e120]: Product architecture, development, evaluation and orchestration
+                - paragraph [ref=e121]: TypeScript · LLMs · Tool Calling
+              - link "View case study" [ref=e122] [cursor=pointer]:
+                - /url: /projects/ai-commerce-platform/
+                - generic [aria-hidden] [ref=e124]: →
+          - article [ref=e125]:
+            - figure "04 Multi-actor transactional last-mile system" [ref=e126]:
+              - 'link "View case study: UspaYa — UspaYa Operations surface with a demo order ready and still awaiting courier assignment." [ref=e127] [cursor=pointer]':
+                - /url: /projects/uspaya/
+                - img "UspaYa Operations surface with a demo order ready and still awaiting courier assignment." [ref=e129]
+              - generic [ref=e130]:
+                - generic [ref=e131]: "04"
+                - strong [ref=e132]: Multi-actor transactional last-mile system
+            - generic [ref=e133]:
+              - paragraph [ref=e134]: Vertical closed; pre-pilot hardening
+              - heading [level=3] [ref=e135]:
+                - link "UspaYa" [ref=e136] [cursor=pointer]:
+                  - /url: /projects/uspaya/
+              - paragraph [ref=e137]: Customer, merchant, operations and courier coordinated with idempotency, temporal privacy, optimistic concurrency, serializable transactions and authoritative recovery.
+              - generic [ref=e138]:
+                - paragraph [ref=e139]:
+                  - generic [ref=e140]: Role
+                  - strong [ref=e141]: Domain design, architecture, backend, frontend and operational vertical QA
+                - paragraph [ref=e142]: NestJS · Vue 3 · TypeScript
+              - link "View case study" [ref=e143] [cursor=pointer]:
+                - /url: /projects/uspaya/
+                - generic [aria-hidden] [ref=e145]: →
+        - generic [ref=e146]:
+          - paragraph [ref=e147]: Complementary cases
+          - heading "Additional depth depending on the problem" [level=2] [ref=e148]
+          - paragraph [ref=e149]: GasFlow extends the work into mobile and logistics; Agentic Engineering Governance demonstrates automation, QA and governance for agent-driven workflows.
+        - generic [ref=e150]:
+          - article [ref=e151]:
+            - generic [aria-hidden] [ref=e152]:
+              - generic [ref=e153]: "05"
+              - strong [ref=e154]: Mobile application for distribution operations
+            - generic [ref=e155]:
+              - paragraph [ref=e156]: Functional MVP
+              - heading [level=3] [ref=e157]:
+                - link "GasFlow" [ref=e158] [cursor=pointer]:
+                  - /url: /projects/gasflow/
+              - paragraph [ref=e159]: Mobile product connecting scheduled orders, assignment, deliveries, and stock reconciliation through React Native and a Rust backend.
+              - generic [ref=e160]:
+                - paragraph [ref=e161]:
+                  - generic [ref=e162]: Role
+                  - strong [ref=e163]: Product analysis, architecture, and mobile full-stack development
+                - paragraph [ref=e164]: React Native · TypeScript · Rust
+              - link "View case study" [ref=e165] [cursor=pointer]:
+                - /url: /projects/gasflow/
+                - generic [aria-hidden] [ref=e167]: →
+          - article [ref=e168]:
+            - generic [aria-hidden] [ref=e169]:
+              - generic [ref=e170]: "06"
+              - strong [ref=e171]: DICS + Project Integrity Kernel
+            - generic [ref=e172]:
+              - paragraph [ref=e173]: Experimental prototypes under validation
+              - heading [level=3] [ref=e174]:
+                - link "Agentic Engineering Governance" [ref=e175] [cursor=pointer]:
+                  - /url: /projects/agentic-engineering-governance/
+              - paragraph [ref=e176]: Two complementary systems for authority, evidence, stale detection, handoffs and context recovery in agent-executed projects.
+              - generic [ref=e177]:
+                - paragraph [ref=e178]:
+                  - generic [ref=e179]: Role
+                  - strong [ref=e180]: Applied research, architecture, implementation and evidence-contract design
+                - paragraph [ref=e181]: Go · SQLite · TypeScript
+              - link "View case study" [ref=e182] [cursor=pointer]:
+                - /url: /projects/agentic-engineering-governance/
+                - generic [aria-hidden] [ref=e184]: →
+    - region [ref=e185]:
+      - generic [ref=e186]:
+        - heading "A little about me" [level=2] [ref=e188]
+        - generic [ref=e190]:
+          - paragraph [ref=e191]: "I live in Uspallata, Mendoza, Argentina. Before focusing on software development, I worked across technical support, infrastructure, SAP and integrations in different operational environments. That path gradually shaped how I think about technology: I learned to see it as a tool for understanding, connecting and improving real processes without losing sight of the people who make them work."
+          - paragraph [ref=e192]: "I especially enjoy the discovery stage and the work of understanding the problem. I find it deeply satisfying to step into something that is still unclear, ask the right questions and start making sense of what is actually happening: why a process works the way it does, where friction appears and what the person using it really needs. From there, technology starts to make sense. To me, a good solution begins with understanding the problem well before writing the first line of code."
+          - paragraph [ref=e193]: Learning is a constant in my life. I am always going deeper into something, discovering a tool, entering a new domain or trying to look at a problem from another angle. I might be studying software architecture, data or SAP and then spend time learning a completely new language. What drives me is not collecting technologies, but the satisfaction of understanding something I did not understand before and finding new ways to think, build and make things better.
+          - paragraph [ref=e194]: "Away from the screen, the mountains are an important part of my life. I enjoy running, hiking, exploring and being close to an environment that contrasts with spending hours building systems. Choosing to live in Uspallata has a lot to do with that: being able to build technology without losing touch with the real world, nature and the things that keep my curiosity alive."
+    - region [ref=e195]:
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - paragraph [ref=e198]: Capabilities
+          - heading "Full-stack engineering across backend, data, cloud and applied AI" [level=2] [ref=e199]
+        - generic [ref=e200]:
+          - article [ref=e201]:
+            - heading "Backend and architecture" [level=3] [ref=e202]
+            - paragraph [ref=e203]: TypeScript, Node.js, Rust, Axum, NestJS, Hono, REST APIs, OpenAPI, authentication, RBAC and domain modeling.
+          - article [ref=e204]:
+            - heading "Web and mobile interfaces" [level=3] [ref=e205]
+            - paragraph [ref=e206]: React, React Native, Vue, Astro and TypeScript focused on operational workflows, accessibility and responsive design.
+          - article [ref=e207]:
+            - heading "Data, cloud and integration" [level=3] [ref=e208]
+            - paragraph [ref=e209]: PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis and SAP PI/PO.
+          - article [ref=e210]:
+            - heading "AI and agentic systems" [level=3] [ref=e211]
+            - paragraph [ref=e212]: LLMs, model routing, tool calling, Human-in-the-Loop, policies, trusted context, evaluation, telemetry and fallback.
+          - article [ref=e213]:
+            - heading "Quality and operations" [level=3] [ref=e214]
+            - paragraph [ref=e215]: GitHub Actions, Playwright, Vitest, E2E, security, observability, recovery, CI/CD and evidence gates.
+    - region [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - paragraph [ref=e219]: Operational context
+          - heading "Software connected to processes, integrations and real operations" [level=2] [ref=e220]
+        - generic [ref=e221]:
+          - paragraph [ref=e222]: "My background includes SAP Basis, SAP PI/PO integrations and operational processes. That context shapes how I design software: I consider actors, exceptions, permissions, traceability, continuity and data quality from the beginning."
+          - paragraph [ref=e223]: I add AI when it provides a concrete advantage. I combine models and agents with APIs, data, interfaces, policies, Human-in-the-Loop, testing, CI/CD and observability so automation operates within explicit boundaries.
+    - region [ref=e224]:
+      - generic [ref=e225]:
+        - generic [ref=e226]:
+          - paragraph [ref=e227]: Method
+          - heading "Verifiable end-to-end system delivery" [level=2] [ref=e228]
+          - paragraph [ref=e229]: "Project Method turns every phase into a reviewable outcome: it starts from the problem and evidence, makes architecture and authority explicit, and uses automation and agents without hiding critical decisions."
+        - list "Verifiable end-to-end system delivery" [ref=e230]:
+          - listitem [ref=e231]:
+            - generic [ref=e232]: "01"
+            - strong [ref=e233]: IDEA
+            - generic [ref=e234]: Clear hypothesis
+          - listitem [ref=e235]:
+            - generic [ref=e236]: "02"
+            - strong [ref=e237]: DISCOVERY
+            - generic [ref=e238]: Real evidence
+          - listitem [ref=e239]:
+            - generic [ref=e240]: "03"
+            - strong [ref=e241]: DEFINITION
+            - generic [ref=e242]: Explicit scope
+          - listitem [ref=e243]:
+            - generic [ref=e244]: "04"
+            - strong [ref=e245]: DESIGN
+            - generic [ref=e246]: Authority and solution
+          - listitem [ref=e247]:
+            - generic [ref=e248]: "05"
+            - strong [ref=e249]: BUILD
+            - generic [ref=e250]: Executable increment
+          - listitem [ref=e251]:
+            - generic [ref=e252]: "06"
+            - strong [ref=e253]: VALIDATE
+            - generic [ref=e254]: Independent proof
+          - listitem [ref=e255]:
+            - generic [ref=e256]: "07"
+            - strong [ref=e257]: RELEASE
+            - generic [ref=e258]: Controlled delivery
+          - listitem [ref=e259]:
+            - generic [ref=e260]: "08"
+            - strong [ref=e261]: LEARN
+            - generic [ref=e262]: Informed evolution
+        - list [ref=e263]:
+          - listitem [ref=e264]:
+            - text: "01"
+            - heading "Understand the domain" [level=3] [ref=e265]
+            - paragraph [ref=e266]: I identify users, processes, constraints, sources of truth and risks before choosing a technical solution or adding AI.
+          - listitem [ref=e267]:
+            - text: "02"
+            - heading "Design authority and flow" [level=3] [ref=e268]
+            - paragraph [ref=e269]: I define states, responsibilities, tools, permissions, data and Human Gates to separate interpretation from operational authority.
+          - listitem [ref=e270]:
+            - text: "03"
+            - heading "Build the system" [level=3] [ref=e271]
+            - paragraph [ref=e272]: I implement backend services, interfaces, persistence, integrations, automation and AI/agentic components with proportional architecture.
+          - listitem [ref=e273]:
+            - text: "04"
+            - heading "Evaluate and validate" [level=3] [ref=e274]
+            - paragraph [ref=e275]: I integrate testing, security, adversarial evaluation, accessibility, UX and independent review into development.
+          - listitem [ref=e276]:
+            - text: "05"
+            - heading "Prepare operations" [level=3] [ref=e277]
+            - paragraph [ref=e278]: I document, automate controls and consider telemetry, cost, deployment, fallback, recovery and human acceptance.
+    - region [ref=e279]:
+      - generic [ref=e280]:
+        - generic [ref=e281]:
+          - paragraph [ref=e282]: Contact
+          - heading "Open to Full-Stack, Backend, Applied AI and automation opportunities" [level=2] [ref=e283]
+          - paragraph [ref=e284]: Mendoza, Argentina. Remote-first, available for hybrid or on-site work in Mendoza, with relocation considered for the right opportunity.
+          - paragraph [ref=e285]: Intermediate English, actively improving through professional practice.
+          - paragraph [ref=e286]: sebastian.ojeda.dev@gmail.com
+        - generic [ref=e287]:
+          - link "Send email" [ref=e288] [cursor=pointer]:
+            - /url: mailto:sebastian.ojeda.dev@gmail.com
+          - generic [ref=e290]:
+            - button "Copy email" [ref=e291]
+            - status
+          - link "View GitHub" [ref=e292] [cursor=pointer]:
+            - /url: https://github.com/sjo1848
+  - contentinfo [ref=e293]:
+    - generic [ref=e294]:
+      - paragraph [ref=e295]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=e296] [cursor=pointer]:
+        - /url: https://github.com/sjo1848
