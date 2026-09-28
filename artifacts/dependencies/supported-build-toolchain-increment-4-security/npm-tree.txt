@@ -1,0 +1,11 @@
+portfolio-sebastian-ojeda@0.1.0 /home/sjo1848/dev/portolio/portfolio-sebastian-ojeda
+├─┬ @astrojs/check@0.9.10
+│ └─┬ @astrojs/language-server@2.16.13
+│   └─┬ volar-service-yaml@0.0.71
+│     └─┬ yaml-language-server@1.23.0
+│       └─┬ ajv@8.20.0
+│         └── fast-uri@3.1.8
+├─┬ @astrojs/react@6.0.6
+│ └── devalue@5.9.4
+└─┬ astro@7.3.5
+  └── devalue@5.9.4 deduped

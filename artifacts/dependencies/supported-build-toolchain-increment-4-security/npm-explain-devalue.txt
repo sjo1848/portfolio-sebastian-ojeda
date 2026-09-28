@@ -1,0 +1,8 @@
+devalue@5.9.4
+node_modules/devalue
+  devalue@"^5.8.1" from @astrojs/react@6.0.6
+  node_modules/@astrojs/react
+    @astrojs/react@"6.0.6" from the root project
+  devalue@"^5.8.1" from astro@7.3.5
+  node_modules/astro
+    astro@"7.3.5" from the root project
