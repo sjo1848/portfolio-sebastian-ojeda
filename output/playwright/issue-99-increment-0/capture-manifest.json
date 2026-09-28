@@ -1,0 +1,175 @@
+{
+  "commit": "ad735997f28522a7fc37f35f5eda573f2f683071",
+  "capturedWith": "Playwright CLI / Chrome for Testing 154.0.8037.0",
+  "captureType": "viewport screenshot after accessibility snapshot",
+  "screenshots": [
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-en-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 111378,
+      "sha256": "54a9eeaa9031103ff2b2bd349610951893b9b0a539c292c82c75b3947627d68d"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 59308,
+      "sha256": "1c4500f911488fa13026fe5b2efc54bbb4bb8619540b0d2acffe24938133615e"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-en-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 103117,
+      "sha256": "cf0262b6ddf6f824314accb0ebbed0276a503da7103c2e78150fe69b51bffa4a"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-es-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 110522,
+      "sha256": "f3c227bed4b5e70052c91134d3ab7ba6640a9eac54c066b0435d11f8bce9902b"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 60466,
+      "sha256": "e2f76209662dcf5b3a39e455e3bb397595a595b45e6c36c66bc0f91f6683ed32"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/ai-commerce-es-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 106337,
+      "sha256": "f7e7667c88489064fde7c1a21360e021919a7779dd8790419935205069b99ac6"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-en-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 146181,
+      "sha256": "b887685cfa78e3c105de1831b1d7b6a42e7978745b3e56987576e00b9e7f2e5b"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 57250,
+      "sha256": "35d42cd27def422ff278b977775556f1121b3d4755955b34161de671da75ad61"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-en-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 120145,
+      "sha256": "65ab8e42be1af120aad08cebc53cd9c758d4f4dafab5f1c3fd85f43ebb76d023"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-es-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 148472,
+      "sha256": "001a65b687b82e26d9c7e429b402f52a41383bf94ceb6f0a98c635e3ee05c5f4"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 58554,
+      "sha256": "69711a584a78346a711cd1485a2237fbc09f12f9eec95b73b9315230a8fac227"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/alquileres-es-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 121696,
+      "sha256": "5614d2aad926278d1a21a60f5587d811b513150cecb429f85adf80556543f573"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-en-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 113002,
+      "sha256": "38bb17ab373a174598ecc5842aa9c079b886c896e74aebb000af1affd68733b2"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 62201,
+      "sha256": "9d020db7199ba94f299b7e173b51b251e8aae3ab5a20b4781c92b5674e6f6ebd"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-en-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 108444,
+      "sha256": "a8bf4278f3ce47076e7fc41949a88acce8d360f0e5c0540029d73930a5d33164"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-es-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 116197,
+      "sha256": "d894b13b16b851e6765e634d75cbcd1d8102b3217ab15c8d40bf190ee938ca30"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 65141,
+      "sha256": "709c20f4079a6ab4f7f4e4700399a899984d5e793069d6543c32bf8e62e1e00f"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/hms-es-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 111294,
+      "sha256": "c067854cb95ff153146459d0259cd83b461920f9d41b5e66f0810c71ab6dfbfc"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-en-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 381939,
+      "sha256": "e2f37c5b2808d0b72f0a2ecb03517cb44be80bab98851332ae19262460c58aef"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 185290,
+      "sha256": "f824990d474c98f532adba38bd193ca1f930694f33867c52de039799253d5e1a"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-en-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 301578,
+      "sha256": "46a47e07b29fffc296b0cfe923e7bad06bef79105233badcc01262e87ea79344"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-es-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 380015,
+      "sha256": "431f321003bfff65efcebf734431b71ed7f51ed104436f98bdd0a1a1379b29af"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 209908,
+      "sha256": "7e6edaef6f48c4a45e18722cb4ee3f7b1ed076c4b22abadd139eeab5c67929b3"
+    },
+    {
+      "path": "output/playwright/issue-99-increment-0/home-es-768.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 296866,
+      "sha256": "b52cb13710452b55f3dddc15027411438be23609efc6524df183661055a3aab0"
+    }
+  ]
+}

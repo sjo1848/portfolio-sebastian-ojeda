@@ -1,0 +1,293 @@
+- generic [active] [ref=f1e1]:
+  - link "Ir al contenido" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link "Sebastián Ojeda" [ref=f1e5] [cursor=pointer]:
+        - /url: /es/
+      - button "Menú" [ref=f1e10]
+  - main [ref=f1e16]:
+    - generic [ref=f1e18]:
+      - generic [ref=f1e19]:
+        - paragraph [ref=f1e20]: Full-stack software developer
+        - heading "Del proceso al sistema." [level=1] [ref=f1e21]
+        - paragraph [ref=f1e22]: "Construyo software end-to-end para flujos reales: backend, interfaces, datos, integraciones y automatización cuando aporta valor."
+        - paragraph [ref=f1e23]: "Trabajo de punta a punta: modelo el dominio, diseño APIs y datos, construyo interfaces e integraciones, preparo despliegue y calidad, e incorporo IA cuando mejora interpretación, contexto o automatización sin ceder reglas y decisiones críticas."
+        - generic [ref=f1e24]:
+          - link "Ver casos de estudio" [ref=f1e25] [cursor=pointer]:
+            - /url: "#projects"
+          - link "GitHub" [ref=f1e26] [cursor=pointer]:
+            - /url: https://github.com/sjo1848
+      - complementary "Enfoque de trabajo" [ref=f1e27]:
+        - generic [ref=f1e28]:
+          - generic [ref=f1e29]: Cómo trabajo
+          - paragraph [ref=f1e30]: Primero entender. Después construir y verificar.
+        - list [ref=f1e31]:
+          - listitem [ref=f1e32]:
+            - generic [ref=f1e33]: "01"
+            - generic [ref=f1e34]:
+              - strong [ref=f1e35]: Descubrir
+              - paragraph [ref=f1e36]: Entender el problema, el contexto y qué necesita realmente quien lo usa.
+          - listitem [ref=f1e37]:
+            - generic [ref=f1e38]: "02"
+            - generic [ref=f1e39]:
+              - strong [ref=f1e40]: Construir
+              - paragraph [ref=f1e41]: Unir backend, interfaces, datos e integraciones en un sistema coherente.
+          - listitem [ref=f1e42]:
+            - generic [ref=f1e43]: "03"
+            - generic [ref=f1e44]:
+              - strong [ref=f1e45]: Verificar
+              - paragraph [ref=f1e46]: Validar con QA y evidencia que funciona más allá del escenario ideal.
+        - generic [aria-hidden] [ref=f1e47]:
+          - generic [ref=f1e48]: Problema real
+          - generic [ref=f1e50]: Sistema verificable
+    - region [ref=f1e51]:
+      - generic [ref=f1e52]:
+        - generic [ref=f1e53]:
+          - paragraph [ref=f1e54]: Trabajo seleccionado
+          - heading "Sistemas construidos alrededor de problemas reales" [level=2] [ref=f1e55]
+          - paragraph [ref=f1e56]: Cuatro casos principales muestran cómo conecto producto, backend, interfaces, datos e integración. Cada caso documenta el problema, las decisiones y la evidencia disponible.
+        - generic [ref=f1e57]:
+          - article [ref=f1e58]:
+            - figure "01 Evolución brownfield de un SaaS operacional" [ref=f1e59]:
+              - 'link "Ver caso de estudio: HMS Cloudflare — Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel." [ref=f1e60] [cursor=pointer]':
+                - /url: /es/projects/hms-cloudflare/
+                - img "Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel." [ref=f1e62]
+              - generic [ref=f1e63]:
+                - generic [ref=f1e64]: "01"
+                - strong [ref=f1e65]: Evolución brownfield de un SaaS operacional
+            - generic [ref=f1e66]:
+              - paragraph [ref=f1e67]: Migración validada técnicamente; aceptación separada
+              - heading [level=3] [ref=f1e68]:
+                - link "HMS Cloudflare" [ref=f1e69] [cursor=pointer]:
+                  - /url: /es/projects/hms-cloudflare/
+              - paragraph [ref=f1e70]: De Rust/PostgreSQL a Workers/D1 mediante análisis de contrato, migración parity-first, seguridad multi-tenant, browser validation y recovery verificable.
+              - generic [ref=f1e71]:
+                - paragraph [ref=f1e72]:
+                  - generic [ref=f1e73]: Rol
+                  - strong [ref=f1e74]: Arquitectura de migración, implementación full stack, seguridad y QA operacional
+                - paragraph [ref=f1e75]: Rust / Axum · PostgreSQL · Cloudflare Workers · Hono
+              - link "Ver caso de estudio" [ref=f1e76] [cursor=pointer]:
+                - /url: /es/projects/hms-cloudflare/
+                - generic [aria-hidden] [ref=f1e78]: →
+          - article [ref=f1e79]:
+            - figure "02 Catálogo y gestión de alquileres turísticos" [ref=f1e80]:
+              - 'link "Ver caso de estudio: Alquileres Uspallata — Catálogo público de Alquileres Uspallata con publicaciones demo, imágenes sintéticas, precios, disponibilidad y acceso al detalle." [ref=f1e81] [cursor=pointer]':
+                - /url: /es/projects/alquileres-uspa/
+                - img "Catálogo público de Alquileres Uspallata con publicaciones demo, imágenes sintéticas, precios, disponibilidad y acceso al detalle." [ref=f1e83]
+              - generic [ref=f1e84]:
+                - generic [ref=f1e85]: "02"
+                - strong [ref=f1e86]: Catálogo y gestión de alquileres turísticos
+            - generic [ref=f1e87]:
+              - paragraph [ref=f1e88]: Desarrollo activo
+              - heading [level=3] [ref=f1e89]:
+                - link "Alquileres Uspallata" [ref=f1e90] [cursor=pointer]:
+                  - /url: /es/projects/alquileres-uspa/
+              - paragraph [ref=f1e91]: Plataforma full stack para publicar alojamientos, revisar fichas, controlar disponibilidad y conectar visitantes con propietarios.
+              - generic [ref=f1e92]:
+                - paragraph [ref=f1e93]:
+                  - generic [ref=f1e94]: Rol
+                  - strong [ref=f1e95]: Análisis de dominio, arquitectura y desarrollo full stack
+                - paragraph [ref=f1e96]: NestJS · Vue · TypeScript
+              - link "Ver caso de estudio" [ref=f1e97] [cursor=pointer]:
+                - /url: /es/projects/alquileres-uspa/
+                - generic [aria-hidden] [ref=f1e99]: →
+          - article [ref=f1e100]:
+            - generic [aria-hidden] [ref=f1e101]:
+              - generic [ref=f1e102]: "03"
+              - strong [ref=f1e103]: Agent conectado a un sistema operacional real
+            - generic [ref=f1e104]:
+              - paragraph [ref=f1e105]: Fase 2.6 en validación agentic
+              - heading [level=3] [ref=f1e106]:
+                - link "AI Commerce + HMS" [ref=f1e107] [cursor=pointer]:
+                  - /url: /es/projects/ai-commerce-platform/
+              - paragraph [ref=f1e108]: LLM y Agent Core conectados a HMS mediante tools gobernadas, políticas, HITL, auditoría e idempotencia sin entregar autoridad operacional al modelo.
+              - generic [ref=f1e109]:
+                - paragraph [ref=f1e110]:
+                  - generic [ref=f1e111]: Rol
+                  - strong [ref=f1e112]: Arquitectura, desarrollo, evaluación y orquestación del producto
+                - paragraph [ref=f1e113]: TypeScript · LLMs · Tool Calling
+              - link "Ver caso de estudio" [ref=f1e114] [cursor=pointer]:
+                - /url: /es/projects/ai-commerce-platform/
+                - generic [aria-hidden] [ref=f1e116]: →
+          - article [ref=f1e117]:
+            - figure "04 Sistema transaccional multi-actor de última milla" [ref=f1e118]:
+              - 'link "Ver caso de estudio: UspaYa — Superficie de Operaciones de UspaYa con un pedido demo listo y todavía sin repartidor asignado." [ref=f1e119] [cursor=pointer]':
+                - /url: /es/projects/uspaya/
+                - img "Superficie de Operaciones de UspaYa con un pedido demo listo y todavía sin repartidor asignado." [ref=f1e121]
+              - generic [ref=f1e122]:
+                - generic [ref=f1e123]: "04"
+                - strong [ref=f1e124]: Sistema transaccional multi-actor de última milla
+            - generic [ref=f1e125]:
+              - paragraph [ref=f1e126]: Vertical cerrada; hardening pre-piloto
+              - heading [level=3] [ref=f1e127]:
+                - link "UspaYa" [ref=f1e128] [cursor=pointer]:
+                  - /url: /es/projects/uspaya/
+              - paragraph [ref=f1e129]: Cliente, comercio, operaciones y repartidor coordinados con idempotencia, privacidad temporal, concurrencia optimista, transacciones serializables y recovery autoritativo.
+              - generic [ref=f1e130]:
+                - paragraph [ref=f1e131]:
+                  - generic [ref=f1e132]: Rol
+                  - strong [ref=f1e133]: Diseño de dominio, arquitectura, backend, frontend y QA de la vertical operativa
+                - paragraph [ref=f1e134]: NestJS · Vue 3 · TypeScript
+              - link "Ver caso de estudio" [ref=f1e135] [cursor=pointer]:
+                - /url: /es/projects/uspaya/
+                - generic [aria-hidden] [ref=f1e137]: →
+        - generic [ref=f1e138]:
+          - paragraph [ref=f1e139]: Casos complementarios
+          - heading "Más profundidad según el problema" [level=2] [ref=f1e140]
+          - paragraph [ref=f1e141]: GasFlow amplía el trabajo hacia mobile y logística; Agentic Engineering Governance muestra automatización, QA y gobierno de workflows con agentes.
+        - generic [ref=f1e142]:
+          - article [ref=f1e143]:
+            - generic [aria-hidden] [ref=f1e144]:
+              - generic [ref=f1e145]: "05"
+              - strong [ref=f1e146]: Aplicación móvil para operaciones de distribución
+            - generic [ref=f1e147]:
+              - paragraph [ref=f1e148]: MVP funcional
+              - heading [level=3] [ref=f1e149]:
+                - link "GasFlow" [ref=f1e150] [cursor=pointer]:
+                  - /url: /es/projects/gasflow/
+              - paragraph [ref=f1e151]: Producto móvil que conecta pedidos programados, asignación, entregas y conciliación de stock mediante React Native y un backend Rust.
+              - generic [ref=f1e152]:
+                - paragraph [ref=f1e153]:
+                  - generic [ref=f1e154]: Rol
+                  - strong [ref=f1e155]: Análisis de producto, arquitectura y desarrollo full stack móvil
+                - paragraph [ref=f1e156]: React Native · TypeScript · Rust
+              - link "Ver caso de estudio" [ref=f1e157] [cursor=pointer]:
+                - /url: /es/projects/gasflow/
+                - generic [aria-hidden] [ref=f1e159]: →
+          - article [ref=f1e160]:
+            - generic [aria-hidden] [ref=f1e161]:
+              - generic [ref=f1e162]: "06"
+              - strong [ref=f1e163]: DICS + Project Integrity Kernel
+            - generic [ref=f1e164]:
+              - paragraph [ref=f1e165]: Prototipos experimentales en validación
+              - heading [level=3] [ref=f1e166]:
+                - link "Agentic Engineering Governance" [ref=f1e167] [cursor=pointer]:
+                  - /url: /es/projects/agentic-engineering-governance/
+              - paragraph [ref=f1e168]: Dos sistemas complementarios para autoridad, evidencia, stale detection, handoffs y recuperación de contexto en proyectos ejecutados con agentes.
+              - generic [ref=f1e169]:
+                - paragraph [ref=f1e170]:
+                  - generic [ref=f1e171]: Rol
+                  - strong [ref=f1e172]: Investigación aplicada, arquitectura, implementación y diseño de contratos de evidencia
+                - paragraph [ref=f1e173]: Go · SQLite · TypeScript
+              - link "Ver caso de estudio" [ref=f1e174] [cursor=pointer]:
+                - /url: /es/projects/agentic-engineering-governance/
+                - generic [aria-hidden] [ref=f1e176]: →
+    - region [ref=f1e177]:
+      - generic [ref=f1e178]:
+        - heading "Un poco sobre mí" [level=2] [ref=f1e180]
+        - generic [ref=f1e182]:
+          - paragraph [ref=f1e183]: "Vivo en Uspallata, Mendoza, Argentina. Antes de concentrarme en el desarrollo de software pasé por soporte, infraestructura, SAP e integraciones en distintos entornos operativos. Ese recorrido fue moldeando mi manera de pensar la tecnología: aprendí a verla como una herramienta para comprender, conectar y mejorar procesos reales, siempre teniendo en cuenta a las personas que los hacen funcionar."
+          - paragraph [ref=f1e184]: Disfruto especialmente la etapa de descubrimiento y comprensión del problema. Me resulta muy satisfactorio llegar a algo que todavía no está del todo claro, hacer las preguntas correctas y empezar a entender qué está pasando, por qué funciona de determinada manera, dónde aparecen las fricciones y qué necesita realmente quien lo usa. A partir de ahí, la tecnología empieza a tener sentido. Para mí, una buena solución nace de comprender bien el problema antes de escribir la primera línea de código.
+          - paragraph [ref=f1e185]: Aprender es una constante en mi vida. Siempre estoy profundizando algo, descubriendo una herramienta, entrando en un dominio nuevo o tratando de mirar un problema desde otra perspectiva. Puedo estar estudiando arquitectura de software, datos o SAP y después dedicar tiempo a aprender un idioma completamente nuevo. Lo que me mueve no es acumular tecnologías, sino esa satisfacción de comprender algo que antes no entendía y descubrir nuevas formas de pensar, construir y hacer mejor las cosas.
+          - paragraph [ref=f1e186]: "Fuera de la pantalla, la montaña ocupa un lugar importante en mi vida. Disfruto correr, caminar, explorar y estar cerca de un entorno que contrasta bastante con pasar horas construyendo sistemas. Elegir vivir en Uspallata tiene mucho que ver con eso: poder desarrollar tecnología sin alejarme del mundo real, de la naturaleza y de las cosas que también despiertan mi curiosidad."
+    - region [ref=f1e187]:
+      - generic [ref=f1e188]:
+        - generic [ref=f1e189]:
+          - paragraph [ref=f1e190]: Capacidades
+          - heading "Full-stack con backend, datos, cloud e IA aplicada" [level=2] [ref=f1e191]
+        - generic [ref=f1e192]:
+          - article [ref=f1e193]:
+            - heading "Backend y arquitectura" [level=3] [ref=f1e194]
+            - paragraph [ref=f1e195]: TypeScript, Node.js, Rust, Axum, NestJS, Hono, APIs REST, OpenAPI, autenticación, RBAC y modelado de dominio.
+          - article [ref=f1e196]:
+            - heading "Interfaces web y móviles" [level=3] [ref=f1e197]
+            - paragraph [ref=f1e198]: React, React Native, Vue, Astro y TypeScript con foco en flujos operativos, accesibilidad y responsive design.
+          - article [ref=f1e199]:
+            - heading "Datos, cloud e integración" [level=3] [ref=f1e200]
+            - paragraph [ref=f1e201]: PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis y SAP PI/PO.
+          - article [ref=f1e202]:
+            - heading "IA y sistemas agentic" [level=3] [ref=f1e203]
+            - paragraph [ref=f1e204]: LLMs, model routing, tool calling, Human-in-the-Loop, policies, contexto confiable, evaluación, telemetría y fallback.
+          - article [ref=f1e205]:
+            - heading "Calidad y operación" [level=3] [ref=f1e206]
+            - paragraph [ref=f1e207]: GitHub Actions, Playwright, Vitest, E2E, seguridad, observabilidad, recovery, CI/CD y evidence gates.
+    - region [ref=f1e208]:
+      - generic [ref=f1e209]:
+        - generic [ref=f1e210]:
+          - paragraph [ref=f1e211]: Contexto operativo
+          - heading "Software conectado con procesos, integraciones y operación real" [level=2] [ref=f1e212]
+        - generic [ref=f1e213]:
+          - paragraph [ref=f1e214]: "Mi experiencia incluye SAP Basis, integraciones SAP PI/PO y trabajo con procesos operativos. Ese contexto influye en cómo diseño software: considero actores, excepciones, permisos, trazabilidad, continuidad y calidad de datos desde el comienzo."
+          - paragraph [ref=f1e215]: Incorporo IA cuando aporta una ventaja concreta. Combino modelos y agentes con APIs, datos, interfaces, políticas, Human-in-the-Loop, testing, CI/CD y observabilidad para que la automatización opere dentro de límites explícitos.
+    - region [ref=f1e216]:
+      - generic [ref=f1e217]:
+        - generic [ref=f1e218]:
+          - paragraph [ref=f1e219]: Método
+          - heading "Construcción verificable de sistemas end-to-end" [level=2] [ref=f1e220]
+          - paragraph [ref=f1e221]: "Project Method convierte cada fase en un resultado revisable: parte del problema y la evidencia, hace explícitas arquitectura y autoridad, y usa automatización y agentes sin ocultar decisiones críticas."
+        - list "Construcción verificable de sistemas end-to-end" [ref=f1e222]:
+          - listitem [ref=f1e223]:
+            - generic [ref=f1e224]: "01"
+            - strong [ref=f1e225]: IDEA
+            - generic [ref=f1e226]: Hipótesis clara
+          - listitem [ref=f1e227]:
+            - generic [ref=f1e228]: "02"
+            - strong [ref=f1e229]: DISCOVERY
+            - generic [ref=f1e230]: Evidencia real
+          - listitem [ref=f1e231]:
+            - generic [ref=f1e232]: "03"
+            - strong [ref=f1e233]: DEFINITION
+            - generic [ref=f1e234]: Alcance explícito
+          - listitem [ref=f1e235]:
+            - generic [ref=f1e236]: "04"
+            - strong [ref=f1e237]: DESIGN
+            - generic [ref=f1e238]: Autoridad y solución
+          - listitem [ref=f1e239]:
+            - generic [ref=f1e240]: "05"
+            - strong [ref=f1e241]: BUILD
+            - generic [ref=f1e242]: Incremento ejecutable
+          - listitem [ref=f1e243]:
+            - generic [ref=f1e244]: "06"
+            - strong [ref=f1e245]: VALIDATE
+            - generic [ref=f1e246]: Prueba independiente
+          - listitem [ref=f1e247]:
+            - generic [ref=f1e248]: "07"
+            - strong [ref=f1e249]: RELEASE
+            - generic [ref=f1e250]: Entrega controlada
+          - listitem [ref=f1e251]:
+            - generic [ref=f1e252]: "08"
+            - strong [ref=f1e253]: LEARN
+            - generic [ref=f1e254]: Evolución informada
+        - list [ref=f1e255]:
+          - listitem [ref=f1e256]:
+            - text: "01"
+            - heading "Entender el dominio" [level=3] [ref=f1e257]
+            - paragraph [ref=f1e258]: Identifico usuarios, procesos, restricciones, fuentes de verdad y riesgos antes de elegir una solución técnica o incorporar IA.
+          - listitem [ref=f1e259]:
+            - text: "02"
+            - heading "Diseñar autoridad y flujo" [level=3] [ref=f1e260]
+            - paragraph [ref=f1e261]: Defino estados, responsabilidades, tools, permisos, datos y Human Gates para separar interpretación de autoridad operacional.
+          - listitem [ref=f1e262]:
+            - text: "03"
+            - heading "Construir el sistema" [level=3] [ref=f1e263]
+            - paragraph [ref=f1e264]: Implemento backend, interfaces, persistencia, integraciones, automatización y componentes AI/agentic con una arquitectura proporcional.
+          - listitem [ref=f1e265]:
+            - text: "04"
+            - heading "Evaluar y validar" [level=3] [ref=f1e266]
+            - paragraph [ref=f1e267]: Integro tests, seguridad, evaluación adversarial, accesibilidad, UX y revisión independiente dentro del desarrollo.
+          - listitem [ref=f1e268]:
+            - text: "05"
+            - heading "Preparar la operación" [level=3] [ref=f1e269]
+            - paragraph [ref=f1e270]: Documento, automatizo controles y considero telemetría, costo, despliegue, fallback, recuperación y aceptación humana.
+    - region [ref=f1e271]:
+      - generic [ref=f1e272]:
+        - generic [ref=f1e273]:
+          - paragraph [ref=f1e274]: Contacto
+          - heading "Busco oportunidades Full-Stack, Backend, Applied AI y automatización" [level=2] [ref=f1e275]
+          - paragraph [ref=f1e276]: Mendoza, Argentina. Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.
+          - paragraph [ref=f1e277]: Inglés intermedio en desarrollo y práctica profesional.
+          - paragraph [ref=f1e278]: sebastian.ojeda.dev@gmail.com
+        - generic [ref=f1e279]:
+          - link "Enviar email" [ref=f1e280] [cursor=pointer]:
+            - /url: mailto:sebastian.ojeda.dev@gmail.com
+          - generic [ref=f1e282]:
+            - button "Copiar email" [ref=f1e283]
+            - status
+          - link "Ver GitHub" [ref=f1e284] [cursor=pointer]:
+            - /url: https://github.com/sjo1848
+  - contentinfo [ref=f1e285]:
+    - generic [ref=f1e286]:
+      - paragraph [ref=f1e287]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=f1e288] [cursor=pointer]:
+        - /url: https://github.com/sjo1848

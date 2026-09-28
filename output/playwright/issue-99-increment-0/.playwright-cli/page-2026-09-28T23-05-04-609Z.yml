@@ -1,0 +1,151 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - link "Sebastián Ojeda" [ref=f4e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e6]:
+        - navigation "Primary navigation" [ref=f4e7]:
+          - list [ref=f4e8]:
+            - listitem [ref=f4e9]:
+              - link "Projects" [ref=f4e10] [cursor=pointer]:
+                - /url: /#projects
+            - listitem [ref=f4e11]:
+              - link "About" [ref=f4e12] [cursor=pointer]:
+                - /url: /#about
+            - listitem [ref=f4e13]:
+              - link "Capabilities" [ref=f4e14] [cursor=pointer]:
+                - /url: /#capabilities
+            - listitem [ref=f4e15]:
+              - link "Experience" [ref=f4e16] [cursor=pointer]:
+                - /url: /#experience
+            - listitem [ref=f4e17]:
+              - link "Method" [ref=f4e18] [cursor=pointer]:
+                - /url: /#process
+            - listitem [ref=f4e19]:
+              - link "Contact" [ref=f4e20] [cursor=pointer]:
+                - /url: /#contact
+        - link "Ver el portfolio en español" [ref=f4e21] [cursor=pointer]:
+          - /url: /es/projects/alquileres-uspa/
+          - text: ES
+  - main [ref=f4e22]:
+    - article [ref=f4e23]:
+      - generic [ref=f4e25]:
+        - generic [ref=f4e26]:
+          - paragraph [ref=f4e27]: Vacation-rental catalog and management
+          - heading "Alquileres Uspallata" [level=1] [ref=f4e28]
+          - paragraph [ref=f4e29]: Full-stack platform for publishing properties, reviewing listings, tracking availability, and connecting visitors with owners.
+          - generic [ref=f4e30]:
+            - generic [ref=f4e31]:
+              - term [ref=f4e32]: Status
+              - definition [ref=f4e33]: Active development
+            - generic [ref=f4e34]:
+              - term [ref=f4e35]: Role
+              - definition [ref=f4e36]: Domain analysis, architecture, and full-stack development
+            - generic [ref=f4e37]:
+              - term [ref=f4e38]: Year
+              - definition [ref=f4e39]: "2026"
+          - generic [ref=f4e40]:
+            - link "View code" [ref=f4e41] [cursor=pointer]:
+              - /url: https://github.com/sjo1848/alquileres-uspa
+            - link "Back to projects" [ref=f4e42] [cursor=pointer]:
+              - /url: /#projects
+        - complementary [ref=f4e43]:
+          - figure "Catalog generated from the real runtime with PostgreSQL, Nest API, and Vue frontend; properties and images are reproducible synthetic fixtures." [ref=f4e44]:
+            - img "Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access." [ref=f4e45]
+          - paragraph [ref=f4e47]: Core stack
+          - list [ref=f4e48]:
+            - listitem [ref=f4e49]: NestJS
+            - listitem [ref=f4e50]: Vue
+            - listitem [ref=f4e51]: TypeScript
+            - listitem [ref=f4e52]: Prisma
+            - listitem [ref=f4e53]: PostgreSQL
+            - listitem [ref=f4e54]: Vitest
+      - region [ref=f4e55]:
+        - generic [ref=f4e56]:
+          - generic [ref=f4e57]:
+            - paragraph [ref=f4e58]: Visual evidence
+            - heading "Verified screenshots and walkthroughs" [level=2] [ref=f4e59]
+            - paragraph [ref=f4e60]: Real product images and animated demonstrations documented as evidence of the workflow and interface decisions.
+          - region "Visual evidence gallery" [ref=f4e63]:
+            - generic [ref=f4e64]:
+              - figure "1 of 2" [ref=f4e65]:
+                - 'link "Open full-size screenshot: Public detail page for a demo Alquileres Uspallata property with image, price, capacity, availability, and listing information." [ref=f4e66] [cursor=pointer]':
+                  - /url: /media/projects/alquileres-uspa/listing-detail-desktop-1440x1200.png
+                  - img "Public detail page for a demo Alquileres Uspallata property with image, price, capacity, availability, and listing information." [ref=f4e67]
+                - generic [ref=f4e68]: Detail page captured from the reproducible runtime; the property, content, and illustration are synthetic demo data.
+              - figure "2 of 2" [ref=f4e69]:
+                - 'link "Open full-size screenshot: Alquileres Uspallata mobile catalog showing a demo listing with its image contained inside the responsive card." [ref=f4e70] [cursor=pointer]':
+                  - /url: /media/projects/alquileres-uspa/catalog-results-mobile-390x844.png
+                  - img "Alquileres Uspallata mobile catalog showing a demo listing with its image contained inside the responsive card." [ref=f4e71]
+                - generic [ref=f4e72]: Mobile validation of the real catalog with synthetic data; it confirms responsive image, content, and availability behavior.
+      - generic [ref=f4e74]:
+        - complementary [ref=f4e76]:
+          - group [ref=f4e77]:
+            - generic "Contents" [ref=f4e78] [cursor=pointer]
+        - generic [ref=f4e79]:
+          - heading "Problem" [level=2] [ref=f4e80]
+          - paragraph [ref=f4e81]: A vacation-rental catalog is not solved by displaying cards alone. It also needs to control who can edit a listing, when publication is approved, whether availability is still current, and how a visitor inquiry reaches the correct owner without exposing internal data.
+          - paragraph [ref=f4e82]: Alquileres Uspallata addresses that journey as a full-stack system with a public catalog, private owner and administration workflows, timestamped availability, and auditability for sensitive actions.
+          - heading "Context and constraints" [level=2] [ref=f4e83]
+          - paragraph [ref=f4e84]: The domain combines public information with private operations. A visible listing must pass explicit review and publication steps, while availability can become stale even if the listing remains published.
+          - paragraph [ref=f4e85]: "The main constraints were:"
+          - list [ref=f4e86]:
+            - listitem [ref=f4e87]: separate ownership, review, and publication;
+            - listitem [ref=f4e88]: derive the owner from the authenticated session;
+            - listitem [ref=f4e89]: never trust arbitrary owner identity sent by the client;
+            - listitem [ref=f4e90]: expose only allowed fields through public routes;
+            - listitem [ref=f4e91]: preserve rejection reasons and administrative actions;
+            - listitem [ref=f4e92]: avoid presenting stale availability as currently confirmed availability.
+          - heading "Architecture" [level=2] [ref=f4e93]
+          - paragraph [ref=f4e94]: The NestJS API organizes authentication, owners, listings, review, contact, and auditing. Prisma and PostgreSQL support the transactional model. Vue consumes separate routes for the public experience, owner workflows, and administration.
+          - paragraph [ref=f4e95]: The system separates public fields from ownership, storage, review, and audit data. Private operations derive owner context from the session, and administrative actions are associated with actor, action, entity, target owner, and timestamp.
+          - heading "Engineering decisions" [level=2] [ref=f4e96]
+          - paragraph [ref=f4e97]:
+            - strong [ref=f4e98]: Review and publication are separate states.
+            - text: A listing can move from
+            - code [ref=f4e99]: DRAFT
+            - text: to
+            - code [ref=f4e100]: SUBMITTED
+            - text: ", then to"
+            - code [ref=f4e101]: APPROVED
+            - text: or
+            - code [ref=f4e102]: REJECTED
+            - text: ; only an approved listing can be published. Editing or reviewing does not automatically make a listing visible.
+          - paragraph [ref=f4e103]:
+            - strong [ref=f4e104]: Availability has explicit freshness.
+            - text: Availability stores a last-confirmed timestamp so the UI can distinguish fresh information from potentially stale information.
+          - paragraph [ref=f4e105]:
+            - strong [ref=f4e106]: Server-side authority.
+            - text: The browser does not decide which owner controls a listing or which internal fields become public.
+          - paragraph [ref=f4e107]:
+            - strong [ref=f4e108]: Auditable assisted actions.
+            - text: Relevant administrative operations leave a trace tied to the actor and affected entity.
+          - heading "Implementation" [level=2] [ref=f4e109]
+          - paragraph [ref=f4e110]: "The implemented flow covers:"
+          - list [ref=f4e111]:
+            - listitem [ref=f4e112]: drafts and submission for review;
+            - listitem [ref=f4e113]: approval or rejection with a persisted reason;
+            - listitem [ref=f4e114]: controlled publication;
+            - listitem [ref=f4e115]: paginated public catalog with filters;
+            - listitem [ref=f4e116]: public listing with availability;
+            - listitem [ref=f4e117]: direct contact with the correct owner;
+            - listitem [ref=f4e118]: administrative actions with audit records.
+          - paragraph [ref=f4e119]: The core stack combines NestJS, Vue, TypeScript, Prisma, and PostgreSQL with a clear separation between API, persistence, and user experience.
+          - heading "QA and validation" [level=2] [ref=f4e120]
+          - paragraph [ref=f4e121]: The repository includes versioned migrations, API and guard tests, linting, builds, secret validation, and a health smoke test. Documented checkpoints cover catalog, review, availability, contact, and audit workflows.
+          - paragraph [ref=f4e122]: Validation focuses especially on authorization boundaries, public responses without internal data, and consistent state transitions.
+          - heading "Current result" [level=2] [ref=f4e123]
+          - paragraph [ref=f4e124]: The product core is implemented and remains in active development. The platform already models the full journey from listing creation and review through publication, public discovery, and contact without mixing client authority with server authority.
+          - heading "Evidence and limits" [level=2] [ref=f4e125]
+          - paragraph [ref=f4e126]: Available evidence is in the repository, automated tests, and documented case study. A public verifiable deployment and final visual evidence for the catalog, listing detail, review/publication, and administrative audit remain pending.
+          - paragraph [ref=f4e127]:
+            - text: The current scope
+            - strong [ref=f4e128]: does not include
+            - text: reservations, payments, realtime flows, notifications, full tourism operations, or a public production deployment. The demo therefore remains unset and the project is presented as active development rather than a finished production product.
+  - contentinfo [ref=f4e129]:
+    - generic [ref=f4e130]:
+      - paragraph [ref=f4e131]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=f4e132] [cursor=pointer]:
+        - /url: https://github.com/sjo1848

@@ -1,0 +1,518 @@
+{
+  "home-en": {
+    "route": "/",
+    "sections": [
+      {
+        "id": "hero",
+        "wordCount": 125
+      },
+      {
+        "id": "projects",
+        "wordCount": 336
+      },
+      {
+        "id": "about",
+        "wordCount": 287
+      },
+      {
+        "id": "capabilities",
+        "wordCount": 102
+      },
+      {
+        "id": "experience",
+        "wordCount": 76
+      },
+      {
+        "id": "process",
+        "wordCount": 166
+      },
+      {
+        "id": "contact",
+        "wordCount": 100
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "From workflow to system."
+      },
+      {
+        "level": 2,
+        "text": "Systems built around real problems"
+      },
+      {
+        "level": 3,
+        "text": "HMS Cloudflare"
+      },
+      {
+        "level": 3,
+        "text": "Alquileres Uspallata"
+      },
+      {
+        "level": 3,
+        "text": "AI Commerce + HMS"
+      },
+      {
+        "level": 3,
+        "text": "UspaYa"
+      },
+      {
+        "level": 2,
+        "text": "Additional depth depending on the problem"
+      },
+      {
+        "level": 3,
+        "text": "GasFlow"
+      },
+      {
+        "level": 3,
+        "text": "Agentic Engineering Governance"
+      },
+      {
+        "level": 2,
+        "text": "A little about me"
+      },
+      {
+        "level": 2,
+        "text": "Full-stack engineering across backend, data, cloud and applied AI"
+      },
+      {
+        "level": 3,
+        "text": "Backend and architecture"
+      },
+      {
+        "level": 3,
+        "text": "Web and mobile interfaces"
+      },
+      {
+        "level": 3,
+        "text": "Data, cloud and integration"
+      },
+      {
+        "level": 3,
+        "text": "AI and agentic systems"
+      },
+      {
+        "level": 3,
+        "text": "Quality and operations"
+      },
+      {
+        "level": 2,
+        "text": "Software connected to processes, integrations and real operations"
+      },
+      {
+        "level": 2,
+        "text": "Verifiable end-to-end system delivery"
+      },
+      {
+        "level": 3,
+        "text": "Understand the domain"
+      },
+      {
+        "level": 3,
+        "text": "Design authority and flow"
+      },
+      {
+        "level": 3,
+        "text": "Build the system"
+      },
+      {
+        "level": 3,
+        "text": "Evaluate and validate"
+      },
+      {
+        "level": 3,
+        "text": "Prepare operations"
+      },
+      {
+        "level": 2,
+        "text": "Open to Full-Stack, Backend, Applied AI and automation opportunities"
+      }
+    ]
+  },
+  "home-es": {
+    "route": "/es/",
+    "sections": [
+      {
+        "id": "hero",
+        "wordCount": 117
+      },
+      {
+        "id": "projects",
+        "wordCount": 357
+      },
+      {
+        "id": "about",
+        "wordCount": 281
+      },
+      {
+        "id": "capabilities",
+        "wordCount": 103
+      },
+      {
+        "id": "experience",
+        "wordCount": 78
+      },
+      {
+        "id": "process",
+        "wordCount": 164
+      },
+      {
+        "id": "contact",
+        "wordCount": 93
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Del proceso al sistema."
+      },
+      {
+        "level": 2,
+        "text": "Sistemas construidos alrededor de problemas reales"
+      },
+      {
+        "level": 3,
+        "text": "HMS Cloudflare"
+      },
+      {
+        "level": 3,
+        "text": "Alquileres Uspallata"
+      },
+      {
+        "level": 3,
+        "text": "AI Commerce + HMS"
+      },
+      {
+        "level": 3,
+        "text": "UspaYa"
+      },
+      {
+        "level": 2,
+        "text": "Más profundidad según el problema"
+      },
+      {
+        "level": 3,
+        "text": "GasFlow"
+      },
+      {
+        "level": 3,
+        "text": "Agentic Engineering Governance"
+      },
+      {
+        "level": 2,
+        "text": "Un poco sobre mí"
+      },
+      {
+        "level": 2,
+        "text": "Full-stack con backend, datos, cloud e IA aplicada"
+      },
+      {
+        "level": 3,
+        "text": "Backend y arquitectura"
+      },
+      {
+        "level": 3,
+        "text": "Interfaces web y móviles"
+      },
+      {
+        "level": 3,
+        "text": "Datos, cloud e integración"
+      },
+      {
+        "level": 3,
+        "text": "IA y sistemas agentic"
+      },
+      {
+        "level": 3,
+        "text": "Calidad y operación"
+      },
+      {
+        "level": 2,
+        "text": "Software conectado con procesos, integraciones y operación real"
+      },
+      {
+        "level": 2,
+        "text": "Construcción verificable de sistemas end-to-end"
+      },
+      {
+        "level": 3,
+        "text": "Entender el dominio"
+      },
+      {
+        "level": 3,
+        "text": "Diseñar autoridad y flujo"
+      },
+      {
+        "level": 3,
+        "text": "Construir el sistema"
+      },
+      {
+        "level": 3,
+        "text": "Evaluar y validar"
+      },
+      {
+        "level": 3,
+        "text": "Preparar la operación"
+      },
+      {
+        "level": 2,
+        "text": "Busco oportunidades Full-Stack, Backend, Applied AI y automatización"
+      }
+    ]
+  },
+  "hms-en": {
+    "route": "/projects/hms-cloudflare/",
+    "sections": [],
+    "headings": [
+      {
+        "level": 1,
+        "text": "HMS Cloudflare"
+      },
+      {
+        "level": 2,
+        "text": "Problem"
+      },
+      {
+        "level": 2,
+        "text": "Context and constraints"
+      },
+      {
+        "level": 2,
+        "text": "Architecture"
+      },
+      {
+        "level": 2,
+        "text": "Engineering decisions"
+      },
+      {
+        "level": 2,
+        "text": "Implementation"
+      },
+      {
+        "level": 2,
+        "text": "QA and validation"
+      },
+      {
+        "level": 2,
+        "text": "Visual evidence"
+      },
+      {
+        "level": 2,
+        "text": "Current result"
+      },
+      {
+        "level": 2,
+        "text": "Evidence and limits"
+      }
+    ]
+  },
+  "hms-es": {
+    "route": "/es/projects/hms-cloudflare/",
+    "sections": [],
+    "headings": [
+      {
+        "level": 1,
+        "text": "HMS Cloudflare"
+      },
+      {
+        "level": 2,
+        "text": "Problema"
+      },
+      {
+        "level": 2,
+        "text": "Contexto y restricciones"
+      },
+      {
+        "level": 2,
+        "text": "Arquitectura"
+      },
+      {
+        "level": 2,
+        "text": "Decisiones de ingeniería"
+      },
+      {
+        "level": 2,
+        "text": "Implementación"
+      },
+      {
+        "level": 2,
+        "text": "QA y validación"
+      },
+      {
+        "level": 2,
+        "text": "Evidencia visual"
+      },
+      {
+        "level": 2,
+        "text": "Resultado actual"
+      },
+      {
+        "level": 2,
+        "text": "Evidencia y límites"
+      }
+    ]
+  },
+  "alquileres-en": {
+    "route": "/projects/alquileres-uspa/",
+    "sections": [
+      {
+        "id": "gallery-alquileres-uspa",
+        "wordCount": 123
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Alquileres Uspallata"
+      },
+      {
+        "level": 2,
+        "text": "Verified screenshots and walkthroughs"
+      },
+      {
+        "level": 2,
+        "text": "Problem"
+      },
+      {
+        "level": 2,
+        "text": "Context and constraints"
+      },
+      {
+        "level": 2,
+        "text": "Architecture"
+      },
+      {
+        "level": 2,
+        "text": "Engineering decisions"
+      },
+      {
+        "level": 2,
+        "text": "Implementation"
+      },
+      {
+        "level": 2,
+        "text": "QA and validation"
+      },
+      {
+        "level": 2,
+        "text": "Current result"
+      },
+      {
+        "level": 2,
+        "text": "Evidence and limits"
+      }
+    ]
+  },
+  "alquileres-es": {
+    "route": "/es/projects/alquileres-uspa/",
+    "sections": [
+      {
+        "id": "gallery-alquileres-uspa",
+        "wordCount": 128
+      }
+    ],
+    "headings": [
+      {
+        "level": 1,
+        "text": "Alquileres Uspallata"
+      },
+      {
+        "level": 2,
+        "text": "Capturas y recorridos verificados"
+      },
+      {
+        "level": 2,
+        "text": "Problema"
+      },
+      {
+        "level": 2,
+        "text": "Contexto y restricciones"
+      },
+      {
+        "level": 2,
+        "text": "Arquitectura"
+      },
+      {
+        "level": 2,
+        "text": "Decisiones de ingeniería"
+      },
+      {
+        "level": 2,
+        "text": "Implementación"
+      },
+      {
+        "level": 2,
+        "text": "QA y validación"
+      },
+      {
+        "level": 2,
+        "text": "Resultado actual"
+      },
+      {
+        "level": 2,
+        "text": "Evidencia y límites"
+      }
+    ]
+  },
+  "ai-commerce-en": {
+    "route": "/projects/ai-commerce-platform/",
+    "sections": [],
+    "headings": [
+      {
+        "level": 1,
+        "text": "AI Commerce + HMS"
+      },
+      {
+        "level": 2,
+        "text": "An agent connected to real operations without turning the model into authority"
+      },
+      {
+        "level": 2,
+        "text": "What the model can and cannot do"
+      },
+      {
+        "level": 2,
+        "text": "Operational evidence reached"
+      },
+      {
+        "level": 2,
+        "text": "Why this is AI-first rather than AI-only"
+      },
+      {
+        "level": 2,
+        "text": "What this story demonstrates"
+      }
+    ]
+  },
+  "ai-commerce-es": {
+    "route": "/es/projects/ai-commerce-platform/",
+    "sections": [],
+    "headings": [
+      {
+        "level": 1,
+        "text": "AI Commerce + HMS"
+      },
+      {
+        "level": 2,
+        "text": "Un agente conectado a operaciones reales sin convertir al modelo en autoridad"
+      },
+      {
+        "level": 2,
+        "text": "Qué puede hacer el modelo y qué no"
+      },
+      {
+        "level": 2,
+        "text": "Evidencia operacional alcanzada"
+      },
+      {
+        "level": 2,
+        "text": "Por qué esto es AI-first y no AI-only"
+      },
+      {
+        "level": 2,
+        "text": "Qué demuestra esta historia"
+      }
+    ]
+  }
+}

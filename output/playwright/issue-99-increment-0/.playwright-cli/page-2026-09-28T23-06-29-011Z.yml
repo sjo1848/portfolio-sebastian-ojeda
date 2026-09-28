@@ -1,0 +1,179 @@
+- generic [active] [ref=f5e1]:
+  - link "Ir al contenido" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f5e3]:
+    - generic [ref=f5e4]:
+      - link "Sebastián Ojeda" [ref=f5e5] [cursor=pointer]:
+        - /url: /es/
+      - generic [ref=f5e6]:
+        - navigation "Navegación principal" [ref=f5e7]:
+          - list [ref=f5e8]:
+            - listitem [ref=f5e9]:
+              - link "Proyectos" [ref=f5e10] [cursor=pointer]:
+                - /url: /es/#projects
+            - listitem [ref=f5e11]:
+              - link "Sobre mí" [ref=f5e12] [cursor=pointer]:
+                - /url: /es/#about
+            - listitem [ref=f5e13]:
+              - link "Capacidades" [ref=f5e14] [cursor=pointer]:
+                - /url: /es/#capabilities
+            - listitem [ref=f5e15]:
+              - link "Experiencia" [ref=f5e16] [cursor=pointer]:
+                - /url: /es/#experience
+            - listitem [ref=f5e17]:
+              - link "Método" [ref=f5e18] [cursor=pointer]:
+                - /url: /es/#process
+            - listitem [ref=f5e19]:
+              - link "Contacto" [ref=f5e20] [cursor=pointer]:
+                - /url: /es/#contact
+        - link "View the portfolio in English" [ref=f5e21] [cursor=pointer]:
+          - /url: /projects/alquileres-uspa/
+          - text: EN
+  - main [ref=f5e22]:
+    - article [ref=f5e23]:
+      - generic [ref=f5e25]:
+        - generic [ref=f5e26]:
+          - paragraph [ref=f5e27]: Catálogo y gestión de alquileres turísticos
+          - heading "Alquileres Uspallata" [level=1] [ref=f5e28]
+          - paragraph [ref=f5e29]: Plataforma full stack para publicar alojamientos, revisar fichas, controlar disponibilidad y conectar visitantes con propietarios.
+          - generic [ref=f5e30]:
+            - generic [ref=f5e31]:
+              - term [ref=f5e32]: Estado
+              - definition [ref=f5e33]: Desarrollo activo
+            - generic [ref=f5e34]:
+              - term [ref=f5e35]: Rol
+              - definition [ref=f5e36]: Análisis de dominio, arquitectura y desarrollo full stack
+            - generic [ref=f5e37]:
+              - term [ref=f5e38]: Año
+              - definition [ref=f5e39]: "2026"
+          - generic [ref=f5e40]:
+            - link "Ver código" [ref=f5e41] [cursor=pointer]:
+              - /url: https://github.com/sjo1848/alquileres-uspa
+            - link "Volver a proyectos" [ref=f5e42] [cursor=pointer]:
+              - /url: /es/#projects
+        - complementary [ref=f5e43]:
+          - figure "Catálogo generado desde el runtime real con PostgreSQL, API Nest y frontend Vue; propiedades e imágenes son fixtures sintéticos reproducibles." [ref=f5e44]:
+            - img "Catálogo público de Alquileres Uspallata con publicaciones demo, imágenes sintéticas, precios, disponibilidad y acceso al detalle." [ref=f5e45]
+          - paragraph [ref=f5e47]: Stack principal
+          - list [ref=f5e48]:
+            - listitem [ref=f5e49]: NestJS
+            - listitem [ref=f5e50]: Vue
+            - listitem [ref=f5e51]: TypeScript
+            - listitem [ref=f5e52]: Prisma
+            - listitem [ref=f5e53]: PostgreSQL
+            - listitem [ref=f5e54]: Vitest
+      - region [ref=f5e55]:
+        - generic [ref=f5e56]:
+          - generic [ref=f5e57]:
+            - paragraph [ref=f5e58]: Evidencia visual
+            - heading "Capturas y recorridos verificados" [level=2] [ref=f5e59]
+            - paragraph [ref=f5e60]: Imágenes y demostraciones animadas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.
+          - region "Galería de evidencia visual" [ref=f5e63]:
+            - generic [ref=f5e64]:
+              - figure "1 de 2" [ref=f5e65]:
+                - 'link "Abrir captura a tamaño completo: Ficha pública de una propiedad demo en Alquileres Uspallata con imagen, precio, capacidad, disponibilidad y datos de la publicación." [ref=f5e66] [cursor=pointer]':
+                  - /url: /media/projects/alquileres-uspa/listing-detail-desktop-1440x1200.png
+                  - img "Ficha pública de una propiedad demo en Alquileres Uspallata con imagen, precio, capacidad, disponibilidad y datos de la publicación." [ref=f5e67]
+                - generic [ref=f5e68]: Ficha capturada desde el runtime reproducible; la propiedad, el contenido y la ilustración son datos sintéticos de demostración.
+              - figure "2 de 2" [ref=f5e69]:
+                - 'link "Abrir captura a tamaño completo: Catálogo mobile de Alquileres Uspallata mostrando una publicación demo con imagen contenida dentro de la tarjeta responsive." [ref=f5e70] [cursor=pointer]':
+                  - /url: /media/projects/alquileres-uspa/catalog-results-mobile-390x844.png
+                  - img "Catálogo mobile de Alquileres Uspallata mostrando una publicación demo con imagen contenida dentro de la tarjeta responsive." [ref=f5e71]
+                - generic [ref=f5e72]: Validación mobile del catálogo real con datos sintéticos; confirma el comportamiento responsive de imagen, contenido y disponibilidad.
+      - generic [ref=f5e74]:
+        - complementary [ref=f5e76]:
+          - navigation "Índice del caso" [ref=f5e77]:
+            - paragraph [ref=f5e78]: Contenido del caso
+            - list [ref=f5e79]:
+              - listitem [ref=f5e80]:
+                - link "Capturas y recorridos verificados" [ref=f5e81] [cursor=pointer]:
+                  - /url: "#gallery-alquileres-uspa"
+              - listitem [ref=f5e82]:
+                - link "Problema" [ref=f5e83] [cursor=pointer]:
+                  - /url: "#problema"
+              - listitem [ref=f5e84]:
+                - link "Contexto y restricciones" [ref=f5e85] [cursor=pointer]:
+                  - /url: "#contexto-y-restricciones"
+              - listitem [ref=f5e86]:
+                - link "Arquitectura" [ref=f5e87] [cursor=pointer]:
+                  - /url: "#arquitectura"
+              - listitem [ref=f5e88]:
+                - link "Decisiones de ingeniería" [ref=f5e89] [cursor=pointer]:
+                  - /url: "#decisiones-de-ingenier%C3%ADa"
+              - listitem [ref=f5e90]:
+                - link "Implementación" [ref=f5e91] [cursor=pointer]:
+                  - /url: "#implementaci%C3%B3n"
+              - listitem [ref=f5e92]:
+                - link "QA y validación" [ref=f5e93] [cursor=pointer]:
+                  - /url: "#qa-y-validaci%C3%B3n"
+              - listitem [ref=f5e94]:
+                - link "Resultado actual" [ref=f5e95] [cursor=pointer]:
+                  - /url: "#resultado-actual"
+              - listitem [ref=f5e96]:
+                - link "Evidencia y límites" [ref=f5e97] [cursor=pointer]:
+                  - /url: "#evidencia-y-l%C3%ADmites"
+        - generic [ref=f5e98]:
+          - heading "Problema" [level=2] [ref=f5e99]
+          - paragraph [ref=f5e100]: Un catálogo de alojamientos no se resuelve mostrando tarjetas. También necesita controlar quién puede editar una ficha, cuándo una publicación queda aprobada, si la disponibilidad sigue vigente y cómo llega una consulta al propietario correcto sin exponer datos internos.
+          - paragraph [ref=f5e101]: Alquileres Uspallata aborda ese recorrido como un sistema full stack con catálogo público, workflows privados para propietarios y administración, disponibilidad con marca temporal y auditoría de acciones sensibles.
+          - heading "Contexto y restricciones" [level=2] [ref=f5e102]
+          - paragraph [ref=f5e103]: El dominio combina información pública y operación privada. Una ficha visible debe atravesar revisión y publicación explícitas, mientras que la disponibilidad puede quedar desactualizada aunque la ficha siga publicada.
+          - paragraph [ref=f5e104]: "Las restricciones principales fueron:"
+          - list [ref=f5e105]:
+            - listitem [ref=f5e106]: separar propiedad, revisión y publicación;
+            - listitem [ref=f5e107]: derivar al propietario desde la sesión autenticada;
+            - listitem [ref=f5e108]: no aceptar identidad arbitraria enviada por el cliente;
+            - listitem [ref=f5e109]: exponer solo campos permitidos en rutas públicas;
+            - listitem [ref=f5e110]: conservar motivos de rechazo y acciones administrativas;
+            - listitem [ref=f5e111]: no presentar disponibilidad vieja como disponibilidad confirmada actual.
+          - heading "Arquitectura" [level=2] [ref=f5e112]
+          - paragraph [ref=f5e113]: La API NestJS organiza autenticación, propietarios, listados, revisión, contacto y auditoría. Prisma y PostgreSQL sostienen el modelo transaccional. Vue consume rutas diferenciadas para la experiencia pública, el propietario y la administración.
+          - paragraph [ref=f5e114]: El sistema separa campos públicos de ownership, almacenamiento, revisión y auditoría. Las operaciones privadas obtienen el contexto de propietario desde la sesión y las acciones administrativas quedan asociadas a actor, acción, entidad, propietario objetivo y fecha.
+          - heading "Decisiones de ingeniería" [level=2] [ref=f5e115]
+          - paragraph [ref=f5e116]:
+            - strong [ref=f5e117]: Revisión y publicación son estados distintos.
+            - text: Una ficha puede pasar de
+            - code [ref=f5e118]: DRAFT
+            - text: a
+            - code [ref=f5e119]: SUBMITTED
+            - text: ", luego a"
+            - code [ref=f5e120]: APPROVED
+            - text: o
+            - code [ref=f5e121]: REJECTED
+            - text: ; solo una ficha aprobada puede publicarse. Editar o revisar no implica hacer visible la publicación.
+          - paragraph [ref=f5e122]:
+            - strong [ref=f5e123]: Disponibilidad con frescura explícita.
+            - text: El estado de disponibilidad guarda una fecha de última confirmación para diferenciar información reciente de información potencialmente obsoleta.
+          - paragraph [ref=f5e124]:
+            - strong [ref=f5e125]: Autoridad del servidor.
+            - text: El navegador no decide qué propietario modifica una ficha ni qué datos internos se exponen.
+          - paragraph [ref=f5e126]:
+            - strong [ref=f5e127]: Auditoría de acciones asistidas.
+            - text: Las operaciones administrativas relevantes dejan una traza asociada al actor y a la entidad afectada.
+          - heading "Implementación" [level=2] [ref=f5e128]
+          - paragraph [ref=f5e129]: "El flujo implementado cubre:"
+          - list [ref=f5e130]:
+            - listitem [ref=f5e131]: borradores y envío a revisión;
+            - listitem [ref=f5e132]: aprobación o rechazo con motivo persistido;
+            - listitem [ref=f5e133]: publicación controlada;
+            - listitem [ref=f5e134]: catálogo público paginado con filtros;
+            - listitem [ref=f5e135]: ficha pública con disponibilidad;
+            - listitem [ref=f5e136]: contacto directo al propietario correcto;
+            - listitem [ref=f5e137]: acciones administrativas con auditoría.
+          - paragraph [ref=f5e138]: El stack principal combina NestJS, Vue, TypeScript, Prisma y PostgreSQL, con separación clara entre API, persistencia y experiencia de usuario.
+          - heading "QA y validación" [level=2] [ref=f5e139]
+          - paragraph [ref=f5e140]: El repositorio incluye migraciones versionadas, pruebas de API y guards, lint, build, validación de secretos y smoke test de salud. Los checkpoints documentados cubren catálogo, revisión, disponibilidad, contacto y auditoría.
+          - paragraph [ref=f5e141]: La validación prioriza especialmente límites de autorización, respuestas públicas sin datos internos y consistencia de las transiciones de estado.
+          - heading "Resultado actual" [level=2] [ref=f5e142]
+          - paragraph [ref=f5e143]: El núcleo del producto está implementado y en desarrollo activo. La plataforma ya modela el recorrido completo desde creación y revisión de una ficha hasta publicación, consulta pública y contacto, sin mezclar autoridad del cliente con autoridad del servidor.
+          - heading "Evidencia y límites" [level=2] [ref=f5e144]
+          - paragraph [ref=f5e145]: La evidencia disponible está en el repositorio, las pruebas y el caso documentado. Siguen pendientes una instancia pública verificable y evidencia visual definitiva de catálogo, ficha pública, revisión/publicación y auditoría administrativa.
+          - paragraph [ref=f5e146]:
+            - text: El alcance actual
+            - strong [ref=f5e147]: no incluye
+            - text: reservas, pagos, realtime, notificaciones, turismo completo ni despliegue productivo público. Por eso la demo permanece sin URL y el proyecto se presenta como desarrollo activo, no como producto terminado en producción.
+  - contentinfo [ref=f5e148]:
+    - generic [ref=f5e149]:
+      - paragraph [ref=f5e150]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=f5e151] [cursor=pointer]:
+        - /url: https://github.com/sjo1848

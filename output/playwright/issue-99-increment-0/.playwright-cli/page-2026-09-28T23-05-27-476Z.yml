@@ -1,0 +1,140 @@
+- generic [active] [ref=f6e1]:
+  - link "Skip to content" [ref=f6e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f6e3]:
+    - generic [ref=f6e4]:
+      - link "Sebastián Ojeda" [ref=f6e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f6e6]:
+        - navigation "Primary navigation" [ref=f6e7]:
+          - list [ref=f6e8]:
+            - listitem [ref=f6e9]:
+              - link "Projects" [ref=f6e10] [cursor=pointer]:
+                - /url: /#projects
+            - listitem [ref=f6e11]:
+              - link "About" [ref=f6e12] [cursor=pointer]:
+                - /url: /#about
+            - listitem [ref=f6e13]:
+              - link "Capabilities" [ref=f6e14] [cursor=pointer]:
+                - /url: /#capabilities
+            - listitem [ref=f6e15]:
+              - link "Experience" [ref=f6e16] [cursor=pointer]:
+                - /url: /#experience
+            - listitem [ref=f6e17]:
+              - link "Method" [ref=f6e18] [cursor=pointer]:
+                - /url: /#process
+            - listitem [ref=f6e19]:
+              - link "Contact" [ref=f6e20] [cursor=pointer]:
+                - /url: /#contact
+        - link "Ver el portfolio en español" [ref=f6e21] [cursor=pointer]:
+          - /url: /es/projects/ai-commerce-platform/
+          - text: ES
+  - main [ref=f6e22]:
+    - article [ref=f6e23]:
+      - generic [ref=f6e25]:
+        - generic [ref=f6e26]:
+          - paragraph [ref=f6e27]: Agent connected to a real operational system
+          - heading "AI Commerce + HMS" [level=1] [ref=f6e28]
+          - paragraph [ref=f6e29]: LLM and Agent Core connected to HMS through governed tools, policies, HITL, auditability and idempotency without handing operational authority to the model.
+          - generic [ref=f6e30]:
+            - generic [ref=f6e31]:
+              - term [ref=f6e32]: Status
+              - definition [ref=f6e33]: Phase 2.6 under agentic validation
+            - generic [ref=f6e34]:
+              - term [ref=f6e35]: Role
+              - definition [ref=f6e36]: Product architecture, development, evaluation and orchestration
+            - generic [ref=f6e37]:
+              - term [ref=f6e38]: Year
+              - definition [ref=f6e39]: "2026"
+          - generic [ref=f6e40]:
+            - link "View code" [ref=f6e41] [cursor=pointer]:
+              - /url: https://github.com/sjo1848/ai-commerce-platform
+            - link "Back to projects" [ref=f6e42] [cursor=pointer]:
+              - /url: /#projects
+        - complementary [ref=f6e43]:
+          - paragraph [ref=f6e44]: Core stack
+          - list [ref=f6e45]:
+            - listitem [ref=f6e46]: TypeScript
+            - listitem [ref=f6e47]: LLMs
+            - listitem [ref=f6e48]: Tool Calling
+            - listitem [ref=f6e49]: Cloudflare Workers
+            - listitem [ref=f6e50]: Service Binding
+            - listitem [ref=f6e51]: Human-in-the-Loop
+            - listitem [ref=f6e52]: Model Routing
+            - listitem [ref=f6e53]: GitHub Actions
+          - paragraph [ref=f6e54]: Verified screenshots will be added when they correspond to a reproducible build.
+      - generic [ref=f6e55]:
+        - complementary [ref=f6e57]:
+          - group [ref=f6e58]:
+            - generic "Contents" [ref=f6e59] [cursor=pointer]
+        - generic [ref=f6e60]:
+          - heading "An agent connected to real operations without turning the model into authority" [level=2] [ref=f6e61]
+          - paragraph [ref=f6e62]: This is the portfolio’s primary story because the problem is not “build a chatbot.” The problem is allowing a model to understand natural language and operate on a real hotel system without being able to invent permissions, trusted context or side effects.
+          - paragraph [ref=f6e63]: AI Commerce Platform connects a conversational experience to HMS. The LLM interprets intent, context and ambiguity; Agent Core retains execution authority.
+          - paragraph [ref=f6e64]:
+            - code [ref=f6e65]: Channel → ChatOrchestrator → ModelRouter → AgentCoreExecutor → ToolRegistry → PolicyEngine → Adapter → HMS
+          - heading "What the model can and cannot do" [level=2] [ref=f6e66]
+          - paragraph [ref=f6e67]: "The model can:"
+          - list [ref=f6e68]:
+            - listitem [ref=f6e69]: interpret natural requests;
+            - listitem [ref=f6e70]: maintain controlled conversational context;
+            - listitem [ref=f6e71]: propose structured tool plans;
+            - listitem [ref=f6e72]: request clarification;
+            - listitem [ref=f6e73]: compose responses grounded in real results.
+          - paragraph [ref=f6e74]: "The model cannot:"
+          - list [ref=f6e75]:
+            - listitem [ref=f6e76]: choose trusted tenant, hotel or actor context;
+            - listitem [ref=f6e77]: elevate permissions;
+            - listitem [ref=f6e78]: access the database directly;
+            - listitem [ref=f6e79]: invent approval metadata;
+            - listitem [ref=f6e80]: create arbitrary operation tokens;
+            - listitem [ref=f6e81]: bypass server-side revalidation.
+          - paragraph [ref=f6e82]:
+            - text: The separation between
+            - strong [ref=f6e83]: intelligence
+            - text: and
+            - strong [ref=f6e84]: authority
+            - text: is the central architecture decision.
+          - heading "Operational evidence reached" [level=2] [ref=f6e85]
+          - paragraph [ref=f6e86]: "Phase 2.5 closed the HMS staging operations proof with:"
+          - list [ref=f6e87]:
+            - listitem [ref=f6e88]: real availability and quoting through Service Binding;
+            - listitem [ref=f6e89]: controlled reservation creation;
+            - listitem [ref=f6e90]: controlled cancellation;
+            - listitem [ref=f6e91]: HITL approval bound to the exact operation;
+            - listitem [ref=f6e92]: durable approval challenges;
+            - listitem [ref=f6e93]: booking ownership;
+            - listitem [ref=f6e94]: replay and conflict semantics;
+            - listitem [ref=f6e95]: inventory removal and restoration;
+            - listitem [ref=f6e96]: audit and idempotency controls;
+            - listitem [ref=f6e97]: synthetic cross-repository E2E with cleanup.
+          - paragraph [ref=f6e98]:
+            - text: The current phase, 2.6, is not presented as closed. It is replacing the deterministic parser as the primary experience with a provider-independent
+            - code [ref=f6e99]: LLMModelRouter
+            - text: ", while retaining the deterministic router as fallback and reproducible fixture."
+          - heading "Why this is AI-first rather than AI-only" [level=2] [ref=f6e100]
+          - paragraph [ref=f6e101]: "AI is used where it has leverage: language, context, ambiguity and composition. Responsibilities that require certainty remain deterministic:"
+          - list [ref=f6e102]:
+            - listitem [ref=f6e103]: registered tools;
+            - listitem [ref=f6e104]: policies and permissions;
+            - listitem [ref=f6e105]: trusted identity and context;
+            - listitem [ref=f6e106]: idempotency;
+            - listitem [ref=f6e107]: approvals;
+            - listitem [ref=f6e108]: auditability;
+            - listitem [ref=f6e109]: HMS operational state.
+          - paragraph [ref=f6e110]: The important capability is not “using an LLM”; it is deciding which responsibilities the model receives and which ones it is explicitly denied.
+          - heading "What this story demonstrates" [level=2] [ref=f6e111]
+          - list [ref=f6e112]:
+            - listitem [ref=f6e113]: LLM integration with an existing operational system;
+            - listitem [ref=f6e114]: governed tool calling with server-side revalidation;
+            - listitem [ref=f6e115]: Human-in-the-Loop for sensitive side effects;
+            - listitem [ref=f6e116]: multi-tenancy and trusted context outside the prompt;
+            - listitem [ref=f6e117]: idempotency, replay and auditability;
+            - listitem [ref=f6e118]: model routing and deterministic fallback;
+            - listitem [ref=f6e119]: adversarial evaluation and product gates;
+            - listitem [ref=f6e120]: an explicit boundary between probabilistic interpretation and operational authority.
+  - contentinfo [ref=f6e121]:
+    - generic [ref=f6e122]:
+      - paragraph [ref=f6e123]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=f6e124] [cursor=pointer]:
+        - /url: https://github.com/sjo1848

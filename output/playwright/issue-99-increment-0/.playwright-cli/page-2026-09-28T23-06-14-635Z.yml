@@ -1,0 +1,184 @@
+- generic [active] [ref=f3e1]:
+  - link "Ir al contenido" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - link "Sebastián Ojeda" [ref=f3e5] [cursor=pointer]:
+        - /url: /es/
+      - generic [ref=f3e6]:
+        - navigation "Navegación principal" [ref=f3e7]:
+          - list [ref=f3e8]:
+            - listitem [ref=f3e9]:
+              - link "Proyectos" [ref=f3e10] [cursor=pointer]:
+                - /url: /es/#projects
+            - listitem [ref=f3e11]:
+              - link "Sobre mí" [ref=f3e12] [cursor=pointer]:
+                - /url: /es/#about
+            - listitem [ref=f3e13]:
+              - link "Capacidades" [ref=f3e14] [cursor=pointer]:
+                - /url: /es/#capabilities
+            - listitem [ref=f3e15]:
+              - link "Experiencia" [ref=f3e16] [cursor=pointer]:
+                - /url: /es/#experience
+            - listitem [ref=f3e17]:
+              - link "Método" [ref=f3e18] [cursor=pointer]:
+                - /url: /es/#process
+            - listitem [ref=f3e19]:
+              - link "Contacto" [ref=f3e20] [cursor=pointer]:
+                - /url: /es/#contact
+        - link "View the portfolio in English" [ref=f3e21] [cursor=pointer]:
+          - /url: /projects/hms-cloudflare/
+          - text: EN
+  - main [ref=f3e22]:
+    - article [ref=f3e23]:
+      - generic [ref=f3e25]:
+        - generic [ref=f3e26]:
+          - paragraph [ref=f3e27]: Evolución brownfield de un SaaS operacional
+          - heading "HMS Cloudflare" [level=1] [ref=f3e28]
+          - paragraph [ref=f3e29]: De Rust/PostgreSQL a Workers/D1 mediante análisis de contrato, migración parity-first, seguridad multi-tenant, browser validation y recovery verificable.
+          - generic [ref=f3e30]:
+            - generic [ref=f3e31]:
+              - term [ref=f3e32]: Estado
+              - definition [ref=f3e33]: Migración validada técnicamente; aceptación separada
+            - generic [ref=f3e34]:
+              - term [ref=f3e35]: Rol
+              - definition [ref=f3e36]: Arquitectura de migración, implementación full stack, seguridad y QA operacional
+            - generic [ref=f3e37]:
+              - term [ref=f3e38]: Año
+              - definition [ref=f3e39]: "2026"
+          - generic [ref=f3e40]:
+            - link "Ver código" [ref=f3e41] [cursor=pointer]:
+              - /url: https://github.com/sjo1848/hms-cloudflare
+            - link "Volver a proyectos" [ref=f3e42] [cursor=pointer]:
+              - /url: /es/#projects
+        - complementary [ref=f3e43]:
+          - paragraph [ref=f3e44]: Stack principal
+          - list [ref=f3e45]:
+            - listitem [ref=f3e46]: Rust / Axum
+            - listitem [ref=f3e47]: PostgreSQL
+            - listitem [ref=f3e48]: Cloudflare Workers
+            - listitem [ref=f3e49]: Hono
+            - listitem [ref=f3e50]: React
+            - listitem [ref=f3e51]: D1 / SQLite
+            - listitem [ref=f3e52]: Cloudflare Access
+            - listitem [ref=f3e53]: GitHub Actions
+          - paragraph [ref=f3e54]: Las capturas verificadas se incorporarán cuando correspondan a una versión reproducible.
+      - generic [ref=f3e55]:
+        - complementary [ref=f3e57]:
+          - navigation "Índice del caso" [ref=f3e58]:
+            - paragraph [ref=f3e59]: Contenido del caso
+            - list [ref=f3e60]:
+              - listitem [ref=f3e61]:
+                - link "Problema" [ref=f3e62] [cursor=pointer]:
+                  - /url: "#problema"
+              - listitem [ref=f3e63]:
+                - link "Contexto y restricciones" [ref=f3e64] [cursor=pointer]:
+                  - /url: "#contexto-y-restricciones"
+              - listitem [ref=f3e65]:
+                - link "Arquitectura" [ref=f3e66] [cursor=pointer]:
+                  - /url: "#arquitectura"
+              - listitem [ref=f3e67]:
+                - link "Decisiones de ingeniería" [ref=f3e68] [cursor=pointer]:
+                  - /url: "#decisiones-de-ingenier%C3%ADa"
+              - listitem [ref=f3e69]:
+                - link "Implementación" [ref=f3e70] [cursor=pointer]:
+                  - /url: "#implementaci%C3%B3n"
+              - listitem [ref=f3e71]:
+                - link "QA y validación" [ref=f3e72] [cursor=pointer]:
+                  - /url: "#qa-y-validaci%C3%B3n"
+              - listitem [ref=f3e73]:
+                - link "Evidencia visual" [ref=f3e74] [cursor=pointer]:
+                  - /url: "#evidencia-visual"
+              - listitem [ref=f3e75]:
+                - link "Resultado actual" [ref=f3e76] [cursor=pointer]:
+                  - /url: "#resultado-actual"
+              - listitem [ref=f3e77]:
+                - link "Evidencia y límites" [ref=f3e78] [cursor=pointer]:
+                  - /url: "#evidencia-y-l%C3%ADmites"
+        - generic [ref=f3e79]:
+          - heading "Problema" [level=2] [ref=f3e80]
+          - paragraph [ref=f3e81]: HMS Cloudflare no nació como una aplicación serverless nueva. Es la evolución de un sistema de gestión hotelera que ya modelaba reservas, recepción, habitaciones, huéspedes, housekeeping, facturación, permisos y operación multi-hotel.
+          - paragraph [ref=f3e82]: El problema era cambiar infraestructura y topología de datos sin cambiar silenciosamente el producto. Migrar de Rust + Axum + PostgreSQL hacia Workers, Hono y D1 exigía conservar estados, permisos, aislamiento entre hoteles y comportamiento observable, además de demostrar que backup y recovery funcionaban de forma verificable.
+          - heading "Contexto y restricciones" [level=2] [ref=f3e83]
+          - paragraph [ref=f3e84]: "La secuencia técnica es:"
+          - paragraph [ref=f3e85]:
+            - code [ref=f3e86]: HMS Elite / Rust + Axum + PostgreSQL → inventario del contrato → migración parity-first → Workers + Hono + D1 → validación de producto y recovery → Agent Core como capa posterior
+          - paragraph [ref=f3e87]: "Las restricciones que guiaron el trabajo fueron concretas:"
+          - list [ref=f3e88]:
+            - listitem [ref=f3e89]: preservar las transiciones de estado utilizadas por recepción;
+            - listitem [ref=f3e90]: mantener la semántica de permisos y memberships;
+            - listitem [ref=f3e91]: reemplazar PostgreSQL RLS sin perder aislamiento multi-tenant;
+            - listitem [ref=f3e92]: evitar prometer atomicidad distribuida donde D1 no la ofrece;
+            - listitem [ref=f3e93]: validar recorridos reales de navegador, no solo compilación;
+            - listitem [ref=f3e94]: distinguir Technical PASS, Product Acceptance, Production Readiness y Release.
+          - heading "Arquitectura" [level=2] [ref=f3e95]
+          - paragraph [ref=f3e96]: "La arquitectura activa separa dos responsabilidades:"
+          - list [ref=f3e97]:
+            - listitem [ref=f3e98]:
+              - code [ref=f3e99]: CONTROL_DB
+              - text: ": identidades, hoteles, memberships, roles y routing;"
+            - listitem [ref=f3e100]: "un D1 operacional por hotel: reservas, habitaciones, huéspedes, billing, housekeeping y auditoría."
+          - paragraph [ref=f3e101]: Cada request valida identidad, membership, rol y contexto antes de resolver la base operacional correspondiente. La separación física de datos reduce el radio de impacto, pero no reemplaza autorización.
+          - paragraph [ref=f3e102]: Cloudflare Access autentica en el edge; la API valida esa identidad y HMS aplica la autoridad de negocio. Son capas distintas y se mantienen separadas intencionalmente.
+          - heading "Decisiones de ingeniería" [level=2] [ref=f3e103]
+          - paragraph [ref=f3e104]:
+            - strong [ref=f3e105]: Parity-first antes que rediseño.
+            - text: La migración prioriza conservar el contrato observable antes de introducir nuevas capacidades.
+          - paragraph [ref=f3e106]:
+            - strong [ref=f3e107]: Atomicidad local.
+            - text: Las operaciones críticas permanecen dentro del D1 de un hotel cuando la consistencia transaccional importa. No se simula una transacción distribuida inexistente.
+          - paragraph [ref=f3e108]:
+            - strong [ref=f3e109]: Autoridad explícita.
+            - text: Access resuelve autenticación de infraestructura; memberships y RBAC resuelven autoridad de negocio.
+          - paragraph [ref=f3e110]:
+            - strong [ref=f3e111]: Recovery como comportamiento probado.
+            - text: Un backup no se considera evidencia suficiente hasta restaurarlo y reconciliar el estado resultante.
+          - heading "Implementación" [level=2] [ref=f3e112]
+          - paragraph [ref=f3e113]: "La migración se dividió en incrementos verificables: foundation, inventario del contrato, rooms/guests/bookings, recepción, housekeeping, mantenimiento, billing, seguridad, administración, reporting y readiness operacional."
+          - paragraph [ref=f3e114]: El trabajo conecta backend, datos, interfaces, seguridad e infraestructura. HMS Elite aporta el contrato fuente; HMS Cloudflare implementa el nuevo runtime y la nueva topología; Agent Core pertenece a otro repositorio y otro gate, y se integra solo sobre una frontera operacional explícita.
+          - heading "QA y validación" [level=2] [ref=f3e115]
+          - paragraph [ref=f3e116]: "La validación combina:"
+          - list [ref=f3e117]:
+            - listitem [ref=f3e118]: typecheck y tests unitarios/integración;
+            - listitem [ref=f3e119]: regresiones específicas de dominio;
+            - listitem [ref=f3e120]: browser journeys;
+            - listitem [ref=f3e121]: checks RBAC y tenant isolation;
+            - listitem [ref=f3e122]: failure paths y concurrencia;
+            - listitem [ref=f3e123]: migración y backup/restore;
+            - listitem [ref=f3e124]: Independent Review.
+          - paragraph [ref=f3e125]: El rehearsal de recovery exporta las bases, introduce mutaciones sintéticas, restaura el backup y verifica checksums y reconciliación. Se presenta como evidencia local de recuperación, no como prueba de rollback atómico remoto entre bases D1.
+          - heading "Evidencia visual" [level=2] [ref=f3e126]
+          - paragraph [ref=f3e127]: Las capturas siguientes están versionadas en el repositorio y provienen de regresiones Playwright sobre el runtime migrado. Documentan comportamiento local reproducible; no se presentan como aceptación remota ni como prueba de producción.
+          - link [ref=f3e128] [cursor=pointer]:
+            - /url: /media/projects/hms-cloudflare/cf-i04-reception-authorized.png
+            - img "Flujo de recepción de HMS Cloudflare" [ref=f3e129]
+          - paragraph [ref=f3e130]:
+            - emphasis [ref=f3e131]: "Recepción: ciclo operacional capturado durante la regresión del proyecto."
+          - link [ref=f3e132] [cursor=pointer]:
+            - /url: /media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png
+            - img "Workspace de housekeeping de HMS Cloudflare" [ref=f3e133]
+          - paragraph [ref=f3e134]:
+            - emphasis [ref=f3e135]: "Housekeeping: evidencia del workspace integrado sobre la migración Cloudflare."
+          - link [ref=f3e136] [cursor=pointer]:
+            - /url: /media/projects/hms-cloudflare/cf-i06-billing-authorized.png
+            - img "Flujo de facturación de HMS Cloudflare" [ref=f3e137]
+          - paragraph [ref=f3e138]:
+            - emphasis [ref=f3e139]: "Billing: comportamiento de producto capturado por Playwright; no implica Product Acceptance remota."
+          - link [ref=f3e140] [cursor=pointer]:
+            - /url: /media/projects/hms-cloudflare/cf-i07-admin-authorized.png
+            - img "Workspace administrativo de HMS Cloudflare" [ref=f3e141]
+          - paragraph [ref=f3e142]:
+            - emphasis [ref=f3e143]: "Administración: workspace actual de accesos y roles capturado por Playwright."
+          - heading "Resultado actual" [level=2] [ref=f3e144]
+          - paragraph [ref=f3e145]: La migración alcanzó validación técnica y conserva una separación explícita entre aceptación técnica y aceptación de producto. El caso demuestra continuidad entre un backend Rust/PostgreSQL y una arquitectura edge/serverless sin presentar la segunda como un sistema independiente del dominio original.
+          - heading "Evidencia y límites" [level=2] [ref=f3e146]
+          - paragraph [ref=f3e147]: La evidencia disponible cubre código, contrato de migración, pruebas automatizadas, recorridos de navegador, capturas Playwright y rehearsal de recovery. Permanecen pendientes capturas remotas del recorrido de recepción, evidencia visual mobile del candidato aceptado y evidencia remota de Product Acceptance.
+          - paragraph [ref=f3e148]:
+            - text: Por eso el estado publicado es
+            - strong [ref=f3e149]: migración validada técnicamente; aceptación separada
+            - text: . No se presenta como release productivo final.
+  - contentinfo [ref=f3e150]:
+    - generic [ref=f3e151]:
+      - paragraph [ref=f3e152]: Sebastián Ojeda · Mendoza, Argentina
+      - link "GitHub" [ref=f3e153] [cursor=pointer]:
+        - /url: https://github.com/sjo1848
