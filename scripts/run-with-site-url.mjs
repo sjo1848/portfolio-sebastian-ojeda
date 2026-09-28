@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 
-const productionSiteUrl = 'https://portfolio-sebastian-ojeda.pages.dev';
+const productionSiteUrl = 'https://sebastian-ojeda.pages.dev';
 const [command, ...args] = process.argv.slice(2);
 
 if (!command) {

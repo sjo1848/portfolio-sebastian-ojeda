@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   email: string;
@@ -34,6 +34,7 @@ function copyWithLegacyApi(value: string): boolean {
 
 export default function CopyAction({ email, label, pendingLabel, copiedMessage, errorMessage }: Props) {
   const [state, setState] = useState<CopyState>('idle');
+  const copyInProgress = useRef(false);
 
   useEffect(() => {
     if (state !== 'copied' && state !== 'error') return;
@@ -42,22 +43,25 @@ export default function CopyAction({ email, label, pendingLabel, copiedMessage, 
   }, [state]);
 
   async function handleCopy() {
-    if (state === 'pending') return;
+    if (copyInProgress.current) return;
+    copyInProgress.current = true;
     setState('pending');
     try {
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(email);
-      } else if (!copyWithLegacyApi(email)) {
-        throw new Error('Clipboard copy was rejected');
+        try {
+          await navigator.clipboard.writeText(email);
+          setState('copied');
+          return;
+        } catch {
+          // Use the legacy API once when the preferred API rejects the request.
+        }
       }
+      if (!copyWithLegacyApi(email)) throw new Error('Clipboard copy was rejected');
       setState('copied');
     } catch {
-      try {
-        if (!copyWithLegacyApi(email)) throw new Error('Clipboard copy was rejected');
-        setState('copied');
-      } catch {
-        setState('error');
-      }
+      setState('error');
+    } finally {
+      copyInProgress.current = false;
     }
   }
 
@@ -65,7 +69,7 @@ export default function CopyAction({ email, label, pendingLabel, copiedMessage, 
 
   return (
     <div className="copy-action">
-      <button className="button button-secondary" type="button" onClick={handleCopy} disabled={state === 'pending'}>
+      <button className="button button-secondary" type="button" onClick={handleCopy} aria-disabled={state === 'pending'}>
         {state === 'pending' ? pendingLabel : label}
       </button>
       <span className="copy-action-feedback" role="status" aria-live="polite" aria-atomic="true">

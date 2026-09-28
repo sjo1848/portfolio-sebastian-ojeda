@@ -13,7 +13,7 @@ jobs:
     name: Release QA and Lighthouse
     runs-on: ubuntu-latest
     env:
-      PUBLIC_SITE_URL: https://portfolio-sebastian-ojeda.pages.dev
+      PUBLIC_SITE_URL: https://sebastian-ojeda.pages.dev
     steps:
       - name: Checkout
         uses: actions/checkout@v4

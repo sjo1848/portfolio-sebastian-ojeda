@@ -116,6 +116,26 @@ test('copy email uses legacy clipboard API when Clipboard API is absent', async 
   await expect(page.getByRole('button', { name: 'Copy email' })).toBeFocused();
 });
 
+for (const route of [
+  { path: '/', label: 'Copy email', error: 'Could not copy.' },
+  { path: '/es/', label: 'Copiar email', error: 'No se pudo copiar.' },
+]) {
+  test(`copy action ${route.path} attempts a failing legacy fallback only once`, async ({ page }) => {
+    await page.addInitScript(() => {
+      (window as any).__legacyAttempts = 0;
+      Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined });
+      Object.defineProperty(document, 'execCommand', {
+        configurable: true,
+        value: () => { (window as any).__legacyAttempts += 1; return false; },
+      });
+    });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+    await page.getByRole('button', { name: route.label }).click();
+    await expect(page.locator('.copy-action-feedback')).toContainText(route.error);
+    expect(await page.evaluate(() => (window as any).__legacyAttempts)).toBe(1);
+  });
+}
+
 test('copy feedback stays announced before a gradual reset to idle', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium', 'Timed announcement coverage runs once to avoid delaying every engine profile.');
   test.setTimeout(40_000);
@@ -163,6 +183,66 @@ for (const route of [
   { path: '/', label: 'Copy email' },
   { path: '/es/', label: 'Copiar email' },
 ]) {
+  test(`copy action ${route.path} retains keyboard focus while clipboard is pending`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: {
+          writeText: () => new Promise<void>((resolve, reject) => {
+            (window as any).__settleClipboard = (success: boolean) => success ? resolve() : reject(new Error('denied'));
+          }),
+        },
+      });
+      Object.defineProperty(document, 'execCommand', { configurable: true, value: () => false });
+    });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+    const button = page.locator('#contact .copy-action button');
+    await expect(page.getByRole('button', { name: route.label })).toBeVisible();
+    await button.scrollIntoViewIfNeeded();
+    await button.focus();
+    if (testInfo.project.name === 'chromium') {
+      const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-6');
+      await mkdir(outputDir, { recursive: true });
+      await page.screenshot({
+        path: path.join(outputDir, `copy-${route.path === '/' ? 'en' : 'es'}-keyboard-focus-390.png`),
+        animations: 'disabled',
+      });
+    }
+    await page.keyboard.press('Enter');
+    await expect(button).toHaveAccessibleName(route.path === '/' ? 'Copying…' : 'Copiando…');
+    await expect(button).toHaveAttribute('aria-disabled', 'true');
+    await expect(button).toBeFocused();
+    await page.evaluate(() => (window as any).__settleClipboard(true));
+    await expect(page.locator('.copy-action-feedback')).toHaveText(route.path === '/' ? 'Email copied.' : 'Email copiado.');
+    await expect(button).toBeFocused();
+  });
+
+  test(`copy action ${route.path} retains keyboard focus after a clipboard failure`, async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: {
+          writeText: () => new Promise<void>((_resolve, reject) => {
+            (window as any).__settleClipboard = () => reject(new Error('denied'));
+          }),
+        },
+      });
+      Object.defineProperty(document, 'execCommand', { configurable: true, value: () => false });
+    });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+    const button = page.locator('#contact .copy-action button');
+    await expect(page.getByRole('button', { name: route.label })).toBeVisible();
+    await button.focus();
+    await page.keyboard.press('Enter');
+    await expect(button).toHaveAccessibleName(route.path === '/' ? 'Copying…' : 'Copiando…');
+    await expect(button).toHaveAttribute('aria-disabled', 'true');
+    await expect(button).toBeFocused();
+    await page.evaluate(() => (window as any).__settleClipboard());
+    await expect(page.locator('.copy-action-feedback')).toContainText(route.path === '/' ? 'Could not copy.' : 'No se pudo copiar.');
+    await expect(button).toBeFocused();
+  });
+
   test(`copy action fits ${route.path} at narrow widths`, async ({ page }) => {
     await page.goto(route.path, { waitUntil: 'networkidle' });
     const button = page.getByRole('button', { name: route.label });
