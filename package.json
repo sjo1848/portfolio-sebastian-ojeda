@@ -29,11 +29,11 @@
     "validate": "npm run qa:release"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "5.0.7",
     "@astrojs/sitemap": "^3.6.0",
     "@base-ui/react": "^1.8.0",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.17.1",
+    "astro": "6.4.8",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwindcss": "^4.2.1"
