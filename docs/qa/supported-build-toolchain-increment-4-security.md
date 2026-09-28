@@ -41,5 +41,5 @@ The exact UI and visual system are unchanged. The latest full route/width and in
 
 ## Independent gates
 
-- Independent Critic: **PENDING** — verify the targeted dependency closure, zero-vulnerability audit, exact lock-only scope, QA and disclosed browser retries independently of the implementer.
-- Integration Review: **PENDING** — verify cross-increment security closure, product preservation, audit/QA evidence and regression risk independently of the implementer.
+- Independent Critic: **PASS** — independently verified the six-line lockfile patch updates only the two in-range transitive packages, raw/executed audit zero, dependency paths, report/evidence and hosted full browser/Lighthouse results. The three local concurrency failures passed isolated and did not reproduce in the full hosted matrix. No rework or HUMAN_GATE.
+- Integration Review: **PASS** — independently verified only the two in-range transitive package patches, audit 0, Node 24 install and release QA, hosted dual browser matrices (344 pass / 171 expected skips / 0 failures), Lighthouse assertions, Release Readiness, Visual Review and secret scanning. The isolated/local scheduling timeout discrepancy is disclosed and cleared by both hosted runs; bundle delta is zero. No rework or HUMAN_GATE.
