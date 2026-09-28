@@ -31,7 +31,7 @@ Browser profiles: Chromium, Firefox, WebKit, Mobile Chromium, Mobile WebKit. Res
 
 - `npm ci`: PASS from lockfile.
 - `npm run qa:release`: PASS after final product source (54 Astro files, 0 errors/warnings/hints; 22 static pages; content, presentation, assets, SEO, UX/accessibility, build and sitemap validators pass).
-- Full Playwright matrix on the pre-fallback-fix candidate: 334 passed, 171 expected skips, 0 failed. After frontend review, the fallback correction passed in all five browser profiles: **10/10** ES/EN cases. Final full repository matrix is pending PR CI; `npm run test:browser` is the reproducible repository command.
+- Full Playwright matrix on the pre-fallback-fix candidate: 334 passed, 171 expected skips, 0 failed. The final single-fallback correction passed **10/10** focused ES/EN cases across the five browser profiles. Final PR CI matrix: **344 passed, 171 expected skips, 0 failed**; `npm run test:browser` is the reproducible repository command. Both Release QA/Lighthouse runs and the responsive evidence run passed on [PR #88](https://github.com/sjo1848/portfolio-sebastian-ojeda/pull/88) (runs [36361495747](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36361495747), [36361521510](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36361521510), and [36361521507](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36361521507)).
 - Accessibility-focused browser review: PASS. Six focused browser checks passed in isolated Chromium: Axe WCAG 2.2 AA in ES/EN for idle/copied/error and keyboard focus pending→success/failure in ES/EN. The computed 3 px copper ring contrast is 7.31:1 and 6.16:1 against the contact-panel background endpoints.
 - Lighthouse across all six priority routes: PASS. `npx --yes @lhci/cli@0.15.1 autorun --config=artifacts/lighthouse/lighthouserc.frontend-excellence-increment-6.json` completed 18 runs and passed all unchanged floors (Performance ≥0.90, Accessibility ≥0.95, Best Practices ≥0.95, SEO ≥0.95). Representative scores and lab LCP ranges:
 
@@ -66,11 +66,11 @@ All 18 full JSON Lighthouse reports and the manifest are persisted under [`artif
 ## Review gates
 
 - Frontend implementation: PASS after bounded I6 fixes.
-- Responsive/browser QA: final PR CI matrix pending; pre-fallback candidate and final focused regressions pass.
+- Responsive/browser QA: PASS; final PR CI matrix 344 passed, 171 expected skips, 0 failed.
 - Accessibility review: PASS; see focused state and contrast evidence above.
 - Independent Critic: HUMAN_GATE for release; implementation BUILD/VALIDATE passed.
 - Integration Review: PASS for I6 BUILD/VALIDATE; separate RELEASE HUMAN_GATE for host/canonical mismatch.
-- Increment 6 BUILD/VALIDATE gate: PASS.
+- Increment 6 BUILD/VALIDATE gate: PASS; final PR CI green (release QA/Lighthouse, responsive capture, release contract, secret scanning).
 - RELEASE: HUMAN_GATE on production identity/canonical mismatch.
 
 ## HUMAN_GATE — production host and canonical identity
