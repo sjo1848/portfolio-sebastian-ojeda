@@ -1,0 +1,116 @@
+{
+  "increment": 3,
+  "sourceRevision": "working tree based on 552a51a",
+  "createdAt": "2026-09-29T00:55:09.189Z",
+  "method": "Chromium viewport screenshot with the overview shifted below the sticky site header",
+  "captures": [
+    {
+      "file": "artifacts/visual/issue-99-increment-3/hms-cloudflare-en-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 70867,
+      "sha256": "cea1b9c64a9ce5e20a23c00f571528c93394aa58d90df4f74535dbe711367dbd"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/hms-cloudflare-en-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 108766,
+      "sha256": "5243028ef1acaf8756bb0ef56b85b6161aec8fcb1336728d59f75d229591eef5"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/hms-cloudflare-es-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 67041,
+      "sha256": "eb769da67501391cc0af85855373eaf87e9ce9f04c94624f90456a6073b64692"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/hms-cloudflare-es-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 102427,
+      "sha256": "203aec79c874c53692ae21bad9f81abdb5c61a018a95806e6dc18506c5910c12"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/alquileres-uspa-en-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 72210,
+      "sha256": "2582d13d095540337c0988fecad787834a59db5b22d24df92bbe96bb3817c87f"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/alquileres-uspa-en-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 106597,
+      "sha256": "c9e6f2a34f62ef52bdf0952b19a587a6b0c77fe8f13537b693feb80953cee724"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/alquileres-uspa-es-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 74329,
+      "sha256": "7a5c431c5d2de0d6ac3e4067ab6f0478e4b6b36adb9fe41e90548bf46cbcba8b"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/alquileres-uspa-es-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 107496,
+      "sha256": "a7868f605b89cbf134b6173074b2061576a51bd568e82c59ac4bc1ef80bbb246"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/ai-commerce-platform-en-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 71856,
+      "sha256": "e488469781895e6bcf5dab0c84ddc75a207e55545d01691ef16128005e43bcd1"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/ai-commerce-platform-en-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 108790,
+      "sha256": "14202842e635f8148fb0315f492ca1ae1b235cd00d41bf6bdafa1501dd17b018"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/ai-commerce-platform-es-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 71333,
+      "sha256": "9da55c1a2cea72595bd5c98ab20cde8d6ccca3a4b5cc695203a51b4edf1082fa"
+    },
+    {
+      "file": "artifacts/visual/issue-99-increment-3/ai-commerce-platform-es-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 110360,
+      "sha256": "05177be01bc042e1562c1d8a16a384d195443135848fced1d6693ea496b76b40"
+    }
+  ]
+}
