@@ -1,0 +1,50 @@
+---
+import type { ProjectQuickScanCopy } from '../data/projectQuickScans';
+
+interface Props {
+  id: string;
+  copy: ProjectQuickScanCopy;
+  repository: string | null;
+  demo: string | null;
+  caseStudyTarget: string;
+}
+
+const { id, copy, repository, demo, caseStudyTarget } = Astro.props;
+---
+
+<section id={id} class="case-quick-scan section" aria-labelledby={`${id}-title`}>
+  <div class="container case-quick-scan-inner">
+    <header class="case-quick-scan-heading">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2 id={`${id}-title`}>{copy.title}</h2>
+    </header>
+    <dl class="case-quick-scan-grid">
+      <div>
+        <dt>{copy.problemLabel}</dt>
+        <dd>{copy.problem}</dd>
+      </div>
+      <div>
+        <dt>{copy.systemLabel}</dt>
+        <dd>{copy.system}</dd>
+      </div>
+      <div>
+        <dt>{copy.evidenceLabel}</dt>
+        <dd>{copy.evidence}</dd>
+      </div>
+      <div>
+        <dt>{copy.limitationsLabel}</dt>
+        <dd>{copy.limitations}</dd>
+      </div>
+    </dl>
+<div class="case-quick-scan-links">
+      {repository && <a class="button button-secondary" href={repository} target="_blank" rel="noopener noreferrer">{copy.repositoryLabel}</a>}
+      <div class="case-quick-scan-demo">
+        <span>{copy.demoLabel}</span>
+        {demo
+          ? <a href={demo} target="_blank" rel="noopener noreferrer">{demo}</a>
+          : <span>{copy.noPublicDemo}</span>}
+      </div>
+      <a class="button button-primary" href={caseStudyTarget}>{copy.continue}</a>
+    </div>
+  </div>
+</section>

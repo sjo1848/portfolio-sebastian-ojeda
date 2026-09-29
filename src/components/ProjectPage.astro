@@ -2,10 +2,12 @@
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseStudyQuickScan from './CaseStudyQuickScan.astro';
 import EvidenceGallery from './EvidenceGallery';
 import ResponsiveMediaViewer from './ResponsiveMediaViewer';
 import CaseStudyContents from './CaseStudyContents';
 import { getProjectMedia } from '../data/projectMedia';
+import { getProjectQuickScan } from '../data/projectQuickScans';
 import {
   copyByLanguage,
   siteByLanguage,
@@ -26,9 +28,13 @@ interface Props {
 const { project, lang } = Astro.props;
 const { Content, headings } = await render(project);
 const { data } = project;
+const quickScanTarget = headings[0]?.slug
+  ? `#${headings[0].slug}`
+  : `#project-content-${data.slug}`;
 const media = getProjectMedia(data.slug);
 const cover = media?.cover ?? null;
 const gallery = media?.gallery ?? [];
+const quickScan = getProjectQuickScan(data.slug, lang);
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
 const galleryRootId = `gallery-items-${data.slug}`;
@@ -150,6 +156,17 @@ const projectSchema = {
         </aside>
       </div>
     </header>
+    {
+      quickScan && (
+        <CaseStudyQuickScan
+          id={`case-quick-scan-${data.slug}`}
+          copy={quickScan}
+          repository={data.repository}
+          demo={data.demo}
+          caseStudyTarget={quickScanTarget}
+        />
+      )
+    }
     {
       gallery.length > 0 && (
         <section
