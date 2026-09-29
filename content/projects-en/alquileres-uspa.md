@@ -19,8 +19,6 @@ stack:
   - PostgreSQL
   - Vitest
 evidenceNeeded:
-  - Public property catalog
-  - Public listing with availability
   - Review and publication workflow
   - Direct contact and administrative audit
 ---
@@ -86,6 +84,6 @@ The product core is implemented and remains in active development. The platform 
 
 ## Evidence and limits
 
-Available evidence is in the repository, automated tests, and documented case study. A public verifiable deployment and final visual evidence for the catalog, listing detail, review/publication, and administrative audit remain pending.
+Available evidence is in the repository, automated tests, and documented case study. Reproducible captures of the catalog and a public listing with availability, generated with synthetic data, appear above. A verifiable public deployment and visual walkthroughs for review/publication, direct contact, and administrative audit remain pending.
 
 The current scope **does not include** reservations, payments, realtime flows, notifications, full tourism operations, or a public production deployment. The demo therefore remains unset and the project is presented as active development rather than a finished production product.
