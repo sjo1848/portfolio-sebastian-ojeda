@@ -79,8 +79,8 @@ The generated CSS asset names and raw sizes also match I4: Home’s linked style
 
 ## Independent gates
 
-- Independent Critic — pending final review of the complete Issue #99 evidence and I6 record.
-- Integration Review — pending final review of the complete Issue #99 evidence and I6 record.
+- Independent Critic — **PASS**. Confirmed the disclosed local Mobile WebKit contention failures, 8/8 focused rerun, two hosted identical-tree passes, Lighthouse aggregation/raw sample caveat, visual hashes, and scope/evidence honesty.
+- Integration Review — **PASS**. Confirmed hierarchy and status/evidence coherence, bilingual/SEO integrity, preservation of technical depth and secondary cases, unchanged bundle/style outputs, and adequate disclosure of Lighthouse variability and field-CWV limits.
 
 ## Release handoff
 
