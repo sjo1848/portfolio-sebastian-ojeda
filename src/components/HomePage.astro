@@ -7,7 +7,6 @@ import {
   capabilityGroupsByLanguage,
   copyByLanguage,
   methodPhasesByLanguage,
-  processStepsByLanguage,
   siteByLanguage,
   type Language,
 } from '../data/site';
@@ -28,7 +27,6 @@ const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang].home;
 const storyCopy = portfolioStoriesByLanguage[lang];
 const humanStory = humanStoryByLanguage[lang];
-const processSteps = processStepsByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
 const brandHero = lang === 'es'
@@ -93,9 +91,22 @@ const brandHero = lang === 'es'
         <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
       </div>
       <div class="capability-grid">
-        {capabilityGroups.map((group) => (
-          <article><h3>{group.title}</h3><p>{group.description}</p></article>
-        ))}
+        {capabilityGroups.map((group) => {
+          const linkedProofs = group.proofSlugs.flatMap((slug) => {
+            const project = primaryProjects.find((entry) => entry.data.slug === slug);
+            return project ? [{ project, href: `${getProjectPath(lang, slug)}#case-quick-scan-${slug}` }] : [];
+          });
+          return (
+            <article>
+              <h3>{group.title}</h3>
+              <p>{group.description}</p>
+              <p class="capability-proof-links">
+                <span>{copy.capabilityProofLabel}:</span>{' '}
+                {linkedProofs.map(({ project, href }) => <a href={href}>{project.data.title}</a>)}
+              </p>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -107,7 +118,12 @@ const brandHero = lang === 'es'
         <h2 id="experience-title">{copy.experienceTitle}</h2>
       </div>
       <div class="reading-column">
-        {copy.experienceParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {copy.experienceParagraphs.map((paragraph, index) => (
+          <article class="experience-point">
+            <h3>{copy.experienceLabels[index]}</h3>
+            <p>{paragraph}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -119,24 +135,27 @@ const brandHero = lang === 'es'
         <h2 id="process-title">{copy.processTitle}</h2>
         <p>{copy.processIntro}</p>
       </div>
-      <ol class="method-flow" aria-label={copy.processTitle}>
-        {methodPhases.map((phase, index) => (
+      <ol class="quick-method-grid" aria-label={copy.processTitle}>
+        {copy.quickMethodSteps.map((step, index) => (
           <li>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{phase.name}</strong>
-            <small>{phase.description}</small>
+            <strong>{step.title}</strong>
+            <small>{step.description}</small>
           </li>
         ))}
       </ol>
-      <ol class="process-grid">
-        {processSteps.map((step, index) => (
-          <li>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <h3>{step.title}</h3>
-            <p>{step.description}</p>
-          </li>
-        ))}
-      </ol>
+      <details class="full-method-details">
+        <summary>{copy.fullMethodSummary}</summary>
+        <ol class="method-flow">
+          {methodPhases.map((phase, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <strong>{phase.name}</strong>
+              <small>{phase.description}</small>
+            </li>
+          ))}
+        </ol>
+      </details>
     </div>
   </section>
 
@@ -194,6 +213,22 @@ const brandHero = lang === 'es'
 </BaseLayout>
 
 <style>
+  .capability-proof-links { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-top: 1rem; font-size: 0.9rem; }
+  .capability-proof-links > span:first-child { color: var(--muted); }
+  .capability-proof-links a { color: var(--night-text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+  .experience-point + .experience-point { margin-top: 1.5rem; }
+  .experience-point h3 { margin-bottom: 0.4rem; font-size: 1rem; }
+  .experience-point p { margin-top: 0; }
+  .quick-method-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+  .quick-method-grid li { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 0.25rem 0.75rem; border-top: 2px solid var(--accent); padding: 1rem 0 0.5rem; }
+  .quick-method-grid li > span { color: var(--accent-strong); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-weight: 750; }
+  .quick-method-grid strong { font-size: 1.05rem; }
+  .quick-method-grid small { grid-column: 2; color: var(--muted); font-size: 0.9rem; }
+  .full-method-details { border-top: 1px solid var(--line); padding-top: 1rem; }
+  .full-method-details summary { min-height: 2.8rem; width: fit-content; display: flex; align-items: center; color: var(--accent-strong); font-weight: 750; cursor: pointer; }
+  .full-method-details[open] .method-flow { margin-top: 1.25rem; }
+  .full-method-details summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
   .hero {
     padding-block: clamp(2.75rem, 5vw, 4.5rem);
   }
@@ -209,6 +244,10 @@ const brandHero = lang === 'es'
   .brand-headline {
     max-width: 15ch;
     font-size: clamp(3.25rem, 7vw, 5.25rem);
+  }
+
+  @media (min-width: 48rem) {
+    .quick-method-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
   .hero-proof-links {

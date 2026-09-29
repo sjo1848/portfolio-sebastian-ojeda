@@ -91,7 +91,15 @@ export const copyByLanguage = {
       processEyebrow: 'Método',
       processTitle: 'Construcción verificable de sistemas end-to-end',
       processIntro:
-        'Project Method convierte cada fase en un resultado revisable: parte del problema y la evidencia, hace explícitas arquitectura y autoridad, y usa automatización y agentes sin ocultar decisiones críticas.',
+        'Comprender el dominio, construir una solución proporcional y verificar sus límites. Project Method conserva el detalle de cada fase para una revisión más profunda.',
+      quickMethodSteps: [
+        { title: 'Descubrir', description: 'Entender el dominio, las restricciones, las fuentes de verdad y quién tiene autoridad.' },
+        { title: 'Construir', description: 'Implementar backend, interfaces, datos e integraciones con una arquitectura proporcional.' },
+        { title: 'Verificar', description: 'Validar calidad, seguridad, accesibilidad, operación y límites con evidencia revisable.' },
+      ],
+      fullMethodSummary: 'Ver las ocho fases de Project Method',
+      experienceLabels: ['Experiencia operativa', 'Aplicación actual'],
+      capabilityProofLabel: 'Evidencia en',
       capabilitiesEyebrow: 'Capacidades',
       capabilitiesTitle: 'Full-stack con backend, datos, cloud e IA aplicada',
       experienceEyebrow: 'Contexto operativo',
@@ -161,7 +169,15 @@ export const copyByLanguage = {
       processEyebrow: 'Method',
       processTitle: 'Verifiable end-to-end system delivery',
       processIntro:
-        'Project Method turns every phase into a reviewable outcome: it starts from the problem and evidence, makes architecture and authority explicit, and uses automation and agents without hiding critical decisions.',
+        'Understand the domain, build a proportional solution, and verify its boundaries. Project Method preserves phase-by-phase detail for a deeper technical review.',
+      quickMethodSteps: [
+        { title: 'Discover', description: 'Understand the domain, constraints, sources of truth and who holds authority.' },
+        { title: 'Build', description: 'Implement backend services, interfaces, data and integrations with proportional architecture.' },
+        { title: 'Verify', description: 'Check quality, security, accessibility, operations and limits with reviewable evidence.' },
+      ],
+      fullMethodSummary: 'View the eight Project Method phases',
+      experienceLabels: ['Operational experience', 'How it informs my work'],
+      capabilityProofLabel: 'Evidence in',
       capabilitiesEyebrow: 'Capabilities',
       capabilitiesTitle: 'Full-stack engineering across backend, data, cloud and applied AI',
       experienceEyebrow: 'Operational context',
@@ -204,53 +220,6 @@ export const copyByLanguage = {
   },
 } as const;
 
-export const processStepsByLanguage = {
-  es: [
-    {
-      title: 'Entender el dominio',
-      description: 'Identifico usuarios, procesos, restricciones, fuentes de verdad y riesgos antes de elegir una solución técnica o incorporar IA.',
-    },
-    {
-      title: 'Diseñar autoridad y flujo',
-      description: 'Defino estados, responsabilidades, tools, permisos, datos y Human Gates para separar interpretación de autoridad operacional.',
-    },
-    {
-      title: 'Construir el sistema',
-      description: 'Implemento backend, interfaces, persistencia, integraciones, automatización y componentes AI/agentic con una arquitectura proporcional.',
-    },
-    {
-      title: 'Evaluar y validar',
-      description: 'Integro tests, seguridad, evaluación adversarial, accesibilidad, UX y revisión independiente dentro del desarrollo.',
-    },
-    {
-      title: 'Preparar la operación',
-      description: 'Documento, automatizo controles y considero telemetría, costo, despliegue, fallback, recuperación y aceptación humana.',
-    },
-  ],
-  en: [
-    {
-      title: 'Understand the domain',
-      description: 'I identify users, processes, constraints, sources of truth and risks before choosing a technical solution or adding AI.',
-    },
-    {
-      title: 'Design authority and flow',
-      description: 'I define states, responsibilities, tools, permissions, data and Human Gates to separate interpretation from operational authority.',
-    },
-    {
-      title: 'Build the system',
-      description: 'I implement backend services, interfaces, persistence, integrations, automation and AI/agentic components with proportional architecture.',
-    },
-    {
-      title: 'Evaluate and validate',
-      description: 'I integrate testing, security, adversarial evaluation, accessibility, UX and independent review into development.',
-    },
-    {
-      title: 'Prepare operations',
-      description: 'I document, automate controls and consider telemetry, cost, deployment, fallback, recovery and human acceptance.',
-    },
-  ],
-} as const;
-
 export const methodPhasesByLanguage = {
   es: [
     { name: 'IDEA', description: 'Hipótesis clara' },
@@ -279,44 +248,54 @@ export const capabilityGroupsByLanguage = {
     {
       title: 'Backend y arquitectura',
       description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, APIs REST, OpenAPI, autenticación, RBAC y modelado de dominio.',
+      proofSlugs: ['hms-cloudflare', 'alquileres-uspa'],
     },
     {
       title: 'Interfaces web y móviles',
       description: 'React, React Native, Vue, Astro y TypeScript con foco en flujos operativos, accesibilidad y responsive design.',
+      proofSlugs: ['alquileres-uspa'],
     },
     {
       title: 'Datos, cloud e integración',
       description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis y SAP PI/PO.',
+      proofSlugs: ['hms-cloudflare'],
     },
     {
       title: 'IA y sistemas agentic',
       description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, contexto confiable, evaluación, telemetría y fallback.',
+      proofSlugs: ['ai-commerce-platform'],
     },
     {
       title: 'Calidad y operación',
       description: 'GitHub Actions, Playwright, Vitest, E2E, seguridad, observabilidad, recovery, CI/CD y evidence gates.',
+      proofSlugs: ['hms-cloudflare', 'ai-commerce-platform'],
     },
   ],
   en: [
     {
       title: 'Backend and architecture',
       description: 'TypeScript, Node.js, Rust, Axum, NestJS, Hono, REST APIs, OpenAPI, authentication, RBAC and domain modeling.',
+      proofSlugs: ['hms-cloudflare', 'alquileres-uspa'],
     },
     {
       title: 'Web and mobile interfaces',
       description: 'React, React Native, Vue, Astro and TypeScript focused on operational workflows, accessibility and responsive design.',
+      proofSlugs: ['alquileres-uspa'],
     },
     {
       title: 'Data, cloud and integration',
       description: 'PostgreSQL, SQLx, Prisma, D1/SQLite, Cloudflare Workers, Docker, SAP Basis and SAP PI/PO.',
+      proofSlugs: ['hms-cloudflare'],
     },
     {
       title: 'AI and agentic systems',
       description: 'LLMs, model routing, tool calling, Human-in-the-Loop, policies, trusted context, evaluation, telemetry and fallback.',
+      proofSlugs: ['ai-commerce-platform'],
     },
     {
       title: 'Quality and operations',
       description: 'GitHub Actions, Playwright, Vitest, E2E, security, observability, recovery, CI/CD and evidence gates.',
+      proofSlugs: ['hms-cloudflare', 'ai-commerce-platform'],
     },
   ],
 } as const;
@@ -341,5 +320,4 @@ export function getAlternatePath(pathname: string, language: Language) {
 }
 
 export const site = siteByLanguage.es;
-export const processSteps = processStepsByLanguage.es;
 export const capabilityGroups = capabilityGroupsByLanguage.es;
