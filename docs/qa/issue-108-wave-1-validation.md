@@ -73,22 +73,53 @@ During rework, a separate stress run configured to fail if any single sample fel
 
 Playwright screenshots: [`output/playwright/issue-108-wave-1/`](../../output/playwright/issue-108-wave-1/). This directory contains ProjectCard CTA states in both locales at 360/390/430 px and lead quick-scan states in both locales at 390/1440 px. `SHA256SUMS` records their exact hashes. Representative screens were visually inspected; the compact 390 px CTA capture includes the card summary, role, stack and visible evidence action. They preserve Stone / Andes Copper styling and do not substitute for product acceptance or production evidence.
 
-## Release verification — pending
+## Release verification — complete with accepted residual CDN risk
 
-Release/deployment checks must be added after integration. Required production host: `https://sebastian-ojeda.pages.dev`.
+Production host: `https://sebastian-ojeda.pages.dev`.
 
-- Former UspaYa image path responses (all must be 404/410): pending.
-- UspaYa case study EN/ES HTTP 200 and repository links intact: pending.
-- Priority Home and lead-case routes deployed: pending.
-- Production browser console/hydration smoke check: pending.
-- Release commit / deployment identifier: pending.
-- Rollback: revert the Wave 1 merge commit; this restores the prior artifact state. Reinstating UspaYa assets requires a new privacy/provenance review and explicit approval, not rollback automation.
+- Release commit: `266361656389481c0691ae08d03353c21e9e16a7` (PR #111 merge commit).
+- Production deployment: Cloudflare Pages production deployment for `main`, source `2663616`, deployment `https://e605ed91.sebastian-ojeda.pages.dev`; canonical host remains `sebastian-ojeda.pages.dev`.
+- The four PNGs are deleted from the merged source tree. The Release QA/privacy validators passed and verify withdrawn paths are absent from source and the generated static build. The existing vendor guard also prevents them from being copied back into the build.
+- The current origin returns the withdrawn paths as absent when the cache is bypassed. Exact, unmodified public URLs have also been observed returning `200 HIT` at some Cloudflare edges, while other edge responses return `404`. Example exact-path probes on 2026-09-29 at 20:17:31–34 UTC returned all four `200 HIT`; probes at 20:23:43–46 UTC returned `200 HIT` for courier and operations and `404` for customer and merchant. These observations are intentionally preserved as mixed/stale edge-cache state; they are not reported as four `404/410` responses.
+- Residual risk classification: **Residual CDN cache exposure — explicitly accepted by Product Owner**. On 2026-09-29, the Product Owner accepted that the four former public URLs may continue to return cached `200` from some CDN locations until Cloudflare Pages cache expiry. The Product Owner directed that RELEASE no longer be blocked on natural expiry. No global purge will be run, no permissions will be expanded, and no custom domain or Cloudflare configuration change will be introduced solely for this cleanup. Edge removal depends on natural Cloudflare cache expiration.
+- UspaYa case study EN/ES routes, repository links, the home routes and all three lead-case routes return HTTP 200 on the canonical host. Canonical/`og:url`, alternates, sitemap and robots checks passed. Production smoke testing found zero console errors or warnings on the sampled routes and no hydration regressions.
+- Release readiness: **PASS** on PR #111 (run [36603431955](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36603431955)); Portfolio CI: **PASS** on merged main commit `2663616` (post-merge run [36604835354](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36604835354)). The post-merge run completed Release QA, responsive/accessibility browser matrix, Lighthouse budgets and evidence uploads successfully. PR #111's final Portfolio CI run [36603431930](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36603431930) also passed before merge.
+- Browser matrix: **PASS** — Chromium, Firefox, WebKit, Mobile Chromium and Mobile WebKit; responsive coverage includes 360, 390, 430, 768, 1024 and 1440 px where configured. The complete local matrix recorded 512 passed, 203 profile-specific skipped, zero failed; PR and post-merge CI ran the required responsive/accessibility suite successfully.
+- Lighthouse: **PASS** — three samples on each of eight ES/EN priority routes, using the unchanged thresholds and the documented median aggregation. All category gates passed; the full results and report files are recorded above and in `artifacts/lighthouse/issue-108-wave-1/`.
+- QA: **PASS** — `npm run qa:release`, source/build privacy validators, SEO/canonical, social metadata, sitemap, accessibility/UX, content and static-build checks passed in the final candidate and post-merge CI.
+- Rollback: revert the Wave 1 merge commit. Reinstating UspaYa assets requires new synthetic/redacted evidence with reproducible provenance and privacy review; rollback automation must not restore withdrawn files.
+
+The accepted CDN exposure is the sole material release limitation. No additional periodic probes or Cloudflare changes are authorized or planned after this closeout.
 
 ## Independent reviews
 
-- Independent Critic: **PASS**. The reviewer checked the final Lighthouse matrix and report; the `demo` field/schema cleanup; all nine proof records; UspaYa source/build removal and preserved case/repository links; lead/secondary roster; and the browser/accessibility/budget evidence. The reviewer confirmed the separately disclosed stress-run result is distinct from the passing final matrix.
-- Integration Review: **PASS**. The reviewer confirmed the proof registry is the sole proof-CTA source, lifecycle/status is separate, all nine records and locale metadata align, only the three approved projects are featured, six secondary cases remain accessible, UspaYa files/vendor restoration are guarded, and no external repository, dependency, client JS, hydration, motion, branding or SEO configuration was added. Both independent reviews agree only post-merge production URL and deployed browser checks remain.
+- Independent Critic final closeout: **PASS**. The reviewer confirmed the Product Owner's dated risk acceptance is recorded as the release authority; the report preserves observed `200 HIT` results without claiming four `404/410`s; source/build removal, CI links, LEARN and the no-more-probing boundary are accurately represented.
+- Integration Review final closeout: **PASS**. The reviewer confirmed RELEASE/LEARN are coherent with the explicit risk acceptance, source/build absence is distinguished from stale edge responses, no unauthorized Cloudflare changes or additional scope are introduced, and Waves 2–3 remain unauthorized.
 
-## LEARN — pending deployment
+## LEARN — complete (2026-09-29)
 
-Assess recruiter clarity and proof discoverability, evidence trust/privacy, accessibility, lab performance/JS cost and maintainability against the discovery hypothesis after production verification. Field CWV stays `NOT_YET_OBSERVABLE` absent sufficient real-user evidence. No Wave 2 or Wave 3 scope is opened by this closeout.
+### Hypothesis
+
+Using already verified evidence with explicit proof readiness and state-based CTAs can improve recruiter understanding without weakening truthful claims, privacy, performance or the Astro-first architecture.
+
+### Observed outcome
+
+- The three approved lead cases now have a clear and consistent evidence hierarchy; all six secondary cases remain accessible.
+- Proof readiness, preferred/current proof modes, provenance, limitations and verified proof destinations are explicit and separate from project lifecycle/status. Generic “Demo” CTAs and the duplicate legacy demo field were removed.
+- Removing UspaYa's four unproven public images closed the source/build exposure. Cloudflare edge caches can still serve some old URLs; the Product Owner explicitly accepted this temporary residual risk to avoid disproportionate account/configuration changes.
+- The portfolio remained Astro-first. Proof metadata added no client JavaScript or hydrated island; measured route JS delta was 0 B and existing budgets remained satisfied.
+- Accessibility, responsive/browser, SEO and Lighthouse gates passed. Field Core Web Vitals remain `NOT_YET_OBSERVABLE`; Lighthouse lab results are not represented as field CWV.
+- The project evidence strategy and Wave 1 implementation produced a maintainable model and evidence trail without creating demos, changing external projects, or introducing a motion dependency.
+
+### Learning and limits
+
+- What worked: state-based, provenance-bearing proof links help distinguish repository/case-study evidence from product demos and walkthroughs; validation now prevents withdrawn UspaYa assets and obsolete proof metadata from returning unnoticed.
+- Remaining accepted limitation: CDN edge expiry is asynchronous; some exact UspaYa asset URLs may temporarily return `200 HIT`. This is an explicitly accepted risk, not a claim that edge removal is complete.
+- Not yet observable: recruiter conversion impact and field CWV. No analytics or RUM was added to manufacture measurements.
+- Do not expand into Wave 2 or Wave 3 based on this closeout. Future evidence changes require their own authorization and the relevant project's independent release gates.
+
+## Final status
+
+- RELEASE: **PASS with explicitly accepted residual CDN cache exposure**.
+- LEARN: **PASS / complete**.
+- Issue #108: ready to close after this report is merged and the accepted decision plus final PASS verdicts are recorded in the issue.
