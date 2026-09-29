@@ -19,8 +19,6 @@ stack:
   - PostgreSQL
   - Vitest
 evidenceNeeded:
-  - Catálogo público de alojamientos
-  - Ficha pública con disponibilidad
   - Flujo de revisión y publicación
   - Contacto directo y auditoría administrativa
 ---
@@ -86,6 +84,6 @@ El núcleo del producto está implementado y en desarrollo activo. La plataforma
 
 ## Evidencia y límites
 
-La evidencia disponible está en el repositorio, las pruebas y el caso documentado. Siguen pendientes una instancia pública verificable y evidencia visual definitiva de catálogo, ficha pública, revisión/publicación y auditoría administrativa.
+La evidencia disponible está en el repositorio, las pruebas y el caso documentado. Las capturas reproducibles del catálogo y una ficha pública con disponibilidad, generadas con datos sintéticos, se muestran arriba. Siguen pendientes una instancia pública verificable y recorridos visuales de revisión/publicación, contacto directo y auditoría administrativa.
 
 El alcance actual **no incluye** reservas, pagos, realtime, notificaciones, turismo completo ni despliegue productivo público. Por eso la demo permanece sin URL y el proyecto se presenta como desarrollo activo, no como producto terminado en producción.

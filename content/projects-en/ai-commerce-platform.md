@@ -6,7 +6,7 @@ featured: true
 category: Agent connected to a real operational system
 summary: LLM and Agent Core connected to HMS through governed tools, policies, HITL, auditability and idempotency without handing operational authority to the model.
 status: active-development
-statusLabel: Phase 2.6 under agentic validation
+statusLabel: Experimental prototype · Phase 2.6 under validation
 year: 2026
 role: Product architecture, development, evaluation and orchestration
 repository: https://github.com/sjo1848/ai-commerce-platform
