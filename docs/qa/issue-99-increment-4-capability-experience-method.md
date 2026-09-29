@@ -57,6 +57,7 @@ Affected routes are Home EN (`/`) and Home ES (`/es/`). Lead case routes are des
 - Page output remains static except for the pre-existing CopyAction island. Method details and capability links add no React islands, hydration, or client JavaScript.
 - Compared clean I3 commit `3759398` and the I4 build: Home linked CSS is 60,270 B raw / 12,607 B gzip at I3 and 62,433 B raw / 12,930 B gzip at I4 (**+2,163 B raw / +323 B gzip**). A representative case-study route is unchanged at 54,269 B raw / 11,145 B gzip. Generated/referenced client JavaScript is unchanged; client-JS delta is **0 B**. Existing Home and case JS budget headroom from I3 remains unchanged.
 - No performance or accessibility threshold was changed. Field CWV remain `NOT_YET_OBSERVABLE`.
+- Hosted release QA, full responsive/accessibility regression, Lighthouse budget assertions, responsive visual capture, secret scanning, and release-contract checks: **PASS** in runs `36510467184` and `36510440282`. Lighthouse ran three samples for Home EN/ES and HMS EN; all existing assertions passed. [Lighthouse reports](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36510467184/artifacts/11008714883) and [hosted browser evidence](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36510467184/artifacts/11008574999) are retained by CI.
 
 ## Visual evidence
 
@@ -77,4 +78,4 @@ Playwright CLI viewport captures use a local built preview at 390 × 844, 768 ×
 
 - Independent Critic: **PASS**. Confirmed all five groups map to the I1-approved lead-case evidence; the original experience copy and all method phases are preserved; native no-JS interaction, EN/ES parity, image hashes, and the zero-JS delta are supported. No unapproved CV, LinkedIn, demo, or professional claim was added.
 - Integration Review: **PASS**. Confirmed coherence with I2/I3, static Astro delivery, accessible native disclosure, unchanged human story and project routes, no duplicate competing process, and local QA/browser/axe/no-JS validation.
-- Hosted release QA/Lighthouse: **PENDING**. Deployment verification is reserved for I7 RELEASE.
+- Hosted release QA/Lighthouse: **PASS** in both PR runs, with no threshold changes. Deployment verification is reserved for I7 RELEASE.
