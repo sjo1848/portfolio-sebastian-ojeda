@@ -1,5 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+import nodePath from 'node:path';
 
 const routes = [
   {
@@ -14,8 +16,9 @@ const routes = [
     esStatus: 'Migración validada técnicamente; aceptación separada',
     enEvidence: /Local automated and browser regressions/,
     esEvidence: /regresiones automatizadas y de navegador locales/,
-    enLimits: /Remote Product Acceptance/,
+    enLimits: /Remote Product Acceptance/i,
     esLimits: /aceptación remota/,
+    proofAnchor: { en: '#visual-evidence', es: '#evidencia-visual' },
   },
   {
     slug: 'alquileres-uspa',
@@ -31,6 +34,7 @@ const routes = [
     esEvidence: /capturas reproducibles del catálogo y las propiedades con datos sintéticos/,
     enLimits: /There is no public deployment/,
     esLimits: /No hay despliegue público/,
+    proofAnchor: { en: '#gallery-alquileres-uspa', es: '#gallery-alquileres-uspa' },
   },
   {
     slug: 'ai-commerce-platform',
@@ -46,13 +50,14 @@ const routes = [
     esEvidence: /La fase 2.5 documenta pruebas controladas en staging de HMS/,
     enLimits: /Phase 2.6 remains under evaluation/,
     esLimits: /La fase 2.6 continúa en evaluación/,
+    proofAnchor: null,
   },
 ] as const;
 
 for (const route of routes) {
   for (const [lang, path] of [['en', route.en], ['es', route.es]] as const) {
     for (const width of [390, 1440]) {
-      test(`${route.title} ${lang} quick scan is complete and readable at ${width}px`, async ({ page }) => {
+      test(`${route.title} ${lang} quick scan is complete and readable at ${width}px`, async ({ page }, testInfo) => {
         await page.setViewportSize({ width, height: 900 });
         const messages: string[] = [];
         page.on('console', (message) => {
@@ -74,9 +79,28 @@ for (const route of routes) {
         await expect(page.locator('.project-meta dd').nth(1)).toHaveText(lang === 'en' ? route.enRole : route.esRole);
         await expect(quickScan.locator('dd').nth(2)).toContainText(lang === 'en' ? route.enEvidence : route.esEvidence);
         await expect(quickScan.locator('dd').nth(3)).toContainText(lang === 'en' ? route.enLimits : route.esLimits);
-        await expect(quickScan.locator('a[href^="https://github.com/"]')).toHaveAttribute('href', route.repository);
-        await expect(quickScan.locator('.case-quick-scan-demo')).toContainText(lang === 'en' ? 'No public demo link is provided.' : 'No se proporciona un enlace a una demo pública.');
-        await expect(quickScan.locator('.case-quick-scan-demo a')).toHaveCount(0);
+        const repositoryLink = quickScan.locator('a[href^="https://github.com/"]');
+        await expect(repositoryLink).toHaveAttribute('href', route.repository);
+        await expect(repositoryLink).toHaveAccessibleName(lang === 'en' ? 'View GitHub' : 'Ver GitHub');
+        await expect(quickScan.locator('.case-quick-scan-demo')).toHaveCount(0);
+        const proofLink = quickScan.locator('.case-proof-link');
+        if (route.proofAnchor) {
+          await expect(proofLink).toHaveAccessibleName(lang === 'en' ? 'View evidence' : 'Ver evidencia');
+          await expect(proofLink).toHaveAttribute('href', `${path}${route.proofAnchor[lang]}`);
+          const targetId = route.proofAnchor[lang].slice(1);
+          await expect(page.locator(`#${targetId}`)).toHaveCount(1);
+        } else {
+          await expect(proofLink).toHaveCount(0);
+        }
+
+        if (testInfo.project.name === 'chromium') {
+          const outputDir = nodePath.resolve('output/playwright/issue-108-wave-1');
+          await mkdir(outputDir, { recursive: true });
+          await quickScan.screenshot({
+            path: nodePath.join(outputDir, `quick-scan-${route.slug}-${lang}-${width}.png`),
+            animations: 'disabled',
+          });
+        }
         await expect(quickScan.locator('a.button-primary')).toHaveAttribute('href', /^#[a-z0-9-]+$/);
 
         const order = await page.locator('.case-hero, .case-quick-scan, .project-gallery, .content-layout').evaluateAll((nodes) =>

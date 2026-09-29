@@ -2,7 +2,7 @@
 title: HMS Elite
 slug: hms-elite
 order: 1
-featured: true
+featured: false
 category: Plataforma SaaS de gestión hotelera
 summary: Sistema multi-hotel con backend Rust, frontend React, seguridad por capacidades y una estrategia de QA que valida flujos completos.
 status: active-development
@@ -10,7 +10,6 @@ statusLabel: Desarrollo activo
 year: 2026
 role: Análisis de dominio, arquitectura y desarrollo full stack
 repository: https://github.com/sjo1848/hotel-management-system
-demo: null
 stack:
   - Rust
   - Axum

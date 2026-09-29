@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { getHomepageProjectCover } from '../data/homepageProjectCovers';
 import { getProjectMedia } from '../data/projectMedia';
+import { getProofActionLabel, getProjectProof } from '../data/projectProofs';
 import {
   copyByLanguage,
   type Language,
@@ -30,11 +31,17 @@ const {
 } = Astro.props;
 const { data } = project;
 const media = getProjectMedia(data.slug);
+const proof = getProjectProof(data.slug);
 const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const coverIsPortrait = cover ? cover.height > cover.width * 1.15 : false;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
 const projectPath = getProjectPath(lang, data.slug);
+const proofHref = proof?.proofHref?.[lang] ?? null;
+const ctaHref = proofHref ? `${projectPath}${proofHref}` : projectPath;
+const ctaLabel = proofHref && proof
+  ? getProofActionLabel(proof.currentProofMode, lang)
+  : copy.viewCaseStudy;
 const labels = lang === 'es'
   ? {
       role: 'Rol',
@@ -101,8 +108,8 @@ const visibleStack = data.stack.slice(0, variant === 'hero' ? 4 : 3);
       </p>
     </div>
 
-    <a class="project-case-link button button-secondary" href={projectPath}>
-      <span>{copy.viewCaseStudy}</span>
+    <a class="project-case-link button button-secondary" href={ctaHref}>
+      <span>{ctaLabel}</span>
       <span aria-hidden="true">→</span>
     </a>
   </div>

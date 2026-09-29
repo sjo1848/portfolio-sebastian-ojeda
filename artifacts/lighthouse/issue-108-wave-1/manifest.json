@@ -1,0 +1,290 @@
+[
+  {
+    "url": "http://localhost:42861/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_05.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_05.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_24.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_24.report.json",
+    "summary": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_01_15.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_01_15.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_01_32.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_01_32.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_02_04.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_02_04.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_02_19.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_02_19.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_34.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_34.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_48.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_48.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_33.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_33.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_49.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_49.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_04.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_04.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_19.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_19.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_05_08.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_05_08.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_05_21.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_05_21.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_35.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_35.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_49.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_49.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_41.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost--2026_09_29_17_00_41.report.json",
+    "summary": {
+      "performance": 0.92,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_00_58.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_-2026_09_29_17_00_58.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_01_49.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_hms_cloudflare_-2026_09_29_17_01_49.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_03_03.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_hms_cloudflare_-2026_09_29_17_03_03.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_18.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_alquileres_uspa_-2026_09_29_17_03_18.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_35.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_35.report.json",
+    "summary": {
+      "performance": 0.91,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/projects/ai-commerce-platform/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_04_53.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-projects_ai_commerce_platform_-2026_09_29_17_04_53.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:42861/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_06_04.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1/localhost-es_projects_ai_commerce_platform_-2026_09_29_17_06_04.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

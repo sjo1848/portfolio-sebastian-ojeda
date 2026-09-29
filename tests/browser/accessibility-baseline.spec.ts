@@ -8,6 +8,8 @@ const routes = [
   ['hms-es', '/es/projects/hms-cloudflare/'],
   ['alquileres-en', '/projects/alquileres-uspa/'],
   ['alquileres-es', '/es/projects/alquileres-uspa/'],
+  ['uspaya-en', '/projects/uspaya/'],
+  ['uspaya-es', '/es/projects/uspaya/'],
 ] as const;
 
 for (const [name, route] of routes) {

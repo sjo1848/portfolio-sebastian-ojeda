@@ -2,7 +2,6 @@
 set -euo pipefail
 
 mkdir -p public/media/projects/hms-cloudflare
-mkdir -p public/media/projects/uspaya
 mkdir -p public/media/projects/alquileres-uspa
 
 download_png() {
@@ -31,7 +30,6 @@ download_png() {
 }
 
 HMS_COMMIT="dd7d536848708346ca9616e0f54b0fc48ace0b07"
-USPAYA_COMMIT="2abc58a3ea7efb131df248472ea4473d67445760"
 ALQUILERES_COMMIT="5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51"
 
 for file in \
@@ -42,16 +40,6 @@ for file in \
   download_png \
     "https://raw.githubusercontent.com/sjo1848/hms-cloudflare/${HMS_COMMIT}/output/playwright/${file}" \
     "public/media/projects/hms-cloudflare/${file}"
-done
-
-for file in \
-  uspaya-operations-mobile.png \
-  uspaya-customer-mobile.png \
-  uspaya-merchant-mobile.png \
-  uspaya-courier-mobile.png; do
-  download_png \
-    "https://raw.githubusercontent.com/sjo1848/UspaYa/${USPAYA_COMMIT}/docs/media/portfolio/${file}" \
-    "public/media/projects/uspaya/${file}"
 done
 
 download_png \

@@ -1,0 +1,38 @@
+[
+  {
+    "url": "http://localhost:46449/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_04.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_04.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:46449/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_18.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_18.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:46449/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_31.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-108-wave-1-ai-es-diagnostic/localhost-es_projects_ai_commerce_platform_-2026_09_29_16_32_31.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

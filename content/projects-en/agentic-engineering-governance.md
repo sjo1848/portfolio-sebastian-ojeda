@@ -2,7 +2,7 @@
 title: Agentic Engineering Governance
 slug: agentic-engineering-governance
 order: 8
-featured: true
+featured: false
 category: DICS + Project Integrity Kernel
 summary: Two complementary systems for authority, evidence, stale detection, handoffs and context recovery in agent-executed projects.
 status: active-development
@@ -10,7 +10,6 @@ statusLabel: Experimental prototypes under validation
 year: 2026
 role: Applied research, architecture, implementation and evidence-contract design
 repository: null
-demo: null
 stack:
   - Go
   - SQLite

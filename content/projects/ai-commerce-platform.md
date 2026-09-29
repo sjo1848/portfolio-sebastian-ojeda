@@ -10,7 +10,6 @@ statusLabel: Prototipo experimental · fase 2.6 en validación
 year: 2026
 role: Arquitectura, desarrollo, evaluación y orquestación del producto
 repository: https://github.com/sjo1848/ai-commerce-platform
-demo: null
 stack:
   - TypeScript
   - LLMs

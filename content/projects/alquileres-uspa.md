@@ -10,7 +10,6 @@ statusLabel: Desarrollo activo
 year: 2026
 role: Análisis de dominio, arquitectura y desarrollo full stack
 repository: https://github.com/sjo1848/alquileres-uspa
-demo: null
 stack:
   - NestJS
   - Vue
