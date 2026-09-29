@@ -35,10 +35,11 @@ Affected routes: `/` and `/es/`. Linked case routes and their content are unchan
 
 - `npm run qa:release`: **PASS**. Bilingual content/presentation validators, Astro check (56 files, 0 errors/warnings/hints), 22-page static build, social/asset/SEO/UX/build/sitemap checks passed; 20 canonical sitemap URLs.
 - `tests/browser/home-information-hierarchy.spec.ts`, Chromium: **6 passed** (EN/ES × 390/768/1440). Verifies exact role and section order, exactly three lead cards and six additional cards, exact bilingual proof titles/statuses, all quick links ≥44×44 px, and visible email contact.
+- Hosted CI initially found Firefox rounding one 44 px target to 43.99997 px at 768 px. Raised the CSS minimum from 2.75rem to 2.8rem (44.8 px), preserving the target with rounding margin; targeted Firefox recheck: **6/6 passed**. This is bounded technical REWORK, not a product/layout decision.
 - `tests/browser/accessibility-baseline.spec.ts`, Chromium axe WCAG 2.2 AA tags: **12 passed**, including both Home locales at 390 and 1440 px and the six existing priority-route scans; zero violations.
 - `tests/browser/responsive-matrix.spec.ts`, Chromium: **36 passed** over Home/HMS/Alquileres EN/ES at 360/390/430/768/1024/1440 px. No overflow, console errors, or warnings observed. The full multi-browser/mobile profile remains enforced by hosted CI and the later full validation gate.
 - `tests/browser/project-card-mobile.spec.ts`: **12 passed** — Chromium and Mobile WebKit, at 360/390/430 for EN/ES. Its Mobile Chromium profile is intentionally skipped by this pre-existing spec condition; the responsive matrix also checks all six route/width sets in Chromium.
-- Hosted Lighthouse/release QA matrix for this PR: required and pending in the PR checks; existing thresholds remain Performance ≥0.90, Accessibility ≥0.95, Best Practices ≥0.95, SEO ≥0.95. Do not infer a Lighthouse PASS until the hosted run completes.
+- Hosted Lighthouse/release QA matrix for this PR: the two first CI runs failed only on the Firefox 43.99997 px target above; a new run with the CSS fix is required. Existing thresholds remain Performance ≥0.90, Accessibility ≥0.95, Best Practices ≥0.95, SEO ≥0.95. Do not infer a Lighthouse PASS until the hosted run completes.
 - Browser warning about `NO_COLOR` combined with `FORCE_COLOR` appeared in the test runner environment only; the page console checks were empty.
 
 ## Bundle and performance
@@ -64,4 +65,5 @@ Affected routes: `/` and `/es/`. Linked case routes and their content are unchan
 ## Independent gates
 
 - Independent Critic: **PASS** — independently verified the approved order, three/six project split, bilingual role/status index, 44×44 px links, static implementation, and all 48 screenshot paths/hashes. Confirmed no CV, LinkedIn, demo, or unsupported claims were added.
+- Independent Critic re-review of Firefox rounding fix: **PASS** — 2.8rem guarantees 44.8 px minimum, leaves approved scope/behavior intact, and targeted Firefox passes 6/6.
 - Integration Review: **PASS (scope-integrated)** — confirmed visual identity, source-of-truth consistency, all-case discovery, intentional bounded repetition, and JS/performance/accessibility evidence. The reviewer explicitly leaves the hosted release QA/Lighthouse gate pending; this report does not claim that hosted gate has passed.
