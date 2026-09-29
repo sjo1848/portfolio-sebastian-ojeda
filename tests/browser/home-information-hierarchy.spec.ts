@@ -6,7 +6,7 @@ const locales = [
     path: '/',
     role: 'Full-Stack Software Developer',
     proofTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
-    proofStatus: ['Technically validated migration; acceptance remains separate', 'Active development', 'Phase 2.6 under agentic validation'],
+    proofStatus: ['Technically validated migration; acceptance remains separate', 'Active development', 'Experimental prototype · Phase 2.6 under validation'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
   },
   {
@@ -14,7 +14,7 @@ const locales = [
     path: '/es/',
     role: 'Desarrollador de Software Full-Stack',
     proofTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
-    proofStatus: ['Migración validada técnicamente; aceptación separada', 'Desarrollo activo', 'Fase 2.6 en validación agentic'],
+    proofStatus: ['Migración validada técnicamente; aceptación separada', 'Desarrollo activo', 'Prototipo experimental · fase 2.6 en validación'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
   },
 ] as const;

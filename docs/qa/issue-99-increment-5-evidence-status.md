@@ -35,21 +35,22 @@ The Alquileres source snapshot contains only its reproducible synthetic evidence
 
 - `content/projects/alquileres-uspa.md` and `content/projects-en/alquileres-uspa.md`: remove only the two stale screenshot requests and accurately distinguish existing synthetic captures from still-missing workflows/deployment.
 - `content/projects/ai-commerce-platform.md` and `content/projects-en/ai-commerce-platform.md`: align the current phase label with the approved Experimental prototype vocabulary.
-- `tests/browser/case-study-quick-scan.spec.ts`: assert the bilingual experimental-phase labels on the rendered case page. Existing tests continue checking both other lead statuses, bounded Phase 2.5 evidence, no public demo, accessibility, no-JS navigation, and responsive readability.
+- `tests/browser/case-study-quick-scan.spec.ts` and `tests/browser/home-information-hierarchy.spec.ts`: assert the bilingual experimental-phase labels on the case page and Home lead-proof hierarchy. Existing tests continue checking both other lead statuses, bounded Phase 2.5 evidence, no public demo, accessibility, no-JS navigation, and responsive readability.
 
 ## Validation and evidence
 
 - Source inspection: exact Alquileres repository snapshot, evidence documentation/workflow/seed/capture scripts, fixture policy, and image hashes above. AI Commerce status was checked against `.orchestration/STATUS.json` and `README.md` at `05d808f6b16053113d42119705bf42196cc85f4d`; HMS current `main` remains `dd7d536848708346ca9616e0f54b0fc48ace0b07` and its remote-acceptance boundaries remain open.
 - `npm run qa:release`: **PASS**. Content and presentation validators passed; Astro checked 60 files with 0 errors, warnings, or hints; static build produced 22 pages; static assets, social metadata, SEO/structured data, UX/accessibility, build, and 20 canonical sitemap URLs passed.
 - `npx playwright test --config=.playwright-issue-99-i5.config.ts tests/browser/case-study-quick-scan.spec.ts`: **90/90 PASS** over Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit. The suite checked all three lead cases in EN/ES at 390 and 1440 px, asserted the AI experimental status label, ran axe in all rendered browser/viewport states with zero violations, detected no page console/page errors or warnings, and followed all six native case anchors with JavaScript disabled.
+- Independent Critic found one stale assertion in `home-information-hierarchy.spec.ts` that still expected the former AI Commerce status string. Rework updated that Home assertion in both locales; `npx playwright test --config=.playwright-issue-99-i5.config.ts tests/browser/home-information-hierarchy.spec.ts`: **30/30 PASS** across the five browser profiles and 390/768/1440 widths. This was a test expectation fix only; the rendered product change was already covered by the case page test above.
 - The ordinary Playwright config starts an Astro preview command which daemonizes in this environment. To keep browser QA repeatable, a temporary config disabled only its `webServer` launcher while using the running preview built by `qa:release`; that config was removed after tests. The existing runner-only `NO_COLOR`/`FORCE_COLOR` Node notices are environmental and were not browser console output.
 - Eight screenshots cover the Alquileres evidence/limits section and AI Commerce status on both language variants at 390 and 1440 px: [visual evidence and SHA-256 manifest](../../artifacts/visual/issue-99-increment-5/). Mobile captures were inspected for clipping/wrapping. The AI badge wraps onto two lines at 390 px and remains legible. No new CSS, JS, dependency, or hydration was introduced; the source diff only changes static Markdown values/prose and a browser assertion, so I5 client-JS and CSS bundle delta is 0 B. I6 will remeasure the full build budget.
 - Lighthouse: no rendering or asset behavior changed; the increment uses the unchanged thresholds and must pass the PR's hosted release QA/Lighthouse workflow before merge. Field CWV remain `NOT_YET_OBSERVABLE`.
 
 ## Independent gates
 
-- Independent Critic: pending review of the exact committed change and evidence.
-- Integration Review: pending review of the exact committed change and evidence.
+- Independent Critic initial verdict: **REWORK** for the stale Home status assertion. Bounded fix is applied and the affected 30-test five-profile matrix passes; final post-fix verdict is pending.
+- Integration Review initial verdict: **PASS** on the bounded evidence/status change, bilingual labels, retained gaps, and visual captures. It must reconfirm against the rework commit before merge.
 
 ## Scope limits
 
