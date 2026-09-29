@@ -46,7 +46,7 @@ Affected routes: HMS Cloudflare, Alquileres Uspallata, and AI Commerce + HMS in 
 - `tests/browser/case-study-quick-scan.spec.ts`: **90/90 PASS** over Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit. Each of the three cases in both locales is checked at 390 and 1440 px; all 12 desktop/mobile view scans run axe with WCAG 2.2 AA tags and report zero violations.
 - Six locale/case combinations also load with JavaScript disabled, render all four quick-scan fields, and follow the native fragment link to the first detailed heading.
 - Browser page console capture: zero page errors/warnings. Runner-only `NO_COLOR`/`FORCE_COLOR` Node notices do not originate from the pages.
-- Full responsive matrix and Lighthouse budgets remain required hosted PR checks. No threshold was changed. Field CWV remain `NOT_YET_OBSERVABLE`.
+- Hosted CI release/regression and Lighthouse gates: **PASS** in run `36506081837`. The responsive/accessibility browser matrix and its evidence upload passed; Lighthouse ran three samples each for `/`, `/es/`, and `/projects/hms-elite/`, all configured assertions passed, and the Lighthouse artifact was uploaded. No threshold was changed. Field CWV remain `NOT_YET_OBSERVABLE`.
 
 ## Performance
 
@@ -70,4 +70,4 @@ Affected routes: HMS Cloudflare, Alquileres Uspallata, and AI Commerce + HMS in 
 
 - Independent Critic: **PASS**. Verified contract scope, bilingual source-backed scan content, role/status and repo/demo metadata, preservation of full narratives and secondary cases, JS-disabled fragment behavior, screenshot evidence, and the declared client-JS/CSS deltas. Hosted Lighthouse remained pending at review time.
 - Integration Review: **PASS**. Confirmed the scan follows each existing role/status hero and precedes the gallery and full narrative; evidence limits and demo availability are clear; secondary cases and technical depth remain intact; the Astro component adds 0 B client JS. Hosted release QA/Lighthouse remains the final external gate.
-- Hosted release QA / Lighthouse: **PENDING**.
+- Hosted release QA / Lighthouse: **PASS**. Branch checks passed responsive evidence capture, release contract, secret scan, full responsive/accessibility browser matrix, and Lighthouse budget assertions. [Lighthouse artifact](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36506081837/artifacts/11006904190) and [browser evidence artifact](https://github.com/sjo1848/portfolio-sebastian-ojeda/actions/runs/36506081837/artifacts/11007726373).
