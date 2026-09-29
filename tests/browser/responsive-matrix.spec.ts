@@ -61,7 +61,7 @@ for (const route of routes) {
       expect(consoleMessages, `${route.path} console at ${width}px`).toEqual([]);
 
       if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-1');
+        const outputDir = path.resolve('artifacts/visual/issue-99-increment-2');
         await mkdir(outputDir, { recursive: true });
         await page.screenshot({
           path: path.join(outputDir, `${route.name}-${width}x900.png`),

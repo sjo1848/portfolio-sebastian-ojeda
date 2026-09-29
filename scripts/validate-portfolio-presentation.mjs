@@ -25,6 +25,8 @@ const orderedHomeMarkers = [
   'id="capabilities"',
   'id="experience"',
   'id="process"',
+  'id="about"',
+  'id="additional-work"',
   'id="contact"',
 ];
 let previousIndex = -1;
@@ -47,21 +49,27 @@ forbidText(header, 'copy.nav.cv', 'SiteHeader.astro');
 requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automatización'", 'site.ts ES positioning');
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
 requireText(site, "eyebrow: 'Full-stack software developer'", 'site.ts home positioning');
+requireText(home, "headline: 'Full-Stack Software Developer'", 'HomePage.astro EN role headline');
+requireText(home, "headline: 'Desarrollador de Software Full-Stack'", 'HomePage.astro ES role headline');
 
 // Primary work order is intentionally product/full-stack first.
 const expectedStoryOrder = [
   "'hms-cloudflare'",
   "'alquileres-uspa'",
   "'ai-commerce-platform'",
-  "'uspaya'",
 ];
 const primaryBlock = stories.slice(stories.indexOf('primaryStorySlugs'), stories.indexOf('secondaryCaseSlugs'));
+const secondaryBlock = stories.slice(stories.indexOf('secondaryCaseSlugs'));
 previousIndex = -1;
 for (const slug of expectedStoryOrder) {
   const index = primaryBlock.indexOf(slug);
   if (index === -1) failures.push(`portfolioStories.ts: missing primary story ${slug}`);
   if (index <= previousIndex) failures.push(`portfolioStories.ts: primary story order is invalid at ${slug}`);
   previousIndex = index;
+}
+for (const slug of ["'uspaya'", "'gasflow'", "'agentic-engineering-governance'", "'hms-elite'", "'jm-soluciones'", "'taco-loco'"]) {
+  if (!secondaryBlock.includes(slug)) failures.push(`portfolioStories.ts: missing secondary case ${slug}`);
+  if (primaryBlock.includes(slug)) failures.push(`portfolioStories.ts: secondary case ${slug} must not be primary`);
 }
 
 // Selected work is proof-first: one role signal, a reduced stack line and one case-study CTA.

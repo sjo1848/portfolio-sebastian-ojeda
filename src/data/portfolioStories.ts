@@ -4,12 +4,15 @@ export const primaryStorySlugs = [
   'hms-cloudflare',
   'alquileres-uspa',
   'ai-commerce-platform',
-  'uspaya',
 ] as const;
 
 export const secondaryCaseSlugs = [
+  'uspaya',
   'gasflow',
   'agentic-engineering-governance',
+  'hms-elite',
+  'jm-soluciones',
+  'taco-loco',
 ] as const;
 
 export const portfolioStoriesByLanguage = {
@@ -17,21 +20,21 @@ export const portfolioStoriesByLanguage = {
     eyebrow: 'Trabajo seleccionado',
     title: 'Sistemas construidos alrededor de problemas reales',
     intro:
-      'Cuatro casos principales muestran cómo conecto producto, backend, interfaces, datos e integración. Cada caso documenta el problema, las decisiones y la evidencia disponible.',
+      'Tres proyectos con foco backend, mi aporte y la evidencia disponible.',
     secondaryEyebrow: 'Casos complementarios',
     secondaryTitle: 'Más profundidad según el problema',
     secondaryIntro:
-      'GasFlow amplía el trabajo hacia mobile y logística; Agentic Engineering Governance muestra automatización, QA y gobierno de workflows con agentes.',
+      'Otros proyectos complementan el recorrido con trabajo en producto, mobile, logística, sistemas empresariales y automatización.',
   },
   en: {
     eyebrow: 'Selected work',
     title: 'Systems built around real problems',
     intro:
-      'Four primary cases show how I connect product, backend, interfaces, data and integrations. Each case documents the problem, key decisions and available evidence.',
+      'Three backend-oriented projects, my role and the available evidence.',
     secondaryEyebrow: 'Complementary cases',
     secondaryTitle: 'Additional depth depending on the problem',
     secondaryIntro:
-      'GasFlow extends the work into mobile and logistics; Agentic Engineering Governance demonstrates automation, QA and governance for agent-driven workflows.',
+      'Other projects add work across product, mobile, logistics, enterprise systems and automation.',
   },
 } satisfies Record<Language, {
   eyebrow: string;
