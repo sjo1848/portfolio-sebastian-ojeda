@@ -28,9 +28,15 @@ const expectedPrimaryStories = [
   'hms-cloudflare',
   'alquileres-uspa',
   'ai-commerce-platform',
-  'uspaya',
 ];
-const expectedSecondaryCases = ['gasflow', 'agentic-engineering-governance'];
+const expectedSecondaryCases = [
+  'uspaya',
+  'gasflow',
+  'agentic-engineering-governance',
+  'hms-elite',
+  'jm-soluciones',
+  'taco-loco',
+];
 const expectedCvRepositories = [
   'ai-commerce-platform',
   'hotel-management-system',

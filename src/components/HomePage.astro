@@ -13,6 +13,7 @@ import {
 } from '../data/site';
 import { portfolioStoriesByLanguage } from '../data/portfolioStories';
 import { humanStoryByLanguage } from '../data/humanStory';
+import { getProjectPath } from '../data/routing';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -32,48 +33,12 @@ const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
 const brandHero = lang === 'es'
   ? {
-      headline: 'Del proceso al sistema.',
-      lead: 'Construyo software end-to-end para flujos reales: backend, interfaces, datos, integraciones y automatización cuando aporta valor.',
-      approachLabel: 'Cómo trabajo',
-      approachStatement: 'Primero entender. Después construir y verificar.',
-      approachSteps: [
-        {
-          title: 'Descubrir',
-          description: 'Entender el problema, el contexto y qué necesita realmente quien lo usa.',
-        },
-        {
-          title: 'Construir',
-          description: 'Unir backend, interfaces, datos e integraciones en un sistema coherente.',
-        },
-        {
-          title: 'Verificar',
-          description: 'Validar con QA y evidencia que funciona más allá del escenario ideal.',
-        },
-      ],
-      from: 'Problema real',
-      to: 'Sistema verificable',
+      headline: 'Desarrollador de Software Full-Stack',
+      lead: 'Conecto procesos operativos con software end-to-end: backend, datos, integraciones e interfaces.',
     }
   : {
-      headline: 'From workflow to system.',
-      lead: 'I build end-to-end software for real workflows across backend, interfaces, data, integrations and automation when it adds value.',
-      approachLabel: 'How I work',
-      approachStatement: 'Understand first. Then build and verify.',
-      approachSteps: [
-        {
-          title: 'Discover',
-          description: 'Understand the problem, its context and what the person using it actually needs.',
-        },
-        {
-          title: 'Build',
-          description: 'Connect backend, interfaces, data and integrations into one coherent system.',
-        },
-        {
-          title: 'Verify',
-          description: 'Validate with QA and evidence that it works beyond the ideal scenario.',
-        },
-      ],
-      from: 'Real problem',
-      to: 'Verifiable system',
+      headline: 'Full-Stack Software Developer',
+      lead: 'Backend-oriented. I connect operational workflows with end-to-end software across backend, data, integrations and interfaces.',
     };
 ---
 
@@ -81,39 +46,22 @@ const brandHero = lang === 'es'
   <section class="hero section">
     <div class="container hero-grid brand-hero-grid">
       <div class="brand-hero-copy">
-        <p class="eyebrow">{copy.eyebrow}</p>
+        <p class="eyebrow">{lang === 'es' ? 'Perfil profesional' : 'Professional profile'}</p>
         <h1 class="brand-headline">{brandHero.headline}</h1>
         <p class="hero-copy">{brandHero.lead}</p>
-        <p class="hero-context">{copy.context}</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
           <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
-      </div>
-      <aside class="hero-proof approach-panel" aria-label={copy.workflowAria}>
-        <div class="approach-panel-head">
-          <span class="approach-panel-kicker">{brandHero.approachLabel}</span>
-          <p class="approach-panel-statement">{brandHero.approachStatement}</p>
-        </div>
-        <ol class="approach-stages">
-          {brandHero.approachSteps.map((step, index) => (
+        <ul class="hero-proof-links" aria-label={lang === 'es' ? 'Casos principales y estado actual' : 'Lead case studies and current status'}>
+          {primaryProjects.map((project) => (
             <li>
-              <span class="approach-stage-index">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <strong>{step.title}</strong>
-                <p>{step.description}</p>
-              </div>
+              <a href={getProjectPath(lang, project.data.slug)}>{project.data.title}</a>
+              <span>{project.data.statusLabel}</span>
             </li>
           ))}
-        </ol>
-        <div class="approach-path" aria-hidden="true">
-          <span>{brandHero.from}</span>
-          <i></i>
-          <strong>→</strong>
-          <i></i>
-          <span>{brandHero.to}</span>
-        </div>
-      </aside>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -135,29 +83,6 @@ const brandHero = lang === 'es'
         ))}
       </div>
 
-      <div class="secondary-heading">
-        <p class="eyebrow">{storyCopy.secondaryEyebrow}</p>
-        <h2>{storyCopy.secondaryTitle}</h2>
-        <p>{storyCopy.secondaryIntro}</p>
-      </div>
-      <div class="secondary-grid">
-        {secondaryProjects.map((project, index) => (
-          <ProjectCard project={project} lang={lang} displayIndex={index + 5} variant="secondary" />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="section human-story" aria-labelledby="about-title">
-    <div class="container human-story-grid">
-      <div class="human-story-heading">
-        <h2 id="about-title">{humanStory.title}</h2>
-      </div>
-      <div class="human-story-content">
-        <div class="human-story-copy">
-          {humanStory.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-        </div>
-      </div>
     </div>
   </section>
 
@@ -215,6 +140,34 @@ const brandHero = lang === 'es'
     </div>
   </section>
 
+  <section id="about" class="section human-story" aria-labelledby="about-title">
+    <div class="container human-story-grid">
+      <div class="human-story-heading">
+        <h2 id="about-title">{humanStory.title}</h2>
+      </div>
+      <div class="human-story-content">
+        <div class="human-story-copy">
+          {humanStory.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="additional-work" class="section section-surface" aria-labelledby="additional-work-title">
+    <div class="container">
+      <div class="secondary-heading">
+        <p class="eyebrow">{storyCopy.secondaryEyebrow}</p>
+        <h2 id="additional-work-title">{storyCopy.secondaryTitle}</h2>
+        <p>{storyCopy.secondaryIntro}</p>
+      </div>
+      <div class="secondary-grid">
+        {secondaryProjects.map((project, index) => (
+          <ProjectCard project={project} lang={lang} displayIndex={index + 4} variant="secondary" />
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="container contact-panel">
       <div>
@@ -241,6 +194,60 @@ const brandHero = lang === 'es'
 </BaseLayout>
 
 <style>
+  .hero {
+    padding-block: clamp(2.75rem, 5vw, 4.5rem);
+  }
+
+  .brand-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-hero-copy {
+    max-width: 62rem;
+  }
+
+  .brand-headline {
+    max-width: 15ch;
+    font-size: clamp(3.25rem, 7vw, 5.25rem);
+  }
+
+  .hero-proof-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hero-proof-links li {
+    display: grid;
+    align-content: center;
+    gap: 0.2rem;
+    min-height: 2.8rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--accent);
+  }
+
+  .hero-proof-links a {
+    display: flex;
+    min-height: 2.8rem;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 750;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .hero-proof-links span {
+    max-width: 25rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
   #projects {
     position: relative;
     overflow: hidden;
@@ -307,6 +314,32 @@ const brandHero = lang === 'es'
 
     .story-grid :global(.project-card-story:last-child) {
       grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .hero {
+      padding-block: clamp(2.75rem, 8vw, 3.25rem);
+    }
+
+    .brand-headline {
+      max-width: 16ch;
+      font-size: clamp(2.45rem, 10vw, 3.3rem);
+    }
+
+    .hero-proof-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem 0.9rem;
+      margin-top: 1.1rem;
+    }
+
+    .hero-proof-links li:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .hero-proof-links span {
+      font-size: 0.62rem;
     }
   }
 

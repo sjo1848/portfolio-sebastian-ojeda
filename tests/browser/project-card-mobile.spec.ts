@@ -25,10 +25,10 @@ for (const route of routes) {
       await page.goto(route.path, { waitUntil: 'networkidle' });
       await page.locator('#projects').scrollIntoViewIfNeeded();
 
-      const cards = page.locator('#projects article.project-card');
-      await expect(cards).toHaveCount(6);
+      const cards = page.locator('#projects article.project-card, #additional-work article.project-card');
+      await expect(cards).toHaveCount(9);
       for (const variant of variants) {
-      await expect(page.locator(`#projects .${variant}`).first()).toBeVisible();
+      await expect(page.locator(`#projects .${variant}, #additional-work .${variant}`).first()).toBeVisible();
       }
 
       const summaryLengths: number[] = [];
@@ -75,7 +75,7 @@ for (const route of routes) {
 
       const firstCta = cards.first().locator('.project-case-link');
       if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-1');
+        const outputDir = path.resolve('artifacts/visual/issue-99-increment-2');
         await mkdir(outputDir, { recursive: true });
         await firstCta.scrollIntoViewIfNeeded();
         await page.screenshot({

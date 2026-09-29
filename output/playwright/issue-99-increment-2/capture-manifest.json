@@ -1,0 +1,397 @@
+{
+  "initiative": "Issue #99",
+  "increment": "I2 — Home recruiter hierarchy",
+  "sourceRevision": "782365f",
+  "captureTools": {
+    "viewport": "Playwright CLI / Chromium",
+    "responsiveMatrix": "Playwright Test / Chromium",
+    "projectCardCta": "Playwright Test / Chromium and Mobile WebKit"
+  },
+  "captureCount": 48,
+  "captures": [
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/home-en-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 340754,
+      "sha256": "58f5e75717a32c9ebbe0b54265bbe832579234366aac9e710828b36a28600990"
+    },
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/home-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 181406,
+      "sha256": "46277f41795243b7b76fb69ba3d5ec56c0efe22ec183d7e377c0f02cfb06b473"
+    },
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/home-es-1440.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 344367,
+      "sha256": "9b77f14cb8d1b6ac0b2d48b4cda1eecc58c41d145698cb829c62caef392eb9ff"
+    },
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/home-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 191394,
+      "sha256": "a1e432bf023c376cc5ccecc30a94c258116f80e10cd70b0fcbf5a71f24364da3"
+    },
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/lead-cases-en-390.png",
+      "width": 390,
+      "height": 2494,
+      "bytes": 263229,
+      "sha256": "2a5c9cd1dee4891be118707ba6f3a897ddb09a7837e9d97ff23b23b7da62f1a4"
+    },
+    {
+      "group": "viewport",
+      "path": "output/playwright/issue-99-increment-2/lead-cases-es-1440.png",
+      "width": 1440,
+      "height": 1632,
+      "bytes": 422240,
+      "sha256": "22a83c7fe0a632f9c3ec0166abb4ab0f4fcf6ba8c67fbf72f4a64eb694ac7ab8"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 127985,
+      "sha256": "69bc2657a977098e5e3c9ea71e129bf547aeaf6f80423aa3fb20cebcc43fb264"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 146181,
+      "sha256": "b887685cfa78e3c105de1831b1d7b6a42e7978745b3e56987576e00b9e7f2e5b"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 58387,
+      "sha256": "1203accc1c3bf835c3405e5fe99fb0612897882feb3183e2871fb29b201f8d3d"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 60069,
+      "sha256": "75ea06f49190e35dbef462f117f07975d74d38686fe4aeb6fdfb77a85ad24e5d"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 59726,
+      "sha256": "e7d3fe5d57394d2616c4b4341a1c506274799131baf0281f98988fff1e145277"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-en-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 120119,
+      "sha256": "e58d0457b0a44e9a9fd6fabf42889e2cccf2e82d069c5730b8bc217d3395c4c3"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 129689,
+      "sha256": "55c50087d374357757d4df569ee11cd3f0f5bd7266c7066ed2153d92364c6042"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 148469,
+      "sha256": "521933424c7f9e1acfacce6b1d5459b5d6345705797af6f7dcd9283413dea1ce"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 55144,
+      "sha256": "c9066dd04c9b0174e1e7a923187efd0a2b1488de5a52a2c7badb369d0582afe5"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 61364,
+      "sha256": "389e9e69252385b569ebbffc23bb5cd4715064f8260da4b15a6cce5b056347e9"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 60918,
+      "sha256": "bda5e435809ffe48653ade4700d6927a746cd29f837c0ea6e080484481e96d52"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/alquileres-es-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 121696,
+      "sha256": "5614d2aad926278d1a21a60f5587d811b513150cecb429f85adf80556543f573"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 111677,
+      "sha256": "5f57ad78bf326f5a5e8374c7809515a17524725d5e353481a26b61e65db0f242"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 113002,
+      "sha256": "38bb17ab373a174598ecc5842aa9c079b886c896e74aebb000af1affd68733b2"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 61165,
+      "sha256": "9d7a90f337c75a50fc1df2a891835834121079588a198ba6375a2ed37923e785"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 64356,
+      "sha256": "6e215241f94f693138476a548c1b3cdd18feded18dfa483c8b038e4fde3881d3"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 69083,
+      "sha256": "c56965afef997488f57796fa2059430febdf9c8a77f1b3b19ef5d011b42b05ee"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-en-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 108444,
+      "sha256": "a8bf4278f3ce47076e7fc41949a88acce8d360f0e5c0540029d73930a5d33164"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 115279,
+      "sha256": "bd3b40f88311de4d5e04792124cdb408d0c1f5dcc9e60d9c8c67d214d7d6e4ad"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 116197,
+      "sha256": "d894b13b16b851e6765e634d75cbcd1d8102b3217ab15c8d40bf190ee938ca30"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 60617,
+      "sha256": "4b1c4159ef31ad6ef19afc164aefbd260fde945dac63ed2a40256dde4c388b1a"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 67735,
+      "sha256": "23addd38cd195aaa7646386fef4e7e8d781395f4601e86d2994abff05a82fc87"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 71646,
+      "sha256": "978cf50bb307a577de08a2c89059e13b550e3b0f0be14e11c34f252b351701af"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/hms-es-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 111294,
+      "sha256": "c067854cb95ff153146459d0259cd83b461920f9d41b5e66f0810c71ab6dfbfc"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 294394,
+      "sha256": "b3d32debbe70e580c89cdcd772a1782db2cc01a82fa4a9263418244311fa70b5"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 340754,
+      "sha256": "58f5e75717a32c9ebbe0b54265bbe832579234366aac9e710828b36a28600990"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 195816,
+      "sha256": "780a410ef8971ce8c5a03078cafda16e8d616a0be7175254b4ec08348bcd3eba"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 197099,
+      "sha256": "b4c2548fd7d485b34356daee4f9623823c3b4eb034518ca979bd0aa30f6ca2e1"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 212113,
+      "sha256": "9729e5d1f590e939a59ed5db7281e15d59fb7785d0bb00ed6cdb47f1b893290a"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-en-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 265666,
+      "sha256": "868ca4f0f6967fa188f13692c415b0cc233a4fe2e20919032c34ce7b4531e62b"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-1024x900.png",
+      "width": 1024,
+      "height": 900,
+      "bytes": 295104,
+      "sha256": "1510155a323f78c6e157a5a4fbeed60581fb19218d3faf1ec10af000bbcb7fff"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 344367,
+      "sha256": "9b77f14cb8d1b6ac0b2d48b4cda1eecc58c41d145698cb829c62caef392eb9ff"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-360x900.png",
+      "width": 360,
+      "height": 900,
+      "bytes": 196530,
+      "sha256": "5214043db03a1cd410dd938e9aca26d6e5f7b8d03d4d6a587d1a9dce46d21fd8"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-390x900.png",
+      "width": 390,
+      "height": 900,
+      "bytes": 208159,
+      "sha256": "8d2b18bce4c519e4b9c39db788bebb592a0b6fb4117a3510d0f703440a675c12"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-430x900.png",
+      "width": 430,
+      "height": 900,
+      "bytes": 223503,
+      "sha256": "2ca88314ef4c448b77ab5d7c22627d6e23500293e906e74f2e1c644910e1d014"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/home-es-768x900.png",
+      "width": 768,
+      "height": 900,
+      "bytes": 285154,
+      "sha256": "9594265352ad80559729775113179a84f58bc2ce16eb669c3a6ecc2418d9f544"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-en-360.png",
+      "width": 360,
+      "height": 844,
+      "bytes": 55900,
+      "sha256": "73b754bbec05947e0b18d1b15a3911fe216cef7728845030137c76ed1b7be17a"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-en-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 60221,
+      "sha256": "32e38a156bda21d46da37a3c38ca32cbdd8476412d3cdedff78de37484f1fb6c"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-en-430.png",
+      "width": 430,
+      "height": 844,
+      "bytes": 55244,
+      "sha256": "f75252535c0396450ff0cd57a0a9fcfdb8b1a5b75a1f76e87e44b4f0480face5"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-es-360.png",
+      "width": 360,
+      "height": 844,
+      "bytes": 57728,
+      "sha256": "e4803526130fbb95f8848b38bd16f12924123bfe13a63210dccf6168399d6b6a"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-es-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 61230,
+      "sha256": "5c2a5df311f2c0791b3997af2cc10d220546a92c3d7c735a1c1173607a500124"
+    },
+    {
+      "group": "responsive-and-cta",
+      "path": "artifacts/visual/issue-99-increment-2/project-cta-es-430.png",
+      "width": 430,
+      "height": 844,
+      "bytes": 56834,
+      "sha256": "880c9831ddb19988ff43ce556aab24850d295f37d63a03216f5389454cf5c08c"
+    }
+  ]
+}
