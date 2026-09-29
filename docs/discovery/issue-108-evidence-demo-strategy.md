@@ -221,6 +221,13 @@ Los lifecycle `status`/`statusLabel` actuales no deben ser inferidos del proof m
 
 El Controller/Product Owner debe aceptar o ajustar los proof modes, waves y mínimos del data model. Este documento no autoriza links, media nuevas ni deployments. JM, Alquileres y los walkthroughs restantes conservan gates de sus proyectos externos; el portfolio no los puede dar por satisfechos.
 
+### Resolución del Product Owner — 2026-09-29
+
+- **HG-1: RESUELTO — Opción B aprobada.** Retirar del artefacto público del portfolio los cuatro PNG actuales bajo `public/media/projects/uspaya/`. Se conserva el case study. Los archivos solo podrán reintroducirse con evidencia sintética o redacted, reproducible, con provenance clara y revisión de privacidad. El bounded cleanup se ejecuta en Issue #108 Wave 1; la retirada se verificará en producción tras el release.
+- **HG-2: RESUELTO — estrategia aprobada.** Quedan aprobados los proof modes por proyecto, Waves 1–3, CTAs, modelo mínimo de evidencia, política de motion y la separación estricta entre portfolio y proyectos externos.
+- La fase DISCOVERY → DEFINITION → DESIGN queda cerrada con PASS tras integrar PR #109 (`d383f733c0bcfc32a9a061b20d18d2506f67dd1d`). Independent Critic e Integration Review: PASS. CI completo del commit candidato: PASS.
+- Wave 1 queda autorizada con contrato separado en [`docs/implementation/issue-108-wave-1-build-contract.md`](../implementation/issue-108-wave-1-build-contract.md). Wave 2 y Wave 3 siguen fuera del incremento autorizado.
+
 ## Evidence and commands
 
 - `gh issue view 108 --repo sjo1848/portfolio-sebastian-ojeda --json ...` incluyó body y todos los comentarios disponibles; el comentario más reciente establece los principios de motion integrados en §8.
