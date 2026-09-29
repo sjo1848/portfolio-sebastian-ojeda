@@ -65,5 +65,5 @@ No scope beyond Issue #99 is proposed. Do not add a CV, LinkedIn, Alquileres pub
 
 ## Gates
 
-- Independent Critic — PASS for I6 validation evidence; final release/learn review pending.
-- Integration Review — PASS for I6 validation evidence; final release/learn review pending.
+- Independent Critic — **PASS**. Confirmed the six production routes, canonical/social URL pairs, sitemap/robots, lead order, status/ownership/contact clarity, the production mobile Sheet, and the evidence-bounded learning claims. No blocker or new HUMAN_GATE.
+- Integration Review — **PASS**. Confirmed the production route/metadata checks and screenshots, bilingual hierarchy and case summary coherence, disclosure of validation limits, and no scope expansion.
