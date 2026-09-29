@@ -121,7 +121,7 @@ export const copyByLanguage = {
     project: {
       technologiesAria: 'Tecnologías de',
       viewCaseStudy: 'Ver caso de estudio',
-      viewCode: 'Ver código',
+      viewCode: 'Ver GitHub',
       state: 'Estado',
       role: 'Rol',
       year: 'Año',
@@ -199,7 +199,7 @@ export const copyByLanguage = {
     project: {
       technologiesAria: 'Technologies used in',
       viewCaseStudy: 'View case study',
-      viewCode: 'View code',
+      viewCode: 'View GitHub',
       state: 'Status',
       role: 'Role',
       year: 'Year',

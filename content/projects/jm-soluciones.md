@@ -2,7 +2,7 @@
 title: JM Soluciones Eléctricas
 slug: jm-soluciones
 order: 3
-featured: true
+featured: false
 category: Sitio comercial para servicios eléctricos
 summary: Landing Astro para obras y servicios eléctricos que integra UX orientada a conversión, SEO local, galería real y un preflight reproducible de release.
 status: functional-marketing-site
@@ -10,7 +10,6 @@ statusLabel: Release preparado
 year: 2026
 role: Estrategia de producto, arquitectura de contenido, UX, desarrollo frontend y automatización de calidad
 repository: https://github.com/sjo1848/jm-soluciones
-demo: null
 stack:
   - Astro
   - TypeScript

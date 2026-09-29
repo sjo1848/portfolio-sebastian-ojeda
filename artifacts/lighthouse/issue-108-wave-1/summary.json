@@ -1,0 +1,308 @@
+{
+  "generatedAt": "2026-09-29T17:06:25.292Z",
+  "command": "npx --yes @lhci/cli@0.15.1 autorun --config=artifacts/lighthouse/lighthouserc.issue-108-wave-1.json",
+  "thresholds": {
+    "performance": 0.9,
+    "accessibility": 0.95,
+    "bestPractices": 0.95,
+    "seo": 0.95
+  },
+  "routes": {
+    "/": {
+      "runs": [
+        {
+          "file": "localhost--2026_09_29_17_00_05.report.json",
+          "representative": false,
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2292,
+          "cls": 0
+        },
+        {
+          "file": "localhost--2026_09_29_17_00_24.report.json",
+          "representative": false,
+          "performance": 0.93,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2370,
+          "cls": 0
+        },
+        {
+          "file": "localhost--2026_09_29_17_00_41.report.json",
+          "representative": true,
+          "performance": 0.92,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2143,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.92,
+      "maxLcpMs": 2370,
+      "maxCls": 0
+    },
+    "/es/": {
+      "runs": [
+        {
+          "file": "localhost-es_-2026_09_29_17_01_15.report.json",
+          "representative": false,
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2026,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_-2026_09_29_17_01_32.report.json",
+          "representative": false,
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2278,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_-2026_09_29_17_00_58.report.json",
+          "representative": true,
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2206,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.97,
+      "maxLcpMs": 2278,
+      "maxCls": 0
+    },
+    "/projects/hms-cloudflare/": {
+      "runs": [
+        {
+          "file": "localhost-projects_hms_cloudflare_-2026_09_29_17_02_04.report.json",
+          "representative": false,
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1459,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_hms_cloudflare_-2026_09_29_17_02_19.report.json",
+          "representative": false,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1630,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_hms_cloudflare_-2026_09_29_17_01_49.report.json",
+          "representative": true,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1946,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.99,
+      "maxLcpMs": 1946,
+      "maxCls": 0
+    },
+    "/es/projects/hms-cloudflare/": {
+      "runs": [
+        {
+          "file": "localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_34.report.json",
+          "representative": false,
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1480,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_hms_cloudflare_-2026_09_29_17_02_48.report.json",
+          "representative": false,
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1526,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_hms_cloudflare_-2026_09_29_17_03_03.report.json",
+          "representative": true,
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1470,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.97,
+      "maxLcpMs": 1526,
+      "maxCls": 0
+    },
+    "/projects/alquileres-uspa/": {
+      "runs": [
+        {
+          "file": "localhost-projects_alquileres_uspa_-2026_09_29_17_03_33.report.json",
+          "representative": false,
+          "performance": 0.94,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2423,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_alquileres_uspa_-2026_09_29_17_03_49.report.json",
+          "representative": false,
+          "performance": 0.96,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2353,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_alquileres_uspa_-2026_09_29_17_03_18.report.json",
+          "representative": true,
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2427,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.94,
+      "maxLcpMs": 2427,
+      "maxCls": 0
+    },
+    "/es/projects/alquileres-uspa/": {
+      "runs": [
+        {
+          "file": "localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_04.report.json",
+          "representative": false,
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2128,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_19.report.json",
+          "representative": false,
+          "performance": 0.94,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2642,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_alquileres_uspa_-2026_09_29_17_04_35.report.json",
+          "representative": true,
+          "performance": 0.91,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2427,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.91,
+      "maxLcpMs": 2642,
+      "maxCls": 0
+    },
+    "/projects/ai-commerce-platform/": {
+      "runs": [
+        {
+          "file": "localhost-projects_ai_commerce_platform_-2026_09_29_17_05_08.report.json",
+          "representative": false,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1528,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_ai_commerce_platform_-2026_09_29_17_05_21.report.json",
+          "representative": false,
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1755,
+          "cls": 0
+        },
+        {
+          "file": "localhost-projects_ai_commerce_platform_-2026_09_29_17_04_53.report.json",
+          "representative": true,
+          "performance": 0.95,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1613,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.95,
+      "maxLcpMs": 1755,
+      "maxCls": 0
+    },
+    "/es/projects/ai-commerce-platform/": {
+      "runs": [
+        {
+          "file": "localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_35.report.json",
+          "representative": false,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1823,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_ai_commerce_platform_-2026_09_29_17_05_49.report.json",
+          "representative": false,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1518,
+          "cls": 0
+        },
+        {
+          "file": "localhost-es_projects_ai_commerce_platform_-2026_09_29_17_06_04.report.json",
+          "representative": true,
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1753,
+          "cls": 0
+        }
+      ],
+      "lowestPerformance": 0.99,
+      "maxLcpMs": 1823,
+      "maxCls": 0
+    }
+  }
+}

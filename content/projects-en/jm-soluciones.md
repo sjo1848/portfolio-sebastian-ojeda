@@ -2,7 +2,7 @@
 title: JM Soluciones Eléctricas
 slug: jm-soluciones
 order: 3
-featured: true
+featured: false
 category: Commercial website for electrical services
 summary: Astro landing page for electrical work and services, combining conversion-focused UX, local SEO, a real-work gallery, and a reproducible release preflight.
 status: functional-marketing-site
@@ -10,7 +10,6 @@ statusLabel: Release-ready
 year: 2026
 role: Product strategy, content architecture, UX, frontend development, and quality automation
 repository: https://github.com/sjo1848/jm-soluciones
-demo: null
 stack:
   - Astro
   - TypeScript

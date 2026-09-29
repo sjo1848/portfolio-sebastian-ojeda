@@ -10,7 +10,6 @@ statusLabel: Migración validada técnicamente; aceptación separada
 year: 2026
 role: Arquitectura de migración, implementación full stack, seguridad y QA operacional
 repository: https://github.com/sjo1848/hms-cloudflare
-demo: null
 stack:
   - Rust / Axum
   - PostgreSQL

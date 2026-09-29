@@ -5,11 +5,13 @@ interface Props {
   id: string;
   copy: ProjectQuickScanCopy;
   repository: string | null;
-  demo: string | null;
+  proofHref: string | null;
+  proofAction: string | null;
+  proofLimitations: string;
   caseStudyTarget: string;
 }
 
-const { id, copy, repository, demo, caseStudyTarget } = Astro.props;
+const { id, copy, repository, proofHref, proofAction, proofLimitations, caseStudyTarget } = Astro.props;
 ---
 
 <section id={id} class="case-quick-scan section" aria-labelledby={`${id}-title`}>
@@ -33,17 +35,12 @@ const { id, copy, repository, demo, caseStudyTarget } = Astro.props;
       </div>
       <div>
         <dt>{copy.limitationsLabel}</dt>
-        <dd>{copy.limitations}</dd>
+        <dd>{proofLimitations}</dd>
       </div>
     </dl>
-<div class="case-quick-scan-links">
+    <div class="case-quick-scan-links">
       {repository && <a class="button button-secondary" href={repository} target="_blank" rel="noopener noreferrer">{copy.repositoryLabel}</a>}
-      <div class="case-quick-scan-demo">
-        <span>{copy.demoLabel}</span>
-        {demo
-          ? <a href={demo} target="_blank" rel="noopener noreferrer">{demo}</a>
-          : <span>{copy.noPublicDemo}</span>}
-      </div>
+      {proofHref && proofAction && <a class="button button-secondary case-proof-link" href={proofHref}>{proofAction}</a>}
       <a class="button button-primary" href={caseStudyTarget}>{copy.continue}</a>
     </div>
   </div>

@@ -2,7 +2,7 @@
 title: Taco Loco Foodtrack
 slug: taco-loco
 order: 4
-featured: true
+featured: false
 category: Menú digital y gestión de pedidos
 summary: Sistema mobile-first que conecta un menú QR, personalización de productos, registro de intención y seguimiento administrativo mediante WhatsApp.
 status: functional-mvp
@@ -10,7 +10,6 @@ statusLabel: MVP funcional
 year: 2026
 role: Análisis de producto, UX, arquitectura y desarrollo full stack
 repository: https://github.com/sjo1848/taco-loco-foodtrack
-demo: null
 stack:
   - Next.js
   - TypeScript

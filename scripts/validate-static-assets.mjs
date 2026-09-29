@@ -44,6 +44,13 @@ const generatedAssets = [
   },
 ];
 
+const withdrawnUspaYaAssets = [
+  'media/projects/uspaya/uspaya-customer-mobile.png',
+  'media/projects/uspaya/uspaya-operations-mobile.png',
+  'media/projects/uspaya/uspaya-merchant-mobile.png',
+  'media/projects/uspaya/uspaya-courier-mobile.png',
+];
+
 async function exists(file) {
   try {
     await access(file);
@@ -105,6 +112,14 @@ for (const relativePath of requiredPages) {
 }
 
 for (const asset of generatedAssets) await validateGeneratedAsset(asset);
+
+for (const root of [publicDir, distDir]) {
+  for (const relativePath of withdrawnUspaYaAssets) {
+    if (await isFile(resolve(root, relativePath))) {
+      failures.push(`Withdrawn UspaYa image must not be publicly packaged: ${relativePath}`);
+    }
+  }
+}
 
 if (await exists(resolve(distDir, 'en'))) {
   failures.push('Legacy /en directory must not be emitted as static content.');

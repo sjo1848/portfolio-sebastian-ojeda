@@ -40,9 +40,12 @@ for (const route of routes) {
         const cta = card.locator('.project-case-link');
         await cta.scrollIntoViewIfNeeded();
         await expect(cta).toBeVisible();
-        await expect(cta).toHaveAccessibleName(route.caseStudyName);
-        const target = await cta.getAttribute('href');
-        expect(target).not.toBeNull();
+        const ctaName = await cta.innerText();
+        const evidenceLabel = route.name === 'en' ? 'View evidence' : 'Ver evidencia';
+        if (ctaName.includes(evidenceLabel)) await expect(cta).toHaveAccessibleName(evidenceLabel);
+        else await expect(cta).toHaveAccessibleName(route.caseStudyName);
+        const ctaTarget = await cta.getAttribute('href');
+        expect(ctaTarget).not.toBeNull();
         const ctaBox = await cta.boundingBox();
         const cardBox = await card.boundingBox();
         expect(ctaBox?.width).toBeGreaterThanOrEqual(44);
@@ -52,12 +55,18 @@ for (const route of routes) {
 
         const titleLink = card.locator('h3 a.project-title-link');
         await expect(titleLink).toBeVisible();
-        await expect(titleLink).toHaveAttribute('href', target!);
+        const caseStudyTarget = await titleLink.getAttribute('href');
+        expect(caseStudyTarget).not.toBeNull();
+        if (ctaName.includes(evidenceLabel)) {
+          expect(ctaTarget).toMatch(/^\/(?:es\/)?projects\/[a-z0-9-]+\/#(?:gallery-|visual-evidence|evidencia-visual|project-cover-)/);
+        } else {
+          expect(ctaTarget).toBe(caseStudyTarget);
+        }
         if (await card.locator('.project-evidence-image').count()) {
           cardsWithCapture += 1;
           const captureLink = card.locator('.project-evidence-link');
           await expect(captureLink).toBeVisible();
-          await expect(captureLink).toHaveAttribute('href', target!);
+          await expect(captureLink).toHaveAttribute('href', caseStudyTarget!);
           const image = captureLink.locator('img');
           await expect(image).toHaveAttribute('alt', /.+/);
           await image.scrollIntoViewIfNeeded();
@@ -75,10 +84,11 @@ for (const route of routes) {
 
       const firstCta = cards.first().locator('.project-case-link');
       if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('artifacts/visual/issue-99-increment-2');
+        const outputDir = path.resolve('output/playwright/issue-108-wave-1');
         await mkdir(outputDir, { recursive: true });
+        await page.setViewportSize({ width, height: 1_400 });
         await firstCta.scrollIntoViewIfNeeded();
-        await page.screenshot({
+        await cards.first().locator('.project-body').screenshot({
           path: path.join(outputDir, `project-cta-${route.name}-${width}.png`),
           animations: 'disabled',
         });

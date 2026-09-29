@@ -1,4 +1,5 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -136,11 +137,23 @@ async function validateProjectInventory() {
         failures.push(`${slug}: bilingual front matter mismatch for ${key}: ${spanishValue} != ${englishValue}`);
       }
     }
+
+    const expectedFeatured = expectedPrimaryStories.includes(slug) ? 'true' : 'false';
+    for (const [locale, content] of [['ES', spanish], ['EN', english]]) {
+      const featured = extractFrontMatterValue(content, 'featured');
+      if (featured !== expectedFeatured) {
+        failures.push(`${slug} ${locale}: featured must be ${expectedFeatured} to match the approved lead/secondary roster; found ${featured}`);
+      }
+      if (/^demo:/m.test(content)) {
+        failures.push(`${slug} ${locale}: remove legacy demo metadata; project proof links are managed by projectProofs.ts.`);
+      }
+    }
   }
 }
 
 async function validatePortfolioNarrative() {
   const storyData = await readFile(path.join(root, 'src/data/portfolioStories.ts'), 'utf8');
+  const proofData = await readFile(path.join(root, 'src/data/projectProofs.ts'), 'utf8');
   for (const slug of expectedPrimaryStories) {
     if (!storyData.includes(`'${slug}'`)) failures.push(`portfolioStories.ts is missing primary story ${slug}.`);
   }
@@ -150,6 +163,19 @@ async function validatePortfolioNarrative() {
   for (const excluded of ['hms-elite', 'jm-soluciones', 'taco-loco']) {
     const primaryBlock = storyData.slice(storyData.indexOf('primaryStorySlugs'), storyData.indexOf('secondaryCaseSlugs'));
     if (primaryBlock.includes(`'${excluded}'`)) failures.push(`${excluded} must not be a primary engineering story.`);
+  }
+
+  for (const slug of expectedProjects) {
+    if (!proofData.includes(`'${slug}': {`)) failures.push(`projectProofs.ts is missing proof metadata for ${slug}.`);
+  }
+
+  const uspayaMediaDirectory = path.join(root, 'public/media/projects/uspaya');
+  if (existsSync(uspayaMediaDirectory)) {
+    failures.push('UspaYa public evidence directory must stay absent until synthetic/redacted provenance is approved.');
+  }
+  const mediaVendor = await readFile(path.join(root, 'scripts/vendor-project-media.sh'), 'utf8');
+  for (const marker of ['USPAYA_COMMIT', 'uspaya-customer-mobile.png', 'uspaya-merchant-mobile.png', 'uspaya-operations-mobile.png', 'uspaya-courier-mobile.png']) {
+    if (mediaVendor.includes(marker)) failures.push(`vendor-project-media.sh must not restore withdrawn UspaYa evidence (${marker}).`);
   }
 
   const home = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');

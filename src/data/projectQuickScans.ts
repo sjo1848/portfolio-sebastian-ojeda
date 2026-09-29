@@ -10,10 +10,7 @@ export interface ProjectQuickScanCopy {
   evidenceLabel: string;
   evidence: string;
   limitationsLabel: string;
-  limitations: string;
   repositoryLabel: string;
-  demoLabel: string;
-  noPublicDemo: string;
   continue: string;
 }
 
@@ -31,10 +28,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidence and validation',
       evidence: 'Local automated and browser regressions cover role boundaries, tenant isolation and operational flows; a local backup-and-restore rehearsal is documented.',
       limitationsLabel: 'Limitations',
-      limitations: 'Remote Product Acceptance, accepted mobile evidence, production readiness and release remain separate gates; none is claimed here.',
-      repositoryLabel: 'Repository',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No public demo link is provided.',
+      repositoryLabel: 'View GitHub',
       continue: 'Read the full technical case',
     },
     es: {
@@ -47,10 +41,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidencia y validación',
       evidence: 'Las regresiones automatizadas y de navegador locales cubren roles, aislamiento entre hoteles y flujos operativos; hay un ensayo local documentado de backup y restore.',
       limitationsLabel: 'Límites',
-      limitations: 'La aceptación remota, la evidencia mobile aceptada, la preparación para producción y el release son gates separados; aquí no se afirman.',
-      repositoryLabel: 'Repositorio',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No se proporciona un enlace a una demo pública.',
+      repositoryLabel: 'Ver GitHub',
       continue: 'Leer el caso técnico completo',
     },
   },
@@ -65,10 +56,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidence and validation',
       evidence: 'The repository contains API and authorization tests plus reproducible catalog and listing captures made with synthetic data.',
       limitationsLabel: 'Limitations',
-      limitations: 'The review/publication and administrative-audit walkthroughs are not shown here. There is no public deployment; reservations, payments and real-time flows are out of scope.',
-      repositoryLabel: 'Repository',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No public demo link is provided.',
+      repositoryLabel: 'View GitHub',
       continue: 'Read the full technical case',
     },
     es: {
@@ -81,10 +69,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidencia y validación',
       evidence: 'El repositorio contiene pruebas de API y autorización, además de capturas reproducibles del catálogo y las propiedades con datos sintéticos.',
       limitationsLabel: 'Límites',
-      limitations: 'Aquí no se muestran recorridos de revisión/publicación ni auditoría administrativa. No hay despliegue público; reservas, pagos y flujos en tiempo real quedan fuera del alcance.',
-      repositoryLabel: 'Repositorio',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No se proporciona un enlace a una demo pública.',
+      repositoryLabel: 'Ver GitHub',
       continue: 'Leer el caso técnico completo',
     },
   },
@@ -99,10 +84,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidence and validation',
       evidence: 'Phase 2.5 documents controlled HMS staging for availability, quoting, reservation, cancellation, HITL approval and replay controls, plus synthetic cross-repository E2E.',
       limitationsLabel: 'Limitations',
-      limitations: 'Phase 2.6 remains under evaluation. The Phase 2.5 staging evidence is not a claim of production operation or public product acceptance for the current phase.',
-      repositoryLabel: 'Repository',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No public demo link is provided.',
+      repositoryLabel: 'View GitHub',
       continue: 'Read the full technical case',
     },
     es: {
@@ -115,10 +97,7 @@ export const projectQuickScans: Record<string, LocalizedScan> = {
       evidenceLabel: 'Evidencia y validación',
       evidence: 'La fase 2.5 documenta pruebas controladas en staging de HMS para disponibilidad, cotización, reservas, cancelaciones, aprobación HITL y controles de replay, además de E2E sintético entre repositorios.',
       limitationsLabel: 'Límites',
-      limitations: 'La fase 2.6 continúa en evaluación. La evidencia de staging de la fase 2.5 no afirma operación en producción ni aceptación pública del producto en la fase actual.',
-      repositoryLabel: 'Repositorio',
-      demoLabel: 'Demo',
-      noPublicDemo: 'No se proporciona un enlace a una demo pública.',
+      repositoryLabel: 'Ver GitHub',
       continue: 'Leer el caso técnico completo',
     },
   },

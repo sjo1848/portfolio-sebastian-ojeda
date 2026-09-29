@@ -406,9 +406,6 @@ ul, ol { padding: 0; }
 .case-quick-scan-grid dt { margin-bottom: 0.35rem; color: var(--accent-strong); font-size: 0.8rem; font-weight: 800; }
 .case-quick-scan-grid dd { color: var(--ink); font-size: 0.95rem; line-height: 1.55; }
 .case-quick-scan-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; }
-.case-quick-scan-demo { display: grid; gap: 0.05rem; min-width: 10rem; color: var(--muted); font-size: 0.82rem; }
-.case-quick-scan-demo > span:first-child { color: var(--ink); font-weight: 750; }
-.case-quick-scan-demo a { overflow-wrap: anywhere; }
 .content-layout { padding-block: clamp(4rem, 9vw, 7rem); }
 .prose { max-width: var(--reading); margin-inline: auto; overflow-wrap: anywhere; }
 .media-viewer-island { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
@@ -572,7 +569,6 @@ ul, ol { padding: 0; }
   .case-quick-scan-grid > div { padding: 0.9rem; }
   .case-quick-scan-links { align-items: stretch; }
   .case-quick-scan-links > a { flex: 1 1 10rem; }
-  .case-quick-scan-demo { flex-basis: 100%; }
   .footer-inner { flex-direction: column; align-items: flex-start; justify-content: center; gap: 0.5rem; padding-block: 1rem; }
   .media-viewer-footer { align-items: flex-start; }
   .media-viewer-caption { flex-basis: 100%; }

@@ -2,7 +2,7 @@
 title: GasFlow
 slug: gasflow
 order: 2
-featured: true
+featured: false
 category: Aplicación móvil para operaciones de distribución
 summary: Producto móvil que conecta pedidos programados, asignación, entregas y conciliación de stock mediante React Native y un backend Rust.
 status: functional-mvp
@@ -10,7 +10,6 @@ statusLabel: MVP funcional
 year: 2026
 role: Análisis de producto, arquitectura y desarrollo full stack móvil
 repository: https://github.com/sjo1848/gasflow
-demo: null
 stack:
   - React Native
   - TypeScript

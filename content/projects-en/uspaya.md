@@ -2,7 +2,7 @@
 title: UspaYa
 slug: uspaya
 order: 9
-featured: true
+featured: false
 category: Multi-actor transactional last-mile system
 summary: Customer, merchant, operations and courier coordinated with idempotency, temporal privacy, optimistic concurrency, serializable transactions and authoritative recovery.
 status: active-development
@@ -10,7 +10,6 @@ statusLabel: Vertical closed; pre-pilot hardening
 year: 2026
 role: Domain design, architecture, backend, frontend and operational vertical QA
 repository: https://github.com/sjo1848/UspaYa
-demo: null
 stack:
   - NestJS
   - Vue 3

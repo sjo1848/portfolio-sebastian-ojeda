@@ -8,6 +8,7 @@ import ResponsiveMediaViewer from './ResponsiveMediaViewer';
 import CaseStudyContents from './CaseStudyContents';
 import { getProjectMedia } from '../data/projectMedia';
 import { getProjectQuickScan } from '../data/projectQuickScans';
+import { getProofActionLabel, getProjectProof } from '../data/projectProofs';
 import {
   copyByLanguage,
   siteByLanguage,
@@ -35,6 +36,12 @@ const media = getProjectMedia(data.slug);
 const cover = media?.cover ?? null;
 const gallery = media?.gallery ?? [];
 const quickScan = getProjectQuickScan(data.slug, lang);
+const proof = getProjectProof(data.slug);
+const proofHref = proof?.proofHref ? `${getProjectPath(lang, data.slug)}${proof.proofHref[lang]}` : null;
+const proofAction = proofHref && proof
+  ? getProofActionLabel(proof.currentProofMode, lang)
+  : null;
+const proofLimitations = proof?.proofLimitations[lang] ?? '';
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
 const galleryRootId = `gallery-items-${data.slug}`;
@@ -136,7 +143,7 @@ const projectSchema = {
         <aside class:list={['case-evidence', { 'case-evidence-with-media': cover }]}>
           {
             cover && (
-              <figure class="case-media">
+              <figure id={`project-cover-${data.slug}`} class="case-media">
                 <img
                   src={cover.src}
                   alt={cover.alt[lang]}
@@ -152,7 +159,14 @@ const projectSchema = {
           <ul class="stack-list stack-list-large">
             {data.stack.map((technology) => <li>{technology}</li>)}
           </ul>
-          {!cover && <p class="evidence-note">{copy.pendingEvidence}</p>}
+          {!cover && !quickScan && !proof && <p class="evidence-note">{copy.pendingEvidence}</p>}
+          {!quickScan && proof && (
+            <div class="project-proof-note">
+              <p class="eyebrow">{lang === 'es' ? 'Evidencia actual' : 'Current evidence'}</p>
+              <p>{proofLimitations}</p>
+              {proofHref && proofAction && <a class="button button-secondary" href={proofHref}>{proofAction}</a>}
+            </div>
+          )}
         </aside>
       </div>
     </header>
@@ -162,7 +176,9 @@ const projectSchema = {
           id={`case-quick-scan-${data.slug}`}
           copy={quickScan}
           repository={data.repository}
-          demo={data.demo}
+          proofHref={proofHref}
+          proofAction={proofAction}
+          proofLimitations={proofLimitations}
           caseStudyTarget={quickScanTarget}
         />
       )
@@ -246,6 +262,19 @@ const projectSchema = {
     scroll-margin-top: 1rem;
     border-bottom: 1px solid var(--line);
     background: var(--canvas);
+  }
+
+  .project-proof-note {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-proof-note p:not(.eyebrow) {
+    color: var(--muted);
+    line-height: 1.55;
   }
 
   .prose :global(.media-viewer-trigger) {
