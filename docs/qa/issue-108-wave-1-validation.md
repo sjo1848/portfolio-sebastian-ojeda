@@ -93,8 +93,8 @@ The accepted CDN exposure is the sole material release limitation. No additional
 
 ## Independent reviews
 
-- Independent Critic: **PASS** for implementation quality before release. Final closeout review: pending explicit assessment of the Product Owner's accepted residual CDN risk.
-- Integration Review: **PASS** for the integrated Wave 1 scope before release. Final closeout review: pending explicit assessment of this release exception and the complete evidence record.
+- Independent Critic final closeout: **PASS**. The reviewer confirmed the Product Owner's dated risk acceptance is recorded as the release authority; the report preserves observed `200 HIT` results without claiming four `404/410`s; source/build removal, CI links, LEARN and the no-more-probing boundary are accurately represented.
+- Integration Review final closeout: **PASS**. The reviewer confirmed RELEASE/LEARN are coherent with the explicit risk acceptance, source/build absence is distinguished from stale edge responses, no unauthorized Cloudflare changes or additional scope are introduced, and Waves 2–3 remain unauthorized.
 
 ## LEARN — complete (2026-09-29)
 
@@ -122,4 +122,4 @@ Using already verified evidence with explicit proof readiness and state-based CT
 
 - RELEASE: **PASS with explicitly accepted residual CDN cache exposure**.
 - LEARN: **PASS / complete**.
-- Issue #108: ready to close after final Independent Critic and Integration Review verdicts are recorded.
+- Issue #108: ready to close after this report is merged and the accepted decision plus final PASS verdicts are recorded in the issue.
