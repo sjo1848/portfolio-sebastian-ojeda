@@ -49,8 +49,8 @@ The Alquileres source snapshot contains only its reproducible synthetic evidence
 
 ## Independent gates
 
-- Independent Critic initial verdict: **REWORK** for the stale Home status assertion. Bounded fix is applied and the affected 30-test five-profile matrix passes; final post-fix verdict is pending.
-- Integration Review initial verdict: **PASS** on the bounded evidence/status change, bilingual labels, retained gaps, and visual captures. It must reconfirm against the rework commit before merge.
+- Independent Critic initial verdict: **REWORK** for the stale Home status assertion. The bounded fix is applied; the 30-test five-profile matrix passes, and the final **PASS** at code commit `d128699` confirms the rework closure, evidence provenance, retained gaps, and no HUMAN_GATE.
+- Integration Review initial verdict: **PASS** on the bounded evidence/status change; final **PASS** at code commit `d128699` reconfirms the Home-to-case status consistency, bilingual copy, truthful evidence boundaries, and zero new client-side cost.
 
 ## Scope limits
 
