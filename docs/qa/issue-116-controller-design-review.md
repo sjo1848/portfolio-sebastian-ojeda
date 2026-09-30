@@ -6,9 +6,14 @@
 
 ## Verdict
 
-**PASS WITH ONE EXTERNAL DESIGN-GATE CONDITION**
+**PASS — DESIGN GATE CLOSED**
 
-The selected direction is coherent enough to issue a BUILD contract, but BUILD activation remains conditional on final Figma visual/prototype QA because the Starter MCP quota blocked that final pass.
+The selected C+ direction has now been materialized and visually reviewed in MagicPath after Figma Starter MCP limits blocked the original final-prototype surface.
+
+Canonical prototype:
+https://www.magicpath.ai/files/456042490814947328
+
+The visual evidence satisfies the pre-BUILD conditions. Residual typography, performance and interaction concerns remain enforceable BUILD gates rather than open product/design decisions.
 
 ## Adversarial checks
 
@@ -101,18 +106,24 @@ The design contract explicitly keeps project statuses/limits sourced from existi
 5. **Case-study discontinuity.**
    A highly stylized Home paired with unchanged case-study entries could feel like two products. The first viewport grammar must be carried into lead case pages.
 
-## Required pre-BUILD evidence
+## Required pre-BUILD evidence — CLOSED
 
-Before Controller posts DESIGN PASS:
-- visual screenshot of C+ desktop;
-- visual screenshot of C+ mobile;
-- check for clipping/overflow;
-- selected-work active state represented;
-- at least one motion storyboard/prototype state;
-- case-study first viewport represented;
-- evidence that the design remains legible without motion.
+All required evidence is present in MagicPath:
 
-The Figma MCP Starter quota prevented completing these checks automatically in the current session.
+- C+ desktop first-screen render — PASS;
+- explicit C+ mobile 390 render — PASS;
+- clipping/overflow review — PASS with a conservative implementation note for the final `DEVELOPER` line at the narrowest widths;
+- Selected Work active state — represented in the interactive prototype and storyboard;
+- motion storyboard — PASS;
+- reduced-motion final state — PASS;
+- HMS case-study first viewport — PASS;
+- design remains legible without motion — PASS.
+
+Artifacts:
+- Home/prototype: `456042539527598080`;
+- mobile 390: `456044584171085824`;
+- motion storyboard: `456044882767806464`;
+- HMS case-study: `456044893798797312`.
 
 ## Integration Review
 
@@ -146,8 +157,10 @@ No threshold reduction is allowed.
 
 Current state:
 
-`DESIGN_CONTRACT_COMPLETE / FIGMA_FINAL_QA_PENDING / BUILD_BLOCKED`
-
-The contract is implementation-ready, but Codex must not write production code until the Controller posts:
-
 `DESIGN_PASS_BUILD_AUTHORIZED`
+
+The design contract, responsive visual evidence, motion storyboard and case-study continuity have passed Controller review.
+
+Codex may now begin BUILD under `docs/implementation/issue-116-build-contract.md`.
+
+Any deviation involving scope, public claims, dependency policy, performance budget or accessibility returns to the Controller/Human Gate as defined by the contract.
