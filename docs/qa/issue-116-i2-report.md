@@ -9,7 +9,7 @@
 - Branch: `build/issue-116-cplus-baseline`
 - Parent I1 HEAD: `26f78f2944a21104c52904de9f60a72c303fa119`
 - `origin/main` at start: `658a5506e88beecbe28c2f5ade4c2705c4ad59e8`
-- I2 commit: recorded after this report is staged.
+- I2 implementation commit: `33c15ae792b69df71cc621b7059aa929a17a6f2c`.
 - No merge or deployment performed.
 
 ## Delivered
