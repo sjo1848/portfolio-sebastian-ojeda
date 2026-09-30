@@ -13,7 +13,7 @@ Read before any implementation:
 3. `docs/design/issue-116-cplus-design-contract.md`
 4. `docs/design/issue-116-motion-spec.md`
 5. `docs/qa/issue-116-controller-design-review.md`
-6. MagicPath final prototype: `https://www.magicpath.ai/files/456042490814947328`.
+6. `docs/design/issue-116-immutable-design-reference.md` (canonical worker-accessible visual reference).\n7. MagicPath project `456042490814947328` is supplemental provenance only and is not required to be externally accessible.
 
 Do not substitute personal design preferences for these contracts.
 
@@ -166,7 +166,7 @@ Before edits:
 - run release QA;
 - capture current Home EN/ES at required widths;
 - record JS/Lighthouse baseline;
-- verify MagicPath final prototype and canonical design contracts.
+- verify canonical design contracts and `docs/design/issue-116-immutable-design-reference.md`; external MagicPath access is not a precondition.
 
 No design changes.
 
