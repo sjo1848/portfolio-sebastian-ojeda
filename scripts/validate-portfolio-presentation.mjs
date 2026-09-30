@@ -14,7 +14,7 @@ const forbidText = (content, text, label) => {
 
 const home = await read('src/components/HomePage.astro');
 const header = await read('src/components/SiteHeader.astro');
-const card = await read('src/components/ProjectCard.astro');
+const selectedWork = await read('src/components/SelectedWorkIndex.astro');
 const site = await read('src/data/site.ts');
 const stories = await read('src/data/portfolioStories.ts');
 
@@ -75,19 +75,23 @@ for (const slug of ["'uspaya'", "'gasflow'", "'agentic-engineering-governance'",
   if (primaryBlock.includes(slug)) failures.push(`portfolioStories.ts: secondary case ${slug} must not be primary`);
 }
 
-// Selected work is proof-first: one role signal, a reduced stack line and one case-study CTA.
+// I4 selected work is a static editorial index with approved evidence and ordinary case-study anchors.
 for (const marker of [
-  "role: 'Rol'",
+  "'hms-cloudflare'",
+  "'alquileres-uspa'",
+  "'ai-commerce-platform'",
+  'data.category',
   'data.role',
-  "data.stack.slice(0, variant === 'hero' ? 4 : 3)",
-  'project-case-link',
+  'data.stack.slice(0, 4)',
+  'selected-work-case-link',
   'getProjectPath(lang, data.slug)',
+  'data-evidence-caption',
+  'data-evidence-limitation',
 ]) {
-  requireText(card, marker, 'ProjectCard.astro');
+  requireText(selectedWork, marker, 'SelectedWorkIndex.astro');
 }
-forbidText(card, 'evidenceSignals', 'ProjectCard.astro');
-forbidText(card, 'project-signal-list', 'ProjectCard.astro');
-forbidText(card, 'class="stack-list"', 'ProjectCard.astro');
+forbidText(selectedWork, 'evidenceSignals', 'SelectedWorkIndex.astro');
+forbidText(selectedWork, 'project-signal-list', 'SelectedWorkIndex.astro');
 requireText(stories, "eyebrow: 'TRABAJO SELECCIONADO'", 'portfolioStories.ts ES selected-work copy');
 requireText(stories, "eyebrow: 'SELECTED WORK'", 'portfolioStories.ts EN selected-work copy');
 requireText(stories, "title: 'Entender el sistema. Construir end-to-end. Verificar los límites.'", 'portfolioStories.ts ES operating mindset');

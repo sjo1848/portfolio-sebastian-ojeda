@@ -179,7 +179,7 @@ async function validatePortfolioNarrative() {
   }
 
   const home = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');
-  for (const marker of ['primaryProjects', 'secondaryProjects', "variant={index === 0 ? 'hero' : 'story'}"]) {
+  for (const marker of ['primaryProjects', 'secondaryProjects', '<SelectedWorkIndex lang={lang} projects={primaryProjects} />']) {
     if (!home.includes(marker)) failures.push(`HomePage.astro is missing engineering-story marker: ${marker}`);
   }
 

@@ -21,7 +21,7 @@ for (const locale of locales) {
     expect(sections).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
     await expect(page.locator('#operating-mindset li')).toHaveCount(3);
     await expect(page.locator('#additional-work li')).toHaveCount(6);
-    await expect(page.locator('#projects .project-case-link')).toHaveCount(3);
+    await expect(page.locator('#projects .selected-work-case-link')).toHaveCount(3);
     await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
 
     for (const anchor of await page.locator('a[href^="#"]').all()) {
@@ -38,7 +38,7 @@ for (const locale of locales) {
     const page = await context.newPage();
     await page.goto(locale.path, { waitUntil: 'networkidle' });
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    await expect(page.locator('#projects .project-title-link').first()).toHaveAttribute('href', /\/projects\//);
+    await expect(page.locator('#projects .selected-work-row').first()).toHaveAttribute('href', /\/projects\//);
     await expect(page.locator('#additional-work .additional-work-description a')).toHaveCount(6);
     await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);

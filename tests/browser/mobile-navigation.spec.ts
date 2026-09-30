@@ -120,7 +120,7 @@ test('static portfolio paths remain available when the navigation island cannot 
   await page.goto('/', { waitUntil: 'networkidle' });
 
   await expect(page.getByRole('link', { name: 'Sebastián Ojeda' })).toHaveAttribute('href', '/');
-  await expect(page.locator('.project-case-link').first()).toHaveAttribute('href', /\/projects\//);
+  await expect(page.locator('.selected-work-row').first()).toHaveAttribute('href', /\/projects\//);
   await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
   await expect(page.locator('#contact a[href*="github.com"]')).toBeVisible();
 

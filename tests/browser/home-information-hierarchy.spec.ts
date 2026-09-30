@@ -96,12 +96,17 @@ for (const locale of locales) {
       const sectionIds = await page.locator('main > section').evaluateAll((sections) => sections.map((section) => section.id));
       expect(sectionIds).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
 
-      const leadCards = page.locator('#projects article.project-card');
+      const leadCards = page.locator('#projects [data-project-index-item]');
       await expect(page.locator('#projects h2')).toHaveText(locale.workTitle);
       await expect(page.locator('#projects .section-heading > p:last-child')).toHaveText(locale.workIntro);
       await expect(leadCards).toHaveCount(3);
       await expect(leadCards.locator('h3')).toHaveText(locale.leadTitles);
-      await expect(leadCards.locator('.project-status')).toHaveText(locale.leadStatuses);
+      if (width >= 768) {
+        await expect(page.locator('#projects [data-evidence-caption]')).toBeVisible();
+        await expect(page.locator('#projects [data-selected-evidence] .selected-work-evidence-heading > span').nth(1)).toHaveText(locale.leadStatuses[0]);
+      } else {
+        await expect(page.locator('#projects .selected-work-mobile-evidence figcaption')).toBeVisible();
+      }
       const additional = page.locator('#additional-work .additional-work-description a');
       await expect(additional).toHaveCount(6);
       await expect(additional).toHaveText(locale.additionalTitles);

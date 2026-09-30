@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from './ProjectCard.astro';
+import SelectedWorkIndex from './SelectedWorkIndex.astro';
 import CopyAction from './CopyAction';
 import {
   copyByLanguage,
@@ -73,16 +73,7 @@ const brandHero = lang === 'es'
         <h2 id="stories-title">{storyCopy.title}</h2>
         <p>{storyCopy.intro}</p>
       </div>
-      <div class="story-grid">
-        {primaryProjects.map((project, index) => (
-          <ProjectCard
-            project={project}
-            lang={lang}
-            displayIndex={index + 1}
-            variant={index === 0 ? 'hero' : 'story'}
-          />
-        ))}
-      </div>
+      <SelectedWorkIndex lang={lang} projects={primaryProjects} />
 
     </div>
   </section>
@@ -204,11 +195,6 @@ const brandHero = lang === 'es'
     margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
   }
 
-  .story-grid {
-    display: grid;
-    gap: clamp(1.25rem, 2.5vw, 1.75rem);
-  }
-
   .secondary-heading {
     max-width: 52rem;
     margin-top: 0;
@@ -218,34 +204,7 @@ const brandHero = lang === 'es'
   }
 
   @media (min-width: 48rem) {
-    .story-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
     .additional-work-index { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
-
-    .story-grid :global(.project-card-hero) {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-      align-items: center;
-    }
-
-    .story-grid :global(.project-card-hero .project-evidence) {
-      width: auto;
-      height: clamp(19rem, 31vw, 24rem);
-      min-height: 0;
-      margin: 1.25rem 0 1.25rem 1.25rem;
-      border-radius: 1rem;
-      aspect-ratio: auto;
-    }
-
-    .story-grid :global(.project-card-hero .project-body) {
-      padding: clamp(1.75rem, 4vw, 2.5rem);
-    }
-
-    .story-grid :global(.project-card-story:last-child) {
-      grid-column: 1 / -1;
-    }
   }
 
   @media (max-width: 47.99rem) {
@@ -255,17 +214,6 @@ const brandHero = lang === 'es'
   }
 
   @media (min-width: 68.75rem) {
-    .story-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .story-grid :global(.project-card-hero) {
-      grid-column: 1 / -1;
-    }
-
-    .story-grid :global(.project-card-story:last-child) {
-      grid-column: auto;
-    }
     .additional-work-index { column-gap: 4rem; }
   }
 </style>

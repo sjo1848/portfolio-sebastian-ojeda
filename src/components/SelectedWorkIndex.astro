@@ -1,0 +1,113 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Language } from '../data/site';
+import { getHomepageProjectCover, getHomepageProjectMedia } from '../data/homepageProjectCovers';
+import { getProjectProof } from '../data/projectProofs';
+import { getProjectPath } from '../data/routing';
+
+type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
+interface Props { lang: Language; projects: ProjectEntry[]; }
+const { lang, projects } = Astro.props;
+const copy = lang === 'es' ? {
+  role: 'Rol', stack: 'Stack', caseStudy: 'Ver caso de estudio',
+  defaultEvidence: 'Evidencia visual aprobada',
+  projectCopy: {
+    'hms-cloudflare': {
+      category: 'Migración brownfield de un SaaS operacional',
+      signal: 'Rust/PostgreSQL → Workers/D1 con aislamiento multi-tenant, validación en navegador y recovery verificable.',
+    },
+    'alquileres-uspa': {
+      category: 'Catálogo y operación de alquileres turísticos',
+      signal: 'Workflow full-stack de publicación con autoridad server-side, vigencia de disponibilidad y auditoría.',
+    },
+    'ai-commerce-platform': {
+      category: 'IA gobernada sobre operaciones reales',
+      signal: 'Tool calling con políticas, HITL, idempotencia y auditoría: el modelo nunca se convierte en autoridad operacional.',
+    },
+  },
+} : {
+  role: 'Role', stack: 'Stack', caseStudy: 'View case study',
+  defaultEvidence: 'Approved visual evidence',
+  projectCopy: {
+    'hms-cloudflare': {
+      category: 'Brownfield operational SaaS migration',
+      signal: 'Rust/PostgreSQL → Workers/D1 with tenant isolation, browser validation and verifiable recovery.',
+    },
+    'alquileres-uspa': {
+      category: 'Vacation-rental catalog and operations',
+      signal: 'Full-stack publication workflow with server-side authority, availability freshness and auditability.',
+    },
+    'ai-commerce-platform': {
+      category: 'Governed AI over real operations',
+      signal: 'LLM tool calling with policies, HITL, idempotency and audit — the model never becomes operational authority.',
+    },
+  },
+};
+const hmsInlineMedia = getHomepageProjectMedia('hms-cloudflare')?.gallery[0] ?? null;
+const activeProject = projects[0];
+const activeCover = activeProject ? getHomepageProjectCover(activeProject.data.slug) : null;
+const activeProof = activeProject ? getProjectProof(activeProject.data.slug) : null;
+const activeContent = activeProject ? copy.projectCopy[activeProject.data.slug as keyof typeof copy.projectCopy] : null;
+const activeIndex = '01';
+---
+
+<div class="selected-work-index">
+  <ol class="selected-work-list" aria-label={lang === 'es' ? 'Proyectos seleccionados' : 'Selected projects'}>
+    {projects.map((project, index) => {
+      const { data } = project;
+      const content = copy.projectCopy[data.slug as keyof typeof copy.projectCopy];
+      const media = data.slug === 'hms-cloudflare' ? hmsInlineMedia : getHomepageProjectCover(data.slug);
+      return (
+        <li class="selected-work-item" data-project-index-item data-index={String(index + 1).padStart(2, '0')}>
+          <a class="selected-work-row" href={getProjectPath(lang, data.slug)}>
+            <span class="selected-work-number">{String(index + 1).padStart(2, '0')}</span>
+            <span class="selected-work-row-copy">
+              <h3 class="selected-work-title">{data.title}</h3>
+              <span class="selected-work-category">{content?.category ?? data.category}</span>
+              <span class="selected-work-signal">{content?.signal ?? data.summary}</span>
+              <span class="selected-work-case-link">{copy.caseStudy}<span aria-hidden="true">↗</span></span>
+            </span>
+          </a>
+          {media && data.slug === 'hms-cloudflare' && (
+            <figure class="selected-work-mobile-evidence">
+              <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+              <figcaption>{media.caption[lang]}</figcaption>
+            </figure>
+          )}
+          <span class="selected-work-item-rule" aria-hidden="true"></span>
+        </li>
+      );
+    })}
+  </ol>
+
+  {activeProject && activeCover && activeProof && activeContent && (
+    <aside class="selected-work-evidence" aria-label={lang === 'es' ? 'Evidencia del proyecto seleccionado' : 'Selected project evidence'} data-selected-evidence>
+      <div class="selected-work-evidence-heading">
+        <span class="selected-work-evidence-index">{activeIndex} / 03</span>
+        <span>{activeProject.data.statusLabel}</span>
+      </div>
+      <figure class="selected-work-evidence-figure">
+        <div class="selected-work-evidence-image-frame">
+          <img
+            data-evidence-image
+            src={activeCover.src}
+            alt={activeCover.alt[lang]}
+            width={activeCover.width}
+            height={activeCover.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <p class="selected-work-evidence-empty" data-evidence-empty hidden>
+            {lang === 'es' ? 'No hay una captura aprobada para este caso.' : 'No approved capture is available for this case.'}
+          </p>
+        </div>
+        <figcaption data-evidence-caption>{activeCover.caption[lang]}</figcaption>
+      </figure>
+      <div class="selected-work-evidence-meta">
+        <p><span>{copy.role}</span><strong data-evidence-role>{activeProject.data.role}</strong></p>
+        <p><span>{copy.stack}</span><strong data-evidence-stack>{activeProject.data.stack.slice(0, 4).join(' · ')}</strong></p>
+      </div>
+      <p class="selected-work-evidence-limitation" data-evidence-limitation>{activeProof.proofLimitations[lang]}</p>
+    </aside>
+  )}
+</div>

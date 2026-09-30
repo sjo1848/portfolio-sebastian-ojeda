@@ -23,13 +23,13 @@ for (const route of homeRoutes) {
       await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'Download resume' : 'Descargar CV' })).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
       await expect(page.locator('.hero-github-link')).toBeVisible();
 
-      const leadCards = page.locator('#projects .project-card');
-      await expect(leadCards).toHaveCount(3);
+      const leadRows = page.locator('#projects [data-project-index-item]');
+      await expect(leadRows).toHaveCount(3);
       for (let index = 0; index < route.leadTitles.length; index += 1) {
-        await expect(leadCards.nth(index).getByRole('heading', { level: 3 })).toContainText(route.leadTitles[index]);
-        await expect(leadCards.nth(index).locator('.project-case-link')).toBeVisible();
+        await expect(leadRows.nth(index).getByRole('heading', { level: 3 })).toContainText(route.leadTitles[index]);
+        await expect(leadRows.nth(index).locator('.selected-work-case-link')).toBeVisible();
       }
-      const selectedWorkImage = page.locator('#projects .project-card-hero .project-evidence-image img');
+      const selectedWorkImage = page.locator('#projects .selected-work-mobile-evidence img');
       await expect(selectedWorkImage).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
       await expect(page.locator('html')).toHaveJSProperty('scrollWidth', width);
 
@@ -55,9 +55,9 @@ test('Issue 116 I1 reduced motion keeps the new Home content visible', async ({ 
   const motion = await page.evaluate(() => ({
     scroll: getComputedStyle(document.documentElement).scrollBehavior,
     buttonTransition: getComputedStyle(document.querySelector('.button-primary')!).transitionDuration,
-    cardTransition: getComputedStyle(document.querySelector('.project-card')!).transitionDuration,
+    selectedWorkTransition: getComputedStyle(document.querySelector('.selected-work-row')!).transitionDuration,
   }));
   expect(motion.scroll).toBe('auto');
   expect(motion.buttonTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
-  expect(motion.cardTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
+  expect(motion.selectedWorkTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
 });

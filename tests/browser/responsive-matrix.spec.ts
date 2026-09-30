@@ -50,7 +50,7 @@ for (const route of routes) {
       expect(dimensions.document, `${route.path} overflows at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
 
       if (route.path === '/' || route.path === '/es/') {
-        const caseStudyLink = page.locator('.project-case-link').first();
+        const caseStudyLink = page.locator('.selected-work-case-link').first();
         await expect(caseStudyLink).toBeVisible();
         const box = await caseStudyLink.boundingBox();
         expect(box).not.toBeNull();
