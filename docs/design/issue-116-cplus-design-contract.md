@@ -3,8 +3,8 @@
 **Phase:** DESIGN  
 **Direction:** C+ — Kinetic Technical Editorial  
 **Source definition:** `docs/discovery/issue-116-definition.md`  
-**Figma:** https://www.figma.com/design/z77envgN7luuRZkDrURPKg  
-**BUILD:** BLOCKED until the design gate is posted.
+**Final prototype:** https://www.magicpath.ai/files/456042490814947328  
+**BUILD:** DESIGN PASS — implementation contract may be activated by Controller.
 
 ## 1. Visual thesis
 
@@ -511,25 +511,59 @@ C+ requirements:
 
 Removing the hero HMS image is expected to reduce visual asset pressure, but no performance improvement may be claimed before measurement.
 
-## 16. Figma artifact state
+## 16. Final prototype and visual QA
 
-Page `00 — IA + Content + Research`:
-- current IA;
-- redundancy map;
-- reduced IA;
-- recruiter journey;
-- design principles.
+The final selected-design gate moved from Figma to MagicPath after the Figma Starter MCP quota prevented completing page 02.
 
-Page `01 — Visual Directions`:
-- A desktop/mobile;
-- B desktop/mobile;
-- C desktop/mobile;
-- comparison;
-- implemented baseline reconstruction;
-- selected C+ desktop/mobile.
+Canonical MagicPath project:
 
-Page `02 — Selected Design + Prototype`:
-- pending final materialization because Figma Starter MCP quota was reached.
+https://www.magicpath.ai/files/456042490814947328
 
-The static C+ direction and this contract are authoritative for design intent.
-Interactive prototype validation remains a final DESIGN gate before BUILD activation.
+Validated artifacts:
+
+- **C+ Portfolio Final Prototype**
+  - component: `456042539527598080`
+  - desktop revision: `456042539527598081`
+  - responsive/mobile revision: `456044421629243392`
+  - includes bilingual Home, hero, Selected Work interaction, Operating Mindset, About, Additional Work, Contact and interactive HMS case navigation.
+
+- **C+ Mobile QA — 390**
+  - component: `456044584171085824`
+  - revision: `456044584171085825`
+  - explicit 390 px composition used to verify the mobile first viewport and proof flow.
+
+- **C+ Motion & Interaction Storyboard**
+  - component: `456044882767806464`
+  - revision: `456044882767806465`
+  - documents M1–M5 plus reduced-motion final state.
+
+- **C+ HMS Case Study QA**
+  - component: `456044893798797312`
+  - revision: `456044893798797313`
+  - validates the C+ entry grammar for the lead case.
+
+### Visual QA result
+
+`PASS_WITH_IMPLEMENTATION_CONDITIONS`
+
+Observed:
+- desktop hero is immediately legible and materially more distinctive than the #113 baseline;
+- Stone / Andes Copper identity remains recognizable;
+- project proof is moved after the hero rather than removed;
+- explicit 390 px composition has no horizontal overflow;
+- mobile CTA hierarchy is clear;
+- Selected Work remains understandable without hover-only facts;
+- motion storyboard includes a static reduced-motion state;
+- HMS case-study entry visually continues the Home grammar.
+
+Implementation conditions:
+- at 360–430 px, tune the final `DEVELOPER` line conservatively if browser/font metrics place it too close to the right edge;
+- preserve static project facts independently of the desktop preview interaction;
+- implement motion CSS-first and preserve the JS budget;
+- verify the full six-width browser matrix during BUILD.
+
+These are BUILD validation conditions, not reasons to reopen visual direction.
+
+Design gate:
+
+`DESIGN_PASS_BUILD_AUTHORIZED`

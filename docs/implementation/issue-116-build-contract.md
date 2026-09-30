@@ -2,7 +2,7 @@
 
 **Worker:** Codex only  
 **Controller:** ChatGPT  
-**Status:** CONTRACT READY — activation blocked until `DESIGN_PASS_BUILD_AUTHORIZED` is posted.  
+**Status:** ACTIVE — `DESIGN_PASS_BUILD_AUTHORIZED` posted by Controller.  
 **Baseline:** `7ac73cdd81336e7c9021809b2340b4b455268fd6`
 
 ## Canonical inputs
@@ -13,20 +13,19 @@ Read before any implementation:
 3. `docs/design/issue-116-cplus-design-contract.md`
 4. `docs/design/issue-116-motion-spec.md`
 5. `docs/qa/issue-116-controller-design-review.md`
-6. Figma Issue #116 file.
+6. MagicPath final prototype: `https://www.magicpath.ai/files/456042490814947328`.
 
 Do not substitute personal design preferences for these contracts.
 
 ## Hard precondition
 
-Do not modify production frontend until Issue #116 contains the exact Controller state:
+Controller state is now:
 
 `DESIGN_PASS_BUILD_AUTHORIZED`
 
-If absent:
-- stop;
-- report `BLOCKED_BY_DESIGN_GATE`;
-- do not create a BUILD branch.
+BUILD may begin.
+
+If a later Issue #116 comment supersedes this state or reopens the design gate, stop and report the exact conflict before continuing.
 
 ## Scope
 
@@ -167,7 +166,7 @@ Before edits:
 - run release QA;
 - capture current Home EN/ES at required widths;
 - record JS/Lighthouse baseline;
-- verify Figma/design inputs.
+- verify MagicPath final prototype and canonical design contracts.
 
 No design changes.
 
