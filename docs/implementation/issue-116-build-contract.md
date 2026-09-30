@@ -12,8 +12,9 @@ Read before any implementation:
 2. `docs/discovery/issue-116-ia-visual-direction.md`
 3. `docs/design/issue-116-cplus-design-contract.md`
 4. `docs/design/issue-116-motion-spec.md`
-5. `docs/qa/issue-116-controller-design-review.md`
-6. Figma Issue #116 file.
+5. `docs/design/issue-116-prototype-storyboard.md`
+6. `docs/qa/issue-116-controller-design-review.md`
+7. Figma Issue #116 file.
 
 Do not substitute personal design preferences for these contracts.
 
