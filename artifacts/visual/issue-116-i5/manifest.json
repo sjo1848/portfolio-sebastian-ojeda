@@ -1,0 +1,46 @@
+{
+  "issue": 116,
+  "increment": "I5 — Selected Work progressive interaction",
+  "date": "2026-09-30",
+  "branch": "build/issue-116-cplus-baseline",
+  "viewportMatrix": [390, 768, 1440],
+  "states": [
+    {
+      "file": "selected-work-alquileres-active-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Alquileres active by pointer; image, caption, role, stack and limitations synchronized"
+    },
+    {
+      "file": "selected-work-alquileres-active-1440-es.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Alquileres active by pointer; Spanish proof caption and limitations synchronized"
+    },
+    {
+      "file": "selected-work-ai-no-image-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "AI Commerce + HMS active by keyboard focus; honest no-image evidence state"
+    },
+    {
+      "file": "selected-work-image-error-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Alquileres image request failed; honest inline fallback with case link preserved"
+    },
+    {
+      "file": "selected-work-mobile-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Static inline HMS evidence and touch navigation; desktop evidence pane hidden"
+    }
+  ],
+  "checks": {
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "axe": "PASS in active English and Spanish evidence states",
+    "reducedMotion": "PASS; interaction remains available and evidence transition is disabled",
+    "noJavaScript": "PASS; static rows, links and evidence remain available"
+  }
+}
