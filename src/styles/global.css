@@ -530,9 +530,11 @@ ul, ol { padding: 0; }
 .media-viewer-status { color: var(--muted); }
 .media-viewer-close {
   display: grid;
-  width: 2.75rem;
-  min-width: 2.75rem;
-  height: 2.75rem;
+  box-sizing: border-box;
+  flex: 0 0 44px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 50%;
