@@ -68,6 +68,17 @@
   font-weight: 650;
 }
 
+#projects .project-card-hero .project-evidence-image figcaption {
+  flex-wrap: wrap;
+}
+
+#projects .project-card-hero .project-evidence-image figcaption small {
+  flex-basis: 100%;
+  color: color-mix(in srgb, var(--night-text) 76%, transparent);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
 #projects .project-body {
   padding: clamp(1.35rem, 2.5vw, 1.65rem);
 }

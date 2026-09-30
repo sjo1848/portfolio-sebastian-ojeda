@@ -13,6 +13,9 @@ import {
 import { portfolioStoriesByLanguage } from '../data/portfolioStories';
 import { humanStoryByLanguage } from '../data/humanStory';
 import { getProjectPath } from '../data/routing';
+import { Picture } from 'astro:assets';
+import hmsReceptionHero from '../assets/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png';
+import { getHomepageProjectCover } from '../data/homepageProjectCovers';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -29,6 +32,7 @@ const storyCopy = portfolioStoriesByLanguage[lang];
 const humanStory = humanStoryByLanguage[lang];
 const methodPhases = methodPhasesByLanguage[lang];
 const capabilityGroups = capabilityGroupsByLanguage[lang];
+const hmsHero = getHomepageProjectCover('hms-cloudflare');
 const brandHero = lang === 'es'
   ? {
       headline: 'Desarrollador de Software Full-Stack',
@@ -60,6 +64,26 @@ const brandHero = lang === 'es'
           ))}
         </ul>
       </div>
+      {hmsHero && (
+        <figure class="brand-hero-evidence">
+          <Picture
+            src={hmsReceptionHero}
+            alt={hmsHero.alt[lang]}
+            width={hmsHero.width}
+            height={hmsHero.height}
+            widths={[360, 540, 720, 960, 1200, 1440]}
+            sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1100px) 42vw, 36vw"
+            formats={['avif', 'webp']}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption>
+            <span>{lang === 'es' ? 'Evidencia de producto · runtime local' : 'Product evidence · local runtime'}</span>
+            <small>{hmsHero.caption[lang]} {lang === 'es' ? 'No representa aceptación de producto ni release de producción.' : 'It does not represent product acceptance or a production release.'}</small>
+          </figcaption>
+        </figure>
+      )}
     </div>
   </section>
 
@@ -248,6 +272,8 @@ const brandHero = lang === 'es'
 
   @media (min-width: 48rem) {
     .quick-method-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .brand-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr); gap: clamp(2rem, 5vw, 4rem); }
+    .brand-hero-copy { max-width: 39rem; }
   }
 
   .hero-proof-links {
