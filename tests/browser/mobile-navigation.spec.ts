@@ -4,8 +4,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  { name: 'en', path: '/', navLabel: 'Primary navigation', firstLink: 'Projects', sectionHref: '/#projects', localeHref: '/es/', localeCode: 'ES' },
-  { name: 'es', path: '/es/', navLabel: 'Navegación principal', firstLink: 'Proyectos', sectionHref: '/es/#projects', localeHref: '/', localeCode: 'EN' },
+  { name: 'en', path: '/', navLabel: 'Primary navigation', firstLink: 'Work', resumeLabel: 'Resume', sectionHref: '/#projects', localeHref: '/es/', localeCode: 'ES' },
+  { name: 'es', path: '/es/', navLabel: 'Navegación principal', firstLink: 'Trabajo', resumeLabel: 'CV', sectionHref: '/es/#projects', localeHref: '/', localeCode: 'EN' },
 ] as const;
 
 for (const route of routes) {
@@ -43,6 +43,7 @@ for (const route of routes) {
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(page.getByRole('navigation', { name: route.navLabel })).toHaveCount(1);
     await expect(dialog.getByRole('link', { name: route.firstLink })).toBeVisible();
+    await expect(dialog.getByRole('link', { name: route.resumeLabel, exact: true })).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
     const localeLink = dialog.locator('.mobile-nav-language');
     await expect(localeLink).toBeVisible();
     await expect(localeLink).toHaveAttribute('href', route.localeHref);

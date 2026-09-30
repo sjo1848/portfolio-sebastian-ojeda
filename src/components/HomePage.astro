@@ -4,18 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from './ProjectCard.astro';
 import CopyAction from './CopyAction';
 import {
-  capabilityGroupsByLanguage,
   copyByLanguage,
-  methodPhasesByLanguage,
   siteByLanguage,
   type Language,
 } from '../data/site';
 import { portfolioStoriesByLanguage } from '../data/portfolioStories';
 import { humanStoryByLanguage } from '../data/humanStory';
 import { getProjectPath } from '../data/routing';
-import { Picture } from 'astro:assets';
-import hmsReceptionHero from '../assets/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png';
-import { getHomepageProjectCover } from '../data/homepageProjectCovers';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -30,60 +25,42 @@ const site = siteByLanguage[lang];
 const copy = copyByLanguage[lang].home;
 const storyCopy = portfolioStoriesByLanguage[lang];
 const humanStory = humanStoryByLanguage[lang];
-const methodPhases = methodPhasesByLanguage[lang];
-const capabilityGroups = capabilityGroupsByLanguage[lang];
-const hmsHero = getHomepageProjectCover('hms-cloudflare');
+const mindset = portfolioStoriesByLanguage[lang].operatingMindset;
 const brandHero = lang === 'es'
   ? {
-      headline: 'Desarrollador de Software Full-Stack',
-      lead: 'Conecto procesos operativos con software end-to-end: backend, datos, integraciones e interfaces.',
+      eyebrow: 'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND',
+      headline: ['FULL-STACK', 'SOFTWARE', 'DEVELOPER'],
+      lead: 'Convierto procesos operativos en software confiable: backend, datos, integraciones e interfaces.',
+      location: 'Mendoza, Argentina · Remoto prioritario',
+      workCta: 'Ver trabajo seleccionado',
+      resumeCta: 'Descargar CV',
     }
   : {
-      headline: 'Full-Stack Software Developer',
-      lead: 'Backend-oriented. I connect operational workflows with end-to-end software across backend, data, integrations and interfaces.',
+      eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED',
+      headline: ['FULL-STACK', 'SOFTWARE', 'DEVELOPER'],
+      lead: 'I turn operational workflows into reliable software across backend, data, integrations and interfaces.',
+      location: 'Mendoza, Argentina · Remote-first',
+      workCta: 'View selected work',
+      resumeCta: 'Download resume',
     };
 ---
 
 <BaseLayout lang={lang}>
-  <section class="hero section">
+  <section id="hero" class="hero section">
     <div class="container hero-grid brand-hero-grid">
       <div class="brand-hero-copy">
-        <p class="eyebrow">{lang === 'es' ? 'Perfil profesional' : 'Professional profile'}</p>
-        <h1 class="brand-headline">{brandHero.headline}</h1>
+        <p class="eyebrow">{brandHero.eyebrow}</p>
+        <h1 class="brand-headline">
+          {brandHero.headline.map((line) => <span class="hero-title-line">{line}</span>)}
+        </h1>
         <p class="hero-copy">{brandHero.lead}</p>
+        <p class="hero-location">{brandHero.location}</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#projects">{copy.viewProjects}</a>
-          <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="button button-primary" href="#projects">{brandHero.workCta}</a>
+          <a class="button button-secondary" href={site.cv}>{brandHero.resumeCta}</a>
         </div>
-        <ul class="hero-proof-links" aria-label={lang === 'es' ? 'Casos principales y estado actual' : 'Lead case studies and current status'}>
-          {primaryProjects.map((project) => (
-            <li>
-              <a href={getProjectPath(lang, project.data.slug)}>{project.data.title}</a>
-              <span>{project.data.statusLabel}</span>
-            </li>
-          ))}
-        </ul>
+        <a class="hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
-      {hmsHero && (
-        <figure class="brand-hero-evidence">
-          <Picture
-            src={hmsReceptionHero}
-            alt={hmsHero.alt[lang]}
-            width={hmsHero.width}
-            height={hmsHero.height}
-            widths={[360, 540, 720, 960, 1200, 1440]}
-            sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1100px) 42vw, 36vw"
-            formats={['avif', 'webp']}
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <figcaption>
-            <span>{lang === 'es' ? 'Evidencia de producto · runtime local' : 'Product evidence · local runtime'}</span>
-            <small>{hmsHero.caption[lang]} {lang === 'es' ? 'No representa aceptación de producto ni release de producción.' : 'It does not represent product acceptance or a production release.'}</small>
-          </figcaption>
-        </figure>
-      )}
     </div>
   </section>
 
@@ -108,78 +85,21 @@ const brandHero = lang === 'es'
     </div>
   </section>
 
-  <section id="capabilities" class="section section-night" aria-labelledby="capabilities-title">
-    <div class="container split-grid">
-      <div>
-        <p class="eyebrow eyebrow-light">{copy.capabilitiesEyebrow}</p>
-        <h2 id="capabilities-title">{copy.capabilitiesTitle}</h2>
-      </div>
-      <div class="capability-grid">
-        {capabilityGroups.map((group) => {
-          const linkedProofs = group.proofSlugs.flatMap((slug) => {
-            const project = primaryProjects.find((entry) => entry.data.slug === slug);
-            return project ? [{ project, href: `${getProjectPath(lang, slug)}#case-quick-scan-${slug}` }] : [];
-          });
-          return (
-            <article>
-              <h3>{group.title}</h3>
-              <p>{group.description}</p>
-              <p class="capability-proof-links">
-                <span>{copy.capabilityProofLabel}:</span>{' '}
-                {linkedProofs.map(({ project, href }) => <a href={href}>{project.data.title}</a>)}
-              </p>
-            </article>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  <section id="experience" class="section" aria-labelledby="experience-title">
-    <div class="container split-grid">
-      <div class="section-heading">
-        <p class="eyebrow">{copy.experienceEyebrow}</p>
-        <h2 id="experience-title">{copy.experienceTitle}</h2>
-      </div>
-      <div class="reading-column">
-        {copy.experienceParagraphs.map((paragraph, index) => (
-          <article class="experience-point">
-            <h3>{copy.experienceLabels[index]}</h3>
-            <p>{paragraph}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="process" class="section section-surface" aria-labelledby="process-title">
+  <section id="operating-mindset" class="section section-night" aria-labelledby="operating-mindset-title">
     <div class="container">
       <div class="section-heading">
-        <p class="eyebrow">{copy.processEyebrow}</p>
-        <h2 id="process-title">{copy.processTitle}</h2>
-        <p>{copy.processIntro}</p>
+        <p class="eyebrow eyebrow-light">{mindset.eyebrow}</p>
+        <h2 id="operating-mindset-title">{mindset.title}</h2>
       </div>
-      <ol class="quick-method-grid" aria-label={copy.processTitle}>
-        {copy.quickMethodSteps.map((step, index) => (
+      <ol class="operating-mindset-list">
+        {mindset.items.map((item, index) => (
           <li>
             <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{step.title}</strong>
-            <small>{step.description}</small>
+            <div><h3>{item.title}</h3><p>{item.description}</p></div>
           </li>
         ))}
       </ol>
-      <details class="full-method-details">
-        <summary>{copy.fullMethodSummary}</summary>
-        <ol class="method-flow">
-          {methodPhases.map((phase, index) => (
-            <li>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{phase.name}</strong>
-              <small>{phase.description}</small>
-            </li>
-          ))}
-        </ol>
-      </details>
+      <p class="operating-mindset-context">{mindset.context}</p>
     </div>
   </section>
 
@@ -201,13 +121,19 @@ const brandHero = lang === 'es'
       <div class="secondary-heading">
         <p class="eyebrow">{storyCopy.secondaryEyebrow}</p>
         <h2 id="additional-work-title">{storyCopy.secondaryTitle}</h2>
-        <p>{storyCopy.secondaryIntro}</p>
       </div>
-      <div class="secondary-grid">
+      <ol class="additional-work-index" aria-labelledby="additional-work-title">
         {secondaryProjects.map((project, index) => (
-          <ProjectCard project={project} lang={lang} displayIndex={index + 4} variant="secondary" />
+          <li>
+            <span class="additional-work-number">{String(index + 4).padStart(2, '0')}</span>
+            <div class="additional-work-description">
+              <a href={getProjectPath(lang, project.data.slug)}>{project.data.title}</a>
+              <span>{project.data.category}</span>
+            </div>
+            <span class="additional-work-status">{project.data.statusLabel}</span>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
@@ -216,7 +142,7 @@ const brandHero = lang === 'es'
       <div>
         <p class="eyebrow">{copy.contactEyebrow}</p>
         <h2 id="contact-title">{copy.contactTitle}</h2>
-        <p>{site.location}. {site.workMode}</p>
+        <p>{copy.contactBody}</p>
         <p>{copy.englishLevel}</p>
         <p class="contact-email-address">{site.email}</p>
       </div>
@@ -230,6 +156,7 @@ const brandHero = lang === 'es'
           copiedMessage={copy.emailCopied}
           errorMessage={copy.emailCopyError}
         />
+        <a class="button button-secondary" href={site.cv}>{copy.downloadCv}</a>
         <a class="button button-secondary" href={site.github} target="_blank" rel="noopener noreferrer">{copy.viewGithub}</a>
       </div>
     </div>
@@ -237,21 +164,22 @@ const brandHero = lang === 'es'
 </BaseLayout>
 
 <style>
-  .capability-proof-links { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; margin-top: 1rem; font-size: 0.9rem; }
-  .capability-proof-links > span:first-child { color: var(--muted); }
-  .capability-proof-links a { color: var(--night-text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
-  .experience-point + .experience-point { margin-top: 1.5rem; }
-  .experience-point h3 { margin-bottom: 0.4rem; font-size: 1rem; }
-  .experience-point p { margin-top: 0; }
-  .quick-method-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 0 0 2rem; padding: 0; list-style: none; }
-  .quick-method-grid li { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 0.25rem 0.75rem; border-top: 2px solid var(--accent); padding: 1rem 0 0.5rem; }
-  .quick-method-grid li > span { color: var(--accent-strong); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-weight: 750; }
-  .quick-method-grid strong { font-size: 1.05rem; }
-  .quick-method-grid small { grid-column: 2; color: var(--muted); font-size: 0.9rem; }
-  .full-method-details { border-top: 1px solid var(--line); padding-top: 1rem; }
-  .full-method-details summary { min-height: 2.8rem; width: fit-content; display: flex; align-items: center; color: var(--accent-strong); font-weight: 750; cursor: pointer; }
-  .full-method-details[open] .method-flow { margin-top: 1.25rem; }
-  .full-method-details summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  .hero-title-line { display: block; }
+  .hero-location { margin-top: 0.9rem; color: var(--muted); font-size: 0.95rem; }
+  .hero-github-link { display: inline-flex; min-height: 2.75rem; align-items: center; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+  .operating-mindset-list { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; list-style: none; }
+  .operating-mindset-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; border-top: 1px solid color-mix(in srgb, var(--night-text) 25%, transparent); padding-top: 1.25rem; }
+  .operating-mindset-list > li > span { color: var(--copper-light); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; font-weight: 750; }
+  .operating-mindset-list h3 { color: var(--night-text); font-size: 1.25rem; }
+  .operating-mindset-list p, .operating-mindset-context { max-width: 48rem; margin-top: 0.75rem; color: #c9d0ce; line-height: 1.65; }
+  .operating-mindset-context { margin-top: 2rem; }
+  .additional-work-index { display: grid; grid-template-columns: minmax(0, 1fr); list-style: none; }
+  .additional-work-index li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.35rem 0.8rem; align-items: baseline; border-top: 1px solid var(--line); padding: 1rem 0; }
+  .additional-work-number { color: var(--accent-strong); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.74rem; font-weight: 750; }
+  .additional-work-description { display: grid; gap: 0.25rem; }
+  .additional-work-description a { width: fit-content; min-height: 2.75rem; display: inline-flex; align-items: center; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  .additional-work-description > span { color: var(--muted); font-size: 0.82rem; }
+  .additional-work-status { grid-column: 2; color: var(--muted); font-size: 0.76rem; }
 
   .hero {
     padding-block: clamp(2.75rem, 5vw, 4.5rem);
@@ -271,46 +199,8 @@ const brandHero = lang === 'es'
   }
 
   @media (min-width: 48rem) {
-    .quick-method-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .brand-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr); gap: clamp(2rem, 5vw, 4rem); }
+    .brand-hero-grid { grid-template-columns: minmax(0, 1fr); }
     .brand-hero-copy { max-width: 39rem; }
-  }
-
-  .hero-proof-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem 1.5rem;
-    margin: 1.5rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .hero-proof-links li {
-    display: grid;
-    align-content: center;
-    gap: 0.2rem;
-    min-height: 2.8rem;
-    padding-left: 0.75rem;
-    border-left: 2px solid var(--accent);
-  }
-
-  .hero-proof-links a {
-    display: flex;
-    min-height: 2.8rem;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--ink);
-    font-size: 0.9rem;
-    font-weight: 750;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-  }
-
-  .hero-proof-links span {
-    max-width: 25rem;
-    color: var(--muted);
-    font-size: 0.68rem;
-    line-height: 1.35;
   }
 
   #projects {
@@ -331,31 +221,24 @@ const brandHero = lang === 'es'
     margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
   }
 
-  .story-grid,
-  .secondary-grid {
+  .story-grid {
     display: grid;
     gap: clamp(1.25rem, 2.5vw, 1.75rem);
   }
 
   .secondary-heading {
     max-width: 52rem;
-    margin-top: clamp(4.5rem, 8vw, 7rem);
+    margin-top: 0;
     margin-bottom: 2rem;
     padding-top: clamp(2rem, 4vw, 2.75rem);
     border-top: 1px solid var(--line);
   }
 
-  .secondary-heading > p:last-child {
-    margin-top: 1rem;
-    color: var(--muted);
-    font-size: 1.05rem;
-  }
-
   @media (min-width: 48rem) {
-    .story-grid,
-    .secondary-grid {
+    .story-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .additional-work-index { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
 
     .story-grid :global(.project-card-hero) {
       grid-column: 1 / -1;
@@ -392,20 +275,7 @@ const brandHero = lang === 'es'
       font-size: clamp(2.45rem, 10vw, 3.3rem);
     }
 
-    .hero-proof-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.6rem 0.9rem;
-      margin-top: 1.1rem;
-    }
-
-    .hero-proof-links li:first-child {
-      grid-column: 1 / -1;
-    }
-
-    .hero-proof-links span {
-      font-size: 0.62rem;
-    }
+    .operating-mindset-list { gap: 1.1rem; }
   }
 
   @media (min-width: 68.75rem) {
@@ -420,5 +290,6 @@ const brandHero = lang === 'es'
     .story-grid :global(.project-card-story:last-child) {
       grid-column: auto;
     }
+    .additional-work-index { column-gap: 4rem; }
   }
 </style>

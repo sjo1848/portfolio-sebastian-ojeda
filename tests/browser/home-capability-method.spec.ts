@@ -1,87 +1,47 @@
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  {
-    name: 'English',
-    path: '/',
-    methodSummary: 'View the eight Project Method phases',
-    steps: ['Discover', 'Build', 'Verify'],
-    capabilityProofs: [
-      ['/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare', '/projects/alquileres-uspa/#case-quick-scan-alquileres-uspa'],
-      ['/projects/alquileres-uspa/#case-quick-scan-alquileres-uspa'],
-      ['/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare'],
-      ['/projects/ai-commerce-platform/#case-quick-scan-ai-commerce-platform'],
-      ['/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare', '/projects/ai-commerce-platform/#case-quick-scan-ai-commerce-platform'],
-    ],
-  },
-  {
-    name: 'Spanish',
-    path: '/es/',
-    methodSummary: 'Ver las ocho fases de Project Method',
-    steps: ['Descubrir', 'Construir', 'Verificar'],
-    capabilityProofs: [
-      ['/es/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare', '/es/projects/alquileres-uspa/#case-quick-scan-alquileres-uspa'],
-      ['/es/projects/alquileres-uspa/#case-quick-scan-alquileres-uspa'],
-      ['/es/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare'],
-      ['/es/projects/ai-commerce-platform/#case-quick-scan-ai-commerce-platform'],
-      ['/es/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare', '/es/projects/ai-commerce-platform/#case-quick-scan-ai-commerce-platform'],
-    ],
-  },
+  { name: 'English', path: '/', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
+  { name: 'Spanish', path: '/es/', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
 ] as const;
 
-test.describe('Capability proof and native method disclosure without JavaScript', () => {
-  test.use({ javaScriptEnabled: false });
-
-  for (const locale of locales) {
-    test(`${locale.name} capability links and native method disclosure work without JavaScript`, async ({ page }) => {
-      await page.goto(locale.path, { waitUntil: 'networkidle' });
-
-      const methodDetails = page.locator('#process details');
-      await expect(methodDetails.locator('summary')).toHaveText(locale.methodSummary);
-      await methodDetails.locator('summary').click();
-      await expect(methodDetails).toHaveAttribute('open', '');
-      await expect(methodDetails.locator('.method-flow li')).toHaveCount(8);
-
-      await page.locator('#capabilities .capability-grid article').first().getByRole('link', { name: 'HMS Cloudflare' }).click();
-      const expectedCaseUrl = new URL(`${locale.path === '/' ? '' : '/es'}/projects/hms-cloudflare/#case-quick-scan-hms-cloudflare`, page.url()).toString();
-      await expect(page).toHaveURL(expectedCaseUrl);
-      await expect(page.locator('#case-quick-scan-hms-cloudflare')).toBeVisible();
-    });
-  }
-});
-
 for (const locale of locales) {
+  test(`${locale.name} Home IA, links and recruiter content work without JavaScript`, async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    await page.goto(locale.path, { waitUntil: 'networkidle' });
 
-  for (const width of [390, 768, 1440]) {
-    test(`${locale.name} capability proof and method layers are discoverable at ${width}px`, async ({ page }) => {
-      const pageErrors: string[] = [];
-      page.on('pageerror', (error) => pageErrors.push(error.message));
-      page.on('console', (message) => {
-        if (message.type() === 'error') pageErrors.push(message.text());
-      });
-      await page.setViewportSize({ width, height: 900 });
-      await page.goto(locale.path, { waitUntil: 'networkidle' });
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('FULL-STACK');
+    await expect(page.locator('.hero-copy')).toBeVisible();
+    await expect(page.getByRole('link', { name: locale.heroCta })).toHaveAttribute('href', '#projects');
+    await expect(page.getByRole('link', { name: locale.cvLabel, exact: true }).first()).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
+    await expect(page.locator('.hero-github-link')).toHaveAttribute('href', 'https://github.com/sjo1848');
 
-      const capabilityCards = page.locator('#capabilities .capability-grid article');
-      await expect(capabilityCards).toHaveCount(5);
-      for (let index = 0; index < locale.capabilityProofs.length; index += 1) {
-        const proofHrefs = await capabilityCards.nth(index).locator('a').evaluateAll((links) =>
-          links.map((link) => link.getAttribute('href')),
-        );
-        expect(proofHrefs).toEqual(locale.capabilityProofs[index]);
-      }
+    const sections = await page.locator('main > section').evaluateAll((elements) => elements.map((element) => element.id));
+    expect(sections).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
+    await expect(page.locator('#operating-mindset li')).toHaveCount(3);
+    await expect(page.locator('#additional-work li')).toHaveCount(6);
+    await expect(page.locator('#projects .project-case-link')).toHaveCount(3);
+    await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
 
-      const summary = page.locator('#process details > summary');
-      await expect(summary).toHaveText(locale.methodSummary);
-      const quickSteps = page.locator('#process > div > ol.quick-method-grid li strong');
-      await expect(quickSteps).toHaveText(locale.steps);
-      const disclosure = page.locator('#process details');
-      await expect(disclosure).not.toHaveAttribute('open', '');
-      await summary.focus();
-      await page.keyboard.press('Enter');
-      await expect(disclosure).toHaveAttribute('open', '');
-      await expect(disclosure.locator('.method-flow li')).toHaveCount(8);
-      expect(pageErrors).toEqual([]);
-    });
-  }
+    for (const anchor of await page.locator('a[href^="#"]').all()) {
+      const href = await anchor.getAttribute('href');
+      if (!href || href === '#') continue;
+      await expect(page.locator(href)).toHaveCount(1);
+    }
+    await expect(page.locator('#capabilities, #experience, #process, .hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
+    await context.close();
+  });
+
+  test(`${locale.name} Home remains navigable and informative without JavaScript at mobile width`, async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+    const page = await context.newPage();
+    await page.goto(locale.path, { waitUntil: 'networkidle' });
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.locator('#projects .project-title-link').first()).toHaveAttribute('href', /\/projects\//);
+    await expect(page.locator('#additional-work .additional-work-description a')).toHaveCount(6);
+    await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+    await context.close();
+  });
 }

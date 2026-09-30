@@ -17,24 +17,38 @@ export const secondaryCaseSlugs = [
 
 export const portfolioStoriesByLanguage = {
   es: {
-    eyebrow: 'Trabajo seleccionado',
-    title: 'Sistemas construidos alrededor de problemas reales',
-    intro:
-      'Tres proyectos con foco backend, mi aporte y la evidencia disponible.',
-    secondaryEyebrow: 'Casos complementarios',
-    secondaryTitle: 'Más profundidad según el problema',
-    secondaryIntro:
-      'Otros proyectos complementan el recorrido con trabajo en producto, mobile, logística, sistemas empresariales y automatización.',
+    eyebrow: 'TRABAJO SELECCIONADO',
+    title: 'Sistemas construidos alrededor de restricciones operativas reales.',
+    intro: 'Tres casos con foco backend, ownership, arquitectura y evidencia disponible.',
+    secondaryEyebrow: 'TRABAJO ADICIONAL',
+    secondaryTitle: 'Otros proyectos',
+    operatingMindset: {
+      eyebrow: 'CÓMO TRABAJO',
+      title: 'Entender el sistema. Construir end-to-end. Verificar los límites.',
+      items: [
+        { title: 'Entender sistemas', description: 'Mapeo actores, estados, restricciones, autoridad y fallos antes de tratar la UI o la API como si fueran todo el problema.' },
+        { title: 'Construir end-to-end', description: 'Conecto backend, datos, integraciones e interfaces con una arquitectura proporcional al problema.' },
+        { title: 'Verificar límites', description: 'Uso pruebas, validación en navegador, controles de seguridad y evidencia operacional para separar un PASS técnico de una aceptación o release.' },
+      ],
+      context: 'Mi experiencia en soporte, infraestructura, SAP e integraciones mantiene este enfoque conectado con procesos operativos reales.',
+    },
   },
   en: {
-    eyebrow: 'Selected work',
-    title: 'Systems built around real problems',
-    intro:
-      'Three backend-oriented projects, my role and the available evidence.',
-    secondaryEyebrow: 'Complementary cases',
-    secondaryTitle: 'Additional depth depending on the problem',
-    secondaryIntro:
-      'Other projects add work across product, mobile, logistics, enterprise systems and automation.',
+    eyebrow: 'SELECTED WORK',
+    title: 'Systems built around real operational constraints.',
+    intro: 'Three backend-oriented cases showing ownership, architecture and available evidence.',
+    secondaryEyebrow: 'ADDITIONAL WORK',
+    secondaryTitle: 'More projects',
+    operatingMindset: {
+      eyebrow: 'HOW I WORK',
+      title: 'Understand the system. Build end-to-end. Verify the boundaries.',
+      items: [
+        { title: 'Understand systems', description: 'I map actors, states, constraints, authority and failure paths before treating the UI or API as the whole problem.' },
+        { title: 'Build end-to-end', description: 'I connect backend services, data, integrations and interfaces with architecture proportional to the problem.' },
+        { title: 'Verify boundaries', description: 'I use tests, browser validation, security checks and operational evidence to distinguish technical PASS from product or release claims.' },
+      ],
+      context: 'My background in support, infrastructure, SAP and integrations keeps this work grounded in real operational processes.',
+    },
   },
 } satisfies Record<Language, {
   eyebrow: string;
@@ -42,5 +56,10 @@ export const portfolioStoriesByLanguage = {
   intro: string;
   secondaryEyebrow: string;
   secondaryTitle: string;
-  secondaryIntro: string;
+  operatingMindset: {
+    eyebrow: string;
+    title: string;
+    items: { title: string; description: string }[];
+    context: string;
+  };
 }>;

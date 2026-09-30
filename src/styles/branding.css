@@ -119,43 +119,6 @@ h2 {
   align-items: center;
 }
 
-.brand-hero-evidence {
-  min-width: 0;
-  margin: 0;
-}
-
-.brand-hero-evidence picture,
-.brand-hero-evidence img {
-  display: block;
-  width: 100%;
-}
-
-.brand-hero-evidence img {
-  height: auto;
-  border: 1px solid color-mix(in srgb, var(--line) 72%, var(--ink));
-  border-radius: var(--radius-card);
-  background: var(--surface);
-  box-shadow: 0 1.1rem 2.8rem rgb(23 32 39 / 11%);
-}
-
-.brand-hero-evidence figcaption {
-  display: grid;
-  gap: 0.2rem;
-  margin-top: 0.75rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
-.brand-hero-evidence figcaption span {
-  color: var(--accent-strong);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.75rem;
-  font-weight: 750;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
 .brand-hero-copy {
   align-self: center;
 }
@@ -356,7 +319,6 @@ h2 {
     padding-block: clamp(3.75rem, 14vw, 5rem);
   }
 
-  .brand-hero-evidence figcaption { font-size: 0.75rem; }
 
   .approach-panel {
     gap: 1.5rem;
