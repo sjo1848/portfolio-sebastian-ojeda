@@ -164,3 +164,20 @@ The design contract, responsive visual evidence, motion storyboard and case-stud
 Codex may now begin BUILD under `docs/implementation/issue-116-build-contract.md`.
 
 Any deviation involving scope, public claims, dependency policy, performance budget or accessibility returns to the Controller/Human Gate as defined by the contract.
+
+
+## Worker-accessible design reference recovery
+
+Codex I0 correctly reported that the MagicPath share URL redirects to the MagicPath landing page from the worker environment.
+
+Controller disposition:
+
+- this is an external-access problem, not a product/design contradiction;
+- MagicPath is now supplemental provenance only;
+- the immutable worker-accessible reference is:
+  `docs/design/issue-116-immutable-design-reference.md`;
+- BUILD must use the versioned repository contracts as source of truth.
+
+State:
+
+`I0_PASS / DESIGN_REFERENCE_RECOVERED / I1_AUTHORIZED`
