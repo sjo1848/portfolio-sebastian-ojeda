@@ -1,5 +1,3 @@
-import { mkdir } from 'node:fs/promises';
-import path from 'node:path';
 import { expect, test } from '@playwright/test';
 
 const routes = [
@@ -9,6 +7,8 @@ const routes = [
   { name: 'hms-es', path: '/es/projects/hms-cloudflare/' },
   { name: 'alquileres-en', path: '/projects/alquileres-uspa/' },
   { name: 'alquileres-es', path: '/es/projects/alquileres-uspa/' },
+  { name: 'ai-commerce-en', path: '/projects/ai-commerce-platform/' },
+  { name: 'ai-commerce-es', path: '/es/projects/ai-commerce-platform/' },
 ] as const;
 
 const desktopWidths = [360, 390, 430, 768, 1024, 1440] as const;
@@ -60,14 +60,6 @@ for (const route of routes) {
 
       expect(consoleMessages, `${route.path} console at ${width}px`).toEqual([]);
 
-      if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('artifacts/visual/issue-99-increment-2');
-        await mkdir(outputDir, { recursive: true });
-        await page.screenshot({
-          path: path.join(outputDir, `${route.name}-${width}x900.png`),
-          animations: 'disabled',
-        });
-      }
     });
   }
 }

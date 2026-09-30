@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getHomepageProjectCover } from '../data/homepageProjectCovers';
+import { getHomepageProjectCover, getHomepageProjectMedia } from '../data/homepageProjectCovers';
 import { getProjectMedia } from '../data/projectMedia';
 import { getProofActionLabel, getProjectProof } from '../data/projectProofs';
 import {
@@ -32,7 +32,11 @@ const {
 const { data } = project;
 const media = getProjectMedia(data.slug);
 const proof = getProjectProof(data.slug);
-const cover = getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
+const homepageMedia = getHomepageProjectMedia(data.slug);
+const selectedCardMedia = data.slug === 'hms-cloudflare' && variant === 'hero'
+  ? homepageMedia?.gallery[0]
+  : null;
+const cover = selectedCardMedia ?? getHomepageProjectCover(data.slug) ?? media?.cover ?? null;
 const coverIsPortrait = cover ? cover.height > cover.width * 1.15 : false;
 const copy = copyByLanguage[lang].project;
 const indexLabel = String(displayIndex ?? data.order).padStart(2, '0');
@@ -83,6 +87,7 @@ const visibleStack = data.stack.slice(0, variant === 'hero' ? 4 : 3);
         <figcaption>
           <span>{indexLabel}</span>
           <strong>{data.category}</strong>
+          {selectedCardMedia && <small>{selectedCardMedia.caption[lang]}</small>}
         </figcaption>
       </figure>
     ) : (
@@ -204,7 +209,7 @@ const visibleStack = data.stack.slice(0, variant === 'hero' ? 4 : 3);
   .project-case-link > span:last-child {
     color: var(--accent);
     font-size: 1.1rem;
-    transition: transform 160ms ease;
+    transition: transform var(--motion-fast) var(--motion-ease);
   }
 
   .project-case-link:hover {

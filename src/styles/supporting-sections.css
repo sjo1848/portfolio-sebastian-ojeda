@@ -113,6 +113,35 @@
   font-size: 1rem;
 }
 
+#experience .experience-point {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.68fr) minmax(0, 1.32fr);
+  align-items: start;
+  gap: 0.5rem clamp(1.25rem, 3vw, 2.5rem);
+  margin-top: 0;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+#experience .experience-point + .experience-point { margin-top: 0; }
+
+#experience .experience-point h3 {
+  margin: 0.12rem 0 0;
+  color: var(--accent-strong);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+#experience .reading-column .experience-point > p {
+  max-width: 37rem;
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 #experience .reading-column p {
   padding: 1.4rem 0;
   border-bottom: 1px solid var(--line);
@@ -353,6 +382,11 @@
 
   #process .method-flow {
     grid-template-columns: 1fr;
+  }
+
+  #experience .experience-point {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
   }
 
   #contact .contact-panel {

@@ -14,7 +14,13 @@ const output = path.resolve(process.env.OUTPUT_DIR ?? 'artifacts/visual/issue-11
 const baseURL = process.env.CAPTURE_BASE_URL ?? 'http://127.0.0.1:4184';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
-const manifest = { capturedAt: new Date().toISOString(), baselineCommit: process.env.BASELINE_COMMIT ?? 'unknown', browser: browser.version(), screenshots: [] };
+const manifest = {
+  capturedAt: new Date().toISOString(),
+  baselineCommit: process.env.BASELINE_COMMIT ?? null,
+  sourceCommit: process.env.SOURCE_COMMIT ?? process.env.BASELINE_COMMIT ?? null,
+  browser: browser.version(),
+  screenshots: [],
+};
 
 async function capture(page, name, details, fullPage = true) {
   const file = path.join(output, `${name}.png`);
