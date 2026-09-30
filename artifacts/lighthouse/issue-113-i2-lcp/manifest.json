@@ -2,7 +2,7 @@
   {
     "url": "http://localhost:39193/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_23.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_23.report.json",
     "summary": {
       "performance": 0.89,
@@ -14,7 +14,7 @@
   {
     "url": "http://localhost:39193/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_41.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_41.report.json",
     "summary": {
       "performance": 0.99,
@@ -26,7 +26,7 @@
   {
     "url": "http://localhost:39193/es/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_13.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_13.report.json",
     "summary": {
       "performance": 0.98,
@@ -38,7 +38,7 @@
   {
     "url": "http://localhost:39193/es/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_45.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_45.report.json",
     "summary": {
       "performance": 0.99,
@@ -50,7 +50,7 @@
   {
     "url": "http://localhost:39193/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_57.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost--2026_09_29_23_32_57.report.json",
     "summary": {
       "performance": 0.95,
@@ -62,7 +62,7 @@
   {
     "url": "http://localhost:39193/es/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_29.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i2-lcp/localhost-es_-2026_09_29_23_33_29.report.json",
     "summary": {
       "performance": 0.99,

@@ -2,7 +2,7 @@
   {
     "url": "http://localhost:33679/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_46_34.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_46_34.report.json",
     "summary": {
       "performance": 0.97,
@@ -14,7 +14,7 @@
   {
     "url": "http://localhost:33679/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_47_07.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_47_07.report.json",
     "summary": {
       "performance": 0.93,
@@ -26,7 +26,7 @@
   {
     "url": "http://localhost:33679/es/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_41.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_41.report.json",
     "summary": {
       "performance": 0.97,
@@ -38,7 +38,7 @@
   {
     "url": "http://localhost:33679/es/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_57.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_57.report.json",
     "summary": {
       "performance": 0.98,
@@ -50,7 +50,7 @@
   {
     "url": "http://localhost:33679/projects/hms-cloudflare/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_29.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_29.report.json",
     "summary": {
       "performance": 0.97,
@@ -62,7 +62,7 @@
   {
     "url": "http://localhost:33679/projects/hms-cloudflare/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_44.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_44.report.json",
     "summary": {
       "performance": 0.97,
@@ -74,7 +74,7 @@
   {
     "url": "http://localhost:33679/es/projects/hms-cloudflare/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_48_59.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_48_59.report.json",
     "summary": {
       "performance": 1,
@@ -86,7 +86,7 @@
   {
     "url": "http://localhost:33679/es/projects/hms-cloudflare/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_49_13.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_49_13.report.json",
     "summary": {
       "performance": 1,
@@ -98,7 +98,7 @@
   {
     "url": "http://localhost:33679/projects/alquileres-uspa/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_49_41.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_49_41.report.json",
     "summary": {
       "performance": 0.96,
@@ -110,7 +110,7 @@
   {
     "url": "http://localhost:33679/projects/alquileres-uspa/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_50_09.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_50_09.report.json",
     "summary": {
       "performance": 0.98,
@@ -122,7 +122,7 @@
   {
     "url": "http://localhost:33679/es/projects/alquileres-uspa/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_38.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_38.report.json",
     "summary": {
       "performance": 0.95,
@@ -134,7 +134,7 @@
   {
     "url": "http://localhost:33679/es/projects/alquileres-uspa/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_52.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_52.report.json",
     "summary": {
       "performance": 0.97,
@@ -146,7 +146,7 @@
   {
     "url": "http://localhost:33679/projects/ai-commerce-platform/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_06.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_06.report.json",
     "summary": {
       "performance": 1,
@@ -158,7 +158,7 @@
   {
     "url": "http://localhost:33679/projects/ai-commerce-platform/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_19.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_19.report.json",
     "summary": {
       "performance": 1,
@@ -170,7 +170,7 @@
   {
     "url": "http://localhost:33679/es/projects/ai-commerce-platform/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_51_46.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_51_46.report.json",
     "summary": {
       "performance": 1,
@@ -182,7 +182,7 @@
   {
     "url": "http://localhost:33679/es/projects/ai-commerce-platform/",
     "isRepresentativeRun": false,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_52_00.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_52_00.report.json",
     "summary": {
       "performance": 0.99,
@@ -194,7 +194,7 @@
   {
     "url": "http://localhost:33679/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_46_51.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost--2026_09_30_00_46_51.report.json",
     "summary": {
       "performance": 0.97,
@@ -206,7 +206,7 @@
   {
     "url": "http://localhost:33679/es/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_25.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_-2026_09_30_00_47_25.report.json",
     "summary": {
       "performance": 0.99,
@@ -218,7 +218,7 @@
   {
     "url": "http://localhost:33679/projects/hms-cloudflare/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_14.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_hms_cloudflare_-2026_09_30_00_48_14.report.json",
     "summary": {
       "performance": 0.98,
@@ -230,7 +230,7 @@
   {
     "url": "http://localhost:33679/es/projects/hms-cloudflare/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_49_27.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_hms_cloudflare_-2026_09_30_00_49_27.report.json",
     "summary": {
       "performance": 1,
@@ -242,7 +242,7 @@
   {
     "url": "http://localhost:33679/projects/alquileres-uspa/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_49_55.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_alquileres_uspa_-2026_09_30_00_49_55.report.json",
     "summary": {
       "performance": 0.98,
@@ -254,7 +254,7 @@
   {
     "url": "http://localhost:33679/es/projects/alquileres-uspa/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_23.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_alquileres_uspa_-2026_09_30_00_50_23.report.json",
     "summary": {
       "performance": 0.96,
@@ -266,7 +266,7 @@
   {
     "url": "http://localhost:33679/projects/ai-commerce-platform/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_33.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-projects_ai_commerce_platform_-2026_09_30_00_51_33.report.json",
     "summary": {
       "performance": 1,
@@ -278,7 +278,7 @@
   {
     "url": "http://localhost:33679/es/projects/ai-commerce-platform/",
     "isRepresentativeRun": true,
-    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_52_13.report.html",
+    "htmlPath": null,
     "jsonPath": "/home/sjo1848/dev/portolio/portfolio-sebastian-ojeda/artifacts/lighthouse/issue-113-i8-final-confirmation/localhost-es_projects_ai_commerce_platform_-2026_09_30_00_52_13.report.json",
     "summary": {
       "performance": 1,

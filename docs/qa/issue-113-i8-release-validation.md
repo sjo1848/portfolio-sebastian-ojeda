@@ -1,9 +1,9 @@
 # Issue #113 — I8 validation and release candidate
 
-**Candidate:** `a3302c85934692403d675a2811124a6697e4a552`  
-**Baseline:** `1f08956c93cb70b85f6d81d6c35aeb805630fcd9`  
-**Phase:** I0–I8 complete; I9 Release/Learn is pending PR gates and production verification.  
-**Production canonical:** `https://sebastian-ojeda.pages.dev`  
+**Candidate:** `a3302c85934692403d675a2811124a6697e4a552`
+**Baseline:** `1f08956c93cb70b85f6d81d6c35aeb805630fcd9`
+**Phase:** I0–I8 complete; I9 Release/Learn is pending PR gates and production verification.
+**Production canonical:** `https://sebastian-ojeda.pages.dev`
 **Field Core Web Vitals:** `NOT_YET_OBSERVABLE`
 
 ## Delivered increments
@@ -70,7 +70,7 @@ Deferred gallery chunks retain the established budgets: 12,553 B gzip for HMS an
 
 - `npm ci`: PASS on the I0 baseline with the repository lockfile; no dependencies or lockfiles changed in this initiative.
 - `npm run qa:release`: PASS on the exact candidate build after all CSS and source changes; 66 Astro files, zero errors/warnings/hints; all 22 HTML pages pass content, presentation, social metadata, SEO, UX/accessibility, build and sitemap validators.
-- `git diff --check`: PASS.
+- `git diff --check 1f08956..HEAD`: PASS after removing whitespace-only generated Lighthouse HTML views; complete raw Lighthouse JSON audits, manifests and exact collection configs remain retained.
 - Browser suite: full local run executed 840 tests across Chromium, Firefox, WebKit, Mobile Chrome and Mobile WebKit profiles: 571 passed, 267 expected project skips, two timeout failures under local resource contention. Both failed tests passed in isolated one-worker reruns. No functional assertion or accessibility violation was observed. Hosted CI is the final browser gate and remains pending at this candidate.
 - Dedicated Issue #113 visual tests cover both Home locales at 360/390/430/768/1024/1440 px; lead order/actions; approved image dimensions, priority, formats and caption; non-duplication; overflow; axe WCAG 2.2 AA at 390/1440; console errors; and reduced-motion behavior.
 - Existing browser suites cover keyboard/focus, responsive viewer, Dialog/Drawer/Sheet, no-JS anchors, carousel/GIF behavior and console/hydration. Playwright had no product console error in successful captures.
