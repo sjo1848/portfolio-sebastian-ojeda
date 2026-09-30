@@ -50,8 +50,10 @@ const brandHero = lang === 'es'
     <div class="container hero-grid brand-hero-grid">
       <div class="brand-hero-copy">
         <p class="eyebrow">{brandHero.eyebrow}</p>
-        <h1 class="brand-headline">
-          {brandHero.headline.map((line) => <span class="hero-title-line">{line}</span>)}
+        <h1 class="brand-headline" data-motion-hero>
+          {brandHero.headline.map((line, index) => <span class="hero-title-line" style={`--hero-line-index:${index}`}>
+            <span class="hero-title-text">{line}</span>
+          </span>)}
         </h1>
         <p class="hero-copy">{brandHero.lead}</p>
         <p class="hero-location">{brandHero.location}</p>

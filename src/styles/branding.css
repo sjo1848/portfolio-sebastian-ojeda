@@ -172,6 +172,33 @@ h2 {
   width: fit-content;
 }
 
+/* Issue #116 M1: the final copy remains present and readable without motion. */
+@keyframes cplus-hero-align {
+  from { transform: translate3d(var(--hero-line-offset), 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cplus-hero-marker-reveal {
+  from { transform: scaleX(0.2); transform-origin: left center; }
+  to { transform: scaleX(1); transform-origin: left center; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-headline[data-motion-hero] .hero-title-line {
+    --hero-line-offset: -1.25rem;
+    animation: cplus-hero-align 700ms var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+    animation-delay: calc(var(--hero-line-index, 0) * 56ms);
+  }
+
+  .brand-headline[data-motion-hero] .hero-title-line:nth-child(2) { --hero-line-offset: 1.75rem; }
+  .brand-headline[data-motion-hero] .hero-title-line:nth-child(3) { --hero-line-offset: 2.25rem; }
+
+  .brand-hero-copy .eyebrow::before {
+    animation: cplus-hero-marker-reveal 560ms var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+    animation-delay: 105ms;
+  }
+}
+
 .brand-headline .hero-title-line:nth-child(2) {
   margin-left: clamp(0.65rem, 4vw, 3.25rem);
 }
