@@ -46,6 +46,38 @@ const locales = [
 ] as const;
 
 for (const locale of locales) {
+  for (const viewport of [{ width: 1366, height: 768 }, { width: 1440, height: 900 }]) {
+    test(`${locale.name} Hero role, lead and both CTAs fit ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
+      test.skip(testInfo.project.name !== 'chromium');
+      const errors: string[] = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      await page.setViewportSize(viewport);
+      await page.goto(locale.path, { waitUntil: 'networkidle' });
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.locator('.hero-copy')).toBeVisible();
+
+      const actions = page.locator('#hero .hero-actions a');
+      await expect(actions).toHaveCount(2);
+      await expect(actions.nth(0)).toBeVisible();
+      await expect(actions.nth(1)).toBeVisible();
+      const bounds = await actions.evaluateAll((links) => links.map((link) => {
+        const { x, y, width, height, top, right, bottom, left } = link.getBoundingClientRect();
+        return { href: link.getAttribute('href'), x, y, width, height, top, right, bottom, left };
+      }));
+      expect(bounds[0].href).toBe('#projects');
+      expect(bounds[1].href).toMatch(/cv-sebastian-ojeda.*\.pdf$/);
+      for (const button of bounds) {
+        expect(button.top).toBeGreaterThanOrEqual(0);
+        expect(button.bottom).toBeLessThanOrEqual(viewport.height);
+        expect(button.left).toBeGreaterThanOrEqual(0);
+        expect(button.right).toBeLessThanOrEqual(viewport.width);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
+      expect(errors).toEqual([]);
+    });
+  }
+
   for (const width of [360, 390, 430, 768, 1024, 1440]) {
     test(`${locale.name} Home I1 content hierarchy at ${width}px`, async ({ page }) => {
       const pageErrors: string[] = [];

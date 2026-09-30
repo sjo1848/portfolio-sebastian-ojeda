@@ -178,16 +178,6 @@ h2 {
 
 .brand-headline .hero-title-line:nth-child(3) {
   margin-left: clamp(1.2rem, 8vw, 6.75rem);
-  color: var(--accent-strong);
-}
-
-.brand-headline .hero-title-line:nth-child(3)::after {
-  display: inline-block;
-  width: clamp(1.2rem, 4.5vw, 4.6rem);
-  height: 0.075em;
-  margin: 0 0 0.13em 0.13em;
-  background: var(--accent);
-  content: '';
 }
 
 .brand-hero-copy .hero-copy {
@@ -668,6 +658,12 @@ h2 {
   .brand-hero-copy .hero-actions .button { padding-inline: 0.75rem; }
 }
 
+@media (min-width: 68.75rem) {
+  .hero {
+    padding-block: clamp(1.75rem, 3.2vw, 3rem) clamp(2.25rem, 4vw, 4rem);
+  }
+}
+
 @media (max-width: 22.5rem) {
   .brand-headline {
     font-size: clamp(2.72rem, 12.3vw, 3rem);
@@ -676,10 +672,6 @@ h2 {
 
   .brand-headline .hero-title-line:nth-child(3) {
     margin-left: 0.8rem;
-  }
-
-  .brand-headline .hero-title-line:nth-child(3)::after {
-    display: none;
   }
 
   .brand-hero-copy .hero-actions {
