@@ -284,3 +284,67 @@ Recommended next Human Gate:
 - or request a fourth direction before deeper mockups.
 
 No frontend implementation is authorized by this report.
+
+
+## 14. Fair comparison — implemented baseline vs C+
+
+To reduce decision ambiguity, the current implemented Home was reconstructed in Figma from the actual `main` source and CSS rather than from memory.
+
+### Current implemented baseline
+Source characteristics preserved in the reconstruction:
+- Stone / Andes Copper palette;
+- two-column desktop hero;
+- role + backend-oriented proposition;
+- Projects and GitHub CTAs;
+- three lead-project status links in the hero;
+- HMS Cloudflare evidence in the hero;
+- Selected Work immediately below;
+- project cards with media, status, title, role/stack-style metadata and evidence framing;
+- rounded cards, soft shadow/elevation and restrained microinteraction language.
+
+This confirms that the current implementation is already closest to **Direction A**, although with more product-card/UI treatment and more evidence exposed before the first scroll.
+
+### C+ comparison concept
+A new editable C+ concept was added using the same positioning and lead projects.
+
+Key differences:
+- hero contains identity and proposition only;
+- no HMS media in hero;
+- no lead-project roster in hero;
+- technical grid is present but quieter than Direction C;
+- Stone / Copper is retained;
+- Selected Work becomes the first proof reveal;
+- project presentation begins as an indexed editorial system rather than cards;
+- the first project can expose a contextual evidence preview on interaction;
+- mobile is composed independently rather than treated as a stacked desktop.
+
+Figma node references:
+- Baseline desktop: `10:5`
+- Baseline mobile: `10:62`
+- C+ desktop: `10:87`
+- C+ mobile: `10:129`
+
+These frames are located in `01 — Visual Directions`.
+
+## 15. Figma Starter MCP limit encountered
+
+After successfully creating the baseline and C+ frames, the Figma MCP Starter call quota was reached during the final screenshot-validation pass.
+
+Observed tool response:
+> You've reached the Figma MCP tool call limit on the Starter plan.
+
+Therefore:
+- the frames were created successfully;
+- structural creation returned PASS;
+- **final screenshot review of the newly created baseline and C+ frames is still pending**;
+- no Human Gate should be considered passed based solely on their creation;
+- no BUILD authorization is implied.
+
+The correct next action when MCP access becomes available again is:
+1. screenshot baseline desktop/mobile;
+2. screenshot C+ desktop/mobile;
+3. check clipping, hierarchy, density and mobile title wrapping;
+4. apply only targeted fixes;
+5. present the side-by-side comparison to Product Owner.
+
+BUILD remains blocked.
