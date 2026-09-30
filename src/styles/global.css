@@ -77,7 +77,7 @@ body {
 }
 
 .ui-dialog-content[data-starting-style],
-.ui-dialog-content[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 0.4rem)) scale(0.99); }
+.ui-dialog-content[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 0.4rem)); }
 
 .ui-sheet-content {
   position: fixed;
