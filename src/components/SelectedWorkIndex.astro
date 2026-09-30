@@ -10,7 +10,8 @@ interface Props { lang: Language; projects: ProjectEntry[]; }
 const { lang, projects } = Astro.props;
 const copy = lang === 'es' ? {
   role: 'Rol', stack: 'Stack', caseStudy: 'Ver caso de estudio',
-  defaultEvidence: 'Evidencia visual aprobada',
+  noImageCaption: 'No hay una captura visual aprobada para este caso; el caso de estudio y el repositorio siguen siendo las fuentes disponibles.',
+  imageError: 'La vista previa de la imagen no está disponible. El caso de estudio sigue accesible en el enlace de la fila.',
   projectCopy: {
     'hms-cloudflare': {
       category: 'Migración brownfield de un SaaS operacional',
@@ -27,7 +28,8 @@ const copy = lang === 'es' ? {
   },
 } : {
   role: 'Role', stack: 'Stack', caseStudy: 'View case study',
-  defaultEvidence: 'Approved visual evidence',
+  noImageCaption: 'No approved visual capture is available for this case; the case study and repository remain the available sources.',
+  imageError: 'The image preview is unavailable. The case study remains available from its project link.',
   projectCopy: {
     'hms-cloudflare': {
       category: 'Brownfield operational SaaS migration',
@@ -56,9 +58,28 @@ const activeIndex = '01';
     {projects.map((project, index) => {
       const { data } = project;
       const content = copy.projectCopy[data.slug as keyof typeof copy.projectCopy];
-      const media = data.slug === 'hms-cloudflare' ? hmsInlineMedia : getHomepageProjectCover(data.slug);
+      const media = data.slug === 'hms-cloudflare' ? hmsInlineMedia : null;
+      const preview = getHomepageProjectCover(data.slug);
+      const proof = getProjectProof(data.slug);
       return (
-        <li class="selected-work-item" data-project-index-item data-index={String(index + 1).padStart(2, '0')}>
+        <li
+          class="selected-work-item"
+          data-project-index-item
+          data-index={String(index + 1).padStart(2, '0')}
+          data-active={index === 0 ? 'true' : undefined}
+          data-status={data.statusLabel}
+          data-role={data.role}
+          data-stack={data.stack.slice(0, 4).join(' · ')}
+          data-evidence-src={preview?.src}
+          data-evidence-alt={preview?.alt[lang]}
+          data-proof-caption={preview?.caption[lang]}
+          data-evidence-width={preview?.width}
+          data-evidence-height={preview?.height}
+          data-evidence-classification={proof?.proofProvenance.dataClassification}
+          data-proof-limitation={proof?.proofLimitations[lang]}
+          data-empty-caption={copy.noImageCaption}
+          data-image-error={copy.imageError}
+        >
           <a class="selected-work-row" href={getProjectPath(lang, data.slug)}>
             <span class="selected-work-number">{String(index + 1).padStart(2, '0')}</span>
             <span class="selected-work-row-copy">
@@ -86,6 +107,7 @@ const activeIndex = '01';
         <span class="selected-work-evidence-index">{activeIndex} / 03</span>
         <span>{activeProject.data.statusLabel}</span>
       </div>
+      <h3 class="selected-work-evidence-title" data-evidence-title aria-live="polite">{activeProject.data.title}</h3>
       <figure class="selected-work-evidence-figure">
         <div class="selected-work-evidence-image-frame">
           <img
@@ -98,7 +120,7 @@ const activeIndex = '01';
             decoding="async"
           />
           <p class="selected-work-evidence-empty" data-evidence-empty hidden>
-            {lang === 'es' ? 'No hay una captura aprobada para este caso.' : 'No approved capture is available for this case.'}
+            {copy.noImageCaption}
           </p>
         </div>
         <figcaption data-evidence-caption>{activeCover.caption[lang]}</figcaption>
@@ -111,3 +133,7 @@ const activeIndex = '01';
     </aside>
   )}
 </div>
+
+<script>
+  import '../scripts/selected-work-enhancement';
+</script>
