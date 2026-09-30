@@ -16,6 +16,9 @@
   --focus: #0e6870;
   --shadow-soft: 0 1rem 3rem rgb(23 32 39 / 9%);
   --shadow-lift: 0 1.4rem 3.5rem rgb(23 32 39 / 13%);
+  --type-display: clamp(3rem, 12.5vw, 9.5rem);
+  --type-section: clamp(2.1rem, 5.4vw, 4.4rem);
+  --space-section: clamp(5rem, 10vw, 9rem);
 }
 
 body {
@@ -108,9 +111,16 @@ h2 {
 
 .hero {
   position: relative;
-  overflow: hidden;
-  padding-block: clamp(5.25rem, 11vw, 9.5rem);
-  background: linear-gradient(180deg, var(--paper), var(--canvas));
+  isolation: isolate;
+  overflow: clip;
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(5.5rem, 9vw, 8.5rem);
+  border-bottom: 1px solid var(--line);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(90deg, transparent calc(16.666% - 0.5px), rgb(23 32 39 / 3.5%) 16.666%, transparent calc(16.666% + 0.5px)),
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgb(23 32 39 / 3.5%) 50%, transparent calc(50% + 0.5px)),
+    linear-gradient(90deg, transparent calc(83.333% - 0.5px), rgb(23 32 39 / 3.5%) 83.333%, transparent calc(83.333% + 0.5px)),
+    linear-gradient(180deg, var(--paper), var(--canvas));
 }
 
 .brand-hero-grid {
@@ -121,6 +131,11 @@ h2 {
 
 .brand-hero-copy {
   align-self: center;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+  max-width: none;
 }
 
 .brand-hero-copy .eyebrow {
@@ -140,12 +155,44 @@ h2 {
 }
 
 .brand-headline {
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  max-width: none;
+  margin: 0;
   color: var(--ink);
+  font-size: var(--type-display);
+  font-weight: 820;
+  line-height: 0.79;
+  letter-spacing: -0.09em;
+  text-wrap: nowrap;
+}
+
+.brand-headline .hero-title-line {
+  width: fit-content;
+}
+
+.brand-headline .hero-title-line:nth-child(2) {
+  margin-left: clamp(0.65rem, 4vw, 3.25rem);
+}
+
+.brand-headline .hero-title-line:nth-child(3) {
+  margin-left: clamp(1.2rem, 8vw, 6.75rem);
+  color: var(--accent-strong);
+}
+
+.brand-headline .hero-title-line:nth-child(3)::after {
+  display: inline-block;
+  width: clamp(1.2rem, 4.5vw, 4.6rem);
+  height: 0.075em;
+  margin: 0 0 0.13em 0.13em;
+  background: var(--accent);
+  content: '';
 }
 
 .brand-hero-copy .hero-copy {
-  max-width: 38rem;
-  margin-top: 1.75rem;
+  max-width: 31rem;
+  margin-top: 0;
   color: var(--ink);
   font-size: clamp(1.25rem, 2.6vw, 1.55rem);
   line-height: 1.48;
@@ -157,6 +204,192 @@ h2 {
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.72;
+}
+
+.brand-hero-copy .eyebrow {
+  position: relative;
+  grid-column: 1 / -1;
+  width: fit-content;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0.65rem 0 0.8rem;
+}
+
+.brand-hero-copy .eyebrow::before {
+  width: 1rem;
+  height: 0.5rem;
+  background: var(--accent);
+}
+
+.brand-hero-copy .hero-copy {
+  grid-column: 1 / 7;
+  margin-top: 0;
+  padding-top: 0.5rem;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.5;
+}
+
+.brand-hero-copy .hero-location {
+  grid-column: 8 / -1;
+  align-self: end;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-hero-copy .hero-actions {
+  grid-column: 8 / -1;
+  align-self: start;
+  margin-top: 0.7rem;
+}
+
+.brand-hero-copy .hero-github-link {
+  grid-column: 8 / -1;
+  width: fit-content;
+  margin-top: 0.05rem;
+  padding-inline: 0.25rem;
+}
+
+.brand-hero-copy .button-primary {
+  box-shadow: none;
+}
+
+.brand-hero-copy .button-secondary {
+  border-color: var(--ink);
+  background: transparent;
+}
+
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  inset-inline: 0;
+  bottom: 2.1rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  content: '';
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section-heading h2,
+.secondary-heading h2,
+#contact h2 {
+  font-size: var(--type-section);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+.section-heading .eyebrow,
+.secondary-heading .eyebrow {
+  margin-bottom: 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+#projects {
+  border-top: 0;
+  background: var(--canvas);
+}
+
+#projects .projects-heading {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+#projects .project-card {
+  border-radius: 0.3rem;
+  box-shadow: none;
+}
+
+#projects .project-card:hover,
+#projects .project-card:focus-within {
+  box-shadow: none;
+}
+
+#projects .project-evidence-image,
+#projects .project-shot {
+  border-radius: 0;
+}
+
+#operating-mindset {
+  position: relative;
+  overflow: clip;
+  border-block: 1px solid color-mix(in srgb, var(--night-text) 17%, transparent);
+  background: var(--night);
+}
+
+#operating-mindset::before {
+  position: absolute;
+  top: 0;
+  right: max(1rem, calc((100vw - var(--container)) / 2));
+  width: min(32vw, 27rem);
+  height: 0.2rem;
+  background: var(--copper-light);
+  content: '';
+}
+
+#operating-mindset .section-heading {
+  max-width: 54rem;
+}
+
+#operating-mindset .section-heading h2 {
+  max-width: 15ch;
+}
+
+.operating-mindset-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 3rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.operating-mindset-list li {
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  border-top-color: color-mix(in srgb, var(--night-text) 26%, transparent);
+  padding-top: 1.25rem;
+}
+
+.operating-mindset-list h3 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  letter-spacing: -0.035em;
+}
+
+.operating-mindset-context {
+  max-width: 54rem;
+  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+  border-top: 1px solid color-mix(in srgb, var(--night-text) 17%, transparent);
+  padding-top: 1.25rem;
+  color: var(--night-muted);
+}
+
+.additional-work-index {
+  border-bottom: 1px solid var(--line);
+}
+
+.additional-work-index li {
+  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  border-top-color: var(--line);
+  padding-block: 0.75rem;
+}
+
+.additional-work-description a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.additional-work-description a:hover,
+.additional-work-description a:focus-visible {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+.additional-work-status {
+  grid-column: auto;
+  text-align: right;
 }
 
 .button {
@@ -316,7 +549,77 @@ h2 {
   }
 
   .hero {
-    padding-block: clamp(3.75rem, 14vw, 5rem);
+    padding-block: 2.4rem 4rem;
+  }
+
+  .brand-hero-copy {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .brand-hero-copy .eyebrow {
+    max-width: 100%;
+    grid-column: 1 / -1;
+    margin-bottom: clamp(1.8rem, 7vw, 2.6rem);
+    font-size: clamp(0.61rem, 2.2vw, 0.72rem);
+    letter-spacing: 0.09em;
+  }
+
+  .brand-headline {
+    grid-column: 1 / -1;
+    width: 100%;
+    font-size: clamp(3rem, 12.5vw, 4.6rem);
+    line-height: 0.82;
+    letter-spacing: -0.085em;
+  }
+
+  .brand-headline .hero-title-line:nth-child(2) {
+    margin-left: clamp(0.55rem, 3vw, 1rem);
+  }
+
+  .brand-headline .hero-title-line:nth-child(3) {
+    margin-left: clamp(1rem, 6vw, 2rem);
+  }
+
+  .brand-headline .hero-title-line:nth-child(3)::after {
+    width: 1rem;
+    margin-left: 0.06em;
+  }
+
+  .brand-hero-copy .hero-copy {
+    grid-column: 1 / -1;
+    max-width: 35rem;
+    margin-top: 2rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+    font-size: 1.05rem;
+  }
+
+  .brand-hero-copy .hero-location {
+    grid-column: 1 / -1;
+    margin-top: 1.25rem;
+  }
+
+  .brand-hero-copy .hero-actions {
+    grid-column: 1 / -1;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .brand-hero-copy .hero-actions .button {
+    flex: 1 1 auto;
+    padding-inline: 0.75rem;
+    font-size: 0.86rem;
+  }
+
+  .brand-hero-copy .hero-github-link {
+    grid-column: 1 / -1;
+    margin-top: 0.2rem;
+  }
+
+  .hero::after {
+    bottom: 1.5rem;
   }
 
 
@@ -352,6 +655,36 @@ h2 {
   .approach-path i:last-of-type,
   .approach-path strong {
     display: none;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 67.99rem) {
+  .brand-headline { font-size: clamp(5.2rem, 11.5vw, 7rem); }
+  .brand-hero-copy .hero-copy { grid-column: 1 / 7; }
+  .brand-hero-copy .hero-location,
+  .brand-hero-copy .hero-actions,
+  .brand-hero-copy .hero-github-link { grid-column: 8 / -1; }
+  .brand-hero-copy .hero-actions { flex-wrap: wrap; }
+  .brand-hero-copy .hero-actions .button { padding-inline: 0.75rem; }
+}
+
+@media (max-width: 22.5rem) {
+  .brand-headline {
+    font-size: clamp(2.72rem, 12.3vw, 3rem);
+    letter-spacing: -0.09em;
+  }
+
+  .brand-headline .hero-title-line:nth-child(3) {
+    margin-left: 0.8rem;
+  }
+
+  .brand-headline .hero-title-line:nth-child(3)::after {
+    display: none;
+  }
+
+  .brand-hero-copy .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
