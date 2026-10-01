@@ -29,6 +29,13 @@ interface Props {
 const { project, lang } = Astro.props;
 const { Content, headings } = await render(project);
 const { data } = project;
+const leadProjectIndex: Record<string, string> = {
+  'hms-cloudflare': '01',
+  'alquileres-uspa': '02',
+  'ai-commerce-platform': '03',
+};
+const projectIndex = leadProjectIndex[data.slug];
+const isLeadProject = Boolean(projectIndex);
 const quickScanTarget = headings[0]?.slug
   ? `#${headings[0].slug}`
   : `#project-content-${data.slug}`;
@@ -121,13 +128,25 @@ const projectSchema = {
   ogType="article"
   structuredData={projectSchema}
 >
-  <article class="case-study">
-    <header class="case-hero section section-surface">
+  <article class:list={['case-study', { 'case-study-lead': isLeadProject }]}>
+    <header class:list={['case-hero', 'section', 'section-surface', { 'case-hero-cplus': isLeadProject }]}>
       <div class="container case-hero-grid">
-        <div>
+        <div class="case-entry-copy">
+          {isLeadProject && (
+            <div class="case-entry-navigation">
+              <a class="case-back-link" href={`${getLanguageRoot(lang)}#projects`}>
+                <span aria-hidden="true">←</span>{copy.backToProjects}
+              </a>
+              {projectIndex && (
+                <span class="case-project-index">
+                  {lang === 'es' ? `PROYECTO ${projectIndex} / 03` : `PROJECT ${projectIndex} / 03`}
+                </span>
+              )}
+            </div>
+          )}
           <p class="eyebrow">{data.category}</p>
-          <h1>{data.title}</h1>
-          <p class="hero-copy">{data.summary}</p>
+          <h1 class="case-entry-title">{data.title}</h1>
+          <p class="hero-copy case-entry-summary">{data.summary}</p>
           <dl class="project-meta">
             <div><dt>{copy.state}</dt><dd>{data.statusLabel}</dd></div>
             <div><dt>{copy.role}</dt><dd>{data.role}</dd></div>
@@ -137,7 +156,7 @@ const projectSchema = {
             {data.repository && (
               <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
             )}
-            <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>
+            {!isLeadProject && <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>}
           </div>
         </div>
         <aside class:list={['case-evidence', { 'case-evidence-with-media': cover }]}>
