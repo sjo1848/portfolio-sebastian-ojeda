@@ -4,8 +4,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  { name: 'en', path: '/', navLabel: 'Primary navigation', firstLink: 'Projects', sectionHref: '/#projects', localeHref: '/es/', localeCode: 'ES' },
-  { name: 'es', path: '/es/', navLabel: 'Navegación principal', firstLink: 'Proyectos', sectionHref: '/es/#projects', localeHref: '/', localeCode: 'EN' },
+  { name: 'en', path: '/', navLabel: 'Primary navigation', firstLink: 'Work', resumeLabel: 'Resume', sectionHref: '/#projects', localeHref: '/es/', localeCode: 'ES' },
+  { name: 'es', path: '/es/', navLabel: 'Navegación principal', firstLink: 'Trabajo', resumeLabel: 'CV', sectionHref: '/es/#projects', localeHref: '/', localeCode: 'EN' },
 ] as const;
 
 for (const route of routes) {
@@ -43,6 +43,7 @@ for (const route of routes) {
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(page.getByRole('navigation', { name: route.navLabel })).toHaveCount(1);
     await expect(dialog.getByRole('link', { name: route.firstLink })).toBeVisible();
+    await expect(dialog.getByRole('link', { name: route.resumeLabel, exact: true })).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
     const localeLink = dialog.locator('.mobile-nav-language');
     await expect(localeLink).toBeVisible();
     await expect(localeLink).toHaveAttribute('href', route.localeHref);
@@ -119,12 +120,12 @@ test('static portfolio paths remain available when the navigation island cannot 
   await page.goto('/', { waitUntil: 'networkidle' });
 
   await expect(page.getByRole('link', { name: 'Sebastián Ojeda' })).toHaveAttribute('href', '/');
-  await expect(page.locator('.project-case-link').first()).toHaveAttribute('href', /\/projects\//);
+  await expect(page.locator('.selected-work-row').first()).toHaveAttribute('href', /\/projects\//);
   await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
   await expect(page.locator('#contact a[href*="github.com"]')).toBeVisible();
 
   await page.goto('/projects/hms-cloudflare/', { waitUntil: 'networkidle' });
-  await expect(page.locator('a.button.button-secondary').filter({ hasText: /back to projects|volver a proyectos/i }).first()).toBeVisible();
+  await expect(page.locator('a.case-back-link').filter({ hasText: /back to projects|volver a proyectos/i }).first()).toBeVisible();
   await expect(page.locator('a[href*="github.com"]').first()).toBeVisible();
   expect(await page.locator('main').isVisible()).toBe(true);
 });

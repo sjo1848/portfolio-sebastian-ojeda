@@ -14,17 +14,15 @@ const forbidText = (content, text, label) => {
 
 const home = await read('src/components/HomePage.astro');
 const header = await read('src/components/SiteHeader.astro');
-const card = await read('src/components/ProjectCard.astro');
+const selectedWork = await read('src/components/SelectedWorkIndex.astro');
 const site = await read('src/data/site.ts');
 const stories = await read('src/data/portfolioStories.ts');
 
-// Recruiter journey: work and capabilities must appear before methodology.
+// Issue #116 I1: identity, selected proof, differentiator, human context, breadth, conversion.
 const orderedHomeMarkers = [
-  'class="hero section"',
+  'id="hero"',
   'id="projects"',
-  'id="capabilities"',
-  'id="experience"',
-  'id="process"',
+  'id="operating-mindset"',
   'id="about"',
   'id="additional-work"',
   'id="contact"',
@@ -40,17 +38,22 @@ for (const marker of orderedHomeMarkers) {
   previousIndex = index;
 }
 
-// CV remains generated as an asset, but it must not be exposed as a visible download CTA.
-forbidText(home, 'href={site.cv}', 'HomePage.astro');
-forbidText(header, 'href={site.cv}', 'SiteHeader.astro');
-forbidText(header, 'copy.nav.cv', 'SiteHeader.astro');
+// Resume is a visible secondary conversion path; Hero contains no project proof roster or media.
+requireText(home, 'href={site.cv}', 'HomePage.astro resume CTA');
+requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
+requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
+forbidText(home, 'hero-proof-links', 'HomePage.astro');
+forbidText(home, 'brand-hero-evidence', 'HomePage.astro');
+forbidText(home, 'hmsReceptionHero', 'HomePage.astro');
+requireText(home, 'id="operating-mindset"', 'HomePage.astro operating mindset');
+requireText(home, 'additional-work-index', 'HomePage.astro compact additional work');
 
 // Full-stack positioning must be primary and AI remains a differentiator.
 requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automatización'", 'site.ts ES positioning');
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
-requireText(site, "eyebrow: 'Full-stack software developer'", 'site.ts home positioning');
-requireText(home, "headline: 'Full-Stack Software Developer'", 'HomePage.astro EN role headline');
-requireText(home, "headline: 'Desarrollador de Software Full-Stack'", 'HomePage.astro ES role headline');
+requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED'", 'HomePage.astro EN positioning');
+requireText(home, "eyebrow: 'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
+requireText(home, "headline: ['FULL-STACK', 'SOFTWARE', 'DEVELOPER']", 'HomePage.astro role headline');
 
 // Primary work order is intentionally product/full-stack first.
 const expectedStoryOrder = [
@@ -72,21 +75,27 @@ for (const slug of ["'uspaya'", "'gasflow'", "'agentic-engineering-governance'",
   if (primaryBlock.includes(slug)) failures.push(`portfolioStories.ts: secondary case ${slug} must not be primary`);
 }
 
-// Selected work is proof-first: one role signal, a reduced stack line and one case-study CTA.
+// I4 selected work is a static editorial index with approved evidence and ordinary case-study anchors.
 for (const marker of [
-  "role: 'Rol'",
+  "'hms-cloudflare'",
+  "'alquileres-uspa'",
+  "'ai-commerce-platform'",
+  'data.category',
   'data.role',
-  "data.stack.slice(0, variant === 'hero' ? 4 : 3)",
-  'project-case-link',
+  'data.stack.slice(0, 4)',
+  'selected-work-case-link',
   'getProjectPath(lang, data.slug)',
+  'data-evidence-caption',
+  'data-evidence-limitation',
 ]) {
-  requireText(card, marker, 'ProjectCard.astro');
+  requireText(selectedWork, marker, 'SelectedWorkIndex.astro');
 }
-forbidText(card, 'evidenceSignals', 'ProjectCard.astro');
-forbidText(card, 'project-signal-list', 'ProjectCard.astro');
-forbidText(card, 'class="stack-list"', 'ProjectCard.astro');
-requireText(stories, "eyebrow: 'Trabajo seleccionado'", 'portfolioStories.ts ES selected-work copy');
-requireText(stories, "eyebrow: 'Selected work'", 'portfolioStories.ts EN selected-work copy');
+forbidText(selectedWork, 'evidenceSignals', 'SelectedWorkIndex.astro');
+forbidText(selectedWork, 'project-signal-list', 'SelectedWorkIndex.astro');
+requireText(stories, "eyebrow: 'TRABAJO SELECCIONADO'", 'portfolioStories.ts ES selected-work copy');
+requireText(stories, "eyebrow: 'SELECTED WORK'", 'portfolioStories.ts EN selected-work copy');
+requireText(stories, "title: 'Entender el sistema. Construir end-to-end. Verificar los límites.'", 'portfolioStories.ts ES operating mindset');
+requireText(stories, "title: 'Understand the system. Build end-to-end. Verify the boundaries.'", 'portfolioStories.ts EN operating mindset');
 
 // Flagship case studies must use the normalized evidence-first structure in both languages.
 const caseStudyContracts = [

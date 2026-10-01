@@ -1,0 +1,1235 @@
+{
+  "capturedAt": "2026-09-30T21:26:51.505Z",
+  "baseCommit": "042d3ff7684799470fc3cd4e13015ad08d8fd1c6",
+  "browser": "153.0.8010.12",
+  "screenshots": [
+    {
+      "name": "home-en-390",
+      "route": "/",
+      "lang": "en",
+      "width": 390,
+      "height": 844,
+      "file": "artifacts/visual/issue-116-i2-rework/home-en-390.png",
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "h1": {
+          "left": 10,
+          "right": 380,
+          "top": 176.84375,
+          "bottom": 296.75
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 299.6875,
+            "top": 176.84375,
+            "bottom": 216.8125
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 21.6875,
+            "right": 291.796875,
+            "top": 216.8125,
+            "bottom": 256.78125
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 33.390625,
+            "right": 318.234375,
+            "top": 256.78125,
+            "bottom": 296.75
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 328.75,
+          "width": 370,
+          "height": 94.953125,
+          "top": 328.75,
+          "right": 380,
+          "bottom": 423.703125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 10,
+            "right": 195.734375,
+            "top": 492.171875,
+            "bottom": 539.25,
+            "width": 185.734375,
+            "height": 47.078125
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 205.328125,
+            "right": 380,
+            "top": 492.171875,
+            "bottom": 539.25,
+            "width": 174.671875,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 99547,
+      "sha256": "3801d9b057d266619ad96b254ae9a49e2b1b58efc3b4b38da46f9c51192f4ba4"
+    },
+    {
+      "name": "home-es-390",
+      "route": "/es/",
+      "lang": "es",
+      "width": 390,
+      "height": 844,
+      "file": "artifacts/visual/issue-116-i2-rework/home-es-390.png",
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "h1": {
+          "left": 10,
+          "right": 380,
+          "top": 192.953125,
+          "bottom": 312.859375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 299.6875,
+            "top": 192.953125,
+            "bottom": 232.921875
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 21.6875,
+            "right": 291.796875,
+            "top": 232.921875,
+            "bottom": 272.890625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 33.390625,
+            "right": 318.234375,
+            "top": 272.890625,
+            "bottom": 312.859375
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 344.859375,
+          "width": 370,
+          "height": 94.953125,
+          "top": 344.859375,
+          "right": 380,
+          "bottom": 439.8125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 10,
+            "right": 233.84375,
+            "top": 508.28125,
+            "bottom": 555.359375,
+            "width": 223.84375,
+            "height": 47.078125
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 243.4375,
+            "right": 380,
+            "top": 508.28125,
+            "bottom": 555.359375,
+            "width": 136.5625,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 99681,
+      "sha256": "ca1aaad615204390167eb4f0e039962d3ec5c8d6cb447d452e6bfd044c6c7278"
+    },
+    {
+      "name": "home-en-1440",
+      "route": "/",
+      "lang": "en",
+      "width": 1440,
+      "height": 900,
+      "file": "artifacts/visual/issue-116-i2-rework/home-en-1440.png",
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentWidth": 1440,
+        "h1": {
+          "left": 112,
+          "right": 1328,
+          "top": 167.859375,
+          "bottom": 528.09375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 112,
+            "right": 1007.59375,
+            "top": 167.859375,
+            "bottom": 287.9375
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 164,
+            "right": 1000.109375,
+            "top": 287.9375,
+            "bottom": 408.015625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 220,
+            "right": 1101.296875,
+            "top": 408.015625,
+            "bottom": 528.09375
+          }
+        ],
+        "lead": {
+          "x": 112,
+          "y": 528.09375,
+          "width": 496,
+          "height": 105.171875,
+          "top": 528.09375,
+          "right": 608,
+          "bottom": 633.265625,
+          "left": 112
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 821.328125,
+            "right": 1030.140625,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 208.8125,
+            "height": 50.765625
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 1044.53125,
+            "right": 1240.453125,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 195.921875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 139959,
+      "sha256": "ab82411c092e782ef9ba8470bc1908f00549ef67f8fc97ea4cccaa21f145a082"
+    },
+    {
+      "name": "home-es-1440",
+      "route": "/es/",
+      "lang": "es",
+      "width": 1440,
+      "height": 900,
+      "file": "artifacts/visual/issue-116-i2-rework/home-es-1440.png",
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentWidth": 1440,
+        "h1": {
+          "left": 112,
+          "right": 1328,
+          "top": 167.859375,
+          "bottom": 528.09375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 112,
+            "right": 1007.59375,
+            "top": 167.859375,
+            "bottom": 287.9375
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 164,
+            "right": 1000.109375,
+            "top": 287.9375,
+            "bottom": 408.015625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 220,
+            "right": 1101.296875,
+            "top": 408.015625,
+            "bottom": 528.09375
+          }
+        ],
+        "lead": {
+          "x": 112,
+          "y": 528.09375,
+          "width": 496,
+          "height": 105.171875,
+          "top": 528.09375,
+          "right": 608,
+          "bottom": 633.265625,
+          "left": 112
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 821.328125,
+            "right": 1078.578125,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 257.25,
+            "height": 50.765625
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 1092.96875,
+            "right": 1248.640625,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 155.671875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 138515,
+      "sha256": "dcd3176e306d4b9b6cc21728dcbc7a966762d72496985c29b0e23c1091a82d2c"
+    },
+    {
+      "name": "home-en-1366x768",
+      "route": "/",
+      "lang": "en",
+      "width": 1366,
+      "height": 768,
+      "file": "artifacts/visual/issue-116-i2-rework/home-en-1366x768.png",
+      "geometry": {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "documentWidth": 1366,
+        "h1": {
+          "left": 75,
+          "right": 1291,
+          "top": 165.484375,
+          "bottom": 525.71875
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 75,
+            "right": 970.59375,
+            "top": 165.484375,
+            "bottom": 285.5625
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 127,
+            "right": 963.109375,
+            "top": 285.5625,
+            "bottom": 405.640625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 183,
+            "right": 1064.296875,
+            "top": 405.640625,
+            "bottom": 525.71875
+          }
+        ],
+        "lead": {
+          "x": 75,
+          "y": 525.71875,
+          "width": 496,
+          "height": 105.171875,
+          "top": 525.71875,
+          "right": 571,
+          "bottom": 630.890625,
+          "left": 75
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 784.328125,
+            "right": 993.140625,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 208.8125,
+            "height": 50.765625
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 1007.53125,
+            "right": 1203.453125,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 195.921875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 119915,
+      "sha256": "225e8ca8030466b19267b3213dfc1085ebdcd6b04f5be3d0a995096bb3919af8"
+    },
+    {
+      "name": "home-en-1440x900",
+      "route": "/",
+      "lang": "en",
+      "width": 1440,
+      "height": 900,
+      "file": "artifacts/visual/issue-116-i2-rework/home-en-1440x900.png",
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentWidth": 1440,
+        "h1": {
+          "left": 112,
+          "right": 1328,
+          "top": 167.859375,
+          "bottom": 528.09375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 112,
+            "right": 1007.59375,
+            "top": 167.859375,
+            "bottom": 287.9375
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 164,
+            "right": 1000.109375,
+            "top": 287.9375,
+            "bottom": 408.015625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 220,
+            "right": 1101.296875,
+            "top": 408.015625,
+            "bottom": 528.09375
+          }
+        ],
+        "lead": {
+          "x": 112,
+          "y": 528.09375,
+          "width": 496,
+          "height": 105.171875,
+          "top": 528.09375,
+          "right": 608,
+          "bottom": 633.265625,
+          "left": 112
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 821.328125,
+            "right": 1030.140625,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 208.8125,
+            "height": 50.765625
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 1044.53125,
+            "right": 1240.453125,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 195.921875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": [],
+      "bytes": 139959,
+      "sha256": "ab82411c092e782ef9ba8470bc1908f00549ef67f8fc97ea4cccaa21f145a082"
+    }
+  ],
+  "desktopChecks": [
+    {
+      "route": "/",
+      "lang": "en",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "documentWidth": 1366,
+        "h1": {
+          "left": 75,
+          "right": 1291,
+          "top": 165.484375,
+          "bottom": 525.71875
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 75,
+            "right": 970.59375,
+            "top": 165.484375,
+            "bottom": 285.5625
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 127,
+            "right": 963.109375,
+            "top": 285.5625,
+            "bottom": 405.640625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 183,
+            "right": 1064.296875,
+            "top": 405.640625,
+            "bottom": 525.71875
+          }
+        ],
+        "lead": {
+          "x": 75,
+          "y": 525.71875,
+          "width": 496,
+          "height": 105.171875,
+          "top": 525.71875,
+          "right": 571,
+          "bottom": 630.890625,
+          "left": 75
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 784.328125,
+            "right": 993.140625,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 208.8125,
+            "height": 50.765625
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 1007.53125,
+            "right": 1203.453125,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 195.921875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/es/",
+      "lang": "es",
+      "width": 1366,
+      "height": 768,
+      "geometry": {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "documentWidth": 1366,
+        "h1": {
+          "left": 75,
+          "right": 1291,
+          "top": 165.484375,
+          "bottom": 525.71875
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 75,
+            "right": 970.59375,
+            "top": 165.484375,
+            "bottom": 285.5625
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 127,
+            "right": 963.109375,
+            "top": 285.5625,
+            "bottom": 405.640625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 183,
+            "right": 1064.296875,
+            "top": 405.640625,
+            "bottom": 525.71875
+          }
+        ],
+        "lead": {
+          "x": 75,
+          "y": 525.71875,
+          "width": 496,
+          "height": 105.171875,
+          "top": 525.71875,
+          "right": 571,
+          "bottom": 630.890625,
+          "left": 75
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 784.328125,
+            "right": 1041.578125,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 257.25,
+            "height": 50.765625
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 1055.96875,
+            "right": 1211.640625,
+            "top": 642.078125,
+            "bottom": 692.84375,
+            "width": 155.671875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "lang": "en",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentWidth": 1440,
+        "h1": {
+          "left": 112,
+          "right": 1328,
+          "top": 167.859375,
+          "bottom": 528.09375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 112,
+            "right": 1007.59375,
+            "top": 167.859375,
+            "bottom": 287.9375
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 164,
+            "right": 1000.109375,
+            "top": 287.9375,
+            "bottom": 408.015625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 220,
+            "right": 1101.296875,
+            "top": 408.015625,
+            "bottom": 528.09375
+          }
+        ],
+        "lead": {
+          "x": 112,
+          "y": 528.09375,
+          "width": 496,
+          "height": 105.171875,
+          "top": 528.09375,
+          "right": 608,
+          "bottom": 633.265625,
+          "left": 112
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 821.328125,
+            "right": 1030.140625,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 208.8125,
+            "height": 50.765625
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 1044.53125,
+            "right": 1240.453125,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 195.921875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/es/",
+      "lang": "es",
+      "width": 1440,
+      "height": 900,
+      "geometry": {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "documentWidth": 1440,
+        "h1": {
+          "left": 112,
+          "right": 1328,
+          "top": 167.859375,
+          "bottom": 528.09375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 112,
+            "right": 1007.59375,
+            "top": 167.859375,
+            "bottom": 287.9375
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 164,
+            "right": 1000.109375,
+            "top": 287.9375,
+            "bottom": 408.015625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 220,
+            "right": 1101.296875,
+            "top": 408.015625,
+            "bottom": 528.09375
+          }
+        ],
+        "lead": {
+          "x": 112,
+          "y": 528.09375,
+          "width": 496,
+          "height": 105.171875,
+          "top": 528.09375,
+          "right": 608,
+          "bottom": 633.265625,
+          "left": 112
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 821.328125,
+            "right": 1078.578125,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 257.25,
+            "height": 50.765625
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 1092.96875,
+            "right": 1248.640625,
+            "top": 644.453125,
+            "bottom": 695.21875,
+            "width": 155.671875,
+            "height": 50.765625
+          }
+        ]
+      },
+      "consoleErrors": []
+    }
+  ],
+  "mobileTitleChecks": [
+    {
+      "route": "/",
+      "lang": "en",
+      "width": 360,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 360,
+          "height": 844
+        },
+        "documentWidth": 360,
+        "h1": {
+          "left": 10,
+          "right": 350,
+          "top": 192.953125,
+          "bottom": 301.84375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 270.8125,
+            "top": 192.953125,
+            "bottom": 229.25
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 20.796875,
+            "right": 264.28125,
+            "top": 229.25,
+            "bottom": 265.546875
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 22.796875,
+            "right": 279.4375,
+            "top": 265.546875,
+            "bottom": 301.84375
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 333.84375,
+          "width": 340,
+          "height": 94.953125,
+          "top": 333.84375,
+          "right": 350,
+          "bottom": 428.796875,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 10,
+            "right": 350,
+            "top": 497.265625,
+            "bottom": 544.34375,
+            "width": 340,
+            "height": 47.078125
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 10,
+            "right": 350,
+            "top": 553.9375,
+            "bottom": 601.015625,
+            "width": 340,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "lang": "en",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "h1": {
+          "left": 10,
+          "right": 380,
+          "top": 176.84375,
+          "bottom": 296.75
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 299.6875,
+            "top": 176.84375,
+            "bottom": 216.8125
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 21.6875,
+            "right": 291.796875,
+            "top": 216.8125,
+            "bottom": 256.78125
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 33.390625,
+            "right": 318.234375,
+            "top": 256.78125,
+            "bottom": 296.75
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 328.75,
+          "width": 370,
+          "height": 94.953125,
+          "top": 328.75,
+          "right": 380,
+          "bottom": 423.703125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 10,
+            "right": 195.734375,
+            "top": 492.171875,
+            "bottom": 539.25,
+            "width": 185.734375,
+            "height": 47.078125
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 205.328125,
+            "right": 380,
+            "top": 492.171875,
+            "bottom": 539.25,
+            "width": 174.671875,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/",
+      "lang": "en",
+      "width": 430,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 430,
+          "height": 844
+        },
+        "documentWidth": 430,
+        "h1": {
+          "left": 10,
+          "right": 420,
+          "top": 178.140625,
+          "bottom": 310.328125
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 329.390625,
+            "top": 178.140625,
+            "bottom": 222.203125
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 22.890625,
+            "right": 320.71875,
+            "top": 222.203125,
+            "bottom": 266.265625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 35.796875,
+            "right": 349.859375,
+            "top": 266.265625,
+            "bottom": 310.328125
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 342.328125,
+          "width": 410,
+          "height": 94.953125,
+          "top": 342.328125,
+          "right": 420,
+          "bottom": 437.28125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "View selected work",
+            "href": "#projects",
+            "left": 10,
+            "right": 215.734375,
+            "top": 505.75,
+            "bottom": 552.828125,
+            "width": 205.734375,
+            "height": 47.078125
+          },
+          {
+            "label": "Download resume",
+            "href": "/cv-sebastian-ojeda-en.pdf",
+            "left": 225.328125,
+            "right": 420,
+            "top": 505.75,
+            "bottom": 552.828125,
+            "width": 194.671875,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/es/",
+      "lang": "es",
+      "width": 360,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 360,
+          "height": 844
+        },
+        "documentWidth": 360,
+        "h1": {
+          "left": 10,
+          "right": 350,
+          "top": 192.953125,
+          "bottom": 301.84375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 270.8125,
+            "top": 192.953125,
+            "bottom": 229.25
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 20.796875,
+            "right": 264.28125,
+            "top": 229.25,
+            "bottom": 265.546875
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 22.796875,
+            "right": 279.4375,
+            "top": 265.546875,
+            "bottom": 301.84375
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 333.84375,
+          "width": 340,
+          "height": 94.953125,
+          "top": 333.84375,
+          "right": 350,
+          "bottom": 428.796875,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 10,
+            "right": 350,
+            "top": 522.34375,
+            "bottom": 569.421875,
+            "width": 340,
+            "height": 47.078125
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 10,
+            "right": 350,
+            "top": 579.015625,
+            "bottom": 626.09375,
+            "width": 340,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/es/",
+      "lang": "es",
+      "width": 390,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "documentWidth": 390,
+        "h1": {
+          "left": 10,
+          "right": 380,
+          "top": 192.953125,
+          "bottom": 312.859375
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 299.6875,
+            "top": 192.953125,
+            "bottom": 232.921875
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 21.6875,
+            "right": 291.796875,
+            "top": 232.921875,
+            "bottom": 272.890625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 33.390625,
+            "right": 318.234375,
+            "top": 272.890625,
+            "bottom": 312.859375
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 344.859375,
+          "width": 370,
+          "height": 94.953125,
+          "top": 344.859375,
+          "right": 380,
+          "bottom": 439.8125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 10,
+            "right": 233.84375,
+            "top": 508.28125,
+            "bottom": 555.359375,
+            "width": 223.84375,
+            "height": 47.078125
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 243.4375,
+            "right": 380,
+            "top": 508.28125,
+            "bottom": 555.359375,
+            "width": 136.5625,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    },
+    {
+      "route": "/es/",
+      "lang": "es",
+      "width": 430,
+      "height": 844,
+      "geometry": {
+        "viewport": {
+          "width": 430,
+          "height": 844
+        },
+        "documentWidth": 430,
+        "h1": {
+          "left": 10,
+          "right": 420,
+          "top": 178.140625,
+          "bottom": 310.328125
+        },
+        "lines": [
+          {
+            "text": "FULL-STACK",
+            "left": 10,
+            "right": 329.390625,
+            "top": 178.140625,
+            "bottom": 222.203125
+          },
+          {
+            "text": "SOFTWARE",
+            "left": 22.890625,
+            "right": 320.71875,
+            "top": 222.203125,
+            "bottom": 266.265625
+          },
+          {
+            "text": "DEVELOPER",
+            "left": 35.796875,
+            "right": 349.859375,
+            "top": 266.265625,
+            "bottom": 310.328125
+          }
+        ],
+        "lead": {
+          "x": 10,
+          "y": 342.328125,
+          "width": 410,
+          "height": 94.953125,
+          "top": 342.328125,
+          "right": 420,
+          "bottom": 437.28125,
+          "left": 10
+        },
+        "actions": [
+          {
+            "label": "Ver trabajo seleccionado",
+            "href": "#projects",
+            "left": 10,
+            "right": 253.84375,
+            "top": 505.75,
+            "bottom": 552.828125,
+            "width": 243.84375,
+            "height": 47.078125
+          },
+          {
+            "label": "Descargar CV",
+            "href": "/cv-sebastian-ojeda.pdf",
+            "left": 263.4375,
+            "right": 420,
+            "top": 505.75,
+            "bottom": 552.828125,
+            "width": 156.5625,
+            "height": 47.078125
+          }
+        ]
+      },
+      "consoleErrors": []
+    }
+  ]
+}

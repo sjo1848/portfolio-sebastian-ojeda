@@ -1,0 +1,599 @@
+{
+  "capturedAt": "2026-09-30T18:15:48.135Z",
+  "sourceCommit": "26f78f2944a21104c52904de9f60a72c303fa119",
+  "browser": "153.0.8010.12",
+  "screenshots": [
+    {
+      "name": "home-en-390",
+      "route": "/",
+      "lang": "en",
+      "width": 390,
+      "height": 844,
+      "file": "artifacts/visual/issue-116-i2/home-en-390.png",
+      "viewport": 390,
+      "document": 390,
+      "hero": {
+        "left": 0,
+        "right": 390
+      },
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 299.6875,
+          "width": 289.6875
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 21.6875,
+          "right": 291.796875,
+          "width": 270.109375
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 33.390625,
+          "right": 337.15625,
+          "width": 303.765625
+        }
+      ],
+      "imageStates": [
+        {
+          "src": "/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png",
+          "complete": true,
+          "naturalWidth": 1440
+        },
+        {
+          "src": "/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png",
+          "complete": true,
+          "naturalWidth": 1440
+        }
+      ],
+      "consoleErrors": [],
+      "bytes": 99645,
+      "sha256": "024b7a1e746fc633303091279411aa0d38043f1dddf9bbecb9bed00d2cabfdae"
+    },
+    {
+      "name": "home-en-1440",
+      "route": "/",
+      "lang": "en",
+      "width": 1440,
+      "height": 1000,
+      "file": "artifacts/visual/issue-116-i2/home-en-1440.png",
+      "viewport": 1440,
+      "document": 1440,
+      "hero": {
+        "left": 0,
+        "right": 1440
+      },
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 112,
+          "right": 1007.59375,
+          "width": 895.59375
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 164,
+          "right": 1000.109375,
+          "width": 836.109375
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 220,
+          "right": 1185.84375,
+          "width": 965.84375
+        }
+      ],
+      "imageStates": [
+        {
+          "src": "/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png",
+          "complete": true,
+          "naturalWidth": 1440
+        },
+        {
+          "src": "/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png",
+          "complete": true,
+          "naturalWidth": 1440
+        }
+      ],
+      "consoleErrors": [],
+      "bytes": 123922,
+      "sha256": "719f5939a8275fa331468e9c7d51ba883c4d255feede025858cf0ca73c06b036"
+    },
+    {
+      "name": "home-es-390",
+      "route": "/es/",
+      "lang": "es",
+      "width": 390,
+      "height": 844,
+      "file": "artifacts/visual/issue-116-i2/home-es-390.png",
+      "viewport": 390,
+      "document": 390,
+      "hero": {
+        "left": 0,
+        "right": 390
+      },
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 299.6875,
+          "width": 289.6875
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 21.6875,
+          "right": 291.796875,
+          "width": 270.109375
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 33.390625,
+          "right": 337.15625,
+          "width": 303.765625
+        }
+      ],
+      "imageStates": [
+        {
+          "src": "/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png",
+          "complete": true,
+          "naturalWidth": 1440
+        },
+        {
+          "src": "/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png",
+          "complete": true,
+          "naturalWidth": 1440
+        }
+      ],
+      "consoleErrors": [],
+      "bytes": 99759,
+      "sha256": "24336380f2d89fdb3df245942d6dc311ca25702d448fc7ab5e317b643fefecf6"
+    },
+    {
+      "name": "home-es-1440",
+      "route": "/es/",
+      "lang": "es",
+      "width": 1440,
+      "height": 1000,
+      "file": "artifacts/visual/issue-116-i2/home-es-1440.png",
+      "viewport": 1440,
+      "document": 1440,
+      "hero": {
+        "left": 0,
+        "right": 1440
+      },
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 112,
+          "right": 1007.59375,
+          "width": 895.59375
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 164,
+          "right": 1000.109375,
+          "width": 836.109375
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 220,
+          "right": 1185.84375,
+          "width": 965.84375
+        }
+      ],
+      "imageStates": [
+        {
+          "src": "/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png",
+          "complete": true,
+          "naturalWidth": 1440
+        },
+        {
+          "src": "/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png",
+          "complete": true,
+          "naturalWidth": 1440
+        }
+      ],
+      "consoleErrors": [],
+      "bytes": 122850,
+      "sha256": "1f83e9627904f7ea3506c37fa917ff99b25c2e81ea96c59338c9335fb4510de3"
+    }
+  ],
+  "fullPageScreenshots": [
+    {
+      "file": "artifacts/visual/issue-116-i2/home-en-390-full.png",
+      "route": "/",
+      "lang": "en",
+      "width": 390,
+      "bytes": 782630,
+      "sha256": "4a90223641c32aeb066aa5d94ee659efc0fea998b53acb0c95926b28e0b60c67"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i2/home-en-1440-full.png",
+      "route": "/",
+      "lang": "en",
+      "width": 1440,
+      "bytes": 1381796,
+      "sha256": "ff1b54f27ae0a2b466671b9665eca741c2217ccbf97cad9895c9cb8b8af712b9"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i2/home-es-390-full.png",
+      "route": "/es/",
+      "lang": "es",
+      "width": 390,
+      "bytes": 794041,
+      "sha256": "627a45b06c2246c7d9f30a1b2510a201ba107e7ca00acfd29a716cc70c6d223e"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i2/home-es-1440-full.png",
+      "route": "/es/",
+      "lang": "es",
+      "width": 1440,
+      "bytes": 1401496,
+      "sha256": "bb143608cedc437970543e1da76ed9ec31d5f59dc6629874da90fda75373fbee"
+    }
+  ],
+  "responsiveMatrix": [
+    {
+      "lang": "en",
+      "width": 360,
+      "viewport": 360,
+      "document": 360,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 270.8125,
+          "width": 260.8125,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 20.796875,
+          "right": 264.28125,
+          "width": 243.484375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 22.796875,
+          "right": 279.4375,
+          "width": 256.640625,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "viewport": 390,
+      "document": 390,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 299.6875,
+          "width": 289.6875,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 21.6875,
+          "right": 291.796875,
+          "width": 270.109375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 33.390625,
+          "right": 337.15625,
+          "width": 303.765625,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "en",
+      "width": 430,
+      "viewport": 430,
+      "document": 430,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 329.390625,
+          "width": 319.390625,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 22.890625,
+          "right": 320.71875,
+          "width": 297.828125,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 35.796875,
+          "right": 369.078125,
+          "width": 333.28125,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "en",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 16,
+          "right": 536.34375,
+          "width": 520.34375,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 46.71875,
+          "right": 532.5,
+          "width": 485.78125,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 77.4375,
+          "right": 635.484375,
+          "width": 558.046875,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "en",
+      "width": 1024,
+      "viewport": 1024,
+      "document": 1024,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 16,
+          "right": 675.90625,
+          "width": 659.90625,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 56.953125,
+          "right": 673.046875,
+          "width": 616.09375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 97.90625,
+          "right": 807.90625,
+          "width": 710,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 112,
+          "right": 1007.59375,
+          "width": 895.59375,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 164,
+          "right": 1000.109375,
+          "width": 836.109375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 220,
+          "right": 1185.84375,
+          "width": 965.84375,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 360,
+      "viewport": 360,
+      "document": 360,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 270.8125,
+          "width": 260.8125,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 20.796875,
+          "right": 264.28125,
+          "width": 243.484375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 22.796875,
+          "right": 279.4375,
+          "width": 256.640625,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 390,
+      "viewport": 390,
+      "document": 390,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 299.6875,
+          "width": 289.6875,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 21.6875,
+          "right": 291.796875,
+          "width": 270.109375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 33.390625,
+          "right": 337.15625,
+          "width": 303.765625,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 430,
+      "viewport": 430,
+      "document": 430,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 10,
+          "right": 329.390625,
+          "width": 319.390625,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 22.890625,
+          "right": 320.71875,
+          "width": 297.828125,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 35.796875,
+          "right": 369.078125,
+          "width": 333.28125,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 16,
+          "right": 536.34375,
+          "width": 520.34375,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 46.71875,
+          "right": 532.5,
+          "width": 485.78125,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 77.4375,
+          "right": 635.484375,
+          "width": 558.046875,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 1024,
+      "viewport": 1024,
+      "document": 1024,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 16,
+          "right": 675.90625,
+          "width": 659.90625,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 56.953125,
+          "right": 673.046875,
+          "width": 616.09375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 97.90625,
+          "right": 807.90625,
+          "width": 710,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "lang": "es",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "lines": [
+        {
+          "text": "FULL-STACK",
+          "left": 112,
+          "right": 1007.59375,
+          "width": 895.59375,
+          "visible": true
+        },
+        {
+          "text": "SOFTWARE",
+          "left": 164,
+          "right": 1000.109375,
+          "width": 836.109375,
+          "visible": true
+        },
+        {
+          "text": "DEVELOPER",
+          "left": 220,
+          "right": 1185.84375,
+          "width": 965.84375,
+          "visible": true
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

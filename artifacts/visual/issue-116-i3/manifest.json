@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-30T21:51:18.029Z",
+  "results": [
+    {
+      "name": "en-390",
+      "path": "/",
+      "width": 390,
+      "height": 844,
+      "lcp": 208,
+      "cls": 0,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "animationNames": [
+        "cplus-hero-align",
+        "cplus-hero-align",
+        "cplus-hero-align"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "name": "es-390",
+      "path": "/es/",
+      "width": 390,
+      "height": 844,
+      "lcp": 192,
+      "cls": 0,
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "animationNames": [
+        "cplus-hero-align",
+        "cplus-hero-align",
+        "cplus-hero-align"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "name": "en-1440",
+      "path": "/",
+      "width": 1440,
+      "height": 900,
+      "lcp": 232,
+      "cls": 0,
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "animationNames": [
+        "cplus-hero-align",
+        "cplus-hero-align",
+        "cplus-hero-align"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "name": "es-1440",
+      "path": "/es/",
+      "width": 1440,
+      "height": 900,
+      "lcp": 240,
+      "cls": 0,
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "animationNames": [
+        "cplus-hero-align",
+        "cplus-hero-align",
+        "cplus-hero-align"
+      ],
+      "consoleErrors": []
+    },
+    {
+      "name": "en-390-reduced",
+      "animationName": "none"
+    }
+  ]
+}

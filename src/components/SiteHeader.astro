@@ -21,15 +21,11 @@ const copy = copyByLanguage[lang];
 const root = getLanguageRoot(lang);
 const alternateLanguage = lang === 'es' ? 'en' : 'es';
 const alternatePath = getAlternatePath(Astro.url.pathname, lang);
-const aboutLabel = lang === 'es' ? 'Sobre mí' : 'About';
-const capabilitiesLabel = lang === 'es' ? 'Capacidades' : 'Capabilities';
 const navigationItems = [
   { label: copy.nav.projects, href: `${root}#projects` },
-  { label: aboutLabel, href: `${root}#about` },
-  { label: capabilitiesLabel, href: `${root}#capabilities` },
-  { label: copy.nav.experience, href: `${root}#experience` },
-  { label: copy.nav.process, href: `${root}#process` },
+  { label: copy.nav.about, href: `${root}#about` },
   { label: copy.nav.contact, href: `${root}#contact` },
+  { label: copy.nav.cv, href: site.cv },
 ];
 ---
 

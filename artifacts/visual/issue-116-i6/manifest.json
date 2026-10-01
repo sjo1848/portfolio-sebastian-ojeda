@@ -1,0 +1,27 @@
+{
+  "issue": 116,
+  "increment": "I6 — Lead case-study entry continuity",
+  "date": "2026-09-30",
+  "branch": "build/issue-116-cplus-baseline",
+  "viewports": ["390x844", "1440x900"],
+  "routes": [
+    { "project": "HMS Cloudflare", "en": "/projects/hms-cloudflare/", "es": "/es/projects/hms-cloudflare/" },
+    { "project": "Alquileres Uspallata", "en": "/projects/alquileres-uspa/", "es": "/es/projects/alquileres-uspa/" },
+    { "project": "AI Commerce + HMS", "en": "/projects/ai-commerce-platform/", "es": "/es/projects/ai-commerce-platform/" }
+  ],
+  "states": [
+    "case-study first viewport; return-to-Selected-Work anchor; project index; status; role; repository; core stack"
+  ],
+  "responsiveMatrix": [360, 390, 430, 768, 1024, 1440],
+  "responsiveLocales": ["en", "es"],
+  "checks": {
+    "horizontalOverflow": "none",
+    "titleClipping": "none",
+    "axe": "PASS for each lead route and locale at 390px and 1440px",
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "backForward": "PASS with ordinary anchors",
+    "noJavaScript": "PASS; static Markdown evidence and links remain available",
+    "nativeViewTransitions": "not introduced; ordinary navigation is the fallback in every browser"
+  }
+}

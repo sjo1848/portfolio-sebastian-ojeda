@@ -1,0 +1,11 @@
+Requested final prototype URL:
+https://www.magicpath.ai/files/456042490814947328
+
+Observed on 2026-09-30:
+- HTTP redirect: 307 Location: /
+- Final response: HTTP/2 200, content-type: text/html; charset=utf-8
+- Final page title: MagicPath | The shared workspace for humans and agents
+- Headless Chromium screenshot: prototype-url-redirect.png
+- Visible result: MagicPath product/marketing homepage, not the approved Issue #116 prototype.
+
+This confirms the URL is reachable but the approved prototype artifact is not accessible at the specified URL.

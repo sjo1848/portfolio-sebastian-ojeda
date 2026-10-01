@@ -1,0 +1,128 @@
+{
+  "capturedAt": "2026-09-30T17:05:13.829Z",
+  "sourceCommit": "658a5506e88beecbe28c2f5ade4c2705c4ad59e8",
+  "worktreeHead": "2a596599f4ebf3079a3c8c9554c6767702fbf57e",
+  "browser": "153.0.8010.12",
+  "screenshots": [
+    {
+      "file": "artifacts/visual/issue-116-i1/home-en-390.png",
+      "route": "/",
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 756705,
+      "sha256": "48e61d89e65018c2223717a8b771fcb5d79725ec11802feaf18116e2a141d390"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-en-1440.png",
+      "route": "/",
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440,
+      "viewportWidth": 1440,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 1181379,
+      "sha256": "83049ed23985b386cf8bfbf79c335de57390a31db69cf5df1a964d24505b56a4"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-es-390.png",
+      "route": "/es/",
+      "width": 390,
+      "state": "default",
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 824278,
+      "sha256": "227a615ee4386047a0e343178c238b312c0c17c120ffb239834dfc08c3515e23"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-es-1440.png",
+      "route": "/es/",
+      "width": 1440,
+      "state": "default",
+      "scrollWidth": 1440,
+      "viewportWidth": 1440,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 1136734,
+      "sha256": "66dc4889c72a80c580f8385d17af9c6d4bc5c7cf5dadfc4e247710ef4398c76c"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-en-no-js-390.png",
+      "route": "/",
+      "width": 390,
+      "state": "no-js",
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 756705,
+      "sha256": "48e61d89e65018c2223717a8b771fcb5d79725ec11802feaf18116e2a141d390"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-es-no-js-390.png",
+      "route": "/es/",
+      "width": 390,
+      "state": "no-js",
+      "scrollWidth": 390,
+      "viewportWidth": 390,
+      "sections": [
+        "hero",
+        "projects",
+        "operating-mindset",
+        "about",
+        "additional-work",
+        "contact"
+      ],
+      "h1": "FULL-STACK\nSOFTWARE\nDEVELOPER",
+      "consoleErrors": [],
+      "bytes": 824278,
+      "sha256": "227a615ee4386047a0e343178c238b312c0c17c120ffb239834dfc08c3515e23"
+    }
+  ]
+}

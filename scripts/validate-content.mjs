@@ -179,7 +179,7 @@ async function validatePortfolioNarrative() {
   }
 
   const home = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');
-  for (const marker of ['primaryProjects', 'secondaryProjects', "variant={index === 0 ? 'hero' : 'story'}"]) {
+  for (const marker of ['primaryProjects', 'secondaryProjects', '<SelectedWorkIndex lang={lang} projects={primaryProjects} />']) {
     if (!home.includes(marker)) failures.push(`HomePage.astro is missing engineering-story marker: ${marker}`);
   }
 
@@ -199,13 +199,21 @@ async function validatePortfolioNarrative() {
 
   const siteContent = await readFile(path.join(root, 'src/data/site.ts'), 'utf8');
   for (const phrase of [
-    'Full-stack software developer',
     'Full-Stack Software Developer · Backend, AI and Automation',
     'Full-Stack Software Developer · Backend, IA y Automatización',
     'Backend y arquitectura',
     'Backend and architecture',
   ]) {
     if (!siteContent.includes(phrase)) failures.push(`src/data/site.ts is missing positioning phrase: ${phrase}`);
+  }
+  const homeContent = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');
+  for (const phrase of [
+    'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED',
+    'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND',
+    'I turn operational workflows into reliable software across backend, data, integrations and interfaces.',
+    'Convierto procesos operativos en software confiable: backend, datos, integraciones e interfaces.',
+  ]) {
+    if (!homeContent.includes(phrase)) failures.push(`HomePage.astro is missing approved positioning copy: ${phrase}`);
   }
 }
 

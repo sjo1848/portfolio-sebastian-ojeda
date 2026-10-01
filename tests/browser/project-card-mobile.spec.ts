@@ -1,104 +1,50 @@
 import { mkdir } from 'node:fs/promises';
-import path from 'node:path';
 import { expect, test } from '@playwright/test';
 
 const routes = [
-  { name: 'en', path: '/', caseStudyName: /view case study/i },
-  { name: 'es', path: '/es/', caseStudyName: /ver caso de estudio/i },
+  { name: 'en', path: '/', label: 'View case study' },
+  { name: 'es', path: '/es/', label: 'Ver caso de estudio' },
 ] as const;
 const widths = [360, 390, 430] as const;
-const variants = ['project-card-hero', 'project-card-story', 'project-card-secondary'] as const;
 
 for (const route of routes) {
   for (const width of widths) {
-    test(`${route.name} ProjectCard CTAs remain clear at ${width}px`, async ({ page }, testInfo) => {
+    test(`${route.name} selected-work case-study links remain clear at ${width}px`, async ({ page }, testInfo) => {
       test.setTimeout(60_000);
       test.skip(!['chromium', 'mobile-webkit'].includes(testInfo.project.name));
       await page.setViewportSize({ width, height: 844 });
-      const consoleErrors: string[] = [];
-      page.on('console', (message) => {
-        if (message.type() === 'error' || message.type() === 'warning') {
-          consoleErrors.push(`${message.type()}: ${message.text()}`);
-        }
-      });
-      page.on('pageerror', (error) => consoleErrors.push(error.message));
+      const errors: string[] = [];
+      page.on('console', (message) => { if (message.type() === 'error' || message.type() === 'warning') errors.push(`${message.type()}: ${message.text()}`); });
+      page.on('pageerror', (error) => errors.push(error.message));
       await page.goto(route.path, { waitUntil: 'networkidle' });
       await page.locator('#projects').scrollIntoViewIfNeeded();
 
-      const cards = page.locator('#projects article.project-card, #additional-work article.project-card');
-      await expect(cards).toHaveCount(9);
-      for (const variant of variants) {
-      await expect(page.locator(`#projects .${variant}, #additional-work .${variant}`).first()).toBeVisible();
+      const rows = page.locator('#projects a.selected-work-row');
+      await expect(rows).toHaveCount(3);
+      const hrefs = [
+        route.path === '/' ? '/projects/hms-cloudflare/' : '/es/projects/hms-cloudflare/',
+        route.path === '/' ? '/projects/alquileres-uspa/' : '/es/projects/alquileres-uspa/',
+        route.path === '/' ? '/projects/ai-commerce-platform/' : '/es/projects/ai-commerce-platform/',
+      ];
+      for (let index = 0; index < 3; index += 1) {
+        const row = rows.nth(index);
+        await expect(row).toHaveAttribute('href', hrefs[index]);
+        await expect(row.locator('.selected-work-case-link')).toContainText(route.label);
+        const target = await row.locator('.selected-work-case-link').boundingBox();
+        expect(target?.width).toBeGreaterThanOrEqual(44);
+        expect(target?.height).toBeGreaterThanOrEqual(44);
+        const rowBox = await row.boundingBox();
+        expect(target!.x).toBeGreaterThanOrEqual(rowBox!.x);
+        expect(target!.x + target!.width).toBeLessThanOrEqual(rowBox!.x + rowBox!.width + 1);
       }
-
-      const summaryLengths: number[] = [];
-      let cardsWithCapture = 0;
-      let cardsWithoutCapture = 0;
-      for (const card of await cards.all()) {
-        const context = card.locator('.project-context');
-        summaryLengths.push((await context.innerText()).length);
-        const cta = card.locator('.project-case-link');
-        await cta.scrollIntoViewIfNeeded();
-        await expect(cta).toBeVisible();
-        const ctaName = await cta.innerText();
-        const evidenceLabel = route.name === 'en' ? 'View evidence' : 'Ver evidencia';
-        if (ctaName.includes(evidenceLabel)) await expect(cta).toHaveAccessibleName(evidenceLabel);
-        else await expect(cta).toHaveAccessibleName(route.caseStudyName);
-        const ctaTarget = await cta.getAttribute('href');
-        expect(ctaTarget).not.toBeNull();
-        const ctaBox = await cta.boundingBox();
-        const cardBox = await card.boundingBox();
-        expect(ctaBox?.width).toBeGreaterThanOrEqual(44);
-        expect(ctaBox?.height).toBeGreaterThanOrEqual(44);
-        expect(ctaBox!.x).toBeGreaterThanOrEqual(cardBox!.x);
-        expect(ctaBox!.x + ctaBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
-
-        const titleLink = card.locator('h3 a.project-title-link');
-        await expect(titleLink).toBeVisible();
-        const caseStudyTarget = await titleLink.getAttribute('href');
-        expect(caseStudyTarget).not.toBeNull();
-        if (ctaName.includes(evidenceLabel)) {
-          expect(ctaTarget).toMatch(/^\/(?:es\/)?projects\/[a-z0-9-]+\/#(?:gallery-|visual-evidence|evidencia-visual|project-cover-)/);
-        } else {
-          expect(ctaTarget).toBe(caseStudyTarget);
-        }
-        if (await card.locator('.project-evidence-image').count()) {
-          cardsWithCapture += 1;
-          const captureLink = card.locator('.project-evidence-link');
-          await expect(captureLink).toBeVisible();
-          await expect(captureLink).toHaveAttribute('href', caseStudyTarget!);
-          const image = captureLink.locator('img');
-          await expect(image).toHaveAttribute('alt', /.+/);
-          await image.scrollIntoViewIfNeeded();
-          await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
-        } else {
-          cardsWithoutCapture += 1;
-          await expect(card.locator('.project-evidence-placeholder')).toBeVisible();
-        }
-      }
-      expect(cardsWithCapture).toBeGreaterThan(0);
-      expect(cardsWithoutCapture).toBeGreaterThan(0);
-      expect(Math.min(...summaryLengths)).toBeLessThan(Math.max(...summaryLengths));
+      await expect(page.locator('.selected-work-mobile-evidence img')).toBeVisible();
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-      expect(consoleErrors).toEqual([]);
+      expect(errors).toEqual([]);
 
-      const firstCta = cards.first().locator('.project-case-link');
       if (testInfo.project.name === 'chromium') {
-        const outputDir = path.resolve('output/playwright/issue-108-wave-1');
-        await mkdir(outputDir, { recursive: true });
-        await page.setViewportSize({ width, height: 1_400 });
-        await firstCta.scrollIntoViewIfNeeded();
-        await cards.first().locator('.project-body').screenshot({
-          path: path.join(outputDir, `project-cta-${route.name}-${width}.png`),
-          animations: 'disabled',
-        });
+        await mkdir('artifacts/visual/issue-116-i4', { recursive: true });
+        await page.locator('.selected-work-row').first().screenshot({ path: `artifacts/visual/issue-116-i4/lead-row-${route.name}-${width}.png` });
       }
-
-      const href = await firstCta.getAttribute('href');
-      expect(href).not.toBeNull();
-      await firstCta.click();
-      await expect(page).toHaveURL(new RegExp(`${href!.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/?$`));
-      await expect(page.locator('main h1').first()).toBeVisible();
     });
   }
 }

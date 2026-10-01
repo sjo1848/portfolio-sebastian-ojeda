@@ -1,0 +1,185 @@
+{
+  "checkedAt": "2026-10-01T03:01:06.502Z",
+  "origin": "https://sebastian-ojeda.pages.dev",
+  "routes": [
+    {
+      "route": "/",
+      "canonical": "https://sebastian-ojeda.pages.dev/",
+      "alternates": [
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "Sebastián Ojeda — Full-Stack Developer"
+    },
+    {
+      "route": "/es/",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/",
+      "alternates": [
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/"
+        },
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "Sebastián Ojeda — Full-Stack Developer"
+    },
+    {
+      "route": "/projects/hms-cloudflare/",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "alternates": [
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "HMS Cloudflare — Sebastián Ojeda"
+    },
+    {
+      "route": "/es/projects/hms-cloudflare/",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "alternates": [
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/"
+        },
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/hms-cloudflare/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/hms-cloudflare/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "HMS Cloudflare — Sebastián Ojeda"
+    },
+    {
+      "route": "/projects/alquileres-uspa/",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "alternates": [
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "Alquileres Uspallata — Sebastián Ojeda"
+    },
+    {
+      "route": "/es/projects/alquileres-uspa/",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "alternates": [
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/"
+        },
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/alquileres-uspa/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/alquileres-uspa/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "Alquileres Uspallata — Sebastián Ojeda"
+    },
+    {
+      "route": "/projects/ai-commerce-platform/",
+      "canonical": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/",
+      "alternates": [
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/"
+        },
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/ai-commerce-platform/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "AI Commerce + HMS — Sebastián Ojeda"
+    },
+    {
+      "route": "/es/projects/ai-commerce-platform/",
+      "canonical": "https://sebastian-ojeda.pages.dev/es/projects/ai-commerce-platform/",
+      "alternates": [
+        {
+          "hreflang": "es-AR",
+          "href": "https://sebastian-ojeda.pages.dev/es/projects/ai-commerce-platform/"
+        },
+        {
+          "hreflang": "en-US",
+          "href": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/"
+        },
+        {
+          "hreflang": "x-default",
+          "href": "https://sebastian-ojeda.pages.dev/projects/ai-commerce-platform/"
+        }
+      ],
+      "ogUrl": "https://sebastian-ojeda.pages.dev/es/projects/ai-commerce-platform/",
+      "ogImage": "https://sebastian-ojeda.pages.dev/social-card.png",
+      "title": "AI Commerce + HMS — Sebastián Ojeda"
+    }
+  ],
+  "robotsTxt": "User-agent: *\nAllow: /\nSitemap: https://sebastian-ojeda.pages.dev/sitemap-index.xml\n",
+  "sitemap": {
+    "file": "dist/sitemap-0.xml",
+    "canonicalUrlCount": 20,
+    "allPriorityRoutesPresent": true
+  },
+  "validators": [
+    "validate:social-metadata PASS (20 pages)",
+    "validate:seo PASS (22 pages)",
+    "validate:sitemap PASS (20 canonical URLs)"
+  ]
+}

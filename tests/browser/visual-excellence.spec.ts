@@ -9,7 +9,7 @@ const widths = [360, 390, 430, 768, 1024, 1440];
 
 for (const route of homeRoutes) {
   for (const width of widths) {
-    test(`Issue 113 Home ${route.lang} evidence composition at ${width}px`, async ({ page }, testInfo) => {
+    test(`Issue 116 I1 Home structure at ${route.lang} ${width}px`, async ({ page }, testInfo) => {
       test.skip(testInfo.project.name !== 'chromium');
       await page.setViewportSize({ width, height: width < 500 ? 844 : 1000 });
       const consoleErrors: string[] = [];
@@ -18,35 +18,20 @@ for (const route of homeRoutes) {
       await page.goto(route.path, { waitUntil: 'networkidle' });
 
       const headline = page.getByRole('heading', { level: 1 });
-      await expect(headline).toHaveText(route.lang === 'en' ? 'Full-Stack Software Developer' : 'Desarrollador de Software Full-Stack');
-      const evidence = page.locator('.brand-hero-evidence');
-      const image = evidence.locator('img');
-      await expect(image).toHaveAttribute('alt', /HMS Cloudflare reception workspace|Recepción actual de HMS Cloudflare/);
-      await expect(image).toHaveAttribute('width', '1440');
-      await expect(image).toHaveAttribute('height', '900');
-      await expect(image).toHaveAttribute('loading', 'eager');
-      await expect(image).toHaveAttribute('fetchpriority', 'high');
-      await expect(evidence.locator('source[type="image/avif"]')).toHaveCount(1);
-      await expect(evidence.locator('source[type="image/webp"]')).toHaveCount(1);
-      await expect(evidence.getByText(/does not represent product acceptance|No representa aceptación de producto/)).toBeVisible();
-      await expect.poll(() => image.evaluate((node: HTMLImageElement) => node.complete && node.naturalWidth > 0)).toBe(true);
+      await expect(headline).toHaveAccessibleName('FULL-STACK SOFTWARE DEVELOPER');
+      await expect(page.locator('.brand-hero-evidence, .hero-proof-links')).toHaveCount(0);
+      await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'Download resume' : 'Descargar CV' })).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
+      await expect(page.locator('.hero-github-link')).toBeVisible();
 
-      const leadCards = page.locator('#projects .project-card');
-      await expect(leadCards).toHaveCount(3);
+      const leadRows = page.locator('#projects [data-project-index-item]');
+      await expect(leadRows).toHaveCount(3);
       for (let index = 0; index < route.leadTitles.length; index += 1) {
-        await expect(leadCards.nth(index).getByRole('heading', { level: 3 })).toContainText(route.leadTitles[index]);
-        await expect(leadCards.nth(index).locator('.project-case-link')).toBeVisible();
+        await expect(leadRows.nth(index).getByRole('heading', { level: 3 })).toContainText(route.leadTitles[index]);
+        await expect(leadRows.nth(index).locator('.selected-work-case-link')).toBeVisible();
       }
-      const selectedWorkImage = page.locator('#projects .project-card-hero .project-evidence-image img');
+      const selectedWorkImage = page.locator('#projects .selected-work-mobile-evidence img');
       await expect(selectedWorkImage).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
       await expect(page.locator('html')).toHaveJSProperty('scrollWidth', width);
-
-      const copyBox = await page.locator('.brand-hero-copy').boundingBox();
-      const imageBox = await evidence.boundingBox();
-      expect(copyBox).not.toBeNull();
-      expect(imageBox).not.toBeNull();
-      if (width >= 768) expect(imageBox!.x).toBeGreaterThan(copyBox!.x + copyBox!.width - 1);
-      else expect(imageBox!.y).toBeGreaterThan(copyBox!.y + copyBox!.height - 1);
 
       if ([390, 1440].includes(width)) {
         const axe = await new AxeBuilder({ page })
@@ -59,19 +44,20 @@ for (const route of homeRoutes) {
   }
 }
 
-test('Issue 113 reduced motion keeps Home content visible and disables smooth motion', async ({ page }, testInfo) => {
+test('Issue 116 I1 reduced motion keeps the new Home content visible', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium');
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/', { waitUntil: 'networkidle' });
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.locator('.brand-hero-evidence img')).toBeVisible();
+  await expect(page.locator('#operating-mindset li')).toHaveCount(3);
+  await expect(page.locator('.brand-hero-evidence, .hero-proof-links')).toHaveCount(0);
   const motion = await page.evaluate(() => ({
     scroll: getComputedStyle(document.documentElement).scrollBehavior,
     buttonTransition: getComputedStyle(document.querySelector('.button-primary')!).transitionDuration,
-    cardTransition: getComputedStyle(document.querySelector('.project-card')!).transitionDuration,
+    selectedWorkTransition: getComputedStyle(document.querySelector('.selected-work-row')!).transitionDuration,
   }));
   expect(motion.scroll).toBe('auto');
   expect(motion.buttonTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
-  expect(motion.cardTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
+  expect(motion.selectedWorkTransition.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
 });

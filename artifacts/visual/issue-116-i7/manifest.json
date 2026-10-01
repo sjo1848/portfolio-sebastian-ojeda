@@ -1,0 +1,143 @@
+{
+  "issue": "#116",
+  "increment": "I7",
+  "coverage": {
+    "locales": [
+      "en",
+      "es"
+    ],
+    "widths": [
+      360,
+      390,
+      430,
+      768,
+      1024,
+      1440
+    ],
+    "browserProfiles": [
+      "Chromium",
+      "Firefox",
+      "WebKit",
+      "Mobile Chromium",
+      "Mobile WebKit"
+    ],
+    "screenshotViewports": [
+      "390x844",
+      "1440x1000"
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "operating-mindset-en-390.png",
+      "route": "/",
+      "section": "#operating-mindset",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "about-en-390.png",
+      "route": "/",
+      "section": "#about",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "additional-work-en-390.png",
+      "route": "/",
+      "section": "#additional-work",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "contact-en-390.png",
+      "route": "/",
+      "section": "#contact",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "operating-mindset-en-1440.png",
+      "route": "/",
+      "section": "#operating-mindset",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "about-en-1440.png",
+      "route": "/",
+      "section": "#about",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "additional-work-en-1440.png",
+      "route": "/",
+      "section": "#additional-work",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "contact-en-1440.png",
+      "route": "/",
+      "section": "#contact",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "operating-mindset-es-390.png",
+      "route": "/es/",
+      "section": "#operating-mindset",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "about-es-390.png",
+      "route": "/es/",
+      "section": "#about",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "additional-work-es-390.png",
+      "route": "/es/",
+      "section": "#additional-work",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "contact-es-390.png",
+      "route": "/es/",
+      "section": "#contact",
+      "captureViewport": "390x844",
+      "capture": "element crop"
+    },
+    {
+      "file": "operating-mindset-es-1440.png",
+      "route": "/es/",
+      "section": "#operating-mindset",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "about-es-1440.png",
+      "route": "/es/",
+      "section": "#about",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "additional-work-es-1440.png",
+      "route": "/es/",
+      "section": "#additional-work",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    },
+    {
+      "file": "contact-es-1440.png",
+      "route": "/es/",
+      "section": "#contact",
+      "captureViewport": "1440x1000",
+      "capture": "element crop"
+    }
+  ]
+}

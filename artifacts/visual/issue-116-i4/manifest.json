@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-09-30T22:10:35.373Z",
+  "results": [
+    {
+      "locale": "en",
+      "device": "390",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "titles": [
+        "HMS Cloudflare",
+        "Alquileres Uspallata",
+        "AI Commerce + HMS"
+      ],
+      "hrefs": [
+        "/projects/hms-cloudflare/",
+        "/projects/alquileres-uspa/",
+        "/projects/ai-commerce-platform/"
+      ],
+      "pane": "none",
+      "errors": []
+    },
+    {
+      "locale": "en",
+      "device": "1440",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "titles": [
+        "HMS Cloudflare",
+        "Alquileres Uspallata",
+        "AI Commerce + HMS"
+      ],
+      "hrefs": [
+        "/projects/hms-cloudflare/",
+        "/projects/alquileres-uspa/",
+        "/projects/ai-commerce-platform/"
+      ],
+      "pane": "grid",
+      "errors": []
+    },
+    {
+      "locale": "es",
+      "device": "390",
+      "scrollWidth": 390,
+      "viewport": 390,
+      "titles": [
+        "HMS Cloudflare",
+        "Alquileres Uspallata",
+        "AI Commerce + HMS"
+      ],
+      "hrefs": [
+        "/es/projects/hms-cloudflare/",
+        "/es/projects/alquileres-uspa/",
+        "/es/projects/ai-commerce-platform/"
+      ],
+      "pane": "none",
+      "errors": []
+    },
+    {
+      "locale": "es",
+      "device": "1440",
+      "scrollWidth": 1440,
+      "viewport": 1440,
+      "titles": [
+        "HMS Cloudflare",
+        "Alquileres Uspallata",
+        "AI Commerce + HMS"
+      ],
+      "hrefs": [
+        "/es/projects/hms-cloudflare/",
+        "/es/projects/alquileres-uspa/",
+        "/es/projects/ai-commerce-platform/"
+      ],
+      "pane": "grid",
+      "errors": []
+    }
+  ]
+}

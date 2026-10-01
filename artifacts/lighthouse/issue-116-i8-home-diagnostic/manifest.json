@@ -1,0 +1,35 @@
+[
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8-home-diagnostic/127_0_0_1--2026_10_01_03_02_11.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8-home-diagnostic/127_0_0_1--2026_10_01_03_02_26.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8-home-diagnostic/127_0_0_1--2026_10_01_03_02_41.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
