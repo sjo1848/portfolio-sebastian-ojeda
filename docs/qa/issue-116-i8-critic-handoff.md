@@ -19,7 +19,9 @@ Review the Issue #116 candidate and its I8 validation evidence independently. Do
 ## Candidate under review
 
 - Branch: `build/issue-116-cplus-baseline`
-- Tested candidate SHA: `db83e07b…` (exact full SHA to be recorded after evidence commit)
+- Tested code/test candidate SHA: `db83e07bafdc998574b598f5cb2c5f592a212b37`.
+- Evidence/report commit SHA: `ddbd848502da02172722bf646b710404f2085650`.
+- The evidence commit does not change product code or tests.
 - Scope is I8 validation only. Product code is unchanged from the authorized Block D candidate; the only validation rework is test timeout/selector maintenance.
 
 ## Required output

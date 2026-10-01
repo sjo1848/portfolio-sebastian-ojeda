@@ -2,7 +2,7 @@
 
 **State:** I8 validation complete; Independent Critic pending; Integration Review pending Controller review
 **Branch:** `build/issue-116-cplus-baseline`
-**Candidate code/test SHA:** `db83e07` (`db83e07b…`; test-only bounded validation rework atop Block D `8803137`)
+**Candidate code/test SHA:** `db83e07bafdc998574b598f5cb2c5f592a212b37` (test-only bounded validation rework atop Block D `8803137b06dfa728f8484c85c228a00b0c789930`)
 **Validation date:** 2026-10-01
 **Release boundary:** no merge, deploy, or I9 work performed
 
