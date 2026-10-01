@@ -1,0 +1,266 @@
+[
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1--2026_10_01_02_53_11.report.json",
+    "summary": {
+      "performance": 0.73,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1--2026_10_01_02_53_27.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_-2026_10_01_02_53_55.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_-2026_10_01_02_54_26.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_hms_cloudflare_-2026_10_01_02_54_57.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_hms_cloudflare_-2026_10_01_02_55_12.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_hms_cloudflare_-2026_10_01_02_55_27.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_hms_cloudflare_-2026_10_01_02_55_42.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_alquileres_uspa_-2026_10_01_02_56_12.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_alquileres_uspa_-2026_10_01_02_56_43.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_alquileres_uspa_-2026_10_01_02_57_13.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_alquileres_uspa_-2026_10_01_02_57_28.report.json",
+    "summary": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_ai_commerce_platform_-2026_10_01_02_57_59.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_ai_commerce_platform_-2026_10_01_02_58_14.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_ai_commerce_platform_-2026_10_01_02_58_28.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": false,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_ai_commerce_platform_-2026_10_01_02_58_42.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1--2026_10_01_02_53_41.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_-2026_10_01_02_54_10.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_hms_cloudflare_-2026_10_01_02_54_42.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_hms_cloudflare_-2026_10_01_02_55_57.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_alquileres_uspa_-2026_10_01_02_56_28.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_alquileres_uspa_-2026_10_01_02_56_58.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/projects/ai-commerce-platform/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-projects_ai_commerce_platform_-2026_10_01_02_57_44.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4184/es/projects/ai-commerce-platform/",
+    "isRepresentativeRun": true,
+    "jsonPath": "/home/sjo1848/dev/portolio/issue-116-cplus/artifacts/lighthouse/issue-116-i8/127_0_0_1-es_projects_ai_commerce_platform_-2026_10_01_02_58_55.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

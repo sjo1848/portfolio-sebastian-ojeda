@@ -1,0 +1,255 @@
+{
+  "issue": 116,
+  "increment": "I8 — full candidate validation",
+  "testedCandidate": "db83e07",
+  "screenshots": [
+    {
+      "file": "artifacts/visual/issue-116-i3/en-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Hero / first viewport"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i3/en-1440.png",
+      "route": "/",
+      "viewport": "1440x900",
+      "state": "Hero / first viewport"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i3/es-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Hero / first viewport"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i3/es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x900",
+      "state": "Hero / first viewport"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/hms-cloudflare-en-390.png",
+      "route": "/projects/hms-cloudflare/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — HMS Cloudflare"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/hms-cloudflare-en-1440.png",
+      "route": "/projects/hms-cloudflare/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — HMS Cloudflare"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/hms-cloudflare-es-390.png",
+      "route": "/es/projects/hms-cloudflare/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — HMS Cloudflare"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/hms-cloudflare-es-1440.png",
+      "route": "/es/projects/hms-cloudflare/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — HMS Cloudflare"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/alquileres-uspa-en-390.png",
+      "route": "/projects/alquileres-uspa/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — Alquileres Uspallata"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/alquileres-uspa-en-1440.png",
+      "route": "/projects/alquileres-uspa/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — Alquileres Uspallata"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/alquileres-uspa-es-390.png",
+      "route": "/es/projects/alquileres-uspa/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — Alquileres Uspallata"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/alquileres-uspa-es-1440.png",
+      "route": "/es/projects/alquileres-uspa/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — Alquileres Uspallata"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/ai-commerce-platform-en-390.png",
+      "route": "/projects/ai-commerce-platform/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — AI Commerce + HMS"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/ai-commerce-platform-en-1440.png",
+      "route": "/projects/ai-commerce-platform/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — AI Commerce + HMS"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/ai-commerce-platform-es-390.png",
+      "route": "/es/projects/ai-commerce-platform/",
+      "viewport": "390x844",
+      "state": "Case study first viewport — AI Commerce + HMS"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i6/ai-commerce-platform-es-1440.png",
+      "route": "/es/projects/ai-commerce-platform/",
+      "viewport": "1440x900",
+      "state": "Case study first viewport — AI Commerce + HMS"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-hms-active-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — hms active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-alquileres-active-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — alquileres active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-ai-active-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — ai active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-hms-active-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — hms active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-alquileres-active-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — alquileres active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i8/selected-work-ai-active-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Selected Work — ai active"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/operating-mindset-en-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Lower page — operating-mindset"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/operating-mindset-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Lower page — operating-mindset"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/about-en-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Lower page — about"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/about-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Lower page — about"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/additional-work-en-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Lower page — additional-work"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/additional-work-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Lower page — additional-work"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/contact-en-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Lower page — contact"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/contact-en-1440.png",
+      "route": "/",
+      "viewport": "1440x1000",
+      "state": "Lower page — contact"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/operating-mindset-es-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Lower page — operating-mindset"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/operating-mindset-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Lower page — operating-mindset"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/about-es-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Lower page — about"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/about-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Lower page — about"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/additional-work-es-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Lower page — additional-work"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/additional-work-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Lower page — additional-work"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/contact-es-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Lower page — contact"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i7/contact-es-1440.png",
+      "route": "/es/",
+      "viewport": "1440x1000",
+      "state": "Lower page — contact"
+    }
+  ],
+  "supplementalStates": [
+    {
+      "file": "artifacts/visual/issue-116-i1/home-en-no-js-390.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Home without JavaScript; ordinary navigation and essential content"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i1/home-es-no-js-390.png",
+      "route": "/es/",
+      "viewport": "390x844",
+      "state": "Home without JavaScript; ordinary navigation and essential content"
+    },
+    {
+      "file": "artifacts/visual/issue-116-i3/en-390-reduced.png",
+      "route": "/",
+      "viewport": "390x844",
+      "state": "Home reduced-motion state"
+    }
+  ]
+}
