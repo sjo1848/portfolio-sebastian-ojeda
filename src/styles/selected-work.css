@@ -210,11 +210,9 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  #projects::before,
+  #projects::before { transition: transform 380ms var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)); }
   .selected-work-item-rule,
-  .selected-work-title {
-    transition: transform 380ms var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1));
-  }
+  .selected-work-title { transition: transform var(--motion-fast) var(--motion-ease, cubic-bezier(0.22, 1, 0.36, 1)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

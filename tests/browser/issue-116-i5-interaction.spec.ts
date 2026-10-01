@@ -118,10 +118,21 @@ test('I5 mobile keeps inline HMS evidence and ordinary touch navigation', async 
 
 test('I5 reduced motion removes signature transitions and static routes work without JavaScript', async ({ browser, page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   const rows = page.locator('[data-project-index-item]');
   const panel = page.locator('[data-selected-evidence]');
+  await rows.nth(1).locator('a.selected-work-row').focus();
+  await expect(panel.locator('[data-evidence-title]')).toHaveText('Alquileres Uspallata');
+  await expect(panel.locator('.selected-work-evidence-figure')).toHaveAttribute('data-evidence-changing');
+  const motionDurations = await page.evaluate(() => ({
+    handoff: getComputedStyle(document.querySelector('#projects')!, '::before').transitionDuration,
+    activeRule: getComputedStyle(document.querySelector('.selected-work-item-rule')!).transitionDuration,
+    activeTitle: getComputedStyle(document.querySelector('.selected-work-title')!).transitionDuration,
+    evidence: getComputedStyle(document.querySelector('.selected-work-evidence-image-frame')!).animationDuration,
+  }));
+  expect(motionDurations).toEqual({ handoff: '0.38s', activeRule: '0.14s', activeTitle: '0.14s', evidence: '0.26s' });
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await rows.nth(1).locator('a.selected-work-row').focus();
   await expect(panel.locator('[data-evidence-title]')).toHaveText('Alquileres Uspallata');
   await expect(panel.locator('.selected-work-evidence-image-frame')).toHaveCSS('animation-name', 'none');
