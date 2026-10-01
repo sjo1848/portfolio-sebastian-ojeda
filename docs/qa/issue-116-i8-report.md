@@ -84,10 +84,10 @@ These are Lighthouse lab results, not field Core Web Vitals. Field CWV remains `
 
 ## Review gates and limitations
 
-- **Independent Critic:** pending fresh independent review of this report, the canonical Issue #116 contracts, candidate `db83e07`, and committed I8 evidence. The critic handoff is [`issue-116-i8-critic-handoff.md`](issue-116-i8-critic-handoff.md).
+- **Independent Critic:** **PASS** at review tip `6a2ddd91daf8de57445dc4a2fe324ca1e5f7c0a3`. The independent reviewer found no material contract violation or bounded rework requirement. Verbatim verdict and rationale: [`issue-116-i8-independent-critic.md`](issue-116-i8-independent-critic.md). The review handoff is [`issue-116-i8-critic-handoff.md`](issue-116-i8-critic-handoff.md).
 - **Integration Review:** pending Controller review, per the Controller’s I8 disposition; not self-issued by the implementer.
 - The full Playwright report records 286 existing skipped test/profile combinations; there were no failures.
 - No production deployment or field-user Core Web Vitals data is part of I8.
 - No merge, deployment, or I9 work has been performed.
 
-**I8 implementation-side validation: PASS, subject to Independent Critic and Controller Integration Review.** Stop at this checkpoint.
+**I8 validation: PASS with Independent Critic PASS. Integration Review remains pending Controller review.** Stop at this checkpoint.
