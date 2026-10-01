@@ -125,7 +125,7 @@ test('static portfolio paths remain available when the navigation island cannot 
   await expect(page.locator('#contact a[href*="github.com"]')).toBeVisible();
 
   await page.goto('/projects/hms-cloudflare/', { waitUntil: 'networkidle' });
-  await expect(page.locator('a.button.button-secondary').filter({ hasText: /back to projects|volver a proyectos/i }).first()).toBeVisible();
+  await expect(page.locator('a.case-back-link').filter({ hasText: /back to projects|volver a proyectos/i }).first()).toBeVisible();
   await expect(page.locator('a[href*="github.com"]').first()).toBeVisible();
   expect(await page.locator('main').isVisible()).toBe(true);
 });

@@ -4,6 +4,8 @@ const routes = ['/', '/es/'] as const;
 const widths = [360, 390, 430, 768, 1024, 1440] as const;
 
 test('I3 hero settles without clipping and stays static for reduced motion', async ({ page }) => {
+  // This contract intentionally checks both locales across the full width matrix.
+  test.setTimeout(60_000);
   for (const route of routes) {
     for (const width of widths) {
       await page.setViewportSize({ width, height: width < 500 ? 844 : 900 });
