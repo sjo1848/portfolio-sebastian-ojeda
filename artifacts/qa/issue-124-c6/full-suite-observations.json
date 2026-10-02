@@ -3,7 +3,13 @@
   "startedFrom": "0d12c99849e5c64aad39ce70e8b0599f7bb00939",
   "fullRun": {
     "command": "npx playwright test --config playwright.issue124.c6.config.ts",
-    "projects": ["chromium", "firefox", "webkit", "mobile-chromium", "mobile-webkit"],
+    "projects": [
+      "chromium",
+      "firefox",
+      "webkit",
+      "mobile-chromium",
+      "mobile-webkit"
+    ],
     "total": 1005,
     "passed": 697,
     "expectedSkipped": 302,
@@ -45,7 +51,13 @@
   ],
   "focusedIssue124Run": {
     "command": "PLAYWRIGHT_JSON_OUTPUT_NAME=artifacts/qa/issue-124-c6/issue-124-browser-report.json npx playwright test --config playwright.issue124.c6.config.ts --workers=1 --timeout=120000 --reporter=list,json tests/browser/issue-124-alquileres-gallery-proof.spec.ts tests/browser/issue-124-proof-conversion.spec.ts tests/browser/project-proof-model.spec.ts",
-    "configuredProjects": ["chromium", "firefox", "webkit", "mobile-chromium", "mobile-webkit"],
+    "configuredProjects": [
+      "chromium",
+      "firefox",
+      "webkit",
+      "mobile-chromium",
+      "mobile-webkit"
+    ],
     "total": 55,
     "passed": 23,
     "expectedSkipped": 32,
@@ -62,5 +74,25 @@
     "passed": 10,
     "failed": 0,
     "note": "No product files in these surfaces changed in C6."
+  },
+  "controlledFullRun": {
+    "command": "npx playwright test --config playwright.issue124.c6.config.ts",
+    "configuration": "Temporary config mirrored playwright.config.ts projects and browser/device definitions; preview server was started separately because the configured Astro preview daemonizes. Controlled run used fullyParallel=false, workers=2, test timeout=120000 ms, expect timeout=15000 ms.",
+    "projects": [
+      "chromium",
+      "firefox",
+      "webkit",
+      "mobile-chromium",
+      "mobile-webkit"
+    ],
+    "total": 1005,
+    "passed": 703,
+    "expectedSkipped": 302,
+    "failed": 0,
+    "flaky": 0,
+    "duration": "28m 43s",
+    "durationMs": 1722713,
+    "report": "full-suite-controlled.json",
+    "interpretation": "Complete matrix is green with zero unexpected or flaky outcomes under controlled concurrency. The six earlier four-worker failures did not reproduce. All 302 skips are test/project applicability guards."
   }
 }

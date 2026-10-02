@@ -2,13 +2,13 @@
 
 ## Review target
 
-- Candidate commit: `bd714708274a04e7f3a62ee4a6da010773f67437`
+- Candidate commit: pending final C6 controlled-validation evidence commit
 - Candidate branch: `build/issue-124-proof-conversion`
 - Approved C3–C5 checkpoint: `0d12c99849e5c64aad39ce70e8b0599f7bb00939`
 - Full C6 report: [`issue-124-c6-final-validation.md`](issue-124-c6-final-validation.md)
 - Source-only bounded correction commit: `46483f7d3d77a7817b340518aeee61a3f092e29d`
 
-Review the candidate commit and its complete evidence against:
+The first review returned REWORK solely because the original four-worker full Playwright matrix recorded six failures. The full configured five-project matrix has now been rerun under controlled concurrency: 1,005 total, 703 passed, 302 expected skips, zero failures, zero flaky outcomes. Review this updated candidate commit and its complete evidence against:
 
 1. the original Issue #124 contract and acceptance criteria;
 2. the latest Controller disposition authorizing C6 and the exact C5-F1 copy correction;
@@ -23,6 +23,7 @@ Inspect these durable artifacts:
 
 - [`issue-124-c6-final-validation.md`](issue-124-c6-final-validation.md)
 - [`../../artifacts/qa/issue-124-c6/full-suite-observations.json`](../../artifacts/qa/issue-124-c6/full-suite-observations.json)
+- [`../../artifacts/qa/issue-124-c6/full-suite-controlled.json`](../../artifacts/qa/issue-124-c6/full-suite-controlled.json)
 - [`../../artifacts/qa/issue-124-c6/issue-124-browser-report.json`](../../artifacts/qa/issue-124-c6/issue-124-browser-report.json)
 - [`../../artifacts/qa/issue-124-c6/qa-release.log`](../../artifacts/qa/issue-124-c6/qa-release.log)
 - [`../../artifacts/lighthouse/issue-124-c6/medians.json`](../../artifacts/lighthouse/issue-124-c6/medians.json) and all 18 raw JSON reports under its `reports/` directory

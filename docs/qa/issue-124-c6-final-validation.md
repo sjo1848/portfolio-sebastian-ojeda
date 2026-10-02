@@ -7,7 +7,7 @@ C6 implementation commit: `46483f7d3d77a7817b340518aeee61a3f092e29d`
 
 ## Result
 
-The bounded C5-F1 copy correction is implemented. Issue #124-specific proof tests, model checks, release QA, responsive/accessibility checks and the configured three-run Lighthouse medians pass. The full 1,005-test five-project Playwright run completed with six failures under aggregate load; each failed test passed when isolated. The failures and their follow-up results are recorded without treating the aggregate run as an unqualified PASS. Independent Critic review is the next gate.
+The bounded C5-F1 copy correction is implemented. Issue #124-specific proof tests, model checks, release QA, responsive/accessibility checks, configured three-run Lighthouse medians, and the complete five-project Playwright matrix pass. An initial four-worker matrix had six load-sensitive failures; after Independent Critic requested bounded rework, the full matrix was rerun with controlled concurrency and completed with 703 passed, 302 expected skips, zero failures, and zero flaky outcomes. Independent Critic re-review is the next gate.
 
 ## Correction
 
@@ -41,7 +41,7 @@ The persisted run log records content and presentation validation, Astro diagnos
 
 The repository's normal `npm run test:browser` invocation exits early because the Astro preview process daemonizes and Playwright reports `Process from config.webServer exited early`. The browser run therefore used a temporary config matching the canonical five projects and a separately started preview server; the temporary config was removed afterward.
 
-The complete run covered all five configured projects: Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit. It completed 1,005 tests: **697 passed, 302 expected skips, 6 failed** under four-worker aggregate load. All six failure outcomes passed in focused, serial follow-up runs:
+The complete matrix covered all five configured projects: Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit. The initial four-worker run completed 1,005 tests with 697 passed, 302 expected skips, and 6 failures; the failed cases passed in focused reruns. Following Independent Critic REWORK, the entire matrix was rerun with `fullyParallel=false`, two workers, 120-second test timeout and 15-second assertion timeout against a separately started preview server. The controlled run completed 1,005 tests with **703 passed, 302 expected skips, 0 failed, and 0 flaky** in 28m 43s. All five configured projects were included. The earlier six failures were not reproducible under this controlled run. Exact final Playwright JSON is in [`full-suite-controlled.json`](../../artifacts/qa/issue-124-c6/full-suite-controlled.json), and run configuration/result reconciliation is in [`full-suite-observations.json`](../../artifacts/qa/issue-124-c6/full-suite-observations.json).
 
 - both Issue #124 C5 proof-conversion failures passed in the 55-case focused Issue #124 run;
 - the four existing Issue #116/mobile-navigation failures passed in a 10-test serial Mobile WebKit rerun.
@@ -50,7 +50,7 @@ Focused Issue #124 results: **23 passed, 32 expected skips, 0 failed** across th
 
 Responsive checks cover the approved 360/390/430/768/1024/1440 widths on the changed gallery and route matrix. Axe WCAG 2.2 AA checks for Home, HMS and Alquileres EN/ES at mobile and desktop sizes passed in Chromium. Existing no-JS case-study links, keyboard/focus, touch/mobile and reduced-motion tests passed in the focused coverage and serial Mobile WebKit follow-up. Page console/page errors remained empty in the focused C5 route and screenshot validation; responsive route tests also passed their console/pageerror assertions in the full run.
 
-The six aggregate failures and isolated outcomes are captured in [`full-suite-observations.json`](../../artifacts/qa/issue-124-c6/full-suite-observations.json). No C6 code changed the Home hero, navigation, C+ motion or their styles. Because the complete parallel suite had failure outcomes despite the isolation passes, the aggregate result remains visible for Independent Critic assessment.
+The initial six failures and the final all-green controlled run are both retained in [`full-suite-observations.json`](../../artifacts/qa/issue-124-c6/full-suite-observations.json). No C6 code changed the Home hero, navigation, C+ motion or their styles. This bounded execution rework changed only the test-runner concurrency/timeouts; no product behavior or configured project matrix was altered.
 
 ### Lighthouse
 
@@ -86,5 +86,5 @@ Home initial client JS is **95,728 B gzip** in EN and ES, unchanged from the app
 - No field Core Web Vitals claim is made.
 - No PR, merge, deploy, production change or Wave 2/3 work is part of C6.
 
-Independent Critic verdict: pending.
+Independent Critic verdict: re-review pending after controlled full-matrix PASS.
 Controller Integration Review: pending.
