@@ -1,0 +1,73 @@
+{
+  "production": "https://sebastian-ojeda.pages.dev",
+  "mergeCommit": "5f478a2b2da7ee470699e09e1e9587ded7f312fd",
+  "githubActionsArtifact": "portfolio-dist-5f478a2b2da7ee470699e09e1e9587ded7f312fd",
+  "artifactId": 11242097645,
+  "artifactDigest": "sha256:e59bd6b7b18e2eb695ba5123129bf6ece23be4e2d6405b941cd1f8313b6c8285",
+  "normalizations": [
+    "random Astro astro-island uid values",
+    "Cloudflare Pages Analytics edge-injected script (present in production response, absent from the build artifact)"
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "httpStatus": 200,
+      "productionBytes": 35051,
+      "artifactBytes": 34836,
+      "normalizedSha256": "207665fa1adf87ea90198a3f8b003d239bd68668cf7ab85cb99e25f69115b073",
+      "artifactNormalizedSha256": "207665fa1adf87ea90198a3f8b003d239bd68668cf7ab85cb99e25f69115b073",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    },
+    {
+      "route": "/es/",
+      "httpStatus": 200,
+      "productionBytes": 35501,
+      "artifactBytes": 35286,
+      "normalizedSha256": "3f9c17dd3f982489cc10b2b7162dabde6bd4762f9805fdd184f60276a8b9730b",
+      "artifactNormalizedSha256": "3f9c17dd3f982489cc10b2b7162dabde6bd4762f9805fdd184f60276a8b9730b",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    },
+    {
+      "route": "/projects/hms-cloudflare/",
+      "httpStatus": 200,
+      "productionBytes": 28199,
+      "artifactBytes": 27983,
+      "normalizedSha256": "4c8d0cb03b38daf49bec746ead778b310c94bfe5e10d75a27464aac767b477fe",
+      "artifactNormalizedSha256": "4c8d0cb03b38daf49bec746ead778b310c94bfe5e10d75a27464aac767b477fe",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    },
+    {
+      "route": "/es/projects/hms-cloudflare/",
+      "httpStatus": 200,
+      "productionBytes": 28608,
+      "artifactBytes": 28391,
+      "normalizedSha256": "dd481b99f77d4cfaa61c3888d175bd0d10587a86c7b062ce069ca4868dca7cc1",
+      "artifactNormalizedSha256": "dd481b99f77d4cfaa61c3888d175bd0d10587a86c7b062ce069ca4868dca7cc1",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    },
+    {
+      "route": "/projects/alquileres-uspa/",
+      "httpStatus": 200,
+      "productionBytes": 32614,
+      "artifactBytes": 32400,
+      "normalizedSha256": "9acb6b98aca50bb83f4d00dc3fe43dc9f5a4d82b0920bb63a2cfc4d5f1b777ad",
+      "artifactNormalizedSha256": "9acb6b98aca50bb83f4d00dc3fe43dc9f5a4d82b0920bb63a2cfc4d5f1b777ad",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    },
+    {
+      "route": "/es/projects/alquileres-uspa/",
+      "httpStatus": 200,
+      "productionBytes": 33267,
+      "artifactBytes": 33050,
+      "normalizedSha256": "31ecf77e6d6610208329b73a2d2e9649aba717484c2967ef01d258cb081cf2da",
+      "artifactNormalizedSha256": "31ecf77e6d6610208329b73a2d2e9649aba717484c2967ef01d258cb081cf2da",
+      "matchesMergeBuildAfterNormalizingGeneratedAstroUidsAndCloudflareEdgeAnalytics": true,
+      "edgeCloudflareAnalyticsInjectionCount": 1
+    }
+  ]
+}

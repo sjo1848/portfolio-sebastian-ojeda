@@ -1,0 +1,140 @@
+{
+  "capturedAt": "2026-10-02T17:47:40.123Z",
+  "baseURL": "https://sebastian-ojeda.pages.dev",
+  "browser": "Chromium",
+  "viewports": [
+    1440,
+    390
+  ],
+  "routes": [
+    "/",
+    "/es/",
+    "/projects/hms-cloudflare/",
+    "/es/projects/hms-cloudflare/",
+    "/projects/alquileres-uspa/",
+    "/es/projects/alquileres-uspa/"
+  ],
+  "results": [
+    {
+      "route": "/",
+      "width": 1440,
+      "http": 200,
+      "images": 2,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/",
+      "width": 1440,
+      "http": 200,
+      "images": 2,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/projects/hms-cloudflare/",
+      "width": 1440,
+      "http": 200,
+      "images": 1,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/projects/hms-cloudflare/",
+      "width": 1440,
+      "http": 200,
+      "images": 1,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/projects/alquileres-uspa/",
+      "width": 1440,
+      "http": 200,
+      "images": 3,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/projects/alquileres-uspa/",
+      "width": 1440,
+      "http": 200,
+      "images": 3,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "http": 200,
+      "images": 2,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/",
+      "width": 390,
+      "http": 200,
+      "images": 2,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/projects/hms-cloudflare/",
+      "width": 390,
+      "http": 200,
+      "images": 1,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/projects/hms-cloudflare/",
+      "width": 390,
+      "http": 200,
+      "images": 1,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/projects/alquileres-uspa/",
+      "width": 390,
+      "http": 200,
+      "images": 3,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    },
+    {
+      "route": "/es/projects/alquileres-uspa/",
+      "width": 390,
+      "http": 200,
+      "images": 3,
+      "brokenImages": 0,
+      "failedImageResponses": 0,
+      "consoleErrors": 0,
+      "overflow": false
+    }
+  ],
+  "failures": []
+}

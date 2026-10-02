@@ -1,0 +1,50 @@
+{
+  "production": "https://sebastian-ojeda.pages.dev",
+  "assets": [
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png",
+      "httpStatus": 200,
+      "expectedStatus": 200
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png",
+      "httpStatus": 200,
+      "expectedStatus": 200
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i04-reception-authorized.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i05-integrated-housekeeping.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i06-billing-authorized.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i06-billing.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i07-admin-authorized.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    },
+    {
+      "path": "/media/projects/hms-cloudflare/cf-i07-admin.png",
+      "httpStatus": 404,
+      "expectedStatus": 404
+    }
+  ]
+}

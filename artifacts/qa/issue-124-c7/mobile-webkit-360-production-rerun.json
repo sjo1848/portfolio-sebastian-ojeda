@@ -1,0 +1,10 @@
+{
+  "capturedAt": "2026-10-02T17:54:06Z",
+  "production": "https://sebastian-ojeda.pages.dev",
+  "project": "mobile-webkit (iPhone 13 profile)",
+  "command": "node /home/sjo1848/dev/portolio/portfolio-issue-124-c0/node_modules/@playwright/test/cli.js test --config=/tmp/issue124-c7-mobile-webkit.config.ts --grep=\"short 360px\"",
+  "test": "mobile navigation fits a short 360px viewport, honors reduced motion, and closes at desktop breakpoint",
+  "passed": 1,
+  "failed": 0,
+  "result": "PASS"
+}
