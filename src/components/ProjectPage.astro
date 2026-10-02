@@ -51,9 +51,12 @@ const proofAction = proofHref && proof
 const proofLimitations = proof?.proofLimitations[lang] ?? '';
 const copy = copyByLanguage[lang].project;
 const site = siteByLanguage[lang];
+const isAlquileres = data.slug === 'alquileres-uspa';
 const galleryRootId = `gallery-items-${data.slug}`;
 const gallerySectionId = `gallery-${data.slug}`;
-const galleryTitle = lang === 'es' ? 'Capturas y recorridos verificados' : 'Verified screenshots and walkthroughs';
+const galleryTitle = isAlquileres
+  ? lang === 'es' ? 'Capturas verificadas' : 'Verified screenshots'
+  : lang === 'es' ? 'Capturas y recorridos verificados' : 'Verified screenshots and walkthroughs';
 const contentsItems = [
   ...(gallery.length > 0
     ? [{
@@ -77,7 +80,9 @@ const galleryCopy = lang === 'es'
   ? {
       eyebrow: 'Evidencia visual',
       title: galleryTitle,
-      description: 'Imágenes y demostraciones animadas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.',
+      description: isAlquileres
+        ? 'Evidencia visual reproducible del producto, documentada con datos sintéticos y límites explícitos.'
+        : 'Imágenes y demostraciones animadas reales del producto documentadas como evidencia del flujo y de las decisiones de interfaz.',
       openImage: 'Abrir captura a tamaño completo',
       playGif: 'Reproducir GIF',
       stopGif: 'Detener GIF',
@@ -93,7 +98,9 @@ const galleryCopy = lang === 'es'
   : {
       eyebrow: 'Visual evidence',
       title: galleryTitle,
-      description: 'Real product images and animated demonstrations documented as evidence of the workflow and interface decisions.',
+      description: isAlquileres
+        ? 'Reproducible visual evidence from the product, documented with synthetic data and explicit limitations.'
+        : 'Real product images and animated demonstrations documented as evidence of the workflow and interface decisions.',
       openImage: 'Open full-size screenshot',
       playGif: 'Play GIF',
       stopGif: 'Stop GIF',
