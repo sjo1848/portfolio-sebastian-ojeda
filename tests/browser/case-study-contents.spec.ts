@@ -28,7 +28,13 @@ for (const route of cases) {
       nodes.map((node) => ({ id: node.id, text: node.textContent?.trim(), depth: Number(node.tagName.slice(1)) })),
     );
     const expectedStructural = route.name.startsWith('hms-elite') || route.name.startsWith('alquileres')
-      ? [{ id: `gallery-${route.name.startsWith('hms-elite') ? 'hms-elite' : 'alquileres-uspa'}`, text: route.lang === 'es' ? 'Capturas y recorridos verificados' : 'Verified screenshots and walkthroughs', depth: 2 }]
+      ? [{
+          id: `gallery-${route.name.startsWith('hms-elite') ? 'hms-elite' : 'alquileres-uspa'}`,
+          text: route.name.startsWith('alquileres')
+            ? route.lang === 'es' ? 'Capturas verificadas' : 'Verified screenshots'
+            : route.lang === 'es' ? 'Capturas y recorridos verificados' : 'Verified screenshots and walkthroughs',
+          depth: 2,
+        }]
       : [];
     const links = await sidebar.locator('a').evaluateAll((nodes) =>
       nodes.map((node) => {

@@ -56,29 +56,26 @@ export const projectProofs = {
     proofHref: verifiedPortfolioRoute('#visual-evidence', '#evidencia-visual'),
     proofProvenance: {
       sourceRepository: 'https://github.com/sjo1848/hms-cloudflare',
-      sourceCommit: 'dd7d536848708346ca9616e0f54b0fc48ace0b07',
+      sourceCommit: null,
       dataClassification: 'authorized-test-fixture',
       artifacts: [
         { path: '/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png', sha256: '8e9d6e1f99ce46502ffb98fd3d955a69de2607e23a8fb41039c66469e2c673fd' },
-        { path: '/media/projects/hms-cloudflare/cf-i04-reception-authorized.png', sha256: '7c88509f2520b0027723a9b07423114627b6ee2e7ac54c9a65582ac69e780378' },
-        { path: '/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png', sha256: '9d64973880788129623d1f67cd6d04089dde5a71c072bb99dbc34958f6acd533' },
-        { path: '/media/projects/hms-cloudflare/cf-i06-billing-authorized.png', sha256: '000281ddcd08a777e50bdd3a114e1349cb0bab4ee9c54d13155ee4378c8bbec8' },
-        { path: '/media/projects/hms-cloudflare/cf-i07-admin-authorized.png', sha256: 'b2e64b05add48abf65bbc98432fd07ce46620292acf4cad46fee1e6acd12e87f' },
+        { path: '/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png', sha256: '7c88509f2520b0027723a9b07423114627b6ee2e7ac54c9a65582ac69e780378' },
       ],
     },
     proofLimitations: {
-      en: 'These are local regression screenshots with authorized test fixtures, not remote product acceptance, accepted mobile evidence, production readiness or release.',
-      es: 'Son capturas de regresiones locales con fixtures autorizados, no aceptación remota, evidencia mobile aceptada, preparación para producción ni release.',
+      en: 'Local regression captures with authorized test fixtures. They do not show remote Product Acceptance or a production release.',
+      es: 'Capturas de regresión local con fixtures de prueba autorizados. No muestran Product Acceptance remoto ni un release de producción.',
     },
   },
   'alquileres-uspa': {
-    preferredProofMode: 'live-product',
+    preferredProofMode: 'visual-evidence',
     currentProofMode: 'visual-evidence',
-    proofReadiness: 'pending-external-gate',
+    proofReadiness: 'available',
     proofHref: verifiedPortfolioRoute('#gallery-alquileres-uspa'),
     proofProvenance: {
       sourceRepository: 'https://github.com/sjo1848/alquileres-uspa',
-      sourceCommit: '5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51',
+      sourceCommit: '267c531f3e3d5869240894063d3a194fa1f9680b',
       dataClassification: 'synthetic-deterministic',
       artifacts: [
         { path: '/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png', sha256: 'b5f734fbaa270ddf73e055d41f6b510d9e669d6d001e571b653f2acf1ddd36a0' },
@@ -87,8 +84,8 @@ export const projectProofs = {
       ],
     },
     proofLimitations: {
-      en: 'These are reproducible synthetic captures of the NestJS/Vue product. There is no public deployment. Review/publication and administrative-audit workflows are not shown; reservations, payments and real-time flows are out of scope. A live link depends on the community product’s own release gates.',
-      es: 'Son capturas sintéticas reproducibles del producto NestJS/Vue. No hay despliegue público. No muestran revisión/publicación ni auditoría administrativa; reservas, pagos y flujos en tiempo real quedan fuera. Un enlace live depende de los gates de release del producto comunitario.',
+      en: 'Reproducible local captures from the NestJS/Vue product. Listings and illustrations are synthetic. There is no public deployment, and the images do not show real availability.',
+      es: 'Capturas locales reproducibles del producto NestJS/Vue. Los alojamientos y las ilustraciones son sintéticos. No hay despliegue público y las imágenes no muestran disponibilidad real.',
     },
   },
   'ai-commerce-platform': {

@@ -23,9 +23,9 @@ for (const route of ['/', '/es/']) {
     }
 
     await expect(page.locator('[data-selected-evidence] [data-evidence-image]')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
-    await expect(page.locator('[data-evidence-caption]')).toContainText(route === '/' ? 'local runtime capture' : 'runtime local');
-    await expect(page.locator('[data-evidence-limitation]')).toContainText(route === '/' ? 'not remote product acceptance' : 'no aceptación remota');
-    await expect(rows.nth(0).locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
+    await expect(page.locator('[data-evidence-caption]')).toContainText(route === '/' ? 'Local regression preview' : 'Vista previa de regresión local');
+    await expect(page.locator('[data-evidence-limitation]')).toContainText(route === '/' ? 'remote Product Acceptance' : 'Product Acceptance remoto');
+    await expect(rows.nth(0).locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
     await expect(page.locator('a.selected-work-row')).toHaveCount(3);
 
     await page.keyboard.press('Tab');

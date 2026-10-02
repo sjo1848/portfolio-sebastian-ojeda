@@ -1,0 +1,96 @@
+npm notice run portfolio-sebastian-ojeda@0.1.0 qa:release
+npm notice run node scripts/run-with-site-url.mjs npm run qa:release:pipeline
+npm notice run portfolio-sebastian-ojeda@0.1.0 qa:release:pipeline
+npm notice run npm run validate:content && npm run validate:presentation && npm run check && npm run build:pipeline && npm run validate:build
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:content
+npm notice run node scripts/validate-content.mjs
+Bilingual content validation passed.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:presentation
+npm notice run node scripts/validate-portfolio-presentation.mjs
+Portfolio presentation validation passed.
+npm notice run portfolio-sebastian-ojeda@0.1.0 check
+npm notice run astro check
+01:21:06 [content] Syncing content
+01:21:06 [content] Synced content
+01:21:06 [types] Generated 1.85s
+01:21:06 [check] Getting diagnostics for Astro files in /home/sjo1848/dev/portolio/portfolio-issue-124-c0...
+Result (78 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+npm notice run portfolio-sebastian-ojeda@0.1.0 build:pipeline
+npm notice run npm run generate:assets && astro build && npm run validate:social-card && npm run validate:static-assets && npm run validate:social-metadata && npm run validate:seo && npm run validate:ux
+npm notice run portfolio-sebastian-ojeda@0.1.0 generate:assets
+npm notice run npm run generate:cv && npm run generate:social-card
+npm notice run portfolio-sebastian-ojeda@0.1.0 generate:cv
+npm notice run node scripts/generate-cv-pdf.mjs
+Generated /home/sjo1848/dev/portolio/portfolio-issue-124-c0/public/cv-sebastian-ojeda.pdf; remaining vertical space: 220.5 pt
+Generated /home/sjo1848/dev/portolio/portfolio-issue-124-c0/public/cv-sebastian-ojeda-en.pdf; remaining vertical space: 230.8 pt
+npm notice run portfolio-sebastian-ojeda@0.1.0 generate:social-card
+npm notice run node scripts/generate-social-card.mjs
+Generated /home/sjo1848/dev/portolio/portfolio-issue-124-c0/public/social-card.png
+01:21:39 [content] Syncing content
+01:21:39 [content] Synced content
+01:21:39 [types] Generated 1.46s
+01:21:39 [build] output: "static"
+01:21:39 [build] mode: "static"
+01:21:39 [build] directory: /home/sjo1848/dev/portolio/portfolio-issue-124-c0/dist/
+01:21:39 [build] Collecting build info...
+01:21:39 [build] ✓ Completed in 1.65s.
+01:21:39 [build] Building static entrypoints...
+01:21:56 [vite] ✓ built in 16.44s
+01:21:57 [vite] ✓ built in 1.21s
+01:21:57 [build] Rearranging server assets...
+
+ generating static routes
+01:21:58   ├─ /404.html (+67ms)
+01:21:58   ├─ /es/404/index.html (+9ms)
+01:21:58   ├─ /es/projects/agentic-engineering-governance/index.html (+17ms)
+01:21:58   ├─ /es/projects/ai-commerce-platform/index.html (+9ms)
+01:21:58   ├─ /es/projects/alquileres-uspa/index.html (+12ms)
+01:21:58   ├─ /es/projects/gasflow/index.html (+8ms)
+01:21:58   ├─ /es/projects/hms-cloudflare/index.html (+7ms)
+01:21:58   ├─ /es/projects/hms-elite/index.html (+10ms)
+01:21:58   ├─ /es/projects/jm-soluciones/index.html (+7ms)
+01:21:58   ├─ /es/projects/taco-loco/index.html (+7ms)
+01:21:58   ├─ /es/projects/uspaya/index.html (+5ms)
+01:21:58   ├─ /es/index.html (+49ms)
+01:21:58   ├─ /projects/agentic-engineering-governance/index.html (+5ms)
+01:21:58   ├─ /projects/ai-commerce-platform/index.html (+5ms)
+01:21:58   ├─ /projects/alquileres-uspa/index.html (+5ms)
+01:21:58   ├─ /projects/gasflow/index.html (+5ms)
+01:21:58   ├─ /projects/hms-cloudflare/index.html (+5ms)
+01:21:58   ├─ /projects/hms-elite/index.html (+6ms)
+01:21:58   ├─ /projects/jm-soluciones/index.html (+4ms)
+01:21:58   ├─ /projects/taco-loco/index.html (+4ms)
+01:21:58   ├─ /projects/uspaya/index.html (+4ms)
+01:21:58   ├─ /robots.txt (+2ms)
+01:21:58   ├─ /index.html (+5ms)
+01:21:58 ✓ Completed in 896ms.
+
+01:21:58 [build] ✓ Completed in 18.67s.
+01:21:58 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+01:21:58 [build] 22 page(s) built in 20.39s
+01:21:58 [build] Complete!
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:social-card
+npm notice run node scripts/validate-social-card.mjs
+Social card validation passed: 1200x630, 3932 bytes.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:static-assets
+npm notice run node scripts/validate-static-assets.mjs
+English-first bilingual static asset validation passed.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:social-metadata
+npm notice run node scripts/validate-social-metadata.mjs
+Social metadata validation passed for 20 public pages.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:seo
+npm notice run node scripts/validate-seo-structured-data.mjs
+English-first bilingual SEO and structured data validation passed for 22 HTML pages.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:ux
+npm notice run node scripts/validate-ux-accessibility.mjs
+UX and accessibility validation passed for 22 HTML pages.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:build
+npm notice run node scripts/validate-build.mjs && npm run validate:sitemap
+English-first bilingual build validation passed for 22 HTML pages.
+npm notice run portfolio-sebastian-ojeda@0.1.0 validate:sitemap
+npm notice run node scripts/validate-sitemap.mjs
+English-first sitemap validation passed with 20 canonical URLs.

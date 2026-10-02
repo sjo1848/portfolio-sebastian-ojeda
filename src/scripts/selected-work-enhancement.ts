@@ -29,10 +29,13 @@ if (section && index && rows.length && panel) {
   const role = evidencePanel.querySelector<HTMLElement>('[data-evidence-role]');
   const stack = evidencePanel.querySelector<HTMLElement>('[data-evidence-stack]');
   const limitation = evidencePanel.querySelector<HTMLElement>('[data-evidence-limitation]');
+  const proofAction = evidencePanel.querySelector<HTMLElement>('[data-proof-action]');
+  const proofState = evidencePanel.querySelector<HTMLElement>('[data-proof-state]');
+  const proofLink = evidencePanel.querySelector<HTMLAnchorElement>('[data-proof-link]');
   let revision = 0;
 
   function revealEvidence(row: HTMLElement, showFallback: boolean, fallbackText?: string) {
-    if (!image || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation) return;
+    if (!image || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation || !proofAction || !proofState || !proofLink) return;
     const current = ++revision;
     evidencePanel.setAttribute('aria-busy', 'true');
     const src = row.dataset.evidenceSrc;
@@ -45,6 +48,20 @@ if (section && index && rows.length && panel) {
       role.textContent = row.dataset.role ?? '';
       stack.textContent = row.dataset.stack ?? '';
       limitation.textContent = row.dataset.proofLimitation ?? '';
+      const proofHref = row.dataset.proofHref;
+      const proofLabel = row.dataset.proofLinkLabel;
+      const currentProofState = row.dataset.proofState;
+      if (proofHref && proofLabel && currentProofState) {
+        proofAction.hidden = false;
+        proofState.textContent = currentProofState;
+        proofLink.href = proofHref;
+        proofLink.textContent = proofLabel;
+      } else {
+        proofAction.hidden = true;
+        proofState.textContent = '';
+        proofLink.removeAttribute('href');
+        proofLink.textContent = '';
+      }
       caption.textContent = hasImage ? (row.dataset.proofCaption ?? '') : (row.dataset.emptyCaption ?? '');
       image.alt = hasImage ? (row.dataset.evidenceAlt ?? '') : '';
       image.hidden = !hasImage;

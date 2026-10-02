@@ -1,0 +1,60 @@
+{
+  "route": "/",
+  "capturedAt": "2026-10-02T02:23:38.836Z",
+  "method": "Browser ResourceTiming encodedBodySize for unique external JavaScript responses plus gzip level 9 of executable inline script bodies; excludes JSON-LD.",
+  "externalJavaScript": [
+    {
+      "path": "/_astro/MobileNavigation.B5C4fg42.js",
+      "encodedBodyBytes": 851
+    },
+    {
+      "path": "/_astro/client.Dda4loRL.js",
+      "encodedBodyBytes": 64946
+    },
+    {
+      "path": "/_astro/react.yIOJJ3r4.js",
+      "encodedBodyBytes": 3227
+    },
+    {
+      "path": "/_astro/jsx-runtime.DvU585tb.js",
+      "encodedBodyBytes": 424
+    },
+    {
+      "path": "/_astro/sheet.uSbuCUKK.js",
+      "encodedBodyBytes": 537
+    },
+    {
+      "path": "/_astro/react-dom.tjb2bX_M.js",
+      "encodedBodyBytes": 1385
+    },
+    {
+      "path": "/_astro/utils.D3KQlcLK.js",
+      "encodedBodyBytes": 20271
+    },
+    {
+      "path": "/_astro/CopyAction.bDPGacgf.js",
+      "encodedBodyBytes": 785
+    }
+  ],
+  "externalGzipBytes": 92426,
+  "inlineExecutableScripts": [
+    {
+      "gzipBytes": 125
+    },
+    {
+      "gzipBytes": 1775
+    },
+    {
+      "gzipBytes": 1177
+    },
+    {
+      "gzipBytes": 225
+    }
+  ],
+  "inlineGzipBytes": 3302,
+  "totalInitialJavaScriptGzipBytes": 95728,
+  "budgetBytes": 100000,
+  "headroomBytes": 4272,
+  "previousIssue116I8ReportedBytes": 95130,
+  "observedDifferenceFromIssue116I8Bytes": 598
+}

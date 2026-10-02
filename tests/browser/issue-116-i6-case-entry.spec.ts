@@ -107,7 +107,8 @@ test('I6 lead case entry remains visible and navigable without JavaScript', asyn
   await expect(page.locator('.case-project-index')).toHaveText('PROYECTO 01 / 03');
   await expect(page.locator('.case-back-link')).toHaveAttribute('href', '/es/#projects');
   const staticEvidence = page.locator('.prose a[data-media-viewer-trigger]');
-  expect(await staticEvidence.count()).toBeGreaterThanOrEqual(2);
+  await expect(staticEvidence).toHaveCount(1);
+  await expect(staticEvidence).toHaveAttribute('href', '/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png');
   await expect(staticEvidence.first().locator('img')).toBeVisible();
   await page.locator('.case-back-link').click();
   await expect(page).toHaveURL('/es/#projects');

@@ -1,0 +1,218 @@
+[
+  {
+    "url": "http://localhost:34565/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_09_08.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_09_08.report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_09_23.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_09_23.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_09_38.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_09_38.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_10_07.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_10_07.report.json",
+    "summary": {
+      "performance": 0.78,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_42.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_42.report.json",
+    "summary": {
+      "performance": 0.91,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_58.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_58.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_12.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_12.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_26.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_26.report.json",
+    "summary": {
+      "performance": 0.91,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_17.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_17.report.json",
+    "summary": {
+      "performance": 0.92,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_33.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_33.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_12_48.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_12_48.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_13_19.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_13_19.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_08_52.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost--2026_10_02_04_08_52.report.json",
+    "summary": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_09_52.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_-2026_10_02_04_09_52.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_26.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_hms_cloudflare_-2026_10_02_04_10_26.report.json",
+    "summary": {
+      "performance": 0.91,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/hms-cloudflare/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_42.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_hms_cloudflare_-2026_10_02_04_11_42.report.json",
+    "summary": {
+      "performance": 0.96,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_02.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-projects_alquileres_uspa_-2026_10_02_04_12_02.report.json",
+    "summary": {
+      "performance": 0.82,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34565/es/projects/alquileres-uspa/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_13_03.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/artifacts/lighthouse/issue-124-c6/reports/localhost-es_projects_alquileres_uspa_-2026_10_02_04_13_03.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
