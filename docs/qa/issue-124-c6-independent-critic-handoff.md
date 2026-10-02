@@ -2,13 +2,13 @@
 
 ## Review target
 
-- Candidate commit: pending final C6 controlled-validation evidence commit
+- Reviewed candidate commit: `cd98998082448b7f67f72372e7559a7c0e60dd9f`
 - Candidate branch: `build/issue-124-proof-conversion`
 - Approved C3–C5 checkpoint: `0d12c99849e5c64aad39ce70e8b0599f7bb00939`
 - Full C6 report: [`issue-124-c6-final-validation.md`](issue-124-c6-final-validation.md)
 - Source-only bounded correction commit: `46483f7d3d77a7817b340518aeee61a3f092e29d`
 
-The first review returned REWORK solely because the original four-worker full Playwright matrix recorded six failures. The full configured five-project matrix has now been rerun under controlled concurrency: 1,005 total, 703 passed, 302 expected skips, zero failures, zero flaky outcomes. Review this updated candidate commit and its complete evidence against:
+The first review returned REWORK solely because the original four-worker full Playwright matrix recorded six failures. The full configured five-project matrix was rerun under controlled concurrency: 1,005 total, 703 passed, 302 expected skips, zero failures, zero flaky outcomes. The fresh Independent Critic re-review returned PASS with no blocking findings; see [`issue-124-c6-independent-critic.md`](issue-124-c6-independent-critic.md).
 
 1. the original Issue #124 contract and acceptance criteria;
 2. the latest Controller disposition authorizing C6 and the exact C5-F1 copy correction;
@@ -30,12 +30,6 @@ Inspect these durable artifacts:
 - [`../../artifacts/lighthouse/issue-124-c6/home-js-budget.json`](../../artifacts/lighthouse/issue-124-c6/home-js-budget.json)
 - all four EN/ES 390/1440 Alquileres gallery screenshots and `SHA256SUMS` under [`../../artifacts/visual/issue-124-c6/`](../../artifacts/visual/issue-124-c6/)
 
-## Required verdict
+## Completed independent review
 
-Return exactly one verdict:
-
-- `PASS`
-- `REWORK`
-- `HUMAN_GATE`
-
-Give concise, evidence-specific rationale and list any blocking findings. A `REWORK` finding must be technical and bounded within C6; a `HUMAN_GATE` must identify the material product/risk/scope decision that cannot be resolved by the existing contract. Do not implement changes or edit repository files.
+Verdict: `PASS`. The fresh reviewer confirmed the exact EN/ES copy and unchanged limitations, approved C3–C5 evidence/provenance/CTA decisions, no scope creep, and the all-green controlled five-project matrix. `qa:release`, Lighthouse medians, and the Home JS budget also pass. Blocking findings: none. Full rationale: [`issue-124-c6-independent-critic.md`](issue-124-c6-independent-critic.md).

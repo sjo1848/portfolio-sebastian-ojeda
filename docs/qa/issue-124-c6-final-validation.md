@@ -82,9 +82,9 @@ Home initial client JS is **95,728 B gzip** in EN and ES, unchanged from the app
 
 - Alquileres remains synthetic static visual evidence. It has no public deployment and images do not establish real availability.
 - HMS evidence remains local regression evidence; it does not establish Product Acceptance or production release.
-- The full Playwright aggregate run recorded six failures before successful isolated reruns. No code in those failing Home/navigation surfaces was changed in C6. Keep this runner-sensitive result explicit for review.
+- The initial four-worker Playwright run recorded six load-sensitive failures, all absent from the final complete two-worker run (zero failures/flaky). No code in those earlier-failing Home/navigation surfaces changed in C6.
 - No field Core Web Vitals claim is made.
 - No PR, merge, deploy, production change or Wave 2/3 work is part of C6.
 
-Independent Critic verdict: re-review pending after controlled full-matrix PASS.
+Independent Critic verdict: **PASS**, reviewed independently against the C0–C6 contract and persisted in [`issue-124-c6-independent-critic.md`](issue-124-c6-independent-critic.md). No blocking findings.
 Controller Integration Review: pending.
