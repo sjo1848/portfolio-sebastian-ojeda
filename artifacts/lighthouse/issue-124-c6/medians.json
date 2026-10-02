@@ -1,0 +1,144 @@
+{
+  "lighthouseVersion": "12.6.1",
+  "runsPerRoute": 3,
+  "thresholds": {
+    "performance": 0.9,
+    "accessibility": 0.95,
+    "bestPractices": 0.95,
+    "seo": 0.95
+  },
+  "routes": {
+    "/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.95,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 1757,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.93,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:08:52.394Z",
+        "2026-10-02T04:09:08.904Z",
+        "2026-10-02T04:09:23.700Z"
+      ]
+    },
+    "/es/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.97,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 1977,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.78,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:09:38.097Z",
+        "2026-10-02T04:09:52.664Z",
+        "2026-10-02T04:10:07.978Z"
+      ]
+    },
+    "/es/projects/alquileres-uspa/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.98,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 2131,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.97,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:12:48.632Z",
+        "2026-10-02T04:13:03.839Z",
+        "2026-10-02T04:13:19.123Z"
+      ]
+    },
+    "/es/projects/hms-cloudflare/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.96,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 1915,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.91,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:11:12.851Z",
+        "2026-10-02T04:11:26.993Z",
+        "2026-10-02T04:11:42.695Z"
+      ]
+    },
+    "/projects/alquileres-uspa/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.92,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 2422,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.82,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:12:02.133Z",
+        "2026-10-02T04:12:17.995Z",
+        "2026-10-02T04:12:33.356Z"
+      ]
+    },
+    "/projects/hms-cloudflare/": {
+      "runs": 3,
+      "medians": {
+        "performance": 0.91,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1,
+        "lcpMs": 1906,
+        "cls": 0
+      },
+      "minimumScores": {
+        "performance": 0.91,
+        "accessibility": 1,
+        "bestPractices": 1,
+        "seo": 1
+      },
+      "reports": [
+        "2026-10-02T04:10:26.074Z",
+        "2026-10-02T04:10:42.074Z",
+        "2026-10-02T04:10:58.403Z"
+      ]
+    }
+  }
+}

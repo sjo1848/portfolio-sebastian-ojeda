@@ -1,0 +1,2615 @@
+{
+  "config": {
+    "argv": [
+      "/home/sjo1848/.volta/tools/image/node/24.18.0/bin/node",
+      "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.issue124.c6.config.ts",
+      "--workers=1",
+      "--timeout=120000",
+      "--reporter=list,json",
+      "tests/browser/issue-124-alquileres-gallery-proof.spec.ts",
+      "tests/browser/issue-124-proof-conversion.spec.ts",
+      "tests/browser/project-proof-model.spec.ts"
+    ],
+    "configFile": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/playwright.issue124.c6.config.ts",
+    "rootDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-chromium",
+        "name": "mobile-chromium",
+        "testDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-webkit",
+        "name": "mobile-webkit",
+        "testDir": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "issue-124-alquileres-gallery-proof.spec.ts",
+      "file": "issue-124-alquileres-gallery-proof.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "C4 Alquileres en gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1535,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:18.657Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-4a8983f8c1149eb2f8c4",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres es gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:20.392Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-1437e57addb4a36651d7",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres en gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4461,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:44.018Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-b2fff06240f2e6e9c703",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres es gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2890,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:49.749Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-46e08a095a9b0e8f042f",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres en gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2172,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:03.826Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-4862ba62d79b55239067",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres es gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2201,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:06.348Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-dea2ee14f2057fdac82a",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres en gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:20.929Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-e23a54f8000945331613",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres es gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1818,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:23.139Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-d093721e1149c2936b9e",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres en gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2609,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:36.059Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-83320efe69c26f7c2caf",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "C4 Alquileres es gallery displays the approved synthetic/no-deployment limitation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2573,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:38.926Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4cb25ec4e033fa601236-118d0faaadebb5e935e3",
+          "file": "issue-124-alquileres-gallery-proof.spec.ts",
+          "line": 21,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "issue-124-proof-conversion.spec.ts",
+      "file": "issue-124-proof-conversion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "C5 Selected Work proof actions stay aligned with the active proof, in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4124,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:21.779Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-b41ce7a9887522f47dd8",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13773,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:25.941Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-61a313e4a001f6453d80",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "C5 Selected Work proof actions stay aligned with the active proof, in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6485,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:52.709Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-cbd2fb26da1ac4ccecf8",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                    "line": 47,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 842,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:59.268Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                        "line": 47,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-4941549087bf081ae94c",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "C5 Selected Work proof actions stay aligned with the active proof, in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8636,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:08.628Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-60ff640b149b30ade206",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                    "line": 47,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:17.316Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                        "line": 47,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-b84a28d287485c4e5286",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "C5 Selected Work proof actions stay aligned with the active proof, in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7925,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:25.034Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-08f938b35ea8ef4e053c",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                    "line": 47,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.008Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                        "line": 47,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-29ade5653ac5ab475f6c",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 46,
+          "column": 1
+        },
+        {
+          "title": "C5 Selected Work proof actions stay aligned with the active proof, in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16748,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:41.550Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-2a2876327bea8db968d1",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                    "line": 47,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 940,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:58.360Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/issue-124-proof-conversion.spec.ts",
+                        "line": 47,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d09730c82de10ae4bf64-458a1507ef922e955f9f",
+          "file": "issue-124-proof-conversion.spec.ts",
+          "line": 46,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "project-proof-model.spec.ts",
+      "file": "project-proof-model.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "all published projects have truthful proof metadata and reproducible local provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 63,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-e9dea6725651bb75f548",
+          "file": "project-proof-model.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "HMS recruiter evidence fails closed to one canonical local artifact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.860Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-ac4107cf98e845d6e793",
+          "file": "project-proof-model.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Alquileres keeps static synthetic evidence as the approved available proof mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.894Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-ebb580fd2c65dc8a48a4",
+          "file": "project-proof-model.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "C3/C4 canonical proof captions and limitations match the approved bilingual copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.919Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-e34aa326ed0ffb236ce4",
+          "file": "project-proof-model.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "UspaYa evidence is fail-closed and its case/repository remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.938Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-1fb02ee0a8f3b55921b7",
+          "file": "project-proof-model.spec.ts",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "UspaYa en keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1138,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:39.962Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-3beaa6924cea23935619",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "UspaYa es keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:22:41.133Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-8836deec6522713440e5",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "all published projects have truthful proof metadata and reproducible local provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 11,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.168Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-163d313e3b65938292b2",
+          "file": "project-proof-model.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "HMS recruiter evidence fails closed to one canonical local artifact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 48,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.197Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 48,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-94e6410a89a0df72b0ca",
+          "file": "project-proof-model.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Alquileres keeps static synthetic evidence as the approved available proof mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 76,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.222Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 76,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-715029f16077d9e9868c",
+          "file": "project-proof-model.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "C3/C4 canonical proof captions and limitations match the approved bilingual copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 90,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.249Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 90,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-0dffe71d62e66efd382b",
+          "file": "project-proof-model.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "UspaYa evidence is fail-closed and its case/repository remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 129,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.284Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 129,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-ad0c4bbfeae4d417926f",
+          "file": "project-proof-model.spec.ts",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "UspaYa en keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 708,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:00.315Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-29b73af8f25a8f221811",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "UspaYa es keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 646,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:01.071Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-4ec6b6a56c3aa7608c48",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "all published projects have truthful proof metadata and reproducible local provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 11,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.254Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-95920595fabdfe0bf61b",
+          "file": "project-proof-model.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "HMS recruiter evidence fails closed to one canonical local artifact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 48,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.287Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 48,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-35de13522b4563a3ffa6",
+          "file": "project-proof-model.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Alquileres keeps static synthetic evidence as the approved available proof mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 76,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.323Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 76,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-86f46585de95893c1a7f",
+          "file": "project-proof-model.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "C3/C4 canonical proof captions and limitations match the approved bilingual copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 90,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.348Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 90,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-a52ab737efbcddb45b8c",
+          "file": "project-proof-model.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "UspaYa evidence is fail-closed and its case/repository remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 129,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.368Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 129,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-c2429e22c391848b2e51",
+          "file": "project-proof-model.spec.ts",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "UspaYa en keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 815,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:18.391Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-347a07cb869c816b4d0d",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "UspaYa es keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 822,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:19.232Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-5b986d179a6b596881cf",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "all published projects have truthful proof metadata and reproducible local provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 11,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 3,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.498Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-1df74beaedc17cac4107",
+          "file": "project-proof-model.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "HMS recruiter evidence fails closed to one canonical local artifact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 48,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 4,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.558Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 48,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-ef932a2e02d667275fdb",
+          "file": "project-proof-model.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Alquileres keeps static synthetic evidence as the approved available proof mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 76,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.645Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 76,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-a612a32bf9a873681b11",
+          "file": "project-proof-model.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "C3/C4 canonical proof captions and limitations match the approved bilingual copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 90,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.676Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 90,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-130d603128afb826ea49",
+          "file": "project-proof-model.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "UspaYa evidence is fail-closed and its case/repository remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 129,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 4,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.706Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 129,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-4311175124ef256cfb58",
+          "file": "project-proof-model.spec.ts",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "UspaYa en keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 406,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:33.750Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-c53cbce781c713b21194",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "UspaYa es keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-chromium",
+              "projectName": "mobile-chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 394,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:34.202Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-078ad1eebf59d98545c4",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "all published projects have truthful proof metadata and reproducible local provenance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 11,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.375Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-7549adc83844b01e4399",
+          "file": "project-proof-model.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "HMS recruiter evidence fails closed to one canonical local artifact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 48,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.428Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 48,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-3049e2eb45b1210aa07a",
+          "file": "project-proof-model.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Alquileres keeps static synthetic evidence as the approved available proof mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 76,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.450Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 76,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-60c2a1bfe2372dce64d4",
+          "file": "project-proof-model.spec.ts",
+          "line": 75,
+          "column": 1
+        },
+        {
+          "title": "C3/C4 canonical proof captions and limitations match the approved bilingual copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 90,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.477Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 90,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-5f1cff533642f843463c",
+          "file": "project-proof-model.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "UspaYa evidence is fail-closed and its case/repository remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 129,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 2,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.505Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 129,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-b5f5eb465dfbfa219556",
+          "file": "project-proof-model.spec.ts",
+          "line": 128,
+          "column": 1
+        },
+        {
+          "title": "UspaYa en keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:23:59.537Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-5928871990a69b1b02f1",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        },
+        {
+          "title": "UspaYa es keeps the case study and exposes no withdrawn media",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "location": {
+                    "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                    "line": 152,
+                    "column": 10
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile-webkit",
+              "projectName": "mobile-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T04:24:00.334Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/home/sjo1848/dev/portolio/portfolio-issue-124-c0/tests/browser/project-proof-model.spec.ts",
+                        "line": 152,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d4da7dddb25a5538834b-e03dfed137a32745c12b",
+          "file": "project-proof-model.spec.ts",
+          "line": 151,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-02T04:22:17.811Z",
+    "duration": 103546.286,
+    "expected": 23,
+    "skipped": 32,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "candidateCommit": "46483f7d3d77a7817b340518aeee61a3f092e29d",
+  "startedFrom": "0d12c99849e5c64aad39ce70e8b0599f7bb00939",
+  "fullRun": {
+    "command": "npx playwright test --config playwright.issue124.c6.config.ts",
+    "projects": ["chromium", "firefox", "webkit", "mobile-chromium", "mobile-webkit"],
+    "total": 1005,
+    "passed": 697,
+    "expectedSkipped": 302,
+    "failed": 6,
+    "duration": "23m 30s",
+    "note": "The repository Playwright webServer exits early because Astro preview daemonizes; the temporary config retained the same five projects and pointed at a separately started preview server."
+  },
+  "initialFailuresAndIsolation": [
+    {
+      "test": "C5 published proof evidence is clear at desktop and mobile widths in EN/ES [chromium]",
+      "initialFailure": "20s timeout while reading quick-scan links during the aggregate suite",
+      "isolation": "passed in the focused Issue #124 suite"
+    },
+    {
+      "test": "I3 hero settles without clipping and stays static for reduced motion [mobile-webkit]",
+      "initialFailure": "768px title-line overflow assertion during aggregate suite",
+      "isolation": "passed in the serial mobile-webkit rerun"
+    },
+    {
+      "test": "I5 hover and keyboard focus update approved evidence together without moving the layout [mobile-webkit]",
+      "initialFailure": "60s timeout during aggregate suite",
+      "isolation": "passed in the serial mobile-webkit rerun"
+    },
+    {
+      "test": "I5 reduced motion removes signature transitions and static routes work without JavaScript [mobile-webkit]",
+      "initialFailure": "20s timeout during aggregate suite",
+      "isolation": "passed in the serial mobile-webkit rerun"
+    },
+    {
+      "test": "C5 Selected Work proof actions stay aligned with the active proof, in both languages [mobile-webkit]",
+      "initialFailure": "20s timeout during aggregate suite",
+      "isolation": "passed in the focused Issue #124 suite"
+    },
+    {
+      "test": "mobile navigation fits a short 360px viewport, honors reduced motion, and closes at desktop breakpoint [mobile-webkit]",
+      "initialFailure": "dialog bounds assertion reported 368px wide at a 360px viewport during aggregate suite",
+      "isolation": "passed in the serial mobile-webkit rerun"
+    }
+  ],
+  "focusedIssue124Run": {
+    "command": "PLAYWRIGHT_JSON_OUTPUT_NAME=artifacts/qa/issue-124-c6/issue-124-browser-report.json npx playwright test --config playwright.issue124.c6.config.ts --workers=1 --timeout=120000 --reporter=list,json tests/browser/issue-124-alquileres-gallery-proof.spec.ts tests/browser/issue-124-proof-conversion.spec.ts tests/browser/project-proof-model.spec.ts",
+    "configuredProjects": ["chromium", "firefox", "webkit", "mobile-chromium", "mobile-webkit"],
+    "total": 55,
+    "passed": 23,
+    "expectedSkipped": 32,
+    "failed": 0,
+    "duration": "1m 44s"
+  },
+  "serialMobileWebkitRerun": {
+    "tests": [
+      "tests/browser/issue-116-i3-hero-motion.spec.ts",
+      "tests/browser/issue-116-i5-interaction.spec.ts",
+      "tests/browser/mobile-navigation.spec.ts"
+    ],
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "note": "No product files in these surfaces changed in C6."
+  }
+}

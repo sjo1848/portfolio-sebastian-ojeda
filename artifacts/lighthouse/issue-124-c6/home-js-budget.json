@@ -1,0 +1,122 @@
+{
+  "candidateBase": "0d12c99849e5c64aad39ce70e8b0599f7bb00939",
+  "capturedAt": "2026-10-02T04:16:13.419Z",
+  "method": "Browser ResourceTiming encodedBodySize for unique external JavaScript responses plus gzip level 9 of each executable inline script body; excludes JSON-LD.",
+  "localeResults": [
+    {
+      "route": "/",
+      "language": "en",
+      "externalJavaScript": [
+        {
+          "path": "/_astro/MobileNavigation.B5C4fg42.js",
+          "encodedBodyBytes": 851
+        },
+        {
+          "path": "/_astro/client.Dda4loRL.js",
+          "encodedBodyBytes": 64946
+        },
+        {
+          "path": "/_astro/react.yIOJJ3r4.js",
+          "encodedBodyBytes": 3227
+        },
+        {
+          "path": "/_astro/jsx-runtime.DvU585tb.js",
+          "encodedBodyBytes": 424
+        },
+        {
+          "path": "/_astro/sheet.uSbuCUKK.js",
+          "encodedBodyBytes": 537
+        },
+        {
+          "path": "/_astro/react-dom.tjb2bX_M.js",
+          "encodedBodyBytes": 1385
+        },
+        {
+          "path": "/_astro/utils.D3KQlcLK.js",
+          "encodedBodyBytes": 20271
+        },
+        {
+          "path": "/_astro/CopyAction.bDPGacgf.js",
+          "encodedBodyBytes": 785
+        }
+      ],
+      "externalGzipBytes": 92426,
+      "inlineExecutableScripts": [
+        {
+          "gzipBytes": 125
+        },
+        {
+          "gzipBytes": 1775
+        },
+        {
+          "gzipBytes": 1177
+        },
+        {
+          "gzipBytes": 225
+        }
+      ],
+      "inlineGzipBytes": 3302,
+      "totalInitialJavaScriptGzipBytes": 95728,
+      "budgetBytes": 100000,
+      "headroomBytes": 4272
+    },
+    {
+      "route": "/es/",
+      "language": "es",
+      "externalJavaScript": [
+        {
+          "path": "/_astro/MobileNavigation.B5C4fg42.js",
+          "encodedBodyBytes": 851
+        },
+        {
+          "path": "/_astro/client.Dda4loRL.js",
+          "encodedBodyBytes": 64946
+        },
+        {
+          "path": "/_astro/react.yIOJJ3r4.js",
+          "encodedBodyBytes": 3227
+        },
+        {
+          "path": "/_astro/jsx-runtime.DvU585tb.js",
+          "encodedBodyBytes": 424
+        },
+        {
+          "path": "/_astro/sheet.uSbuCUKK.js",
+          "encodedBodyBytes": 537
+        },
+        {
+          "path": "/_astro/react-dom.tjb2bX_M.js",
+          "encodedBodyBytes": 1385
+        },
+        {
+          "path": "/_astro/utils.D3KQlcLK.js",
+          "encodedBodyBytes": 20271
+        },
+        {
+          "path": "/_astro/CopyAction.bDPGacgf.js",
+          "encodedBodyBytes": 785
+        }
+      ],
+      "externalGzipBytes": 92426,
+      "inlineExecutableScripts": [
+        {
+          "gzipBytes": 125
+        },
+        {
+          "gzipBytes": 1775
+        },
+        {
+          "gzipBytes": 1177
+        },
+        {
+          "gzipBytes": 225
+        }
+      ],
+      "inlineGzipBytes": 3302,
+      "totalInitialJavaScriptGzipBytes": 95728,
+      "budgetBytes": 100000,
+      "headroomBytes": 4272
+    }
+  ],
+  "note": "No C6 JavaScript source, dependency, island, or hydration change; measured bundle remains equal to approved C3-C5 checkpoint."
+}
