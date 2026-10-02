@@ -17,6 +17,11 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   const rows = page.locator('[data-project-index-item]');
   const panel = page.locator('[data-selected-evidence]');
   const frame = panel.locator('.selected-work-evidence-image-frame');
+  const proofAction = panel.locator('[data-proof-action]');
+  await expect(proofAction).toBeVisible();
+  await expect(proofAction.locator('[data-proof-state]')).toHaveText('Local test evidence');
+  await expect(proofAction.locator('[data-proof-link]')).toHaveAccessibleName('View evidence');
+  await expect(proofAction.locator('[data-proof-link]')).toHaveAttribute('href', '/projects/hms-cloudflare/#visual-evidence');
   const indexLayoutHeightBefore = await page.locator('.selected-work-index').evaluate((element) => (element as HTMLElement).offsetHeight);
   const frameBefore = await frame.evaluate((element) => ({ layoutWidth: (element as HTMLElement).offsetWidth, layoutHeight: (element as HTMLElement).offsetHeight }));
   await rows.nth(1).hover();
@@ -27,6 +32,9 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(panel.locator('[data-evidence-image]')).toHaveJSProperty('naturalWidth', 1440);
   await expect(panel.locator('[data-evidence-caption]')).toContainText('Synthetic catalog captured');
   await expect(panel.locator('[data-evidence-limitation]')).toContainText('no public deployment');
+  await expect(proofAction.locator('[data-proof-state]')).toHaveText('Synthetic visual evidence');
+  await expect(proofAction.locator('[data-proof-link]')).toHaveAccessibleName('View evidence');
+  await expect(proofAction.locator('[data-proof-link]')).toHaveAttribute('href', '/projects/alquileres-uspa/#gallery-alquileres-uspa');
   const frameAfter = await frame.evaluate((element) => ({ layoutWidth: (element as HTMLElement).offsetWidth, layoutHeight: (element as HTMLElement).offsetHeight }));
   expect(frameAfter.layoutWidth).toBe(frameBefore.layoutWidth);
   expect(frameAfter.layoutHeight).toBe(frameBefore.layoutHeight);
@@ -46,6 +54,8 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(panel.locator('[data-evidence-empty]')).toBeVisible();
   await expect(panel.locator('[data-evidence-caption]')).toContainText('No approved visual capture');
   await expect(panel.locator('[data-evidence-limitation]')).toContainText('no public walkthrough artifact');
+  await expect(proofAction).toBeHidden();
+  await expect(proofAction.locator('[data-proof-link]')).not.toHaveAttribute('href', /.+/);
   await expect(rows.nth(2).locator('.selected-work-row')).toHaveAttribute('href', '/projects/ai-commerce-platform/');
   const axeAi = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
   expect(axeAi.violations, JSON.stringify(axeAi.violations, null, 2)).toEqual([]);
@@ -60,6 +70,9 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(page.locator('[data-selected-evidence] [data-evidence-title]')).toHaveText('Alquileres Uspallata');
   await expect(page.locator('[data-selected-evidence] [data-evidence-caption]')).toContainText('runtime local reproducible');
   await expect(page.locator('[data-selected-evidence] [data-evidence-limitation]')).toContainText(/no hay despliegue público/i);
+  await expect(page.locator('[data-selected-evidence] [data-proof-state]')).toHaveText('Evidencia visual sintética');
+  await expect(page.locator('[data-selected-evidence] [data-proof-link]')).toHaveAccessibleName('Ver evidencia');
+  await expect(page.locator('[data-selected-evidence] [data-proof-link]')).toHaveAttribute('href', '/es/projects/alquileres-uspa/#gallery-alquileres-uspa');
   await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze().then((result) => {
     expect(result.violations, JSON.stringify(result.violations, null, 2)).toEqual([]);
   });
@@ -150,5 +163,8 @@ test('I5 reduced motion removes signature transitions and static routes work wit
   await expect(noJs.locator('.selected-work-row')).toHaveCount(3);
   await expect(noJs.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
   await expect(noJs.locator('.selected-work-row').nth(1)).toHaveAttribute('href', '/projects/alquileres-uspa/');
+  await expect(noJs.locator('[data-selected-evidence] [data-proof-link]')).toHaveAttribute('href', '/projects/hms-cloudflare/#visual-evidence');
+  await noJs.goto('http://127.0.0.1:4184/projects/alquileres-uspa/');
+  await expect(noJs.locator('.case-proof-link')).toHaveAttribute('href', '/projects/alquileres-uspa/#gallery-alquileres-uspa');
   await context.close();
 });

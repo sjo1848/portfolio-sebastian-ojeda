@@ -10,6 +10,7 @@ interface Props { lang: Language; projects: ProjectEntry[]; }
 const { lang, projects } = Astro.props;
 const copy = lang === 'es' ? {
   role: 'Rol', stack: 'Stack', caseStudy: 'Ver caso de estudio',
+  proofLink: 'Ver evidencia',
   noImageCaption: 'No hay una captura visual aprobada para este caso; el caso de estudio y el repositorio siguen siendo las fuentes disponibles.',
   imageError: 'La vista previa de la imagen no está disponible. El caso de estudio sigue accesible en el enlace de la fila.',
   projectCopy: {
@@ -28,6 +29,7 @@ const copy = lang === 'es' ? {
   },
 } : {
   role: 'Role', stack: 'Stack', caseStudy: 'View case study',
+  proofLink: 'View evidence',
   noImageCaption: 'No approved visual capture is available for this case; the case study and repository remain the available sources.',
   imageError: 'The image preview is unavailable. The case study remains available from its project link.',
   projectCopy: {
@@ -61,6 +63,14 @@ const activeIndex = '01';
       const media = data.slug === 'hms-cloudflare' ? hmsInlineMedia : null;
       const preview = getHomepageProjectCover(data.slug);
       const proof = getProjectProof(data.slug);
+      const proofHref = proof?.proofHref?.[lang]
+        ? `${getProjectPath(lang, data.slug)}${proof.proofHref[lang]}`
+        : undefined;
+      const proofState = data.slug === 'hms-cloudflare'
+        ? (lang === 'es' ? 'Evidencia de pruebas local' : 'Local test evidence')
+        : data.slug === 'alquileres-uspa'
+          ? (lang === 'es' ? 'Evidencia visual sintética' : 'Synthetic visual evidence')
+          : undefined;
       return (
         <li
           class="selected-work-item"
@@ -73,6 +83,9 @@ const activeIndex = '01';
           data-evidence-src={preview?.src}
           data-evidence-alt={preview?.alt[lang]}
           data-proof-caption={preview?.caption[lang]}
+          data-proof-href={proofHref}
+          data-proof-link-label={proofHref ? copy.proofLink : undefined}
+          data-proof-state={proofHref ? proofState : undefined}
           data-evidence-width={preview?.width}
           data-evidence-height={preview?.height}
           data-evidence-classification={proof?.proofProvenance.dataClassification}
@@ -130,6 +143,14 @@ const activeIndex = '01';
         <p><span>{copy.stack}</span><strong data-evidence-stack>{activeProject.data.stack.slice(0, 4).join(' · ')}</strong></p>
       </div>
       <p class="selected-work-evidence-limitation" data-evidence-limitation>{activeProof.proofLimitations[lang]}</p>
+      <div class="selected-work-proof-action" data-proof-action hidden={!activeProof.proofHref?.[lang]}>
+        <span data-proof-state>{activeProject.data.slug === 'hms-cloudflare'
+          ? (lang === 'es' ? 'Evidencia de pruebas local' : 'Local test evidence')
+          : (lang === 'es' ? 'Evidencia visual sintética' : 'Synthetic visual evidence')}</span>
+        <a class="selected-work-proof-link" data-proof-link href={activeProof.proofHref?.[lang]
+          ? `${getProjectPath(lang, activeProject.data.slug)}${activeProof.proofHref[lang]}`
+          : undefined}>{copy.proofLink}</a>
+      </div>
     </aside>
   )}
 </div>
