@@ -214,6 +214,7 @@ const projectSchema = {
               <p class="eyebrow">{galleryCopy.eyebrow}</p>
               <h2 id={`gallery-title-${data.slug}`}>{galleryCopy.title}</h2>
               <p>{galleryCopy.description}</p>
+              {data.slug === 'alquileres-uspa' && <p class="gallery-proof-limitation">{proofLimitations}</p>}
             </div>
             <EvidenceGallery
               client:visible
@@ -281,6 +282,15 @@ const projectSchema = {
     scroll-margin-top: 1rem;
     border-bottom: 1px solid var(--line);
     background: var(--canvas);
+  }
+
+  .project-gallery .section-heading > .gallery-proof-limitation {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .project-proof-note {
