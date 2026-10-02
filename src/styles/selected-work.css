@@ -192,7 +192,7 @@
 }
 
 @media (min-width: 48rem) and (max-width: 68.74rem) {
-  .selected-work-evidence { min-height: 46.25rem; }
+  .selected-work-evidence { min-height: 50rem; }
   .selected-work-evidence-limitation { min-height: 10rem; }
 }
 

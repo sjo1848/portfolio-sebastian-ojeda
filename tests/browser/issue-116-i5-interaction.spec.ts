@@ -108,7 +108,7 @@ test('I5 mobile keeps inline HMS evidence and ordinary touch navigation', async 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.locator('[data-selected-evidence]')).toBeHidden();
-  await expect(page.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
+  await expect(page.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
   await expect(page.locator('[data-project-index-item]').nth(1)).not.toHaveAttribute('data-active', 'true');
   await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
   await page.locator('#projects').screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-mobile-390.png' });
@@ -148,7 +148,7 @@ test('I5 reduced motion removes signature transitions and static routes work wit
   await noJs.goto('http://127.0.0.1:4184/');
   await expect(noJs.locator('#projects')).not.toHaveAttribute('data-handoff-enhanced', 'true');
   await expect(noJs.locator('.selected-work-row')).toHaveCount(3);
-  await expect(noJs.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
+  await expect(noJs.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
   await expect(noJs.locator('.selected-work-row').nth(1)).toHaveAttribute('href', '/projects/alquileres-uspa/');
   await context.close();
 });

@@ -29,18 +29,9 @@ download_png() {
   echo "Vendored $output ($bytes bytes)"
 }
 
-HMS_COMMIT="dd7d536848708346ca9616e0f54b0fc48ace0b07"
 ALQUILERES_COMMIT="5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51"
 
-for file in \
-  cf-i04-reception-lifecycle.png \
-  cf-i05-integrated-housekeeping.png \
-  cf-i06-billing.png \
-  cf-i07-admin.png; do
-  download_png \
-    "https://raw.githubusercontent.com/sjo1848/hms-cloudflare/${HMS_COMMIT}/output/playwright/${file}" \
-    "public/media/projects/hms-cloudflare/${file}"
-done
+echo "HMS media vendoring disabled: exact source capture provenance is not verified." >&2
 
 download_png \
   "https://raw.githubusercontent.com/sjo1848/alquileres-uspa/${ALQUILERES_COMMIT}/docs/media/portfolio/catalog-results-desktop-1440x1200.png" \

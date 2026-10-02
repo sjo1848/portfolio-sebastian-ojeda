@@ -42,6 +42,34 @@ test('all published projects have truthful proof metadata and reproducible local
   }
 });
 
+test('HMS recruiter evidence fails closed to one canonical local artifact', async ({}, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium');
+  const proof = projectProofs['hms-cloudflare'];
+  expect(proof.preferredProofMode).toBe('recorded-walkthrough');
+  expect(proof.currentProofMode).toBe('visual-evidence');
+  expect(proof.proofReadiness).toBe('pending-external-gate');
+  expect(proof.proofHref).toEqual({ en: '#visual-evidence', es: '#evidencia-visual' });
+  expect(proof.proofProvenance.sourceCommit).toBeNull();
+  expect(proof.proofProvenance.artifacts.map(({ path }) => path)).toEqual([
+    '/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png',
+    '/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png',
+  ]);
+  for (const removed of [
+    'cf-i04-reception-authorized.png',
+    'cf-i05-housekeeping-authorized.png',
+    'cf-i05-integrated-housekeeping.png',
+    'cf-i06-billing-authorized.png',
+    'cf-i06-billing.png',
+    'cf-i07-admin-authorized.png',
+    'cf-i07-admin.png',
+  ]) {
+    expect(existsSync(path.join(process.cwd(), 'public/media/projects/hms-cloudflare', removed))).toBe(false);
+    expect(existsSync(path.join(process.cwd(), 'dist/media/projects/hms-cloudflare', removed))).toBe(false);
+  }
+  expect(readFileSync(path.join(process.cwd(), 'scripts/vendor-project-media.sh'), 'utf8'))
+    .toContain('HMS media vendoring disabled: exact source capture provenance is not verified.');
+});
+
 test('UspaYa evidence is fail-closed and its case/repository remain available', async ({}, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium');
   const proof = projectProofs.uspaya;

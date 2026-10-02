@@ -111,8 +111,20 @@ for (const [file, markers] of caseStudyContracts) {
 
 const hmsEs = await read('content/projects/hms-cloudflare.md');
 const hmsEn = await read('content/projects-en/hms-cloudflare.md');
-requireText(hmsEs, 'cf-i04-reception-authorized.png', 'HMS ES visual evidence');
-requireText(hmsEn, 'cf-i04-reception-authorized.png', 'HMS EN visual evidence');
+requireText(hmsEs, 'cf-i04-reception-lifecycle.png', 'HMS ES visual evidence');
+requireText(hmsEn, 'cf-i04-reception-lifecycle.png', 'HMS EN visual evidence');
+for (const removedAsset of [
+  'cf-i04-reception-authorized.png',
+  'cf-i05-housekeeping-authorized.png',
+  'cf-i05-integrated-housekeeping.png',
+  'cf-i06-billing-authorized.png',
+  'cf-i06-billing.png',
+  'cf-i07-admin-authorized.png',
+  'cf-i07-admin.png',
+]) {
+  forbidText(hmsEs, removedAsset, 'HMS ES recruiter-facing evidence');
+  forbidText(hmsEn, removedAsset, 'HMS EN recruiter-facing evidence');
+}
 
 if (failures.length > 0) {
   console.error('Portfolio presentation validation failed:');

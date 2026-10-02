@@ -30,7 +30,7 @@ for (const route of homeRoutes) {
         await expect(leadRows.nth(index).locator('.selected-work-case-link')).toBeVisible();
       }
       const selectedWorkImage = page.locator('#projects .selected-work-mobile-evidence img');
-      await expect(selectedWorkImage).toHaveAttribute('src', /cf-i05-housekeeping-authorized\.png$/);
+      await expect(selectedWorkImage).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
       await expect(page.locator('html')).toHaveJSProperty('scrollWidth', width);
 
       if ([390, 1440].includes(width)) {

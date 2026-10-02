@@ -56,19 +56,16 @@ export const projectProofs = {
     proofHref: verifiedPortfolioRoute('#visual-evidence', '#evidencia-visual'),
     proofProvenance: {
       sourceRepository: 'https://github.com/sjo1848/hms-cloudflare',
-      sourceCommit: 'dd7d536848708346ca9616e0f54b0fc48ace0b07',
+      sourceCommit: null,
       dataClassification: 'authorized-test-fixture',
       artifacts: [
         { path: '/media/projects/hms-cloudflare/cf-i04-reception-cover-authorized.png', sha256: '8e9d6e1f99ce46502ffb98fd3d955a69de2607e23a8fb41039c66469e2c673fd' },
-        { path: '/media/projects/hms-cloudflare/cf-i04-reception-authorized.png', sha256: '7c88509f2520b0027723a9b07423114627b6ee2e7ac54c9a65582ac69e780378' },
-        { path: '/media/projects/hms-cloudflare/cf-i05-housekeeping-authorized.png', sha256: '9d64973880788129623d1f67cd6d04089dde5a71c072bb99dbc34958f6acd533' },
-        { path: '/media/projects/hms-cloudflare/cf-i06-billing-authorized.png', sha256: '000281ddcd08a777e50bdd3a114e1349cb0bab4ee9c54d13155ee4378c8bbec8' },
-        { path: '/media/projects/hms-cloudflare/cf-i07-admin-authorized.png', sha256: 'b2e64b05add48abf65bbc98432fd07ce46620292acf4cad46fee1e6acd12e87f' },
+        { path: '/media/projects/hms-cloudflare/cf-i04-reception-lifecycle.png', sha256: '7c88509f2520b0027723a9b07423114627b6ee2e7ac54c9a65582ac69e780378' },
       ],
     },
     proofLimitations: {
-      en: 'These are local regression screenshots with authorized test fixtures, not remote product acceptance, accepted mobile evidence, production readiness or release.',
-      es: 'Son capturas de regresiones locales con fixtures autorizados, no aceptación remota, evidencia mobile aceptada, preparación para producción ni release.',
+      en: 'Local regression captures with authorized test fixtures. They do not show remote Product Acceptance or a production release.',
+      es: 'Capturas de regresión local con fixtures de prueba autorizados. No muestran Product Acceptance remoto ni un release de producción.',
     },
   },
   'alquileres-uspa': {

@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { Language } from '../data/site';
-import { getHomepageProjectCover, getHomepageProjectMedia } from '../data/homepageProjectCovers';
+import { getHomepageProjectCover } from '../data/homepageProjectCovers';
 import { getProjectProof } from '../data/projectProofs';
 import { getProjectPath } from '../data/routing';
 
@@ -45,7 +45,7 @@ const copy = lang === 'es' ? {
     },
   },
 };
-const hmsInlineMedia = getHomepageProjectMedia('hms-cloudflare')?.gallery[0] ?? null;
+const hmsInlineMedia = getHomepageProjectCover('hms-cloudflare');
 const activeProject = projects[0];
 const activeCover = activeProject ? getHomepageProjectCover(activeProject.data.slug) : null;
 const activeProof = activeProject ? getProjectProof(activeProject.data.slug) : null;

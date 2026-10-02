@@ -9,60 +9,17 @@ export const homepageProjectMedia = {
       kind: 'image',
       src: `${hmsCloudflareEvidenceBase}/cf-i04-reception-cover-authorized.png`,
       alt: {
-        es: 'Recepción actual de HMS Cloudflare para gestionar reservas desde el hotel.',
-        en: 'Current HMS Cloudflare reception workspace for managing hotel reservations.',
+        es: 'Vista local de recepción de HMS Cloudflare con un fixture de prueba autorizado.',
+        en: 'Local HMS Cloudflare reception preview with an authorized test fixture.',
       },
       caption: {
-        es: 'Captura actual del runtime local de HMS Cloudflare generada con Playwright y datos de staging.',
-        en: 'Current HMS Cloudflare local runtime capture generated with Playwright and staging data.',
+        es: 'Vista previa de regresión local · fixture sintético autorizado; no es Product Acceptance ni un release de producción.',
+        en: 'Local regression preview · authorized synthetic fixture; not Product Acceptance or a production release.',
       },
       width: 1440,
       height: 900,
     },
-    gallery: [
-      {
-        kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i05-housekeeping-authorized.png`,
-        alt: {
-          es: 'Flujo integrado de housekeeping de HMS Cloudflare capturado por Playwright.',
-          en: 'HMS Cloudflare integrated housekeeping workflow captured by Playwright.',
-        },
-        caption: {
-          es: 'Regresión local del workspace de housekeeping sobre el runtime migrado a Cloudflare.',
-          en: 'Local regression evidence of the housekeeping workspace on the Cloudflare-migrated runtime.',
-        },
-        width: 1440,
-        height: 900,
-      },
-      {
-        kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i06-billing-authorized.png`,
-        alt: {
-          es: 'Pantalla de facturación de HMS Cloudflare capturada durante la regresión Playwright.',
-          en: 'HMS Cloudflare billing screen captured during the Playwright regression.',
-        },
-        caption: {
-          es: 'Evidencia local del flujo de facturación; la captura documenta comportamiento de producto, no aceptación remota.',
-          en: 'Local billing-flow evidence; the screenshot documents product behavior, not remote acceptance.',
-        },
-        width: 1440,
-        height: 900,
-      },
-      {
-        kind: 'image',
-        src: `${hmsCloudflareEvidenceBase}/cf-i07-admin-authorized.png`,
-        alt: {
-          es: 'Superficie administrativa de HMS Cloudflare verificada por Playwright.',
-          en: 'HMS Cloudflare administrative surface verified by Playwright.',
-        },
-        caption: {
-          es: 'Regresión local de la superficie administrativa versionada en el repositorio fuente.',
-          en: 'Local regression of the administrative surface versioned in the source repository.',
-        },
-        width: 1440,
-        height: 900,
-      },
-    ],
+    gallery: [],
   },
   'alquileres-uspa': {
     cover: {

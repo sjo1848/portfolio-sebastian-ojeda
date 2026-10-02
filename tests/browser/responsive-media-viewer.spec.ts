@@ -25,7 +25,7 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
     await page.goto(routeByProject[project], { waitUntil: 'networkidle' });
 
     const triggers = page.locator('[data-media-viewer-trigger]');
-    await expect(triggers).toHaveCount(4);
+    await expect(triggers).toHaveCount(1);
     const opener = triggers.first();
     const island = page.locator('.media-viewer-island astro-island');
     await expect(island).toHaveAttribute('ssr', '');
@@ -34,7 +34,7 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
     await opener.scrollIntoViewIfNeeded();
     await expect(opener).toBeVisible();
     await expect(opener).toHaveAttribute('target', '_blank');
-    await expect(opener).toHaveAttribute('href', /cf-i04-reception-authorized\.png$/);
+    await expect(opener).toHaveAttribute('href', /cf-i04-reception-lifecycle\.png$/);
     if (mobile) {
       await opener.tap();
     } else {
@@ -45,9 +45,9 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
     const dialog = page.getByRole('dialog', { name: 'HMS Cloudflare' });
     await expect(dialog).toBeVisible();
     await expect(dialog.getByRole('heading', { name: 'HMS Cloudflare' })).toBeVisible();
-    await expect(dialog.locator('.media-viewer-caption')).toContainText(/Recepción: ciclo operacional|Reception: operational lifecycle/);
-    await expect(dialog.locator('.media-viewer-count')).toHaveText(mobile ? '1 de 4' : '1 of 4');
-    await expect(dialog.getByRole('link', { name: mobile ? 'Abrir imagen original' : 'Open original image' })).toHaveAttribute('href', /cf-i04-reception-authorized\.png$/);
+    await expect(dialog.locator('.media-viewer-caption')).toContainText(/Fixture sintético autorizado, no persistido|Authorized synthetic fixture, not persisted/);
+    const originalImageLink = dialog.getByRole('link', { name: mobile ? 'Abrir imagen original' : 'Open original image' });
+    await expect(originalImageLink).toHaveAttribute('href', /cf-i04-reception-lifecycle\.png$/);
     await expect(dialog.getByRole('button', { name: mobile ? 'Cerrar visor de imágenes' : 'Close image viewer' })).toBeVisible();
     await expect.poll(() => dialog.evaluate((element) => element.contains(document.activeElement))).toBe(true);
     await expect(dialog.locator('.media-viewer-image')).toHaveJSProperty('naturalWidth', 1440);
@@ -68,12 +68,10 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
       expect(box!.height).toBeGreaterThanOrEqual(44);
     };
     await assertMinimumTarget(closeButton);
-    await assertMinimumTarget(dialog.getByRole('button', { name: mobile ? 'Imagen anterior' : 'Previous image' }));
-    await assertMinimumTarget(dialog.getByRole('button', { name: mobile ? 'Imagen siguiente' : 'Next image' }));
-    const lastButton = dialog.getByRole('button').last();
+    await expect(dialog.locator('.media-viewer-count, .media-viewer-navigation')).toHaveCount(0);
     await closeButton.focus();
     await page.keyboard.press('Shift+Tab');
-    await expect(lastButton).toBeFocused();
+    await expect(originalImageLink).toBeFocused();
     await page.keyboard.press('Tab');
     await expect(closeButton).toBeFocused();
 
@@ -93,25 +91,6 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
       .analyze();
     expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);
 
-    await dialog.getByRole('button', { name: mobile ? 'Imagen siguiente' : 'Next image' }).click();
-    await expect(dialog.locator('.media-viewer-count')).toHaveText(mobile ? '2 de 4' : '2 of 4');
-    await expect(dialog.getByRole('link', { name: mobile ? 'Abrir imagen original' : 'Open original image' })).toHaveAttribute('href', /cf-i05-housekeeping-authorized\.png$/);
-    await expect(dialog.locator('.media-viewer-image')).toHaveJSProperty('naturalWidth', 1440);
-    if (project === 'chromium' || mobile) {
-      const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-2');
-      await mkdir(outputDir, { recursive: true });
-      await page.screenshot({
-        path: path.join(outputDir, mobile ? 'hms-viewer-drawer-intermediate.png' : 'hms-viewer-dialog-intermediate.png'),
-        animations: 'disabled',
-      });
-    }
-    await dialog.getByRole('button', { name: mobile ? 'Imagen anterior' : 'Previous image' }).click();
-    await expect(dialog.locator('.media-viewer-count')).toHaveText(mobile ? '1 de 4' : '1 of 4');
-    await expect(dialog.getByRole('button', { name: mobile ? 'Imagen anterior' : 'Previous image' })).toBeDisabled();
-    const nextButton = dialog.getByRole('button', { name: mobile ? 'Imagen siguiente' : 'Next image' });
-    for (let index = 0; index < 3; index += 1) await nextButton.click();
-    await expect(dialog.locator('.media-viewer-count')).toHaveText(mobile ? '4 de 4' : '4 of 4');
-    await expect(nextButton).toBeDisabled();
 
     if (project === 'chromium') {
       const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-2');
@@ -152,18 +131,18 @@ for (const project of Object.keys(routeByProject) as Array<keyof typeof routeByP
 test('HMS media viewer reports a missing image and keeps its original fallback', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium');
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.route('**/cf-i05-housekeeping-authorized.png', (route) => route.fulfill({ status: 404, body: 'not found' }));
+  await page.route('**/cf-i04-reception-lifecycle.png', (route) => route.fulfill({ status: 404, body: 'not found' }));
   await page.goto('/projects/hms-cloudflare/', { waitUntil: 'networkidle' });
-  const secondTrigger = page.locator('[data-media-viewer-trigger]').nth(1);
+  const firstTrigger = page.locator('[data-media-viewer-trigger]').first();
   const island = page.locator('.media-viewer-island astro-island');
   await island.scrollIntoViewIfNeeded();
   await expect.poll(() => island.getAttribute('ssr')).toBeNull();
-  await secondTrigger.scrollIntoViewIfNeeded();
-  await secondTrigger.click();
+  await firstTrigger.scrollIntoViewIfNeeded();
+  await firstTrigger.click();
 
   const dialog = page.getByRole('dialog', { name: 'HMS Cloudflare' });
   await expect(dialog.getByText('This image could not be displayed.')).toBeVisible();
-  await expect(dialog.getByRole('link', { name: 'Open original image' })).toHaveAttribute('href', /cf-i05-housekeeping-authorized\.png$/);
+  await expect(dialog.getByRole('link', { name: 'Open original image' })).toHaveAttribute('href', /cf-i04-reception-lifecycle\.png$/);
   await expect(dialog.locator('.media-viewer-stage')).toHaveAttribute('aria-busy', 'false');
 
   const outputDir = path.resolve('artifacts/visual/frontend-excellence/increment-2');
@@ -182,11 +161,11 @@ test('HMS media viewer opens the original image if its React island cannot hydra
   await page.route('**/_astro/ResponsiveMediaViewer.*.js', (route) => route.abort());
   await page.goto('/projects/hms-cloudflare/', { waitUntil: 'networkidle' });
   const opener = page.locator('[data-media-viewer-trigger]').first();
-  await expect(opener).toHaveAttribute('href', /cf-i04-reception-authorized\.png$/);
+  await expect(opener).toHaveAttribute('href', /cf-i04-reception-lifecycle\.png$/);
   await expect(opener).toHaveAttribute('target', '_blank');
   const [popup] = await Promise.all([page.waitForEvent('popup'), opener.click()]);
   await popup.waitForLoadState('load');
-  await expect(popup).toHaveURL(/cf-i04-reception-authorized\.png$/);
+  await expect(popup).toHaveURL(/cf-i04-reception-lifecycle\.png$/);
   await expect.poll(() => popup.evaluate(() => document.contentType)).toBe('image/png');
   await expect.poll(() => popup.locator('img').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
 });
