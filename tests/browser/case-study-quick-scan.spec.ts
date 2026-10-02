@@ -16,8 +16,8 @@ const routes = [
     esStatus: 'Migración validada técnicamente; aceptación separada',
     enEvidence: /Local automated and browser regressions/,
     esEvidence: /regresiones automatizadas y de navegador locales/,
-    enLimits: /Remote Product Acceptance/i,
-    esLimits: /aceptación remota/,
+    enLimits: /They do not show remote Product Acceptance or a production release/i,
+    esLimits: /No muestran Product Acceptance remoto ni un release de producción/i,
     proofAnchor: { en: '#visual-evidence', es: '#evidencia-visual' },
   },
   {

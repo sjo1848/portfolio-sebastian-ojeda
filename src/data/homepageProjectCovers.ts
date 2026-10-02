@@ -30,8 +30,8 @@ export const homepageProjectMedia = {
         en: 'Alquileres Uspallata public catalog with demo listings, synthetic images, prices, availability, and detail access.',
       },
       caption: {
-        es: 'Catálogo generado desde el runtime real con PostgreSQL, API Nest y frontend Vue; propiedades e imágenes son fixtures sintéticos reproducibles.',
-        en: 'Catalog generated from the real runtime with PostgreSQL, Nest API, and Vue frontend; properties and images are reproducible synthetic fixtures.',
+        es: 'Catálogo sintético capturado desde el runtime local reproducible. Las etiquetas de disponibilidad son estados del fixture, no disponibilidad actual de propiedades.',
+        en: 'Synthetic catalog captured from the reproducible local runtime. Availability labels are fixture states, not current property availability.',
       },
       width: 1440,
       height: 1200,

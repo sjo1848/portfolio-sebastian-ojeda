@@ -70,6 +70,20 @@ test('HMS recruiter evidence fails closed to one canonical local artifact', asyn
     .toContain('HMS media vendoring disabled: exact source capture provenance is not verified.');
 });
 
+test('Alquileres keeps static synthetic evidence as the approved available proof mode', async ({}, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium');
+  const proof = projectProofs['alquileres-uspa'];
+  expect(proof.preferredProofMode).toBe('visual-evidence');
+  expect(proof.currentProofMode).toBe('visual-evidence');
+  expect(proof.proofReadiness).toBe('available');
+  expect(proof.proofHref).toEqual({ en: '#gallery-alquileres-uspa', es: '#gallery-alquileres-uspa' });
+  expect(proof.proofProvenance.sourceCommit).toBe('267c531f3e3d5869240894063d3a194fa1f9680b');
+  expect(proof.proofProvenance.artifacts).toHaveLength(3);
+  const vendorScript = readFileSync(path.join(process.cwd(), 'scripts/vendor-project-media.sh'), 'utf8');
+  expect(vendorScript).toContain('ALQUILERES_COMMIT=\"267c531f3e3d5869240894063d3a194fa1f9680b\"');
+  expect(vendorScript).not.toContain('5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51');
+});
+
 test('UspaYa evidence is fail-closed and its case/repository remain available', async ({}, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium');
   const proof = projectProofs.uspaya;

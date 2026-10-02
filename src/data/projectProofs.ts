@@ -69,13 +69,13 @@ export const projectProofs = {
     },
   },
   'alquileres-uspa': {
-    preferredProofMode: 'live-product',
+    preferredProofMode: 'visual-evidence',
     currentProofMode: 'visual-evidence',
-    proofReadiness: 'pending-external-gate',
+    proofReadiness: 'available',
     proofHref: verifiedPortfolioRoute('#gallery-alquileres-uspa'),
     proofProvenance: {
       sourceRepository: 'https://github.com/sjo1848/alquileres-uspa',
-      sourceCommit: '5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51',
+      sourceCommit: '267c531f3e3d5869240894063d3a194fa1f9680b',
       dataClassification: 'synthetic-deterministic',
       artifacts: [
         { path: '/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png', sha256: 'b5f734fbaa270ddf73e055d41f6b510d9e669d6d001e571b653f2acf1ddd36a0' },
@@ -84,8 +84,8 @@ export const projectProofs = {
       ],
     },
     proofLimitations: {
-      en: 'These are reproducible synthetic captures of the NestJS/Vue product. There is no public deployment. Review/publication and administrative-audit workflows are not shown; reservations, payments and real-time flows are out of scope. A live link depends on the community product’s own release gates.',
-      es: 'Son capturas sintéticas reproducibles del producto NestJS/Vue. No hay despliegue público. No muestran revisión/publicación ni auditoría administrativa; reservas, pagos y flujos en tiempo real quedan fuera. Un enlace live depende de los gates de release del producto comunitario.',
+      en: 'Reproducible local captures from the NestJS/Vue product. Listings and illustrations are synthetic. There is no public deployment, and the images do not show real availability.',
+      es: 'Capturas locales reproducibles del producto NestJS/Vue. Los alojamientos y las ilustraciones son sintéticos. No hay despliegue público y las imágenes no muestran disponibilidad real.',
     },
   },
   'ai-commerce-platform': {

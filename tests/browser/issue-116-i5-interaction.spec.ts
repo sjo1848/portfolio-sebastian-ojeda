@@ -25,7 +25,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(panel.locator('[data-evidence-title]')).toHaveText('Alquileres Uspallata');
   await expect(panel.locator('[data-evidence-image]')).toHaveAttribute('src', /catalog-results-desktop-1440x1200\.png$/);
   await expect(panel.locator('[data-evidence-image]')).toHaveJSProperty('naturalWidth', 1440);
-  await expect(panel.locator('[data-evidence-caption]')).toContainText('reproducible synthetic fixtures');
+  await expect(panel.locator('[data-evidence-caption]')).toContainText('Synthetic catalog captured');
   await expect(panel.locator('[data-evidence-limitation]')).toContainText('no public deployment');
   const frameAfter = await frame.evaluate((element) => ({ layoutWidth: (element as HTMLElement).offsetWidth, layoutHeight: (element as HTMLElement).offsetHeight }));
   expect(frameAfter.layoutWidth).toBe(frameBefore.layoutWidth);
@@ -58,7 +58,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await spanishRentalRow.hover();
   await expect(spanishRentalRow).toHaveAttribute('data-active', 'true');
   await expect(page.locator('[data-selected-evidence] [data-evidence-title]')).toHaveText('Alquileres Uspallata');
-  await expect(page.locator('[data-selected-evidence] [data-evidence-caption]')).toContainText('reproducibles');
+  await expect(page.locator('[data-selected-evidence] [data-evidence-caption]')).toContainText('runtime local reproducible');
   await expect(page.locator('[data-selected-evidence] [data-evidence-limitation]')).toContainText(/no hay despliegue público/i);
   await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze().then((result) => {
     expect(result.violations, JSON.stringify(result.violations, null, 2)).toEqual([]);
@@ -97,7 +97,7 @@ test('I5 failed image loading presents an honest fallback while preserving the c
   const panel = page.locator('[data-selected-evidence]');
   await expect(panel.locator('[data-evidence-empty]')).toBeVisible();
   await expect(panel.locator('[data-evidence-empty]')).toContainText('image preview is unavailable');
-  await expect(panel.locator('[data-evidence-limitation]')).toContainText('reproducible synthetic captures');
+  await expect(panel.locator('[data-evidence-limitation]')).toContainText('Reproducible local captures');
   await expect(row.locator('a.selected-work-row')).toHaveAttribute('href', '/projects/alquileres-uspa/');
   await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
   await section.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-image-error-1440.png' });

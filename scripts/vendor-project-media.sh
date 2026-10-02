@@ -29,7 +29,7 @@ download_png() {
   echo "Vendored $output ($bytes bytes)"
 }
 
-ALQUILERES_COMMIT="5bcde39e0ca8abd2d5d2e0a9e9c90c5b3bf47a51"
+ALQUILERES_COMMIT="267c531f3e3d5869240894063d3a194fa1f9680b"
 
 echo "HMS media vendoring disabled: exact source capture provenance is not verified." >&2
 
