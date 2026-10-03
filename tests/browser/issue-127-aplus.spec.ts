@@ -69,6 +69,33 @@ test('Issue #127 A+ reduced motion renders the complete settled hero immediately
   expect(state.leadTransform).toBe('none');
 });
 
+test('Issue #127 A+ signal progresses from a partial trace to the complete settled trace', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'chromium');
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+  const offsets = await page.locator('.signal-trace').evaluate((element) => {
+    const animation = element.getAnimations().find((candidate) => candidate instanceof CSSAnimation) as CSSAnimation | undefined;
+    if (!animation) throw new Error('Expected the A+ signal draw CSS animation.');
+    animation.pause();
+    animation.currentTime = 0;
+    const start = Number.parseFloat(getComputedStyle(element).strokeDashoffset);
+    animation.currentTime = 180;
+    const middle = Number.parseFloat(getComputedStyle(element).strokeDashoffset);
+    animation.currentTime = 560;
+    const end = Number.parseFloat(getComputedStyle(element).strokeDashoffset);
+    const timing = animation.effect?.getComputedTiming();
+    return { start, middle, end, duration: timing?.duration };
+  });
+
+  expect(offsets.duration).toBe(560);
+  expect(offsets.start).toBeCloseTo(0.8, 5);
+  expect(offsets.middle).toBeGreaterThan(0);
+  expect(offsets.middle).toBeLessThan(offsets.start);
+  expect(offsets.end).toBe(0);
+});
+
 test('Issue #127 A+ hero motion stays within the approved desktop and mobile distances', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium');
   const offsetsAt = async (width: number) => {

@@ -29,7 +29,7 @@ See [issue-127-b0-baseline.md](issue-127-b0-baseline.md). Baseline `npm run qa:r
 |---|---|
 | M0 | All HTML copy and actions are visible in the first paint; no loading gate or opacity hiding. |
 | H1 | Three lines settle with 55 ms stagger; maximum X offset 18 px desktop and 8 px mobile; 610 ms per line, total last line finishes at 720 ms; `cubic-bezier(0.22, 1, 0.36, 1)`. |
-| Signal | Inline SVG path draw, 560 ms, same easing; static complete trace is the reduced-motion state. |
+| Signal | Inline SVG path draw from normalized dash offset `0.8` to `0`, 560 ms, same easing; the irregular input segment is visible at M0, the trace advances through M1/M2 and settles complete; static complete trace is the reduced-motion state. |
 | Lead | 8 px Y → 0, begins at 260 ms, 420 ms duration. |
 | Metadata | 8 px Y → 0, begins at 340 ms, 330 ms duration. |
 | Actions | 8 px Y → 0, begins at 440 ms, 280 ms duration. |
@@ -48,14 +48,15 @@ The primary CTA remains a normal `#projects` anchor. It reuses the existing one-
 - Targeted Playwright run: **112 cases, 75 passed, 37 skipped by existing project-specific test annotations, 0 failed**. It covers the A+ matrix, Home hierarchy, axe checks, reduced motion, keyboard focus/hover, no-JS, mobile navigation, and Selected Work regression in Chromium desktop/mobile projects.
 - Home initial JavaScript: **95,239 B gzip** (8 initial files; 0 visible-deferred bytes), **4,761 B below** the 100,000 B cap and +109 B vs. the recorded #116 I8 measurement of 95,130 B. The A+ signal and entrance motion add no JavaScript or dependency.
 - Static visual evidence: [output/playwright/issue-127-aplus/](../../output/playwright/issue-127-aplus/) with M0, ~180 ms, ~460 ms, settled, keyboard focus, M5 handoff, EN/ES mobile and reduced-motion PNGs. Dimensions and SHA-256 digests are in `manifest.json`.
+- Controller REWORK validation: deterministic A+ Playwright test pauses/seeks the CSS signal animation at 0, 180 and 560 ms through Web Animations API and asserts offsets `0.8`, a strictly intermediate value, and `0`; the animation duration is asserted as 560 ms. Targeted Issue #127 suite passed **19/19** after the repair. M0/M1/M2/settled screenshots and their manifest digests were regenerated from the current production build.
 - No Hero image or external font was added. The signal has fixed responsive height; the motion does not animate layout properties, so no new LCP image cost or motion-driven CLS is introduced.
 - The browser test runner emitted Node's benign `NO_COLOR`/`FORCE_COLOR` warning. `npm ci` also reported its local allow-scripts policy blocked the `esbuild` postinstall script; `astro check`, production build and all validations passed.
 
 ## B6 — independent critic
 
-**Status:** PASS. An independent `codex review` inspected the completed working-tree diff with the Issue #125/127 contract, B0–B5 report, and existing M5 implementation context. It found no actionable defect and confirmed the approved bilingual copy/actions, motion/reduced-motion states, preserved Selected Work/lower IA, CSS-only Hero motion, existing one-shot 380 ms handoff, and supporting browser evidence.
+**Status:** PASS, including the Controller REWORK. The independent critic re-reviewed the scoped diff and verified the normalized `0.8 → 0` signal keyframe, 560 ms timing, deterministic Web Animations API test, reduced-motion settled offset, M0 irregular segment visibility, and regenerated screenshot/manifest values. No actionable defect was reported.
 
-The reviewer’s earlier contextual pass found a duplicate handoff animation; that override was removed and the existing Selected Work handoff is reused. The final review result applies to the resulting diff before commit.
+The earlier handoff correction remains: the existing Selected Work handoff is reused without a duplicate animation.
 
 ## Limitations
 

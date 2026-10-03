@@ -12,29 +12,33 @@
       "filename": "125-aplus-desktop-m0.png",
       "width": 1440,
       "height": 900,
-      "bytes": 156491,
-      "sha256": "4544f1e025c8c56d4915dcc8cd00ff68a006d9c144c696a51bd50aea7883eafe"
+      "bytes": 139289,
+      "sha256": "66a015d82045162227a10b25baef197a1ae54b1fb0a19c20371ded12c29f3554",
+      "signalDashoffset": 0.8
     },
     {
       "filename": "125-aplus-desktop-m1-180ms.png",
       "width": 1440,
       "height": 900,
-      "bytes": 157882,
-      "sha256": "955cebc8cf60ef30e45871f500de4b58b768e7efd661bd82e1e2a19f6cd38901"
+      "bytes": 145531,
+      "sha256": "7d848af2e4fc952bafe38cf893d0ab35155bf161a531c1f1e8e8aec2828c3d85",
+      "signalDashoffset": 0.115828
     },
     {
       "filename": "125-aplus-desktop-m2-460ms.png",
       "width": 1440,
       "height": 900,
-      "bytes": 155049,
-      "sha256": "4921f5d32dead90e558a26010def4c40406c18d9afa6be4f440e226a2bea9492"
+      "bytes": 145244,
+      "sha256": "c9f1f11529ccc00de8047775fc26fe91d8bc3f0b1223266293c352b9ca45785b",
+      "signalDashoffset": 0.000814627
     },
     {
       "filename": "125-aplus-desktop-m3-settled.png",
       "width": 1440,
       "height": 900,
       "bytes": 145377,
-      "sha256": "7067a5305f8b50baaddf55db9a81268dcc23040a3852bc9f5b8685c6bd51f889"
+      "sha256": "7067a5305f8b50baaddf55db9a81268dcc23040a3852bc9f5b8685c6bd51f889",
+      "signalDashoffset": 0
     },
     {
       "filename": "125-aplus-desktop-work-handoff-120ms.png",

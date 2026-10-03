@@ -661,6 +661,7 @@ h2 {
 }
 
 @keyframes aplus-signal-draw {
+  from { stroke-dashoffset: 0.8; }
   to { stroke-dashoffset: 0; }
 }
 
