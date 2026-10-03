@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { name: 'English', path: '/', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
-  { name: 'Spanish', path: '/es/', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
+  { name: 'English', path: '/', headline: 'SYSTEMS BUILT FOR THE REAL WORLD', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
+  { name: 'Spanish', path: '/es/', headline: 'SISTEMAS PARA EL MUNDO REAL', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
 ] as const;
 
 for (const locale of locales) {
@@ -11,7 +11,7 @@ for (const locale of locales) {
     const page = await context.newPage();
     await page.goto(locale.path, { waitUntil: 'networkidle' });
 
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('FULL-STACK');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.headline);
     await expect(page.locator('.hero-copy')).toBeVisible();
     await expect(page.getByRole('link', { name: locale.heroCta })).toHaveAttribute('href', '#projects');
     await expect(page.getByRole('link', { name: locale.cvLabel, exact: true }).first()).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);

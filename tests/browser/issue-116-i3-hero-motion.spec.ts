@@ -35,5 +35,5 @@ test('I3 hero settles without clipping and stays static for reduced motion', asy
   }));
   expect(reducedState.animationName).toBe('none');
   expect(reducedState.transform).toBe('none');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('FULL-STACKSOFTWAREDEVELOPER');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('SYSTEMS BUILT FOR THE REAL WORLD');
 });
