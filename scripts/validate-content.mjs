@@ -208,10 +208,12 @@ async function validatePortfolioNarrative() {
   }
   const homeContent = await readFile(path.join(root, 'src/components/HomePage.astro'), 'utf8');
   for (const phrase of [
-    'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED',
-    'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND',
-    'I turn operational workflows into reliable software across backend, data, integrations and interfaces.',
-    'Convierto procesos operativos en software confiable: backend, datos, integraciones e interfaces.',
+    'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
+    'DESARROLLADOR FULL-STACK · FOCO BACKEND',
+    'I turn operational workflows into reliable software.',
+    'Convierto procesos operativos en software confiable.',
+    "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']",
+    "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']",
   ]) {
     if (!homeContent.includes(phrase)) failures.push(`HomePage.astro is missing approved positioning copy: ${phrase}`);
   }

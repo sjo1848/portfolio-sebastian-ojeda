@@ -18,9 +18,10 @@ for (const route of homeRoutes) {
       await page.goto(route.path, { waitUntil: 'networkidle' });
 
       const headline = page.getByRole('heading', { level: 1 });
-      await expect(headline).toHaveAccessibleName('FULL-STACK SOFTWARE DEVELOPER');
+      await expect(headline).toHaveAccessibleName(route.lang === 'en' ? 'SYSTEMS BUILT FOR THE REAL WORLD' : 'SISTEMAS PARA EL MUNDO REAL');
       await expect(page.locator('.brand-hero-evidence, .hero-proof-links')).toHaveCount(0);
-      await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'Download resume' : 'Descargar CV' })).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
+      await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'View selected work' : 'Ver trabajo seleccionado' })).toHaveAttribute('href', '#projects');
+      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv|currículum/i })).toHaveCount(0);
       await expect(page.locator('.hero-github-link')).toBeVisible();
 
       const leadRows = page.locator('#projects [data-project-index-item]');

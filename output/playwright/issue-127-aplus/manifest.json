@@ -1,0 +1,72 @@
+{
+  "source": "Issue #127 A+ build candidate, local Chromium preview, post-build",
+  "images": [
+    {
+      "filename": "125-aplus-desktop-cta-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 156997,
+      "sha256": "498cc0d0cfe4221015706e750b9f65ac49558393c6baf9f5c0d5214e801cde49"
+    },
+    {
+      "filename": "125-aplus-desktop-m0.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 139289,
+      "sha256": "66a015d82045162227a10b25baef197a1ae54b1fb0a19c20371ded12c29f3554",
+      "signalDashoffset": 0.8
+    },
+    {
+      "filename": "125-aplus-desktop-m1-180ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 145531,
+      "sha256": "7d848af2e4fc952bafe38cf893d0ab35155bf161a531c1f1e8e8aec2828c3d85",
+      "signalDashoffset": 0.115828
+    },
+    {
+      "filename": "125-aplus-desktop-m2-460ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 145244,
+      "sha256": "c9f1f11529ccc00de8047775fc26fe91d8bc3f0b1223266293c352b9ca45785b",
+      "signalDashoffset": 0.000814627
+    },
+    {
+      "filename": "125-aplus-desktop-m3-settled.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 145377,
+      "sha256": "7067a5305f8b50baaddf55db9a81268dcc23040a3852bc9f5b8685c6bd51f889",
+      "signalDashoffset": 0
+    },
+    {
+      "filename": "125-aplus-desktop-work-handoff-120ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 252100,
+      "sha256": "aefc73ccc35ccb960a67e799ea4ac815aaa1d9160e6b5395a6e60a0074e86609"
+    },
+    {
+      "filename": "125-aplus-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 141241,
+      "sha256": "4041ab566d136e4ad0af2229abed4839893bd8825081b79ee1937d10f02f9cd8"
+    },
+    {
+      "filename": "125-aplus-mobile-es.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 135106,
+      "sha256": "6d36293626157bd408c20507f104819b8e4a5725c5a1787487eb1a6c873e8baf"
+    },
+    {
+      "filename": "125-aplus-mobile-reduced-motion.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 141299,
+      "sha256": "d68598d1b1d03460be66ac55c47b9a39777a3bd35d096d11f8e9e74b59b0139b"
+    }
+  ]
+}

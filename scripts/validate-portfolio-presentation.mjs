@@ -38,10 +38,13 @@ for (const marker of orderedHomeMarkers) {
   previousIndex = index;
 }
 
-// Resume is a visible secondary conversion path; Hero contains no project proof roster or media.
+// Resume stays in the existing header/later contact paths; Issue #127 deliberately removes its Hero CTA.
 requireText(home, 'href={site.cv}', 'HomePage.astro resume CTA');
 requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
 requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
+const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"'));
+forbidText(hero, 'site.cv', 'HomePage.astro Hero Resume CTA');
+requireText(hero, 'class="hero-system-signal"', 'HomePage.astro A+ system signal');
 forbidText(home, 'hero-proof-links', 'HomePage.astro');
 forbidText(home, 'brand-hero-evidence', 'HomePage.astro');
 forbidText(home, 'hmsReceptionHero', 'HomePage.astro');
@@ -51,9 +54,10 @@ requireText(home, 'additional-work-index', 'HomePage.astro compact additional wo
 // Full-stack positioning must be primary and AI remains a differentiator.
 requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automatización'", 'site.ts ES positioning');
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
-requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED'", 'HomePage.astro EN positioning');
-requireText(home, "eyebrow: 'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
-requireText(home, "headline: ['FULL-STACK', 'SOFTWARE', 'DEVELOPER']", 'HomePage.astro role headline');
+requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED'", 'HomePage.astro EN positioning');
+requireText(home, "eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
+requireText(home, "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']", 'HomePage.astro EN thesis');
+requireText(home, "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']", 'HomePage.astro ES thesis');
 
 // Primary work order is intentionally product/full-stack first.
 const expectedStoryOrder = [
