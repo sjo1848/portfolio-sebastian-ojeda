@@ -1,0 +1,68 @@
+{
+  "source": "Issue #127 A+ build candidate, local Chromium preview, post-build",
+  "images": [
+    {
+      "filename": "125-aplus-desktop-cta-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 156997,
+      "sha256": "498cc0d0cfe4221015706e750b9f65ac49558393c6baf9f5c0d5214e801cde49"
+    },
+    {
+      "filename": "125-aplus-desktop-m0.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 156491,
+      "sha256": "4544f1e025c8c56d4915dcc8cd00ff68a006d9c144c696a51bd50aea7883eafe"
+    },
+    {
+      "filename": "125-aplus-desktop-m1-180ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 157882,
+      "sha256": "955cebc8cf60ef30e45871f500de4b58b768e7efd661bd82e1e2a19f6cd38901"
+    },
+    {
+      "filename": "125-aplus-desktop-m2-460ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 155049,
+      "sha256": "4921f5d32dead90e558a26010def4c40406c18d9afa6be4f440e226a2bea9492"
+    },
+    {
+      "filename": "125-aplus-desktop-m3-settled.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 145377,
+      "sha256": "7067a5305f8b50baaddf55db9a81268dcc23040a3852bc9f5b8685c6bd51f889"
+    },
+    {
+      "filename": "125-aplus-desktop-work-handoff-120ms.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 252100,
+      "sha256": "aefc73ccc35ccb960a67e799ea4ac815aaa1d9160e6b5395a6e60a0074e86609"
+    },
+    {
+      "filename": "125-aplus-mobile-en.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 141241,
+      "sha256": "4041ab566d136e4ad0af2229abed4839893bd8825081b79ee1937d10f02f9cd8"
+    },
+    {
+      "filename": "125-aplus-mobile-es.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 135106,
+      "sha256": "6d36293626157bd408c20507f104819b8e4a5725c5a1787487eb1a6c873e8baf"
+    },
+    {
+      "filename": "125-aplus-mobile-reduced-motion.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 141299,
+      "sha256": "d68598d1b1d03460be66ac55c47b9a39777a3bd35d096d11f8e9e74b59b0139b"
+    }
+  ]
+}

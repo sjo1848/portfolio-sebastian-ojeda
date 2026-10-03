@@ -2,10 +2,10 @@ import { expect, test } from '@playwright/test';
 
 const locales = [
   {
-    name: 'English', path: '/', role: 'FULL-STACK SOFTWARE DEVELOPER',
-    heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-ORIENTED',
-    heroCopy: 'I turn operational workflows into reliable software across backend, data, integrations and interfaces.',
-    heroResume: 'Download resume',
+    name: 'English', path: '/', role: 'SYSTEMS BUILT FOR THE REAL WORLD',
+    heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
+    heroCopy: 'I turn operational workflows into reliable software.',
+    heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
     workIntro: 'Three backend-oriented cases showing ownership, architecture and available evidence.',
@@ -23,10 +23,10 @@ const locales = [
     contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',
   },
   {
-    name: 'Spanish', path: '/es/', role: 'FULL-STACK SOFTWARE DEVELOPER',
-    heroEyebrow: 'DESARROLLADOR DE SOFTWARE FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Convierto procesos operativos en software confiable: backend, datos, integraciones e interfaces.',
-    heroResume: 'Descargar CV',
+    name: 'Spanish', path: '/es/', role: 'SISTEMAS PARA EL MUNDO REAL',
+    heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
+    heroCopy: 'Convierto procesos operativos en software confiable.',
+    heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
     workIntro: 'Tres casos con foco backend, ownership, arquitectura y evidencia disponible.',
@@ -66,7 +66,7 @@ for (const locale of locales) {
         return { href: link.getAttribute('href'), x, y, width, height, top, right, bottom, left };
       }));
       expect(bounds[0].href).toBe('#projects');
-      expect(bounds[1].href).toMatch(/cv-sebastian-ojeda.*\.pdf$/);
+      expect(bounds[1].href).toBe('https://github.com/sjo1848');
       for (const button of bounds) {
         expect(button.top).toBeGreaterThanOrEqual(0);
         expect(button.bottom).toBeLessThanOrEqual(viewport.height);
@@ -91,7 +91,9 @@ for (const locale of locales) {
       await expect(page.locator('.hero-copy')).toHaveText(locale.heroCopy);
       await expect(page.locator('.hero-github-link')).toBeVisible();
       await expect(page.locator('.hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
-      await expect(page.getByRole('link', { name: width < 768 ? locale.heroResume : locale.nav[3], exact: true }).first()).toBeVisible();
+      await expect(page.getByRole('link', { name: locale.heroCta, exact: true })).toHaveAttribute('href', '#projects');
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
+      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv|currículum/i })).toHaveCount(0);
 
       const sectionIds = await page.locator('main > section').evaluateAll((sections) => sections.map((section) => section.id));
       expect(sectionIds).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
