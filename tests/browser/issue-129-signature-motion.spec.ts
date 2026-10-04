@@ -134,7 +134,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await captureBrowserEvidence(page, testInfo, 'en-desktop-signature-resolved.png');
 
   const bridge = page.locator('#hero [data-proof-bridge]');
-  const bridgeImage = bridge.locator('[data-proof-bridge-image]');
+  const bridgeImage = page.locator('[data-proof-bridge-image]');
   const selectedEvidenceImage = page.locator('#projects [data-selected-evidence] [data-evidence-image]');
   const approvedHmsEvidenceSrc = await selectedEvidenceImage.getAttribute('src');
   expect(approvedHmsEvidenceSrc).toBeTruthy();
@@ -147,6 +147,10 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(bridge.locator('.hero-proof-bridge-limitation')).toContainText('do not show remote Product Acceptance or a production release');
   await expect(bridgeImage).toHaveAttribute('src', approvedHmsEvidenceSrc!);
   await expect(bridgeImage).toHaveJSProperty('naturalWidth', 1440);
+  expect(await page.evaluate(() => {
+    const bridgeObject = document.querySelector('[data-proof-bridge-image]');
+    return bridgeObject === document.querySelector('[data-evidence-image]');
+  }), 'Hero and Selected Work must share the same HMS proof image node').toBe(true);
   const enteringBox = await bridgeImage.boundingBox();
   expect(enteringBox).not.toBeNull();
   expect(enteringBox!.width).toBeGreaterThan(300);
@@ -169,12 +173,48 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await moveToProgress(page, 0.92);
   await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'settling');
   await expect(bridge).toBeVisible();
+  await page.waitForTimeout(520);
+  const settlingBox = await bridgeImage.boundingBox();
+  expect(settlingBox).not.toBeNull();
+  expect(settlingBox!.x).toBeGreaterThan(enteringBox!.x - 20);
+  expect(settlingBox!.width).toBeLessThan(dominantBox!.width);
   await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settling.png');
 
   await moveToProgress(page, 0.995);
-  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'settled');
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'waiting-for-selected-work');
   await expect(bridge).toBeHidden();
-  await page.locator('#projects [data-selected-evidence]').scrollIntoViewIfNeeded();
+  await expect(bridgeImage).toHaveAttribute('data-handoff-state', 'approaching-target');
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    const view = await page.evaluate(() => {
+      const target = document.querySelector<HTMLElement>('#projects [data-selected-evidence] .selected-work-evidence-image-frame')!.getBoundingClientRect();
+      const proof = document.querySelector<HTMLImageElement>('[data-proof-bridge-image]')!.getBoundingClientRect();
+      const headerBottom = document.querySelector<HTMLElement>('.site-header')!.getBoundingClientRect().bottom;
+      const viewportHeight = document.documentElement.clientHeight;
+      const desiredTop = Math.max(headerBottom + 20, Math.min(proof.top, viewportHeight - target.height - 20));
+      const delta = Math.max(-60, Math.min(60, target.top - desiredTop));
+      const visible = target.top >= headerBottom + 12 && target.bottom <= viewportHeight - 12 && Math.abs(target.top - proof.top) <= 50;
+      if (!visible) window.scrollTo(0, window.scrollY + delta);
+      return { visible };
+    });
+    if (view.visible) break;
+    await page.waitForTimeout(20);
+  }
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'target-aligned', { timeout: 10_000 });
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-target-aligned.png');
+  await expect(selectedEvidenceImage).toHaveAttribute('data-handoff-state', 'complete', { timeout: 10_000 });
+  const convergence = await selectedEvidenceImage.evaluate((img) => {
+    const imageBounds = img.getBoundingClientRect();
+    const targetBounds = img.closest('.selected-work-evidence-image-frame')!.getBoundingClientRect();
+    return {
+      recordedError: Number((img as HTMLImageElement).dataset.handoffConvergenceErrorPx),
+      delta: Math.max(Math.abs(imageBounds.left - targetBounds.left), Math.abs(imageBounds.top - targetBounds.top), Math.abs(imageBounds.width - targetBounds.width), Math.abs(imageBounds.height - targetBounds.height)),
+    };
+  });
+  expect(convergence.recordedError, 'handoff end transform must converge to the actual Selected Work frame').toBeLessThanOrEqual(1);
+  expect(convergence.delta).toBeLessThanOrEqual(1);
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-converged.png');
+
+  await expect.poll(() => page.locator('#projects').getAttribute('data-signature-handoff')).toBe('complete');
   await expect(brand).toBeVisible();
   await expect(page.locator('#projects [data-project-index-item]').first()).toContainText('HMS Cloudflare');
   await expect(selectedEvidenceImage).toHaveAttribute('src', approvedHmsEvidenceSrc!);
@@ -182,8 +222,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   const settledBox = await selectedEvidenceImage.boundingBox();
   expect(settledBox).not.toBeNull();
   expect(settledBox!.width).toBeGreaterThan(300);
-  expect(Math.abs(settledBox!.x - enteringBox!.x)).toBeLessThan(120);
-  expect(Math.abs(settledBox!.width - enteringBox!.width)).toBeLessThan(120);
+  await expect(selectedEvidenceImage).toHaveAttribute('data-handoff-state', 'complete');
   await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settled.png');
 });
 

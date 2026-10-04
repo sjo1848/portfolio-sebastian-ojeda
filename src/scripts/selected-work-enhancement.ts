@@ -102,6 +102,7 @@ if (section && index && rows.length && panel) {
   }
 
   function activate(row: HTMLElement) {
+    if (section!.dataset.signatureHandoffOwner === 'shared-image' && section!.dataset.signatureHandoff !== 'complete') return;
     if (row.dataset.active === 'true') return;
     for (const item of rows) item.dataset.active = item === row ? 'true' : 'false';
     revealEvidence(row, true, row.dataset.imageError);
