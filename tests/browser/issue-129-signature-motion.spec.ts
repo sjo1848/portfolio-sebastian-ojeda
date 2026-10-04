@@ -71,7 +71,9 @@ for (const locale of locales) {
       await expect(page.locator('#hero .hero-location')).toHaveText(locale.metadata);
       await expect(page.locator('#hero').getByRole('link', { name: locale.cta })).toHaveAttribute('href', '#projects');
       await expect(page.locator('#hero .hero-github-link')).toHaveAttribute('href', 'https://github.com/sjo1848');
-      await expect(page.locator('#hero figure, #hero [data-selected-evidence], #hero .hero-proof-links')).toHaveCount(0);
+      await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
+      await expect(page.locator('#hero [data-proof-bridge-image]')).not.toHaveAttribute('src', /.+/);
+      await expect(page.locator('#hero [data-selected-evidence], #hero .hero-proof-links')).toHaveCount(0);
 
       const geometry = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
@@ -108,6 +110,10 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(page.locator('[data-flight-glyph="o"]')).toHaveAttribute('data-in-flight', 'true');
   await expect(page.locator('[data-origin-glyph="s"]')).toHaveAttribute('data-departed', 'true');
   await expect(page.locator('[data-destination-glyph="s"]')).toHaveAttribute('data-arrived', 'false');
+  await expect(page.locator('[data-opening-name]')).toHaveCSS('opacity', '0');
+  await expect(page.locator('[data-destination-glyph="s"]')).toHaveCSS('visibility', 'hidden');
+  await expect(page.locator('[data-destination-rest="s"]')).toHaveCSS('visibility', 'hidden');
+  await expect(page.locator('[data-destination-rest="o"]')).toHaveCSS('visibility', 'hidden');
   await captureBrowserEvidence(page, testInfo, 'en-desktop-glyph-travel.png');
 
   await moveToProgress(page, 0.405);
@@ -116,6 +122,8 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(page.locator('[data-flight-glyph="o"]')).toHaveAttribute('data-in-flight', 'false');
   await expect(page.locator('[data-destination-glyph="s"]')).toHaveAttribute('data-arrived', 'true');
   await expect(page.locator('[data-destination-glyph="o"]')).toHaveAttribute('data-arrived', 'true');
+  await expect(page.locator('[data-destination-rest="s"]')).toHaveCSS('visibility', 'visible');
+  await expect(page.locator('[data-destination-rest="o"]')).toHaveCSS('visibility', 'visible');
   await captureBrowserEvidence(page, testInfo, 'en-desktop-thesis-forming.png');
 
   await moveToProgress(page, 0.57);
@@ -125,12 +133,58 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(brand).toHaveCSS('white-space', 'nowrap');
   await captureBrowserEvidence(page, testInfo, 'en-desktop-signature-resolved.png');
 
-  await moveToProgress(page, 0.72);
-  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'ready');
-  await page.locator('#projects').scrollIntoViewIfNeeded();
+  const bridge = page.locator('#hero [data-proof-bridge]');
+  const bridgeImage = bridge.locator('[data-proof-bridge-image]');
+  const selectedEvidenceImage = page.locator('#projects [data-selected-evidence] [data-evidence-image]');
+  const approvedHmsEvidenceSrc = await selectedEvidenceImage.getAttribute('src');
+  expect(approvedHmsEvidenceSrc).toBeTruthy();
+  await moveToProgress(page, 0.70);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'entering');
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'entering');
+  await expect(bridge).toBeVisible();
+  await expect(bridge.locator('strong')).toHaveText('HMS Cloudflare');
+  await expect(bridge.locator('figcaption')).toContainText('Local regression preview');
+  await expect(bridge.locator('.hero-proof-bridge-limitation')).toContainText('do not show remote Product Acceptance or a production release');
+  await expect(bridgeImage).toHaveAttribute('src', approvedHmsEvidenceSrc!);
+  await expect(bridgeImage).toHaveJSProperty('naturalWidth', 1440);
+  const enteringBox = await bridgeImage.boundingBox();
+  expect(enteringBox).not.toBeNull();
+  expect(enteringBox!.width).toBeGreaterThan(300);
+  expect(enteringBox!.height).toBeGreaterThan(160);
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-entering.png');
+
+  await moveToProgress(page, 0.80);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'dominant');
+  await expect(bridge).toBeVisible();
+  const dominantBox = await bridgeImage.boundingBox();
+  expect(dominantBox).not.toBeNull();
+  expect(dominantBox!.width).toBeGreaterThanOrEqual(1440 * 0.35);
+  expect(dominantBox!.x + dominantBox!.width).toBeLessThanOrEqual(1441);
+  expect(await bridgeImage.evaluate((img) => {
+    const image = img as HTMLImageElement;
+    return image.complete && image.naturalWidth === 1440;
+  })).toBe(true);
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-dominant.png');
+
+  await moveToProgress(page, 0.92);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'settling');
+  await expect(bridge).toBeVisible();
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settling.png');
+
+  await moveToProgress(page, 0.995);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'settled');
+  await expect(bridge).toBeHidden();
+  await page.locator('#projects [data-selected-evidence]').scrollIntoViewIfNeeded();
   await expect(brand).toBeVisible();
   await expect(page.locator('#projects [data-project-index-item]').first()).toContainText('HMS Cloudflare');
-  await captureBrowserEvidence(page, testInfo, 'en-desktop-hms-proof-handoff.png');
+  await expect(selectedEvidenceImage).toHaveAttribute('src', approvedHmsEvidenceSrc!);
+  await expect.poll(() => selectedEvidenceImage.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 1440)).toBe(true);
+  const settledBox = await selectedEvidenceImage.boundingBox();
+  expect(settledBox).not.toBeNull();
+  expect(settledBox!.width).toBeGreaterThan(300);
+  expect(Math.abs(settledBox!.x - enteringBox!.x)).toBeLessThan(120);
+  expect(Math.abs(settledBox!.width - enteringBox!.width)).toBeLessThan(120);
+  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settled.png');
 });
 
 test('#129 Spanish mobile sequence keeps glyphs and thesis within the viewport', async ({ page }, testInfo) => {
@@ -138,19 +192,44 @@ test('#129 Spanish mobile sequence keeps glyphs and thesis within the viewport',
   await page.goto('/es/', { waitUntil: 'networkidle' });
   await captureBrowserEvidence(page, testInfo, 'es-mobile-identity.png');
   await moveToProgress(page, 0.27);
+  await expect(page.locator('[data-opening-name]')).toHaveCSS('opacity', '0');
   await captureBrowserEvidence(page, testInfo, 'es-mobile-glyph-travel.png');
   await expect(page.locator('html')).toHaveJSProperty('scrollWidth', 390);
   const glyphBounds = await page.locator('[data-flight-glyph]').evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().toJSON()));
   for (const bounds of glyphBounds) {
-    expect(bounds.left).toBeGreaterThanOrEqual(-0.5);
-    expect(bounds.right).toBeLessThanOrEqual(390.5);
+    expect(bounds.left).toBeGreaterThanOrEqual(10);
+    expect(bounds.right).toBeLessThanOrEqual(380);
   }
   await moveToProgress(page, 0.57);
   await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
   await captureBrowserEvidence(page, testInfo, 'es-mobile-signature-resolved.png');
+
+  const bridge = page.locator('#hero [data-proof-bridge]');
+  const approvedHmsEvidenceSrc = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').getAttribute('src');
+  expect(approvedHmsEvidenceSrc).toBeTruthy();
+  await moveToProgress(page, 0.70);
+  await expect(bridge).toBeVisible();
+  await expect(bridge.locator('[data-proof-bridge-image]')).toHaveJSProperty('naturalWidth', 1440);
+  const mobileProofBox = await bridge.locator('[data-proof-bridge-image]').boundingBox();
+  expect(mobileProofBox).not.toBeNull();
+  expect(mobileProofBox!.x).toBeGreaterThanOrEqual(0);
+  expect(mobileProofBox!.x + mobileProofBox!.width).toBeLessThanOrEqual(390.5);
+  await captureBrowserEvidence(page, testInfo, 'es-mobile-proof-dominant.png');
+
+  await moveToProgress(page, 0.92);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'settling');
+  await captureBrowserEvidence(page, testInfo, 'es-mobile-proof-settling.png');
+  await moveToProgress(page, 0.995);
+  await expect(bridge).toBeHidden();
+  const mobileHmsEvidence = page.locator('#projects [data-project-index-item]').first().locator('.selected-work-mobile-evidence img');
+  await mobileHmsEvidence.scrollIntoViewIfNeeded();
+  await expect(mobileHmsEvidence).toBeVisible();
+  await expect(mobileHmsEvidence).toHaveAttribute('src', approvedHmsEvidenceSrc!);
+  await expect.poll(() => mobileHmsEvidence.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 1440)).toBe(true);
+  await captureBrowserEvidence(page, testInfo, 'es-mobile-proof-settled.png');
 });
 
-test('#129 persistent header identity continues through every Home section', async ({ page }) => {
+test('#129 persistent header identity continues through every Home section', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/', { waitUntil: 'networkidle' });
   await moveToProgress(page, 0.57);
@@ -158,6 +237,10 @@ test('#129 persistent header identity continues through every Home section', asy
   for (const section of ['#projects', '#operating-mindset', '#about', '#additional-work', '#contact']) {
     await page.locator(section).scrollIntoViewIfNeeded();
     await expect(brand, `existing header brand should persist at ${section}`).toBeVisible();
+    if (section === '#operating-mindset') {
+      await expect(page.locator(section)).toBeInViewport();
+      await captureBrowserEvidence(page, testInfo, 'en-desktop-dark-header.png');
+    }
   }
   await expect(page.locator('[data-signature-brand]')).toHaveCount(1);
 });
@@ -194,7 +277,9 @@ test('#129 no-JS fallback preserves the full identity, working nav and all Home 
   await expect(page.locator('[data-opening-name]')).toHaveText('Sebastián Ojeda');
   await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('RELIABLE SOFTWARE FOR COMPLEX OPERATIONS');
   await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
-  await expect(page.locator('#hero [data-selected-evidence], #hero figure')).toHaveCount(0);
+  await expect(page.locator('#hero [data-selected-evidence]')).toHaveCount(0);
+  await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
+  await expect(page.locator('#hero [data-proof-bridge-image]')).not.toHaveAttribute('src', /.+/);
   await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
   await expect(page.locator('#operating-mindset li')).toHaveCount(3);
   await expect(page.locator('#additional-work li')).toHaveCount(6);

@@ -11,6 +11,8 @@ import {
 import { portfolioStoriesByLanguage } from '../data/portfolioStories';
 import { humanStoryByLanguage } from '../data/humanStory';
 import { getProjectPath } from '../data/routing';
+import { getHomepageProjectCover } from '../data/homepageProjectCovers';
+import { getProjectProof } from '../data/projectProofs';
 
 type ProjectEntry = CollectionEntry<'projects'> | CollectionEntry<'projectsEn'>;
 
@@ -26,6 +28,9 @@ const copy = copyByLanguage[lang].home;
 const storyCopy = portfolioStoriesByLanguage[lang];
 const humanStory = humanStoryByLanguage[lang];
 const mindset = portfolioStoriesByLanguage[lang].operatingMindset;
+const hmsProject = primaryProjects.find((project) => project.data.slug === 'hms-cloudflare');
+const hmsCover = getHomepageProjectCover('hms-cloudflare');
+const hmsProof = getProjectProof('hms-cloudflare');
 const brandHero = lang === 'es'
   ? {
       eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
@@ -58,16 +63,16 @@ const brandHero = lang === 'es'
             {brandHero.lines.map((line, index) => (
               <span class="hero-thesis-line" data-thesis-line={index} data-thesis-copy={line} aria-hidden="true">
                 {lang === 'es' && index === 0
-                  ? <><span class="hero-destination-word"><span data-destination-glyph="s">S</span>OFTWARE</span><span> CONFIABLE</span></>
+                  ? <><span class="hero-destination-word"><span data-destination-glyph="s" data-arrived="false">S</span><span data-destination-rest="s" data-arrived="false">OFTWARE</span></span><span> CONFIABLE</span></>
                   : lang === 'es' && index === 1
-                    ? <><span>PARA </span><span class="hero-destination-word"><span data-destination-glyph="o">O</span>PERACIONES</span></>
+                    ? <><span>PARA </span><span class="hero-destination-word"><span data-destination-glyph="o" data-arrived="false">O</span><span data-destination-rest="o" data-arrived="false">PERACIONES</span></span></>
                     : lang === 'es'
                       ? <span>COMPLEJAS</span>
                       : index === 0
-                        ? <><span>RELIABLE </span><span class="hero-destination-word"><span data-destination-glyph="s">S</span>OFTWARE</span></>
+                        ? <><span>RELIABLE </span><span class="hero-destination-word"><span data-destination-glyph="s" data-arrived="false">S</span><span data-destination-rest="s" data-arrived="false">OFTWARE</span></span></>
                         : index === 1
                           ? <span>FOR COMPLEX</span>
-                          : <span class="hero-destination-word"><span data-destination-glyph="o">O</span>PERATIONS</span>}
+                          : <span class="hero-destination-word"><span data-destination-glyph="o" data-arrived="false">O</span><span data-destination-rest="o" data-arrived="false">PERATIONS</span></span>}
               </span>
             ))}
           </h1>
@@ -87,6 +92,31 @@ const brandHero = lang === 'es'
         <span class="hero-flight-glyph" data-flight-glyph="s">S</span>
         <span class="hero-flight-glyph" data-flight-glyph="o">O</span>
       </div>
+      {hmsProject && hmsCover && hmsProof && (
+        <aside
+          class="hero-proof-bridge"
+          aria-label={lang === 'es' ? 'Evidencia de HMS Cloudflare' : 'HMS Cloudflare proof'}
+          data-proof-bridge
+          hidden
+        >
+          <div class="hero-proof-bridge-heading">
+            <span>{lang === 'es' ? '01 / EVIDENCIA DE REGRESIÓN LOCAL' : '01 / LOCAL REGRESSION EVIDENCE'}</span>
+            <strong>{hmsProject.data.title}</strong>
+          </div>
+          <figure class="hero-proof-bridge-figure">
+            <img
+              data-proof-bridge-image
+              data-src={hmsCover.src}
+              alt={hmsCover.alt[lang]}
+              width={hmsCover.width}
+              height={hmsCover.height}
+              decoding="async"
+            />
+            <figcaption>{hmsCover.caption[lang]}</figcaption>
+          </figure>
+          <p class="hero-proof-bridge-limitation">{hmsProof.proofLimitations[lang]}</p>
+        </aside>
+      )}
       <span class="hero-copper-rule" aria-hidden="true"></span>
     </div>
   </section>

@@ -1,6 +1,8 @@
 const hero = document.querySelector<HTMLElement>('[data-sequence-progress]');
 const stage = hero?.querySelector<HTMLElement>('[data-sequence-stage]');
 const projectSection = document.querySelector<HTMLElement>('#projects');
+const proofBridge = hero?.querySelector<HTMLElement>('[data-proof-bridge]');
+const proofBridgeImage = proofBridge?.querySelector<HTMLImageElement>('[data-proof-bridge-image]');
 const root = document.documentElement;
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -25,6 +27,29 @@ if (hero && stage && projectSection && !motionPreference.matches) {
 
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
     const range = (value: number, start: number, end: number) => clamp((value - start) / (end - start));
+
+    function setProofHandoff(state: 'entering' | 'dominant' | 'settling' | 'settled' | null) {
+      if (!proofBridge || !projectSection) return;
+      if (!state) {
+        proofBridge.hidden = true;
+        hero!.removeAttribute('data-proof-handoff-stage');
+        projectSection.removeAttribute('data-signature-handoff');
+        return;
+      }
+
+      hero!.dataset.proofHandoffStage = state;
+      projectSection.dataset.signatureHandoff = state;
+      if (state === 'settled') {
+        proofBridge.hidden = true;
+        return;
+      }
+
+      proofBridge.hidden = false;
+      if (proofBridgeImage && !proofBridgeImage.getAttribute('src')) {
+        const source = proofBridgeImage.dataset.src;
+        if (source) proofBridgeImage.src = source;
+      }
+    }
 
     function measure() {
       const stageRect = stage!.getBoundingClientRect();
@@ -90,10 +115,14 @@ if (hero && stage && projectSection && !motionPreference.matches) {
         glyph.dataset.inFlight = String(progress >= 0.15 && progress < 0.39);
         origin.dataset.departed = String(progress >= 0.15);
         destination.dataset.arrived = String(progress >= 0.39);
+        const destinationRest = hero!.querySelector<HTMLElement>(`[data-destination-rest="${key}"]`);
+        if (destinationRest) destinationRest.dataset.arrived = String(progress >= 0.39);
       }
 
-      const openingFade = range(progress, 0.37, 0.46);
+      // The full source name recedes as one identity instead of leaving a long-lived typo-shaped fragment.
+      const openingFade = range(progress, 0.15, 0.22);
       hero!.style.setProperty('--opening-opacity', String(1 - openingFade));
+      hero!.style.setProperty('--opening-recession', String(openingFade));
       hero!.dataset.thesisResolved = String(progress >= 0.46);
       if (progress >= 0.555) {
         root.removeAttribute('data-hero-motion-pending');
@@ -102,8 +131,16 @@ if (hero && stage && projectSection && !motionPreference.matches) {
         root.dataset.heroMotionPending = 'true';
         root.removeAttribute('data-hero-signature-visible');
       }
-      if (progress >= 0.685) projectSection!.dataset.signatureHandoff = 'ready';
-      else projectSection!.removeAttribute('data-signature-handoff');
+      const proofStage = progress < 0.685
+        ? null
+        : progress < 0.735
+          ? 'entering'
+          : progress < 0.89
+            ? 'dominant'
+            : progress < 0.985
+              ? 'settling'
+              : 'settled';
+      setProofHandoff(proofStage);
       hero!.dataset.sequenceComplete = String(progress >= 1);
     }
 
@@ -129,7 +166,7 @@ if (hero && stage && projectSection && !motionPreference.matches) {
         hero!.dataset.motionState = 'reduced';
         delete root.dataset.heroMotionPending;
         root.dataset.heroSignatureVisible = 'true';
-        delete projectSection!.dataset.signatureHandoff;
+        setProofHandoff(null);
       }
     });
   } else {

@@ -1,0 +1,110 @@
+[
+  {
+    "url": "http://localhost:34449/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_21_52.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_21_52.report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_22_07.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_22_07.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_23.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_23.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/es/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_56.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_56.report.json",
+    "summary": {
+      "performance": 0.94,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/projects/hms-elite/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_14.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_14.report.json",
+    "summary": {
+      "performance": 0.93,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/projects/hms-elite/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_32.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_32.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_21_35.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost--2026_10_04_17_21_35.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/es/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_40.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-es_-2026_10_04_17_22_40.report.json",
+    "summary": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://localhost:34449/projects/hms-elite/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_47.report.html",
+    "jsonPath": "/home/sjo1848/dev/portolio/portfolio-issue-129/artifacts/lighthouse/issue-129/reports-rework/localhost-projects_hms_elite_-2026_10_04_17_23_47.report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
