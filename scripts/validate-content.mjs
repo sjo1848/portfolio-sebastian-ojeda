@@ -210,10 +210,10 @@ async function validatePortfolioNarrative() {
   for (const phrase of [
     'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
     'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    'I turn operational workflows into reliable software.',
-    'Convierto procesos operativos en software confiable.',
-    "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']",
-    "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']",
+    'I design and build systems where workflows, APIs, data and infrastructure have to work together.',
+    'Diseño y construyo sistemas donde los flujos de trabajo, las API, los datos y la infraestructura deben funcionar en conjunto.',
+    "thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS'",
+    "thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS'",
   ]) {
     if (!homeContent.includes(phrase)) failures.push(`HomePage.astro is missing approved positioning copy: ${phrase}`);
   }

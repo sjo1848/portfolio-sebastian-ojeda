@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 const locales = [
   {
-    name: 'English', path: '/', role: 'SYSTEMS BUILT FOR THE REAL WORLD',
+    name: 'English', path: '/', role: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS',
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-    heroCopy: 'I turn operational workflows into reliable software.',
+    heroCopy: 'I design and build systems where workflows, APIs, data and infrastructure have to work together.',
     heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
@@ -23,9 +23,9 @@ const locales = [
     contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',
   },
   {
-    name: 'Spanish', path: '/es/', role: 'SISTEMAS PARA EL MUNDO REAL',
+    name: 'Spanish', path: '/es/', role: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS',
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Convierto procesos operativos en software confiable.',
+    heroCopy: 'Diseño y construyo sistemas donde los flujos de trabajo, las API, los datos y la infraestructura deben funcionar en conjunto.',
     heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
@@ -129,7 +129,7 @@ for (const locale of locales) {
         }
       }
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-      const heroTextBounds = await page.locator('.hero-title-line').evaluateAll((lines) => {
+      const heroTextBounds = await page.locator('.hero-thesis-line').evaluateAll((lines) => {
         const hero = document.querySelector('#hero')!.getBoundingClientRect();
         return lines.map((line) => {
           const rect = line.getBoundingClientRect();

@@ -45,10 +45,11 @@ const pageTitle = resolvedTitle === site.title
   : `${resolvedTitle} — ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 const alternate = new URL(getAlternatePath(Astro.url.pathname, lang), Astro.site ?? Astro.url);
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/es/';
 ---
 
 <!doctype html>
-<html lang={site.languageTag}>
+<html lang={site.languageTag} data-home-page={isHomePage ? 'true' : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -65,6 +66,11 @@ const alternate = new URL(getAlternatePath(Astro.url.pathname, lang), Astro.site
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>{pageTitle}</title>
+    {isHomePage && <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.dataset.heroMotionPending = 'true';
+      }
+    </script>}
   </head>
   <body>
     <a class="skip-link" href="#main-content">{copy.skipLink}</a>

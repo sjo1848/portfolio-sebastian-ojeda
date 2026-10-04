@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { name: 'English', path: '/', headline: 'SYSTEMS BUILT FOR THE REAL WORLD', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
-  { name: 'Spanish', path: '/es/', headline: 'SISTEMAS PARA EL MUNDO REAL', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
+  { name: 'English', path: '/', headline: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
+  { name: 'Spanish', path: '/es/', headline: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
 ] as const;
 
 for (const locale of locales) {

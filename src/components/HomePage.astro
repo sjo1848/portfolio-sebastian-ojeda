@@ -29,47 +29,65 @@ const mindset = portfolioStoriesByLanguage[lang].operatingMindset;
 const brandHero = lang === 'es'
   ? {
       eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-      headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL'],
-      lead: 'Convierto procesos operativos en software confiable.',
+      thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS',
+      lines: ['SOFTWARE CONFIABLE', 'PARA OPERACIONES', 'COMPLEJAS'],
+      lead: 'Diseño y construyo sistemas donde los flujos de trabajo, las API, los datos y la infraestructura deben funcionar en conjunto.',
       location: 'Mendoza, Argentina · Remoto prioritario',
       workCta: 'Ver trabajo seleccionado',
     }
   : {
       eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-      headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD'],
-      lead: 'I turn operational workflows into reliable software.',
+      thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS',
+      lines: ['RELIABLE SOFTWARE', 'FOR COMPLEX', 'OPERATIONS'],
+      lead: 'I design and build systems where workflows, APIs, data and infrastructure have to work together.',
       location: 'Mendoza, Argentina · Remote-first',
       workCta: 'View selected work',
     };
 ---
 
 <BaseLayout lang={lang}>
-  <section id="hero" class="hero section">
-    <div class="container hero-grid brand-hero-grid">
-      <div class="brand-hero-copy">
-        <p class="eyebrow">{brandHero.eyebrow}</p>
-        <h1 class="brand-headline" data-motion-hero>
-          {brandHero.headline.map((line, index) => <span class="hero-title-line" style={`--hero-line-index:${index}`}>
-            <span class="hero-title-text">{line}</span>
-          </span>)}
-        </h1>
-        <svg class="hero-system-signal" viewBox="0 0 1000 88" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="signal-baseline" d="M0 45H1000" />
-          <path class="signal-gate" d="M365 13V77M570 20V70M775 26V64" />
-          <path class="signal-trace" pathLength="1" d="M0 45 L28 31 L51 59 L76 23 L101 52 L126 38 L151 65 L176 27 L201 50 L226 35 L251 57 L276 39 L301 51 L326 42 L350 48 L380 40 L410 50 L440 41 L470 48 L500 42 L530 47 L560 43 L590 47 L620 44 L650 46 L680 44 L710 46 L740 45 L770 46 L800 45.5 L830 46 L860 45.5 L890 46 L920 45.7 L950 46 L1000 46" />
-          <circle class="signal-node" cx="365" cy="45" r="4" />
-          <circle class="signal-node" cx="570" cy="45" r="4" />
-          <circle class="signal-node" cx="775" cy="45" r="4" />
-        </svg>
-        <p class="hero-copy">{brandHero.lead}</p>
-        <p class="hero-location">{brandHero.location}</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#projects">
-            {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-secondary hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  <section id="hero" class="hero hero-signature" data-sequence-progress="0">
+    <div class="hero-sequence-stage" data-sequence-stage>
+      <div class="container hero-sequence-inner">
+        <p class="hero-opening-name" data-opening-name>
+          <span data-origin-glyph="s">S</span><span>ebastián </span><span data-origin-glyph="o">O</span><span>jeda</span>
+        </p>
+        <div class="hero-resolution" data-hero-resolution>
+          <p class="eyebrow hero-role">{brandHero.eyebrow}</p>
+          <h1 class:list={['hero-thesis', { 'hero-thesis-es': lang === 'es' }]} data-hero-thesis aria-label={brandHero.thesis}>
+            {brandHero.lines.map((line, index) => (
+              <span class="hero-thesis-line" data-thesis-line={index} data-thesis-copy={line} aria-hidden="true">
+                {lang === 'es' && index === 0
+                  ? <><span class="hero-destination-word"><span data-destination-glyph="s">S</span>OFTWARE</span><span> CONFIABLE</span></>
+                  : lang === 'es' && index === 1
+                    ? <><span>PARA </span><span class="hero-destination-word"><span data-destination-glyph="o">O</span>PERACIONES</span></>
+                    : lang === 'es'
+                      ? <span>COMPLEJAS</span>
+                      : index === 0
+                        ? <><span>RELIABLE </span><span class="hero-destination-word"><span data-destination-glyph="s">S</span>OFTWARE</span></>
+                        : index === 1
+                          ? <span>FOR COMPLEX</span>
+                          : <span class="hero-destination-word"><span data-destination-glyph="o">O</span>PERATIONS</span>}
+              </span>
+            ))}
+          </h1>
+          <div class="hero-supporting-copy" data-hero-supporting-copy>
+            <p class="hero-copy">{brandHero.lead}</p>
+            <p class="hero-location">{brandHero.location}</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">
+                {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="button button-secondary hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="hero-flight-layer" aria-hidden="true">
+        <span class="hero-flight-glyph" data-flight-glyph="s">S</span>
+        <span class="hero-flight-glyph" data-flight-glyph="o">O</span>
+      </div>
+      <span class="hero-copper-rule" aria-hidden="true"></span>
     </div>
   </section>
 
@@ -163,8 +181,11 @@ const brandHero = lang === 'es'
   </section>
 </BaseLayout>
 
+<script>
+  import '../scripts/hero-signature-sequence';
+</script>
+
 <style>
-  .hero-title-line { display: block; }
   .hero-location { margin-top: 0.9rem; color: var(--muted); font-size: 0.95rem; }
   .hero-github-link { display: inline-flex; min-height: 2.75rem; align-items: center; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
   .operating-mindset-list { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; list-style: none; }
@@ -180,9 +201,6 @@ const brandHero = lang === 'es'
   .additional-work-description a { width: fit-content; min-height: 2.75rem; display: inline-flex; align-items: center; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
   .additional-work-description > span { color: var(--muted); font-size: 0.82rem; }
   .additional-work-status { grid-column: 2; color: var(--muted); font-size: 0.76rem; }
-
-  .brand-hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .brand-hero-copy { width: 100%; max-width: none; }
 
   #projects {
     position: relative;

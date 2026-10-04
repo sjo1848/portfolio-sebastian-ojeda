@@ -44,7 +44,13 @@ requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
 requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
 const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"'));
 forbidText(hero, 'site.cv', 'HomePage.astro Hero Resume CTA');
-requireText(hero, 'class="hero-system-signal"', 'HomePage.astro A+ system signal');
+requireText(hero, 'data-origin-glyph="s"', 'HomePage.astro signature origin S');
+requireText(hero, 'data-origin-glyph="o"', 'HomePage.astro signature origin O');
+requireText(hero, 'data-destination-glyph="s"', 'HomePage.astro Software destination');
+requireText(hero, 'data-destination-glyph="o"', 'HomePage.astro Operations destination');
+requireText(hero, 'data-sequence-stage', 'HomePage.astro progressive signature stage');
+forbidText(hero, 'hero-system-signal', 'HomePage.astro superseded A+ signal');
+forbidText(hero, 'data-signature-brand', 'HomePage.astro duplicate persistent identity');
 forbidText(home, 'hero-proof-links', 'HomePage.astro');
 forbidText(home, 'brand-hero-evidence', 'HomePage.astro');
 forbidText(home, 'hmsReceptionHero', 'HomePage.astro');
@@ -56,8 +62,9 @@ requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automa
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
 requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED'", 'HomePage.astro EN positioning');
 requireText(home, "eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
-requireText(home, "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']", 'HomePage.astro EN thesis');
-requireText(home, "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']", 'HomePage.astro ES thesis');
+requireText(home, "thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS'", 'HomePage.astro EN thesis');
+requireText(home, "thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS'", 'HomePage.astro ES thesis');
+requireText(header, 'data-signature-brand', 'SiteHeader.astro persistent brand integration');
 
 // Primary work order is intentionally product/full-stack first.
 const expectedStoryOrder = [

@@ -1,0 +1,78 @@
+{
+  "issue": 129,
+  "evidence": "signature sequence states",
+  "screenshots": [
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-glyph-travel.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "glyph-travel",
+      "browser": "Chromium",
+      "sha256": "52213896f440a3d95bb665032f0395a404526048dc018d4b16a59a5430e8d661"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-hms-proof-handoff.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "hms-proof-handoff",
+      "browser": "Chromium",
+      "sha256": "bacbb2bf5e68cf555cf9d05b4659d834ea39e5e141df8dd52b4c2465bc75ccf7"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-identity.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "identity",
+      "browser": "Chromium",
+      "sha256": "f20926a00e5a3b11baa0b98c94206fede0587665643c778a24dba47e4ff2b0dc"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-signature-resolved.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "signature-resolved",
+      "browser": "Chromium",
+      "sha256": "dfe51ce01bfe6d51106cb6f025c23eabd31b3b8b08f2eaefaa9f0f501c5427f6"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-thesis-forming.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "thesis-forming",
+      "browser": "Chromium",
+      "sha256": "da4994bb34bc11155e8aea5c2f4e9023ac3f2f424cd68d297f5ec82ee9c2cba1"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-mobile-reduced-motion.png",
+      "locale": "en",
+      "viewport": "390x844",
+      "state": "reduced-motion",
+      "browser": "Chromium",
+      "sha256": "34b818970d214b5a8ef9047b8372c355fc2979d47b8a9d6c14f7567c47b2ba73"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-glyph-travel.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "glyph-travel",
+      "browser": "Chromium",
+      "sha256": "f5133929d44029cd335b68a84e1f2e100d9054ac8b878a4f1c2f373da0c265e4"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-identity.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "identity",
+      "browser": "Chromium",
+      "sha256": "86ba55c2fe8a993be14abce2ff574972359b234f07a81feaee0c244dd0e07391"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-signature-resolved.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "signature-resolved",
+      "browser": "Chromium",
+      "sha256": "6f5977a5f5948f4b9c7c443ed13b50f0401090748ce0be7050d4fd3a5369ab8e"
+    }
+  ]
+}
