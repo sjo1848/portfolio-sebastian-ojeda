@@ -55,3 +55,31 @@ Raw R1B reports are under [`artifacts/lighthouse/issue-129/reports-r1b/`](../../
 No dependency, project claim, status, evidence artifact, Home IA, or product direction changed. The original review's acceptable Lighthouse variability was remeasured and the current three-run route sets pass the existing thresholds. No Independent Critic or Controller approval is claimed by the implementer.
 
 Ready for Controller visual review at `R1B_REWORK_COMPLETE / AWAITING_CONTROLLER_VISUAL_REVIEW`. R2 and R3 remain at their prior Controller PASS boundary and were not reopened.
+
+## Integration hardening — PR #130
+
+**Current boundary:** `INTEGRATION_HARDENING_COMPLETE / AWAITING_FINAL_REVIEW` (PR checks rerun after this commit).
+
+The approved design and prior R1/R2/R3 decisions were kept intact. Integration hardening addressed only the runtime/CI blockers recorded in the latest Integration Review:
+
+- A `prefers-reduced-motion` change during the image FLIP now cancels the pending hold/animation and restores the same shared image node to the original Selected Work frame. Crossing below the 48rem desktop handoff breakpoint does the same cleanup before the mobile layout takes over. New browser regressions pause the proof FLIP deterministically mid-animation, then exercise both changes and verify node identity, portal cleanup, no running animation, and no ownership leak.
+- Browser history traversal to `/#projects` now reasserts native fragment visibility after the browser's history scroll restoration when the target is outside the viewport. Anchors and history entries remain native.
+- The C+ thesis receives a slightly narrower tablet measure at 768–832px so Firefox line geometry stays inside the viewport without a test tolerance.
+- The short mobile navigation test waits for the sheet's entry state to settle before measuring the real panel bounds. Its 360×640 containment requirement is unchanged.
+- Mobile WebKit's C5 proof-state test uses keyboard focus (the supported non-hover path) for the active Alquileres row. The I5 interaction axe checks target the changed Selected Work region; full-page WCAG checks remain in the baseline accessibility suite. The fallback test uses `domcontentloaded`, keeps the image-error and case-link assertions, and captures its representative screenshot in Chromium only.
+
+### Hardening validation
+
+| Check | Result |
+|---|---|
+| `npm run qa:release` | PASS after hardening changes: content/presentation validation; Astro check, 79 files and zero diagnostics; 22-page static build; asset, social metadata, SEO, UX/accessibility and sitemap validators. |
+| Complete Playwright matrix | 1,105 tests executed across Chromium, Firefox, WebKit, Mobile Chromium and Mobile WebKit: 751 passed, 352 contract skips, and two Mobile WebKit timeouts in the I5 interaction suite. The two timeouts were corrected without reducing behavior assertions; the complete affected Mobile WebKit I5 file then passed 5/5. The complete PR CI rerun is the final matrix gate. |
+| Fragment history regressions | PASS in Chromium and Mobile Chromium; Firefox, WebKit and Mobile WebKit also passed in the full run. |
+| Hero 768px geometry | PASS in Firefox after tightening the tablet thesis measure; no overflow allowance was added. |
+| Reduced-motion mid-FLIP / desktop→mobile mid-FLIP | Both new deterministic regressions passed in Chromium, Firefox and WebKit; the breakpoint case also passed in both mobile browser projects. |
+| Mobile nav short viewport | PASS at 360×640 in Chromium and Mobile WebKit; actual panel remains within both viewport dimensions. |
+| Lighthouse CI `npx --yes @lhci/cli@0.15.1 autorun` | PASS with unchanged thresholds (Performance ≥0.90; Accessibility, Best Practices and SEO ≥0.95). Representative scores: Home EN 0.99/1/1/1, Home ES 1/1/1/1, HMS Elite 0.99/1/1/1. Representative LCP: 2,001ms / 1,670ms / 2,266ms; CLS 0. Raw nine reports and the representative manifest are in [`reports-integration-hardening/`](../../artifacts/lighthouse/issue-129/reports-integration-hardening/). One non-representative Home EN lab run scored 0.78 Performance; the representative run selected by LHCI and the unchanged CI assertion passed. |
+| Home initial JavaScript | **95,426 B gzip** EN/ES, 4,574 B below the unchanged 100,000 B cap. HMS case study remains 95,343 B; visible-deferred gallery chunks remain separately measured at 12,553 B. |
+| `git diff --check` | PASS before checkpoint commit. |
+
+No dependency, product claim, project status, evidence source, section order, UX direction, budget or Lighthouse threshold changed. No merge or deployment was performed. PR #130 remains the review target; final status is pending the post-push PR CI run.

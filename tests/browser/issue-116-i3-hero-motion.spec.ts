@@ -20,7 +20,7 @@ test('I3 Hero layout remains within the viewport; #129 reduced motion keeps the 
         return { left: rect.left, right: rect.right, scrollWidth: document.documentElement.scrollWidth, lines };
       });
       expect(geometry.scrollWidth, `${route} ${width}px document overflow`).toBeLessThanOrEqual(width);
-      expect(geometry.lines.every((line) => line.left >= 0 && line.right <= width), `${route} ${width}px title line overflow`).toBe(true);
+      expect(geometry.lines.every((line) => line.left >= 0 && line.right <= width), `${route} ${width}px title line overflow: ${JSON.stringify(geometry.lines)}`).toBe(true);
     }
   }
 

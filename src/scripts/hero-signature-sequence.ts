@@ -7,7 +7,29 @@ const root = document.documentElement;
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 const desktopHandoff = window.matchMedia('(min-width: 48rem)');
 
-if (hero && stage && projectSection && !motionPreference.matches) {
+// Browser history may restore the URL fragment before the sticky Hero's
+// scroll state has settled. Reassert the native section target after history
+// traversal only when the target is actually outside the viewport.
+function restoreProjectsFragmentVisibility() {
+  if (window.location.hash !== '#projects' || !projectSection) return;
+  window.setTimeout(() => window.requestAnimationFrame(() => {
+    const bounds = projectSection!.getBoundingClientRect();
+    if (bounds.top >= window.innerHeight || bounds.bottom <= 0) {
+      const previousBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      projectSection!.scrollIntoView({ block: 'start', behavior: 'auto' });
+      document.documentElement.style.scrollBehavior = previousBehavior;
+    }
+  }), 0);
+}
+
+window.addEventListener('hashchange', restoreProjectsFragmentVisibility);
+window.addEventListener('popstate', restoreProjectsFragmentVisibility);
+window.addEventListener('pageshow', restoreProjectsFragmentVisibility);
+
+// A deep link must keep native fragment positioning stable. The long sticky
+// sequence changes Hero height, so it only starts when the page has no anchor.
+if (hero && stage && projectSection && !motionPreference.matches && !window.location.hash) {
   const origins = new Map(
     [...hero.querySelectorAll<HTMLElement>('[data-origin-glyph]')]
       .map((element) => [element.dataset.originGlyph ?? '', element]),
@@ -31,6 +53,10 @@ if (hero && stage && projectSection && !motionPreference.matches) {
     let proofObjectPortaled = false;
     let proofObjectTransferring = false;
     let proofObjectTransferred = false;
+    let proofTransferGeneration = 0;
+    let proofTransferAnimation: Animation | null = null;
+    let cancelProofTransferDelay: (() => void) | null = null;
+    let originalProofLoading: string | null = null;
     let handoffState: 'entering' | 'dominant' | 'settling' | 'waiting-for-selected-work' | null = null;
     const bridgeFigure = proofBridge?.querySelector<HTMLElement>('.hero-proof-bridge-figure');
 
@@ -42,6 +68,7 @@ if (hero && stage && projectSection && !motionPreference.matches) {
 
       targetFrame = selectedFrame;
       proofObject = selectedImage;
+      originalProofLoading = selectedImage.getAttribute('loading');
       const targetBounds = selectedFrame.getBoundingClientRect();
       const stageBounds = stage!.getBoundingClientRect();
       hero!.style.setProperty('--proof-target-left', `${targetBounds.left - stageBounds.left}px`);
@@ -63,6 +90,58 @@ if (hero && stage && projectSection && !motionPreference.matches) {
       for (const property of ['display', 'position', 'left', 'top', 'width', 'height', 'z-index', 'pointer-events', 'object-fit', 'transform', 'transform-origin']) {
         image.style.removeProperty(property);
       }
+    }
+
+    function cancelActiveProofTransfer() {
+      proofTransferGeneration += 1;
+      cancelProofTransferDelay?.();
+      cancelProofTransferDelay = null;
+      proofTransferAnimation?.cancel();
+      proofTransferAnimation = null;
+      proofObjectTransferring = false;
+    }
+
+    function waitForProofTransferDelay(duration: number): Promise<boolean> {
+      return new Promise((resolve) => {
+        let completed = false;
+        let timeout = 0;
+        const finish = (elapsed: boolean) => {
+          if (completed) return;
+          completed = true;
+          window.clearTimeout(timeout);
+          if (cancelProofTransferDelay === cancel) cancelProofTransferDelay = null;
+          resolve(elapsed);
+        };
+        const cancel = () => finish(false);
+        timeout = window.setTimeout(() => finish(true), duration);
+        cancelProofTransferDelay = cancel;
+      });
+    }
+
+    /** Restore the one shared evidence image to its server-rendered Selected Work frame. */
+    function restoreProofObjectToSelectedWork(reason: 'reduced-motion' | 'mobile-breakpoint') {
+      cancelActiveProofTransfer();
+      if (proofObject && targetFrame && !proofObjectTransferred) {
+        clearFixedPosition(proofObject);
+        if (targetPlaceholder?.isConnected) {
+          targetPlaceholder.replaceWith(proofObject);
+        } else if (!targetFrame.contains(proofObject)) {
+          targetFrame.append(proofObject);
+        }
+        targetPlaceholder = null;
+        if (originalProofLoading === null) proofObject.removeAttribute('loading');
+        else proofObject.setAttribute('loading', originalProofLoading);
+        delete proofObject.dataset.proofBridgeImage;
+        delete proofObject.dataset.handoffConvergenceErrorPx;
+        proofObject.dataset.handoffState = 'restored';
+        proofObjectPortaled = false;
+        proofObjectTransferred = true;
+        projectSection!.dataset.signatureHandoff = 'complete';
+        projectSection!.removeAttribute('data-signature-handoff-owner');
+      }
+      proofBridge!.hidden = true;
+      hero!.dataset.proofHandoffInterruptedBy = reason;
+      hero!.dataset.proofHandoffStage = 'complete';
     }
 
     function returnProofObjectToHero() {
@@ -97,6 +176,7 @@ if (hero && stage && projectSection && !motionPreference.matches) {
 
     async function transferProofObjectToTarget() {
       if (!proofObject || !targetFrame || !targetPlaceholder || !proofObjectPortaled || proofObjectTransferring || proofObjectTransferred) return;
+      const transferGeneration = ++proofTransferGeneration;
       let target = targetFrame.getBoundingClientRect();
       const source = proofObject.getBoundingClientRect();
       const viewportHeight = document.documentElement.clientHeight;
@@ -106,7 +186,7 @@ if (hero && stage && projectSection && !motionPreference.matches) {
       proofObjectTransferring = true;
       proofObject.dataset.handoffState = 'target-aligned';
       projectSection!.dataset.signatureHandoff = 'target-aligned';
-      await new Promise<void>((resolve) => window.setTimeout(resolve, 320));
+      if (!await waitForProofTransferDelay(320) || transferGeneration !== proofTransferGeneration) return;
       target = targetFrame.getBoundingClientRect();
       const settledSource = proofObject.getBoundingClientRect();
       if (target.top < headerBottom || target.bottom > viewportHeight || Math.abs(target.top - settledSource.top) > 160 || target.width < 1 || target.height < 1 || settledSource.width < 1 || settledSource.height < 1) {
@@ -136,12 +216,15 @@ if (hero && stage && projectSection && !motionPreference.matches) {
         [{ transform: startTransform }, { transform: 'translate(0px, 0px) scale(1, 1)' }],
         { duration: 440, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' },
       );
+      proofTransferAnimation = animation;
       try {
         await animation.finished;
       } catch {
-        proofObjectTransferring = false;
+        if (transferGeneration === proofTransferGeneration) proofObjectTransferring = false;
         return;
       }
+      if (transferGeneration !== proofTransferGeneration) return;
+      proofTransferAnimation = null;
 
       const converged = proofObject.getBoundingClientRect();
       const error = Math.max(
@@ -155,7 +238,7 @@ if (hero && stage && projectSection && !motionPreference.matches) {
       projectSection!.dataset.signatureHandoff = 'converged';
 
       // Hold the shared object on the real target bounds for one brief beat, then restore normal flow.
-      await new Promise<void>((resolve) => window.setTimeout(resolve, 140));
+      if (!await waitForProofTransferDelay(140) || transferGeneration !== proofTransferGeneration) return;
       animation.cancel();
       targetPlaceholder.remove();
       targetFrame.append(proofObject);
@@ -334,13 +417,28 @@ if (hero && stage && projectSection && !motionPreference.matches) {
       measure();
       scheduleUpdate();
     }, { passive: true });
+    desktopHandoff.addEventListener('change', (event) => {
+      if (!event.matches) {
+        restoreProofObjectToSelectedWork('mobile-breakpoint');
+      } else {
+        delete hero!.dataset.proofHandoffInterruptedBy;
+        measure();
+        scheduleUpdate();
+      }
+    });
     motionPreference.addEventListener('change', (event) => {
       if (event.matches) {
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
         window.removeEventListener('scroll', scheduleUpdate);
+        restoreProofObjectToSelectedWork('reduced-motion');
         hero!.dataset.motionState = 'reduced';
         delete root.dataset.heroMotionPending;
         root.dataset.heroSignatureVisible = 'true';
-        setProofHandoff(null);
+        handoffState = null;
+        hero!.removeAttribute('data-proof-handoff-stage');
+        projectSection!.removeAttribute('data-signature-handoff');
+        projectSection!.removeAttribute('data-signature-handoff-owner');
       }
     });
   } else {

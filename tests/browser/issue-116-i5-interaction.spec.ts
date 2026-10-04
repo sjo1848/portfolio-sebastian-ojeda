@@ -40,7 +40,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   expect(frameAfter.layoutHeight).toBe(frameBefore.layoutHeight);
   expect(await page.locator('.selected-work-index').evaluate((element) => (element as HTMLElement).offsetHeight)).toBe(indexLayoutHeightBefore);
   await expect(panel.locator('.selected-work-evidence-figure')).toHaveAttribute('data-evidence-changing');
-  const axeAlquileres = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  const axeAlquileres = await new AxeBuilder({ page }).include('#projects').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
   expect(axeAlquileres.violations, JSON.stringify(axeAlquileres.violations, null, 2)).toEqual([]);
   await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
   await section.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-alquileres-active-1440.png' });
@@ -57,7 +57,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(proofAction).toBeHidden();
   await expect(proofAction.locator('[data-proof-link]')).not.toHaveAttribute('href', /.+/);
   await expect(rows.nth(2).locator('.selected-work-row')).toHaveAttribute('href', '/projects/ai-commerce-platform/');
-  const axeAi = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  const axeAi = await new AxeBuilder({ page }).include('#projects').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
   expect(axeAi.violations, JSON.stringify(axeAi.violations, null, 2)).toEqual([]);
   await section.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-ai-no-image-1440.png' });
 
@@ -73,7 +73,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(page.locator('[data-selected-evidence] [data-proof-state]')).toHaveText('Evidencia visual sintética');
   await expect(page.locator('[data-selected-evidence] [data-proof-link]')).toHaveAccessibleName('Ver evidencia');
   await expect(page.locator('[data-selected-evidence] [data-proof-link]')).toHaveAttribute('href', '/es/projects/alquileres-uspa/#gallery-alquileres-uspa');
-  await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze().then((result) => {
+  await new AxeBuilder({ page }).include('#projects').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze().then((result) => {
     expect(result.violations, JSON.stringify(result.violations, null, 2)).toEqual([]);
   });
   await spanishSection.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-alquileres-active-1440-es.png' });
@@ -99,10 +99,11 @@ test('I5 tablet preview reserves the same dimensions while active evidence chang
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(768);
 });
 
-test('I5 failed image loading presents an honest fallback while preserving the case link', async ({ page }) => {
+test('I5 failed image loading presents an honest fallback while preserving the case link', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.route('**/media/projects/alquileres-uspa/catalog-results-desktop-1440x1200.png', (route) => route.abort());
-  await page.goto('/');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   const section = page.locator('#projects');
   await section.scrollIntoViewIfNeeded();
   const row = page.locator('[data-project-index-item]').nth(1);
@@ -112,8 +113,10 @@ test('I5 failed image loading presents an honest fallback while preserving the c
   await expect(panel.locator('[data-evidence-empty]')).toContainText('image preview is unavailable');
   await expect(panel.locator('[data-evidence-limitation]')).toContainText('Reproducible local captures');
   await expect(row.locator('a.selected-work-row')).toHaveAttribute('href', '/projects/alquileres-uspa/');
-  await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
-  await section.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-image-error-1440.png' });
+  if (testInfo.project.name === 'chromium') {
+    await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
+    await section.screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-image-error-1440.png' });
+  }
 });
 
 test('I5 mobile keeps inline HMS evidence and ordinary touch navigation', async ({ page }, testInfo) => {

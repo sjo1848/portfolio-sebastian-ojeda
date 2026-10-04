@@ -50,6 +50,45 @@ async function moveToProgress(page: Page, progress: number) {
   }, progress);
 }
 
+async function bringSelectedProofNearPortal(page: Page) {
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    const view = await page.evaluate(() => {
+      const target = document.querySelector<HTMLElement>('#projects [data-selected-evidence] .selected-work-evidence-image-frame')!.getBoundingClientRect();
+      const proof = document.querySelector<HTMLImageElement>('[data-proof-bridge-image]')!.getBoundingClientRect();
+      const headerBottom = document.querySelector<HTMLElement>('.site-header')!.getBoundingClientRect().bottom;
+      const viewportHeight = document.documentElement.clientHeight;
+      const desiredTop = Math.max(headerBottom + 20, Math.min(proof.top, viewportHeight - target.height - 20));
+      const delta = Math.max(-60, Math.min(60, target.top - desiredTop));
+      const visible = target.top >= headerBottom + 12 && target.bottom <= viewportHeight - 12 && Math.abs(target.top - proof.top) <= 50;
+      if (!visible) window.scrollTo(0, window.scrollY + delta);
+      return { visible };
+    });
+    if (view.visible) return;
+    await page.waitForTimeout(20);
+  }
+}
+
+async function waitForActiveProofFlip(page: Page) {
+  await expect.poll(() => page.locator('[data-proof-bridge-image]').getAttribute('data-handoff-state'), { timeout: 10_000 })
+    .toBe('flipping');
+  await expect.poll(() => page.locator('[data-proof-bridge-image]').evaluate((image) => image.getAnimations().length), { timeout: 5_000 })
+    .toBeGreaterThan(0);
+}
+
+async function pauseProofFlipAtInitialization(page: Page) {
+  await page.addInitScript(() => {
+    const nativeAnimate = Element.prototype.animate;
+    Element.prototype.animate = function (...args: Parameters<Element['animate']>) {
+      const animation = nativeAnimate.apply(this, args);
+      if (this instanceof HTMLImageElement && this.matches('[data-proof-bridge-image]')) {
+        animation.pause();
+        (window as Window & { __issue129PausedProofAnimation?: Animation }).__issue129PausedProofAnimation = animation;
+      }
+      return animation;
+    };
+  });
+}
+
 async function captureBrowserEvidence(page: Page, testInfo: { project: { name: string } }, file: string) {
   if (testInfo.project.name === 'chromium') await page.screenshot({ path: `${evidenceDir}/${file}` });
 }
@@ -184,23 +223,14 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'waiting-for-selected-work');
   await expect(bridge).toBeHidden();
   await expect(bridgeImage).toHaveAttribute('data-handoff-state', 'approaching-target');
-  for (let attempt = 0; attempt < 80; attempt += 1) {
-    const view = await page.evaluate(() => {
-      const target = document.querySelector<HTMLElement>('#projects [data-selected-evidence] .selected-work-evidence-image-frame')!.getBoundingClientRect();
-      const proof = document.querySelector<HTMLImageElement>('[data-proof-bridge-image]')!.getBoundingClientRect();
-      const headerBottom = document.querySelector<HTMLElement>('.site-header')!.getBoundingClientRect().bottom;
-      const viewportHeight = document.documentElement.clientHeight;
-      const desiredTop = Math.max(headerBottom + 20, Math.min(proof.top, viewportHeight - target.height - 20));
-      const delta = Math.max(-60, Math.min(60, target.top - desiredTop));
-      const visible = target.top >= headerBottom + 12 && target.bottom <= viewportHeight - 12 && Math.abs(target.top - proof.top) <= 50;
-      if (!visible) window.scrollTo(0, window.scrollY + delta);
-      return { visible };
-    });
-    if (view.visible) break;
-    await page.waitForTimeout(20);
+  await bringSelectedProofNearPortal(page);
+  // Firefox can complete this short alignment beat between polls. Validate the
+  // monotonic terminal outcome and its geometry, not a transient marker.
+  await expect.poll(() => page.locator('#projects').getAttribute('data-signature-handoff'), { timeout: 10_000 })
+    .toMatch(/^(target-aligned|converged|complete)$/);
+  if (await page.locator('#projects').getAttribute('data-signature-handoff') === 'target-aligned') {
+    await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-target-aligned.png');
   }
-  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'target-aligned', { timeout: 10_000 });
-  await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-target-aligned.png');
   await expect(selectedEvidenceImage).toHaveAttribute('data-handoff-state', 'complete', { timeout: 10_000 });
   const convergence = await selectedEvidenceImage.evaluate((img) => {
     const imageBounds = img.getBoundingClientRect();
@@ -224,6 +254,72 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   expect(settledBox!.width).toBeGreaterThan(300);
   await expect(selectedEvidenceImage).toHaveAttribute('data-handoff-state', 'complete');
   await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settled.png');
+});
+
+test('#129 reduced motion enabled during the shared proof FLIP restores the image to Selected Work', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await pauseProofFlipAtInitialization(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.995);
+  await bringSelectedProofNearPortal(page);
+  await waitForActiveProofFlip(page);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'reduced');
+  await expect.poll(() => page.evaluate(() => {
+    const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
+    const frame = image?.closest('.selected-work-evidence-image-frame');
+    return {
+      restored: image?.dataset.handoffState === 'restored',
+      sameNode: Boolean(image && frame?.contains(image)),
+      staticPosition: image ? getComputedStyle(image).position !== 'fixed' : false,
+      activeAnimationCount: image?.getAnimations().filter((animation) => animation.playState === 'running').length ?? -1,
+      bridgeHidden: document.querySelector<HTMLElement>('#hero [data-proof-bridge]')?.hidden,
+      owner: document.querySelector<HTMLElement>('#projects')?.dataset.signatureHandoffOwner ?? null,
+    };
+  })).toMatchObject({ restored: true, sameNode: true, staticPosition: true, activeAnimationCount: 0, bridgeHidden: true, owner: null });
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]'))).toBe(true);
+  await page.waitForTimeout(600);
+  await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('data-handoff-state', 'restored');
+});
+
+test('#129 desktop-to-mobile resize during the shared proof FLIP restores the image and removes the portal', async ({ page }) => {
+  test.setTimeout(60_000);
+  await pauseProofFlipAtInitialization(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.995);
+  await bringSelectedProofNearPortal(page);
+  await waitForActiveProofFlip(page);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect.poll(() => page.evaluate(() => {
+    const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
+    const frame = image?.closest('.selected-work-evidence-image-frame');
+    return {
+      restored: image?.dataset.handoffState === 'restored',
+      sameNode: Boolean(image && frame?.contains(image)),
+      staticPosition: image ? getComputedStyle(image).position !== 'fixed' : false,
+      activeAnimationCount: image?.getAnimations().filter((animation) => animation.playState === 'running').length ?? -1,
+      bridgeHidden: document.querySelector<HTMLElement>('#hero [data-proof-bridge]')?.hidden,
+      reason: document.querySelector<HTMLElement>('#hero')?.dataset.proofHandoffInterruptedBy,
+      owner: document.querySelector<HTMLElement>('#projects')?.dataset.signatureHandoffOwner ?? null,
+    };
+  })).toMatchObject({ restored: true, sameNode: true, staticPosition: true, activeAnimationCount: 0, bridgeHidden: true, reason: 'mobile-breakpoint', owner: null });
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]'))).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.waitForTimeout(600);
+  await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('data-handoff-state', 'restored');
 });
 
 test('#129 Spanish mobile sequence keeps glyphs and thesis within the viewport', async ({ page }, testInfo) => {

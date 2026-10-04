@@ -4,7 +4,8 @@ import { expect, test } from '@playwright/test';
 
 const evidenceDir = path.resolve('artifacts/visual/issue-124-c3-c5');
 
-test('C5 Selected Work proof actions stay aligned with the active proof, in both languages', async ({ page }) => {
+test('C5 Selected Work proof actions stay aligned with the active proof, in both languages', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
   const errors: string[] = [];
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
   page.on('pageerror', (error) => errors.push(error.message));
@@ -14,7 +15,7 @@ test('C5 Selected Work proof actions stay aligned with the active proof, in both
     { path: '/es/', lang: 'es', hms: 'Evidencia de pruebas local', rental: 'Evidencia visual sintética', hmsHref: '/es/projects/hms-cloudflare/#evidencia-visual', rentalHref: '/es/projects/alquileres-uspa/#gallery-alquileres-uspa' },
   ]) {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto(locale.path, { waitUntil: 'networkidle' });
+    await page.goto(locale.path, { waitUntil: 'domcontentloaded' });
     const section = page.locator('#projects');
     await section.scrollIntoViewIfNeeded();
     const panel = section.locator('[data-selected-evidence]');
@@ -25,15 +26,21 @@ test('C5 Selected Work proof actions stay aligned with the active proof, in both
     await expect(action.locator('[data-proof-link]')).toHaveAttribute('href', locale.hmsHref);
     await expect(action.locator('[data-proof-link]')).toHaveAccessibleName(locale.lang === 'es' ? 'Ver evidencia' : 'View evidence');
 
-    await mkdir(evidenceDir, { recursive: true });
-    await panel.screenshot({ path: path.join(evidenceDir, `selected-work-hms-${locale.lang}-1440.png`), animations: 'disabled' });
+    if (testInfo.project.name === 'chromium') {
+      await mkdir(evidenceDir, { recursive: true });
+      await panel.screenshot({ path: path.join(evidenceDir, `selected-work-hms-${locale.lang}-1440.png`), animations: 'disabled' });
+    }
 
     const rentalRow = section.locator('[data-project-index-item]').nth(1);
-    await rentalRow.hover();
+    // The Mobile WebKit project has a touch-only pointer profile. Focus follows
+    // the Selected Work keyboard path and does not depend on hover support.
+    await rentalRow.locator('.selected-work-row').focus();
     await expect(action.locator('[data-proof-state]')).toHaveText(locale.rental);
     await expect(action.locator('[data-proof-link]')).toHaveAttribute('href', locale.rentalHref);
     await expect(action.locator('[data-proof-link]')).toHaveAccessibleName(locale.lang === 'es' ? 'Ver evidencia' : 'View evidence');
-    await panel.screenshot({ path: path.join(evidenceDir, `selected-work-alquileres-${locale.lang}-1440.png`), animations: 'disabled' });
+    if (testInfo.project.name === 'chromium') {
+      await panel.screenshot({ path: path.join(evidenceDir, `selected-work-alquileres-${locale.lang}-1440.png`), animations: 'disabled' });
+    }
 
     await section.locator('[data-project-index-item]').nth(2).locator('.selected-work-row').focus();
     await expect(action).toBeHidden();

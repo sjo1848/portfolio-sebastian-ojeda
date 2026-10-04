@@ -791,6 +791,17 @@ html[data-home-page='true'][data-hero-signature-visible='true'] [data-signature-
   transition: opacity 260ms var(--motion-ease), transform 320ms var(--motion-ease);
 }
 
+@media (min-width: 48rem) and (max-width: 52rem) {
+  :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) .hero-thesis {
+    font-size: clamp(2.1rem, 5.7vw, 3rem);
+    right: 1rem;
+  }
+
+  :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) .hero-thesis-es {
+    font-size: clamp(2rem, 5.2vw, 2.8rem);
+  }
+}
+
 @media (max-width: 47.99rem) {
   .hero-sequence-stage { min-height: clamp(42rem, calc(100svh - 3.65rem), 62rem); }
   .hero-sequence-inner { gap: 1.4rem; padding-inline: 1.25rem; }
