@@ -129,18 +129,14 @@ for (const locale of locales) {
         }
       }
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-      const heroTextBounds = await page.locator('.hero-thesis-line').evaluateAll((lines) => {
+      const heroTextBounds = await page.locator('.hero-thesis').evaluate((heading) => {
         const hero = document.querySelector('#hero')!.getBoundingClientRect();
-        return lines.map((line) => {
-          const rect = line.getBoundingClientRect();
-          return { text: line.textContent, left: rect.left, right: rect.right, heroLeft: hero.left, heroRight: hero.right };
-        });
+        const rect = heading.getBoundingClientRect();
+        return { left: rect.left, right: rect.right, heroLeft: hero.left, heroRight: hero.right };
       });
-      for (const line of heroTextBounds) {
-        expect(line.left, `${locale.name} ${width}px ${line.text} left edge`).toBeGreaterThanOrEqual(line.heroLeft - 0.5);
-        expect(line.right, `${locale.name} ${width}px ${line.text} right edge`).toBeLessThanOrEqual(line.heroRight + 0.5);
-        expect(line.right, `${locale.name} ${width}px ${line.text} viewport edge`).toBeLessThanOrEqual(width + 0.5);
-      }
+      expect(heroTextBounds.left, `${locale.name} ${width}px title left edge`).toBeGreaterThanOrEqual(heroTextBounds.heroLeft - 0.5);
+      expect(heroTextBounds.right, `${locale.name} ${width}px title right edge`).toBeLessThanOrEqual(heroTextBounds.heroRight + 0.5);
+      expect(heroTextBounds.right, `${locale.name} ${width}px title viewport edge`).toBeLessThanOrEqual(width + 0.5);
       await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
       expect(pageErrors).toEqual([]);
     });

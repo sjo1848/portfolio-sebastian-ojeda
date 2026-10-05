@@ -121,7 +121,7 @@ test('static portfolio paths remain available when the navigation island cannot 
 
   const staticBrandLink = page.locator('.site-header [data-signature-brand]');
   await expect(staticBrandLink).toHaveAttribute('href', '/');
-  await expect(page.locator('[data-opening-name]')).toBeVisible();
+  await expect(page.locator('#hero .hero-opening-name')).toBeVisible();
   await expect(page.locator('.selected-work-row').first()).toHaveAttribute('href', /\/projects\//);
   await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
   await expect(page.locator('#contact a[href*="github.com"]')).toBeVisible();

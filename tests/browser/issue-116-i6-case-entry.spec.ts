@@ -116,11 +116,7 @@ test('I6 direct and case-study return links to Selected Work normalize the Hero 
       await expect(page).toHaveURL(locale.fragment);
       await expect(page.locator('#projects')).toBeInViewport();
       await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
-      await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
-      await expect(page.locator('html')).toHaveAttribute('data-hero-signature-visible', 'true');
-      await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'static');
-      const stagePosition = await page.locator('#hero [data-sequence-stage]').evaluate((stage) => getComputedStyle(stage).position);
-      expect(stagePosition).not.toBe('sticky');
+      await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
       if (testInfo.project.name === 'chromium') {
         await mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
         const locale = page.url().startsWith('http://127.0.0.1:4184/es/') ? 'es' : 'en';
