@@ -601,7 +601,7 @@ html[data-home-page='true']:not([data-hero-motion-pending='true']) .hero-signatu
 }
 
 :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) {
-  min-height: calc(250svh - var(--hero-header-offset, 4.75rem));
+  min-height: calc(320svh - var(--hero-header-offset, 4.75rem));
 }
 :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) .hero-sequence-stage {
   position: sticky;
@@ -746,7 +746,7 @@ html[data-home-page='true']:not([data-hero-motion-pending='true']) .hero-signatu
   .hero-supporting-copy .hero-location { margin-top: 0.55rem; font-size: 0.68rem; }
   .hero-supporting-copy .hero-actions { gap: 0.5rem; margin-top: 0.75rem; }
   .hero-supporting-copy .hero-actions .button { flex: 0 1 auto; min-height: 2.75rem; padding-inline: 0.8rem; font-size: 0.86rem; }
-  :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) { min-height: calc(220svh - var(--hero-header-offset, 4.25rem)); }
+  :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) { min-height: calc(300svh - var(--hero-header-offset, 4.25rem)); }
   :is(.hero-signature[data-motion-state='active'], html[data-home-page='true'][data-hero-motion-pending='true'] .hero-signature) .hero-sequence-stage {
     top: var(--hero-header-offset, 4.25rem);
     height: calc(100svh - var(--hero-header-offset, 4.25rem));
