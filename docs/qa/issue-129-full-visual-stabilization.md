@@ -1,6 +1,6 @@
 # Issue #129 — Full visual stabilization checkpoint
 
-**State:** `FULL_VISUAL_STABILIZATION_COMPLETE / HUMAN_REVIEW_READY`
+**State:** `LIVE_MOTION_STABILIZATION_COMPLETE / HUMAN_FINAL_REVIEW_READY`
 **Branch:** `build/issue-129-signature-motion`
 **No merge or deployment performed.**
 
@@ -68,3 +68,29 @@ The local `playwright.config.ts` starts a daemonized Astro preview and exits ear
 ## Remaining boundary
 
 This checkpoint is ready for Human Visual Review. The broad repository browser suite had timeouts under its three-worker run; every previously named failing area was retried successfully at low concurrency, but the broad suite was not rerun end-to-end. No merge, deployment, or production change was made.
+
+## Live scroll-linked motion final addendum — 2026-10-05
+
+The Controller clarification is now implemented and verified: the Hero has a stable identity on initial load and does not autoplay. All choreography is derived from scroll progress. Reduced motion intentionally retains the static identity and navigation. Slow scrolling visibly moves S/O, resolves the full thesis, reveals the persistent existing SiteHeader signature, and transfers the same HMS proof node. Large scroll changes can skip stages and settle directly into a coherent composition; they do not replay or leave stale intermediate layers behind.
+
+Fast/reverse jump coverage asserts the exact paths `0→.40`, `.10→.60`, `.30→.80`, `0→1`, and `.85→.25`. The reverse landing inside the travel range is normalized to the identity composition; the existing Selected Work image remains its only proof node. New tests cover continuous motion with transitions enabled, fast/reverse landings, breakpoint changes (F6), and runtime reduced-motion normalization (F7).
+
+Latest browser evidence:
+
+- Live motion suite: **20/20 PASS** in Chromium, including EN/ES slow-scroll states at 1366×768, 1024×768, 390×844 and 360×640; the five exact jump/reverse cases at those widths; F6; F7; and EN desktop / ES mobile video recordings.
+- Critical cross-browser live subset: **22 PASS, 28 profile-specific skips** across Chromium, Firefox and WebKit. Firefox and WebKit ran desktop/tablet transition boundaries, F6 and F7; those project profiles intentionally skip unsupported viewport cases.
+- Existing motion regressions: **33/33 PASS** across Chromium, Firefox and WebKit after updating the slow-scroll helper to synchronize each increment against the rendered scroll progress. This includes rewind/delay/FLIP, keyboard, no-JS, reduced-motion and resize/orientation cases.
+- Geometry/adversarial matrix: all **14 EN/ES viewport scenarios PASS** in Chromium, plus F4 and F5 PASS. Two desktop cases first hit a Playwright trace-artifact `ENOENT` when run concurrently; both passed when isolated and rerun. There is no remaining visual assertion failure.
+- Lighthouse CI: **9/9 assertions PASS** with the existing thresholds. Home EN/ES Performance medians are 1.00/1.00, LCP medians 1.755 s/1.675 s, and CLS 0. HMS Elite Performance median is 0.98, LCP median 2.277 s, and CLS 0. Accessibility, Best Practices and SEO scored 1.00 in every run. Raw reports are in [`reports/`](../../artifacts/lighthouse/issue-129/reports/).
+- Home initial client JavaScript: **99,576 B gzip**, below the unchanged 100,000 B cap by 424 B. No dependency was added.
+
+The current live evidence is in [`output/playwright/issue-129-live-motion/`](../../output/playwright/issue-129-live-motion/), including EN/ES transition-enabled screenshots, per-viewport manifests, reduced-motion normalization, and `recordings/en-1366x768-slow-fast-reverse.webm` / `recordings/es-360x640-slow-fast-reverse.webm`. Exact bundle accounting is in [`home-initial-js-budget.json`](../../output/playwright/issue-129-live-motion/home-initial-js-budget.json). `npm run qa:release` passed after the final runtime changes; no merge or deployment was performed.
+
+Commands for this final addendum:
+
+- `npx playwright test --config=playwright.issue129-live.config.ts tests/browser/issue-129-live-motion.spec.ts --project=chromium --workers=2`
+- `npx playwright test --config=playwright.issue129-live.config.ts tests/browser/issue-129-live-motion.spec.ts --grep "real-transition|F6 breakpoint|F7 runtime" --workers=2`
+- `npx playwright test --config=playwright.issue129-live.config.ts tests/browser/issue-129-signature-motion.spec.ts --project=chromium --project=firefox --project=webkit --workers=1 --grep "reduced motion|desktop-to-mobile resize|desktop S/O travel|rewind|no-JS|keyboard"`
+- `npx playwright test --config=playwright.issue129-live.config.ts tests/browser/issue-129-visual-stabilization.spec.ts --project=chromium --workers=2`, followed by isolated `--workers=1` retries for the two desktop rows whose parallel run hit Playwright trace-artifact `ENOENT`.
+- `npm run qa:release`
+- `npx --yes @lhci/cli@0.15.1 autorun --config=artifacts/lighthouse/issue-129/lighthouserc.json`

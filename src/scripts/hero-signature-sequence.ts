@@ -77,6 +77,10 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     let proofTransferAnimation: Animation | null = null;
     let cancelProofTransferDelay: (() => void) | null = null;
     let cancelProofTransferFrame: (() => void) | null = null;
+    let previousProgress: number | null = null;
+    let snapResolvedThesis = false;
+    let travelLanding: 'identity' | 'resolved' | null = null;
+    let forcedProgress: number | null = null;
     let originalProofLoading: string | null = null;
     let handoffState: 'entering' | 'dominant' | 'settling' | 'waiting-for-selected-work' | null = null;
     let motionDisabled = false;
@@ -432,31 +436,62 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       if (motionDisabled) return;
       const sectionTop = hero!.getBoundingClientRect().top + window.scrollY;
       const scrollLength = Math.max(1, hero!.offsetHeight - stage!.offsetHeight);
-      const progress = clamp((window.scrollY - sectionTop) / scrollLength);
+      const measuredProgress = clamp((window.scrollY - sectionTop) / scrollLength);
+      const progress = forcedProgress ?? measuredProgress;
+      forcedProgress = null;
+      const progressChanged = previousProgress === null || Math.abs(progress - previousProgress) > 0.0005;
+      const fastJump = progressChanged && previousProgress !== null && Math.abs(progress - previousProgress) > 0.08;
+      const reversing = progressChanged && previousProgress !== null && progress < previousProgress;
+      // Scroll-linked motion may skip intermediate compositions. A large
+      // sampled jump snaps directly to its derived state instead of visually
+      // interpolating stale layers from the previous state.
+      if (progressChanged) {
+        hero!.dataset.sequenceSnap = String(fastJump);
+        hero!.dataset.sequenceUpdateMode = fastJump ? 'jump' : 'continuous';
+        if (fastJump) void stage!.getBoundingClientRect();
+        previousProgress = progress;
+        if (fastJump && progress >= 0.15 && progress < 0.39) {
+          travelLanding = reversing ? 'identity' : 'resolved';
+        } else if (
+          (travelLanding === 'identity' && (progress < 0.15 || progress >= 0.39)) ||
+          (travelLanding === 'resolved' && (progress <= 0.15 || progress >= 0.46))
+        ) {
+          travelLanding = null;
+        }
+        if (progress < 0.39 || (reversing && progress < 0.46)) snapResolvedThesis = false;
+        else if (fastJump) snapResolvedThesis = true;
+      }
+      const visualProgress = travelLanding === 'identity'
+        ? 0.149
+        : travelLanding === 'resolved'
+          ? 0.46
+          : progress;
       hero!.style.setProperty('--sequence-progress', progress.toFixed(4));
       hero!.dataset.sequenceProgress = progress.toFixed(4);
-      hero!.dataset.sequenceComposition = progress < 0.15
+      hero!.dataset.sequenceVisualProgress = visualProgress.toFixed(4);
+      hero!.dataset.sequenceComposition = visualProgress < 0.15
         ? 'identity'
-        : progress < 0.39
+        : visualProgress < 0.39
           ? 'travel'
-          : progress < 0.675
+          : visualProgress < 0.675
             ? 'resolved'
-            : progress < 0.70
+            : visualProgress < 0.70
               ? 'transition'
               : 'proof';
 
       // Keep the thesis out of the glyph path. The S/O complete their travel
       // first; then the full words resolve around the landed glyphs.
-      const thesisProgress = range(progress, 0.39, 0.46);
+      const resolvedProgress = snapResolvedThesis ? 0.46 : visualProgress;
+      const resolvedThesisProgress = range(resolvedProgress, 0.39, 0.46);
       for (const [index, line] of [...hero!.querySelectorAll<HTMLElement>('[data-thesis-line]')].entries()) {
         const lineStart = index / 3;
-        const lineEnd = (index + 1.35) / 3;
-        const reveal = range(thesisProgress, lineStart, lineEnd);
+        const lineEnd = Math.min(1, (index + 1.35) / 3);
+        const reveal = range(resolvedThesisProgress, lineStart, lineEnd);
         line.style.setProperty('--line-reveal', reveal.toFixed(4));
         line.style.setProperty('--line-clip', `${(1 - reveal) * 100}%`);
       }
 
-      const travel = range(progress, 0.15, 0.39);
+      const travel = range(visualProgress, 0.15, 0.39);
       const eased = travel * travel * (3 - 2 * travel);
       const tabletMotion = window.matchMedia('(max-width: 63.99rem)').matches;
       for (const key of ['s', 'o']) {
@@ -479,37 +514,38 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         glyph.style.height = `${path.height}px`;
         glyph.style.fontSize = path.fontSize;
         glyph.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scaleX}, ${scaleY})`;
-        glyph.dataset.inFlight = String(progress >= 0.15 && progress < 0.39);
-        origin.dataset.departed = String(progress >= 0.15);
-        destination.dataset.arrived = String(progress >= 0.39);
+        glyph.dataset.inFlight = String(visualProgress >= 0.15 && visualProgress < 0.39);
+        origin.dataset.departed = String(visualProgress >= 0.15);
+        destination.dataset.arrived = String(visualProgress >= 0.39);
         const destinationRest = hero!.querySelector<HTMLElement>(`[data-destination-rest="${key}"]`);
-        if (destinationRest) destinationRest.dataset.arrived = String(progress >= 0.39);
+        if (destinationRest) destinationRest.dataset.arrived = String(visualProgress >= 0.39);
       }
 
       // The full source name recedes as one identity instead of leaving a long-lived typo-shaped fragment.
-      const openingFade = range(progress, 0.15, 0.22);
+      const openingFade = range(visualProgress, 0.15, 0.22);
       hero!.style.setProperty('--opening-opacity', String(1 - openingFade));
       hero!.style.setProperty('--opening-recession', String(openingFade));
-      hero!.dataset.thesisResolved = String(progress >= 0.46);
-      if (progress >= 0.555) {
+      const thesisResolved = resolvedProgress >= 0.46;
+      hero!.dataset.thesisResolved = String(thesisResolved);
+      if (visualProgress >= 0.555 || ((snapResolvedThesis || travelLanding === 'resolved') && thesisResolved && visualProgress >= 0.39)) {
         root.removeAttribute('data-hero-motion-pending');
         root.dataset.heroSignatureVisible = 'true';
       } else {
         root.dataset.heroMotionPending = 'true';
         root.removeAttribute('data-hero-signature-visible');
       }
-      const proofStage = progress < 0.70
+      const proofStage = visualProgress < 0.70
         ? null
-        : progress < 0.76
+        : visualProgress < 0.76
           ? 'entering'
-          : progress < 0.89
+          : visualProgress < 0.89
             ? 'dominant'
-            : progress < 0.985
+            : visualProgress < 0.985
               ? 'settling'
               : 'waiting-for-selected-work';
       setProofHandoff(proofStage);
       updateProofTarget();
-      hero!.dataset.sequenceComplete = String(progress >= 1);
+      hero!.dataset.sequenceComplete = String(visualProgress >= 1);
     }
 
     function scheduleUpdate() {
@@ -525,7 +561,20 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     function handleDesktopHandoffChange(event: MediaQueryListEvent) {
       if (motionDisabled) return;
       if (!event.matches) {
+        forcedProgress = Number(hero!.dataset.sequenceProgress ?? 0);
         restoreProofObjectToSelectedWork('mobile-breakpoint');
+        // The mobile composition owns its local fallback. Invalidate the old
+        // desktop stage so the next scroll-derived frame reapplies that state,
+        // even when the numeric progress itself did not change.
+        handoffState = null;
+        hero!.removeAttribute('data-proof-handoff-stage');
+        projectSection!.removeAttribute('data-signature-handoff');
+        projectSection!.removeAttribute('data-signature-handoff-owner');
+        hero!.dataset.sequenceSnap = 'true';
+        hero!.dataset.sequenceUpdateMode = 'jump';
+        void stage!.getBoundingClientRect();
+        measure();
+        scheduleUpdate();
       } else {
         delete hero!.dataset.proofHandoffInterruptedBy;
         measure();
@@ -545,6 +594,37 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       window.removeEventListener('orientationchange', handleResize);
       desktopHandoff.removeEventListener('change', handleDesktopHandoffChange);
       restoreProofObjectToSelectedWork('reduced-motion');
+      // Reduced motion is an intentional static composition. Clear every
+      // scroll-derived inline value so an interrupted travel/reveal/proof
+      // frame cannot leak into the normal-flow Hero after the preference flips.
+      hero!.style.removeProperty('--sequence-progress');
+      hero!.style.removeProperty('--opening-opacity');
+      hero!.style.removeProperty('--opening-recession');
+      hero!.style.removeProperty('--proof-target-left');
+      hero!.style.removeProperty('--proof-target-width');
+      for (const line of hero!.querySelectorAll<HTMLElement>('[data-thesis-line]')) {
+        line.style.removeProperty('--line-reveal');
+        line.style.removeProperty('--line-clip');
+      }
+      for (const origin of origins.values()) delete origin.dataset.departed;
+      for (const destination of destinations.values()) delete destination.dataset.arrived;
+      for (const glyph of travellers.values()) {
+        glyph.style.removeProperty('width');
+        glyph.style.removeProperty('height');
+        glyph.style.removeProperty('font-size');
+        glyph.style.removeProperty('transform');
+        delete glyph.dataset.inFlight;
+      }
+      for (const rest of hero!.querySelectorAll<HTMLElement>('[data-destination-rest]')) delete rest.dataset.arrived;
+      hero!.dataset.sequenceProgress = '0';
+      hero!.dataset.sequenceVisualProgress = '0';
+      hero!.dataset.sequenceComposition = 'static';
+      hero!.dataset.sequenceComplete = 'false';
+      hero!.dataset.thesisResolved = 'true';
+      hero!.removeAttribute('data-sequence-snap');
+      previousProgress = null;
+      snapResolvedThesis = false;
+      travelLanding = null;
       hero!.dataset.motionState = 'reduced';
       delete root.dataset.heroMotionPending;
       root.dataset.heroSignatureVisible = 'true';

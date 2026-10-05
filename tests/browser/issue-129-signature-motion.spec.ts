@@ -60,6 +60,33 @@ async function moveToProgress(page: Page, progress: number) {
   }, progress);
 }
 
+async function slowMoveToProgress(page: Page, progress: number) {
+  if (!motionReadyPages.has(page)) {
+    await moveToProgress(page, 0);
+  }
+  const current = await page.evaluate(() => Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? 0));
+  const steps = Math.max(1, Math.ceil(Math.abs(progress - current) / 0.01));
+  for (let step = 1; step <= steps; step += 1) {
+    const next = current + (progress - current) * step / steps;
+    await page.evaluate((targetProgress) => {
+      const hero = document.querySelector<HTMLElement>('#hero')!;
+      const stage = hero.querySelector<HTMLElement>('[data-sequence-stage]')!;
+      const top = hero.getBoundingClientRect().top + window.scrollY;
+      const length = hero.offsetHeight - stage.offsetHeight;
+      window.scrollTo({ top: top + length * targetProgress, behavior: 'auto' });
+    }, next);
+    await page.waitForFunction((targetProgress) => {
+      const currentProgress = Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? 0);
+      return currentProgress >= targetProgress - 0.005;
+    }, next, { timeout: 2_000 });
+    await page.waitForTimeout(16);
+  }
+  await page.waitForFunction((targetProgress) => {
+    const currentProgress = Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? 0);
+    return Math.abs(currentProgress - targetProgress) <= 0.02;
+  }, progress);
+}
+
 async function rewindToProgress(page: Page, progress: number) {
   await page.evaluate((targetProgress) => {
     const hero = document.querySelector<HTMLElement>('#hero')!;
@@ -277,7 +304,12 @@ test('#129 reduced motion remains terminal after resize and orientation change',
   expect(proofNode).not.toBeNull();
   await moveToProgress(page, 0.40);
   await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'active');
-  await expect(page.locator('html')).toHaveAttribute('data-hero-motion-pending', 'true');
+  // This helper jumps directly from identity into the thesis reveal interval.
+  // Large scroll deltas settle the complete thesis and persistent identity
+  // instead of leaving the reveal partially visible.
+  await expect(page.locator('#hero')).toHaveAttribute('data-thesis-resolved', 'true');
+  await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
+  await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'reduced');
@@ -374,7 +406,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(brand).toBeHidden();
   await captureBrowserEvidence(page, testInfo, 'en-desktop-identity.png');
 
-  await moveToProgress(page, 0.27);
+  await slowMoveToProgress(page, 0.27);
   await expect(page.locator('[data-flight-glyph="s"]')).toHaveAttribute('data-in-flight', 'true');
   await expect(page.locator('[data-flight-glyph="o"]')).toHaveAttribute('data-in-flight', 'true');
   await expect(page.locator('[data-origin-glyph="s"]')).toHaveAttribute('data-departed', 'true');
@@ -386,7 +418,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(page.locator('[data-hero-thesis]')).toBeHidden();
   await captureBrowserEvidence(page, testInfo, 'en-desktop-glyph-travel.png');
 
-  await moveToProgress(page, 0.405);
+  await slowMoveToProgress(page, 0.405);
   await expect(page.locator('[data-flight-glyph]')).toHaveCount(2);
   await expect(page.locator('[data-flight-glyph="s"]')).toHaveAttribute('data-in-flight', 'false');
   await expect(page.locator('[data-flight-glyph="o"]')).toHaveAttribute('data-in-flight', 'false');
