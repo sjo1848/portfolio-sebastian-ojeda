@@ -69,6 +69,21 @@ const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '/es/';
     {isHomePage && <script is:inline>
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.dataset.heroMotionPending = 'true';
+        window.setTimeout(() => {
+          const root = document.documentElement;
+          if (root.dataset.heroMotionInitialized === 'true') return;
+
+          // Return to the server-rendered page if the Hero module does not
+          // initialize; pending choreography must never become permanent.
+          delete root.dataset.heroMotionPending;
+          root.dataset.heroMotionFallback = 'true';
+          root.dataset.heroSignatureVisible = 'true';
+          const hero = document.querySelector('#hero');
+          if (hero) {
+            hero.dataset.motionState = 'static';
+            hero.hidden = false;
+          }
+        }, 1400);
       }
     </script>}
   </head>

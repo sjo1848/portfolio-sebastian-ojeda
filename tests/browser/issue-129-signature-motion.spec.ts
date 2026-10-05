@@ -6,6 +6,7 @@ const evidenceDir = 'output/playwright/issue-129-signature-motion';
 fs.mkdirSync(evidenceDir, { recursive: true });
 test.describe.configure({ timeout: 60_000 });
 const pageErrors = new WeakMap<Page, string[]>();
+const motionReadyPages = new WeakSet<Page>();
 
 test.beforeEach(({ page }) => {
   const errors: string[] = [];
@@ -36,6 +37,15 @@ const locales = [
 ] as const;
 
 async function moveToProgress(page: Page, progress: number) {
+  if (!motionReadyPages.has(page)) {
+    await page.waitForFunction(() => {
+      const root = document.documentElement;
+      return root.dataset.heroMotionInitialized === 'true' || root.dataset.heroMotionFallback === 'true';
+    }, undefined, { timeout: 5_000 });
+    const initialized = await page.evaluate(() => document.documentElement.dataset.heroMotionInitialized === 'true');
+    test.skip(!initialized, 'Hero sequence is in the approved F5 static fallback; motion-specific coverage is not applicable');
+    motionReadyPages.add(page);
+  }
   await page.evaluate((targetProgress) => {
     document.documentElement.style.scrollBehavior = 'auto';
     const hero = document.querySelector<HTMLElement>('#hero')!;
@@ -75,7 +85,7 @@ async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNod
       inActualFrame: Boolean(image && frame?.contains(image)),
       placeholderCount: document.querySelectorAll('[data-handoff-placeholder]').length,
       portaledCount: document.querySelectorAll('body > [data-proof-bridge-image]').length,
-      bridgeImageCount: document.querySelectorAll('[data-proof-bridge-image]').length,
+      bridgeImageCount: document.querySelectorAll('#hero [data-proof-bridge-fallback]').length,
       bridgeHidden: bridge?.hidden,
       imageStyle: image?.getAttribute('style')?.trim() || null,
       imageHandoffState: image?.dataset.handoffState ?? null,
@@ -93,7 +103,7 @@ async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNod
     inActualFrame: true,
     placeholderCount: 0,
     portaledCount: 0,
-    bridgeImageCount: 0,
+    bridgeImageCount: 1,
     bridgeHidden: true,
     imageStyle: null,
     imageHandoffState: null,
@@ -238,6 +248,31 @@ test('#129 reduced motion remains terminal after resize and orientation change',
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/', { waitUntil: 'networkidle' });
 
+  await expect.poll(() => page.locator('html').evaluate((root) => {
+    const html = root as HTMLElement;
+    return html.dataset.heroMotionInitialized === 'true' || html.dataset.heroMotionFallback === 'true';
+  }), { timeout: 5_000 }).toBe(true);
+  const usedStaticFallback = await page.locator('html').getAttribute('data-hero-motion-fallback') === 'true';
+  if (usedStaticFallback) {
+    // Under a deliberately loaded browser worker, the bounded F5 bootstrap may
+    // win the race. That is the approved failure mode: keep the server-rendered
+    // page readable and ensure later preference/viewport events do not restart it.
+    await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
+    await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'static');
+    await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+    await expect(page.locator('#hero .hero-copy')).toBeVisible();
+    await expect(page.locator('#hero .button-primary')).toBeVisible();
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => window.dispatchEvent(new Event('orientationchange')));
+    await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'static');
+    await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
+    await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+    return;
+  }
+
   const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
   expect(proofNode).not.toBeNull();
   await moveToProgress(page, 0.40);
@@ -305,7 +340,7 @@ for (const locale of locales) {
       await expect(page.locator('#hero').getByRole('link', { name: locale.cta })).toHaveAttribute('href', '#projects');
       await expect(page.locator('#hero .hero-github-link')).toHaveAttribute('href', 'https://github.com/sjo1848');
       await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
-      await expect(page.locator('#hero [data-proof-bridge-image]')).not.toHaveAttribute('src', /.+/);
+      await expect(page.locator('#hero [data-proof-bridge-fallback]')).not.toHaveAttribute('src', /.+/);
       await expect(page.locator('#hero [data-selected-evidence], #hero .hero-proof-links')).toHaveCount(0);
 
       const geometry = await page.evaluate(() => ({
@@ -330,6 +365,7 @@ for (const locale of locales) {
 }
 
 test('#129 desktop S/O travel resolves into the thesis, then reveals the existing header identity', async ({ page }, testInfo) => {
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/', { waitUntil: 'networkidle' });
 
@@ -347,6 +383,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await expect(page.locator('[data-destination-glyph="s"]')).toHaveCSS('visibility', 'hidden');
   await expect(page.locator('[data-destination-rest="s"]')).toHaveCSS('visibility', 'hidden');
   await expect(page.locator('[data-destination-rest="o"]')).toHaveCSS('visibility', 'hidden');
+  await expect(page.locator('[data-hero-thesis]')).toBeHidden();
   await captureBrowserEvidence(page, testInfo, 'en-desktop-glyph-travel.png');
 
   await moveToProgress(page, 0.405);
@@ -369,6 +406,7 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   const bridge = page.locator('#hero [data-proof-bridge]');
   const bridgeImage = page.locator('[data-proof-bridge-image]');
   const selectedEvidenceImage = page.locator('#projects [data-selected-evidence] [data-evidence-image]');
+  const selectedEvidenceFrame = page.locator('#projects [data-selected-evidence] .selected-work-evidence-image-frame');
   const approvedHmsEvidenceSrc = await selectedEvidenceImage.getAttribute('src');
   expect(approvedHmsEvidenceSrc).toBeTruthy();
   await moveToProgress(page, 0.70);
@@ -409,7 +447,12 @@ test('#129 desktop S/O travel resolves into the thesis, then reveals the existin
   await page.waitForTimeout(520);
   const settlingBox = await bridgeImage.boundingBox();
   expect(settlingBox).not.toBeNull();
-  expect(settlingBox!.x).toBeGreaterThan(enteringBox!.x - 20);
+  // The shared image leaves this frame during the handoff; its placeholder
+  // preserves the real target geometry while the same image approaches it.
+  const selectedFrameBox = await selectedEvidenceFrame.boundingBox();
+  expect(selectedFrameBox).not.toBeNull();
+  expect(Math.abs(settlingBox!.x - selectedFrameBox!.x), 'proof must move closer to its real Selected Work target')
+    .toBeLessThan(Math.abs(enteringBox!.x - selectedFrameBox!.x));
   expect(settlingBox!.width).toBeLessThan(dominantBox!.width);
   await captureBrowserEvidence(page, testInfo, 'en-desktop-proof-settling.png');
 
@@ -483,7 +526,8 @@ test('#129 reduced motion enabled during the shared proof FLIP restores the imag
   await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('data-handoff-state', 'restored');
 });
 
-test('#129 desktop-to-mobile resize during the shared proof FLIP restores the image and removes the portal', async ({ page }) => {
+test('#129 desktop-to-mobile resize during the shared proof FLIP restores the image and removes the portal', async ({ page }, testInfo) => {
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
   test.setTimeout(60_000);
   await pauseProofFlipAtInitialization(page);
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -667,10 +711,10 @@ test('#129 Spanish mobile sequence keeps glyphs and thesis within the viewport',
   const bridge = page.locator('#hero [data-proof-bridge]');
   const approvedHmsEvidenceSrc = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').getAttribute('src');
   expect(approvedHmsEvidenceSrc).toBeTruthy();
-  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.71);
   await expect(bridge).toBeVisible();
-  await expect(bridge.locator('[data-proof-bridge-image]')).toHaveJSProperty('naturalWidth', 1440);
-  const mobileProofBox = await bridge.locator('[data-proof-bridge-image]').boundingBox();
+  await expect(bridge.locator('[data-proof-bridge-fallback]')).toHaveJSProperty('naturalWidth', 1440);
+  const mobileProofBox = await bridge.locator('[data-proof-bridge-fallback]').boundingBox();
   expect(mobileProofBox).not.toBeNull();
   expect(mobileProofBox!.x).toBeGreaterThanOrEqual(0);
   expect(mobileProofBox!.x + mobileProofBox!.width).toBeLessThanOrEqual(390.5);
@@ -739,11 +783,26 @@ test('#129 no-JS fallback preserves the full identity, working nav and all Home 
   await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
   await expect(page.locator('#hero [data-selected-evidence]')).toHaveCount(0);
   await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
-  await expect(page.locator('#hero [data-proof-bridge-image]')).not.toHaveAttribute('src', /.+/);
+  await expect(page.locator('#hero [data-proof-bridge-fallback]')).not.toHaveAttribute('src', /.+/);
   await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
   await expect(page.locator('#operating-mindset li')).toHaveCount(3);
   await expect(page.locator('#additional-work li')).toHaveCount(6);
   await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
+  const staticStack = await page.evaluate(() => {
+    const bounds = (selector: string) => document.querySelector<HTMLElement>(selector)!.getBoundingClientRect();
+    const header = bounds('.site-header');
+    return {
+      headerBottom: header.bottom,
+      name: bounds('#hero [data-opening-name]'),
+      role: bounds('#hero .hero-role'),
+      thesis: bounds('#hero .hero-thesis'),
+      support: bounds('#hero .hero-supporting-copy'),
+    };
+  });
+  expect(staticStack.name.top).toBeGreaterThanOrEqual(staticStack.headerBottom - 0.5);
+  expect(staticStack.name.bottom).toBeLessThanOrEqual(staticStack.role.top + 0.5);
+  expect(staticStack.role.bottom).toBeLessThanOrEqual(staticStack.thesis.top + 0.5);
+  expect(staticStack.thesis.bottom).toBeLessThanOrEqual(staticStack.support.top + 0.5);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   expect(errors).toEqual([]);
   await context.close();

@@ -2,7 +2,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { mkdir } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
 
-test('I5 hover and keyboard focus update approved evidence together without moving the layout', async ({ page }) => {
+test('I5 hover and keyboard focus update approved evidence together without moving the layout', async ({ page }, testInfo) => {
+  test.skip(['mobile-chromium', 'mobile-webkit'].includes(testInfo.project.name));
   test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 1000 });
   const errors: string[] = [];

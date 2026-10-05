@@ -2,10 +2,12 @@ const hero = document.querySelector<HTMLElement>('[data-sequence-progress]');
 const stage = hero?.querySelector<HTMLElement>('[data-sequence-stage]');
 const projectSection = document.querySelector<HTMLElement>('#projects');
 const proofBridge = hero?.querySelector<HTMLElement>('[data-proof-bridge]');
-const proofBridgeImage = proofBridge?.querySelector<HTMLImageElement>('[data-proof-bridge-image]');
+const proofBridgeImage = proofBridge?.querySelector<HTMLImageElement>('[data-proof-bridge-fallback]');
 const root = document.documentElement;
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-const desktopHandoff = window.matchMedia('(min-width: 48rem)');
+// Keep the same-node transfer for wide desktop layouts. Tablets use the
+// self-contained proof panel to avoid compressing the choreography.
+const desktopHandoff = window.matchMedia('(min-width: 64rem)');
 
 // Browser history may restore the URL fragment before the sticky Hero's
 // scroll state has settled. Reassert the native section target after history
@@ -26,6 +28,14 @@ function restoreProjectsFragmentVisibility() {
 window.addEventListener('hashchange', restoreProjectsFragmentVisibility);
 window.addEventListener('popstate', restoreProjectsFragmentVisibility);
 window.addEventListener('pageshow', restoreProjectsFragmentVisibility);
+
+// The inline pending bootstrap has a bounded fail-safe. If it fired first,
+// the restored static page wins over late animation initialization.
+if (root.dataset.heroMotionFallback === 'true') {
+  delete root.dataset.heroMotionPending;
+  root.dataset.heroSignatureVisible = 'true';
+  if (hero) hero.dataset.motionState = 'static';
+} else {
 
 // A deep link must render the complete static Hero immediately. The inline
 // bootstrap may have hidden the persistent header identity before this module
@@ -90,7 +100,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       targetPlaceholder.setAttribute('aria-hidden', 'true');
       targetPlaceholder.dataset.handoffPlaceholder = 'true';
       selectedImage.replaceWith(targetPlaceholder);
-      proofBridgeImage?.remove();
+      if (proofBridgeImage) proofBridgeImage.hidden = true;
       proofObject.dataset.proofBridgeImage = 'true';
       proofObject.dataset.handoffState = 'hero';
       proofObject.removeAttribute('loading');
@@ -173,6 +183,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         projectSection!.removeAttribute('data-signature-handoff-owner');
       }
       proofBridge!.hidden = true;
+      if (proofBridgeImage) proofBridgeImage.hidden = true;
       hero!.dataset.proofHandoffInterruptedBy = reason;
       hero!.dataset.proofHandoffStage = 'complete';
     }
@@ -224,6 +235,17 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       bridgeFigure.insertBefore(proofObject, bridgeFigure.querySelector('figcaption'));
       proofObjectPortaled = false;
       proofBridge!.hidden = false;
+    }
+
+    function showBridgeFallback() {
+      if (!proofBridgeImage?.isConnected) return;
+      proofBridgeImage.hidden = false;
+      const source = proofBridgeImage.dataset.src;
+      if (source && !proofBridgeImage.getAttribute('src')) proofBridgeImage.src = source;
+    }
+
+    function hideBridgeFallback() {
+      if (proofBridgeImage?.isConnected) proofBridgeImage.hidden = true;
     }
 
     function portalProofObject() {
@@ -335,7 +357,9 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
 
     function setProofHandoff(state: 'entering' | 'dominant' | 'settling' | 'waiting-for-selected-work' | null) {
       if (!proofBridge || !projectSection) return;
-      if (proofObjectTransferred && state !== null) {
+      // A completed desktop transfer must stay complete on desktop. After a
+      // breakpoint rewind, however, the mobile Hero uses its static fallback.
+      if (proofObjectTransferred && desktopHandoff.matches && state !== null) {
         hero!.dataset.proofHandoffStage = 'complete';
         projectSection.dataset.signatureHandoff = 'complete';
         return;
@@ -367,14 +391,14 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
 
       proofBridge.hidden = false;
       if (state === 'entering' && desktopHandoff.matches) adoptSelectedEvidenceImage();
-      if (proofBridgeImage?.isConnected && !proofBridgeImage.getAttribute('src')) {
-        const source = proofBridgeImage.dataset.src;
-        if (source) proofBridgeImage.src = source;
-      }
+      if (desktopHandoff.matches && proofObject && !proofObjectTransferred) hideBridgeFallback();
+      else showBridgeFallback();
       if (state === 'settling') returnProofObjectToHero();
     }
 
     function measure() {
+      const headerHeight = document.querySelector<HTMLElement>('.site-header')?.getBoundingClientRect().height;
+      if (headerHeight) hero!.style.setProperty('--hero-header-offset', `${headerHeight}px`);
       const stageRect = stage!.getBoundingClientRect();
       if (desktopHandoff.matches && targetFrame) {
         const targetRect = targetFrame.getBoundingClientRect();
@@ -411,8 +435,19 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       const progress = clamp((window.scrollY - sectionTop) / scrollLength);
       hero!.style.setProperty('--sequence-progress', progress.toFixed(4));
       hero!.dataset.sequenceProgress = progress.toFixed(4);
+      hero!.dataset.sequenceComposition = progress < 0.15
+        ? 'identity'
+        : progress < 0.39
+          ? 'travel'
+          : progress < 0.675
+            ? 'resolved'
+            : progress < 0.70
+              ? 'transition'
+              : 'proof';
 
-      const thesisProgress = range(progress, 0.23, 0.46);
+      // Keep the thesis out of the glyph path. The S/O complete their travel
+      // first; then the full words resolve around the landed glyphs.
+      const thesisProgress = range(progress, 0.39, 0.46);
       for (const [index, line] of [...hero!.querySelectorAll<HTMLElement>('[data-thesis-line]')].entries()) {
         const lineStart = index / 3;
         const lineEnd = (index + 1.35) / 3;
@@ -423,7 +458,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
 
       const travel = range(progress, 0.15, 0.39);
       const eased = travel * travel * (3 - 2 * travel);
-      const arc = window.matchMedia('(max-width: 47.99rem)').matches ? 7 : 17;
+      const tabletMotion = window.matchMedia('(max-width: 63.99rem)').matches;
       for (const key of ['s', 'o']) {
         const glyph = travellers.get(key);
         const origin = origins.get(key);
@@ -434,6 +469,9 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         const startX = path.x;
         const startY = path.y;
         const x = startX + (path.targetX - startX) * eased;
+        // At tablet widths the two paths can converge on the same diagonal.
+        // Split their shallow arcs in opposite directions so the glyphs never collide.
+        const arc = tabletMotion ? (key === 's' ? 6 : -6) : 12;
         const y = startY + (path.targetY - startY) * eased - Math.sin(eased * Math.PI) * arc;
         const scaleX = 1 + (path.scaleX - 1) * eased;
         const scaleY = 1 + (path.scaleY - 1) * eased;
@@ -460,9 +498,9 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         root.dataset.heroMotionPending = 'true';
         root.removeAttribute('data-hero-signature-visible');
       }
-      const proofStage = progress < 0.685
+      const proofStage = progress < 0.70
         ? null
-        : progress < 0.735
+        : progress < 0.76
           ? 'entering'
           : progress < 0.89
             ? 'dominant'
@@ -524,7 +562,11 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     window.addEventListener('orientationchange', handleResize, { passive: true });
     desktopHandoff.addEventListener('change', handleDesktopHandoffChange);
     motionPreference.addEventListener('change', handleMotionPreferenceChange);
+    root.dataset.heroMotionInitialized = 'true';
   } else {
     delete root.dataset.heroMotionPending;
+    root.dataset.heroSignatureVisible = 'true';
+    if (hero) hero.dataset.motionState = 'static';
   }
+}
 }
