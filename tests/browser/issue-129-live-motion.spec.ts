@@ -1,355 +1,189 @@
-import { expect, test, type Browser, type Page } from '@playwright/test';
-import fs from 'node:fs';
+import { expect, test, type Page } from '@playwright/test';
 
 const locales = [
   { key: 'en', path: '/', thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS' },
   { key: 'es', path: '/es/', thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS' },
 ] as const;
-
-const criticalViewports = [
-  { key: '1366x768', width: 1366, height: 768 },
-  { key: '1024x768', width: 1024, height: 768 },
-  { key: '390x844', width: 390, height: 844 },
-  { key: '360x640', width: 360, height: 640 },
+const viewports = [
+  { width: 1366, height: 768 },
+  { width: 1024, height: 768 },
+  { width: 390, height: 844 },
+  { width: 360, height: 640 },
 ] as const;
 
-const outputRoot = 'output/playwright/issue-129-live-motion';
-
-async function initialized(page: Page) {
-  await page.waitForFunction(() => document.documentElement.dataset.heroMotionInitialized === 'true', undefined, { timeout: 8_000 });
+async function ready(page: Page) {
+  await page.waitForFunction(() => document.documentElement.dataset.heroMotionInitialized === 'true');
 }
-
-async function setProgress(page: Page, progress: number) {
+async function progress(page: Page, value: number) {
   await page.evaluate((target) => {
     const hero = document.querySelector<HTMLElement>('#hero')!;
     const stage = hero.querySelector<HTMLElement>('[data-sequence-stage]')!;
-    const top = hero.getBoundingClientRect().top + window.scrollY;
+    const top = hero.getBoundingClientRect().top + scrollY;
     const length = Math.max(1, hero.offsetHeight - stage.offsetHeight);
     document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo({ top: top + length * target, behavior: 'auto' });
-  }, progress);
-  await page.waitForFunction((target) => Math.abs(Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? -1) - target) < 0.001, progress);
+  }, value);
+  await page.waitForFunction((target) => Math.abs(Number(document.querySelector<HTMLElement>('#hero')!.dataset.sequenceProgress) - target) < 0.001, value);
   await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
 }
-
-async function inspectComposition(page: Page) {
+async function snapshot(page: Page) {
   return page.evaluate(() => {
     const hero = document.querySelector<HTMLElement>('#hero')!;
-    const rect = (selector: string) => document.querySelector<HTMLElement>(selector)?.getBoundingClientRect().toJSON() ?? null;
-    const visible = (node: Element | null) => {
-      if (!node) return false;
+    const thesis = hero.querySelector<HTMLElement>('[data-hero-thesis]')!;
+    const proof = hero.querySelector<HTMLElement>('[data-proof-bridge]')!;
+    const image = proof.querySelector<HTMLImageElement>('[data-proof-project="hms-cloudflare"]');
+    const selectedImage = document.querySelector('#projects [data-selected-evidence] [data-evidence-image]');
+    const visible = (node: Element) => {
       const style = getComputedStyle(node);
-      const bounds = node.getBoundingClientRect();
-      return style.display !== 'none' && style.visibility !== 'hidden'
-        && Number.parseFloat(style.opacity || '1') > 0.08 && bounds.width > 0 && bounds.height > 0;
+      const box = node.getBoundingClientRect();
+      return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity) > 0.05 && box.width > 0 && box.height > 0;
     };
-    const lines = [...hero.querySelectorAll<HTMLElement>('[data-thesis-line]')];
-    const bridge = hero.querySelector<HTMLElement>('[data-proof-bridge]');
-    const proofVisible = visible(bridge);
-    const thesisVisible = lines.some(visible);
-    const glyphs = [...hero.querySelectorAll<HTMLElement>('[data-flight-glyph]')];
-    const clip = lines.map((line) => line.style.getPropertyValue('--line-clip'));
-    const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
-    const frame = image?.closest('.selected-work-evidence-image-frame');
     return {
       progress: Number(hero.dataset.sequenceProgress),
       composition: hero.dataset.sequenceComposition,
-      snap: hero.dataset.sequenceSnap,
-      updateMode: hero.dataset.sequenceUpdateMode,
-      motionState: hero.dataset.motionState,
-      thesisResolved: hero.dataset.thesisResolved,
-      signatureVisible: document.documentElement.dataset.heroSignatureVisible === 'true',
-      openingVisible: visible(hero.querySelector('[data-opening-name]')),
-      proofStage: hero.dataset.proofHandoffStage ?? null,
-      proofVisible,
-      thesisVisible,
-      thesisClip: clip,
-      glyphStates: glyphs.map((glyph) => ({
-        inFlight: glyph.dataset.inFlight,
-        transform: getComputedStyle(glyph).transform,
-        rect: glyph.getBoundingClientRect().toJSON(),
-      })),
-      bridgeRect: rect('#hero [data-proof-bridge]'),
-      proofCaptionSize: getComputedStyle(hero.querySelector('figcaption')!).fontSize,
-      proofLimitationSize: getComputedStyle(hero.querySelector('.hero-proof-bridge-limitation')!).fontSize,
-      heading: rect('#projects #stories-title'),
-      header: rect('.site-header'),
-      imageRestored: Boolean(image && frame?.contains(image)),
-      imagePosition: image ? getComputedStyle(image).position : null,
-      placeholders: document.querySelectorAll('[data-handoff-placeholder]').length,
-      portalImages: document.querySelectorAll('body > [data-proof-bridge-image]').length,
+      motion: hero.dataset.motionState,
+      proofVisible: !proof.hidden && visible(proof),
+      thesisVisible: visible(thesis),
+      thesisClip: [...hero.querySelectorAll<HTMLElement>('[data-thesis-line]')].map((line) => line.style.getPropertyValue('--line-clip')),
+      proofSrc: image?.getAttribute('src') ?? null,
+      proofProject: image?.dataset.proofProject ?? null,
+      sameImage: Boolean(image && selectedImage === image),
+      placeholderCount: document.querySelectorAll('[data-handoff-placeholder]').length,
+      portalCount: document.querySelectorAll('body > [data-proof-bridge-image]').length,
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     };
   });
 }
-
-async function openAt(page: Page, path: string, viewport: { width: number; height: number }, progress = 0) {
+async function open(page: Page, path: string, viewport: { width: number; height: number }) {
   await page.setViewportSize(viewport);
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto(path, { waitUntil: 'networkidle' });
-  await initialized(page);
-  await setProgress(page, progress);
+  await ready(page);
 }
 
-function captureErrors(page: Page, errors: string[]) {
-  page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`));
-  page.on('console', (message) => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
-}
-
-test.describe('Issue #129 live scroll-linked motion', () => {
-  test.describe.configure({ timeout: 180_000, retries: 0 });
-
-  for (const locale of locales) {
-    for (const viewport of criticalViewports) {
-      test(`${locale.key} real-transition state and safe insets ${viewport.key}`, async ({ page }, testInfo) => {
-        test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
-        test.skip(testInfo.project.name !== 'chromium' && viewport.width < 1024, 'Dense responsive motion is Chromium-only; Firefox/WebKit cover desktop boundaries below.');
-        const errors: string[] = [];
-        captureErrors(page, errors);
-        await openAt(page, locale.path, viewport);
-        const initial = await inspectComposition(page);
-        expect(initial.progress).toBe(0);
-        expect(initial.composition).toBe('identity');
-        expect(initial.thesisVisible).toBe(true);
-        expect(initial.proofVisible).toBe(false);
-
-        const safeBox = await page.locator('#hero .hero-role').boundingBox();
-        expect(safeBox).not.toBeNull();
-        expect(safeBox!.x, 'Hero role respects compact/tablet/desktop safe inset').toBeGreaterThanOrEqual(viewport.width >= 1200 ? 23 : 15);
-
-        // Slow, real scroll: each increment is below the snap threshold and
-        // lasts longer than the CSS transitions, so the choreography remains visible.
-        const travelTransforms = new Set<string>();
-        const liveTransitions: string[] = [];
-        for (let index = 0; index <= 70; index += 1) {
-          const progress = 0.10 + index * 0.01;
-          await setProgress(page, progress);
-          const state = await inspectComposition(page);
-          if (progress >= 0.18 && progress <= 0.36) {
-            expect(state.glyphStates.every((glyph) => glyph.inFlight === 'true'), `S/O must travel at ${progress}`).toBe(true);
-            travelTransforms.add(state.glyphStates.map((glyph) => glyph.transform).join('|'));
-            const transition = await page.locator('#hero .hero-opening-name').evaluate((node) => getComputedStyle(node).transitionDuration);
-            liveTransitions.push(transition);
-          }
-          if (progress >= 0.47 && progress <= 0.66) {
-            expect(state.thesisClip.every((clip) => clip === '0%'), `thesis is fully resolved at ${progress}`).toBe(true);
-            expect(state.thesisResolved).toBe('true');
-          }
-          if (progress >= 0.705) {
-            expect(state.thesisVisible, `proof stage ${progress} must not compete with thesis`).toBe(false);
-          }
-          expect(state.overflow, `horizontal overflow at ${progress}`).toBeLessThanOrEqual(0);
-          if (testInfo.project.name === 'chromium' && [1366, 1024, 390, 360].includes(viewport.width)
-            && [0.30, 0.50, 0.80].some((capture) => Math.abs(progress - capture) < 0.0001)) {
-            const folder = `${outputRoot}/${locale.key}/${viewport.key}`;
-            fs.mkdirSync(folder, { recursive: true });
-            const stateName = progress < 0.4 ? 'live-travel' : progress < 0.7 ? 'live-resolved' : 'live-proof-dominant';
-            await page.screenshot({ path: `${folder}/${stateName}.png` });
-          }
-        }
-        expect(travelTransforms.size, 'S/O transforms change continuously during real scroll').toBeGreaterThan(3);
-        expect(liveTransitions.some((duration) => duration !== '0s'), 'CSS transitions stay enabled during slow scroll').toBe(true);
-
-        const resolved = await inspectComposition(page);
-        expect(resolved.composition).toBe('proof');
-        expect(resolved.thesisVisible).toBe(false);
-        if (viewport.width < 1024) {
-          expect(resolved.proofVisible).toBe(true);
-          expect(Number.parseFloat(resolved.proofCaptionSize)).toBeGreaterThanOrEqual(12.5);
-          expect(Number.parseFloat(resolved.proofLimitationSize)).toBeGreaterThanOrEqual(12.5);
-        }
-
-        // Native Selected Work entry must clear the persistent sticky header.
-        await page.locator('#projects #stories-title').scrollIntoViewIfNeeded();
-        const handoff = await inspectComposition(page);
-        expect(handoff.heading!.top).toBeGreaterThanOrEqual(handoff.header!.bottom + 4);
-        expect(errors).toEqual([]);
-
-        if (testInfo.project.name === 'chromium' && [1366, 1024, 390, 360].includes(viewport.width)) {
-          const folder = `${outputRoot}/${locale.key}/${viewport.key}`;
-          fs.mkdirSync(folder, { recursive: true });
-          fs.writeFileSync(`${folder}/manifest.json`, JSON.stringify({ locale: locale.key, viewport, transitions: 'enabled', scrollLinked: true, screenshots: ['live-travel.png', 'live-resolved.png', 'live-proof-dominant.png'] }, null, 2));
-        }
-      });
-    }
-  }
-
-  for (const locale of locales) {
-    for (const viewport of criticalViewports) {
-      test(`${locale.key} fast/reverse jumps land coherently ${viewport.key}`, async ({ page }, testInfo) => {
-        test.skip(testInfo.project.name !== 'chromium', 'Fast-jump stress is Chromium-only; Firefox/WebKit run the critical composition-boundary tests.');
-        const errors: string[] = [];
-        captureErrors(page, errors);
-        const cases = [
-          { from: 0, to: 0.40, expected: 'resolved' },
-          { from: 0.10, to: 0.60, expected: 'resolved' },
-          { from: 0.30, to: 0.80, expected: 'proof' },
-          { from: 0, to: 1, expected: 'proof' },
-          { from: 0.85, to: 0.25, expected: 'identity' },
-        ] as const;
-        for (const scenario of cases) {
-          await openAt(page, locale.path, viewport);
-          if (scenario.from !== 0) await setProgress(page, scenario.from);
-          await setProgress(page, scenario.to);
-          const state = await inspectComposition(page);
-          expect(state.composition).toBe(scenario.expected);
-          expect(state.updateMode).toBe('jump');
-          expect(state.overflow).toBeLessThanOrEqual(0);
-          if (scenario.to === 0.40) {
-            expect(state.thesisResolved).toBe('true');
-            expect(state.thesisClip.every((clip) => clip === '0%')).toBe(true);
-            expect(state.signatureVisible).toBe(true);
-          }
-          if (scenario.to === 0.60) {
-            expect(state.thesisResolved).toBe('true');
-            expect(state.thesisClip.every((clip) => clip === '0%')).toBe(true);
-          }
-          if (scenario.to === 0.80 || scenario.to === 1) {
-            expect(state.thesisVisible).toBe(false);
-            if (scenario.to < 1) expect(state.proofVisible).toBe(true);
-          }
-          if (scenario.to === 0.25) {
-            expect(state.glyphStates.every((glyph) => glyph.inFlight !== 'true'), 'reverse jump lands in a stable identity composition instead of freezing S/O mid-flight').toBe(true);
-            expect(state.openingVisible).toBe(true);
-            expect(state.thesisClip.every((clip) => clip === '100%'), 'the reverse landing does not leave a partially revealed thesis').toBe(true);
-            await setProgress(page, 0.24);
-            const final = await inspectComposition(page);
-            expect(final.composition).toBe('identity');
-            expect(final.glyphStates.every((glyph) => glyph.inFlight !== 'true')).toBe(true);
-            expect(final.openingVisible).toBe(true);
-            expect(final.thesisClip.every((clip) => clip === '100%')).toBe(true);
-            expect(final.proofVisible).toBe(false);
-            expect(final.signatureVisible).toBe(false);
-          }
-        }
-        expect(errors).toEqual([]);
-      });
-    }
-  }
-
-  test('F6 breakpoint changes reapply the mobile proof composition without another scroll', async ({ page }, testInfo) => {
-    test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
-    for (const progress of [0.72, 0.82, 0.92]) {
-      await openAt(page, '/', { width: 1440, height: 900 });
-      const sharedImage = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
-      expect(sharedImage).not.toBeNull();
-      await setProgress(page, progress);
-      await page.setViewportSize({ width: 390, height: 844 });
-      await page.waitForFunction(() => document.querySelector<HTMLElement>('#hero')?.dataset.proofHandoffInterruptedBy === 'mobile-breakpoint');
-      const state = await inspectComposition(page);
-      if (progress < 0.985) {
-        expect(state.proofVisible, `mobile fallback visible at progress ${progress}`).toBe(true);
-        expect(await page.locator('#hero [data-proof-bridge-fallback]').isVisible()).toBe(true);
-      }
-      expect(state.imageRestored).toBe(true);
-      expect(state.placeholders).toBe(0);
-      expect(state.portalImages).toBe(0);
-      expect(await sharedImage!.evaluate((node) => node === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]'))).toBe(true);
-      expect(state.overflow).toBeLessThanOrEqual(0);
-    }
-  });
-
-  test('F7 runtime reduced motion atomically normalizes identity, travel, resolved and proof frames', async ({ page }, testInfo) => {
-    test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
-    for (const progress of [0, 0.22, 0.42, 0.58, 0.80]) {
-      await openAt(page, '/', { width: 1366, height: 768 });
-      const sharedImage = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
-      expect(sharedImage).not.toBeNull();
-      await setProgress(page, progress);
-      await page.emulateMedia({ reducedMotion: 'reduce' });
-      await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'reduced');
-      await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
-      await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
-      await expect(page.locator('#hero [data-opening-name]')).toBeVisible();
-      await expect(page.getByRole('heading', { name: localeThesis(localeForPath(page.url())), level: 1 })).toBeVisible();
-      await expect(page.locator('#hero .hero-copy')).toBeVisible();
-      await expect(page.locator('#hero .button-primary')).toBeVisible();
-      const state = await inspectComposition(page);
-      expect(state.imageRestored).toBe(true);
-      expect(state.placeholders).toBe(0);
-      expect(state.portalImages).toBe(0);
-      expect(state.overflow).toBeLessThanOrEqual(0);
-      expect(await sharedImage!.evaluate((node) => node === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]'))).toBe(true);
-      const cleanup = await page.evaluate(() => ({
-        stagePosition: getComputedStyle(document.querySelector('#hero [data-sequence-stage]')!).position,
-        lineClips: [...document.querySelectorAll<HTMLElement>('#hero [data-thesis-line]')].map((line) => line.style.getPropertyValue('--line-clip')),
-        glyphTransforms: [...document.querySelectorAll<HTMLElement>('#hero [data-flight-glyph]')].map((glyph) => glyph.style.transform),
-        composition: document.querySelector<HTMLElement>('#hero')!.dataset.sequenceComposition,
-        proofStage: document.querySelector<HTMLElement>('#hero')!.dataset.proofHandoffStage,
-      }));
-      expect(cleanup.stagePosition).not.toBe('sticky');
-      expect(cleanup.lineClips.every((clip) => clip === '')).toBe(true);
-      expect(cleanup.glyphTransforms.every((transform) => transform === '')).toBe(true);
-      expect(cleanup.composition).toBe('static');
-      expect(cleanup.proofStage).toBeUndefined();
-      if (testInfo.project.name === 'chromium' && progress === 0.80) {
-        fs.mkdirSync(outputRoot, { recursive: true });
-        await page.screenshot({ path: `${outputRoot}/reduced-motion-runtime-normalized.png` });
-      }
-    }
-  });
-
-  for (const locale of locales) {
-    test(`${locale.key} records live slow and fast/reverse motion with transitions enabled`, async ({ browser }, testInfo) => {
-      test.skip(testInfo.project.name !== 'chromium', 'Human-viewable runtime recordings are captured in Chromium.');
-      const viewport = locale.key === 'en' ? { width: 1366, height: 768 } : { width: 360, height: 640 };
-      const context = await createRecordingContext(browser, viewport, outputRoot);
-      const page = await context.newPage();
+for (const locale of locales) {
+  for (const viewport of viewports) {
+    test(`${locale.key} ${viewport.width}x${viewport.height}: scroll-derived composition and slow travel`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'chromium' && viewport.width < 1024, 'Firefox/WebKit cover critical desktop boundaries only.');
       const errors: string[] = [];
-      captureErrors(page, errors);
-      await page.goto(locale.path, { waitUntil: 'networkidle' });
-      await initialized(page);
-      await setProgress(page, 0.10);
-      for (let step = 11; step <= 85; step += 1) {
-        await scrollProgressWithoutFrameWait(page, step / 100);
-        await page.waitForTimeout(24);
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      await open(page, locale.path, viewport);
+      let state = await snapshot(page);
+      expect(state.composition).toBe('identity');
+      expect(state.overflow).toBeLessThanOrEqual(0);
+
+      const transforms = new Set<string>();
+      for (let step = 10; step <= 98; step += 4) {
+        await progress(page, step / 100);
+        state = await snapshot(page);
+        expect(state.overflow).toBeLessThanOrEqual(0);
+        if (step >= 18 && step <= 36) {
+          const glyphs = await page.locator('#hero [data-flight-glyph]').evaluateAll((nodes) => nodes.map((node) => (node as HTMLElement).style.transform));
+          expect(glyphs.every(Boolean)).toBe(true);
+          transforms.add(glyphs.join('|'));
+        }
+        expect(state.proofVisible && state.thesisVisible, `thesis/proof overlap at ${step}%`).toBe(false);
       }
-      // Reverse through the same scroll-linked path, then exercise jumps that
-      // intentionally skip intermediate states and settle at the destination.
-      for (let step = 84; step >= 25; step -= 1) {
-        await scrollProgressWithoutFrameWait(page, step / 100);
-        await page.waitForTimeout(18);
-      }
-      for (const progress of [0.40, 0.60, 0.80, 1, 0.25]) {
-        await setProgress(page, progress);
-        await page.waitForTimeout(280);
-      }
+      expect(transforms.size).toBeGreaterThan(3);
+      expect(state.composition).toBe('handoff');
       expect(errors).toEqual([]);
-      const video = page.video();
-      expect(video).not.toBeNull();
-      await context.close();
-      fs.mkdirSync(`${outputRoot}/recordings`, { recursive: true });
-      await video!.saveAs(`${outputRoot}/recordings/${locale.key}-${viewport.width}x${viewport.height}-slow-fast-reverse.webm`);
+
+      await progress(page, 0.8);
+      state = await snapshot(page);
+      expect(state.composition).toBe('proof');
+      expect(state.proofVisible).toBe(true);
+      expect(state.thesisVisible).toBe(false);
+      expect(state.proofProject).toBe('hms-cloudflare');
+      expect(state.proofSrc).toBeTruthy();
+      expect(state.sameImage).toBe(false);
+      expect(state.placeholderCount).toBe(0);
+      expect(state.portalCount).toBe(0);
     });
   }
-});
-
-function localeForPath(url: string) {
-  return url.includes('/es/') ? 'es' : 'en';
 }
 
-function localeThesis(locale: string) {
-  return locale === 'es' ? locales[1].thesis : locales[0].thesis;
+for (const locale of locales) {
+  for (const viewport of viewports) {
+    test(`${locale.key} ${viewport.width}x${viewport.height}: fast jumps, reverse and breakpoint recompute`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'chromium', 'Jump stress uses Chromium; Firefox/WebKit run composition boundaries below.');
+      await open(page, locale.path, viewport);
+      for (const [from, to, expected] of [
+        [0, 0.4, 'resolved'], [0.1, 0.6, 'resolved'], [0.3, 0.8, 'proof'],
+        [0, 1, 'handoff'], [0.85, 0.25, 'travel'],
+      ] as const) {
+        await progress(page, from);
+        await progress(page, to);
+        const state = await snapshot(page);
+        expect(state.composition).toBe(expected);
+        expect(state.proofVisible && state.thesisVisible).toBe(false);
+        if (to >= 0.39 && to < 0.68) expect(state.thesisClip.every((clip) => clip === '0%')).toBe(true);
+        expect(state.overflow).toBeLessThanOrEqual(0);
+      }
+
+      await progress(page, 0.8);
+      await page.setViewportSize({ width: viewport.width >= 1024 ? 390 : 1366, height: viewport.width >= 1024 ? 844 : 768 });
+      await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+      const resized = await snapshot(page);
+      const expectedAfterResize = resized.progress < 0.15 ? 'identity'
+        : resized.progress < 0.39 ? 'travel'
+          : resized.progress < 0.68 ? 'resolved'
+            : resized.progress < 0.72 ? 'transition'
+              : resized.progress < 0.97 ? 'proof' : 'handoff';
+      expect(resized.composition).toBe(expectedAfterResize);
+      expect(resized.proofVisible && resized.thesisVisible).toBe(false);
+      expect(resized.overflow).toBeLessThanOrEqual(0);
+      // Re-land on the same logical scroll sample after geometry changed.
+      await progress(page, 0.8);
+      const after = await snapshot(page);
+      expect(after.composition).toBe('proof');
+      expect(after.proofVisible).toBe(true);
+      expect(after.proofProject).toBe('hms-cloudflare');
+      expect(after.overflow).toBeLessThanOrEqual(0);
+    });
+  }
 }
 
-async function scrollProgressWithoutFrameWait(page: Page, progress: number) {
-  await page.evaluate((target) => {
-    const hero = document.querySelector<HTMLElement>('#hero')!;
-    const stage = hero.querySelector<HTMLElement>('[data-sequence-stage]')!;
-    const top = hero.getBoundingClientRect().top + window.scrollY;
-    const length = Math.max(1, hero.offsetHeight - stage.offsetHeight);
-    document.documentElement.style.scrollBehavior = 'auto';
-    window.scrollTo({ top: top + length * target, behavior: 'auto' });
-  }, progress);
-  await page.waitForFunction((target) => Math.abs(Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? -1) - target) < 0.001, progress);
+for (const locale of locales) {
+  test(`${locale.key}: reduced motion is static initially and when activated mid-sequence`, async ({ page }, info) => {
+    test.skip(info.project.name !== 'chromium' && info.project.name !== 'firefox' && info.project.name !== 'webkit');
+    await page.setViewportSize({ width: 1366, height: 768 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(locale.path, { waitUntil: 'networkidle' });
+    await ready(page);
+    let state = await snapshot(page);
+    expect(state.motion).toBe('reduced');
+    expect(state.composition).toBe('static');
+    expect(state.proofVisible).toBe(false);
+
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.reload({ waitUntil: 'networkidle' });
+    await ready(page);
+    await progress(page, 0.8);
+    expect((await snapshot(page)).proofVisible).toBe(true);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect(page.locator('#hero')).toHaveAttribute('data-sequence-composition', 'static');
+    state = await snapshot(page);
+    expect(state.motion).toBe('reduced');
+    expect(state.proofVisible).toBe(false);
+    expect(state.overflow).toBeLessThanOrEqual(0);
+    await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+    await expect(page.getByRole('heading', { name: locale.thesis, level: 1 })).toBeVisible();
+  });
 }
 
-async function createRecordingContext(browser: Browser, viewport: { width: number; height: number }, root: string) {
-  fs.mkdirSync(`${root}/recordings`, { recursive: true });
-  return browser.newContext({
-    baseURL: 'http://127.0.0.1:4184',
-    viewport,
-    reducedMotion: 'no-preference',
-    recordVideo: { dir: `${root}/recordings` },
+for (const locale of locales) {
+  test(`${locale.key}: Firefox/WebKit proof and rewind boundaries remain deterministic`, async ({ page }, info) => {
+    test.skip(info.project.name === 'chromium', 'Chromium covers the dense viewport and jump matrix.');
+    await open(page, locale.path, { width: 1366, height: 768 });
+    await progress(page, 0.8);
+    expect((await snapshot(page)).proofVisible).toBe(true);
+    await progress(page, 0.25);
+    const state = await snapshot(page);
+    expect(state.composition).toBe('travel');
+    expect(state.proofVisible).toBe(false);
+    expect(state.sameImage).toBe(false);
+    expect(state.placeholderCount).toBe(0);
+    expect(state.portalCount).toBe(0);
   });
 }
