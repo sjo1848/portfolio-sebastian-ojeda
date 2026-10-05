@@ -106,3 +106,20 @@ No dependency, product claim, project status, evidence source, section order, UX
 Screenshots: [`artifacts/visual/issue-129-final-findings/`](../../artifacts/visual/issue-129-final-findings/) captures EN and ES `#projects` entry and reduced-motion after resize/orientation. No threshold, dependency, product claim, design decision, or release behavior changed. No merge or deploy was performed.
 
 **Post-push status:** pending the complete hosted PR #130 checks. Target stop state remains `FINAL_CRITIC_FINDINGS_RESOLVED / PR_CI_GREEN / AWAITING_MERGE_AUTHORIZATION`; no merge or deployment is authorized in this checkpoint.
+
+## Final Merge Authorization finding — F3 rewind restoration
+
+**Scope:** only F3 was addressed. The approved design and F1/F2 findings were not reopened.
+
+- When the proof handoff rewinds to a null stage, any pending delay, animation frame, or WAAPI FLIP is canceled and invalidated. The same HMS image node is restored to its actual Selected Work frame, original lazy-loading state is restored, transient handoff attributes/styles and placeholder are removed, the portal is cleared, and the bridge is hidden. The node is re-armed for a later sequence replay.
+- Added regressions for rewind below the `entering` boundary and rewind during a paused active FLIP. Both assert node identity, real frame ownership, canceled animation/portal/placeholder cleanup, and that hovering the Alquileres row subsequently updates the visible evidence on that same node.
+- Chromium, Firefox, and WebKit passed both regressions (6/6); screenshots are retained in [`artifacts/visual/issue-129-final-findings/`](../../artifacts/visual/issue-129-final-findings/) as `f3-rewind-entering-restored.png` and `f3-rewind-flip-restored.png`.
+
+| Check | Result |
+|---|---|
+| `npm run qa:release` | PASS: content/presentation checks, Astro check (79 files; zero diagnostics), 22-page build, asset, social metadata, SEO, UX/accessibility, build and sitemap validation. |
+| F3 targeted browser regressions | PASS: 6/6 across Chromium, Firefox and WebKit. The initial focused Chromium run exposed only that browsers preserve an empty `style=""` after inline style cleanup; the assertion now correctly verifies there are no remaining style declarations. |
+| `git diff --check` | PASS before checkpoint commit. |
+| Full hosted PR #130 CI | Pending after pushing this F3 checkpoint. |
+
+No dependency, visual direction, claims, budgets, Lighthouse thresholds, or deployment behavior changed. No merge or deployment was performed. Intended stop state after all hosted PR checks pass: `F3_RESOLVED / PR_CI_GREEN / AWAITING_MERGE_AUTHORIZATION`.

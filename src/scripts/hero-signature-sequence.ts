@@ -66,6 +66,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     let proofTransferGeneration = 0;
     let proofTransferAnimation: Animation | null = null;
     let cancelProofTransferDelay: (() => void) | null = null;
+    let cancelProofTransferFrame: (() => void) | null = null;
     let originalProofLoading: string | null = null;
     let handoffState: 'entering' | 'dominant' | 'settling' | 'waiting-for-selected-work' | null = null;
     let motionDisabled = false;
@@ -107,9 +108,30 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       proofTransferGeneration += 1;
       cancelProofTransferDelay?.();
       cancelProofTransferDelay = null;
+      cancelProofTransferFrame?.();
+      cancelProofTransferFrame = null;
       proofTransferAnimation?.cancel();
       proofTransferAnimation = null;
       proofObjectTransferring = false;
+    }
+
+    function waitForProofTransferFrame(): Promise<boolean> {
+      return new Promise((resolve) => {
+        let completed = false;
+        let frameId = 0;
+        const finish = (elapsed: boolean) => {
+          if (completed) return;
+          completed = true;
+          if (cancelProofTransferFrame === cancel) cancelProofTransferFrame = null;
+          resolve(elapsed);
+        };
+        const cancel = () => {
+          window.cancelAnimationFrame(frameId);
+          finish(false);
+        };
+        frameId = window.requestAnimationFrame(() => finish(true));
+        cancelProofTransferFrame = cancel;
+      });
     }
 
     function waitForProofTransferDelay(duration: number): Promise<boolean> {
@@ -153,6 +175,40 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       proofBridge!.hidden = true;
       hero!.dataset.proofHandoffInterruptedBy = reason;
       hero!.dataset.proofHandoffStage = 'complete';
+    }
+
+    /** Rewind to the canonical server-rendered frame and allow a later replay. */
+    function restoreProofObjectForRewind() {
+      const hasActiveProof = Boolean(
+        proofObject || targetPlaceholder || proofObjectPortaled || proofObjectTransferring ||
+        proofTransferAnimation || cancelProofTransferDelay || cancelProofTransferFrame,
+      );
+      if (!hasActiveProof) return;
+
+      cancelActiveProofTransfer();
+      if (proofObject && targetFrame) {
+        clearFixedPosition(proofObject);
+        if (targetPlaceholder?.isConnected) {
+          targetPlaceholder.replaceWith(proofObject);
+        } else if (!targetFrame.contains(proofObject)) {
+          targetFrame.append(proofObject);
+        }
+        if (originalProofLoading === null) proofObject.removeAttribute('loading');
+        else proofObject.setAttribute('loading', originalProofLoading);
+        delete proofObject.dataset.proofBridgeImage;
+        delete proofObject.dataset.handoffState;
+        delete proofObject.dataset.handoffConvergenceErrorPx;
+      }
+
+      targetPlaceholder?.remove();
+      targetPlaceholder = null;
+      proofObject = null;
+      targetFrame = null;
+      originalProofLoading = null;
+      proofObjectPortaled = false;
+      proofObjectTransferring = false;
+      proofObjectTransferred = false;
+      proofBridge!.hidden = true;
     }
 
     function returnProofObjectToHero() {
@@ -221,7 +277,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
       });
       proofObject.dataset.handoffState = 'flipping';
       void proofObject.getBoundingClientRect();
-      await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()));
+      if (!await waitForProofTransferFrame() || transferGeneration !== proofTransferGeneration) return;
 
       const animation = proofObject.animate(
         [{ transform: startTransform }, { transform: 'translate(0px, 0px) scale(1, 1)' }],
@@ -280,7 +336,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         return;
       }
       if (!state) {
-        returnProofObjectToHero();
+        restoreProofObjectForRewind();
         proofBridge.hidden = true;
         handoffState = null;
         hero!.removeAttribute('data-proof-handoff-stage');

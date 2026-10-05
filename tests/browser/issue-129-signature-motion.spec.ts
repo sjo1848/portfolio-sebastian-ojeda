@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type ElementHandle, type Page } from '@playwright/test';
 import fs from 'node:fs';
 
 const evidenceDir = 'output/playwright/issue-129-signature-motion';
@@ -48,6 +48,73 @@ async function moveToProgress(page: Page, progress: number) {
     const current = Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? 0);
     return current >= targetProgress - 0.02;
   }, progress);
+}
+
+async function rewindToProgress(page: Page, progress: number) {
+  await page.evaluate((targetProgress) => {
+    const hero = document.querySelector<HTMLElement>('#hero')!;
+    const stage = hero.querySelector<HTMLElement>('[data-sequence-stage]')!;
+    const top = hero.getBoundingClientRect().top + window.scrollY;
+    const length = hero.offsetHeight - stage.offsetHeight;
+    window.scrollTo({ top: top + length * targetProgress, behavior: 'auto' });
+  }, progress);
+  await page.waitForFunction((targetProgress) => {
+    const current = Number(document.querySelector<HTMLElement>('#hero')?.dataset.sequenceProgress ?? 0);
+    return Math.abs(current - targetProgress) <= 0.02;
+  }, progress);
+}
+
+async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNode: ElementHandle | null) {
+  expect(proofNode).not.toBeNull();
+  const restored = await page.evaluate(() => {
+    const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
+    const frame = image?.closest('.selected-work-evidence-image-frame');
+    const bridge = document.querySelector<HTMLElement>('#hero [data-proof-bridge]');
+    const section = document.querySelector<HTMLElement>('#projects');
+    return {
+      inActualFrame: Boolean(image && frame?.contains(image)),
+      placeholderCount: document.querySelectorAll('[data-handoff-placeholder]').length,
+      portaledCount: document.querySelectorAll('body > [data-proof-bridge-image]').length,
+      bridgeImageCount: document.querySelectorAll('[data-proof-bridge-image]').length,
+      bridgeHidden: bridge?.hidden,
+      imageStyle: image?.getAttribute('style')?.trim() || null,
+      imageHandoffState: image?.dataset.handoffState ?? null,
+      imageLoading: image?.getAttribute('loading'),
+      convergenceError: image?.dataset.handoffConvergenceErrorPx ?? null,
+      owner: section?.dataset.signatureHandoffOwner ?? null,
+      sectionHandoff: section?.dataset.signatureHandoff ?? null,
+      proofStage: document.querySelector<HTMLElement>('#hero')?.dataset.proofHandoffStage ?? null,
+      runningAnimations: image?.getAnimations().filter((animation) => animation.playState === 'running' || animation.playState === 'paused').length ?? -1,
+    };
+  });
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]')))
+    .toBe(true);
+  expect(restored).toMatchObject({
+    inActualFrame: true,
+    placeholderCount: 0,
+    portaledCount: 0,
+    bridgeImageCount: 0,
+    bridgeHidden: true,
+    imageStyle: null,
+    imageHandoffState: null,
+    imageLoading: 'lazy',
+    convergenceError: null,
+    owner: null,
+    sectionHandoff: null,
+    proofStage: null,
+    runningAnimations: 0,
+  });
+
+  await page.locator('#projects').scrollIntoViewIfNeeded();
+  const image = page.locator('#projects [data-selected-evidence] [data-evidence-image]');
+  const alquileres = page.locator('#projects [data-project-index-item]').nth(1);
+  await alquileres.hover();
+  await expect(alquileres).toHaveAttribute('data-active', 'true');
+  await expect(page.locator('[data-evidence-title]')).toHaveText('Alquileres Uspallata');
+  await expect(image).toHaveAttribute('src', /catalog-results-desktop-1440x1200\.png$/);
+  expect(await proofNode!.evaluate((node) => node === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]')))
+    .toBe(true);
+  expect(await image.evaluate((node) => node.closest('.selected-work-evidence-image-frame')?.contains(node))).toBe(true);
 }
 
 async function bringSelectedProofNearPortal(page: Page) {
@@ -375,6 +442,60 @@ test('#129 desktop-to-mobile resize during the shared proof FLIP restores the im
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   await page.waitForTimeout(600);
   await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('data-handoff-state', 'restored');
+});
+
+test('#129 rewinding from entering restores the shared proof node and keeps Selected Work interactive', async ({ page }, testInfo) => {
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+
+  await moveToProgress(page, 0.70);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'entering');
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff-owner', 'shared-image');
+  await expect(page.locator('[data-handoff-placeholder]')).toHaveCount(1);
+  await expect(page.locator('#hero [data-proof-bridge]')).toBeVisible();
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('[data-proof-bridge-image]'))).toBe(true);
+
+  await rewindToProgress(page, 0.67);
+  await expect(page.locator('#hero')).not.toHaveAttribute('data-proof-handoff-stage');
+  await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
+  await assertRewoundProofAndSelectedWorkInteraction(page, proofNode);
+  if (testInfo.project.name === 'chromium') {
+    await fs.promises.mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3-rewind-entering-restored.png', animations: 'disabled' });
+  }
+});
+
+test('#129 rewinding during active proof FLIP cancels transfer and keeps Selected Work interactive', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await pauseProofFlipAtInitialization(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+
+  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.995);
+  await bringSelectedProofNearPortal(page);
+  await waitForActiveProofFlip(page);
+  await expect.poll(() => proofNode!.evaluate((image) => image.getAnimations().some((animation) => animation.playState === 'paused')))
+    .toBe(true);
+  expect(await proofNode!.evaluate((image) => document.body.contains(image))).toBe(true);
+  expect(await proofNode!.evaluate((image) => getComputedStyle(image).position)).toBe('fixed');
+
+  await rewindToProgress(page, 0.67);
+  await expect(page.locator('#hero')).not.toHaveAttribute('data-proof-handoff-stage');
+  await expect(page.locator('#hero [data-proof-bridge]')).toBeHidden();
+  await assertRewoundProofAndSelectedWorkInteraction(page, proofNode);
+  if (testInfo.project.name === 'chromium') {
+    await fs.promises.mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3-rewind-flip-restored.png', animations: 'disabled' });
+  }
 });
 
 test('#129 Spanish mobile sequence keeps glyphs and thesis within the viewport', async ({ page }, testInfo) => {
