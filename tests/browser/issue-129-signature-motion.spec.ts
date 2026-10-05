@@ -64,7 +64,7 @@ async function rewindToProgress(page: Page, progress: number) {
   }, progress);
 }
 
-async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNode: ElementHandle | null) {
+async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNode: ElementHandle<HTMLElement | SVGElement> | null) {
   expect(proofNode).not.toBeNull();
   const restored = await page.evaluate(() => {
     const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
@@ -117,6 +117,53 @@ async function assertRewoundProofAndSelectedWorkInteraction(page: Page, proofNod
   expect(await image.evaluate((node) => node.closest('.selected-work-evidence-image-frame')?.contains(node))).toBe(true);
 }
 
+async function expectHeroProofAtStage(page: Page, proofNode: ElementHandle<HTMLElement | SVGElement> | null, stage: 'dominant' | 'settling') {
+  expect(proofNode).not.toBeNull();
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', stage);
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', stage);
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff-owner', 'shared-image');
+  await expect(page.locator('#hero [data-proof-bridge]')).toBeVisible();
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#hero [data-proof-bridge-image]')))
+    .toBe(true);
+  const state = await proofNode!.evaluate((node) => {
+    const image = node as HTMLElement;
+    return {
+      parentIsHero: Boolean(image.closest('.hero-proof-bridge-figure')),
+      state: image.dataset.handoffState,
+      position: getComputedStyle(image).position,
+      style: image.getAttribute('style')?.trim() || null,
+      placeholderCount: document.querySelectorAll('[data-handoff-placeholder]').length,
+      imageAnimations: image.getAnimations().length,
+      sectionPlaceholderConnected: document.querySelector('[data-handoff-placeholder]')?.isConnected ?? false,
+    };
+  });
+  expect(state).toMatchObject({
+    parentIsHero: true,
+    state: 'hero',
+    style: null,
+    placeholderCount: 1,
+    imageAnimations: 0,
+    sectionPlaceholderConnected: true,
+  });
+  expect(state.position).not.toBe('fixed');
+  expect(await page.locator('#projects [data-selected-evidence] .selected-work-evidence-image-frame [data-evidence-image]')
+    .count()).toBe(0);
+}
+
+async function waitForCapturedProofDelayCount(page: Page, count: number) {
+  await page.waitForFunction((expected) => {
+    const testWindow = window as Window & { __issue129ProofDelayCount?: () => number };
+    return (testWindow.__issue129ProofDelayCount?.() ?? 0) >= expected;
+  }, count);
+}
+
+async function releaseCapturedProofDelay(page: Page, index: number) {
+  await page.evaluate((callbackIndex) => {
+    const testWindow = window as Window & { __issue129ReleaseProofDelay?: (index: number) => void };
+    testWindow.__issue129ReleaseProofDelay?.(callbackIndex);
+  }, index);
+}
+
 async function bringSelectedProofNearPortal(page: Page) {
   for (let attempt = 0; attempt < 80; attempt += 1) {
     const view = await page.evaluate(() => {
@@ -153,6 +200,31 @@ async function pauseProofFlipAtInitialization(page: Page) {
       }
       return animation;
     };
+  });
+}
+
+async function captureProofTransferDelays(page: Page) {
+  await page.addInitScript(() => {
+    type TestWindow = Window & {
+      __issue129CapturedProofDelays?: Array<() => void>;
+      __issue129ReleaseProofDelay?: (index: number) => void;
+      __issue129ProofDelayCount?: () => number;
+    };
+    const testWindow = window as TestWindow;
+    const captured: Array<() => void> = [];
+    const nativeSetTimeout = window.setTimeout.bind(window);
+    window.setTimeout = ((handler: TimerHandler, timeout?: number, ...args: unknown[]) => {
+      if (timeout === 320 && typeof handler === 'function') {
+        // Keep the native timer cancellable while exposing its callback so the
+        // regression can deliberately deliver a stale timeout after rewind.
+        captured.push(() => (handler as (...callbackArgs: unknown[]) => void)(...args));
+        return nativeSetTimeout(() => {}, 60_000);
+      }
+      return nativeSetTimeout(handler, timeout, ...args);
+    }) as typeof window.setTimeout;
+    testWindow.__issue129CapturedProofDelays = captured;
+    testWindow.__issue129ReleaseProofDelay = (index) => captured[index]?.();
+    testWindow.__issue129ProofDelayCount = () => captured.length;
   });
 }
 
@@ -495,6 +567,83 @@ test('#129 rewinding during active proof FLIP cancels transfer and keeps Selecte
   if (testInfo.project.name === 'chromium') {
     await fs.promises.mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
     await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3-rewind-flip-restored.png', animations: 'disabled' });
+  }
+});
+
+test('#129 rewind from target delay cancels stale completion and replays the same proof cleanly', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await captureProofTransferDelays(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+
+  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.995);
+  await bringSelectedProofNearPortal(page);
+  await expect(page.locator('[data-proof-bridge-image]')).toHaveAttribute('data-handoff-state', 'target-aligned');
+  await waitForCapturedProofDelayCount(page, 1);
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'target-aligned');
+
+  await rewindToProgress(page, 0.92);
+  await expectHeroProofAtStage(page, proofNode, 'settling');
+  await releaseCapturedProofDelay(page, 0);
+  await page.waitForTimeout(500);
+  await expectHeroProofAtStage(page, proofNode, 'settling');
+  if (testInfo.project.name === 'chromium') {
+    await fs.promises.mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3b-delay-rewind-settling.png', animations: 'disabled' });
+  }
+
+  await moveToProgress(page, 0.995);
+  await expect(page.locator('#hero')).toHaveAttribute('data-proof-handoff-stage', 'waiting-for-selected-work');
+  await bringSelectedProofNearPortal(page);
+  await waitForCapturedProofDelayCount(page, 2);
+  await expect(page.locator('#projects')).toHaveAttribute('data-signature-handoff', 'target-aligned');
+
+  // Deliver the previously canceled callback while the replay's own delay is
+  // pending. It must not commit stale state into Selected Work.
+  await releaseCapturedProofDelay(page, 0);
+  await page.waitForTimeout(30);
+  await expect(page.locator('[data-proof-bridge-image]')).toHaveAttribute('data-handoff-state', 'target-aligned');
+  expect(await proofNode!.evaluate((image) => document.body.contains(image))).toBe(true);
+  await releaseCapturedProofDelay(page, 1);
+  await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('data-handoff-state', 'complete', { timeout: 10_000 });
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]')))
+    .toBe(true);
+  const convergenceError = Number(await proofNode!.getAttribute('data-handoff-convergence-error-px'));
+  expect(convergenceError).toBeLessThanOrEqual(1);
+  await expect(page.locator('#projects [data-handoff-placeholder]')).toHaveCount(0);
+  if (testInfo.project.name === 'chromium') {
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3b-clean-forward-replay.png', animations: 'disabled' });
+  }
+});
+
+test('#129 rewind during active proof FLIP restores the shared image to the dominant Hero stage', async ({ page }, testInfo) => {
+  test.setTimeout(60_000);
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await pauseProofFlipAtInitialization(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+
+  await moveToProgress(page, 0.70);
+  await moveToProgress(page, 0.995);
+  await bringSelectedProofNearPortal(page);
+  await waitForActiveProofFlip(page);
+  expect(await proofNode!.evaluate((image) => image.getAnimations().some((animation) => animation.playState === 'paused')))
+    .toBe(true);
+
+  await rewindToProgress(page, 0.80);
+  await expectHeroProofAtStage(page, proofNode, 'dominant');
+  await page.waitForTimeout(550);
+  await expectHeroProofAtStage(page, proofNode, 'dominant');
+  if (testInfo.project.name === 'chromium') {
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/f3b-flip-rewind-dominant.png', animations: 'disabled' });
   }
 });
 

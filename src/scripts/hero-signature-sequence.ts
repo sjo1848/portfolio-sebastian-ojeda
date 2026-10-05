@@ -212,13 +212,18 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     }
 
     function returnProofObjectToHero() {
-      if (!proofObjectPortaled || proofObjectTransferred || proofObjectTransferring || !proofObject || !bridgeFigure) return;
+      if (proofObjectTransferred || !proofObject || !bridgeFigure) return;
+      if (!proofObjectPortaled && !proofObjectTransferring && bridgeFigure.contains(proofObject)) return;
+
+      // A backward stage transition wins over any pending target delay or FLIP.
+      // Invalidate the async transfer before moving the shared node back into Hero.
+      cancelActiveProofTransfer();
       clearFixedPosition(proofObject);
       proofObject.dataset.handoffState = 'hero';
+      delete proofObject.dataset.handoffConvergenceErrorPx;
       bridgeFigure.insertBefore(proofObject, bridgeFigure.querySelector('figcaption'));
       proofObjectPortaled = false;
       proofBridge!.hidden = false;
-      projectSection!.dataset.signatureHandoff = 'settling';
     }
 
     function portalProofObject() {

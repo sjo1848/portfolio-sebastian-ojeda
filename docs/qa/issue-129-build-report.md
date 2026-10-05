@@ -123,3 +123,21 @@ Screenshots: [`artifacts/visual/issue-129-final-findings/`](../../artifacts/visu
 | Full hosted PR #130 CI | Pending after pushing this F3 checkpoint. |
 
 No dependency, visual direction, claims, budgets, Lighthouse thresholds, or deployment behavior changed. No merge or deployment was performed. Intended stop state after all hosted PR checks pass: `F3_RESOLVED / PR_CI_GREEN / AWAITING_MERGE_AUTHORIZATION`.
+
+## Merge Authorization finding — F3B backward-stage cancellation
+
+**Scope:** only the F3B transition from `waiting-for-selected-work` back to `settling` or `dominant` was changed.
+
+- Before a non-null backward stage is applied, an in-flight proof transfer is invalidated: its target-alignment delay, animation-frame wait, and WAAPI animation are canceled. The same HMS node returns to the visible Hero bridge with fixed/FLIP styles removed; the real Selected Work placeholder remains to preserve layout and the shared-image owner remains active until a valid forward completion.
+- Regression coverage includes rewind during the 320 ms alignment delay, rewind during paused active FLIP, explicit delivery of the canceled delay callback while a new replay is pending, and a clean forward replay that settles the same image in the real frame with recorded convergence ≤1 px.
+- The F3B browser regressions passed in Chromium, Firefox, and WebKit (**6/6**). Screenshots: `f3b-delay-rewind-settling.png`, `f3b-clean-forward-replay.png`, and `f3b-flip-rewind-dominant.png` in [`artifacts/visual/issue-129-final-findings/`](../../artifacts/visual/issue-129-final-findings/).
+
+| Check | Result |
+|---|---|
+| `npm run qa:release` | PASS: content/presentation, Astro check (79 files; zero diagnostics), 22-page build, static assets, social metadata, SEO, UX/accessibility and sitemap. |
+| F3B focused browser regressions | PASS: 6/6 across Chromium, Firefox, WebKit. |
+| Full hosted PR #130 CI | Pending after pushing this F3B checkpoint. |
+| Lighthouse and JS budget | Thresholds/budget unchanged; full hosted PR gate pending. |
+| `git diff --check` | PASS before checkpoint commit. |
+
+No merge or deployment was performed. Intended stop state after full hosted PR CI passes: `F3B_RESOLVED / PR_CI_GREEN / AWAITING_MERGE_AUTHORIZATION`.
