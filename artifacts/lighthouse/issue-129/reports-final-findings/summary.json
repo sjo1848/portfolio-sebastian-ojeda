@@ -1,0 +1,110 @@
+[
+  {
+    "route": "/",
+    "representative": false,
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 1776.1624000000002,
+    "cls": 0
+  },
+  {
+    "route": "/",
+    "representative": false,
+    "scores": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 2061.796,
+    "cls": 0
+  },
+  {
+    "route": "/es/",
+    "representative": false,
+    "scores": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 2077.9714,
+    "cls": 0
+  },
+  {
+    "route": "/es/",
+    "representative": false,
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 1730.4668000000001,
+    "cls": 0
+  },
+  {
+    "route": "/projects/hms-elite/",
+    "representative": false,
+    "scores": {
+      "performance": 0.9,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 2720.4732999999997,
+    "cls": 0
+  },
+  {
+    "route": "/projects/hms-elite/",
+    "representative": false,
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 2268.259,
+    "cls": 0
+  },
+  {
+    "route": "/",
+    "representative": true,
+    "scores": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 1996.2798000000003,
+    "cls": 0
+  },
+  {
+    "route": "/es/",
+    "representative": true,
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 1716.0855,
+    "cls": 0
+  },
+  {
+    "route": "/projects/hms-elite/",
+    "representative": true,
+    "scores": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "lcpMs": 2274.1984,
+    "cls": 0
+  }
+]

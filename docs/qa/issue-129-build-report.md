@@ -83,3 +83,26 @@ The approved design and prior R1/R2/R3 decisions were kept intact. Integration h
 | `git diff --check` | PASS before checkpoint commit. |
 
 No dependency, product claim, project status, evidence source, section order, UX direction, budget or Lighthouse threshold changed. No merge or deployment was performed. PR #130 remains the review target; final status is pending the post-push PR CI run.
+
+## Final Independent / Integration Review findings — F1 and F2
+
+**Scope:** only the two final-review findings were addressed. Earlier design, R1, R2 and R3 approvals remain untouched.
+
+- **F1 — hash entry:** on `/#projects` and `/es/#projects`, startup now clears the pending-motion bootstrap, exposes the existing SiteHeader signature, sets the Hero to its static state, and reasserts the native fragment target after layout settles. Direct entry and return from the HMS case study are covered in both languages. The Selected Work target remains in view, the stage is not sticky, and no second signature is introduced.
+- **F2 — reduced motion terminal state:** named resize, orientation, and breakpoint handlers now share a terminal `motionDisabled` gate. When reduced motion becomes active, those handlers are removed, pending animation work is canceled, and subsequent viewport changes cannot restore `data-hero-motion-pending` or restart the sequence. The same Selected Work image node remains in its original frame.
+
+### Final findings evidence and validation
+
+| Check | Result |
+|---|---|
+| New F1 direct-fragment/case-return test | PASS for EN and ES in Chromium, Firefox, WebKit, Mobile Chromium, and Mobile WebKit. |
+| New F2 reduced-motion → resize → orientation test | PASS in Chromium, Firefox, and WebKit; intentionally skipped in the two mobile projects because it begins at a desktop viewport. Existing mid-FLIP reduced-motion and desktop→mobile tests remain unchanged. |
+| `npm run qa:release` | PASS: content and presentation checks, Astro check (79 files, zero diagnostics), build, assets, social metadata, SEO, accessibility, sitemap. |
+| Full local `npm run test:browser` | 756 passed, 354 expected project/contract skips, 5 timeouts, across the configured five projects. The five timed-out cases were existing WebKit/Mobile WebKit axe/navigation tests, not F1/F2. Re-running those exact cases serially with `--workers=1` passed 10/10. The isolated rerun indicates runner contention; no unrelated test behavior or timeout threshold was changed. Hosted PR CI remains the final matrix gate. |
+| Lighthouse CI `npx --yes @lhci/cli@0.15.1 autorun` | PASS: all 9 runs cleared the unchanged floors (Performance ≥0.90; Accessibility, Best Practices and SEO ≥0.95). Representative EN / ES / HMS Elite scores: 0.98 / 1.00 / 0.98 Performance, and 1.00 for all other categories. Representative lab LCP: 1,996 ms / 1,716 ms / 2,274 ms; CLS 0. Raw reports and summary: [`reports-final-findings/`](../../artifacts/lighthouse/issue-129/reports-final-findings/). |
+| Home initial JS gzip | 95,426 B EN and ES, unchanged and 4,574 B below the 100,000 B cap. |
+| `git diff --check` | PASS before final commit. |
+
+Screenshots: [`artifacts/visual/issue-129-final-findings/`](../../artifacts/visual/issue-129-final-findings/) captures EN and ES `#projects` entry and reduced-motion after resize/orientation. No threshold, dependency, product claim, design decision, or release behavior changed. No merge or deploy was performed.
+
+**Post-push status:** pending the complete hosted PR #130 checks. Target stop state remains `FINAL_CRITIC_FINDINGS_RESOLVED / PR_CI_GREEN / AWAITING_MERGE_AUTHORIZATION`; no merge or deployment is authorized in this checkpoint.

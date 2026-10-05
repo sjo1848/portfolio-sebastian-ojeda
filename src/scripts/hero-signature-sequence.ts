@@ -27,6 +27,16 @@ window.addEventListener('hashchange', restoreProjectsFragmentVisibility);
 window.addEventListener('popstate', restoreProjectsFragmentVisibility);
 window.addEventListener('pageshow', restoreProjectsFragmentVisibility);
 
+// A deep link must render the complete static Hero immediately. The inline
+// bootstrap may have hidden the persistent header identity before this module
+// runs, so normalize that state before native fragment positioning settles.
+if (hero && projectSection && window.location.hash) {
+  root.removeAttribute('data-hero-motion-pending');
+  root.dataset.heroSignatureVisible = 'true';
+  hero.dataset.motionState = 'static';
+  restoreProjectsFragmentVisibility();
+}
+
 // A deep link must keep native fragment positioning stable. The long sticky
 // sequence changes Hero height, so it only starts when the page has no anchor.
 if (hero && stage && projectSection && !motionPreference.matches && !window.location.hash) {
@@ -58,6 +68,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     let cancelProofTransferDelay: (() => void) | null = null;
     let originalProofLoading: string | null = null;
     let handoffState: 'entering' | 'dominant' | 'settling' | 'waiting-for-selected-work' | null = null;
+    let motionDisabled = false;
     const bridgeFigure = proofBridge?.querySelector<HTMLElement>('.hero-proof-bridge-figure');
 
     function adoptSelectedEvidenceImage() {
@@ -333,6 +344,7 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
 
     function update() {
       frame = 0;
+      if (motionDisabled) return;
       const sectionTop = hero!.getBoundingClientRect().top + window.scrollY;
       const scrollLength = Math.max(1, hero!.offsetHeight - stage!.offsetHeight);
       const progress = clamp((window.scrollY - sectionTop) / scrollLength);
@@ -402,22 +414,17 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
     }
 
     function scheduleUpdate() {
-      if (!frame) frame = window.requestAnimationFrame(update);
+      if (!motionDisabled && !frame) frame = window.requestAnimationFrame(update);
     }
 
-    hero.dataset.motionState = 'active';
-    measure();
-    update();
-    window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', () => {
+    function handleResize() {
+      if (motionDisabled) return;
       measure();
       scheduleUpdate();
-    }, { passive: true });
-    window.addEventListener('orientationchange', () => {
-      measure();
-      scheduleUpdate();
-    }, { passive: true });
-    desktopHandoff.addEventListener('change', (event) => {
+    }
+
+    function handleDesktopHandoffChange(event: MediaQueryListEvent) {
+      if (motionDisabled) return;
       if (!event.matches) {
         restoreProofObjectToSelectedWork('mobile-breakpoint');
       } else {
@@ -425,22 +432,37 @@ if (hero && stage && projectSection && !motionPreference.matches && !window.loca
         measure();
         scheduleUpdate();
       }
-    });
-    motionPreference.addEventListener('change', (event) => {
-      if (event.matches) {
-        if (frame) window.cancelAnimationFrame(frame);
-        frame = 0;
-        window.removeEventListener('scroll', scheduleUpdate);
-        restoreProofObjectToSelectedWork('reduced-motion');
-        hero!.dataset.motionState = 'reduced';
-        delete root.dataset.heroMotionPending;
-        root.dataset.heroSignatureVisible = 'true';
-        handoffState = null;
-        hero!.removeAttribute('data-proof-handoff-stage');
-        projectSection!.removeAttribute('data-signature-handoff');
-        projectSection!.removeAttribute('data-signature-handoff-owner');
-      }
-    });
+    }
+
+    function handleMotionPreferenceChange(event: MediaQueryListEvent) {
+      if (!event.matches || motionDisabled) return;
+      // Reduced motion is terminal for this page load. Resize, orientation,
+      // and later preference changes must never restart the scroll sequence.
+      motionDisabled = true;
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = 0;
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+      desktopHandoff.removeEventListener('change', handleDesktopHandoffChange);
+      restoreProofObjectToSelectedWork('reduced-motion');
+      hero!.dataset.motionState = 'reduced';
+      delete root.dataset.heroMotionPending;
+      root.dataset.heroSignatureVisible = 'true';
+      handoffState = null;
+      hero!.removeAttribute('data-proof-handoff-stage');
+      projectSection!.removeAttribute('data-signature-handoff');
+      projectSection!.removeAttribute('data-signature-handoff-owner');
+    }
+
+    hero.dataset.motionState = 'active';
+    measure();
+    update();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('orientationchange', handleResize, { passive: true });
+    desktopHandoff.addEventListener('change', handleDesktopHandoffChange);
+    motionPreference.addEventListener('change', handleMotionPreferenceChange);
   } else {
     delete root.dataset.heroMotionPending;
   }

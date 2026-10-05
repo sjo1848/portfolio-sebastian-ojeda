@@ -93,6 +93,61 @@ async function captureBrowserEvidence(page: Page, testInfo: { project: { name: s
   if (testInfo.project.name === 'chromium') await page.screenshot({ path: `${evidenceDir}/${file}` });
 }
 
+test('#129 reduced motion remains terminal after resize and orientation change', async ({ page }, testInfo) => {
+  test.skip(!['chromium', 'firefox', 'webkit'].includes(testInfo.project.name));
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const proofNode = await page.locator('#projects [data-selected-evidence] [data-evidence-image]').elementHandle();
+  expect(proofNode).not.toBeNull();
+  await moveToProgress(page, 0.40);
+  await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'active');
+  await expect(page.locator('html')).toHaveAttribute('data-hero-motion-pending', 'true');
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'reduced');
+  await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
+  await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => window.dispatchEvent(new Event('orientationchange')));
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+
+  const finalState = await page.evaluate(() => {
+    const hero = document.querySelector<HTMLElement>('#hero')!;
+    const root = document.documentElement;
+    const image = document.querySelector<HTMLImageElement>('#projects [data-selected-evidence] [data-evidence-image]');
+    const frame = image?.closest('.selected-work-evidence-image-frame');
+    return {
+      pending: root.hasAttribute('data-hero-motion-pending'),
+      signatureVisible: root.dataset.heroSignatureVisible,
+      motionState: hero.dataset.motionState,
+      stagePosition: getComputedStyle(hero.querySelector('[data-sequence-stage]')!).position,
+      proofInSelectedWorkFrame: Boolean(image && frame?.contains(image)),
+      proofPosition: image ? getComputedStyle(image).position : null,
+    };
+  });
+  // Confirm identity across the responsive change, not merely a replacement image.
+  expect(await proofNode!.evaluate((image) => image === document.querySelector('#projects [data-selected-evidence] [data-evidence-image]'))).toBe(true);
+  expect(finalState).toMatchObject({
+    pending: false,
+    signatureVisible: 'true',
+    motionState: 'reduced',
+    proofInSelectedWorkFrame: true,
+  });
+  expect(finalState.stagePosition).not.toBe('sticky');
+  expect(finalState.proofPosition).not.toBe('fixed');
+  await page.waitForTimeout(100);
+  await expect(page.locator('#hero')).toHaveAttribute('data-motion-state', 'reduced');
+  await expect(page.locator('html')).not.toHaveAttribute('data-hero-motion-pending', 'true');
+  await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+  if (testInfo.project.name === 'chromium') {
+    await fs.promises.mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
+    await page.screenshot({ path: 'artifacts/visual/issue-129-final-findings/reduced-motion-resize-orientation.png', animations: 'disabled' });
+  }
+});
+
 for (const locale of locales) {
   for (const width of [360, 390, 430, 768, 1024, 1440]) {
     test(`#129 ${locale.lang} signature composition fits ${width}px`, async ({ page }, testInfo) => {
