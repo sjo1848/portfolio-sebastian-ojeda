@@ -50,6 +50,10 @@ forbidText(hero, 'hero-opening-name', 'HomePage.astro duplicate name in Hero');
 requireText(hero, 'class="hero-proposition"', 'HomePage.astro visible proposition block');
 requireText(hero, 'id="hero-thesis"', 'HomePage.astro semantic thesis heading');
 requireText(hero, 'hero-thesis-line', 'HomePage.astro typographic thesis');
+requireText(hero, 'data-hero-word-slot', 'HomePage.astro bounded dynamic word slot');
+for (const word of ['SYSTEMS', 'SERVICES', 'PRODUCTS', 'SISTEMAS', 'SERVICIOS', 'PRODUCTOS']) {
+  requireText(home, word, `HomePage.astro dynamic word vocabulary ${word}`);
+}
 forbidText(hero, 'HeroSystemModel', 'HomePage.astro rejected conceptual system model');
 requireText(hero, 'href="#projects"', 'HomePage.astro direct Selected Work CTA');
 forbidText(hero, 'data-sequence-progress', 'HomePage.astro obsolete scroll-state runtime');
