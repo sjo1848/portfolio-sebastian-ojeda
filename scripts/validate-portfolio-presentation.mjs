@@ -46,6 +46,7 @@ const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"')
 requireText(hero, 'href={site.cv}', 'HomePage.astro Hero Resume CTA');
 requireText(hero, 'hero-editorial-grid', 'HomePage.astro static editorial Hero layout');
 requireText(hero, 'class="hero-identity"', 'HomePage.astro visible identity block');
+forbidText(hero, 'hero-opening-name', 'HomePage.astro duplicate name in Hero');
 requireText(hero, 'class="hero-proposition"', 'HomePage.astro visible proposition block');
 requireText(hero, 'id="hero-thesis"', 'HomePage.astro semantic thesis heading');
 requireText(hero, 'hero-thesis-line', 'HomePage.astro typographic thesis');

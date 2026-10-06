@@ -11,7 +11,7 @@ test('I3 Hero editorial composition remains within the viewport at legacy respon
       await page.emulateMedia({ reducedMotion: 'no-preference' });
       await page.goto(route);
       await expect(page.locator('#hero .hero-thesis')).toBeVisible();
-      await expect(page.locator('#hero .hero-opening-name')).toBeVisible();
+      await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
       const geometry = await page.locator('.hero-thesis').evaluate((heading) => {
         const rect = heading.getBoundingClientRect();
         return { left: rect.left, right: rect.right, scrollWidth: document.documentElement.scrollWidth };

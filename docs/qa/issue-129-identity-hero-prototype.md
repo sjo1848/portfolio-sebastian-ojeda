@@ -4,9 +4,9 @@ State: **LOCAL PROTOTYPE / HUMAN VISUAL REVIEW READY**. This is not a release ca
 
 ## Design correction
 
-The previous five-layer system diagram was rejected in human visual review. It made the Hero feel like a technical slide and competed with Sebastián's identity. The new Hero uses the personal name and thesis as its visual material. After a further design critique, the name became the primary visual anchor. Only “SYSTEMS BEHIND” / “SISTEMAS DETRÁS” rises into place; its copper underline settles as a structural mark. The same copper seam begins Selected Work at the content edge. Motion ends in a stable composition; there is no loop or scroll gate. Selected Work continues below without a flagship project in the Hero.
+The previous five-layer system diagram was rejected in human visual review. The later underlined, single-line reveal was also rejected: it changed the rhythm without adding meaning. This revision restores the earlier typographic composition and removes the repeated personal name from the Hero. Sebastián Ojeda remains in the persistent SiteHeader. The thesis is the sole display headline, with the earlier one-time line reveal and structural rule. There is no loop or scroll gate. Selected Work continues below without a flagship project in the Hero.
 
-Thesis: “I build the systems behind real work.” / “Construyo los sistemas detrás del trabajo real.” The supporting copy now leads with backend-oriented operational work and points to the case-study evaluation and limitations. The visual uses the approved Stone / Andes Copper palette and keeps the role, location, selected-work CTA, Resume/CV and GitHub available on load. The nine project cases and their claims are unchanged.
+Thesis: “I build the systems behind real work.” / “Construyo los sistemas detrás del trabajo real.” The visual uses the approved Stone / Andes Copper palette and keeps the role, location, selected-work CTA, Resume/CV and GitHub available on load. The claims and the nine project cases are unchanged.
 
 ## Visual evidence
 
@@ -19,9 +19,9 @@ Local preview: `http://127.0.0.1:4184/` and `http://127.0.0.1:4184/es/`. Reload 
 
 ## Focused checks
 
-- `npm run check` (0 errors/warnings/hints), `npm run validate:content`, `npm run validate:presentation` and `npm run build`: PASS.
-- Issue #129 WebKit tests run serially: 17 passed. The relevant content hierarchy and axe retry across Chromium/WebKit: 16 passed. The initial four-worker run saturated the local browser environment and timed out in WebKit; the affected tests passed when repeated serially with a 45-second test timeout. The temporary config reused the live local preview server.
-- Focused coverage includes EN/ES, 1366×768, 1024×768, 390×844, 360×640, ordinary forward/reverse scroll, the Hero/Selected Work seam alignment, reduced motion, no JavaScript, keyboard CTA, axe and console errors.
+- `npm run check` (0 errors/warnings/hints), `npm run build` and `npm run validate:presentation`: PASS.
+- Focused Chromium/WebKit browser rerun: 16 passed. It covered EN/ES at 1366×768 and 390×844, no-JS navigation, keyboard CTA, and the mobile-navigation failure path. The temporary config reused the live local preview server.
+- The existing broader Issue #129 checks covered the other responsive and reduced-motion states before this bounded removal. Full release browser and Lighthouse gates remain deferred for human visual review.
 - No new dependency or client island. CSS-only Hero motion. Home JavaScript chunks are unchanged from the previous local checkpoint (95,378 B gzip).
 
 Full release browser matrix and Lighthouse remain pending human visual acceptance, as requested. This local prototype has not been pushed, merged or deployed.

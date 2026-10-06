@@ -13,7 +13,7 @@ for (const locale of locales) {
     await page.goto(locale.path, { waitUntil: 'networkidle' });
     await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
     await expect(page.locator('#hero .hero-role')).toHaveText(locale.role);
-    await expect(page.locator('#hero .hero-opening-name')).toHaveText('Sebastián Ojeda');
+    await expect(page.locator('#hero .hero-opening-name')).toHaveCount(0);
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
@@ -37,30 +37,11 @@ for (const locale of locales) {
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toBeVisible();
     await expect(page.locator('.hero-thesis-line > span').first()).toHaveCSS('animation-name', 'none');
-    await expect(page.locator('.hero-thesis-line > span').nth(1)).toHaveCSS('animation-name', 'none');
     await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);
   });
 }
-
-test('#129 one purposeful motion reveals the systems behind the work', async ({ page }) => {
-  await page.setViewportSize({ width: 1366, height: 768 });
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/', { waitUntil: 'networkidle' });
-  const animation = await page.locator('.hero-thesis').evaluate((heading) => {
-    const lines = [...heading.querySelectorAll<HTMLElement>('.hero-thesis-line > span')];
-    return {
-      first: getComputedStyle(lines[0]!).animationName,
-      middle: getComputedStyle(lines[1]!).animationName,
-      last: getComputedStyle(lines[2]!).animationName,
-      underline: getComputedStyle(lines[1]!, '::after').animationName,
-    };
-  });
-  expect(animation).toEqual({
-    first: 'none', middle: 'hero-behind-reveal', last: 'none', underline: 'hero-rule-grow',
-  });
-});
 
 test('#129 failed optional scripts leave the static Home fully usable', async ({ page }, info) => {
   test.skip(!['chromium', 'firefox', 'webkit'].includes(info.project.name));

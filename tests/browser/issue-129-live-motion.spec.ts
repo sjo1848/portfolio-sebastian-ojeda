@@ -23,7 +23,7 @@ for (const locale of locales) {
 
       await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
       await expect(page.locator('#hero .hero-role')).toHaveText(locale.role);
-      await expect(page.locator('#hero .hero-opening-name')).toHaveText('Sebastián Ojeda');
+      await expect(page.locator('#hero .hero-opening-name')).toHaveCount(0);
       await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
       await expect(page.locator('#hero .hero-copy')).toBeVisible();
       await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
@@ -34,8 +34,6 @@ for (const locale of locales) {
         const hero = document.querySelector<HTMLElement>('#hero')!;
         const thesis = hero.querySelector<HTMLElement>('.hero-thesis')!;
         const cta = hero.querySelector<HTMLElement>('.button-primary')!;
-        const marker = hero.querySelector<HTMLElement>('.hero-section-marker')!;
-        const projects = document.querySelector<HTMLElement>('#projects')!;
         const rect = (element: HTMLElement) => {
           const box = element.getBoundingClientRect();
           return { left: box.left, right: box.right, top: box.top, bottom: box.bottom };
@@ -45,7 +43,6 @@ for (const locale of locales) {
           position: getComputedStyle(hero).position,
           thesis: rect(thesis),
           cta: rect(cta),
-          seamGap: Math.abs(marker.getBoundingClientRect().left - (projects.getBoundingClientRect().left + parseFloat(getComputedStyle(projects, '::before').left))),
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           runtimeMarkers: document.querySelectorAll('[data-sequence-stage], [data-flight-glyph], [data-proof-bridge]').length,
         };
@@ -58,7 +55,6 @@ for (const locale of locales) {
       expect(initial.cta.right).toBeLessThanOrEqual(viewport.width);
       expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
       expect(initial.overflow).toBeLessThanOrEqual(0);
-      expect(initial.seamGap).toBeLessThanOrEqual(1);
       expect(initial.runtimeMarkers).toBe(0);
       if (viewport.width === 1366) expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
 
@@ -92,7 +88,7 @@ for (const locale of locales) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(locale.path, { waitUntil: 'networkidle' });
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
-    await expect(page.locator('#hero .hero-opening-name')).toBeVisible();
+    await expect(page.locator('#hero .hero-opening-name')).toHaveCount(0);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toBeVisible();
     await page.evaluate(() => window.scrollTo({ top: document.querySelector('#projects')!.getBoundingClientRect().top + scrollY, behavior: 'instant' }));

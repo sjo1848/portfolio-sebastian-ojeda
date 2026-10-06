@@ -4,7 +4,7 @@ const locales = [
   {
     name: 'English', path: '/', role: 'I build the systems behind real work.',
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-    heroCopy: 'Backend-first systems for operational problems, from data and integrations to usable interfaces. The case studies show what I built, how I evaluated it and its limits.',
+    heroCopy: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
     heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
@@ -25,7 +25,7 @@ const locales = [
   {
     name: 'Spanish', path: '/es/', role: 'Construyo los sistemas detrás del trabajo real.',
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Sistemas con foco backend para problemas operativos: de datos e integraciones a interfaces útiles. Los casos muestran qué construí, cómo lo evalué y sus límites.',
+    heroCopy: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
     heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
