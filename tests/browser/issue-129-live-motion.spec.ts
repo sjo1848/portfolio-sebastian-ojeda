@@ -56,6 +56,11 @@ for (const locale of locales) {
       expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
       expect(initial.overflow).toBeLessThanOrEqual(0);
       expect(initial.runtimeMarkers).toBe(0);
+      if (viewport.width === 1366) {
+        const firstCaseTop = await page.locator('#projects .selected-work-title').first()
+          .evaluate((element) => element.getBoundingClientRect().top);
+        expect(firstCaseTop).toBeLessThan(viewport.height);
+      }
 
       // Slow, fast and reverse navigation are ordinary document scrolling:
       // the Hero composition does not depend on crossing hidden state gates.
@@ -94,5 +99,6 @@ for (const locale of locales) {
     await expect(page.locator('#projects')).toBeInViewport();
     await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
     await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
+    await expect(page.locator('.selected-work-mobile-image-frame img')).toHaveCSS('animation-name', 'none');
   });
 }

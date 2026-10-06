@@ -474,7 +474,7 @@ h2 {
   position: relative;
   overflow: clip;
   border-bottom: 1px solid var(--line);
-  padding-block: clamp(3.5rem, 8vh, 6rem);
+  padding-block: clamp(2.75rem, 6vh, 4rem);
   background-color: var(--paper);
   background-image:
     linear-gradient(90deg, transparent calc(20% - 0.5px), rgb(23 32 39 / 3%) 20%, transparent calc(20% + 0.5px)),
@@ -505,7 +505,7 @@ h2 {
 .hero-role::before { width: 2rem; height: 2px; flex: 0 0 auto; background: var(--accent); content: ''; }
 .hero-opening-name {
   display: grid;
-  margin: clamp(2rem, 6vh, 3.75rem) 0 1.35rem;
+  margin: clamp(1.75rem, 4vh, 2.75rem) 0 1.35rem;
   color: var(--ink);
   font-size: clamp(4rem, 6.2vw, 6rem);
   font-weight: 820;
@@ -538,7 +538,8 @@ h2 {
   font-size: clamp(2.4rem, 4vw, 3.3rem);
   font-weight: 820;
   line-height: 0.98;
-  letter-spacing: -0.067em;
+  letter-spacing: -0.045em;
+  word-spacing: 0.07em;
   text-wrap: balance;
 }
 .hero-copy {
@@ -550,7 +551,18 @@ h2 {
 }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin: 1.4rem 0 0; }
 .hero-actions .button { min-height: 2.75rem; }
-.hero-github-link { color: var(--muted); }
+.hero-github-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding-inline: 0.7rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.28em;
+}
+.hero-github-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .hero-cta-arrow { display: inline-block; margin-left: 0.35rem; transition: transform 160ms var(--motion-ease); }
 .hero-actions .button-primary:hover .hero-cta-arrow,
 .hero-actions .button-primary:focus-visible .hero-cta-arrow { transform: translate(3px, -2px); }

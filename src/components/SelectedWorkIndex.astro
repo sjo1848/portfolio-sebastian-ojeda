@@ -105,7 +105,13 @@ const activeIndex = '01';
           {media && data.slug === 'hms-cloudflare' && (
             <figure class="selected-work-mobile-evidence">
               <div class="selected-work-mobile-image-frame">
-                <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+                {proofHref ? (
+                  <a href={proofHref} aria-label={`${copy.proofLink}: ${data.title}`}>
+                    <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+                  </a>
+                ) : (
+                  <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+                )}
               </div>
               <figcaption>{media.caption[lang]}</figcaption>
             </figure>
@@ -125,15 +131,19 @@ const activeIndex = '01';
       <h3 class="selected-work-evidence-title" data-evidence-title aria-live="polite">{activeProject.data.title}</h3>
       <figure class="selected-work-evidence-figure">
         <div class="selected-work-evidence-image-frame">
-          <img
-            data-evidence-image
-            src={activeCover.src}
-            alt={activeCover.alt[lang]}
-            width={activeCover.width}
-            height={activeCover.height}
-            loading="lazy"
-            decoding="async"
-          />
+          <a data-evidence-image-link href={activeProof.proofHref?.[lang]
+            ? `${getProjectPath(lang, activeProject.data.slug)}${activeProof.proofHref[lang]}`
+            : undefined} aria-label={`${copy.proofLink}: ${activeProject.data.title}`} hidden={!activeProof.proofHref?.[lang]}>
+            <img
+              data-evidence-image
+              src={activeCover.src}
+              alt={activeCover.alt[lang]}
+              width={activeCover.width}
+              height={activeCover.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
           <p class="selected-work-evidence-empty" data-evidence-empty hidden>
             {copy.noImageCaption}
           </p>

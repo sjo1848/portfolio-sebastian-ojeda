@@ -20,54 +20,20 @@ if (section && index && rows.length && panel) {
     section.dataset.handoffVisible = 'true';
   }
 
-  // The image is concealed only after it has loaded and only while below the
-  // viewport. Direct links, failed scripts and reduced motion show it at once.
   if ('IntersectionObserver' in window && !reducedMotion.matches) {
-    const proofFrames = [...index.querySelectorAll<HTMLElement>(
-      '.selected-work-evidence-image-frame, .selected-work-mobile-image-frame',
-    )];
     const proofObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        const frame = entry.target as HTMLElement;
-        frame.dataset.proofReveal = 'revealing';
-        proofObserver.unobserve(frame);
+        (entry.target as HTMLElement).dataset.proofArrived = 'true';
+        proofObserver.unobserve(entry.target);
       }
-    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
-
-    for (const frame of proofFrames) {
-      const image = frame.querySelector('img');
-      if (!image) continue;
-      const arm = () => {
-        if (reducedMotion.matches || frame.dataset.proofReveal) return;
-        const bounds = frame.getBoundingClientRect();
-        if (bounds.height > 0 && bounds.top <= window.innerHeight * 0.86) return;
-        frame.dataset.proofReveal = 'waiting';
-        proofObserver.observe(frame);
-      };
-      frame.addEventListener('animationend', (event) => {
-        if (event.animationName === 'selected-proof-uncover') frame.dataset.proofReveal = 'complete';
-      });
-      if (image.complete && image.naturalWidth > 0) arm();
-      else image.addEventListener('load', arm, { once: true });
-    }
-
-    const completeActiveReveal = () => {
-      for (const frame of proofFrames) {
-        if (frame.dataset.proofReveal === 'revealing') frame.dataset.proofReveal = 'complete';
-      }
-    };
-    desktopQuery.addEventListener('change', completeActiveReveal);
-    reducedMotion.addEventListener('change', () => {
-      if (!reducedMotion.matches) return;
-      proofObserver.disconnect();
-      for (const frame of proofFrames) {
-        if (frame.dataset.proofReveal) frame.dataset.proofReveal = 'complete';
-      }
-    });
+    }, { threshold: 0.2 });
+    index.querySelectorAll<HTMLElement>('.selected-work-evidence-image-frame, .selected-work-mobile-image-frame')
+      .forEach((frame) => proofObserver.observe(frame));
   }
 
   const image = evidencePanel.querySelector<HTMLImageElement>('[data-evidence-image]');
+  const imageLink = evidencePanel.querySelector<HTMLAnchorElement>('[data-evidence-image-link]');
   const empty = evidencePanel.querySelector<HTMLElement>('[data-evidence-empty]');
   const figure = evidencePanel.querySelector<HTMLElement>('.selected-work-evidence-figure');
   const title = evidencePanel.querySelector<HTMLElement>('[data-evidence-title]');
@@ -83,7 +49,7 @@ if (section && index && rows.length && panel) {
   let revision = 0;
 
   function revealEvidence(row: HTMLElement, showFallback: boolean, fallbackText?: string) {
-    if (!image || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation || !proofAction || !proofState || !proofLink) return;
+    if (!image || !imageLink || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation || !proofAction || !proofState || !proofLink) return;
     const current = ++revision;
     evidencePanel.setAttribute('aria-busy', 'true');
     const src = row.dataset.evidenceSrc;
@@ -104,15 +70,21 @@ if (section && index && rows.length && panel) {
         proofState.textContent = currentProofState;
         proofLink.href = proofHref;
         proofLink.textContent = proofLabel;
+        imageLink.href = proofHref;
+        imageLink.setAttribute('aria-label', `${proofLabel}: ${title.textContent}`);
+        imageLink.hidden = !hasImage;
       } else {
         proofAction.hidden = true;
         proofState.textContent = '';
         proofLink.removeAttribute('href');
         proofLink.textContent = '';
+        imageLink.hidden = true;
+        imageLink.removeAttribute('href');
       }
       caption.textContent = hasImage ? (row.dataset.proofCaption ?? '') : (row.dataset.emptyCaption ?? '');
       image.alt = hasImage ? (row.dataset.evidenceAlt ?? '') : '';
       image.hidden = !hasImage;
+      if (!hasImage) imageLink.hidden = true;
       empty.hidden = hasImage || !showFallback;
       if (!hasImage && showFallback) empty.textContent = fallbackText ?? row.dataset.emptyCaption ?? '';
       figure.removeAttribute('data-evidence-changing');

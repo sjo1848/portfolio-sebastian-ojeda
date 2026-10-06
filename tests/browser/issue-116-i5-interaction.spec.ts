@@ -23,6 +23,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(proofAction.locator('[data-proof-state]')).toHaveText('Local test evidence');
   await expect(proofAction.locator('[data-proof-link]')).toHaveAccessibleName('View evidence');
   await expect(proofAction.locator('[data-proof-link]')).toHaveAttribute('href', '/projects/hms-cloudflare/#visual-evidence');
+  await expect(frame.locator('[data-evidence-image-link]')).toHaveAttribute('href', '/projects/hms-cloudflare/#visual-evidence');
   const indexLayoutHeightBefore = await page.locator('.selected-work-index').evaluate((element) => (element as HTMLElement).offsetHeight);
   const frameBefore = await frame.evaluate((element) => ({ layoutWidth: (element as HTMLElement).offsetWidth, layoutHeight: (element as HTMLElement).offsetHeight }));
   await rows.nth(1).hover();
@@ -36,6 +37,7 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(proofAction.locator('[data-proof-state]')).toHaveText('Synthetic visual evidence');
   await expect(proofAction.locator('[data-proof-link]')).toHaveAccessibleName('View evidence');
   await expect(proofAction.locator('[data-proof-link]')).toHaveAttribute('href', '/projects/alquileres-uspa/#gallery-alquileres-uspa');
+  await expect(frame.locator('[data-evidence-image-link]')).toHaveAttribute('href', '/projects/alquileres-uspa/#gallery-alquileres-uspa');
   const frameAfter = await frame.evaluate((element) => ({ layoutWidth: (element as HTMLElement).offsetWidth, layoutHeight: (element as HTMLElement).offsetHeight }));
   expect(frameAfter.layoutWidth).toBe(frameBefore.layoutWidth);
   expect(frameAfter.layoutHeight).toBe(frameBefore.layoutHeight);
@@ -57,6 +59,8 @@ test('I5 hover and keyboard focus update approved evidence together without movi
   await expect(panel.locator('[data-evidence-limitation]')).toContainText('no public walkthrough artifact');
   await expect(proofAction).toBeHidden();
   await expect(proofAction.locator('[data-proof-link]')).not.toHaveAttribute('href', /.+/);
+  await expect(frame.locator('[data-evidence-image-link]')).toBeHidden();
+  await expect(frame.locator('[data-evidence-image-link]')).not.toHaveAttribute('href', /.+/);
   await expect(rows.nth(2).locator('.selected-work-row')).toHaveAttribute('href', '/projects/ai-commerce-platform/');
   const axeAi = await new AxeBuilder({ page }).include('#projects').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
   expect(axeAi.violations, JSON.stringify(axeAi.violations, null, 2)).toEqual([]);
@@ -126,6 +130,7 @@ test('I5 mobile keeps inline HMS evidence and ordinary touch navigation', async 
   await page.goto('/');
   await expect(page.locator('[data-selected-evidence]')).toBeHidden();
   await expect(page.locator('.selected-work-mobile-evidence img')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
+  await expect(page.locator('.selected-work-mobile-evidence a')).toHaveAttribute('href', '/projects/hms-cloudflare/#visual-evidence');
   await expect(page.locator('[data-project-index-item]').nth(1)).not.toHaveAttribute('data-active', 'true');
   await mkdir('artifacts/visual/issue-116-i5', { recursive: true });
   await page.locator('#projects').screenshot({ path: 'artifacts/visual/issue-116-i5/selected-work-mobile-390.png' });

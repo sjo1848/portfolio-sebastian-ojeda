@@ -47,7 +47,7 @@ const locales = [
 
 for (const locale of locales) {
   for (const viewport of [{ width: 1366, height: 768 }, { width: 1440, height: 900 }]) {
-    test(`${locale.name} Hero role, lead and both CTAs fit ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
+    test(`${locale.name} Hero role, lead and actions fit ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
       test.skip(testInfo.project.name !== 'chromium');
       const errors: string[] = [];
       page.on('pageerror', (error) => errors.push(error.message));
@@ -58,15 +58,17 @@ for (const locale of locales) {
       await expect(page.locator('.hero-copy')).toBeVisible();
 
       const actions = page.locator('#hero .hero-actions a');
-      await expect(actions).toHaveCount(2);
+      await expect(actions).toHaveCount(3);
       await expect(actions.nth(0)).toBeVisible();
       await expect(actions.nth(1)).toBeVisible();
+      await expect(actions.nth(2)).toBeVisible();
       const bounds = await actions.evaluateAll((links) => links.map((link) => {
         const { x, y, width, height, top, right, bottom, left } = link.getBoundingClientRect();
         return { href: link.getAttribute('href'), x, y, width, height, top, right, bottom, left };
       }));
       expect(bounds[0].href).toBe('#projects');
-      expect(bounds[1].href).toBe('https://github.com/sjo1848');
+      expect(bounds[1].href).toContain('.pdf');
+      expect(bounds[2].href).toBe('https://github.com/sjo1848');
       for (const button of bounds) {
         expect(button.top).toBeGreaterThanOrEqual(0);
         expect(button.bottom).toBeLessThanOrEqual(viewport.height);
@@ -92,8 +94,8 @@ for (const locale of locales) {
       await expect(page.locator('.hero-github-link')).toBeVisible();
       await expect(page.locator('.hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
       await expect(page.getByRole('link', { name: locale.heroCta, exact: true })).toHaveAttribute('href', '#projects');
-      await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
-      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv|currículum/i })).toHaveCount(0);
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(3);
+      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv/i })).toHaveAttribute('href', /\.pdf$/);
 
       const sectionIds = await page.locator('main > section').evaluateAll((sections) => sections.map((section) => section.id));
       expect(sectionIds).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
