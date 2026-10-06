@@ -520,6 +520,60 @@ h2 {
 }
 .hero-thesis-line { display: block; overflow: hidden; padding-right: .08em; }
 .hero-thesis-line > span { display: block; width: fit-content; }
+.hero-thesis-dynamic-line {
+  display: flex !important;
+  align-items: baseline;
+  width: fit-content;
+  white-space: nowrap;
+}
+.hero-word-slot {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 8.25ch;
+  inline-size: 8.25ch;
+  overflow: hidden;
+  color: var(--night-text);
+  vertical-align: baseline;
+}
+.hero-signature:lang(es) .hero-word-slot {
+  flex-basis: 8.85ch;
+  inline-size: 8.85ch;
+}
+.hero-word {
+  grid-area: 1 / 1;
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, .52em, 0);
+  transition:
+    opacity 220ms ease,
+    clip-path 360ms cubic-bezier(.22, 1, .36, 1),
+    transform 360ms cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, clip-path, transform;
+}
+.hero-word:first-child,
+.hero-word[data-state='active'] {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transform: translate3d(0, 0, 0);
+}
+.hero-word-slot[data-cycle-ready='true'] .hero-word {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, .52em, 0);
+}
+.hero-word-slot[data-cycle-ready='true'] .hero-word[data-state='active'] {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transform: translate3d(0, 0, 0);
+}
+.hero-word-slot[data-cycle-ready='true'] .hero-word[data-state='out'] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, -.42em, 0);
+}
+.hero-thesis-tail {
+  margin-left: .08em;
+}
 .hero-thesis-final > span { position: relative; color: var(--night-text); }
 .hero-thesis-final > span::before {
   position: absolute;
@@ -630,5 +684,16 @@ h2 {
   .hero-github-link { padding-inline: .2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-cta-arrow { transition: none; }
+  .hero-cta-arrow,
+  .hero-word { transition: none; }
+
+  .hero-word-slot .hero-word {
+    opacity: 0;
+    clip-path: none;
+    transform: none;
+  }
+
+  .hero-word-slot .hero-word:first-child {
+    opacity: 1;
+  }
 }
