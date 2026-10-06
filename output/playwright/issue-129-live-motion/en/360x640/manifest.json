@@ -1,0 +1,15 @@
+{
+  "locale": "en",
+  "viewport": {
+    "key": "360x640",
+    "width": 360,
+    "height": 640
+  },
+  "transitions": "enabled",
+  "scrollLinked": true,
+  "screenshots": [
+    "live-travel.png",
+    "live-resolved.png",
+    "live-proof-dominant.png"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "route": "/",
+  "measuredFrom": "browser-loaded same-origin JavaScript resources plus executable inline script blocks in dist/index.html",
+  "scripts": [
+    {
+      "url": "/_astro/HomePage.astro_astro_type_script_index_0_lang.C3bRmqcb.js",
+      "bytes": 12461,
+      "gzipBytes": 3925
+    },
+    {
+      "url": "/_astro/MobileNavigation.B5C4fg42.js",
+      "bytes": 2134,
+      "gzipBytes": 851
+    },
+    {
+      "url": "/_astro/client.Dda4loRL.js",
+      "bytes": 209191,
+      "gzipBytes": 64824
+    },
+    {
+      "url": "/_astro/react.yIOJJ3r4.js",
+      "bytes": 8402,
+      "gzipBytes": 3229
+    },
+    {
+      "url": "/_astro/jsx-runtime.DvU585tb.js",
+      "bytes": 424,
+      "gzipBytes": 294
+    },
+    {
+      "url": "/_astro/sheet.uSbuCUKK.js",
+      "bytes": 537,
+      "gzipBytes": 321
+    },
+    {
+      "url": "/_astro/react-dom.tjb2bX_M.js",
+      "bytes": 3853,
+      "gzipBytes": 1385
+    },
+    {
+      "url": "/_astro/CopyAction.bDPGacgf.js",
+      "bytes": 1402,
+      "gzipBytes": 785
+    },
+    {
+      "url": "/_astro/utils.D3KQlcLK.js",
+      "bytes": 60336,
+      "gzipBytes": 20248
+    }
+  ],
+  "inlineScripts": [
+    {
+      "index": 0,
+      "bytes": 807,
+      "gzipBytes": 379
+    },
+    {
+      "index": 1,
+      "bytes": 130,
+      "gzipBytes": 125
+    },
+    {
+      "index": 2,
+      "bytes": 4380,
+      "gzipBytes": 1775
+    },
+    {
+      "index": 3,
+      "bytes": 3015,
+      "gzipBytes": 1210
+    },
+    {
+      "index": 4,
+      "bytes": 316,
+      "gzipBytes": 225
+    }
+  ],
+  "totalGzipBytes": 99576,
+  "hardLimitBytes": 100000
+}

@@ -1,0 +1,15 @@
+{
+  "locale": "en",
+  "viewport": {
+    "key": "1024x768",
+    "width": 1024,
+    "height": 768
+  },
+  "transitions": "enabled",
+  "scrollLinked": true,
+  "screenshots": [
+    "live-travel.png",
+    "live-resolved.png",
+    "live-proof-dominant.png"
+  ]
+}

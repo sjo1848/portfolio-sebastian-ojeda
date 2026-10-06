@@ -119,7 +119,9 @@ test('static portfolio paths remain available when the navigation island cannot 
   await page.route('**/_astro/MobileNavigation.*.js', (route) => route.abort());
   await page.goto('/', { waitUntil: 'networkidle' });
 
-  await expect(page.getByRole('link', { name: 'Sebastián Ojeda' })).toHaveAttribute('href', '/');
+  const staticBrandLink = page.locator('.site-header [data-signature-brand]');
+  await expect(staticBrandLink).toHaveAttribute('href', '/');
+  await expect(page.locator('#hero .hero-role')).toBeVisible();
   await expect(page.locator('.selected-work-row').first()).toHaveAttribute('href', /\/projects\//);
   await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
   await expect(page.locator('#contact a[href*="github.com"]')).toBeVisible();
@@ -140,6 +142,7 @@ test('mobile navigation fits a short 360px viewport, honors reduced motion, and 
 
   const dialog = page.getByRole('dialog', { name: 'Navigation' });
   await expect(dialog).toBeVisible();
+  await expect.poll(() => dialog.getAttribute('data-starting-style')).toBeNull();
   const panel = await dialog.boundingBox();
   expect(panel?.x).toBeGreaterThanOrEqual(0);
   expect(panel!.x + panel!.width).toBeLessThanOrEqual(360);

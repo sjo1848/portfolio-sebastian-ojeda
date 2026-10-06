@@ -1,0 +1,543 @@
+{
+  "method": "two consecutive three-run LHCI collections with unchanged assertion thresholds; all raw reports retained",
+  "collections": [
+    {
+      "directory": "artifacts/lighthouse/issue-129/reports",
+      "runs": [
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost--2026_10_04_16_02_37.report.json",
+          "route": "/",
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1616.5031,
+          "tbtMs": 14,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost--2026_10_04_16_02_55.report.json",
+          "route": "/",
+          "performance": 0.81,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1688.9359,
+          "tbtMs": 779.766025,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost--2026_10_04_16_03_26.report.json",
+          "route": "/",
+          "performance": 0.87,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2217.8838750000004,
+          "tbtMs": 416,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-es_-2026_10_04_16_03_41.report.json",
+          "route": "/es/",
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1967.9095499999999,
+          "tbtMs": 13.5,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-es_-2026_10_04_16_04_11.report.json",
+          "route": "/es/",
+          "performance": 0.93,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1971.96045,
+          "tbtMs": 288,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-es_-2026_10_04_16_04_25.report.json",
+          "route": "/es/",
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1601.35,
+          "tbtMs": 7.662500000000023,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-projects_hms_elite_-2026_10_04_16_05_00.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.86,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2305.7371000000003,
+          "tbtMs": 462.0657249999995,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-projects_hms_elite_-2026_10_04_16_05_36.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.75,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2436.4539999999997,
+          "tbtMs": 1063.8864999999996,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports/localhost-projects_hms_elite_-2026_10_04_16_05_53.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.95,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2438.1515,
+          "tbtMs": 180.46212500000001,
+          "cls": 0
+        }
+      ]
+    },
+    {
+      "directory": "artifacts/lighthouse/issue-129/reports-diagnostic",
+      "runs": [
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost--2026_10_04_16_08_32.report.json",
+          "route": "/",
+          "performance": 1,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1629.5463,
+          "tbtMs": 15.113425000000007,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost--2026_10_04_16_09_05.report.json",
+          "route": "/",
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2112.137825,
+          "tbtMs": 24.766025000000013,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost--2026_10_04_16_09_21.report.json",
+          "route": "/",
+          "performance": 0.78,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1663.4440999999997,
+          "tbtMs": 976.8889749999998,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-es_-2026_10_04_16_09_51.report.json",
+          "route": "/es/",
+          "performance": 0.85,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2162.7522,
+          "tbtMs": 460.81195,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-es_-2026_10_04_16_10_07.report.json",
+          "route": "/es/",
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2039.84505,
+          "tbtMs": 23.525825000000054,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-es_-2026_10_04_16_10_32.report.json",
+          "route": "/es/",
+          "performance": 0.85,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2206.3637000000003,
+          "tbtMs": 476.5,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-projects_hms_elite_-2026_10_04_16_10_59.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2275.8251,
+          "tbtMs": 140.043725,
+          "cls": 0
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-projects_hms_elite_-2026_10_04_16_11_18.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.71,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2779.5195999999996,
+          "tbtMs": 1249.5000000000002,
+          "cls": 0.001526903610013731
+        },
+        {
+          "file": "artifacts/lighthouse/issue-129/reports-diagnostic/localhost-projects_hms_elite_-2026_10_04_16_11_49.report.json",
+          "route": "/projects/hms-elite/",
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2415.2340999999997,
+          "tbtMs": 12.691474999999969,
+          "cls": 0
+        }
+      ]
+    }
+  ],
+  "pooledSixRunSummary": {
+    "/": {
+      "performance": {
+        "median": 0.9299999999999999,
+        "min": 0.78,
+        "max": 1
+      },
+      "accessibility": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "bestPractices": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "seo": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "lcpMs": {
+        "median": 1676.1899999999998,
+        "min": 1616.5031,
+        "max": 2217.8838750000004
+      },
+      "tbtMs": {
+        "median": 220.3830125,
+        "min": 14,
+        "max": 976.8889749999998
+      },
+      "cls": {
+        "median": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "/es/": {
+      "performance": {
+        "median": 0.96,
+        "min": 0.85,
+        "max": 1
+      },
+      "accessibility": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "bestPractices": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "seo": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "lcpMs": {
+        "median": 2005.90275,
+        "min": 1601.35,
+        "max": 2206.3637000000003
+      },
+      "tbtMs": {
+        "median": 155.76291250000003,
+        "min": 7.662500000000023,
+        "max": 476.5
+      },
+      "cls": {
+        "median": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "/projects/hms-elite/": {
+      "performance": {
+        "median": 0.905,
+        "min": 0.71,
+        "max": 0.98
+      },
+      "accessibility": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "bestPractices": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "seo": {
+        "median": 1.0,
+        "min": 1,
+        "max": 1
+      },
+      "lcpMs": {
+        "median": 2425.8440499999997,
+        "min": 2275.8251,
+        "max": 2779.5195999999996
+      },
+      "tbtMs": {
+        "median": 321.26392499999974,
+        "min": 12.691474999999969,
+        "max": 1249.5000000000002
+      },
+      "cls": {
+        "median": 0.0,
+        "min": 0,
+        "max": 0.001526903610013731
+      }
+    }
+  },
+  "reworkCollection": {
+    "tool": "@lhci/cli 0.15.1 (existing npm cache; not added as a project dependency)",
+    "config": "artifacts/lighthouse/issue-129/lighthouserc-rework.json",
+    "assertions": "unchanged: Performance >= 0.90; Accessibility, Best Practices and SEO >= 0.95",
+    "reports": {
+      "/": [
+        {
+          "report": "localhost--2026_10_04_17_21_52.report.json",
+          "performance": 0.99,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 1973.8487999999998,
+          "tbtMs": 15.025199999999984,
+          "cls": 0
+        },
+        {
+          "report": "localhost--2026_10_04_17_22_07.report.json",
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2112.316025,
+          "tbtMs": 140.5,
+          "cls": 0
+        },
+        {
+          "report": "localhost--2026_10_04_17_21_35.report.json",
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2049.61935,
+          "tbtMs": 65.00000000000006,
+          "cls": 0
+        }
+      ],
+      "/es/": [
+        {
+          "report": "localhost-es_-2026_10_04_17_22_23.report.json",
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2131.18065,
+          "tbtMs": 93.61704999999995,
+          "cls": 0
+        },
+        {
+          "report": "localhost-es_-2026_10_04_17_22_56.report.json",
+          "performance": 0.94,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2095.452325,
+          "tbtMs": 233.79252500000007,
+          "cls": 0
+        },
+        {
+          "report": "localhost-es_-2026_10_04_17_22_40.report.json",
+          "performance": 0.97,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2163.9843,
+          "tbtMs": 131.33595000000014,
+          "cls": 0
+        }
+      ],
+      "/projects/hms-elite/": [
+        {
+          "report": "localhost-projects_hms_elite_-2026_10_04_17_23_14.report.json",
+          "performance": 0.93,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 3098.1825,
+          "tbtMs": 51.70437500000003,
+          "cls": 0
+        },
+        {
+          "report": "localhost-projects_hms_elite_-2026_10_04_17_23_32.report.json",
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2278.9305,
+          "tbtMs": 27.5,
+          "cls": 0
+        },
+        {
+          "report": "localhost-projects_hms_elite_-2026_10_04_17_23_47.report.json",
+          "performance": 0.98,
+          "accessibility": 1,
+          "bestPractices": 1,
+          "seo": 1,
+          "lcpMs": 2265.3454,
+          "tbtMs": 29.500000000000057,
+          "cls": 0
+        }
+      ]
+    },
+    "routeSummary": {
+      "/": {
+        "performance": {
+          "median": 0.98,
+          "min": 0.97,
+          "max": 0.99
+        },
+        "accessibility": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "bestPractices": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "seo": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "lcpMs": {
+          "median": 2049.61935,
+          "min": 1973.8487999999998,
+          "max": 2112.316025
+        },
+        "tbtMs": {
+          "median": 65.00000000000006,
+          "min": 15.025199999999984,
+          "max": 140.5
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "/es/": {
+        "performance": {
+          "median": 0.97,
+          "min": 0.94,
+          "max": 0.98
+        },
+        "accessibility": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "bestPractices": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "seo": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "lcpMs": {
+          "median": 2131.18065,
+          "min": 2095.452325,
+          "max": 2163.9843
+        },
+        "tbtMs": {
+          "median": 131.33595000000014,
+          "min": 93.61704999999995,
+          "max": 233.79252500000007
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      },
+      "/projects/hms-elite/": {
+        "performance": {
+          "median": 0.98,
+          "min": 0.93,
+          "max": 0.98
+        },
+        "accessibility": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "bestPractices": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "seo": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "lcpMs": {
+          "median": 2278.9305,
+          "min": 2265.3454,
+          "max": 3098.1825
+        },
+        "tbtMs": {
+          "median": 29.500000000000057,
+          "min": 27.5,
+          "max": 51.70437500000003
+        },
+        "cls": {
+          "median": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "exitCode": 0
+  }
+}

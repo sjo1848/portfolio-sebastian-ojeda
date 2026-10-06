@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 const locales = [
   {
-    name: 'English', path: '/', role: 'SYSTEMS BUILT FOR THE REAL WORLD',
+    name: 'English', path: '/', role: 'I build the systems behind real work.',
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-    heroCopy: 'I turn operational workflows into reliable software.',
+    heroCopy: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
     heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
@@ -23,9 +23,9 @@ const locales = [
     contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',
   },
   {
-    name: 'Spanish', path: '/es/', role: 'SISTEMAS PARA EL MUNDO REAL',
+    name: 'Spanish', path: '/es/', role: 'Construyo los sistemas detrás del trabajo real.',
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Convierto procesos operativos en software confiable.',
+    heroCopy: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
     heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
@@ -47,7 +47,7 @@ const locales = [
 
 for (const locale of locales) {
   for (const viewport of [{ width: 1366, height: 768 }, { width: 1440, height: 900 }]) {
-    test(`${locale.name} Hero role, lead and both CTAs fit ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
+    test(`${locale.name} Hero role, lead and actions fit ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
       test.skip(testInfo.project.name !== 'chromium');
       const errors: string[] = [];
       page.on('pageerror', (error) => errors.push(error.message));
@@ -58,15 +58,17 @@ for (const locale of locales) {
       await expect(page.locator('.hero-copy')).toBeVisible();
 
       const actions = page.locator('#hero .hero-actions a');
-      await expect(actions).toHaveCount(2);
+      await expect(actions).toHaveCount(3);
       await expect(actions.nth(0)).toBeVisible();
       await expect(actions.nth(1)).toBeVisible();
+      await expect(actions.nth(2)).toBeVisible();
       const bounds = await actions.evaluateAll((links) => links.map((link) => {
         const { x, y, width, height, top, right, bottom, left } = link.getBoundingClientRect();
         return { href: link.getAttribute('href'), x, y, width, height, top, right, bottom, left };
       }));
       expect(bounds[0].href).toBe('#projects');
-      expect(bounds[1].href).toBe('https://github.com/sjo1848');
+      expect(bounds[1].href).toContain('.pdf');
+      expect(bounds[2].href).toBe('https://github.com/sjo1848');
       for (const button of bounds) {
         expect(button.top).toBeGreaterThanOrEqual(0);
         expect(button.bottom).toBeLessThanOrEqual(viewport.height);
@@ -92,8 +94,8 @@ for (const locale of locales) {
       await expect(page.locator('.hero-github-link')).toBeVisible();
       await expect(page.locator('.hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
       await expect(page.getByRole('link', { name: locale.heroCta, exact: true })).toHaveAttribute('href', '#projects');
-      await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
-      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv|currículum/i })).toHaveCount(0);
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(3);
+      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv/i })).toHaveAttribute('href', /\.pdf$/);
 
       const sectionIds = await page.locator('main > section').evaluateAll((sections) => sections.map((section) => section.id));
       expect(sectionIds).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);
@@ -129,18 +131,14 @@ for (const locale of locales) {
         }
       }
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-      const heroTextBounds = await page.locator('.hero-title-line').evaluateAll((lines) => {
+      const heroTextBounds = await page.locator('.hero-thesis').evaluate((heading) => {
         const hero = document.querySelector('#hero')!.getBoundingClientRect();
-        return lines.map((line) => {
-          const rect = line.getBoundingClientRect();
-          return { text: line.textContent, left: rect.left, right: rect.right, heroLeft: hero.left, heroRight: hero.right };
-        });
+        const rect = heading.getBoundingClientRect();
+        return { left: rect.left, right: rect.right, heroLeft: hero.left, heroRight: hero.right };
       });
-      for (const line of heroTextBounds) {
-        expect(line.left, `${locale.name} ${width}px ${line.text} left edge`).toBeGreaterThanOrEqual(line.heroLeft - 0.5);
-        expect(line.right, `${locale.name} ${width}px ${line.text} right edge`).toBeLessThanOrEqual(line.heroRight + 0.5);
-        expect(line.right, `${locale.name} ${width}px ${line.text} viewport edge`).toBeLessThanOrEqual(width + 0.5);
-      }
+      expect(heroTextBounds.left, `${locale.name} ${width}px title left edge`).toBeGreaterThanOrEqual(heroTextBounds.heroLeft - 0.5);
+      expect(heroTextBounds.right, `${locale.name} ${width}px title right edge`).toBeLessThanOrEqual(heroTextBounds.heroRight + 0.5);
+      expect(heroTextBounds.right, `${locale.name} ${width}px title viewport edge`).toBeLessThanOrEqual(width + 0.5);
       await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
       expect(pageErrors).toEqual([]);
     });

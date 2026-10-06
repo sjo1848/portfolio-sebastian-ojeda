@@ -99,6 +99,42 @@ test('I6 Home-to-case navigation preserves normal anchor history and back/forwar
   await expect(page.locator('#projects')).toBeInViewport();
 });
 
+test('I6 direct and case-study return links to Selected Work normalize the Hero in EN and ES', async ({ page }) => {
+  const testInfo = test.info();
+  test.setTimeout(60_000);
+  const locales = [
+    { fragment: '/#projects', caseStudy: '/projects/hms-cloudflare/' },
+    { fragment: '/es/#projects', caseStudy: '/es/projects/hms-cloudflare/' },
+  ] as const;
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const locale of locales) {
+    const assertStaticFragmentEntry = async () => {
+      await expect(page).toHaveURL(locale.fragment);
+      await expect(page.locator('#projects')).toBeInViewport();
+      await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
+      await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
+      if (testInfo.project.name === 'chromium') {
+        await mkdir('artifacts/visual/issue-129-final-findings', { recursive: true });
+        const locale = page.url().startsWith('http://127.0.0.1:4184/es/') ? 'es' : 'en';
+        await page.screenshot({ path: `artifacts/visual/issue-129-final-findings/${locale}-selected-work-fragment.png`, animations: 'disabled' });
+      }
+    };
+
+    await page.goto(locale.fragment, { waitUntil: 'networkidle' });
+    await assertStaticFragmentEntry();
+
+    await page.goto(locale.caseStudy, { waitUntil: 'networkidle' });
+    await page.locator('.case-back-link').click();
+    await assertStaticFragmentEntry();
+    await expect(page.locator('.site-header [data-signature-brand]')).toHaveCount(1);
+  }
+  expect(errors).toEqual([]);
+});
+
 test('I6 lead case entry remains visible and navigable without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();

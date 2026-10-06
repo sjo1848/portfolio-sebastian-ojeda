@@ -43,8 +43,24 @@ requireText(home, 'href={site.cv}', 'HomePage.astro resume CTA');
 requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
 requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
 const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"'));
-forbidText(hero, 'site.cv', 'HomePage.astro Hero Resume CTA');
-requireText(hero, 'class="hero-system-signal"', 'HomePage.astro A+ system signal');
+requireText(hero, 'href={site.cv}', 'HomePage.astro Hero Resume CTA');
+requireText(hero, 'hero-editorial-grid', 'HomePage.astro static editorial Hero layout');
+requireText(hero, 'class="hero-identity"', 'HomePage.astro visible identity block');
+forbidText(hero, 'hero-opening-name', 'HomePage.astro duplicate name in Hero');
+requireText(hero, 'class="hero-proposition"', 'HomePage.astro visible proposition block');
+requireText(hero, 'id="hero-thesis"', 'HomePage.astro semantic thesis heading');
+requireText(hero, 'hero-thesis-line', 'HomePage.astro typographic thesis');
+requireText(hero, 'data-hero-word-slot', 'HomePage.astro bounded dynamic word slot');
+for (const word of ['SYSTEMS', 'SERVICES', 'PRODUCTS', 'SISTEMAS', 'SERVICIOS', 'PRODUCTOS']) {
+  requireText(home, word, `HomePage.astro dynamic word vocabulary ${word}`);
+}
+forbidText(hero, 'HeroSystemModel', 'HomePage.astro rejected conceptual system model');
+requireText(hero, 'href="#projects"', 'HomePage.astro direct Selected Work CTA');
+forbidText(hero, 'data-sequence-progress', 'HomePage.astro obsolete scroll-state runtime');
+forbidText(hero, 'data-flight-glyph', 'HomePage.astro literal S/O flight');
+forbidText(hero, 'data-proof-bridge', 'HomePage.astro duplicated Hero evidence takeover');
+forbidText(hero, 'hero-system-signal', 'HomePage.astro superseded A+ signal');
+forbidText(hero, 'data-signature-brand', 'HomePage.astro duplicate persistent identity');
 forbidText(home, 'hero-proof-links', 'HomePage.astro');
 forbidText(home, 'brand-hero-evidence', 'HomePage.astro');
 forbidText(home, 'hmsReceptionHero', 'HomePage.astro');
@@ -56,8 +72,9 @@ requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automa
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
 requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED'", 'HomePage.astro EN positioning');
 requireText(home, "eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
-requireText(home, "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']", 'HomePage.astro EN thesis');
-requireText(home, "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']", 'HomePage.astro ES thesis');
+requireText(home, "thesis: 'I build the systems behind real work.'", 'HomePage.astro EN thesis');
+requireText(home, "thesis: 'Construyo los sistemas detrás del trabajo real.'", 'HomePage.astro ES thesis');
+requireText(header, 'data-signature-brand', 'SiteHeader.astro persistent brand integration');
 
 // Primary work order is intentionally product/full-stack first.
 const expectedStoryOrder = [

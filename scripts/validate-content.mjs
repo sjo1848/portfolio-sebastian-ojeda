@@ -210,10 +210,10 @@ async function validatePortfolioNarrative() {
   for (const phrase of [
     'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
     'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    'I turn operational workflows into reliable software.',
-    'Convierto procesos operativos en software confiable.',
-    "headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD']",
-    "headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL']",
+    'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
+    'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
+    "thesis: 'I build the systems behind real work.'",
+    "thesis: 'Construyo los sistemas detrás del trabajo real.'",
   ]) {
     if (!homeContent.includes(phrase)) failures.push(`HomePage.astro is missing approved positioning copy: ${phrase}`);
   }

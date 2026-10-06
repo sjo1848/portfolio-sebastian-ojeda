@@ -5,6 +5,8 @@ const panel = index?.querySelector<HTMLElement>('[data-selected-evidence]');
 
 if (section && index && rows.length && panel) {
   const evidencePanel = panel;
+  const desktopQuery = window.matchMedia('(min-width: 48rem)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if ('IntersectionObserver' in window) {
     const handoffObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
@@ -18,8 +20,20 @@ if (section && index && rows.length && panel) {
     section.dataset.handoffVisible = 'true';
   }
 
-  const desktopQuery = window.matchMedia('(min-width: 48rem)');
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const proofObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        (entry.target as HTMLElement).dataset.proofArrived = 'true';
+        proofObserver.unobserve(entry.target);
+      }
+    }, { threshold: 0.2 });
+    index.querySelectorAll<HTMLElement>('.selected-work-evidence-image-frame, .selected-work-mobile-image-frame')
+      .forEach((frame) => proofObserver.observe(frame));
+  }
+
   const image = evidencePanel.querySelector<HTMLImageElement>('[data-evidence-image]');
+  const imageLink = evidencePanel.querySelector<HTMLAnchorElement>('[data-evidence-image-link]');
   const empty = evidencePanel.querySelector<HTMLElement>('[data-evidence-empty]');
   const figure = evidencePanel.querySelector<HTMLElement>('.selected-work-evidence-figure');
   const title = evidencePanel.querySelector<HTMLElement>('[data-evidence-title]');
@@ -35,7 +49,7 @@ if (section && index && rows.length && panel) {
   let revision = 0;
 
   function revealEvidence(row: HTMLElement, showFallback: boolean, fallbackText?: string) {
-    if (!image || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation || !proofAction || !proofState || !proofLink) return;
+    if (!image || !imageLink || !empty || !figure || !title || !status || !count || !caption || !role || !stack || !limitation || !proofAction || !proofState || !proofLink) return;
     const current = ++revision;
     evidencePanel.setAttribute('aria-busy', 'true');
     const src = row.dataset.evidenceSrc;
@@ -56,19 +70,25 @@ if (section && index && rows.length && panel) {
         proofState.textContent = currentProofState;
         proofLink.href = proofHref;
         proofLink.textContent = proofLabel;
+        imageLink.href = proofHref;
+        imageLink.setAttribute('aria-label', `${proofLabel}: ${title.textContent}`);
+        imageLink.hidden = !hasImage;
       } else {
         proofAction.hidden = true;
         proofState.textContent = '';
         proofLink.removeAttribute('href');
         proofLink.textContent = '';
+        imageLink.hidden = true;
+        imageLink.removeAttribute('href');
       }
       caption.textContent = hasImage ? (row.dataset.proofCaption ?? '') : (row.dataset.emptyCaption ?? '');
       image.alt = hasImage ? (row.dataset.evidenceAlt ?? '') : '';
       image.hidden = !hasImage;
+      if (!hasImage) imageLink.hidden = true;
       empty.hidden = hasImage || !showFallback;
       if (!hasImage && showFallback) empty.textContent = fallbackText ?? row.dataset.emptyCaption ?? '';
       figure.removeAttribute('data-evidence-changing');
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!reducedMotion.matches) {
         requestAnimationFrame(() => {
           if (current === revision) figure.dataset.evidenceChanging = 'true';
         });

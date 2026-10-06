@@ -1,0 +1,150 @@
+{
+  "issue": 129,
+  "checkpoint": "R1B bounded rework complete; R2/R3 retained from Controller PASS",
+  "screenshots": [
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-dark-header.png",
+      "locale": "en",
+      "viewport": "1440x900",
+      "state": "dark-header",
+      "browser": "Chromium",
+      "sha256": "868884bd47e25e7c83445579188c127de670e472a122943d75acff126167c77f"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-glyph-travel.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "glyph-travel",
+      "browser": "Chromium",
+      "sha256": "027f5fd5b630e68cf5e89b125b1f0020a4231c173d41204e477178cff8429e3e"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-identity.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "identity",
+      "browser": "Chromium",
+      "sha256": "f20926a00e5a3b11baa0b98c94206fede0587665643c778a24dba47e4ff2b0dc"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-converged.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-target-converged; first Selected Work frame",
+      "browser": "Chromium",
+      "sha256": "3739d7cb81f2b585b3e8475452aabb121ecddf09b3aa48992accdbd965ca8a68"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-dominant.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-dominant",
+      "browser": "Chromium",
+      "sha256": "d6beae7cdd29fba4f88887292590b9a3cbad91276d7823a4864c5739686fd2aa"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-entering.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-entering",
+      "browser": "Chromium",
+      "sha256": "5abda2e2d4277bc3ccb7ff4cda0c674c122672c062db9a55d997f1f71e5edd1e"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-settled.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-settled",
+      "browser": "Chromium",
+      "sha256": "3739d7cb81f2b585b3e8475452aabb121ecddf09b3aa48992accdbd965ca8a68"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-settling.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-settling",
+      "browser": "Chromium",
+      "sha256": "8c29c95f4dedd34582d7aa22565ecd941c0c5c24108e078ebe57f5351aa0a436"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-proof-target-aligned.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "proof-target-aligned-before-shared-element-FLIP",
+      "browser": "Chromium",
+      "sha256": "9a11b67d3788150c8b9faab35ad3bf1908271eedb44e88f68856e9d30cd3245a"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-signature-resolved.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "signature-resolved",
+      "browser": "Chromium",
+      "sha256": "c86bc7f93505cc6deb335ed852c2c1b9e90cfa49a9ff9c85d7069b8f98a95368"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-desktop-thesis-forming.png",
+      "locale": "en",
+      "viewport": "1440x1000",
+      "state": "thesis-forming",
+      "browser": "Chromium",
+      "sha256": "d0270964143fa8c7e9688e3a598fe24b077efce68ad325b23649d6646c55bcbe"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/en-mobile-reduced-motion.png",
+      "locale": "en",
+      "viewport": "390x844",
+      "state": "reduced-motion",
+      "browser": "Chromium",
+      "sha256": "34b818970d214b5a8ef9047b8372c355fc2979d47b8a9d6c14f7567c47b2ba73"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-glyph-travel.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "glyph-travel",
+      "browser": "Chromium",
+      "sha256": "71ba1ed850c9fa237f3e9ebc6cae84e49be845b68cb03c6a72296184370d5fc0"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-identity.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "identity",
+      "browser": "Chromium",
+      "sha256": "ed54e06eeef32fcac732a60ed22dffbe803e7c61198968a506af97e9719d1e48"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-proof-dominant.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "proof-dominant",
+      "browser": "Chromium",
+      "sha256": "7b0fe9f32d482e73a7c4e916fc9d624a44ad70f64169969ee833779e871ea4b4"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-proof-settled.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "proof-settled",
+      "browser": "Chromium",
+      "sha256": "ff100c0f73f896787811ee4472177f0bdbe6eb3734e03f8086ba48d19de2ad0f"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-proof-settling.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "proof-settling",
+      "browser": "Chromium",
+      "sha256": "f1eb6c51b241ff29d104739938adb080e92b0edf8c82a234356ea61832fd931f"
+    },
+    {
+      "file": "output/playwright/issue-129-signature-motion/es-mobile-signature-resolved.png",
+      "locale": "es",
+      "viewport": "390x844",
+      "state": "signature-resolved",
+      "browser": "Chromium",
+      "sha256": "1c64b8c4e63898f0debbcc6f357e3c6556a1c5362833740bb8ff7342489d84dd"
+    }
+  ]
+}

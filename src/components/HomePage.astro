@@ -29,45 +29,73 @@ const mindset = portfolioStoriesByLanguage[lang].operatingMindset;
 const brandHero = lang === 'es'
   ? {
       eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-      headline: ['SISTEMAS PARA', 'EL MUNDO', 'REAL'],
-      lead: 'Convierto procesos operativos en software confiable.',
+      thesis: 'Construyo los sistemas detrás del trabajo real.',
+      thesisLines: ['CONSTRUYO LOS', 'SISTEMAS DETRÁS', 'DEL TRABAJO REAL.'],
+      rotatingWords: ['SISTEMAS', 'SERVICIOS', 'PRODUCTOS'],
+      thesisTail: 'DETRÁS',
+      lead: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
       location: 'Mendoza, Argentina · Remoto prioritario',
       workCta: 'Ver trabajo seleccionado',
-    }
+  }
   : {
       eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-      headline: ['SYSTEMS BUILT', 'FOR THE', 'REAL WORLD'],
-      lead: 'I turn operational workflows into reliable software.',
+      thesis: 'I build the systems behind real work.',
+      thesisLines: ['I BUILD THE', 'SYSTEMS BEHIND', 'REAL WORK.'],
+      rotatingWords: ['SYSTEMS', 'SERVICES', 'PRODUCTS'],
+      thesisTail: 'BEHIND',
+      lead: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
       location: 'Mendoza, Argentina · Remote-first',
       workCta: 'View selected work',
     };
 ---
 
 <BaseLayout lang={lang}>
-  <section id="hero" class="hero section">
-    <div class="container hero-grid brand-hero-grid">
-      <div class="brand-hero-copy">
-        <p class="eyebrow">{brandHero.eyebrow}</p>
-        <h1 class="brand-headline" data-motion-hero>
-          {brandHero.headline.map((line, index) => <span class="hero-title-line" style={`--hero-line-index:${index}`}>
-            <span class="hero-title-text">{line}</span>
-          </span>)}
-        </h1>
-        <svg class="hero-system-signal" viewBox="0 0 1000 88" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="signal-baseline" d="M0 45H1000" />
-          <path class="signal-gate" d="M365 13V77M570 20V70M775 26V64" />
-          <path class="signal-trace" pathLength="1" d="M0 45 L28 31 L51 59 L76 23 L101 52 L126 38 L151 65 L176 27 L201 50 L226 35 L251 57 L276 39 L301 51 L326 42 L350 48 L380 40 L410 50 L440 41 L470 48 L500 42 L530 47 L560 43 L590 47 L620 44 L650 46 L680 44 L710 46 L740 45 L770 46 L800 45.5 L830 46 L860 45.5 L890 46 L920 45.7 L950 46 L1000 46" />
-          <circle class="signal-node" cx="365" cy="45" r="4" />
-          <circle class="signal-node" cx="570" cy="45" r="4" />
-          <circle class="signal-node" cx="775" cy="45" r="4" />
-        </svg>
-        <p class="hero-copy">{brandHero.lead}</p>
+  <section id="hero" class="hero hero-signature" aria-labelledby="hero-thesis">
+    <div class="container hero-editorial-grid">
+      <div class="hero-identity">
+        <p class="eyebrow hero-role">{brandHero.eyebrow}</p>
         <p class="hero-location">{brandHero.location}</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#projects">
-            {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-secondary hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+      <div class="hero-proposition">
+        <h1 id="hero-thesis" class="hero-thesis" aria-label={brandHero.thesis}>
+          {brandHero.thesisLines.map((line, index) => (
+            <span class:list={['hero-thesis-line', { 'hero-thesis-final': index === 2 }]}>
+              {index === 1 ? (
+                <span class="hero-thesis-dynamic-line">
+                  <span
+                    class="hero-word-slot"
+                    data-hero-word-slot
+                    data-current-word={brandHero.rotatingWords[0]}
+                    aria-hidden="true"
+                  >
+                    {brandHero.rotatingWords.map((word, wordIndex) => (
+                      <span
+                        class="hero-word"
+                        data-hero-word
+                        data-state={wordIndex === 0 ? 'active' : 'idle'}
+                      >
+                        {word}
+                      </span>
+                    ))}
+                  </span>
+                  <span class="hero-thesis-tail">{brandHero.thesisTail}</span>
+                </span>
+              ) : (
+                <span data-text={index === 2 ? line : undefined}>{line}</span>
+              )}
+            </span>
+          ))}
+        </h1>
+        <span class="hero-section-marker" aria-hidden="true"></span>
+        <div class="hero-afterword">
+          <p class="hero-copy">{brandHero.lead}</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary hero-resume-link" href={site.cv}>{copyByLanguage[lang].nav.cv}</a>
+            <a class="hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
         </div>
       </div>
     </div>
@@ -163,10 +191,11 @@ const brandHero = lang === 'es'
   </section>
 </BaseLayout>
 
+<script>
+  import '../scripts/hero-scroll';
+</script>
+
 <style>
-  .hero-title-line { display: block; }
-  .hero-location { margin-top: 0.9rem; color: var(--muted); font-size: 0.95rem; }
-  .hero-github-link { display: inline-flex; min-height: 2.75rem; align-items: center; margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
   .operating-mindset-list { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; list-style: none; }
   .operating-mindset-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; border-top: 1px solid color-mix(in srgb, var(--night-text) 25%, transparent); padding-top: 1.25rem; }
   .operating-mindset-list > li > span { color: var(--copper-light); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; font-weight: 750; }
@@ -180,9 +209,6 @@ const brandHero = lang === 'es'
   .additional-work-description a { width: fit-content; min-height: 2.75rem; display: inline-flex; align-items: center; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
   .additional-work-description > span { color: var(--muted); font-size: 0.82rem; }
   .additional-work-status { grid-column: 2; color: var(--muted); font-size: 0.76rem; }
-
-  .brand-hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .brand-hero-copy { width: 100%; max-width: none; }
 
   #projects {
     position: relative;
