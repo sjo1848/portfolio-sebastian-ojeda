@@ -529,15 +529,11 @@ h2 {
 .hero-word-slot {
   position: relative;
   display: inline-grid;
-  flex: 0 0 8.25ch;
-  inline-size: 8.25ch;
+  flex: 0 0 auto;
+  inline-size: max-content;
   overflow: hidden;
   color: var(--night-text);
   vertical-align: baseline;
-}
-.hero-signature:lang(es) .hero-word-slot {
-  flex-basis: 8.85ch;
-  inline-size: 8.85ch;
 }
 .hero-word {
   grid-area: 1 / 1;
