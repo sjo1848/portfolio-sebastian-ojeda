@@ -469,7 +469,7 @@ h2 {
   }
 }
 
-/* The personal thesis is the visual object. Motion reveals the words and exits. */
+/* The thesis stays legible while copper enters and yields to the work below. */
 .hero-signature {
   position: relative;
   overflow: clip;
@@ -521,13 +521,33 @@ h2 {
 .hero-thesis-line { display: block; overflow: hidden; padding-right: .08em; }
 .hero-thesis-line > span { display: block; width: fit-content; }
 .hero-thesis-final > span { position: relative; color: var(--night-text); }
+.hero-thesis-final > span::before {
+  position: absolute;
+  z-index: 0;
+  inset: .05em -.04em .01em -.015em;
+  background: var(--copper-light);
+  clip-path: inset(0 0 0 var(--hero-wipe, 0%));
+  content: '';
+  pointer-events: none;
+}
 .hero-thesis-final > span::after {
   position: absolute;
+  z-index: 1;
   inset: 0;
-  color: var(--copper-light);
+  color: var(--night);
   content: attr(data-text);
   clip-path: inset(0 0 0 var(--hero-wipe, 0%));
   pointer-events: none;
+}
+@keyframes hero-copper-enter {
+  from { clip-path: inset(0 100% 0 var(--hero-wipe, 0%)); }
+  to { clip-path: inset(0 0% 0 var(--hero-wipe, 0%)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-thesis-final > span::before,
+  .hero-thesis-final > span::after {
+    animation: hero-copper-enter 2.2s cubic-bezier(.22, 1, .36, 1) .25s both;
+  }
 }
 .hero-section-marker {
   display: block;
@@ -603,6 +623,7 @@ h2 {
 @media (max-width: 25rem) {
   .hero-editorial-grid { gap: 1.65rem; padding-block: 1.75rem 2.2rem; }
   .hero-thesis { font-size: clamp(2.2rem, 9.4vw, 2.8rem); }
+  .hero-signature:lang(es) .hero-thesis { font-size: clamp(2.05rem, 9.2vw, 2.7rem); }
   .hero-thesis-line { padding-right: 0; }
   .hero-copy { font-size: .94rem; }
   .hero-actions .button { padding-inline: .7rem; font-size: .82rem; }
