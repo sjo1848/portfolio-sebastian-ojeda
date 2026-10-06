@@ -56,11 +56,7 @@ for (const locale of locales) {
       expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
       expect(initial.overflow).toBeLessThanOrEqual(0);
       expect(initial.runtimeMarkers).toBe(0);
-      if (viewport.width === 1366) {
-        const modelBottom = await page.locator('.hero-system-model')
-          .evaluate((element) => element.getBoundingClientRect().bottom);
-        expect(modelBottom).toBeLessThanOrEqual(viewport.height);
-      }
+      if (viewport.width === 1366) expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
 
       // Slow, fast and reverse navigation are ordinary document scrolling:
       // the Hero composition does not depend on crossing hidden state gates.

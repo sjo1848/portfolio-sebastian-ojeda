@@ -17,8 +17,8 @@ for (const locale of locales) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
-    await expect(page.locator('#hero .hero-system-model')).toBeVisible();
-    await expect(page.locator('#hero .hero-system-layer')).toHaveCount(5);
+    await expect(page.locator('#hero .hero-thesis-line')).toHaveCount(3);
+    await expect(page.locator('#hero .hero-system-model')).toHaveCount(0);
     await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
     await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
     await expect(page.locator('#operating-mindset li')).toHaveCount(3);
@@ -36,7 +36,7 @@ for (const locale of locales) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toBeVisible();
-    await expect(page.locator('.hero-system-layer').first()).toHaveCSS('animation-name', 'none');
+    await expect(page.locator('.hero-thesis-line > span').first()).toHaveCSS('animation-name', 'none');
     await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);

@@ -48,7 +48,8 @@ requireText(hero, 'hero-editorial-grid', 'HomePage.astro static editorial Hero l
 requireText(hero, 'class="hero-identity"', 'HomePage.astro visible identity block');
 requireText(hero, 'class="hero-proposition"', 'HomePage.astro visible proposition block');
 requireText(hero, 'id="hero-thesis"', 'HomePage.astro semantic thesis heading');
-requireText(hero, 'HeroSystemModel', 'HomePage.astro conceptual system model');
+requireText(hero, 'hero-thesis-line', 'HomePage.astro typographic thesis');
+forbidText(hero, 'HeroSystemModel', 'HomePage.astro rejected conceptual system model');
 requireText(hero, 'href="#projects"', 'HomePage.astro direct Selected Work CTA');
 forbidText(hero, 'data-sequence-progress', 'HomePage.astro obsolete scroll-state runtime');
 forbidText(hero, 'data-flight-glyph', 'HomePage.astro literal S/O flight');
