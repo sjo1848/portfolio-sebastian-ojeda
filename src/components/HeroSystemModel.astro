@@ -1,0 +1,172 @@
+---
+import type { Language } from '../data/site';
+
+interface Props { lang: Language; }
+const { lang } = Astro.props;
+const copy = lang === 'es'
+  ? {
+      label: 'ANATOMÍA DE UN SISTEMA',
+      note: 'Modelo conceptual',
+      layers: [
+        ['01', 'INTERFAZ', 'Lo que se usa'],
+        ['02', 'FLUJO', 'Lo que debe ocurrir'],
+        ['03', 'AUTORIDAD', 'Quién puede actuar'],
+        ['04', 'DATOS', 'Lo que persiste'],
+        ['05', 'EVIDENCIA', 'Lo que está comprobado'],
+      ],
+      footer: 'DEL USO VISIBLE A LAS DECISIONES QUE LO SOSTIENEN',
+      description: 'Modelo ilustrativo de cinco capas: interfaz, flujo, autoridad, datos y evidencia.',
+    }
+  : {
+      label: 'ANATOMY OF A SYSTEM',
+      note: 'Conceptual model',
+      layers: [
+        ['01', 'INTERFACE', 'What people use'],
+        ['02', 'WORKFLOW', 'What must happen'],
+        ['03', 'AUTHORITY', 'Who may act'],
+        ['04', 'DATA', 'What persists'],
+        ['05', 'EVIDENCE', 'What is verified'],
+      ],
+      footer: 'FROM THE VISIBLE ACTION TO THE DECISIONS BENEATH IT',
+      description: 'Illustrative five-layer system: interface, workflow, authority, data and evidence.',
+    };
+---
+
+<figure class="hero-system-model" aria-label={copy.description}>
+  <figcaption class="hero-system-heading">
+    <span>{copy.label}</span>
+    <span>SO / 001</span>
+  </figcaption>
+  <div class="hero-system-field" aria-hidden="true">
+    <svg class="hero-system-route" viewBox="0 0 16 400" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0 V59 H8 V164 H16 V258 H8 V353 H0 V400" />
+    </svg>
+    {copy.layers.map(([index, title, detail]) => (
+      <div class="hero-system-layer">
+        <span class="hero-system-node"></span>
+        <span class="hero-system-number">{index}</span>
+        <span class="hero-system-name">{title}</span>
+        <span class="hero-system-detail">{detail}</span>
+        {index === '01' && <span class="hero-system-ui"><i></i><i></i><i></i></span>}
+      </div>
+    ))}
+  </div>
+  <div class="hero-system-footer">
+    <span>{copy.footer}</span>
+    <span>{copy.note}</span>
+  </div>
+</figure>
+
+<style>
+  .hero-system-model {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--night-text) 16%, transparent);
+    background:
+      linear-gradient(90deg, transparent calc(25% - .5px), rgb(255 248 237 / 4%) 25%, transparent calc(25% + .5px)),
+      linear-gradient(90deg, transparent calc(75% - .5px), rgb(255 248 237 / 4%) 75%, transparent calc(75% + .5px)),
+      linear-gradient(180deg, var(--night-raised), var(--night));
+    box-shadow: 0 1.4rem 2.8rem rgb(23 32 39 / 12%);
+    color: var(--night-text);
+  }
+  .hero-system-heading,
+  .hero-system-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    line-height: 1.5;
+  }
+  .hero-system-heading { padding: 1.2rem 1.5rem; border-bottom: 1px solid rgb(255 248 237 / 18%); color: var(--copper-light); }
+  .hero-system-heading span:last-child { color: var(--night-muted); }
+  .hero-system-field { position: relative; display: grid; gap: .58rem; padding: 1.25rem 1.5rem 1.5rem; }
+  .hero-system-route {
+    position: absolute;
+    z-index: 1;
+    top: 3.85rem;
+    left: 2.385rem;
+    width: 1rem;
+    height: calc(100% - 6.975rem);
+    overflow: visible;
+    transform-origin: top;
+  }
+  .hero-system-route path { fill: none; stroke: var(--copper-light); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .hero-system-layer {
+    position: relative;
+    display: grid;
+    min-height: 3.25rem;
+    grid-template-columns: 2.3rem 2rem minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: .7rem;
+    border: 1px solid rgb(255 248 237 / 15%);
+    padding: .5rem 1rem .5rem .35rem;
+    background: color-mix(in srgb, var(--night-raised) 72%, var(--night));
+    box-shadow: .4rem .55rem 0 rgb(0 0 0 / 10%);
+  }
+  .hero-system-layer:nth-child(3) { margin-left: .5rem; }
+  .hero-system-layer:nth-child(4) { margin-left: 1rem; border-color: rgb(241 160 107 / 60%); }
+  .hero-system-layer:nth-child(5) { margin-left: .5rem; }
+  .hero-system-layer:nth-child(2) {
+    min-height: 5.2rem;
+    align-items: start;
+    border-color: var(--paper);
+    padding-top: .8rem;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .hero-system-layer:nth-child(2) .hero-system-node { background: var(--paper); border-color: var(--accent); }
+  .hero-system-layer:nth-child(2) .hero-system-number { color: var(--accent-strong); }
+  .hero-system-layer:nth-child(2) .hero-system-detail { color: var(--muted); }
+  .hero-system-ui { position: absolute; right: 1rem; bottom: .75rem; left: 5rem; display: grid; height: 1.3rem; grid-template-columns: 1.15fr .7fr .6fr; gap: .4rem; }
+  .hero-system-ui i { display: block; border: 1px solid var(--line); background: color-mix(in srgb, var(--canvas) 50%, var(--paper)); }
+  .hero-system-ui i:first-child { border-left: 3px solid var(--accent); }
+  .hero-system-node {
+    position: relative;
+    z-index: 2;
+    width: .75rem;
+    height: .75rem;
+    margin-left: .16rem;
+    border: 2px solid var(--copper-light);
+    border-radius: 50%;
+    background: var(--night);
+  }
+  .hero-system-number { color: var(--copper-light); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .7rem; font-weight: 700; }
+  .hero-system-name { font-size: clamp(.88rem, 1.3vw, 1.1rem); font-weight: 790; letter-spacing: -.015em; }
+  .hero-system-detail { color: var(--night-muted); font-size: .72rem; line-height: 1.3; text-align: right; }
+  .hero-system-footer { align-items: end; padding: 1rem 1.5rem 1.25rem; border-top: 1px solid rgb(255 248 237 / 18%); color: var(--night-muted); }
+  .hero-system-footer span:first-child { max-width: 25ch; color: var(--night-text); }
+  .hero-system-footer span:last-child { max-width: 21ch; font-size: .59rem; font-weight: 500; letter-spacing: .01em; text-align: right; }
+  @keyframes system-layer-assemble {
+    from { opacity: .35; transform: translate3d(3rem, -1rem, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  @keyframes system-route-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-system-layer { animation: system-layer-assemble 1050ms cubic-bezier(.16, 1, .3, 1) both; }
+    .hero-system-layer:nth-child(2) { animation-delay: 120ms; }
+    .hero-system-layer:nth-child(3) { animation-delay: 230ms; }
+    .hero-system-layer:nth-child(4) { animation-delay: 340ms; }
+    .hero-system-layer:nth-child(5) { animation-delay: 450ms; }
+    .hero-system-layer:nth-child(6) { animation-delay: 560ms; }
+    .hero-system-route { animation: system-route-draw 1.15s cubic-bezier(.16, 1, .3, 1) 500ms both; }
+  }
+  @media (max-width: 55.99rem) {
+    .hero-system-layer { grid-template-columns: 1.8rem 1.6rem minmax(0, 1fr); min-height: 2.3rem; column-gap: .35rem; padding-block: .25rem; }
+    .hero-system-detail { display: none; }
+    .hero-system-route { top: 2.5rem; left: 1.885rem; height: calc(100% - 4.4rem); }
+    .hero-system-heading { padding: .75rem 1rem; }
+    .hero-system-footer { padding: .65rem 1rem; }
+    .hero-system-footer span:first-child { display: none; }
+    .hero-system-field { gap: .28rem; padding: .75rem 1rem; }
+    .hero-system-layer:nth-child(2) { min-height: 3.5rem; padding-top: .3rem; }
+    .hero-system-ui { right: .65rem; bottom: .5rem; left: 4rem; height: .85rem; gap: .25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-system-layer, .hero-system-route { animation: none; transform: none; }
+  }
+</style>

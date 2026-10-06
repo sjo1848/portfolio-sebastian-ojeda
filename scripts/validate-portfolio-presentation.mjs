@@ -43,11 +43,12 @@ requireText(home, 'href={site.cv}', 'HomePage.astro resume CTA');
 requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
 requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
 const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"'));
-forbidText(hero, 'site.cv', 'HomePage.astro Hero Resume CTA');
+requireText(hero, 'href={site.cv}', 'HomePage.astro Hero Resume CTA');
 requireText(hero, 'hero-editorial-grid', 'HomePage.astro static editorial Hero layout');
 requireText(hero, 'class="hero-identity"', 'HomePage.astro visible identity block');
 requireText(hero, 'class="hero-proposition"', 'HomePage.astro visible proposition block');
 requireText(hero, 'id="hero-thesis"', 'HomePage.astro semantic thesis heading');
+requireText(hero, 'HeroSystemModel', 'HomePage.astro conceptual system model');
 requireText(hero, 'href="#projects"', 'HomePage.astro direct Selected Work CTA');
 forbidText(hero, 'data-sequence-progress', 'HomePage.astro obsolete scroll-state runtime');
 forbidText(hero, 'data-flight-glyph', 'HomePage.astro literal S/O flight');
@@ -65,8 +66,8 @@ requireText(site, "title: 'Full-Stack Software Developer · Backend, IA y Automa
 requireText(site, "title: 'Full-Stack Software Developer · Backend, AI and Automation'", 'site.ts EN positioning');
 requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED'", 'HomePage.astro EN positioning');
 requireText(home, "eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
-requireText(home, "thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS'", 'HomePage.astro EN thesis');
-requireText(home, "thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS'", 'HomePage.astro ES thesis');
+requireText(home, "thesis: 'I build the systems behind real work.'", 'HomePage.astro EN thesis');
+requireText(home, "thesis: 'Construyo los sistemas detrás del trabajo real.'", 'HomePage.astro ES thesis');
 requireText(header, 'data-signature-brand', 'SiteHeader.astro persistent brand integration');
 
 // Primary work order is intentionally product/full-stack first.

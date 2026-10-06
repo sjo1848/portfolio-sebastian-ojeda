@@ -25,7 +25,7 @@ test('I3 Hero editorial composition remains within the viewport at legacy respon
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('RELIABLE SOFTWARE FOR COMPLEX OPERATIONS');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('I build the systems behind real work.');
   await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
   await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
 });

@@ -2,8 +2,8 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { path: '/', thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS', role: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED' },
-  { path: '/es/', thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS', role: 'DESARROLLADOR FULL-STACK · FOCO BACKEND' },
+  { path: '/', thesis: 'I build the systems behind real work.', role: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED' },
+  { path: '/es/', thesis: 'Construyo los sistemas detrás del trabajo real.', role: 'DESARROLLADOR FULL-STACK · FOCO BACKEND' },
 ] as const;
 
 for (const locale of locales) {
@@ -17,6 +17,8 @@ for (const locale of locales) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
+    await expect(page.locator('#hero .hero-system-model')).toBeVisible();
+    await expect(page.locator('#hero .hero-system-layer')).toHaveCount(5);
     await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
     await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
     await expect(page.locator('#operating-mindset li')).toHaveCount(3);
@@ -34,6 +36,7 @@ for (const locale of locales) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.thesis);
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toBeVisible();
+    await expect(page.locator('.hero-system-layer').first()).toHaveCSS('animation-name', 'none');
     await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
     expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);
@@ -49,7 +52,7 @@ test('#129 failed optional scripts leave the static Home fully usable', async ({
   });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('RELIABLE SOFTWARE FOR COMPLEX OPERATIONS');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('I build the systems behind real work.');
   await expect(page.locator('#hero .hero-copy')).toBeVisible();
   await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
   await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);

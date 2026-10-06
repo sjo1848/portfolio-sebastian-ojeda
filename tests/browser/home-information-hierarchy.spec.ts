@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 const locales = [
   {
-    name: 'English', path: '/', role: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS',
+    name: 'English', path: '/', role: 'I build the systems behind real work.',
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-    heroCopy: 'I design and build systems where workflows, APIs, data and infrastructure have to work together.',
+    heroCopy: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
     heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
@@ -23,9 +23,9 @@ const locales = [
     contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',
   },
   {
-    name: 'Spanish', path: '/es/', role: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS',
+    name: 'Spanish', path: '/es/', role: 'Construyo los sistemas detrás del trabajo real.',
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Diseño y construyo sistemas donde los flujos de trabajo, las API, los datos y la infraestructura deben funcionar en conjunto.',
+    heroCopy: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
     heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSystemModel from './HeroSystemModel.astro';
 import SelectedWorkIndex from './SelectedWorkIndex.astro';
 import CopyAction from './CopyAction';
 import {
@@ -29,15 +30,15 @@ const mindset = portfolioStoriesByLanguage[lang].operatingMindset;
 const brandHero = lang === 'es'
   ? {
       eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-      thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS',
-      lead: 'Diseño y construyo sistemas donde los flujos de trabajo, las API, los datos y la infraestructura deben funcionar en conjunto.',
+      thesis: 'Construyo los sistemas detrás del trabajo real.',
+      lead: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
       location: 'Mendoza, Argentina · Remoto prioritario',
       workCta: 'Ver trabajo seleccionado',
   }
   : {
       eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-      thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS',
-      lead: 'I design and build systems where workflows, APIs, data and infrastructure have to work together.',
+      thesis: 'I build the systems behind real work.',
+      lead: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
       location: 'Mendoza, Argentina · Remote-first',
       workCta: 'View selected work',
     };
@@ -46,23 +47,26 @@ const brandHero = lang === 'es'
 <BaseLayout lang={lang}>
   <section id="hero" class="hero hero-signature" aria-labelledby="hero-thesis">
     <div class="container hero-editorial-grid">
-      <div class="hero-identity">
-        <p class="eyebrow hero-role">{brandHero.eyebrow}</p>
-        <p class="hero-opening-name"><span>Sebastián</span>{' '}<span>Ojeda</span></p>
-        <p class="hero-location">{brandHero.location}</p>
-      </div>
-      <div class="hero-proposition">
-        <span class="hero-section-marker" aria-hidden="true"></span>
-        <h1 id="hero-thesis" class="hero-thesis">{brandHero.thesis}</h1>
-        <p class="hero-copy">{brandHero.lead}</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#projects">
-            {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="button button-secondary hero-resume-link" href={site.cv}>{copyByLanguage[lang].nav.cv}</a>
-          <a class="hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <div class="hero-narrative">
+        <div class="hero-identity">
+          <p class="eyebrow hero-role">{brandHero.eyebrow}</p>
+          <p class="hero-opening-name"><span>Sebastián</span>{' '}<span>Ojeda</span></p>
+          <p class="hero-location">{brandHero.location}</p>
+        </div>
+        <div class="hero-proposition">
+          <span class="hero-section-marker" aria-hidden="true"></span>
+          <h1 id="hero-thesis" class="hero-thesis">{brandHero.thesis}</h1>
+          <p class="hero-copy">{brandHero.lead}</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">
+              {brandHero.workCta}<span class="hero-cta-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-secondary hero-resume-link" href={site.cv}>{copyByLanguage[lang].nav.cv}</a>
+            <a class="hero-github-link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
         </div>
       </div>
+      <HeroSystemModel lang={lang} />
     </div>
   </section>
 

@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { key: 'en', path: '/', thesis: 'RELIABLE SOFTWARE FOR COMPLEX OPERATIONS', role: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED' },
-  { key: 'es', path: '/es/', thesis: 'SOFTWARE CONFIABLE PARA OPERACIONES COMPLEJAS', role: 'DESARROLLADOR FULL-STACK · FOCO BACKEND' },
+  { key: 'en', path: '/', thesis: 'I build the systems behind real work.', role: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED' },
+  { key: 'es', path: '/es/', thesis: 'Construyo los sistemas detrás del trabajo real.', role: 'DESARROLLADOR FULL-STACK · FOCO BACKEND' },
 ] as const;
 const viewports = [
   { width: 1366, height: 768 },
@@ -57,9 +57,9 @@ for (const locale of locales) {
       expect(initial.overflow).toBeLessThanOrEqual(0);
       expect(initial.runtimeMarkers).toBe(0);
       if (viewport.width === 1366) {
-        const firstCaseTop = await page.locator('#projects .selected-work-title').first()
-          .evaluate((element) => element.getBoundingClientRect().top);
-        expect(firstCaseTop).toBeLessThan(viewport.height);
+        const modelBottom = await page.locator('.hero-system-model')
+          .evaluate((element) => element.getBoundingClientRect().bottom);
+        expect(modelBottom).toBeLessThanOrEqual(viewport.height);
       }
 
       // Slow, fast and reverse navigation are ordinary document scrolling:

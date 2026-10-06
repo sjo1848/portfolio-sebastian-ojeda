@@ -474,7 +474,7 @@ h2 {
   position: relative;
   overflow: clip;
   border-bottom: 1px solid var(--line);
-  padding-block: clamp(2.75rem, 6vh, 4rem);
+  padding-block: clamp(2rem, 4vh, 3rem);
   background-color: var(--paper);
   background-image:
     linear-gradient(90deg, transparent calc(20% - 0.5px), rgb(23 32 39 / 3%) 20%, transparent calc(20% + 0.5px)),
@@ -483,10 +483,11 @@ h2 {
 }
 .hero-editorial-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
 }
+.hero-narrative { min-width: 0; }
 .hero-identity,
 .hero-proposition { min-width: 0; }
 .hero-role {
@@ -505,9 +506,9 @@ h2 {
 .hero-role::before { width: 2rem; height: 2px; flex: 0 0 auto; background: var(--accent); content: ''; }
 .hero-opening-name {
   display: grid;
-  margin: clamp(1.75rem, 4vh, 2.75rem) 0 1.35rem;
+  margin: clamp(1rem, 2vh, 1.5rem) 0 1rem;
   color: var(--ink);
-  font-size: clamp(4rem, 6.2vw, 6rem);
+  font-size: clamp(3.6rem, 5.2vw, 5.4rem);
   font-weight: 820;
   line-height: 0.86;
   letter-spacing: -0.09em;
@@ -521,35 +522,37 @@ h2 {
   line-height: 1.5;
 }
 .hero-proposition {
-  border-left: 1px solid var(--line);
-  padding-left: clamp(1.75rem, 4.2vw, 3.75rem);
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
 }
 .hero-section-marker {
   display: block;
   width: 2.75rem;
   height: 2px;
-  margin-bottom: 1.35rem;
+  margin-bottom: .75rem;
   background: var(--accent);
 }
 .hero-thesis {
-  max-width: 19ch;
+  max-width: 18ch;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(2.4rem, 4vw, 3.3rem);
+  font-size: clamp(2.4rem, 3.6vw, 3.2rem);
   font-weight: 820;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: -0.045em;
   word-spacing: 0.07em;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 .hero-copy {
-  max-width: 38rem;
-  margin: 1.35rem 0 0;
+  max-width: 36rem;
+  margin: 1rem 0 0;
   color: var(--ink);
   font-size: clamp(1rem, 1.25vw, 1.125rem);
   line-height: 1.55;
 }
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin: 1.4rem 0 0; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin: 1rem 0 0; }
 .hero-actions .button { min-height: 2.75rem; }
 .hero-github-link {
   display: inline-flex;
@@ -567,9 +570,7 @@ h2 {
 .hero-actions .button-primary:hover .hero-cta-arrow,
 .hero-actions .button-primary:focus-visible .hero-cta-arrow { transform: translate(3px, -2px); }
 
-/* The two editorial columns settle into their reading positions as the copper
-   marker is drawn. This adds a clear, one-time motion cue without hiding copy,
-   delaying the CTA, or tying the Hero to scroll state. */
+/* The personal masthead and system model settle into a single composition. */
 @keyframes hero-editorial-arrive-left {
   from { transform: translate3d(-1rem, 0, 0); }
   to { transform: translate3d(0, 0, 0); }
@@ -591,7 +592,7 @@ h2 {
     animation: hero-editorial-arrive-left 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .hero-signature .hero-proposition {
-    animation: hero-editorial-arrive-right 900ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+    animation: hero-editorial-arrive-up 900ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
   }
   .hero-signature .hero-section-marker {
     transform-origin: left center;
@@ -601,7 +602,7 @@ h2 {
 
 @media (max-width: 55.99rem) {
   .hero-signature { padding-block: clamp(3rem, 8vw, 4.5rem); }
-  .hero-editorial-grid { grid-template-columns: minmax(0, 1fr); gap: clamp(1.65rem, 6vw, 2.5rem); }
+  .hero-editorial-grid { grid-template-columns: minmax(0, 1fr); gap: clamp(1.8rem, 6vw, 2.7rem); }
   .hero-role { font-size: clamp(0.58rem, 2.2vw, 0.7rem); letter-spacing: 0.035em; }
   .hero-opening-name {
     display: flex;
@@ -612,9 +613,9 @@ h2 {
     letter-spacing: -0.085em;
     white-space: nowrap;
   }
-  .hero-proposition { border-top: 1px solid var(--line); border-left: 0; padding: 1.35rem 0 0; }
+  .hero-proposition { margin-top: 1.35rem; padding-top: 1.35rem; }
   .hero-section-marker { margin-bottom: 1rem; }
-  .hero-thesis { max-width: 20ch; font-size: clamp(2.2rem, 8.2vw, 3.4rem); line-height: 0.99; }
+  .hero-thesis { max-width: 21ch; font-size: clamp(2.2rem, 8.2vw, 3.4rem); line-height: 1; }
   .hero-copy { margin-top: 1rem; font-size: 1rem; }
   .hero-actions { gap: 0.55rem; margin-top: 1.15rem; }
   .hero-actions .button { padding-inline: 0.85rem; font-size: 0.88rem; }
@@ -625,7 +626,7 @@ h2 {
 }
 
 @media (max-width: 22.5rem) {
-  .hero-signature { padding-block: 2.5rem 3rem; }
+  .hero-signature { padding-block: 2.2rem 1.8rem; }
   .hero-editorial-grid { gap: 1.45rem; }
   .hero-opening-name { font-size: clamp(2.35rem, 10.9vw, 2.65rem); }
   .hero-thesis { font-size: clamp(2rem, 8vw, 2.2rem); }
