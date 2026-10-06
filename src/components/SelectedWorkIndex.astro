@@ -104,7 +104,9 @@ const activeIndex = '01';
           </a>
           {media && data.slug === 'hms-cloudflare' && (
             <figure class="selected-work-mobile-evidence">
-              <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+              <div class="selected-work-mobile-image-frame">
+                <img src={media.src} alt={media.alt[lang]} width={media.width} height={media.height} loading="lazy" decoding="async" />
+              </div>
               <figcaption>{media.caption[lang]}</figcaption>
             </figure>
           )}

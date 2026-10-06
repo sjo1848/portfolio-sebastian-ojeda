@@ -5,6 +5,8 @@ const panel = index?.querySelector<HTMLElement>('[data-selected-evidence]');
 
 if (section && index && rows.length && panel) {
   const evidencePanel = panel;
+  const desktopQuery = window.matchMedia('(min-width: 48rem)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if ('IntersectionObserver' in window) {
     const handoffObserver = new IntersectionObserver((entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {
@@ -18,7 +20,53 @@ if (section && index && rows.length && panel) {
     section.dataset.handoffVisible = 'true';
   }
 
-  const desktopQuery = window.matchMedia('(min-width: 48rem)');
+  // The image is concealed only after it has loaded and only while below the
+  // viewport. Direct links, failed scripts and reduced motion show it at once.
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const proofFrames = [...index.querySelectorAll<HTMLElement>(
+      '.selected-work-evidence-image-frame, .selected-work-mobile-image-frame',
+    )];
+    const proofObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const frame = entry.target as HTMLElement;
+        frame.dataset.proofReveal = 'revealing';
+        proofObserver.unobserve(frame);
+      }
+    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+
+    for (const frame of proofFrames) {
+      const image = frame.querySelector('img');
+      if (!image) continue;
+      const arm = () => {
+        if (reducedMotion.matches || frame.dataset.proofReveal) return;
+        const bounds = frame.getBoundingClientRect();
+        if (bounds.height > 0 && bounds.top <= window.innerHeight * 0.86) return;
+        frame.dataset.proofReveal = 'waiting';
+        proofObserver.observe(frame);
+      };
+      frame.addEventListener('animationend', (event) => {
+        if (event.animationName === 'selected-proof-uncover') frame.dataset.proofReveal = 'complete';
+      });
+      if (image.complete && image.naturalWidth > 0) arm();
+      else image.addEventListener('load', arm, { once: true });
+    }
+
+    const completeActiveReveal = () => {
+      for (const frame of proofFrames) {
+        if (frame.dataset.proofReveal === 'revealing') frame.dataset.proofReveal = 'complete';
+      }
+    };
+    desktopQuery.addEventListener('change', completeActiveReveal);
+    reducedMotion.addEventListener('change', () => {
+      if (!reducedMotion.matches) return;
+      proofObserver.disconnect();
+      for (const frame of proofFrames) {
+        if (frame.dataset.proofReveal) frame.dataset.proofReveal = 'complete';
+      }
+    });
+  }
+
   const image = evidencePanel.querySelector<HTMLImageElement>('[data-evidence-image]');
   const empty = evidencePanel.querySelector<HTMLElement>('[data-evidence-empty]');
   const figure = evidencePanel.querySelector<HTMLElement>('.selected-work-evidence-figure');
@@ -68,7 +116,7 @@ if (section && index && rows.length && panel) {
       empty.hidden = hasImage || !showFallback;
       if (!hasImage && showFallback) empty.textContent = fallbackText ?? row.dataset.emptyCaption ?? '';
       figure.removeAttribute('data-evidence-changing');
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!reducedMotion.matches) {
         requestAnimationFrame(() => {
           if (current === revision) figure.dataset.evidenceChanging = 'true';
         });

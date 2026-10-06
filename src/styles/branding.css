@@ -555,6 +555,38 @@ h2 {
 .hero-actions .button-primary:hover .hero-cta-arrow,
 .hero-actions .button-primary:focus-visible .hero-cta-arrow { transform: translate(3px, -2px); }
 
+/* The two editorial columns settle into their reading positions as the copper
+   marker is drawn. This adds a clear, one-time motion cue without hiding copy,
+   delaying the CTA, or tying the Hero to scroll state. */
+@keyframes hero-editorial-arrive-left {
+  from { transform: translate3d(-1rem, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes hero-editorial-arrive-right {
+  from { transform: translate3d(1rem, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes hero-editorial-arrive-up {
+  from { transform: translate3d(0, 0.85rem, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes hero-editorial-marker-draw {
+  from { transform: scaleX(0.15); }
+  to { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-signature .hero-identity {
+    animation: hero-editorial-arrive-left 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .hero-signature .hero-proposition {
+    animation: hero-editorial-arrive-right 900ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+  }
+  .hero-signature .hero-section-marker {
+    transform-origin: left center;
+    animation: hero-editorial-marker-draw 720ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+  }
+}
+
 @media (max-width: 55.99rem) {
   .hero-signature { padding-block: clamp(3rem, 8vw, 4.5rem); }
   .hero-editorial-grid { grid-template-columns: minmax(0, 1fr); gap: clamp(1.65rem, 6vw, 2.5rem); }
@@ -574,6 +606,10 @@ h2 {
   .hero-copy { margin-top: 1rem; font-size: 1rem; }
   .hero-actions { gap: 0.55rem; margin-top: 1.15rem; }
   .hero-actions .button { padding-inline: 0.85rem; font-size: 0.88rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-signature .hero-identity { animation-name: hero-editorial-arrive-up; }
+    .hero-signature .hero-proposition { animation-name: hero-editorial-arrive-up; }
+  }
 }
 
 @media (max-width: 22.5rem) {
@@ -588,4 +624,10 @@ h2 {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-cta-arrow { transition: none; }
+  .hero-signature .hero-identity,
+  .hero-signature .hero-proposition,
+  .hero-signature .hero-section-marker {
+    animation: none;
+    transform: none;
+  }
 }
