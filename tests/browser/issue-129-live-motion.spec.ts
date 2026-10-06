@@ -65,13 +65,20 @@ for (const locale of locales) {
         const thesis = hero.querySelector<HTMLElement>('.hero-thesis')!;
         const start = hero.getBoundingClientRect().top + scrollY;
         const targets = [0, 140, 360, 720, 0];
-        const values: Array<{ offset: number; visible: boolean; opacity: string }> = [];
+        const values: Array<{ offset: number; visible: boolean; opacity: string; wipe: number; expectedWipe: number }> = [];
         document.documentElement.style.scrollBehavior = 'auto';
         for (const offset of targets) {
           window.scrollTo({ top: start + offset, behavior: 'instant' });
           await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
           const style = getComputedStyle(thesis);
-          values.push({ offset: scrollY - start, visible: style.visibility === 'visible' && style.display !== 'none', opacity: style.opacity });
+          const distance = Math.min(innerHeight * 0.3, 260);
+          values.push({
+            offset: scrollY - start,
+            visible: style.visibility === 'visible' && style.display !== 'none',
+            opacity: style.opacity,
+            wipe: Number.parseFloat(hero.style.getPropertyValue('--hero-wipe')),
+            expectedWipe: Math.min(100, Math.max(0, scrollY / distance * 100)),
+          });
         }
         return values;
       });
@@ -79,6 +86,9 @@ for (const locale of locales) {
         expect(Math.abs(scrollStates[index]!.offset - target)).toBeLessThan(1);
       }
       expect(scrollStates.every((state) => state.visible && state.opacity === '1')).toBe(true);
+      for (const state of scrollStates) expect(Math.abs(state.wipe - state.expectedWipe)).toBeLessThan(1);
+      expect(scrollStates[3]!.wipe).toBe(100);
+      expect(scrollStates[4]!.wipe).toBeCloseTo(scrollStates[0]!.wipe, 1);
       expect(errors).toEqual([]);
     });
   }
@@ -95,6 +105,7 @@ for (const locale of locales) {
     await expect(page.locator('#projects')).toBeInViewport();
     await expect(page.locator('.site-header [data-signature-brand]')).toBeVisible();
     await expect(page.locator('#hero [data-sequence-stage]')).toHaveCount(0);
+    await expect(page.locator('#hero')).toHaveCSS('--hero-wipe', '0.00%');
     await expect(page.locator('.selected-work-mobile-image-frame img')).toHaveCSS('animation-name', 'none');
   });
 }

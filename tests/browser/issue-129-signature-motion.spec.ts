@@ -18,6 +18,7 @@ for (const locale of locales) {
     await expect(page.locator('#hero .hero-copy')).toBeVisible();
     await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
     await expect(page.locator('#hero .hero-thesis-line')).toHaveCount(3);
+    await expect(page.locator('.hero-thesis-line > span').first()).toHaveCSS('animation-name', 'none');
     await expect(page.locator('#hero .hero-system-model')).toHaveCount(0);
     await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
     await expect(page.locator('#projects [data-selected-evidence] [data-evidence-image]')).toHaveAttribute('src', /cf-i04-reception-cover-authorized\.png$/);
@@ -57,6 +58,18 @@ test('#129 failed optional scripts leave the static Home fully usable', async ({
   await expect(page.locator('#hero .button-primary')).toHaveAttribute('href', '#projects');
   await expect(page.locator('#projects [data-project-index-item]')).toHaveCount(3);
   await expect(page.locator('#projects [data-selected-evidence]')).toBeVisible();
+});
+
+test('#129 reduced motion toggled during scroll returns the Hero to its static state', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo({ top: 140, behavior: 'instant' }); });
+  await expect.poll(() => page.locator('#hero').evaluate((hero) => Number.parseFloat((hero as HTMLElement).style.getPropertyValue('--hero-wipe')))).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('#hero')).toHaveCSS('--hero-wipe', '0.00%');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect.poll(() => page.locator('#hero').evaluate((hero) => Number.parseFloat((hero as HTMLElement).style.getPropertyValue('--hero-wipe')))).toBeGreaterThan(0);
 });
 
 test('#129 Hero action remains keyboard reachable and keeps native anchor behavior', async ({ page }) => {

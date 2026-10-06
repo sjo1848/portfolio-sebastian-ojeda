@@ -55,7 +55,7 @@ const brandHero = lang === 'es'
       <div class="hero-proposition">
         <h1 id="hero-thesis" class="hero-thesis" aria-label={brandHero.thesis}>
           {brandHero.thesisLines.map((line, index) => (
-            <span class:list={['hero-thesis-line', { 'hero-thesis-final': index === 2 }]}><span>{line}</span></span>
+            <span class:list={['hero-thesis-line', { 'hero-thesis-final': index === 2 }]}><span data-text={index === 2 ? line : undefined}>{line}</span></span>
           ))}
         </h1>
         <span class="hero-section-marker" aria-hidden="true"></span>
@@ -162,6 +162,10 @@ const brandHero = lang === 'es'
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  import '../scripts/hero-scroll';
+</script>
 
 <style>
   .operating-mindset-list { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; list-style: none; }
