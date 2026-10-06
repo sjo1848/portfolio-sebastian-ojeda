@@ -34,6 +34,8 @@ for (const locale of locales) {
         const hero = document.querySelector<HTMLElement>('#hero')!;
         const thesis = hero.querySelector<HTMLElement>('.hero-thesis')!;
         const cta = hero.querySelector<HTMLElement>('.button-primary')!;
+        const marker = hero.querySelector<HTMLElement>('.hero-section-marker')!;
+        const projects = document.querySelector<HTMLElement>('#projects')!;
         const rect = (element: HTMLElement) => {
           const box = element.getBoundingClientRect();
           return { left: box.left, right: box.right, top: box.top, bottom: box.bottom };
@@ -43,6 +45,7 @@ for (const locale of locales) {
           position: getComputedStyle(hero).position,
           thesis: rect(thesis),
           cta: rect(cta),
+          seamGap: Math.abs(marker.getBoundingClientRect().left - (projects.getBoundingClientRect().left + parseFloat(getComputedStyle(projects, '::before').left))),
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           runtimeMarkers: document.querySelectorAll('[data-sequence-stage], [data-flight-glyph], [data-proof-bridge]').length,
         };
@@ -55,6 +58,7 @@ for (const locale of locales) {
       expect(initial.cta.right).toBeLessThanOrEqual(viewport.width);
       expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
       expect(initial.overflow).toBeLessThanOrEqual(0);
+      expect(initial.seamGap).toBeLessThanOrEqual(1);
       expect(initial.runtimeMarkers).toBe(0);
       if (viewport.width === 1366) expect(initial.cta.bottom).toBeLessThanOrEqual(viewport.height);
 
