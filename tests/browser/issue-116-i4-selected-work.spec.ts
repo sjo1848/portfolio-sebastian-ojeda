@@ -13,9 +13,9 @@ for (const route of ['/', '/es/']) {
     const rows = page.locator('[data-project-index-item]');
     await expect(rows).toHaveCount(3);
     await expect(rows.locator('.selected-work-title')).toHaveText(expectedTitles);
-    await expect(rows.nth(0).locator('a')).toHaveAttribute('href', route === '/' ? '/projects/hms-cloudflare/' : '/es/projects/hms-cloudflare/');
-    await expect(rows.nth(1).locator('a')).toHaveAttribute('href', route === '/' ? '/projects/alquileres-uspa/' : '/es/projects/alquileres-uspa/');
-    await expect(rows.nth(2).locator('a')).toHaveAttribute('href', route === '/' ? '/projects/ai-commerce-platform/' : '/es/projects/ai-commerce-platform/');
+    await expect(rows.nth(0).locator('a.selected-work-row')).toHaveAttribute('href', route === '/' ? '/projects/hms-cloudflare/' : '/es/projects/hms-cloudflare/');
+    await expect(rows.nth(1).locator('a.selected-work-row')).toHaveAttribute('href', route === '/' ? '/projects/alquileres-uspa/' : '/es/projects/alquileres-uspa/');
+    await expect(rows.nth(2).locator('a.selected-work-row')).toHaveAttribute('href', route === '/' ? '/projects/ai-commerce-platform/' : '/es/projects/ai-commerce-platform/');
     for (const row of await rows.all()) {
       await expect(row.locator('.selected-work-category')).toBeVisible();
       await expect(row.locator('.selected-work-signal')).toBeVisible();
