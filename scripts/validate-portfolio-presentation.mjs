@@ -74,6 +74,10 @@ requireText(home, "eyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED'",
 requireText(home, "eyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND'", 'HomePage.astro ES positioning');
 requireText(home, "thesis: 'I build the systems behind real work.'", 'HomePage.astro EN thesis');
 requireText(home, "thesis: 'Construyo los sistemas detrás del trabajo real.'", 'HomePage.astro ES thesis');
+requireText(home, "lead: 'I design and build end-to-end software for real operations", 'HomePage.astro EN hero lead');
+requireText(home, "lead: 'Diseño y construyo software end-to-end para operaciones reales", 'HomePage.astro ES hero lead');
+forbidText(home, 'Three backend-oriented cases showing ownership, architecture and available evidence.', 'HomePage.astro redundant EN selected-work intro');
+forbidText(home, 'Tres casos con foco backend, ownership, arquitectura y evidencia disponible.', 'HomePage.astro redundant ES selected-work intro');
 requireText(header, 'data-signature-brand', 'SiteHeader.astro persistent brand integration');
 
 // Primary work order is intentionally product/full-stack first.
@@ -117,6 +121,10 @@ requireText(stories, "eyebrow: 'TRABAJO SELECCIONADO'", 'portfolioStories.ts ES 
 requireText(stories, "eyebrow: 'SELECTED WORK'", 'portfolioStories.ts EN selected-work copy');
 requireText(stories, "title: 'Entender el sistema. Construir end-to-end. Verificar los límites.'", 'portfolioStories.ts ES operating mindset');
 requireText(stories, "title: 'Understand the system. Build end-to-end. Verify the boundaries.'", 'portfolioStories.ts EN operating mindset');
+requireText(stories, 'Combino prácticas de ingeniería de software', 'portfolioStories.ts ES agentic engineering statement');
+requireText(stories, 'I combine software-engineering practices', 'portfolioStories.ts EN agentic engineering statement');
+requireText(home, 'data-mindset-trigger', 'HomePage.astro interactive mindset triggers');
+requireText(home, 'data-mindset-panel', 'HomePage.astro interactive mindset panels');
 
 // Flagship case studies must use the normalized evidence-first structure in both languages.
 const caseStudyContracts = [

@@ -33,7 +33,7 @@ const brandHero = lang === 'es'
       thesisLines: ['CONSTRUYO LOS', 'SISTEMAS DETRÁS', 'DEL TRABAJO REAL.'],
       rotatingWords: ['SISTEMAS', 'SERVICIOS', 'PRODUCTOS'],
       thesisTail: 'DETRÁS',
-      lead: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
+      lead: 'Diseño y construyo software end-to-end para operaciones reales, conectando dominio, backend, datos, integraciones e interfaces en un sistema coherente.',
       location: 'Mendoza, Argentina · Remoto prioritario',
       workCta: 'Ver trabajo seleccionado',
   }
@@ -43,7 +43,7 @@ const brandHero = lang === 'es'
       thesisLines: ['I BUILD THE', 'SYSTEMS BEHIND', 'REAL WORK.'],
       rotatingWords: ['SYSTEMS', 'SERVICES', 'PRODUCTS'],
       thesisTail: 'BEHIND',
-      lead: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
+      lead: 'I design and build end-to-end software for real operations, connecting domain logic, backend, data, integrations and interfaces into one coherent system.',
       location: 'Mendoza, Argentina · Remote-first',
       workCta: 'View selected work',
     };
@@ -106,28 +106,64 @@ const brandHero = lang === 'es'
       <div class="section-heading projects-heading">
         <p class="eyebrow">{storyCopy.eyebrow}</p>
         <h2 id="stories-title">{storyCopy.title}</h2>
-        <p>{storyCopy.intro}</p>
       </div>
       <SelectedWorkIndex lang={lang} projects={primaryProjects} />
 
     </div>
   </section>
 
-  <section id="operating-mindset" class="section section-night" aria-labelledby="operating-mindset-title">
+  <section
+    id="operating-mindset"
+    class="section section-night"
+    aria-labelledby="operating-mindset-title"
+    data-operating-mindset
+  >
     <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow eyebrow-light">{mindset.eyebrow}</p>
-        <h2 id="operating-mindset-title">{mindset.title}</h2>
+      <div class="operating-mindset-heading">
+        <p class="operating-mindset-kicker">{lang === 'es' ? '01 · MÉTODO DE INGENIERÍA' : '01 · ENGINEERING METHOD'}</p>
+        <h2 id="operating-mindset-title">{lang === 'es' ? 'Cómo trabajo' : 'How I work'}</h2>
       </div>
-      <ol class="operating-mindset-list">
+
+      <div class="operating-mindset-spotlight">
+        <div class="operating-mindset-phrases" role="tablist" aria-label={mindset.title}>
+          {mindset.items.map((item, index) => (
+            <button
+              type="button"
+              role="tab"
+              data-mindset-trigger
+              data-index={index}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls="operating-mindset-panel"
+            >
+              {item.title}.
+            </button>
+          ))}
+        </div>
+
+        <aside
+          id="operating-mindset-panel"
+          class="operating-mindset-panel"
+          data-mindset-panel
+          aria-live="polite"
+        >
+          <p class="operating-mindset-panel-label" data-mindset-label>{mindset.items[0].title}</p>
+          <p class="operating-mindset-panel-copy" data-mindset-copy>{mindset.items[0].description}</p>
+        </aside>
+      </div>
+
+      <ol class="operating-mindset-fallback" data-mindset-fallback>
         {mindset.items.map((item, index) => (
-          <li>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <div><h3>{item.title}</h3><p>{item.description}</p></div>
+          <li id={`operating-mindset-detail-${index + 1}`}>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
           </li>
         ))}
       </ol>
-      <p class="operating-mindset-context">{mindset.context}</p>
+
+      <div class="operating-mindset-context">
+        <p class="operating-mindset-agentic">{mindset.agentic}</p>
+        <p>{mindset.context}</p>
+      </div>
     </div>
   </section>
 
@@ -193,15 +229,128 @@ const brandHero = lang === 'es'
 
 <script>
   import '../scripts/hero-scroll';
+  import '../scripts/operating-mindset';
 </script>
 
 <style>
-  .operating-mindset-list { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; list-style: none; }
-  .operating-mindset-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; border-top: 1px solid color-mix(in srgb, var(--night-text) 25%, transparent); padding-top: 1.25rem; }
-  .operating-mindset-list > li > span { color: var(--copper-light); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.75rem; font-weight: 750; }
-  .operating-mindset-list h3 { color: var(--night-text); font-size: 1.25rem; }
-  .operating-mindset-list p, .operating-mindset-context { max-width: 48rem; margin-top: 0.75rem; color: #c9d0ce; line-height: 1.65; }
-  .operating-mindset-context { margin-top: 2rem; }
+  .operating-mindset-heading {
+    max-width: 64rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .operating-mindset-kicker {
+    margin: 0 0 1.5rem;
+    color: var(--copper-light);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  #operating-mindset .operating-mindset-heading h2 {
+    max-width: 12ch;
+    color: var(--night-text);
+    font-size: clamp(3rem, 7vw, 6.6rem);
+    line-height: .92;
+    letter-spacing: -.07em;
+  }
+  .operating-mindset-spotlight {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(22.5rem, .9fr);
+    gap: clamp(2rem, 4.5vw, 4rem);
+    align-items: center;
+  }
+  .operating-mindset-phrases {
+    display: grid;
+    gap: .25rem;
+  }
+  .operating-mindset-phrases button {
+    appearance: none;
+    width: fit-content;
+    max-width: 100%;
+    border: 0;
+    background: none;
+    padding: 0;
+    color: color-mix(in srgb, var(--night-text) 34%, transparent);
+    cursor: pointer;
+    font: inherit;
+    font-size: clamp(2.15rem, 5vw, 4.8rem);
+    font-weight: 820;
+    letter-spacing: -.055em;
+    line-height: .98;
+    text-align: left;
+    transition: color 220ms var(--motion-ease);
+  }
+  .operating-mindset-phrases button:hover {
+    color: color-mix(in srgb, var(--night-text) 58%, transparent);
+  }
+  .operating-mindset-phrases button[aria-selected='true'] {
+    color: var(--copper-light);
+  }
+  .operating-mindset-phrases button:focus-visible {
+    outline: 3px solid var(--copper-light);
+    outline-offset: .12em;
+  }
+  .operating-mindset-panel {
+    min-height: 11.875rem;
+    border: 1px solid color-mix(in srgb, var(--copper-light) 38%, transparent);
+    border-left: 4px solid var(--copper-light);
+    padding: clamp(1.25rem, 2.2vw, 1.65rem);
+    background: var(--night-raised);
+  }
+  .operating-mindset-panel-label {
+    margin: 0 0 1.15rem;
+    color: var(--copper-light);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .operating-mindset-panel-copy {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--night-text);
+    font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+    line-height: 1.75;
+  }
+  .operating-mindset-fallback {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .operating-mindset-fallback li {
+    border-top: 1px solid color-mix(in srgb, var(--night-text) 20%, transparent);
+    padding-top: 1rem;
+  }
+  .operating-mindset-fallback h3 {
+    color: var(--night-text);
+    font-size: 1rem;
+  }
+  .operating-mindset-fallback p {
+    max-width: 48rem;
+    margin: .6rem 0 0;
+    color: var(--night-muted);
+    line-height: 1.65;
+  }
+  #operating-mindset[data-mindset-enhanced='true'] .operating-mindset-fallback {
+    display: none;
+  }
+  .operating-mindset-context {
+    display: grid;
+    gap: .75rem;
+    max-width: 58rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid color-mix(in srgb, var(--night-text) 17%, transparent);
+    padding-top: 1.25rem;
+    color: var(--night-muted);
+    line-height: 1.65;
+  }
+  .operating-mindset-agentic {
+    color: var(--night-text);
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+  }
   .additional-work-index { display: grid; grid-template-columns: minmax(0, 1fr); list-style: none; }
   .additional-work-index li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.35rem 0.8rem; align-items: baseline; border-top: 1px solid var(--line); padding: 1rem 0; }
   .additional-work-number { color: var(--accent-strong); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.74rem; font-weight: 750; }
@@ -241,12 +390,19 @@ const brandHero = lang === 'es'
   }
 
   @media (max-width: 47.99rem) {
-    .operating-mindset-list { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+    .operating-mindset-spotlight { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .operating-mindset-phrases button { width: 100%; min-height: 44px; font-size: clamp(1.8rem, 9vw, 3rem); }
+    .operating-mindset-panel { min-height: 0; }
+
     .additional-work-index li { grid-template-columns: 2.5rem minmax(0, 1fr); }
     .additional-work-status { grid-column: 2; text-align: left; }
   }
 
   @media (min-width: 68.75rem) {
     .additional-work-index { column-gap: 4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .operating-mindset-phrases button { transition: none; }
   }
 </style>

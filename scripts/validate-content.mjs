@@ -210,8 +210,8 @@ async function validatePortfolioNarrative() {
   for (const phrase of [
     'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
     'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
-    'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
+    'I design and build end-to-end software for real operations, connecting domain logic, backend, data, integrations and interfaces into one coherent system.',
+    'Diseño y construyo software end-to-end para operaciones reales, conectando dominio, backend, datos, integraciones e interfaces en un sistema coherente.',
     "thesis: 'I build the systems behind real work.'",
     "thesis: 'Construyo los sistemas detrás del trabajo real.'",
   ]) {

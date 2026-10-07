@@ -4,16 +4,16 @@ const locales = [
   {
     name: 'English', path: '/', role: 'I build the systems behind real work.',
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
-    heroCopy: 'I work across backend, data, integrations and interfaces. I show the decisions, available evidence and what still needs validation.',
+    heroCopy: 'I design and build end-to-end software for real operations, connecting domain logic, backend, data, integrations and interfaces into one coherent system.',
     heroCta: 'View selected work',
     nav: ['Work', 'About', 'Contact', 'Resume'],
     workTitle: 'Systems built around real operational constraints.',
-    workIntro: 'Three backend-oriented cases showing ownership, architecture and available evidence.',
     leadTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
     leadStatuses: ['Technically validated migration; acceptance remains separate', 'Active development', 'Experimental prototype · Phase 2.6 under validation'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
-    mindsetTitles: ['Understand systems', 'Build end-to-end', 'Verify boundaries'],
-    mindsetTitle: 'Understand the system. Build end-to-end. Verify the boundaries.',
+    mindsetTitles: ['Understand the system', 'Build end-to-end', 'Verify the boundaries'],
+    mindsetTitle: 'How I work',
+    agentic: 'I combine software-engineering practices—modeling, architecture, testing, security and observability—with AI agents to accelerate analysis, implementation and verification while keeping human judgment, traceability and control over critical decisions.',
     aboutTitle: 'A little about me',
     aboutParagraphs: [
       'I live in Uspallata, Mendoza. Before focusing on software development I worked across support, infrastructure, SAP and integrations, which taught me to see software inside real processes rather than as isolated pieces.',
@@ -25,16 +25,16 @@ const locales = [
   {
     name: 'Spanish', path: '/es/', role: 'Construyo los sistemas detrás del trabajo real.',
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
-    heroCopy: 'Trabajo de backend y datos a integraciones e interfaces. Explico las decisiones, la evidencia disponible y lo que aún falta validar.',
+    heroCopy: 'Diseño y construyo software end-to-end para operaciones reales, conectando dominio, backend, datos, integraciones e interfaces en un sistema coherente.',
     heroCta: 'Ver trabajo seleccionado',
     nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
-    workIntro: 'Tres casos con foco backend, ownership, arquitectura y evidencia disponible.',
     leadTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
     leadStatuses: ['Migración validada técnicamente; aceptación separada', 'Desarrollo activo', 'Prototipo experimental · fase 2.6 en validación'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
-    mindsetTitles: ['Entender sistemas', 'Construir end-to-end', 'Verificar límites'],
-    mindsetTitle: 'Entender el sistema. Construir end-to-end. Verificar los límites.',
+    mindsetTitles: ['Entender el sistema', 'Construir end-to-end', 'Verificar los límites'],
+    mindsetTitle: 'Cómo trabajo',
+    agentic: 'Combino prácticas de ingeniería de software —modelado, arquitectura, pruebas, seguridad y observabilidad— con agentes de IA para acelerar análisis, implementación y verificación, manteniendo criterio humano, trazabilidad y control sobre las decisiones críticas.',
     aboutTitle: 'Un poco sobre mí',
     aboutParagraphs: [
       'Vivo en Uspallata, Mendoza. Antes de concentrarme en desarrollo trabajé en soporte, infraestructura, SAP e integraciones, y ese recorrido me enseñó a mirar el software dentro de procesos reales y no como piezas aisladas.',
@@ -102,7 +102,6 @@ for (const locale of locales) {
 
       const leadCards = page.locator('#projects [data-project-index-item]');
       await expect(page.locator('#projects h2')).toHaveText(locale.workTitle);
-      await expect(page.locator('#projects .section-heading > p:last-child')).toHaveText(locale.workIntro);
       await expect(leadCards).toHaveCount(3);
       await expect(leadCards.locator('h3')).toHaveText(locale.leadTitles);
       if (width >= 768) {
@@ -117,6 +116,7 @@ for (const locale of locales) {
       await expect(page.locator('#additional-work .additional-work-status')).toHaveCount(6);
       await expect(page.locator('#operating-mindset li h3')).toHaveText(locale.mindsetTitles);
       await expect(page.locator('#operating-mindset h2')).toHaveText(locale.mindsetTitle);
+      await expect(page.locator('#operating-mindset .operating-mindset-agentic')).toHaveText(locale.agentic);
       await expect(page.locator('#about h2')).toHaveText(locale.aboutTitle);
       await expect(page.locator('#about .human-story-copy p')).toHaveText(locale.aboutParagraphs);
       await expect(page.locator('#contact h2')).toHaveText(locale.contactTitle);
