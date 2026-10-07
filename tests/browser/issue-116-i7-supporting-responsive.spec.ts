@@ -4,8 +4,8 @@ import path from 'node:path';
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { id: 'en', route: '/', mindset: 'Understand the system. Build end-to-end. Verify the boundaries.', about: 'A little about me' },
-  { id: 'es', route: '/es/', mindset: 'Entender el sistema. Construir end-to-end. Verificar los límites.', about: 'Un poco sobre mí' },
+  { id: 'en', route: '/', mindset: 'How I work', about: 'A little about me' },
+  { id: 'es', route: '/es/', mindset: 'Cómo trabajo', about: 'Un poco sobre mí' },
 ] as const;
 const widths = [360, 390, 430, 768, 1024, 1440] as const;
 const evidenceDir = path.resolve('artifacts/visual/issue-116-i7');
