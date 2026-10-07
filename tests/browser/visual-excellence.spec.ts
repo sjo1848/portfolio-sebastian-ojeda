@@ -22,7 +22,8 @@ for (const route of homeRoutes) {
       await expect(page.locator('.brand-hero-evidence, .hero-proof-links')).toHaveCount(0);
       await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'View selected work' : 'Ver trabajo seleccionado' })).toHaveAttribute('href', '#projects');
       await expect(page.locator('#hero').getByRole('link', { name: /resume|cv/i })).toHaveAttribute('href', /\.pdf$/);
-      await expect(page.locator('.hero-github-link')).toBeVisible();
+      await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
+      await expect(page.locator('.site-header a[aria-label*="GitHub"]')).toBeVisible();
 
       const leadRows = page.locator('#projects [data-project-index-item]');
       await expect(leadRows).toHaveCount(3);
