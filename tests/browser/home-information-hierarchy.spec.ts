@@ -12,7 +12,7 @@ const locales = [
     leadStatuses: ['Technically validated migration; acceptance remains separate', 'Active development', 'Experimental prototype · Phase 2.6 under validation'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
     mindsetTitles: ['Understand the system', 'Build end-to-end', 'Verify the boundaries'],
-    mindsetTitle: 'Understand the system. Build end-to-end. Verify the boundaries.',
+    mindsetTitle: 'How I work',
     agentic: 'I combine software-engineering practices—modeling, architecture, testing, security and observability—with AI agents to accelerate analysis, implementation and verification while keeping human judgment, traceability and control over critical decisions.',
     aboutTitle: 'A little about me',
     aboutParagraphs: [
@@ -33,7 +33,7 @@ const locales = [
     leadStatuses: ['Migración validada técnicamente; aceptación separada', 'Desarrollo activo', 'Prototipo experimental · fase 2.6 en validación'],
     additionalTitles: ['UspaYa', 'GasFlow', 'Agentic Engineering Governance', 'HMS Elite', 'JM Soluciones Eléctricas', 'Taco Loco Foodtrack'],
     mindsetTitles: ['Entender el sistema', 'Construir end-to-end', 'Verificar los límites'],
-    mindsetTitle: 'Entender el sistema. Construir end-to-end. Verificar los límites.',
+    mindsetTitle: 'Cómo trabajo',
     agentic: 'Combino prácticas de ingeniería de software —modelado, arquitectura, pruebas, seguridad y observabilidad— con agentes de IA para acelerar análisis, implementación y verificación, manteniendo criterio humano, trazabilidad y control sobre las decisiones críticas.',
     aboutTitle: 'Un poco sobre mí',
     aboutParagraphs: [
@@ -115,7 +115,7 @@ for (const locale of locales) {
       await expect(additional).toHaveText(locale.additionalTitles);
       await expect(page.locator('#additional-work .additional-work-status')).toHaveCount(6);
       await expect(page.locator('#operating-mindset li h3')).toHaveText(locale.mindsetTitles);
-      await expect(page.locator('#operating-mindset h2')).toHaveAccessibleName(locale.mindsetTitle);
+      await expect(page.locator('#operating-mindset h2')).toHaveText(locale.mindsetTitle);
       await expect(page.locator('#operating-mindset .operating-mindset-agentic')).toHaveText(locale.agentic);
       await expect(page.locator('#about h2')).toHaveText(locale.aboutTitle);
       await expect(page.locator('#about .human-story-copy p')).toHaveText(locale.aboutParagraphs);
