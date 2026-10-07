@@ -10,6 +10,7 @@ import {
   getLanguageRoot,
 } from '../data/routing';
 import MobileNavigation from './MobileNavigation';
+import GitHubMarkLink from './GitHubMarkLink.astro';
 
 interface Props {
   lang?: Language;
@@ -38,6 +39,11 @@ const navigationItems = [
           {navigationItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
       </nav>
+      <GitHubMarkLink
+        href={site.github}
+        label={lang === 'es' ? 'Perfil de GitHub' : 'GitHub profile'}
+        class="header-github-link"
+      />
       <a
         class="language-link"
         href={alternatePath}
@@ -101,7 +107,7 @@ const navigationItems = [
   @media (max-width: 47.99rem) {
     .brand-header-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) auto auto;
       gap: 0.35rem 0.75rem;
       padding-block: 0.55rem;
     }
@@ -114,15 +120,21 @@ const navigationItems = [
       display: none;
     }
 
-    .mobile-navigation-slot {
-      display: block;
+    :global(.header-github-link) {
       grid-column: 2;
       grid-row: 1;
       justify-self: end;
     }
 
+    .mobile-navigation-slot {
+      display: block;
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+    }
+
     .language-link {
-      grid-column: 2;
+      grid-column: 3;
       grid-row: 1;
       justify-self: end;
       display: none;

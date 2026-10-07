@@ -15,7 +15,8 @@ for (const locale of locales) {
     await expect(page.locator('.hero-copy')).toBeVisible();
     await expect(page.getByRole('link', { name: locale.heroCta })).toHaveAttribute('href', '#projects');
     await expect(page.getByRole('link', { name: locale.cvLabel, exact: true }).first()).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
-    await expect(page.locator('.hero-github-link')).toHaveAttribute('href', 'https://github.com/sjo1848');
+    await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
+    await expect(page.locator('.site-header a[aria-label*="GitHub"]')).toHaveAttribute('href', 'https://github.com/sjo1848');
 
     const sections = await page.locator('main > section').evaluateAll((elements) => elements.map((element) => element.id));
     expect(sections).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);

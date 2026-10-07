@@ -639,18 +639,6 @@ h2 {
 }
 .hero-actions .button-secondary:hover,
 .hero-actions .button-secondary:focus-visible { background: rgb(255 248 237 / 12%); }
-.hero-github-link {
-  display: inline-flex;
-  min-height: 2.75rem;
-  align-items: center;
-  padding-inline: .45rem;
-  color: var(--night-muted);
-  font-size: .88rem;
-  font-weight: 700;
-  text-underline-offset: .28em;
-}
-.hero-github-link:hover { color: var(--night-text); }
-.hero-github-link:focus-visible,
 .hero-actions .button:focus-visible { outline: 3px solid var(--copper-light); outline-offset: 3px; }
 .hero-cta-arrow { display: inline-block; margin-left: .35rem; transition: transform 160ms var(--motion-ease); }
 .hero-actions .button-primary:hover .hero-cta-arrow,
@@ -677,7 +665,6 @@ h2 {
   .hero-thesis-line { padding-right: 0; }
   .hero-copy { font-size: .94rem; }
   .hero-actions .button { padding-inline: .7rem; font-size: .82rem; }
-  .hero-github-link { padding-inline: .2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-cta-arrow,
