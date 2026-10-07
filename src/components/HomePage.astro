@@ -119,40 +119,43 @@ const brandHero = lang === 'es'
     data-operating-mindset
   >
     <div class="container">
-      <div class="section-heading operating-mindset-heading">
-        <p class="eyebrow eyebrow-light">{mindset.eyebrow}</p>
-        <h2 id="operating-mindset-title" class="operating-mindset-title" aria-label={mindset.title}>
-          {mindset.items.map((item, index) => (
-            <>
-              <a
-                class="operating-mindset-trigger"
-                href={`#operating-mindset-detail-${index + 1}`}
-                data-mindset-trigger
-                data-index={index}
-                aria-controls={`operating-mindset-detail-${index + 1}`}
-                aria-expanded={index === 0 ? 'true' : 'false'}
-              >
-                {item.title}.
-              </a>
-              {index < mindset.items.length - 1 && <span class="operating-mindset-separator" aria-hidden="true"> </span>}
-            </>
-          ))}
-        </h2>
+      <div class="operating-mindset-heading">
+        <p class="operating-mindset-kicker">{lang === 'es' ? '01 · MÉTODO DE INGENIERÍA' : '01 · ENGINEERING METHOD'}</p>
+        <h2 id="operating-mindset-title">{lang === 'es' ? 'Cómo trabajo' : 'How I work'}</h2>
       </div>
 
-      <ol class="operating-mindset-list" data-mindset-panels>
+      <div class="operating-mindset-spotlight">
+        <div class="operating-mindset-phrases" role="tablist" aria-label={mindset.title}>
+          {mindset.items.map((item, index) => (
+            <button
+              type="button"
+              role="tab"
+              data-mindset-trigger
+              data-index={index}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls="operating-mindset-panel"
+            >
+              {item.title}.
+            </button>
+          ))}
+        </div>
+
+        <aside
+          id="operating-mindset-panel"
+          class="operating-mindset-panel"
+          data-mindset-panel
+          aria-live="polite"
+        >
+          <p class="operating-mindset-panel-label" data-mindset-label>{mindset.items[0].title}</p>
+          <p class="operating-mindset-panel-copy" data-mindset-copy>{mindset.items[0].description}</p>
+        </aside>
+      </div>
+
+      <ol class="operating-mindset-fallback" data-mindset-fallback>
         {mindset.items.map((item, index) => (
-          <li
-            id={`operating-mindset-detail-${index + 1}`}
-            data-mindset-panel
-            data-state={index === 0 ? 'active' : 'idle'}
-            aria-hidden={index === 0 ? 'false' : 'true'}
-          >
-            <span class="operating-mindset-number">{String(index + 1).padStart(2, '0')}</span>
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
+          <li id={`operating-mindset-detail-${index + 1}`}>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
           </li>
         ))}
       </ol>
@@ -230,94 +233,109 @@ const brandHero = lang === 'es'
 </script>
 
 <style>
-  .operating-mindset-heading { max-width: 64rem; }
-  #operating-mindset .operating-mindset-title {
-    display: flex;
-    max-width: 17ch;
-    flex-wrap: wrap;
-    gap: 0 .22em;
-    align-items: baseline;
-    text-wrap: wrap;
+  .operating-mindset-heading {
+    max-width: 64rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
-  .operating-mindset-trigger {
-    position: relative;
-    display: inline;
-    border-radius: .08em;
+  .operating-mindset-kicker {
+    margin: 0 0 1.5rem;
+    color: var(--copper-light);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  #operating-mindset .operating-mindset-heading h2 {
+    max-width: 12ch;
     color: var(--night-text);
-    text-decoration: none;
-    transition: color 180ms var(--motion-ease);
+    font-size: clamp(3rem, 7vw, 6.6rem);
+    line-height: .92;
+    letter-spacing: -.07em;
   }
-  .operating-mindset-trigger::after {
-    position: absolute;
-    right: 0;
-    bottom: -.08em;
-    left: 0;
-    height: .07em;
-    transform: scaleX(0);
-    transform-origin: left;
-    background: var(--copper-light);
-    content: '';
-    transition: transform 240ms var(--motion-ease);
+  .operating-mindset-spotlight {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(22.5rem, .9fr);
+    gap: clamp(2rem, 4.5vw, 4rem);
+    align-items: center;
   }
-  .operating-mindset-trigger:hover,
-  .operating-mindset-trigger:focus-visible,
-  .operating-mindset-trigger[aria-expanded='true'] {
+  .operating-mindset-phrases {
+    display: grid;
+    gap: .25rem;
+  }
+  .operating-mindset-phrases button {
+    appearance: none;
+    width: fit-content;
+    max-width: 100%;
+    border: 0;
+    background: none;
+    padding: 0;
+    color: color-mix(in srgb, var(--night-text) 34%, transparent);
+    cursor: pointer;
+    font: inherit;
+    font-size: clamp(2.15rem, 5vw, 4.8rem);
+    font-weight: 820;
+    letter-spacing: -.055em;
+    line-height: .98;
+    text-align: left;
+    transition: color 220ms var(--motion-ease);
+  }
+  .operating-mindset-phrases button:hover {
+    color: color-mix(in srgb, var(--night-text) 58%, transparent);
+  }
+  .operating-mindset-phrases button[aria-selected='true'] {
     color: var(--copper-light);
   }
-  .operating-mindset-trigger:focus-visible {
+  .operating-mindset-phrases button:focus-visible {
     outline: 3px solid var(--copper-light);
     outline-offset: .12em;
   }
-  .operating-mindset-trigger[aria-expanded='true']::after {
-    transform: scaleX(1);
+  .operating-mindset-panel {
+    min-height: 11.875rem;
+    border: 1px solid color-mix(in srgb, var(--copper-light) 38%, transparent);
+    border-left: 4px solid var(--copper-light);
+    padding: clamp(1.25rem, 2.2vw, 1.65rem);
+    background: var(--night-raised);
   }
-  #operating-mindset .operating-mindset-list {
-    display: grid;
-    min-height: 9rem;
-    margin: clamp(2rem, 4vw, 3.25rem) 0 0;
-    list-style: none;
-  }
-  #operating-mindset .operating-mindset-list li {
-    display: grid;
-    grid-template-columns: 2.5rem minmax(0, 1fr);
-    gap: 1rem;
-    border-top: 1px solid color-mix(in srgb, var(--night-text) 25%, transparent);
-    padding-top: 1.25rem;
-  }
-  #operating-mindset .operating-mindset-list > li > span {
+  .operating-mindset-panel-label {
+    margin: 0 0 1.15rem;
     color: var(--copper-light);
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
     font-size: .75rem;
-    font-weight: 750;
-  }
-  #operating-mindset .operating-mindset-list h3 {
-    color: var(--night-text);
-    font-size: 1rem;
-    letter-spacing: .01em;
+    font-weight: 800;
+    letter-spacing: .06em;
     text-transform: uppercase;
   }
-  #operating-mindset .operating-mindset-list p {
-    max-width: 52rem;
-    margin-top: .55rem;
-    color: #d9dedd;
-    font-size: clamp(1.02rem, 1.4vw, 1.22rem);
+  .operating-mindset-panel-copy {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--night-text);
+    font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+    line-height: 1.75;
+  }
+  .operating-mindset-fallback {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .operating-mindset-fallback li {
+    border-top: 1px solid color-mix(in srgb, var(--night-text) 20%, transparent);
+    padding-top: 1rem;
+  }
+  .operating-mindset-fallback h3 {
+    color: var(--night-text);
+    font-size: 1rem;
+  }
+  .operating-mindset-fallback p {
+    max-width: 48rem;
+    margin: .6rem 0 0;
+    color: var(--night-muted);
     line-height: 1.65;
   }
-  #operating-mindset[data-mindset-enhanced='true'] .operating-mindset-list > li {
-    grid-area: 1 / 1;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(.55rem);
-    transition:
-      opacity 240ms var(--motion-ease),
-      transform 320ms var(--motion-ease),
-      visibility 0s linear 320ms;
-  }
-  #operating-mindset[data-mindset-enhanced='true'] .operating-mindset-list > li[data-state='active'] {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition-delay: 0s;
+  #operating-mindset[data-mindset-enhanced='true'] .operating-mindset-fallback {
+    display: none;
   }
   .operating-mindset-context {
     display: grid;
@@ -372,11 +390,9 @@ const brandHero = lang === 'es'
   }
 
   @media (max-width: 47.99rem) {
-    #operating-mindset .operating-mindset-title { max-width: 14ch; gap: .08em .18em; }
-    #operating-mindset .operating-mindset-list { min-height: 12rem; }
-    #operating-mindset .operating-mindset-list h3 { font-size: .82rem; }
-    #operating-mindset .operating-mindset-list p { font-size: 1rem; }
-    .operating-mindset-trigger { min-height: 44px; }
+    .operating-mindset-spotlight { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    .operating-mindset-phrases button { width: 100%; min-height: 44px; font-size: clamp(1.8rem, 9vw, 3rem); }
+    .operating-mindset-panel { min-height: 0; }
 
     .additional-work-index li { grid-template-columns: 2.5rem minmax(0, 1fr); }
     .additional-work-status { grid-column: 2; text-align: left; }
@@ -387,10 +403,6 @@ const brandHero = lang === 'es'
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .operating-mindset-trigger,
-    .operating-mindset-trigger::after,
-    #operating-mindset[data-mindset-enhanced='true'] .operating-mindset-list > li {
-      transition: none;
-    }
+    .operating-mindset-phrases button { transition: none; }
   }
 </style>
