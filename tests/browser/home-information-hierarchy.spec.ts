@@ -90,8 +90,9 @@ for (const locale of locales) {
       await expect(page.locator('#hero .eyebrow')).toHaveText(locale.heroEyebrow);
       await expect(page.locator('.hero-copy')).toHaveText(locale.heroCopy);
       await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
-      await expect(page.locator('.site-header a[aria-label*="GitHub"]')).toBeVisible();
-      await expect(page.locator('#contact a[aria-label*="GitHub"]')).toBeVisible();
+      await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('#contact .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('.site-footer a[href="https://github.com/sjo1848"]')).toHaveText('GitHub');
       await expect(page.locator('.hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
       await expect(page.getByRole('link', { name: locale.heroCta, exact: true })).toHaveAttribute('href', '#projects');
       await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
