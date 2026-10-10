@@ -1,36 +1,63 @@
 import { expect, test } from '@playwright/test';
 
-const routes = [
-  { path: '/', label: 'GitHub profile' },
-  { path: '/es/', label: 'Perfil de GitHub' },
+const locales = [
+  { language: 'en', root: '/', label: 'View GitHub' },
+  { language: 'es', root: '/es/', label: 'Ver GitHub' },
 ] as const;
 
-for (const route of routes) {
+for (const locale of locales) {
   for (const width of [390, 1024, 1440]) {
-    test(`#135 GitHub mark placement ${route.path} at ${width}px`, async ({ page }, info) => {
+    test(`#137 ${locale.language} profile has no GitHub mark at ${width}px`, async ({ page }, info) => {
       test.skip(info.project.name !== 'chromium');
       await page.setViewportSize({ width, height: width < 500 ? 844 : 900 });
-      await page.goto(route.path, { waitUntil: 'networkidle' });
+      await page.goto(locale.root, { waitUntil: 'networkidle' });
 
-      const headerLink = page.locator('.site-header').getByRole('link', { name: route.label });
-      const contactLink = page.locator('#contact').getByRole('link', { name: route.label });
-      const footerLink = page.locator('.site-footer').getByRole('link', { name: route.label });
+      await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('#contact .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('.site-footer .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('.github-mark-link')).toHaveCount(0);
 
-      await expect(headerLink).toHaveAttribute('href', 'https://github.com/sjo1848');
-      await expect(contactLink).toHaveAttribute('href', 'https://github.com/sjo1848');
-      await expect(footerLink).toHaveAttribute('href', 'https://github.com/sjo1848');
-
-      await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
+      const profile = page.locator('.site-footer a[href="https://github.com/sjo1848"]');
+      await expect(profile).toHaveText('GitHub');
+      await expect(profile.locator('svg')).toHaveCount(0);
       await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    });
+  }
 
-      for (const link of [headerLink, contactLink, footerLink]) {
-        const box = await link.boundingBox();
-        expect(box?.width).toBeGreaterThanOrEqual(44);
-        expect(box?.height).toBeGreaterThanOrEqual(44);
-        await expect(link.locator('svg')).toHaveCount(1);
+  for (const project of [
+    { slug: 'hms-cloudflare', repo: 'hms-cloudflare', scan: true },
+    { slug: 'alquileres-uspa', repo: 'alquileres-uspa', scan: true },
+    { slug: 'ai-commerce-platform', repo: 'ai-commerce-platform', scan: true },
+    { slug: 'uspaya', repo: 'UspaYa', scan: false },
+  ] as const) {
+    test(`#137 ${locale.language} ${project.slug} displays repository-only GitHub mark`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'chromium');
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`${locale.root === '/' ? '/' : '/es/'}projects/${project.slug}/`, { waitUntil: 'networkidle' });
+
+      const href = `https://github.com/sjo1848/${project.repo}`;
+      const mark = page.locator('.case-hero .github-mark-link');
+      await expect(mark).toHaveCount(1);
+      await expect(mark).toHaveAttribute('href', href);
+      await expect(mark).toHaveAccessibleName(locale.label);
+      await expect(mark.locator('svg')).toHaveCount(1);
+      const box = await mark.boundingBox();
+      expect(box?.width).toBeGreaterThanOrEqual(44);
+      expect(box?.height).toBeGreaterThanOrEqual(44);
+
+      await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('.site-footer .github-mark-link')).toHaveCount(0);
+      await expect(page.locator('.site-footer a[href="https://github.com/sjo1848"]')).toHaveText('GitHub');
+
+      if (project.scan) {
+        const scan = page.locator('.case-quick-scan-links .github-mark-link');
+        await expect(scan).toHaveCount(1);
+        await expect(scan).toHaveAttribute('href', href);
+        await expect(scan).toHaveAccessibleName(locale.label);
       }
 
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
     });
   }
 }

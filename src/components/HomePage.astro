@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SelectedWorkIndex from './SelectedWorkIndex.astro';
 import CopyAction from './CopyAction';
-import GitHubMarkLink from './GitHubMarkLink.astro';
 import {
   copyByLanguage,
   siteByLanguage,
@@ -221,11 +220,6 @@ const brandHero = lang === 'es'
           errorMessage={copy.emailCopyError}
         />
         <a class="button button-secondary" href={site.cv}>{copy.downloadCv}</a>
-        <GitHubMarkLink
-          href={site.github}
-          label={lang === 'es' ? 'Perfil de GitHub' : 'GitHub profile'}
-          class="contact-github-link"
-        />
       </div>
     </div>
   </section>

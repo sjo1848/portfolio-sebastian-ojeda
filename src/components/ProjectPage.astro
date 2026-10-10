@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import GitHubMarkLink from './GitHubMarkLink.astro';
 import CaseStudyQuickScan from './CaseStudyQuickScan.astro';
 import EvidenceGallery from './EvidenceGallery';
 import ResponsiveMediaViewer from './ResponsiveMediaViewer';
@@ -161,7 +162,7 @@ const projectSchema = {
           </dl>
           <div class="hero-actions">
             {data.repository && (
-              <a class="button button-primary" href={data.repository} target="_blank" rel="noopener noreferrer">{copy.viewCode}</a>
+              <GitHubMarkLink href={data.repository} label={copy.viewCode} rel="noopener noreferrer" class="project-repository-mark" />
             )}
             {!isLeadProject && <a class="button button-secondary" href={`${getLanguageRoot(lang)}#projects`}>{copy.backToProjects}</a>}
           </div>
