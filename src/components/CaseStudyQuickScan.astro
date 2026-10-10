@@ -1,5 +1,6 @@
 ---
 import type { ProjectQuickScanCopy } from '../data/projectQuickScans';
+import GitHubMarkLink from './GitHubMarkLink.astro';
 
 interface Props {
   id: string;
@@ -39,7 +40,7 @@ const { id, copy, repository, proofHref, proofAction, proofLimitations, caseStud
       </div>
     </dl>
     <div class="case-quick-scan-links">
-      {repository && <a class="button button-secondary" href={repository} target="_blank" rel="noopener noreferrer">{copy.repositoryLabel}</a>}
+      {repository && <GitHubMarkLink href={repository} label={copy.repositoryLabel} rel="noopener noreferrer" class="quick-scan-repository-mark" />}
       {proofHref && proofAction && <a class="button button-secondary case-proof-link" href={proofHref}>{proofAction}</a>}
       <a class="button button-primary" href={caseStudyTarget}>{copy.continue}</a>
     </div>

@@ -1,7 +1,6 @@
 ---
 import SeoHead from '../components/SeoHead.astro';
 import SiteHeader from '../components/SiteHeader.astro';
-import GitHubMarkLink from '../components/GitHubMarkLink.astro';
 import '../styles/global.css';
 import '../styles/branding.css';
 import '../styles/selected-work.css';
@@ -74,11 +73,7 @@ const alternate = new URL(getAlternatePath(Astro.url.pathname, lang), Astro.site
     <footer class="site-footer">
       <div class="container footer-inner">
         <p>{site.name} · {site.location}</p>
-        <GitHubMarkLink
-          href={site.github}
-          label={lang === 'es' ? 'Perfil de GitHub' : 'GitHub profile'}
-          rel="me noopener noreferrer"
-        />
+        <a href={site.github} target="_blank" rel="me noopener noreferrer">GitHub</a>
       </div>
     </footer>
   </body>
