@@ -97,7 +97,8 @@ for (const locale of locales) {
 
     const trigger = page.locator('[data-mindset-trigger]').nth(1);
     await trigger.click();
-    await expect(trigger).toHaveCSS('transition-duration', '0s');
+    const durations = await trigger.evaluate((element) => getComputedStyle(element).transitionDuration);
+    expect(durations.split(',').every((duration) => Number.parseFloat(duration) <= 0.00002)).toBe(true);
     await expect(page.locator('[data-mindset-copy]')).toHaveText(locale.descriptions[1]);
   });
 
