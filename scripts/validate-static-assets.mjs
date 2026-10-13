@@ -22,26 +22,17 @@ const requiredPages = [
 
 const generatedAssets = [
   {
-    name: 'English resume PDF',
-    relativePath: 'cv-sebastian-ojeda-en.pdf',
-    signature: Buffer.from('%PDF-', 'ascii'),
-    minimumBytes: 5_000,
-    maximumBytes: 1_000_000,
-  },
-  {
-    name: 'Spanish resume PDF',
-    relativePath: 'cv-sebastian-ojeda.pdf',
-    signature: Buffer.from('%PDF-', 'ascii'),
-    minimumBytes: 5_000,
-    maximumBytes: 1_000_000,
-  },
-  {
     name: 'social card PNG',
     relativePath: 'social-card.png',
     signature: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
     minimumBytes: 3_000,
     maximumBytes: 250_000,
   },
+];
+
+const unpublishedCvAssets = [
+  'cv-sebastian-ojeda.pdf',
+  'cv-sebastian-ojeda-en.pdf',
 ];
 
 const withdrawnUspaYaAssets = [
@@ -114,6 +105,11 @@ for (const relativePath of requiredPages) {
 for (const asset of generatedAssets) await validateGeneratedAsset(asset);
 
 for (const root of [publicDir, distDir]) {
+  for (const relativePath of unpublishedCvAssets) {
+    if (await isFile(resolve(root, relativePath))) {
+      failures.push(`CV file must not be publicly packaged: ${relativePath}`);
+    }
+  }
   for (const relativePath of withdrawnUspaYaAssets) {
     if (await isFile(resolve(root, relativePath))) {
       failures.push(`Withdrawn UspaYa image must not be publicly packaged: ${relativePath}`);

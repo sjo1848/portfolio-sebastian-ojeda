@@ -19,7 +19,7 @@ Production URL: `https://sebastian-ojeda.pages.dev`
 Check these routes:
 
 - `/`
-- `/cv-sebastian-ojeda.pdf`
+- `/cv-sebastian-ojeda.pdf` and `/cv-sebastian-ojeda-en.pdf` (must return 404)
 - `/projects/hms-elite/`
 - `/projects/gasflow/`
 - `/projects/amr-refrigeracion/`
@@ -31,7 +31,7 @@ Verify:
 
 - the homepage loads without horizontal overflow;
 - navigation and keyboard focus work;
-- the CV opens or downloads;
+- no CV or resume download links appear in the ES/EN navigation, Hero, or Contact;
 - project routes return the expected content;
 - the 404 page is shown for an invalid route;
 - canonical URLs use the production domain;
@@ -43,7 +43,7 @@ Verify:
 Rollback when production has any of these conditions:
 
 - homepage or project pages fail to load;
-- the CV is unavailable;
+- a CV download link or publicly hosted resume PDF has been reintroduced;
 - canonical, sitemap or robots point to an incorrect domain;
 - a serious accessibility regression blocks navigation;
 - a broken asset materially damages the portfolio presentation.

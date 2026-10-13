@@ -6,7 +6,7 @@ Professional portfolio focused on backend, backend-oriented full-stack developme
 
 **Current stage:** deployed release candidate under final production validation.
 
-The site includes the visual implementation, professional content, case studies, downloadable resumes, bilingual SEO, accessibility controls, automated QA, and Cloudflare Pages deployment.
+The site includes the visual implementation, professional content, case studies, bilingual SEO, accessibility controls, automated QA, and Cloudflare Pages deployment.
 
 - Production: `https://sebastian-ojeda.pages.dev`
 - Production branch: `main`
@@ -46,7 +46,7 @@ The portfolio presents this practice as a **software production laboratory**. It
 The repository includes reproducible controls for:
 
 - bilingual content and route validation;
-- deterministic PDF resume and social-card generation;
+- optional local-only PDF resume generation and deterministic social-card generation; no CV is publicly downloadable;
 - SEO, Open Graph, X, JSON-LD, canonical, and `hreflang` metadata;
 - sitemap and robots validation;
 - Cloudflare Pages redirect contracts;

@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const locales = [
-  { name: 'English', path: '/', headline: 'I build the systems behind real work.', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', cvLabel: 'Resume', heroCta: 'View selected work' },
-  { name: 'Spanish', path: '/es/', headline: 'Construyo los sistemas detrás del trabajo real.', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', cvLabel: 'CV', heroCta: 'Ver trabajo seleccionado' },
+  { name: 'English', path: '/', headline: 'I build the systems behind real work.', workLabel: 'Work', aboutLabel: 'About', contactLabel: 'Contact', heroCta: 'View selected work' },
+  { name: 'Spanish', path: '/es/', headline: 'Construyo los sistemas detrás del trabajo real.', workLabel: 'Trabajo', aboutLabel: 'Sobre mí', contactLabel: 'Contacto', heroCta: 'Ver trabajo seleccionado' },
 ] as const;
 
 for (const locale of locales) {
@@ -14,7 +14,7 @@ for (const locale of locales) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(locale.headline);
     await expect(page.locator('.hero-copy')).toBeVisible();
     await expect(page.getByRole('link', { name: locale.heroCta })).toHaveAttribute('href', '#projects');
-    await expect(page.getByRole('link', { name: locale.cvLabel, exact: true }).first()).toHaveAttribute('href', /cv-sebastian-ojeda.*\.pdf$/);
+    await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
     await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
     await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
     await expect(page.locator('#contact .github-mark-link')).toHaveCount(0);

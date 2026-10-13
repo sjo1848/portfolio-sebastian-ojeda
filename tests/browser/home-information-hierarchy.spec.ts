@@ -6,7 +6,7 @@ const locales = [
     heroEyebrow: 'FULL-STACK SOFTWARE DEVELOPER · BACKEND-FOCUSED',
     heroCopy: 'I design and build end-to-end software for real operations, connecting domain logic, backend, data, integrations and interfaces into one coherent system.',
     heroCta: 'View selected work',
-    nav: ['Work', 'About', 'Contact', 'Resume'],
+    nav: ['Work', 'About', 'Contact'],
     workTitle: 'Systems built around real operational constraints.',
     leadTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
     leadStatuses: ['Technically validated migration; acceptance remains separate', 'Active development', 'Experimental prototype · Phase 2.6 under validation'],
@@ -27,7 +27,7 @@ const locales = [
     heroEyebrow: 'DESARROLLADOR FULL-STACK · FOCO BACKEND',
     heroCopy: 'Diseño y construyo software end-to-end para operaciones reales, conectando dominio, backend, datos, integraciones e interfaces en un sistema coherente.',
     heroCta: 'Ver trabajo seleccionado',
-    nav: ['Trabajo', 'Sobre mí', 'Contacto', 'CV'],
+    nav: ['Trabajo', 'Sobre mí', 'Contacto'],
     workTitle: 'Sistemas construidos alrededor de restricciones operativas reales.',
     leadTitles: ['HMS Cloudflare', 'Alquileres Uspallata', 'AI Commerce + HMS'],
     leadStatuses: ['Migración validada técnicamente; aceptación separada', 'Desarrollo activo', 'Prototipo experimental · fase 2.6 en validación'],
@@ -95,8 +95,8 @@ for (const locale of locales) {
       await expect(page.locator('.site-footer a[href="https://github.com/sjo1848"]')).toHaveText('GitHub');
       await expect(page.locator('.hero-proof-links, .brand-hero-evidence')).toHaveCount(0);
       await expect(page.getByRole('link', { name: locale.heroCta, exact: true })).toHaveAttribute('href', '#projects');
-      await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
-      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv/i })).toHaveAttribute('href', /\.pdf$/);
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(1);
+      await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
 
       const sectionIds = await page.locator('main > section').evaluateAll((sections) => sections.map((section) => section.id));
       expect(sectionIds).toEqual(['hero', 'projects', 'operating-mindset', 'about', 'additional-work', 'contact']);

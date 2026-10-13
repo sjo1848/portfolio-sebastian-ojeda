@@ -97,6 +97,6 @@ npm run generate:cv
 Salidas estables:
 
 ```text
-public/cv-sebastian-ojeda.pdf
-public/cv-sebastian-ojeda-en.pdf
+artifacts/private-cv/cv-sebastian-ojeda.pdf
+artifacts/private-cv/cv-sebastian-ojeda-en.pdf
 ```
