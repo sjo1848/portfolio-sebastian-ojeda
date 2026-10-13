@@ -78,6 +78,13 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
         frame = requestAnimationFrame(restoreSelectedTargetFocus);
         return;
       }
+      // A native hash click may run while the modal still holds the page's
+      // scroll lock. After the Sheet releases it, settle at the actual heading.
+      // Otherwise the scrollspy can revert to the previous visible section.
+      target.scrollIntoView({
+        block: 'start',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
       target.focus({ preventScroll: true });
       if (document.activeElement === target) selectedTargetRef.current = null;
       else frame = requestAnimationFrame(restoreSelectedTargetFocus);
