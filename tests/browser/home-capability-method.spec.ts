@@ -15,6 +15,10 @@ for (const locale of locales) {
     await expect(page.locator('.hero-copy')).toBeVisible();
     await expect(page.getByRole('link', { name: locale.heroCta })).toHaveAttribute('href', '#projects');
     await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
+    for (const pdfPath of ['/cv-sebastian-ojeda.pdf', '/cv-sebastian-ojeda-en.pdf']) {
+      const response = await page.request.get(pdfPath);
+      expect(response.status(), pdfPath).toBe(404);
+    }
     await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
     await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
     await expect(page.locator('#contact .github-mark-link')).toHaveCount(0);
