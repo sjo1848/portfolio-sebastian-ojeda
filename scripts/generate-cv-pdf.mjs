@@ -69,7 +69,7 @@ function wrapText(text, maxWidth, size, bold = false) {
 const resumes = [
   {
     language: 'es',
-    outputPath: path.join(process.cwd(), 'public', 'cv-sebastian-ojeda.pdf'),
+    outputPath: path.join(process.cwd(), 'artifacts', 'private-cv', 'cv-sebastian-ojeda.pdf'),
     name: 'SEBASTIÁN OJEDA',
     title: 'SOFTWARE DEVELOPER | AI-FIRST | FULL STACK & SYSTEMS',
     contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848 | sebastian-ojeda.pages.dev',
@@ -165,7 +165,7 @@ const resumes = [
   },
   {
     language: 'en',
-    outputPath: path.join(process.cwd(), 'public', 'cv-sebastian-ojeda-en.pdf'),
+    outputPath: path.join(process.cwd(), 'artifacts', 'private-cv', 'cv-sebastian-ojeda-en.pdf'),
     name: 'SEBASTIÁN OJEDA',
     title: 'SOFTWARE DEVELOPER | AI-FIRST | FULL STACK & SYSTEMS',
     contact: 'Mendoza, Argentina | sebastian.ojeda.dev@gmail.com | github.com/sjo1848 | sebastian-ojeda.pages.dev',

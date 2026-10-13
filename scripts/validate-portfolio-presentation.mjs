@@ -38,12 +38,15 @@ for (const marker of orderedHomeMarkers) {
   previousIndex = index;
 }
 
-// Resume stays in the existing header/later contact paths; Issue #127 deliberately removes its Hero CTA.
-requireText(home, 'href={site.cv}', 'HomePage.astro resume CTA');
-requireText(header, 'href: site.cv', 'SiteHeader.astro resume navigation');
-requireText(header, 'copy.nav.cv', 'SiteHeader.astro resume label');
+// Issue #139: public CV downloads must remain absent in every language and viewport.
+forbidText(home, 'href={site.cv}', 'HomePage.astro CV CTA');
+forbidText(home, 'hero-resume-link', 'HomePage.astro Hero CV CTA');
+forbidText(header, 'href: site.cv', 'SiteHeader.astro CV navigation');
+forbidText(header, 'copy.nav.cv', 'SiteHeader.astro CV label');
+forbidText(site, "cv: '/cv-sebastian", 'site.ts public CV path');
+forbidText(site, 'downloadCv:', 'site.ts public download label');
 const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="projects"'));
-requireText(hero, 'href={site.cv}', 'HomePage.astro Hero Resume CTA');
+forbidText(hero, 'href={site.cv}', 'HomePage.astro Hero CV CTA');
 requireText(hero, 'hero-editorial-grid', 'HomePage.astro static editorial Hero layout');
 requireText(hero, 'class="hero-identity"', 'HomePage.astro visible identity block');
 forbidText(hero, 'hero-opening-name', 'HomePage.astro duplicate name in Hero');

@@ -88,7 +88,7 @@ Software developer focused on building end-to-end solutions for real operational
 
 ## PDF generation
 
-Both public resume PDFs are generated deterministically through:
+Both locally generated, private resume PDFs are generated deterministically through:
 
 ```bash
 npm run generate:cv
@@ -97,6 +97,6 @@ npm run generate:cv
 Stable outputs:
 
 ```text
-public/cv-sebastian-ojeda.pdf
-public/cv-sebastian-ojeda-en.pdf
+artifacts/private-cv/cv-sebastian-ojeda.pdf
+artifacts/private-cv/cv-sebastian-ojeda-en.pdf
 ```

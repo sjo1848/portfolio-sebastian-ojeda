@@ -12,3 +12,6 @@ public/cv-sebastian-ojeda.pdf
 public/cv-sebastian-ojeda-en.pdf
 public/social-card.png
 .lighthouseci/
+
+# CVs are for offline use only and must never be deployed.
+artifacts/private-cv/
