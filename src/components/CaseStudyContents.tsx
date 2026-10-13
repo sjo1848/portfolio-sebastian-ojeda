@@ -97,8 +97,14 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     const updateActive = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const headerOffset = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
-        const boundary = headerOffset + 48;
+        const headerBottom = Math.max(0, document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0);
+        // Track the section under the reader's upper-quarter focus line, not just
+        // headings that have already passed the sticky header. This keeps the
+        // highlight aligned when a new heading is prominent but still below it.
+        const boundary = Math.max(
+          headerBottom + 56,
+          Math.min(window.innerHeight * 0.25, headerBottom + 160),
+        );
         const atDocumentEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
         if (atDocumentEnd) {
           setActiveId(targets[targets.length - 1].id);
@@ -111,7 +117,7 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     const observer = typeof IntersectionObserver === 'undefined'
       ? null
       : new IntersectionObserver(updateActive, {
-          rootMargin: '0px 0px -68% 0px',
+          rootMargin: '0px 0px -75% 0px',
           threshold: [0, 1],
         });
     targets.forEach((target) => observer?.observe(target));
@@ -151,7 +157,7 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     >
       <div className="case-study-contents-desktop" role="navigation" aria-label={label}>
         <p className="case-study-contents-heading">{title}</p>
-        <ContentsLinks items={items} activeId={activeId} />
+        <ContentsLinks items={items} activeId={activeId} onSelect={(item) => setActiveId(item.id)} />
       </div>
 
       <details className="case-study-contents-fallback">
