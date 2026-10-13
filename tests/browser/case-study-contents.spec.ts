@@ -296,14 +296,20 @@ for (const route of cases.filter((value) => value.name.startsWith('alquileres'))
     await target.evaluate((node) => {
       window.scrollTo({ top: window.scrollY + node.getBoundingClientRect().top - 190, behavior: 'instant' });
     });
+    // At this scroll position the reading-line highlight must be Architecture.
+    await expect(page.locator('.case-study-contents-sheet a[aria-current="location"]'))
+      .toHaveAttribute('href', `#${headingId}`);
     const trigger = page.getByRole('button', { name: route.lang === 'es' ? 'Contenido' : 'Contents', exact: true });
+    // Playwright scrolls the offscreen trigger into view before clicking. The
+    // active entry may legitimately change as the page returns to the gallery.
     await trigger.click();
     const sheet = page.locator('.case-study-contents-sheet');
     await expect(sheet).toBeVisible();
-    await expect(sheet.locator('a[aria-current="location"]')).toHaveAttribute('href', `#${headingId}`);
     await sheet.locator(`a[href="#${headingId}"]`).click();
     await expect(sheet).toBeHidden();
     await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe(headingId);
+    await expect(page.locator('.case-study-contents-sheet a[aria-current="location"]'))
+      .toHaveAttribute('href', `#${headingId}`);
   });
 }
 
