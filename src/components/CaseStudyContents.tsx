@@ -142,6 +142,8 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     setOpen(nextOpen);
   };
   const selectItem = (item: CaseStudyContentsItem) => {
+    // Keep the chosen entry selected during Sheet close and native anchor navigation.
+    setActiveId(item.id);
     const target = document.getElementById(item.id);
     if (target) {
       target.setAttribute('tabindex', '-1');
