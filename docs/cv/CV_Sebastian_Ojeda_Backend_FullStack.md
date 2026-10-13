@@ -88,7 +88,7 @@ Desarrollador de software orientado a construir soluciones end-to-end para proce
 
 ## Generación del PDF
 
-Los PDF públicos en español e inglés se generan de forma determinista mediante:
+Los PDF privados, solo para uso local, en español e inglés se generan de forma determinista mediante:
 
 ```bash
 npm run generate:cv
