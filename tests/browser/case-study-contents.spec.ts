@@ -297,7 +297,7 @@ for (const route of cases.filter((value) => value.name.startsWith('alquileres'))
       window.scrollTo({ top: window.scrollY + node.getBoundingClientRect().top - 190, behavior: 'instant' });
     });
     // At this scroll position the reading-line highlight must be Architecture.
-    await expect(page.locator('.case-study-contents-sheet a[aria-current="location"]'))
+    await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]'))
       .toHaveAttribute('href', `#${headingId}`);
     const trigger = page.getByRole('button', { name: route.lang === 'es' ? 'Contenido' : 'Contents', exact: true });
     // Playwright scrolls the offscreen trigger into view before clicking. The
@@ -308,7 +308,7 @@ for (const route of cases.filter((value) => value.name.startsWith('alquileres'))
     await sheet.locator(`a[href="#${headingId}"]`).click();
     await expect(sheet).toBeHidden();
     await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe(headingId);
-    await expect(page.locator('.case-study-contents-sheet a[aria-current="location"]'))
+    await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]'))
       .toHaveAttribute('href', `#${headingId}`);
   });
 }
