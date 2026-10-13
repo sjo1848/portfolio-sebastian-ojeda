@@ -78,15 +78,20 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
         frame = requestAnimationFrame(restoreSelectedTargetFocus);
         return;
       }
-      // A native hash click may run while the modal still holds the page's
-      // scroll lock. After the Sheet releases it, settle at the actual heading.
-      // Otherwise the scrollspy can revert to the previous visible section.
-      target.scrollIntoView({
-        block: 'start',
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
-      });
+      // Native anchors can execute while the Sheet still holds scroll lock.
+      // Position the heading after the Sheet exits, using the same offset as
+      // CSS scroll-padding. An explicit scroll also avoids a browser restoring
+      // the pre-dialog position after the focus handoff.
+      const scrollPadding = Number.parseFloat(
+        window.getComputedStyle(document.documentElement).scrollPaddingTop,
+      ) || 0;
+      const scrollTop = window.scrollY + target.getBoundingClientRect().top - scrollPadding;
+      window.scrollTo({ top: Math.max(0, scrollTop), behavior: 'instant' });
       target.focus({ preventScroll: true });
-      if (document.activeElement === target) selectedTargetRef.current = null;
+      if (document.activeElement === target) {
+        setActiveId(target.id);
+        selectedTargetRef.current = null;
+      }
       else frame = requestAnimationFrame(restoreSelectedTargetFocus);
     };
     frame = requestAnimationFrame(restoreSelectedTargetFocus);
