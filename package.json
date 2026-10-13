@@ -6,7 +6,7 @@
   "scripts": {
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
     "generate:social-card": "node scripts/generate-social-card.mjs",
-    "generate:assets": "npm run generate:cv && npm run generate:social-card",
+    "generate:assets": "node scripts/unpublish-public-cv.mjs && npm run generate:social-card",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:presentation": "node scripts/validate-portfolio-presentation.mjs",
     "validate:social-card": "node scripts/validate-social-card.mjs",

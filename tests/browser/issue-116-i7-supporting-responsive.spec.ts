@@ -28,7 +28,7 @@ for (const locale of locales) {
       await expect(page.locator('#additional-work .additional-work-status')).toHaveCount(6);
       await expect(page.locator('#contact a[href^="mailto:"]')).toBeVisible();
       await expect(page.locator('#contact .copy-action button')).toBeVisible();
-      await expect(page.locator('#contact a[href$="cv-sebastian-ojeda.pdf"], #contact a[href$="cv-sebastian-ojeda-en.pdf"]')).toBeVisible();
+      await expect(page.locator('#contact a[href$=".pdf"]')).toHaveCount(0);
 
       const geometry = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,

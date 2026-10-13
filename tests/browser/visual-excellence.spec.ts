@@ -21,7 +21,8 @@ for (const route of homeRoutes) {
       await expect(headline).toHaveAccessibleName(route.lang === 'en' ? 'I build the systems behind real work.' : 'Construyo los sistemas detrás del trabajo real.');
       await expect(page.locator('.brand-hero-evidence, .hero-proof-links')).toHaveCount(0);
       await expect(page.locator('#hero').getByRole('link', { name: route.lang === 'en' ? 'View selected work' : 'Ver trabajo seleccionado' })).toHaveAttribute('href', '#projects');
-      await expect(page.locator('#hero').getByRole('link', { name: /resume|cv/i })).toHaveAttribute('href', /\.pdf$/);
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(1);
+      await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
       await expect(page.locator('#hero a[href="https://github.com/sjo1848"]')).toHaveCount(0);
       await expect(page.locator('.site-header .github-mark-link')).toHaveCount(0);
       await expect(page.locator('#contact .github-mark-link')).toHaveCount(0);

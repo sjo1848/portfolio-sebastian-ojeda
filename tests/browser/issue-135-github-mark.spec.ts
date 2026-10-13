@@ -20,7 +20,7 @@ for (const locale of locales) {
       const profile = page.locator('.site-footer a[href="https://github.com/sjo1848"]');
       await expect(profile).toHaveText('GitHub');
       await expect(profile.locator('svg')).toHaveCount(0);
-      await expect(page.locator('#hero .hero-actions a')).toHaveCount(2);
+      await expect(page.locator('#hero .hero-actions a')).toHaveCount(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     });
   }

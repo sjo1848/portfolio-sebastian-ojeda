@@ -21,7 +21,6 @@ export const siteByLanguage = {
     languageTag: 'es-AR',
     locale: 'es_AR',
     alternateLocale: 'en_US',
-    cv: '/cv-sebastian-ojeda.pdf',
     workMode:
       'Remoto prioritario, con disponibilidad híbrida o presencial en Mendoza y reubicación evaluable.',
     roles: [
@@ -44,7 +43,6 @@ export const siteByLanguage = {
     languageTag: 'en-US',
     locale: 'en_US',
     alternateLocale: 'es_AR',
-    cv: '/cv-sebastian-ojeda-en.pdf',
     workMode:
       'Remote-first, available for hybrid or on-site work in Mendoza, with relocation considered for the right opportunity.',
     roles: [
@@ -71,12 +69,10 @@ export const copyByLanguage = {
       projects: 'Trabajo',
       about: 'Sobre mí',
       contact: 'Contacto',
-      cv: 'CV',
     },
     languageSwitch: 'EN',
     languageSwitchAria: 'View the portfolio in English',
     home: {
-      downloadCv: 'Descargar CV',
       contactEyebrow: 'Contacto',
       contactTitle: 'Busco oportunidades Full-Stack y Backend.',
       contactBody: 'Remoto prioritario desde Mendoza, Argentina. Puedo evaluar modalidad híbrida, presencial o reubicación según la oportunidad.',
@@ -119,12 +115,10 @@ export const copyByLanguage = {
       projects: 'Work',
       about: 'About',
       contact: 'Contact',
-      cv: 'Resume',
     },
     languageSwitch: 'ES',
     languageSwitchAria: 'Ver el portfolio en español',
     home: {
-      downloadCv: 'Download resume',
       contactEyebrow: 'Contact',
       contactTitle: 'Open to Full-Stack and Backend opportunities.',
       contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',

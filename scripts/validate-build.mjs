@@ -239,6 +239,9 @@ async function validatePage(file) {
   }
 
   const currentUrl = new URL(route, site);
+  if (/href=["'][^"']*cv-sebastian-ojeda(?:-en)?\.pdf(?:[?#][^"']*)?["']/i.test(content)) {
+    failures.push(`${route}: public CV download link must not appear`);
+  }
   const hrefPattern = /href=["']([^"']+)["']/gi;
 
   for (const match of content.matchAll(hrefPattern)) {
@@ -296,8 +299,6 @@ const requiredFiles = [
   'es/projects/hms-elite/index.html',
   'es/projects/gasflow/index.html',
   'es/projects/jm-soluciones/index.html',
-  'cv-sebastian-ojeda.pdf',
-  'cv-sebastian-ojeda-en.pdf',
 ];
 
 for (const relative of requiredFiles) {
