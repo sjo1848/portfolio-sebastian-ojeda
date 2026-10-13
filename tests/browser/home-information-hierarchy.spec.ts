@@ -58,15 +58,13 @@ for (const locale of locales) {
       await expect(page.locator('.hero-copy')).toBeVisible();
 
       const actions = page.locator('#hero .hero-actions a');
-      await expect(actions).toHaveCount(2);
+      await expect(actions).toHaveCount(1);
       await expect(actions.nth(0)).toBeVisible();
-      await expect(actions.nth(1)).toBeVisible();
       const bounds = await actions.evaluateAll((links) => links.map((link) => {
         const { x, y, width, height, top, right, bottom, left } = link.getBoundingClientRect();
         return { href: link.getAttribute('href'), x, y, width, height, top, right, bottom, left };
       }));
       expect(bounds[0].href).toBe('#projects');
-      expect(bounds[1].href).toContain('.pdf');
       for (const button of bounds) {
         expect(button.top).toBeGreaterThanOrEqual(0);
         expect(button.bottom).toBeLessThanOrEqual(viewport.height);
