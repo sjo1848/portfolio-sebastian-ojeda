@@ -489,8 +489,10 @@ ul, ol { padding: 0; }
 .media-viewer-island { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
 .media-viewer-island > astro-island { display: block; width: 1px; height: 1px; }
 .media-viewer-hydration-sentinel { display: block; width: 1px; height: 1px; }
-.prose h2 { margin-top: 4rem; scroll-margin-top: 7rem; }
-.prose h3 { margin-top: 2.5rem; scroll-margin-top: 7rem; }
+/* Root scroll-padding already compensates for the sticky header; applying
+   scroll-margin to headings as well doubled the native anchor offset. */
+.prose h2 { margin-top: 4rem; scroll-margin-top: 0; }
+.prose h3 { margin-top: 2.5rem; scroll-margin-top: 0; }
 .project-gallery { scroll-margin-top: 7rem; }
 .content-layout-with-contents { display: block; }
 .case-study-contents-desktop { display: none; }
@@ -628,14 +630,14 @@ ul, ol { padding: 0; }
   .case-study-contents-desktop { display: block; }
   .case-study-contents-fallback,
   .case-study-contents-mobile { display: none !important; }
-  .prose h2, .prose h3, .project-gallery { scroll-margin-top: 6rem; }
+  .project-gallery { scroll-margin-top: 6rem; }
   .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .process-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .method-flow { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
 @media (max-width: 47.99rem) {
   html { scroll-padding-top: 10rem; }
-  .prose h2, .prose h3, .project-gallery { scroll-margin-top: 10rem; }
+  .project-gallery { scroll-margin-top: 10rem; }
   .container { width: min(calc(100% - 1.25rem), var(--container)); }
   .section { padding-block: 4rem; }
   h1 { font-size: clamp(2.6rem, 14vw, 4rem); }
