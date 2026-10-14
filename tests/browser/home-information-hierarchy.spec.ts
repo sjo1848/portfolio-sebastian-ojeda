@@ -16,8 +16,8 @@ const locales = [
     agentic: 'I combine software-engineering practices—modeling, architecture, testing, security and observability—with AI agents to accelerate analysis, implementation and verification while keeping human judgment, traceability and control over critical decisions.',
     aboutTitle: 'A little about me',
     aboutParagraphs: [
-      'I live in Uspallata, Mendoza. Before focusing on software development I worked across support, infrastructure, SAP and integrations, which taught me to see software inside real processes rather than as isolated pieces.',
-      'I am driven by difficult problems and new domains. Away from the screen I run, hike and spend time in the mountains; living in Uspallata keeps that contrast close.',
+      "I live in Uspallata, Mendoza, surrounded by the Andes. My background spans technical support, infrastructure, SAP integrations, and software development. Working across these areas taught me to look beyond the code and understand how systems fit into real operations.",
+      "I'm naturally curious about how things work, especially when there's something new to learn or a complex problem to solve. Outside of work, I run, hike, and spend time in the mountains. Living here keeps me close to the outdoors and gives me a different perspective on the work I do.",
     ],
     contactTitle: 'Open to Full-Stack and Backend opportunities.',
     contactBody: 'Remote-first from Mendoza, Argentina. Hybrid, on-site and relocation can be considered for the right opportunity.',
@@ -37,8 +37,8 @@ const locales = [
     agentic: 'Combino prácticas de ingeniería de software —modelado, arquitectura, pruebas, seguridad y observabilidad— con agentes de IA para acelerar análisis, implementación y verificación, manteniendo criterio humano, trazabilidad y control sobre las decisiones críticas.',
     aboutTitle: 'Un poco sobre mí',
     aboutParagraphs: [
-      'Vivo en Uspallata, Mendoza. Antes de concentrarme en desarrollo trabajé en soporte, infraestructura, SAP e integraciones, y ese recorrido me enseñó a mirar el software dentro de procesos reales y no como piezas aisladas.',
-      'Me mueven los problemas difíciles y los dominios nuevos. Fuera de la pantalla corro, camino y paso tiempo en la montaña; vivir en Uspallata mantiene cerca ese contraste.',
+      "Vivo en Uspallata, Mendoza, rodeado por la Cordillera de los Andes. Mi trayectoria pasó por el soporte técnico, la infraestructura, las integraciones SAP y el desarrollo de software. Haber trabajado en distintas áreas me enseñó a mirar más allá del código y entender cómo los sistemas forman parte de las operaciones reales.",
+      "Soy curioso por naturaleza. Me gusta entender cómo funcionan las cosas, aprender sobre temas nuevos y resolver problemas complejos. Fuera del trabajo, disfruto correr, hacer trekking y pasar tiempo en la montaña. Vivir acá me permite mantener ese contacto con la naturaleza y encontrar otra perspectiva sobre lo que hago.",
     ],
     contactTitle: 'Busco oportunidades Full-Stack y Backend.',
     contactBody: 'Remoto prioritario desde Mendoza, Argentina. Puedo evaluar modalidad híbrida, presencial o reubicación según la oportunidad.',
