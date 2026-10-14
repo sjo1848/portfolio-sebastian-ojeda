@@ -238,3 +238,78 @@ test('captures responsive case study contents evidence', async ({ page }, testIn
   await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]')).toHaveAttribute('href', '#evidence-and-limits');
   await page.screenshot({ path: path.join(outputDir, 'contents-sticky-active-desktop-1440.png'), animations: 'disabled' });
 });
+
+ 
+// Regression #141: the reading section is already active while its heading is
+// comfortably visible below the sticky header, not only after it crosses it.
+for (const route of cases) {
+  test(`${route.name} highlights the visible reading section and synchronizes anchor clicks`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Shared scrollspy regression runs once per language and case.');
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+
+    const headingText = route.lang === 'es' ? 'Arquitectura' : 'Architecture';
+    const heading = page.locator('.prose h2').filter({ hasText: headingText }).first();
+    const headingId = await heading.getAttribute('id');
+    expect(headingId).toBeTruthy();
+    const selectedHref = `#${encodeURIComponent(headingId!)}`;
+    const nav = page.locator('.case-study-contents-desktop');
+
+    // Recreate the reported mismatch: Architecture is near the top of the
+    // reading column, but the previous section used to remain shaded.
+    await page.evaluate((id) => {
+      const target = document.getElementById(id);
+      if (!target) throw new Error(`Missing heading ${id}`);
+      window.scrollTo({
+        top: window.scrollY + target.getBoundingClientRect().top - 160,
+        behavior: 'instant',
+      });
+    }, headingId!);
+    await expect.poll(() => heading.evaluate((el) => Math.round(el.getBoundingClientRect().top)))
+      .toBeGreaterThanOrEqual(155);
+    await expect(nav.locator('a[aria-current="location"]')).toHaveAttribute('href', selectedHref);
+    await expect(nav.locator('a[aria-current="location"]')).toHaveCount(1);
+
+    // A click must not leave the previously shaded entry selected.
+    const links = nav.locator('a');
+    const index = await links.evaluateAll((nodes, href) =>
+      nodes.findIndex((node) => node.getAttribute('href') === href), selectedHref);
+    expect(index).toBeGreaterThan(0);
+    const previous = links.nth(index - 1);
+    const previousHref = await previous.getAttribute('href');
+    await previous.click();
+    await expect(nav.locator('a[aria-current="location"]')).toHaveAttribute('href', previousHref!);
+    await nav.locator(`a[href="${selectedHref}"]`).click();
+    await expect(nav.locator('a[aria-current="location"]')).toHaveAttribute('href', selectedHref);
+  });
+}
+
+for (const route of cases.filter((value) => value.name.startsWith('alquileres'))) {
+  test(`${route.name} mobile contents Sheet matches selected architecture`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Mobile scrollspy regression runs once per language.');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+    const headingId = route.lang === 'es' ? 'arquitectura' : 'architecture';
+    const target = page.locator(`#${headingId}`);
+    await target.evaluate((node) => {
+      window.scrollTo({ top: window.scrollY + node.getBoundingClientRect().top - 190, behavior: 'instant' });
+    });
+    // At this scroll position the reading-line highlight must be Architecture.
+    await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]'))
+      .toHaveAttribute('href', `#${headingId}`);
+    const trigger = page.getByRole('button', { name: route.lang === 'es' ? 'Contenido' : 'Contents', exact: true });
+    // Playwright scrolls the offscreen trigger into view before clicking. The
+    // active entry may legitimately change as the page returns to the gallery.
+    await trigger.click();
+    const sheet = page.locator('.case-study-contents-sheet');
+    await expect(sheet).toBeVisible();
+    await sheet.locator(`a[href="#${headingId}"]`).click();
+    await expect(sheet).toBeHidden();
+    await expect.poll(() => page.evaluate(() => document.activeElement?.id)).toBe(headingId);
+    await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]'))
+      .toHaveAttribute('href', `#${headingId}`);
+  });
+}
+

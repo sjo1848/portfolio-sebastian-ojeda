@@ -78,8 +78,20 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
         frame = requestAnimationFrame(restoreSelectedTargetFocus);
         return;
       }
+      // Native anchors can execute while the Sheet still holds scroll lock.
+      // Position the heading after the Sheet exits, using the same offset as
+      // CSS scroll-padding. An explicit scroll also avoids a browser restoring
+      // the pre-dialog position after the focus handoff.
+      const scrollPadding = Number.parseFloat(
+        window.getComputedStyle(document.documentElement).scrollPaddingTop,
+      ) || 0;
+      const scrollTop = window.scrollY + target.getBoundingClientRect().top - scrollPadding;
+      window.scrollTo({ top: Math.max(0, scrollTop), behavior: 'instant' });
       target.focus({ preventScroll: true });
-      if (document.activeElement === target) selectedTargetRef.current = null;
+      if (document.activeElement === target) {
+        setActiveId(target.id);
+        selectedTargetRef.current = null;
+      }
       else frame = requestAnimationFrame(restoreSelectedTargetFocus);
     };
     frame = requestAnimationFrame(restoreSelectedTargetFocus);
@@ -97,9 +109,17 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     const updateActive = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const headerOffset = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
-        const boundary = headerOffset + 48;
-        const atDocumentEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        const headerBottom = Math.max(0, document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0);
+        // Track the section under the reader's upper-quarter focus line, not just
+        // headings that have already passed the sticky header. This keeps the
+        // highlight aligned when a new heading is prominent but still below it.
+        const boundary = Math.max(
+          headerBottom + 56,
+          Math.min(window.innerHeight * 0.25, headerBottom + 160),
+        );
+        const scrollingElement = document.scrollingElement ?? document.documentElement;
+        const atDocumentEnd = scrollingElement.scrollTop + scrollingElement.clientHeight
+          >= scrollingElement.scrollHeight - 3;
         if (atDocumentEnd) {
           setActiveId(targets[targets.length - 1].id);
           return;
@@ -111,11 +131,18 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     const observer = typeof IntersectionObserver === 'undefined'
       ? null
       : new IntersectionObserver(updateActive, {
-          rootMargin: '0px 0px -68% 0px',
+          rootMargin: '0px 0px -75% 0px',
           threshold: [0, 1],
         });
     targets.forEach((target) => observer?.observe(target));
+    // Browser layout can settle after responsive changes or a modal releases
+    // scroll locking. Recheck on scroll completion and document size changes.
+    const sizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(updateActive);
+    sizeObserver?.observe(document.documentElement);
     window.addEventListener('scroll', updateActive, { passive: true });
+    document.addEventListener('scrollend', updateActive);
     window.addEventListener('resize', updateActive);
     window.addEventListener('hashchange', updateActive);
     window.addEventListener('popstate', updateActive);
@@ -124,7 +151,9 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
+      sizeObserver?.disconnect();
       window.removeEventListener('scroll', updateActive);
+      document.removeEventListener('scrollend', updateActive);
       window.removeEventListener('resize', updateActive);
       window.removeEventListener('hashchange', updateActive);
       window.removeEventListener('popstate', updateActive);
@@ -136,6 +165,8 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     setOpen(nextOpen);
   };
   const selectItem = (item: CaseStudyContentsItem) => {
+    // Keep the chosen entry selected during Sheet close and native anchor navigation.
+    setActiveId(item.id);
     const target = document.getElementById(item.id);
     if (target) {
       target.setAttribute('tabindex', '-1');
@@ -151,7 +182,7 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     >
       <div className="case-study-contents-desktop" role="navigation" aria-label={label}>
         <p className="case-study-contents-heading">{title}</p>
-        <ContentsLinks items={items} activeId={activeId} />
+        <ContentsLinks items={items} activeId={activeId} onSelect={(item) => setActiveId(item.id)} />
       </div>
 
       <details className="case-study-contents-fallback">
