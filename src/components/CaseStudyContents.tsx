@@ -117,7 +117,9 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
           headerBottom + 56,
           Math.min(window.innerHeight * 0.25, headerBottom + 160),
         );
-        const atDocumentEnd = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
+        const scrollingElement = document.scrollingElement ?? document.documentElement;
+        const atDocumentEnd = scrollingElement.scrollTop + scrollingElement.clientHeight
+          >= scrollingElement.scrollHeight - 3;
         if (atDocumentEnd) {
           setActiveId(targets[targets.length - 1].id);
           return;
@@ -133,7 +135,14 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
           threshold: [0, 1],
         });
     targets.forEach((target) => observer?.observe(target));
+    // Browser layout can settle after responsive changes or a modal releases
+    // scroll locking. Recheck on scroll completion and document size changes.
+    const sizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(updateActive);
+    sizeObserver?.observe(document.documentElement);
     window.addEventListener('scroll', updateActive, { passive: true });
+    document.addEventListener('scrollend', updateActive);
     window.addEventListener('resize', updateActive);
     window.addEventListener('hashchange', updateActive);
     window.addEventListener('popstate', updateActive);
@@ -142,7 +151,9 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
+      sizeObserver?.disconnect();
       window.removeEventListener('scroll', updateActive);
+      document.removeEventListener('scrollend', updateActive);
       window.removeEventListener('resize', updateActive);
       window.removeEventListener('hashchange', updateActive);
       window.removeEventListener('popstate', updateActive);
