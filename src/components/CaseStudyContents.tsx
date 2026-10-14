@@ -113,8 +113,15 @@ export default function CaseStudyContents({ lang, title, triggerLabel, items }: 
         // Track the section under the reader's upper-quarter focus line, not just
         // headings that have already passed the sticky header. This keeps the
         // highlight aligned when a new heading is prominent but still below it.
+        // Never position the reading line above the browser's native anchor
+        // landing point. In short mobile viewports the 25% rule can otherwise
+        // equal scroll-padding exactly and rounding can reselect the prior item.
+        const rootPadding = Number.parseFloat(
+          getComputedStyle(document.documentElement).scrollPaddingTop,
+        ) || 0;
         const boundary = Math.max(
           headerBottom + 56,
+          rootPadding + 12,
           Math.min(window.innerHeight * 0.25, headerBottom + 160),
         );
         const scrollingElement = document.scrollingElement ?? document.documentElement;

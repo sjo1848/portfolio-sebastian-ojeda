@@ -313,3 +313,59 @@ for (const route of cases.filter((value) => value.name.startsWith('alquileres'))
   });
 }
 
+
+// Regression #143: CSS scroll-padding and heading scroll-margin used to add up
+// to 12rem on desktop (20rem on mobile). At 1440x570 the resulting heading was
+// below the scrollspy's reading line, so a clicked Architecture link reverted
+// to Context and constraints even though Architecture was clearly on screen.
+for (const route of cases) {
+  test(`#143 ${route.name} desktop native Architecture anchor and active highlight agree at 570px height`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'The anchor offset regression runs once per canonical case/locale.');
+    await page.setViewportSize({ width: 1440, height: 570 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(route.path, { waitUntil: 'networkidle' });
+
+    const id = route.lang === 'es' ? 'arquitectura' : 'architecture';
+    const nav = page.locator('.case-study-contents-desktop');
+    await expect(nav).toBeVisible();
+    await nav.locator(`a[href="#${id}"]`).click();
+
+    await expect.poll(() => new URL(page.url()).hash).toBe(`#${id}`);
+    await expect(nav.locator('a[aria-current="location"]')).toHaveAttribute('href', `#${id}`);
+    await expect(nav.locator('a[aria-current="location"]')).toHaveCount(1);
+
+    const offset = await page.locator(`#${id}`).evaluate((heading) => ({
+      top: heading.getBoundingClientRect().top,
+      margin: Number.parseFloat(getComputedStyle(heading).scrollMarginTop),
+      rootPadding: Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop),
+      headerBottom: document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0,
+    }));
+    // The clicked heading must be at the scroll-padding line, never another
+    // entire scroll-margin below it (this is what the earlier suite missed).
+    expect(offset.margin).toBe(0);
+    expect(offset.top).toBeGreaterThanOrEqual(offset.headerBottom - 2);
+    expect(offset.top).toBeLessThanOrEqual(offset.rootPadding + 10);
+  });
+}
+
+for (const lang of ['en', 'es'] as const) {
+  test(`#143 ${lang} short mobile Sheet anchor aligns heading and selection`, async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'The short-mobile anchor regression runs once per locale.');
+    await page.setViewportSize({ width: 390, height: 640 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto(lang === 'es' ? '/es/projects/alquileres-uspa/' : '/projects/alquileres-uspa/', { waitUntil: 'networkidle' });
+
+    const id = lang === 'es' ? 'arquitectura' : 'architecture';
+    await page.getByRole('button', { name: lang === 'es' ? 'Contenido' : 'Contents', exact: true }).click();
+    const sheet = page.locator('.case-study-contents-sheet');
+    await expect(sheet).toBeVisible();
+    await sheet.locator(`a[href="#${id}"]`).click();
+    await expect(sheet).toBeHidden();
+    await expect.poll(() => new URL(page.url()).hash).toBe(`#${id}`);
+    await expect.poll(() => page.locator(`#${id}`).evaluate((heading) =>
+      heading.getBoundingClientRect().top
+    )).toBeLessThanOrEqual(170);
+    await expect(page.locator('.case-study-contents-desktop a[aria-current="location"]'))
+      .toHaveAttribute('href', `#${id}`);
+  });
+}
